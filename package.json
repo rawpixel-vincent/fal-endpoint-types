@@ -1,6 +1,6 @@
 {
     "name": "fal-endpoint-types",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "",
     "homepage": "https://github.com/rawpixel-vincent/fal-endpoint-types#readme",
     "bugs": {
@@ -10,7 +10,7 @@
         "type": "git",
         "url": "git+https://github.com/rawpixel-vincent/fal-endpoint-types.git"
     },
-    "license": "ISC",
+    "license": "MIT",
     "author": "rawpixel-vincent",
     "type": "module",
     "main": "./types/fal/index.d.ts",
