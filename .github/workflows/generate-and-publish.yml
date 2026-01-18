@@ -1,0 +1,103 @@
+name: Generate and Publish Types
+
+on:
+    schedule:
+        # Run every Monday at midnight UTC
+        - cron: '0 0 * * 1'
+    workflow_dispatch:
+
+jobs:
+    generate-and-publish:
+        runs-on: ubuntu-latest
+        permissions:
+            contents: write
+            id-token: write
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+              with:
+                  token: ${{ secrets.GITHUB_TOKEN }}
+                  fetch-depth: 0
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: '22'
+                  registry-url: 'https://registry.npmjs.org'
+
+            - name: Install dependencies
+              run: |
+                  if [ -f package-lock.json ]; then
+                    npm ci
+                  else
+                    npm install
+                  fi
+
+            - name: Generate types
+              run: node scripts/generate-fal-types.mjs
+
+            - name: Check for changes
+              id: check-changes
+              run: |
+                  if git diff --quiet types/fal/endpoints/index.d.ts types/fal/endpoints/schema.d.ts; then
+                    echo "changed=false" >> $GITHUB_OUTPUT
+                    echo "No changes detected in generated types"
+                  else
+                    echo "changed=true" >> $GITHUB_OUTPUT
+                    echo "Changes detected in generated types"
+                    git diff --stat types/fal/endpoints/index.d.ts types/fal/endpoints/schema.d.ts
+                  fi
+
+            - name: Configure Git
+              if: steps.check-changes.outputs.changed == 'true'
+              run: |
+                  git config --global user.name "github-actions[bot]"
+                  git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+            - name: Bump version
+              if: steps.check-changes.outputs.changed == 'true'
+              run: npm version patch --no-git-tag
+
+            - name: Commit changes
+              if: steps.check-changes.outputs.changed == 'true'
+              run: |
+                  git add types/fal/endpoints/index.d.ts types/fal/endpoints/schema.d.ts package.json package-lock.json 2>/dev/null || git add types/fal/endpoints/index.d.ts types/fal/endpoints/schema.d.ts package.json
+                  git commit -m "chore: update generated types [skip ci]"
+
+            - name: Create git tag
+              if: steps.check-changes.outputs.changed == 'true'
+              id: tag
+              run: |
+                  VERSION=$(grep -o '"version": "[^"]*"' package.json | cut -d'"' -f4)
+                  git tag -a "v${VERSION}" -m "Release v${VERSION}"
+                  echo "tag=v${VERSION}" >> $GITHUB_OUTPUT
+                  echo "Created tag v${VERSION}"
+
+            - name: Push changes and tag
+              if: steps.check-changes.outputs.changed == 'true'
+              run: |
+                  BRANCH=$(git branch --show-current || echo "main")
+                  git push origin HEAD:$BRANCH
+                  git push origin --tags
+
+            - name: Publish to npm
+              if: steps.check-changes.outputs.changed == 'true'
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+              run: npm publish --access public
+
+            - name: Create GitHub Release
+              if: steps.check-changes.outputs.changed == 'true'
+              run: |
+                  gh release create ${{ steps.tag.outputs.tag }} \
+                    --title "Release ${{ steps.tag.outputs.tag }}" \
+                    --notes "Automated release with updated fal endpoint types.
+
+                  This release includes the latest generated TypeScript definitions for fal.ai endpoints."
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+            - name: Skip message
+              if: steps.check-changes.outputs.changed == 'false'
+              run: echo "No changes detected. Skipping version bump and publishing."

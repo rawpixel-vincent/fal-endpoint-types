@@ -1,0 +1,6 @@
+{
+    "typescript.disableAutomaticTypeAcquisition": true,
+    "typescript.tsserver.web.typeAcquisition.enabled": false,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+}
