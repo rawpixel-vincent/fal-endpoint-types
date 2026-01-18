@@ -403,6 +403,13 @@ while (true) {
     page++;
 }
 
+// await writeFileSync(
+//     'types/fal/endpoints/set.js',
+//     `export const endpoints = new Set(${JSON.stringify(Array.from(endpoints))});`
+// );
+
+// execSync('./node_modules/.bin/prettier --write "types/fal/endpoints/set.js"');
+
 console.log(`${endpoints.size} endpoints found`);
 let i = 0;
 let promisesa = [];

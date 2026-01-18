@@ -1,4 +1,8 @@
-input and output shapes exported from the openapi.json of fal.ai endpoints to typescript types.
+Fal.ai model endpoints Input and Output ts shapes.
+Built from the Open API schemas provided by fal.ai.
+
+- https://fal.ai/api/models
+- https://fal.ai/api/openapi/queue/openapi.json?endpoint_id={endpointId}
 
 Usage:
 
@@ -11,46 +15,39 @@ const output: fal.EndpointOutput<'fal-ai/hyper3d/rodin'> = {
 };
 ```
 
+Usage example:
+
 ```ts
-const getMyMappedEndpointInput = (endpointId: Endpoint, userInputs: any): EndpointInput<typeof endpointId> => {
-  // ...
-  // Narrow down the endpoint id
-  // to infer the type of the returned value
-  switch (endpointId) {
-    case 'fal-ai/minimax/hailuo-02/standard/text-to-video':
-      return {
-        prompt: userInputs.prompt, // type safe, will be infered by the narrowed endpoint id
-      };
-    default:
-      throw new Error(`Unsupported endpoint: ${endpointId}`);
-  }
-}
-
-const endpointId = req.endpointId; // 'fal-ai/minimax/hailuo-02/standard/text-to-video'
-const input = getMyMappedEndpointInput(endpointId, req.userInputs);
-
-// --------------------------
-
-const res = await fetch('https://fal.ai/api/v1/endpoints/{endpointId}', {
-    method: 'POST',
-    body: JSON.stringify({
-     input: {
-        ...input,
+// ...
+// Narrow down the endpoint id,
+// to infer the type of the returned value,
+// this example uses an index signature.
+// The input type is infered in the function.
+const FalInputs: {
+    [x: number | string | symbol]: any;
+} & {
+    [K in fal.Endpoint]?: (userInputs: Record<string, any>) => fal.EndpointInput<K>;
+} = {
+    'fal-ai/flux-kontext/dev': (userInputs) => ({
+        // typed FluxKontextDevInput
+        prompt: typeof userInputs['prompt'] === 'string' ? userInputs['prompt'] : '',
+        image_url: typeof userInputs['image_url'] === 'string' ? userInputs['image_url'] : '',
     }),
-}).then(res => res.json());
-// check the api urls in the docs, this is just an example.
-const result = await fetch('https://fal.ai/api/v1/endpoints/{endpointId}/requests/{res.requestId}', {
-    method: 'GET',
-}).then(res => res.json())
-const output = data.data as unknown as EndpointOutput<typeof endpointId>;
+    // '...etc...': (userInputs) => ({}), // more endpoints you want to support
+};
 
-// --------------------------
-// OR
+const endpointIdString = String('fal-ai/flux-kontext/dev');
+// any | undefined (best instead of all possible inputs)
+const falInputAny = FalInputs[endpointIdString]?.({ prompt: 'Hello, world!' });
+// FluxKreaTrainerInput | BriaVideoBackgroundRemovalInput
+// | ... 100 more ... | undefined (expensive option, no benefits, not safe)
+const falInputAll =
+    isFalEndpoint(endpointIdString) ?
+        FalInputs[endpointIdString]?.({ prompt: 'Hello, world!' })
+    :   undefined;
 
-const res = await fal.queue.submit(endpointId, {input});
-
-// import('@fal/client').Result<EndpointOutput<typeof endpointId>>
-const result = await fal.queue.result(res.requestId);
-
-const output = result.data as unknown as EndpointOutput<typeof endpointId>;
+//... Normal inference when the endpoint id is known.
+const endpointId = 'fal-ai/flux-kontext/dev';
+// FluxKontextDevInput | undefined
+const falInput = FalInputs[endpointId]?.({ prompt: 'Hello, world!' });
 ```
