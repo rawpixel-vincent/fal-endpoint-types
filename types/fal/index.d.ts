@@ -1,3 +1,5 @@
+/// <reference types="./endpoints/index.d.ts" />
+
 declare global {
     export namespace fal {
         export type Endpoint = keyof fal.endpoints.Endpoints;
@@ -53,7 +55,6 @@ declare global {
         export type EndpointInput<T extends Endpoint> = fal.endpoints.Endpoints[T]['input'];
         export type EndpointOutput<T extends Endpoint> = fal.endpoints.Endpoints[T]['output'];
     }
-    export namespace fal.endpoints {}
 }
 
 export {};
