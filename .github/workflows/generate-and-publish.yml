@@ -23,7 +23,7 @@ jobs:
             - name: Setup Node.js
               uses: actions/setup-node@v4
               with:
-                  node-version: '22'
+                  node-version: '24'
                   registry-url: 'https://registry.npmjs.org'
 
             - name: Install dependencies
@@ -83,20 +83,7 @@ jobs:
 
             - name: Publish to npm
               if: steps.check-changes.outputs.changed == 'true'
-              env:
-                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
               run: npm publish --access public
-
-            - name: Create GitHub Release
-              if: steps.check-changes.outputs.changed == 'true'
-              run: |
-                  gh release create ${{ steps.tag.outputs.tag }} \
-                    --title "Release ${{ steps.tag.outputs.tag }}" \
-                    --notes "Automated release with updated fal endpoint types.
-
-                  This release includes the latest generated TypeScript definitions for fal.ai endpoints."
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
             - name: Skip message
               if: steps.check-changes.outputs.changed == 'false'
