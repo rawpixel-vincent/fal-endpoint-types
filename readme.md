@@ -4,7 +4,8 @@ Built from the Open API schemas provided by fal.ai.
 - https://fal.ai/api/models
 - https://fal.ai/api/openapi/queue/openapi.json?endpoint_id={endpointId}
 
-Usage:
+**It's a drop in replacement for import('@fal-ai/client').RunOptions<'endpointId'>['input'].** (that is missing some endpoints / or incorrect types)
+there's discussion in fal.ai to build the types from openapi, as soon as that's done, this repo will be archived.
 
 ```ts
 const input: fal.EndpointInput<'fal-ai/hyper3d/rodin'> = {
