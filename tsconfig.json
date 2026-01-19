@@ -41,5 +41,5 @@
         "isolatedModules": true
     },
     "include": ["./**/*.js", "./**/*.ts", "./**/*.d.ts", "./**/*.mjs"],
-    "exclude": ["node_modules"]
+    "exclude": ["node_modules", "save"]
 }

@@ -1,7 +1,35 @@
 #!/usr/bin/env node
 
-import { execSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
+import { execFileSync, execSync } from 'node:child_process';
 import { appendFileSync, mkdirSync, renameSync, rmSync, writeFileSync } from 'node:fs';
+
+/** @type {Map<string & {_b?:'hash'}, (string & {_b?:'componentName'})[]>} */
+let componentsSigned = new Map();
+
+/** @type {Set<string & {_b?:'name'}>} */
+let names = new Set();
+/** @type {Map<string & {_b?:'hash'}, string & {_b?:'uniqueComponentName'}>} */
+let uniqueComponentNames = new Map();
+
+/**
+ * @param {string} prefix
+ * @param {number} [len]
+ * @returns {string & {_b?:'uniqueComponentName'}}
+ */
+const getUniqueComponentName = (prefix, len = 3) => {
+    let name = prefix;
+    if (names.has(name)) {
+        let firstPart = `000${Math.floor(Math.random() * 466566).toString(36)}`.slice(-3);
+        let randPart = `000${Math.floor(Math.random() * 466566).toString(36)}`.slice(-3);
+        let secondPart = `000${(Date.now() * 10).toString(36)}`.slice(-4);
+
+        name = `${name}_${firstPart.concat(randPart).concat(secondPart).slice(0, len)}`;
+        return getUniqueComponentName(name, len + 1);
+    }
+    names.add(name);
+    return name;
+};
 
 /**
  * @param {() => Promise<any>} fn
@@ -45,7 +73,7 @@ const withRetries = async (
  * @param {string} endpointId
  * @param {number} [waitTime]
  */
-const doEndpoint = async (endpointId, waitTime = 0) => {
+const doEndpoint = async (endpointId, waitTime = 0, onlyComponents = false) => {
     if (waitTime > 0) {
         await new Promise((resolve) => setTimeout(resolve, waitTime * 100));
     }
@@ -175,6 +203,10 @@ const doEndpoint = async (endpointId, waitTime = 0) => {
                     if (line.trim().endsWith('{')) {
                         currentComponentIndent++;
                     }
+                    if (lastCommentSetDefault && line.includes(': ') && !line.includes('?: ')) {
+                        line = line.replace(': ', '?: ');
+                        lastCommentSetDefault = false;
+                    }
                     components.set(
                         currentComponentName,
                         `${components.get(currentComponentName)}\n${line}`
@@ -211,7 +243,60 @@ const doEndpoint = async (endpointId, waitTime = 0) => {
         }
     }
 
-    // console.log(Array.from(components.entries()));
+    /** @type {Map<string & {_b?:'componentName'}, string & {_b?:'hash'}>} */
+    const localComponents = new Map();
+    for (const [componentName, componentDefinition] of components.entries()) {
+        if ([inputTypeName, outputTypeName, 'QueueStatus'].includes(componentName)) {
+            continue;
+        }
+        const safeComponentName = componentName
+            .replace(/[^a-zA-Z0-9_]+/g, '')
+            .replace(/^[0-9]+/, '');
+        const formattedDefinition = execFileSync(
+            'npx',
+            ['-y', 'prettier', '--parser', 'typescript'],
+            {
+                input: `export interface ${safeComponentName} ${componentDefinition}`,
+            }
+        ).toString();
+        // console.log('formattedDefinition', formattedDefinition);
+        const hash = createHash('sha256').update(formattedDefinition).digest('hex');
+        const uniqueComponentName =
+            uniqueComponentNames.has(hash) ?
+                uniqueComponentNames.get(hash)
+            :   uniqueComponentNames.set(hash, getUniqueComponentName(safeComponentName)).get(hash);
+        if (!componentsSigned.has(hash)) {
+            await appendFileSync(
+                `types/fal/endpoints/components.next.d.ts`,
+                `\n\nexport interface ${uniqueComponentName} ${componentDefinition}\n\n`
+            );
+            componentsSigned.set(hash, [componentName]);
+        } else {
+            // @ts-ignore
+            componentsSigned.get(hash).push(componentName);
+        }
+        // @ts-ignore
+        localComponents.set(componentName, hash);
+    }
+
+    //     appendFileSync(
+    //         `types/fal/endpoints/components.next.d.ts`,
+    //         `
+
+    // ${Array.from(components.entries())
+    //     .filter(
+    //         ([componentName]) => ![inputTypeName, outputTypeName, 'QueueStatus'].includes(componentName)
+    //     )
+    //     .map(
+    //         ([componentName, componentDefinition]) =>
+    //             `export interface ${componentName} ${componentDefinition}`
+    //     )
+    //     .join('\n')}
+    // `
+    //     );
+    if (onlyComponents) {
+        return;
+    }
     isInInputType = false;
     isInOutputType = false;
     isInComponents = false;
@@ -253,11 +338,11 @@ const doEndpoint = async (endpointId, waitTime = 0) => {
                 } else {
                     if (line.includes(`components["schemas"]["`)) {
                         let updatedLine = line;
-                        for (const componentName of componentNames) {
+                        for (const [componentName, hash] of localComponents.entries()) {
                             if (line.includes(`components["schemas"]["${componentName}"]`)) {
                                 updatedLine = updatedLine.replace(
                                     `components["schemas"]["${componentName}"]`,
-                                    components.get(componentName)
+                                    `Components.${uniqueComponentNames.get(hash)}`
                                 );
                             }
                         }
@@ -299,11 +384,11 @@ const doEndpoint = async (endpointId, waitTime = 0) => {
                 } else {
                     if (line.includes(`components["schemas"]["`)) {
                         let updatedLine = line;
-                        for (const componentName of componentNames) {
+                        for (const [componentName, hash] of localComponents.entries()) {
                             if (line.includes(`components["schemas"]["${componentName}"]`)) {
                                 updatedLine = updatedLine.replace(
                                     `components["schemas"]["${componentName}"]`,
-                                    components.get(componentName)
+                                    `Components${uniqueComponentNames.get(hash)}`
                                 );
                             }
                         }
@@ -346,6 +431,7 @@ ${inputTypeDefinition}\n\n${outputTypeDefinition}
         input: falEndpoints.${prefixTypeName}${inputTypeName.replace(/[^a-zA-Z0-9_]+/g, '')};
         output: falEndpoints.${prefixTypeName}${outputTypeName.replace(/[^a-zA-Z0-9_]+/g, '')};
       };
+
   `
     );
 };
@@ -356,9 +442,41 @@ let lastCompleted = 0;
 if (lastCompleted === 0) {
     await rmSync('types/fal/endpoints/index.next.d.ts', { force: true });
     await rmSync('types/fal/endpoints/schema.next.d.ts', { force: true });
-    writeFileSync(
-        `types/fal/endpoints/index.next.d.ts`,
-        `import type * as falEndpoints from './schema.js';
+    await rmSync('types/fal/endpoints/components.next.d.ts', { force: true });
+}
+
+// await doEndpoint('fal-ai/f-lite/texture', 0, true);
+
+// await doEndpoint('fal-ai/gpt-image-1.5', 0, true);
+// process.exit(0);
+
+const getEndpoints = async () => {
+    const endpoints = new Set();
+    let page = 1;
+    while (true) {
+        const currentSize = endpoints.size;
+        await fetch(`https://fal.ai/api/models?page=${page}`)
+            .then((res) => /** @type {Promise<{items: {id: string}[]}>} */ (res.json()))
+            .then((data) => {
+                data.items.forEach((endpoint) => {
+                    endpoints.add(endpoint.id);
+                });
+            });
+
+        if (endpoints.size === currentSize) {
+            break;
+        }
+        page++;
+    }
+    console.log(`${endpoints.size} endpoints found`);
+    return endpoints;
+};
+
+const generateAll = async () => {
+    if (lastCompleted === 0) {
+        writeFileSync(
+            `types/fal/endpoints/index.next.d.ts`,
+            `import type * as falEndpoints from './schema.js';
 
 declare global {
   export namespace fal {}
@@ -367,84 +485,52 @@ declare global {
 
 
     `
-    );
-}
+        );
+        writeFileSync(
+            `types/fal/endpoints/schema.next.d.ts`,
+            `import type * as Components from './components.js';
 
-// await doEndpoint('fal-ai/hyper3d/rodin');
-// await appendFileSync(
-//     `types/fal/endpoints/index.next.d.ts`,
-//     `
 
-//     }
-//   }
-// }
-
-// export {};
-// `
-// );
-// // await doEndpoint('fal-ai/gpt-image-1.5');
-// process.exit(0);
-
-const endpoints = new Set();
-let page = 1;
-while (true) {
-    const currentSize = endpoints.size;
-    await fetch(`https://fal.ai/api/models?page=${page}`)
-        .then((res) => /** @type {Promise<{items: {id: string}[]}>} */ (res.json()))
-        .then((data) => {
-            data.items.forEach((endpoint) => {
-                endpoints.add(endpoint.id);
-            });
-        });
-
-    if (endpoints.size === currentSize) {
-        break;
+`
+        );
     }
-    page++;
-}
 
-// await writeFileSync(
-//     'types/fal/endpoints/set.js',
-//     `export const endpoints = new Set(${JSON.stringify(Array.from(endpoints))});`
-// );
+    const endpoints = await getEndpoints();
 
-// execSync('./node_modules/.bin/prettier --write "types/fal/endpoints/set.js"');
-
-console.log(`${endpoints.size} endpoints found`);
-let i = 0;
-let promisesa = [];
-let promisesb = [];
-for (const endpoint of Array.from(endpoints)) {
-    i += 1;
-    if (i <= lastCompleted) {
-        continue;
-    }
-    console.log(`- Generating types for ${endpoint} (${i}/${endpoints.size})`);
-    if (i % 2 === 0) {
-        promisesa.push(doEndpoint(endpoint, promisesa.length));
-        if (promisesa.length >= 4) {
-            await Promise.all([...promisesa, ...promisesb.splice(0, 1)]);
-            promisesa = [];
+    let i = 0;
+    let promisesa = [];
+    let promisesb = [];
+    for (const endpoint of Array.from(endpoints)) {
+        i += 1;
+        if (i <= lastCompleted) {
+            continue;
         }
-    } else {
-        promisesb.push(doEndpoint(endpoint, promisesb.length > 4 ? promisesb.length - 4 : 0));
-        if (promisesb.length >= 10) {
-            await Promise.all(promisesb.splice(0, 5));
+        console.log(`- Generating types for ${endpoint} (${i}/${endpoints.size})`);
+        if (i % 2 === 0) {
+            promisesa.push(doEndpoint(endpoint, promisesa.length));
+            if (promisesa.length >= 4) {
+                await Promise.all([...promisesa, ...promisesb.splice(0, 1)]);
+                promisesa = [];
+            }
+        } else {
+            promisesb.push(doEndpoint(endpoint, promisesb.length > 4 ? promisesb.length - 4 : 0));
+            if (promisesb.length >= 10) {
+                await Promise.all(promisesb.splice(0, 5));
+            }
         }
     }
-}
-if (promisesa.length > 0) {
-    await Promise.all(promisesa);
-}
-if (promisesb.length > 0) {
-    await Promise.all(promisesb);
-}
-//
-await new Promise((resolve) => setTimeout(resolve, 1000));
-console.log(`Done generating ${i} types`);
-await appendFileSync(
-    `types/fal/endpoints/index.next.d.ts`,
-    `
+    if (promisesa.length > 0) {
+        await Promise.all(promisesa);
+    }
+    if (promisesb.length > 0) {
+        await Promise.all(promisesb);
+    }
+    //
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    console.log(`Done generating ${i} types`);
+    await appendFileSync(
+        `types/fal/endpoints/index.next.d.ts`,
+        `
 
     }
   }
@@ -454,12 +540,97 @@ await appendFileSync(
 export {};
 
 `
-);
+    );
+    await appendFileSync(
+        `types/fal/endpoints/schema.next.d.ts`,
+        `
 
-rmSync('types/fal/endpoints/index.d.ts', { force: true });
-rmSync('types/fal/endpoints/schema.d.ts', { force: true });
-renameSync('types/fal/endpoints/index.next.d.ts', 'types/fal/endpoints/index.d.ts');
-renameSync('types/fal/endpoints/schema.next.d.ts', 'types/fal/endpoints/schema.d.ts');
+export {};
 
-execSync('./node_modules/.bin/prettier --write "types/fal/endpoints/schema.d.ts"');
-execSync('./node_modules/.bin/prettier --write "types/fal/endpoints/index.d.ts"');
+`
+    );
+    await appendFileSync(
+        `types/fal/endpoints/components.next.d.ts`,
+        `
+
+export {};
+
+`
+    );
+
+    rmSync('types/fal/endpoints/index.d.ts', { force: true });
+    rmSync('types/fal/endpoints/schema.d.ts', { force: true });
+    rmSync('types/fal/endpoints/components.d.ts', { force: true });
+    renameSync('types/fal/endpoints/index.next.d.ts', 'types/fal/endpoints/index.d.ts');
+    renameSync('types/fal/endpoints/schema.next.d.ts', 'types/fal/endpoints/schema.d.ts');
+    renameSync('types/fal/endpoints/components.next.d.ts', 'types/fal/endpoints/components.d.ts');
+
+    execSync('./node_modules/.bin/prettier --write "types/fal/endpoints/schema.d.ts"');
+    execSync('./node_modules/.bin/prettier --write "types/fal/endpoints/index.d.ts"');
+    execSync('./node_modules/.bin/prettier --write "types/fal/endpoints/components.d.ts"');
+};
+
+const generateAllComponents = async () => {
+    const endpoints = await getEndpoints();
+
+    let i = 0;
+    let promisesa = [];
+    let promisesb = [];
+    for (const endpoint of Array.from(endpoints)) {
+        i += 1;
+        if (i <= lastCompleted) {
+            continue;
+        }
+        console.log(
+            `- Generating ${endpoint} (${i}/${endpoints.size}) - generated ${componentsSigned.size} components`
+        );
+        Math.random() > 0.5 && (await new Promise((resolve) => setTimeout(resolve, 500)));
+        if (i % 2 === 0) {
+            promisesa.push(doEndpoint(endpoint, promisesa.length, true));
+            if (promisesa.length >= 3) {
+                await Promise.all([...promisesa, ...promisesb.splice(0, 1)]);
+                promisesa = [];
+            }
+        } else {
+            promisesb.push(
+                doEndpoint(endpoint, promisesb.length > 2 ? promisesb.length - 1 : 0, true)
+            );
+            if (promisesb.length >= 5) {
+                await Promise.all(promisesb.splice(0, 3));
+                console.log(
+                    Array.from(componentsSigned.entries())
+                        .map(
+                            ([hash, componentNames]) =>
+                                `${hash}: ${componentNames.length} components: ${componentNames.slice(0, 3).join(', ')}...`
+                        )
+                        .join('\n')
+                );
+            }
+        }
+    }
+    if (promisesa.length > 0) {
+        await Promise.all(promisesa);
+    }
+    if (promisesb.length > 0) {
+        await Promise.all(promisesb);
+    }
+    //
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    console.log(`Done generating ${i} endpoints components: ${componentsSigned.size} components`);
+
+    await appendFileSync(
+        `types/fal/endpoints/components.next.d.ts`,
+        `
+  
+  export {};
+  
+  `
+    );
+
+    rmSync('types/fal/endpoints/components.d.ts', { force: true });
+    renameSync('types/fal/endpoints/components.next.d.ts', 'types/fal/endpoints/components.d.ts');
+    execSync('./node_modules/.bin/prettier --write "types/fal/endpoints/components.d.ts"');
+};
+
+// await generateAllComponents();
+await generateAll();
