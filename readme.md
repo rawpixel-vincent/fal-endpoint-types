@@ -1,8 +1,24 @@
+[![npm version](https://img.shields.io/npm/v/fal-endpoint-types)](https://npmjs.com/package/fal-endpoint-types)
+[![license](https://img.shields.io/npm/l/fal-endpoint-types)](https://npmjs.com/package/fal-endpoint-types)
+[![downloads](https://img.shields.io/npm/dm/fal-endpoint-types)](https://npmjs.com/package/fal-endpoint-types)
+
 Fal.ai model endpoints Input and Output ts shapes.
 Built from the Open API schemas provided by fal.ai.
 
 - https://fal.ai/api/models
 - https://fal.ai/api/openapi/queue/openapi.json?endpoint_id={endpointId}
+
+## Install
+
+```bash
+npm install --save-dev fal-endpoint-types
+# or
+yarn add --dev fal-endpoint-types
+# or
+pnpm add --dev fal-endpoint-types
+# or
+bun add --dev fal-endpoint-types
+```
 
 **It's a drop in replacement for import('@fal-ai/client').RunOptions<'endpointId'>['input'].** (that is missing some endpoints / or incorrect types)
 there's discussion in fal.ai to build the types from openapi, as soon as that's done, this repo will be archived.
