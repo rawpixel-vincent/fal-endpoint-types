@@ -281,29 +281,30 @@ const getEndpointInputOutput = async (endpointId) => {
 const doEndpointComponents = async (endpointId) => {
     const machineName = endpointId.replace(/[^a-zA-Z0-9_-]+/g, '_');
     const endpointComponentsLocalPath = `build-cache/endpoints-components/${machineName}.json`;
-    try {
-        /** @type {{components: ComponentsType, inputComponent: [InputTypeName, SafeInputTypeName, Content], outputComponent: [OutputTypeName, SafeOutputTypeName, Content]}} */
-        const cachedComponents = JSON.parse(
-            (await readFile(endpointComponentsLocalPath, 'utf8').catch(() => 'null')) || 'null'
-        );
-        if (
-            cachedComponents &&
-            typeof cachedComponents === 'object' &&
-            cachedComponents !== null &&
-            cachedComponents.inputComponent &&
-            cachedComponents.components &&
-            Array.isArray(cachedComponents.components)
-        ) {
-            return {
-                inputComponent: cachedComponents.inputComponent,
-                outputComponent: cachedComponents.outputComponent,
-                components: cachedComponents.components,
-            };
+    if (process.env['CACHE_ENDPOINTS']) {
+        try {
+            /** @type {{components: ComponentsType, inputComponent: [InputTypeName, SafeInputTypeName, Content], outputComponent: [OutputTypeName, SafeOutputTypeName, Content]}} */
+            const cachedComponents = JSON.parse(
+                (await readFile(endpointComponentsLocalPath, 'utf8').catch(() => 'null')) || 'null'
+            );
+            if (
+                cachedComponents &&
+                typeof cachedComponents === 'object' &&
+                cachedComponents !== null &&
+                cachedComponents.inputComponent &&
+                cachedComponents.components &&
+                Array.isArray(cachedComponents.components)
+            ) {
+                return {
+                    inputComponent: cachedComponents.inputComponent,
+                    outputComponent: cachedComponents.outputComponent,
+                    components: cachedComponents.components,
+                };
+            }
+        } catch (err) {
+            //
         }
-    } catch (err) {
-        //
     }
-
     const {
         inputTypeName = '',
         outputTypeName = '',
@@ -486,14 +487,16 @@ const doEndpointComponents = async (endpointId) => {
         );
     }
     const hashComponentsEntries = Array.from(hashComponents.entries());
-    writeFileSync(
-        endpointComponentsLocalPath,
-        JSON.stringify({
-            components: hashComponentsEntries,
-            inputComponent: inputComponent,
-            outputComponent: outputComponent,
-        })
-    );
+    if (process.env['CACHE_ENDPOINTS']) {
+        writeFileSync(
+            endpointComponentsLocalPath,
+            JSON.stringify({
+                components: hashComponentsEntries,
+                inputComponent: inputComponent,
+                outputComponent: outputComponent,
+            })
+        );
+    }
 
     return {
         // @ts-ignore
