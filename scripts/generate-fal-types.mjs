@@ -481,7 +481,7 @@ const getEndpoints = async () => {
 
 const generateAll = async () => {
     /** @type {string[]} */
-    const endpoints = (await getEndpoints()).slice(0, 100);
+    const endpoints = await getEndpoints();
 
     let i = 0;
     let promisesa = [];
