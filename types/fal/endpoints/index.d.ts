@@ -24,6 +24,71 @@ declare global {
                 output: falEndpoints.BeatovenSoundEffectGenerationOutput;
             };
 
+            'bria/fibo-edit/add_object_by_text': {
+                input: falEndpoints.BriaFiboEditAdd_object_by_textInput;
+                output: falEndpoints.BriaFiboEditAdd_object_by_textOutput;
+            };
+
+            'bria/fibo-edit/blend': {
+                input: falEndpoints.BriaFiboEditBlendInput;
+                output: falEndpoints.BriaFiboEditBlendOutput;
+            };
+
+            'bria/fibo-edit/colorize': {
+                input: falEndpoints.BriaFiboEditColorizeInput;
+                output: falEndpoints.BriaFiboEditColorizeOutput;
+            };
+
+            'bria/fibo-edit/edit': {
+                input: falEndpoints.BriaFiboEditEditInput;
+                output: falEndpoints.BriaFiboEditEditOutput;
+            };
+
+            'bria/fibo-edit/edit/structured_instruction': {
+                input: falEndpoints.BriaFiboEditEditStructured_instructionInput;
+                output: falEndpoints.BriaFiboEditEditStructured_instructionOutput;
+            };
+
+            'bria/fibo-edit/erase_by_text': {
+                input: falEndpoints.BriaFiboEditErase_by_textInput;
+                output: falEndpoints.BriaFiboEditErase_by_textOutput;
+            };
+
+            'bria/fibo-edit/relight': {
+                input: falEndpoints.BriaFiboEditRelightInput;
+                output: falEndpoints.BriaFiboEditRelightOutput;
+            };
+
+            'bria/fibo-edit/replace_object_by_text': {
+                input: falEndpoints.BriaFiboEditReplace_object_by_textInput;
+                output: falEndpoints.BriaFiboEditReplace_object_by_textOutput;
+            };
+
+            'bria/fibo-edit/reseason': {
+                input: falEndpoints.BriaFiboEditReseasonInput;
+                output: falEndpoints.BriaFiboEditReseasonOutput;
+            };
+
+            'bria/fibo-edit/restore': {
+                input: falEndpoints.BriaFiboEditRestoreInput;
+                output: falEndpoints.BriaFiboEditRestoreOutput;
+            };
+
+            'bria/fibo-edit/restyle': {
+                input: falEndpoints.BriaFiboEditRestyleInput;
+                output: falEndpoints.BriaFiboEditRestyleOutput;
+            };
+
+            'bria/fibo-edit/rewrite_text': {
+                input: falEndpoints.BriaFiboEditRewrite_textInput;
+                output: falEndpoints.BriaFiboEditRewrite_textOutput;
+            };
+
+            'bria/fibo-edit/sketch_to_colored_image': {
+                input: falEndpoints.BriaFiboEditSketch_to_colored_imageInput;
+                output: falEndpoints.BriaFiboEditSketch_to_colored_imageOutput;
+            };
+
             'bria/fibo-lite/generate': {
                 input: falEndpoints.BriaFiboLiteGenerateInput;
                 output: falEndpoints.BriaFiboLiteGenerateOutput;
@@ -2982,11 +3047,6 @@ declare global {
             'fal-ai/lucidflux': {
                 input: falEndpoints.LucidfluxInput;
                 output: falEndpoints.LucidfluxOutput;
-            };
-
-            'fal-ai/luma-dream-machine/image-to-video': {
-                input: falEndpoints.LumaDreamMachineImageToVideoInput;
-                output: falEndpoints.LumaDreamMachineImageToVideoOutput;
             };
 
             'fal-ai/luma-dream-machine/ray-2': {
