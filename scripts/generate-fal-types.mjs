@@ -386,7 +386,7 @@ const doEndpoint = async (endpointId, waitTime = 0, onlyComponents = false) => {
                             if (line.includes(`components["schemas"]["${componentName}"]`)) {
                                 updatedLine = updatedLine.replace(
                                     `components["schemas"]["${componentName}"]`,
-                                    `Components${uniqueComponentNames.get(hash)}`
+                                    `Components.${uniqueComponentNames.get(hash)}`
                                 );
                             }
                         }
