@@ -10,7 +10,7 @@ let names = new Set();
 
 /** @type {Array<[string & {_b?:'endpointId'}, string & {_b?:'content'}]>} */
 const indexFileParts = [];
-/** @type {Array<[string & {_b?:'endpointId'}, string & {_b?:'content'}]>} */
+/** @type {Array<[string & {_b?:'endpointId'|'uniqueComponentName'}, string & {_b?:'content'}]>} */
 const schemaFileParts = [];
 /** @type {Array<[string & {_b?:'uniqueComponentName'}, string & {_b?:'content'}]>} */
 const componentsFileParts = [];
@@ -31,18 +31,15 @@ const componentsFileParts = [];
 
 /**
  * @param {string} prefix
- * @param {number} [len]
+ * @param {string} [separator]
+ * @param {number} [idx]
  * @returns {UniqueComponentName}
  */
-const getUniqueComponentName = (prefix, len = 3) => {
+const getUniqueComponentName = (prefix, separator = '_', idx = 1) => {
     let name = prefix;
     if (names.has(name)) {
-        let firstPart = `000${Math.floor(Math.random() * 466566).toString(36)}`.slice(-3);
-        let randPart = `000${Math.floor(Math.random() * 466566).toString(36)}`.slice(-3);
-        let secondPart = `000${(Date.now() * 10).toString(36)}`.slice(-4);
-
-        name = `${name}_${firstPart.concat(randPart).concat(secondPart).slice(0, len)}`;
-        return getUniqueComponentName(name, len + 1);
+        name = `${name}${separator}${idx}`;
+        return getUniqueComponentName(name, '', idx + 1);
     }
     names.add(name);
     return name;
@@ -513,17 +510,19 @@ const doEndpointComponents = async (endpointId) => {
 };
 
 const getEndpoints = async () => {
-    try {
-        /** @type {EndpointId[]} */
-        // @ts-ignore
-        const cachedEndpoints = JSON.parse(
-            (await readFile('build-cache/endpoints.json', 'utf8').catch(() => 'null')) || 'null'
-        );
-        if (cachedEndpoints && Array.isArray(cachedEndpoints) && cachedEndpoints.length > 0) {
-            return cachedEndpoints;
+    if (process.env['CACHE_ENDPOINTS']) {
+        try {
+            /** @type {EndpointId[]} */
+            // @ts-ignore
+            const cachedEndpoints = JSON.parse(
+                (await readFile('build-cache/endpoints.json', 'utf8').catch(() => 'null')) || 'null'
+            );
+            if (cachedEndpoints && Array.isArray(cachedEndpoints) && cachedEndpoints.length > 0) {
+                return cachedEndpoints;
+            }
+        } catch (err) {
+            //
         }
-    } catch (err) {
-        //
     }
     /** @type {Set<EndpointId>} */
     const endpoints = new Set();
@@ -545,7 +544,9 @@ const getEndpoints = async () => {
     }
     console.log(`${endpoints.size} endpoints found`);
     const sortedEndpoints = Array.from(endpoints).sort((a, b) => a.localeCompare(b));
-    writeFileSync('build-cache/endpoints.json', JSON.stringify(sortedEndpoints, null, 2));
+    if (process.env['CACHE_ENDPOINTS']) {
+        writeFileSync('build-cache/endpoints.json', JSON.stringify(sortedEndpoints, null, 2));
+    }
     return sortedEndpoints;
 };
 
@@ -616,6 +617,10 @@ const generateComponents = async () => {
         }, /** @type {Record<EndpointId, {inputComponent: [InputTypeName, SafeInputTypeName, Content], outputComponent: [OutputTypeName, SafeOutputTypeName, Content]}>} */ ({})),
     };
 };
+
+// if (!process.env['CACHE_ENDPOINTS']) {
+//     throw new Error('CACHE_ENDPOINTS is not set');
+// }
 
 mkdirSync('types/fal/endpoints', { recursive: true });
 mkdirSync('build-cache', { recursive: true });
@@ -701,7 +706,7 @@ for (const [componentHash, componentInfos] of generatedComponents.components.ent
     for (const [endpointId, componentName] of componentInfos) {
         const { inputComponent, outputComponent } = generatedComponents.mainComponents[endpointId];
         if (!inputComponent[2]) {
-            console.log(endpointId, componentName);
+            // console.log(endpointId, componentName);
             process.exit(0);
             continue;
         }
@@ -711,9 +716,9 @@ for (const [componentHash, componentInfos] of generatedComponents.components.ent
                     `components["schemas"]["${componentName}"]`,
                     `Components.${generatedComponents.uniqueComponentNames.get(componentHash)}`
                 );
-            console.log(
-                `- Replaced ${componentName} with ${generatedComponents.uniqueComponentNames.get(componentHash)} in input component`
-            );
+            // console.log(
+            //     `- Replaced ${componentName} with ${generatedComponents.uniqueComponentNames.get(componentHash)} in input component`
+            // );
         }
         if (outputComponent[2].includes(`components["schemas"]["${componentName}"]`)) {
             generatedComponents.mainComponents[endpointId].outputComponent[2] =
@@ -721,9 +726,9 @@ for (const [componentHash, componentInfos] of generatedComponents.components.ent
                     `components["schemas"]["${componentName}"]`,
                     `Components.${generatedComponents.uniqueComponentNames.get(componentHash)}`
                 );
-            console.log(
-                `- Replaced ${componentName} with ${generatedComponents.uniqueComponentNames.get(componentHash)} in output component`
-            );
+            // console.log(
+            //     `- Replaced ${componentName} with ${generatedComponents.uniqueComponentNames.get(componentHash)} in output component`
+            // );
         }
     }
 }
@@ -739,6 +744,160 @@ for (const entry of generatedComponents.uniqueComponentNames.entries()) {
     ]);
 }
 
+/** @type {Map<Hash, readonly [EndpointId, "input" | "output", SafeInputTypeName | SafeOutputTypeName, Content][]>} */
+const dedupMainComponents = new Map();
+let hashedCount = 0;
+let duplicatesCount = 0;
+const totalEndpoints = Object.keys(generatedComponents.mainComponents).length;
+for (const [endpointId, { inputComponent, outputComponent }] of Object.entries(
+    generatedComponents.mainComponents
+)) {
+    hashedCount++;
+    if (inputComponent[1]) {
+        const formattedInputContent = execFileSync(
+            'npx',
+            ['-y', 'prettier', '--parser', 'typescript'],
+            {
+                input: `export interface ${inputComponent[1]} ${inputComponent[2] || '{ [x in string]: any }'}`,
+            }
+        ).toString();
+
+        const inputHash = createHash('sha256')
+            .update(
+                formattedInputContent.replace(`export interface ${inputComponent[1]}`, '').trim()
+            )
+            .digest('hex');
+        if (!dedupMainComponents.has(inputHash)) {
+            dedupMainComponents.set(inputHash, [
+                [
+                    endpointId,
+                    'input',
+                    inputComponent[1],
+                    formattedInputContent
+                        .replace(`export interface ${inputComponent[1]}`, '')
+                        .trim(),
+                ],
+            ]);
+        } else {
+            dedupMainComponents.set(
+                inputHash,
+                (dedupMainComponents.get(inputHash) || []).concat([
+                    [
+                        endpointId,
+                        'input',
+                        inputComponent[1],
+                        formattedInputContent
+                            .replace(`export interface ${inputComponent[1]}`, '')
+                            .trim(),
+                    ],
+                ])
+            );
+            duplicatesCount++;
+        }
+    }
+    hashedCount++;
+    if (outputComponent[1]) {
+        const formattedOutputContent = execFileSync(
+            'npx',
+            ['-y', 'prettier', '--parser', 'typescript'],
+            {
+                input: `export interface ${outputComponent[1]} ${outputComponent[2] || '{ [x in string]: any }'}`,
+            }
+        ).toString();
+        const outputHash = createHash('sha256')
+            .update(
+                formattedOutputContent.replace(`export interface ${outputComponent[1]}`, '').trim()
+            )
+            .digest('hex');
+        if (!dedupMainComponents.has(outputHash)) {
+            dedupMainComponents.set(outputHash, [
+                [
+                    endpointId,
+                    'output',
+                    outputComponent[1],
+                    formattedOutputContent
+                        .replace(`export interface ${outputComponent[1]}`, '')
+                        .trim(),
+                ],
+            ]);
+        } else {
+            dedupMainComponents.set(
+                outputHash,
+                (dedupMainComponents.get(outputHash) || []).concat([
+                    [
+                        endpointId,
+                        'output',
+                        outputComponent[1],
+                        formattedOutputContent
+                            .replace(`export interface ${outputComponent[1]}`, '')
+                            .trim(),
+                    ],
+                ])
+            );
+            duplicatesCount++;
+        }
+    }
+
+    if (hashedCount % 50 === 0) {
+        console.log(
+            `- Hashed ${hashedCount} components / ${totalEndpoints * 2} unique components / ${duplicatesCount} duplicates`
+        );
+    }
+    // indexFileParts.push([
+    //     endpointId,
+    //     `
+    //       '${endpointId}': {
+    //         input: ${inputComponent[1] ? `falEndpoints.${inputComponent[1]}` : `{ [x in string]: any }`};
+    //         output: ${outputComponent[1] ? `falEndpoints.${outputComponent[1]}` : `{ [x in string]: any }`};
+    //       };
+    //     `,
+    // ]);
+    // if (inputComponent[2]) {
+    //     schemaFileParts.push([
+    //         endpointId,
+    //         `
+    //         \n\nexport interface ${inputComponent[1]} ${inputComponent[2]}\n\n
+    //         `,
+    //     ]);
+    // }
+    // if (outputComponent[2]) {
+    //     schemaFileParts.push([
+    //         endpointId,
+    //         `
+    //         \n\nexport interface ${outputComponent[1]} ${outputComponent[2]}\n\n
+    //         `,
+    //     ]);
+    // }
+}
+const withDuplicates = Array.from(dedupMainComponents.entries())
+    .filter(([_, values]) => values.length > 1)
+    .sort((a, b) => b[0].localeCompare(a[0]));
+
+/** @type {Map<EndpointId, UniqueComponentName>} */
+const sharedInputComponents = new Map();
+/** @type {Map<EndpointId, UniqueComponentName>} */
+const sharedOutputComponents = new Map();
+
+if (withDuplicates.length > 0) {
+    for (const [hash, values] of withDuplicates) {
+        const uniqueComponentName = getUniqueComponentName(`SharedType_${hash.slice(0, 3)}`, '');
+        schemaFileParts.push([
+            uniqueComponentName,
+            `
+            \n\nexport interface ${uniqueComponentName} ${values[0][3]}\n\n
+            `,
+        ]);
+        for (const [endpointId, duplicateType, duplicateName, duplicateContent] of values) {
+            // sharedComponentsContent.set(uniqueComponentName, value[0][3]);
+            if (duplicateType === 'input') {
+                sharedInputComponents.set(endpointId, uniqueComponentName);
+            }
+            if (duplicateType === 'output') {
+                sharedOutputComponents.set(endpointId, uniqueComponentName);
+            }
+        }
+    }
+}
 for (const [endpointId, { inputComponent, outputComponent }] of Object.entries(
     generatedComponents.mainComponents
 )) {
@@ -746,28 +905,34 @@ for (const [endpointId, { inputComponent, outputComponent }] of Object.entries(
         endpointId,
         `
           '${endpointId}': {
-            input: ${inputComponent[1] ? `falEndpoints.${inputComponent[1]}` : `{ [x in string]: any }`};
-            output: ${outputComponent[1] ? `falEndpoints.${outputComponent[1]}` : `{ [x in string]: any }`};
+            input: ${inputComponent[1] || sharedInputComponents.has(endpointId) ? `falEndpoints.${inputComponent[1] || sharedInputComponents.get(endpointId)}` : `{ [x in string]: any }`};
+            output: ${outputComponent[1] || sharedOutputComponents.has(endpointId) ? `falEndpoints.${outputComponent[1] || sharedOutputComponents.get(endpointId)}` : `{ [x in string]: any }`};
           };
         `,
     ]);
-    if (inputComponent[2]) {
-        schemaFileParts.push([
-            endpointId,
-            `
 
-            \n\nexport interface ${inputComponent[1]} ${inputComponent[2]}\n\n
+    if (inputComponent[1]) {
+        if (inputComponent[2] || sharedInputComponents.has(endpointId)) {
+            schemaFileParts.push([
+                endpointId,
+                `
+
+            \n\nexport interface ${inputComponent[1]} ${sharedInputComponents.has(endpointId) ? ` extends ${sharedInputComponents.get(endpointId)} {};` : inputComponent[2]}\n\n
             `,
-        ]);
+            ]);
+        }
     }
-    if (outputComponent[2]) {
-        schemaFileParts.push([
-            endpointId,
-            `
 
-            \n\nexport interface ${outputComponent[1]} ${outputComponent[2]}\n\n
+    if (outputComponent[1]) {
+        if (outputComponent[2] || sharedOutputComponents.has(endpointId)) {
+            schemaFileParts.push([
+                endpointId,
+                `
+
+            \n\nexport interface ${outputComponent[1]} ${sharedOutputComponents.has(endpointId) ? ` extends ${sharedOutputComponents.get(endpointId)} {};` : outputComponent[2]}\n\n
             `,
-        ]);
+            ]);
+        }
     }
 }
 
@@ -817,7 +982,6 @@ export {};
 
 `
 );
-// await generateAll(generatedComponents);
 
 execSync('./node_modules/.bin/prettier --write "types/fal/endpoints/schema.d.ts"');
 execSync('./node_modules/.bin/prettier --write "types/fal/endpoints/index.d.ts"');

@@ -72,3 +72,13 @@ if (!isFalInput) {
     console.error('Fal input is not of type fal.EndpointInput<typeof test>', falInput);
     throw new Error('Fal input is not of type fal.EndpointInput<typeof test>');
 }
+
+// const canExtend: fal.EndpointInput<'fal-ai/post-processing/color-correction'> =
+//     {} as unknown as fal.EndpointInput<'fal-ai/post-processing/color-correction'>;
+// const canExtendV2: fal.EndpointInput<'fal-ai/post-processing/color-correction-v2'> =
+//     {} as unknown as fal.EndpointInput<'fal-ai/post-processing/color-correction-v2'>;
+// const hasExtended: Expect<typeof canExtend extends typeof canExtendV2 ? true : false> = true;
+// if (!hasExtended) {
+//     console.error('canExtend is not of type canExtendV2', canExtend, canExtendV2);
+//     throw new Error('canExtend is not of type canExtendV2');
+// }
