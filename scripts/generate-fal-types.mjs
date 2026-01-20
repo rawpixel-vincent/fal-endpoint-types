@@ -12,6 +12,13 @@ let names = new Set();
 /** @type {Map<string & {_b?:'hash'}, string & {_b?:'uniqueComponentName'}>} */
 let uniqueComponentNames = new Map();
 
+/** @type {Array<[string & {_b?:'endpointId'}, string & {_b?:'content'}]>} */
+const indexFileParts = [];
+/** @type {Array<[string & {_b?:'endpointId'}, string & {_b?:'content'}]>} */
+const schemaFileParts = [];
+/** @type {Array<[string & {_b?:'uniqueComponentName'}, string & {_b?:'content'}]>} */
+const componentsFileParts = [];
+
 /**
  * @param {string} prefix
  * @param {number} [len]
@@ -261,15 +268,21 @@ const doEndpoint = async (endpointId, waitTime = 0, onlyComponents = false) => {
         ).toString();
         // console.log('formattedDefinition', formattedDefinition);
         const hash = createHash('sha256').update(formattedDefinition).digest('hex');
+        /** @type {string & {_b?:'uniqueComponentName'}} */
+        // @ts-ignore
         const uniqueComponentName =
             uniqueComponentNames.has(hash) ?
                 uniqueComponentNames.get(hash)
             :   uniqueComponentNames.set(hash, getUniqueComponentName(safeComponentName)).get(hash);
         if (!componentsSigned.has(hash)) {
-            await appendFileSync(
-                `types/fal/endpoints/components.next.d.ts`,
-                `\n\nexport interface ${uniqueComponentName} ${componentDefinition}\n\n`
-            );
+            // await appendFileSync(
+            //     `types/fal/endpoints/components.next.d.ts`,
+            //     `\n\nexport interface ${uniqueComponentName} ${componentDefinition}\n\n`
+            // );
+            componentsFileParts.push([
+                uniqueComponentName,
+                `\n\nexport interface ${uniqueComponentName} ${componentDefinition}\n\n`,
+            ]);
             componentsSigned.set(hash, [componentName]);
         } else {
             // @ts-ignore
@@ -279,21 +292,6 @@ const doEndpoint = async (endpointId, waitTime = 0, onlyComponents = false) => {
         localComponents.set(componentName, hash);
     }
 
-    //     appendFileSync(
-    //         `types/fal/endpoints/components.next.d.ts`,
-    //         `
-
-    // ${Array.from(components.entries())
-    //     .filter(
-    //         ([componentName]) => ![inputTypeName, outputTypeName, 'QueueStatus'].includes(componentName)
-    //     )
-    //     .map(
-    //         ([componentName, componentDefinition]) =>
-    //             `export interface ${componentName} ${componentDefinition}`
-    //     )
-    //     .join('\n')}
-    // `
-    //     );
     if (onlyComponents) {
         return;
     }
@@ -416,24 +414,25 @@ const doEndpoint = async (endpointId, waitTime = 0, onlyComponents = false) => {
             isInComponents = true;
         }
     }
-    appendFileSync(
-        `types/fal/endpoints/schema.next.d.ts`,
+
+    schemaFileParts.push([
+        endpointId,
         `
 
-${inputTypeDefinition}\n\n${outputTypeDefinition}
-`
-    );
+        ${inputTypeDefinition}\n\n${outputTypeDefinition}
+        `,
+    ]);
 
-    appendFileSync(
-        `types/fal/endpoints/index.next.d.ts`,
+    indexFileParts.push([
+        endpointId,
         `
-      '${endpointId}': {
-        input: falEndpoints.${prefixTypeName}${inputTypeName.replace(/[^a-zA-Z0-9_]+/g, '')};
-        output: falEndpoints.${prefixTypeName}${outputTypeName.replace(/[^a-zA-Z0-9_]+/g, '')};
-      };
-
-  `
-    );
+              '${endpointId}': {
+                input: falEndpoints.${prefixTypeName}${inputTypeName.replace(/[^a-zA-Z0-9_]+/g, '')};
+                output: falEndpoints.${prefixTypeName}${outputTypeName.replace(/[^a-zA-Z0-9_]+/g, '')};
+              };
+        
+          `,
+    ]);
 };
 
 mkdirSync('types/fal/endpoints', { recursive: true });
@@ -451,6 +450,7 @@ if (lastCompleted === 0) {
 // process.exit(0);
 
 const getEndpoints = async () => {
+    /** @type {Set<string>} */
     const endpoints = new Set();
     let page = 1;
     while (true) {
@@ -469,43 +469,22 @@ const getEndpoints = async () => {
         page++;
     }
     console.log(`${endpoints.size} endpoints found`);
-    return endpoints;
+    return Array.from(endpoints).sort((a, b) => a.localeCompare(b));
 };
 
 const generateAll = async () => {
-    if (lastCompleted === 0) {
-        writeFileSync(
-            `types/fal/endpoints/index.next.d.ts`,
-            `import type * as falEndpoints from './schema.js';
-
-declare global {
-  export namespace fal {}
-  export namespace fal.endpoints {
-    export interface Endpoints {
-
-
-    `
-        );
-        writeFileSync(
-            `types/fal/endpoints/schema.next.d.ts`,
-            `import type * as Components from './components.js';
-
-
-`
-        );
-    }
-
+    /** @type {string[]} */
     const endpoints = await getEndpoints();
 
     let i = 0;
     let promisesa = [];
     let promisesb = [];
-    for (const endpoint of Array.from(endpoints)) {
+    for (const endpoint of endpoints) {
         i += 1;
         if (i <= lastCompleted) {
             continue;
         }
-        console.log(`- Generating types for ${endpoint} (${i}/${endpoints.size})`);
+        console.log(`- Generating types for ${endpoint} (${i}/${endpoints.length})`);
         if (i % 2 === 0) {
             promisesa.push(doEndpoint(endpoint, promisesa.length));
             if (promisesa.length >= 4) {
@@ -528,30 +507,52 @@ declare global {
     //
     await new Promise((resolve) => setTimeout(resolve, 1000));
     console.log(`Done generating ${i} types`);
-    await appendFileSync(
+
+    writeFileSync(
         `types/fal/endpoints/index.next.d.ts`,
-        `
+        `import type * as falEndpoints from './schema.js';
+
+declare global {
+export namespace fal {}
+export namespace fal.endpoints {
+export interface Endpoints {
+
+${indexFileParts
+    .sort((a, b) => a[0].localeCompare(b[0]))
+    .map(([_, content]) => content)
+    .join('\n')}
 
     }
   }
 }
 
-
 export {};
 
 `
     );
-    await appendFileSync(
+    writeFileSync(
         `types/fal/endpoints/schema.next.d.ts`,
-        `
+        `import type * as Components from './components.js';
+
+
+${schemaFileParts
+    .sort((a, b) => a[0].localeCompare(b[0]))
+    .map(([_, content]) => content)
+    .join('\n')}
+
 
 export {};
-
 `
     );
-    await appendFileSync(
+
+    writeFileSync(
         `types/fal/endpoints/components.next.d.ts`,
         `
+
+${componentsFileParts
+    .sort((a, b) => a[0].localeCompare(b[0]))
+    .map(([_, content]) => content)
+    .join('\n')}
 
 export {};
 
@@ -570,67 +571,4 @@ export {};
     execSync('./node_modules/.bin/prettier --write "types/fal/endpoints/components.d.ts"');
 };
 
-const generateAllComponents = async () => {
-    const endpoints = await getEndpoints();
-
-    let i = 0;
-    let promisesa = [];
-    let promisesb = [];
-    for (const endpoint of Array.from(endpoints)) {
-        i += 1;
-        if (i <= lastCompleted) {
-            continue;
-        }
-        console.log(
-            `- Generating ${endpoint} (${i}/${endpoints.size}) - generated ${componentsSigned.size} components`
-        );
-        Math.random() > 0.5 && (await new Promise((resolve) => setTimeout(resolve, 500)));
-        if (i % 2 === 0) {
-            promisesa.push(doEndpoint(endpoint, promisesa.length, true));
-            if (promisesa.length >= 3) {
-                await Promise.all([...promisesa, ...promisesb.splice(0, 1)]);
-                promisesa = [];
-            }
-        } else {
-            promisesb.push(
-                doEndpoint(endpoint, promisesb.length > 2 ? promisesb.length - 1 : 0, true)
-            );
-            if (promisesb.length >= 5) {
-                await Promise.all(promisesb.splice(0, 3));
-                console.log(
-                    Array.from(componentsSigned.entries())
-                        .map(
-                            ([hash, componentNames]) =>
-                                `${hash}: ${componentNames.length} components: ${componentNames.slice(0, 3).join(', ')}...`
-                        )
-                        .join('\n')
-                );
-            }
-        }
-    }
-    if (promisesa.length > 0) {
-        await Promise.all(promisesa);
-    }
-    if (promisesb.length > 0) {
-        await Promise.all(promisesb);
-    }
-    //
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    console.log(`Done generating ${i} endpoints components: ${componentsSigned.size} components`);
-
-    await appendFileSync(
-        `types/fal/endpoints/components.next.d.ts`,
-        `
-  
-  export {};
-  
-  `
-    );
-
-    rmSync('types/fal/endpoints/components.d.ts', { force: true });
-    renameSync('types/fal/endpoints/components.next.d.ts', 'types/fal/endpoints/components.d.ts');
-    execSync('./node_modules/.bin/prettier --write "types/fal/endpoints/components.d.ts"');
-};
-
-// await generateAllComponents();
 await generateAll();
