@@ -3,7 +3,7 @@ name: Generate and Publish Types
 on:
     schedule:
         # Run every Monday at midnight UTC
-        - cron: '0 0 * * 1'
+        - cron: '45 23 * * 0,2,4'
     workflow_dispatch:
 
 jobs:
