@@ -46,6 +46,51 @@ const getUniqueComponentName = (prefix, len = 3) => {
 };
 
 /**
+ * @template T
+ * @param {T[]|Set<T>} arr Array or Set
+ * @param {number} len
+ * @param {Object} [options]
+ * @param {'row'|'column'} [options.direction='column']
+ * @param {boolean} [options.releaseMemory=false] default: false, Releases the memory by clearing the received array when not referenced. Useful for large arrays.
+ * @returns {T[][]}
+ */
+export function arrayChunks(arr = [], len = 0, options = {}) {
+    const { direction = 'column', releaseMemory = false } = options || {};
+    const isSet = arr instanceof Set;
+    if (!isSet && !Array.isArray(arr)) {
+        console.error('arrayChunks: arr is not an array or set');
+
+        return arr;
+    }
+    if (typeof len !== 'number' || len < 1 || !Number.isFinite(len)) {
+        console.error('arrayChunks: len is not a positive integer');
+
+        return !isSet ? [arr] : [[...arr]];
+    }
+    /** @type {T[][]} */
+    const chunks = [];
+    const length = isSet ? arr.size : arr.length;
+    let index = 0;
+    for (const item of arr) {
+        const chunkIndex =
+            !direction || direction === 'column' ? Math.trunc(index / len) : index % len;
+        if (!chunks[chunkIndex]) {
+            chunks[chunkIndex] = [];
+        }
+        chunks[chunkIndex].push(item);
+        index += 1;
+    }
+    if (releaseMemory && !Object.isFrozen(arr)) {
+        if (!isSet) {
+            arr.splice(0, length);
+        } else {
+            arr.clear();
+        }
+    }
+    return chunks;
+}
+
+/**
  * @param {() => Promise<any>} fn
  * @param {boolean|((...args: any[]) => boolean)} [shouldRetry]
  * @param {number|((...args: any[]) => number)} [delayMs]
@@ -483,34 +528,42 @@ const generateAll = async () => {
     /** @type {string[]} */
     const endpoints = await getEndpoints();
 
+    const slices = arrayChunks(endpoints, 200);
     let i = 0;
-    let promisesa = [];
-    let promisesb = [];
-    for (const endpoint of endpoints) {
-        i += 1;
-        if (i <= lastCompleted) {
-            continue;
-        }
-        console.log(`- Generating types for ${endpoint} (${i}/${endpoints.length})`);
-        if (i % 2 === 0) {
-            promisesa.push(doEndpoint(endpoint, promisesa.length));
-            if (promisesa.length >= 4) {
-                await Promise.all([...promisesa, ...promisesb.splice(0, 1)]);
-                promisesa = [];
+    await Promise.all(
+        slices.map(async (endpointsSlice, sliceIndex) => {
+            let promisesa = [];
+            let promisesb = [];
+            let localI = 0;
+            for (const endpoint of endpointsSlice) {
+                if (Math.random() < 0.1) {
+                    await new Promise((resolve) => setTimeout(resolve, 2500));
+                }
+                localI += 1;
+                i += 1;
+                console.log(`- Generating types for ${endpoint} (${i}/${endpoints.length})`);
+                if (localI % 2 === 0) {
+                    promisesa.push(doEndpoint(endpoint, promisesa.length));
+                    if (promisesa.length >= sliceIndex + 2) {
+                        await Promise.all(promisesa);
+                        promisesa = [];
+                    }
+                } else {
+                    promisesb.push(doEndpoint(endpoint, promisesb.length + 1));
+                    if (promisesb.length >= sliceIndex + 2) {
+                        await Promise.all(promisesb);
+                        promisesb = [];
+                    }
+                }
             }
-        } else {
-            promisesb.push(doEndpoint(endpoint, promisesb.length > 4 ? promisesb.length - 4 : 0));
-            if (promisesb.length >= 10) {
-                await Promise.all(promisesb.splice(0, 5));
+            if (promisesa.length > 0) {
+                await Promise.all(promisesa);
             }
-        }
-    }
-    if (promisesa.length > 0) {
-        await Promise.all(promisesa);
-    }
-    if (promisesb.length > 0) {
-        await Promise.all(promisesb);
-    }
+            if (promisesb.length > 0) {
+                await Promise.all(promisesb);
+            }
+        })
+    );
     //
     await new Promise((resolve) => setTimeout(resolve, 1000));
     console.log(`Done generating ${i} types`);
