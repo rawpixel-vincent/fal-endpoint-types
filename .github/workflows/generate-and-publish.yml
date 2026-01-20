@@ -39,13 +39,13 @@ jobs:
             - name: Check for changes
               id: check-changes
               run: |
-                  if git diff --quiet types/fal/endpoints/index.d.ts types/fal/endpoints/schema.d.ts; then
+                  if git diff --quiet types/fal/endpoints/index.d.ts types/fal/endpoints/schema.d.ts types/fal/endpoints/components.d.ts; then
                     echo "changed=false" >> $GITHUB_OUTPUT
                     echo "No changes detected in generated types"
                   else
                     echo "changed=true" >> $GITHUB_OUTPUT
                     echo "Changes detected in generated types"
-                    git diff --stat types/fal/endpoints/index.d.ts types/fal/endpoints/schema.d.ts
+                    git diff --stat types/fal/endpoints/index.d.ts types/fal/endpoints/schema.d.ts types/fal/endpoints/components.d.ts
                   fi
 
             - name: Configure Git
@@ -61,7 +61,7 @@ jobs:
             - name: Commit changes
               if: steps.check-changes.outputs.changed == 'true'
               run: |
-                  git add types/fal/endpoints/index.d.ts types/fal/endpoints/schema.d.ts package.json package-lock.json 2>/dev/null || git add types/fal/endpoints/index.d.ts types/fal/endpoints/schema.d.ts package.json
+                  git add types/fal/endpoints/index.d.ts types/fal/endpoints/schema.d.ts types/fal/endpoints/components.d.ts package.json package-lock.json 2>/dev/null || git add types/fal/endpoints/index.d.ts types/fal/endpoints/schema.d.ts types/fal/endpoints/components.d.ts package.json
                   git commit -m "chore: update generated types [skip ci]"
 
             - name: Create git tag

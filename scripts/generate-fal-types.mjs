@@ -2,7 +2,14 @@
 
 import { createHash } from 'node:crypto';
 import { execFileSync, execSync } from 'node:child_process';
-import { appendFileSync, mkdirSync, renameSync, rmSync, writeFileSync } from 'node:fs';
+import {
+    appendFileSync,
+    mkdirSync,
+    readFileSync,
+    renameSync,
+    rmSync,
+    writeFileSync,
+} from 'node:fs';
 
 /** @type {Map<string & {_b?:'hash'}, (string & {_b?:'componentName'})[]>} */
 let componentsSigned = new Map();
@@ -130,7 +137,7 @@ const doEndpoint = async (endpointId, waitTime = 0, onlyComponents = false) => {
                 new Promise((resolve, reject) => {
                     try {
                         const r = execSync(
-                            `npx -y openapi-typescript "${url}" --root-types --root-types-no-schema-prefix --path-params-as-types `
+                            `npx -y openapi-typescript "${url}" --root-types --root-types-no-schema-prefix --path-params-as-types --alphabetize `
                         );
                         resolve(r);
                     } catch (err) {
@@ -474,7 +481,7 @@ const getEndpoints = async () => {
 
 const generateAll = async () => {
     /** @type {string[]} */
-    const endpoints = await getEndpoints();
+    const endpoints = (await getEndpoints()).slice(0, 100);
 
     let i = 0;
     let promisesa = [];
@@ -545,11 +552,14 @@ export {};
 `
     );
 
+    const schemaContent = readFileSync('types/fal/endpoints/schema.next.d.ts', 'utf8');
+
     writeFileSync(
         `types/fal/endpoints/components.next.d.ts`,
         `
 
 ${componentsFileParts
+    .filter(([uniqueComponentName]) => schemaContent.includes(`Components.${uniqueComponentName}`))
     .sort((a, b) => a[0].localeCompare(b[0]))
     .map(([_, content]) => content)
     .join('\n')}
