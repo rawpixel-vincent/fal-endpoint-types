@@ -171,28 +171,30 @@ const getOpenapiJson = async (endpointId) => {
 const getEndpointInputOutput = async (endpointId) => {
     const machineName = endpointId.replace(/[^a-zA-Z0-9_-]+/g, '_');
     const endpointInputOutputLocalPath = `build-cache/endpoints-input-output/${machineName}.json`;
-    try {
-        const cachedInputOutput = JSON.parse(
-            (await readFile(endpointInputOutputLocalPath, 'utf8').catch(() => 'null')) || 'null'
-        );
-        if (
-            cachedInputOutput &&
-            typeof cachedInputOutput === 'object' &&
-            cachedInputOutput !== null &&
-            typeof cachedInputOutput.inputTypeName === 'string' &&
-            typeof cachedInputOutput.outputTypeName === 'string' &&
-            typeof cachedInputOutput.outputJson === 'string'
-        ) {
-            return {
-                localPath: endpointInputOutputLocalPath,
-                inputTypeName: cachedInputOutput.inputTypeName,
-                outputTypeName: cachedInputOutput.outputTypeName,
-                outputJson: cachedInputOutput.outputJson,
-                prefixTypeName: cachedInputOutput.prefixTypeName,
-            };
+    if (process.env['CACHE_ENDPOINTS']) {
+        try {
+            const cachedInputOutput = JSON.parse(
+                (await readFile(endpointInputOutputLocalPath, 'utf8').catch(() => 'null')) || 'null'
+            );
+            if (
+                cachedInputOutput &&
+                typeof cachedInputOutput === 'object' &&
+                cachedInputOutput !== null &&
+                typeof cachedInputOutput.inputTypeName === 'string' &&
+                typeof cachedInputOutput.outputTypeName === 'string' &&
+                typeof cachedInputOutput.outputJson === 'string'
+            ) {
+                return {
+                    localPath: endpointInputOutputLocalPath,
+                    inputTypeName: cachedInputOutput.inputTypeName,
+                    outputTypeName: cachedInputOutput.outputTypeName,
+                    outputJson: cachedInputOutput.outputJson,
+                    prefixTypeName: cachedInputOutput.prefixTypeName,
+                };
+            }
+        } catch (err) {
+            //
         }
-    } catch (err) {
-        //
     }
     const { localPath, openapiJson } = await getOpenapiJson(endpointId);
 
@@ -257,15 +259,17 @@ const getEndpointInputOutput = async (endpointId) => {
     }
     // console.log(output.toString());
     const outputJson = output.toString().replaceAll(' | null', '');
-    writeFileSync(
-        endpointInputOutputLocalPath,
-        JSON.stringify({
-            inputTypeName: inputTypeName,
-            outputTypeName: outputTypeName,
-            outputJson: outputJson,
-            prefixTypeName: prefixTypeName,
-        })
-    );
+    if (process.env['CACHE_ENDPOINTS']) {
+        writeFileSync(
+            endpointInputOutputLocalPath,
+            JSON.stringify({
+                inputTypeName: inputTypeName,
+                outputTypeName: outputTypeName,
+                outputJson: outputJson,
+                prefixTypeName: prefixTypeName,
+            })
+        );
+    }
     return {
         localPath: endpointInputOutputLocalPath,
         inputTypeName: inputTypeName,
