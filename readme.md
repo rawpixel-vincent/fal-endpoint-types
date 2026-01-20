@@ -12,11 +12,17 @@ Built from the Open API schemas provided by fal.ai.
 
 ```bash
 npm install --save-dev fal-endpoint-types
-# or
+```
+
+```bash
 yarn add --dev fal-endpoint-types
-# or
+```
+
+```bash
 pnpm add --dev fal-endpoint-types
-# or
+```
+
+```bash
 bun add --dev fal-endpoint-types
 ```
 
