@@ -2,22 +2,11 @@
 
 import { createHash } from 'node:crypto';
 import { execFileSync, execSync } from 'node:child_process';
-import {
-    appendFileSync,
-    mkdirSync,
-    readFileSync,
-    renameSync,
-    rmSync,
-    writeFileSync,
-} from 'node:fs';
-
-/** @type {Map<string & {_b?:'hash'}, (string & {_b?:'componentName'})[]>} */
-let componentsSigned = new Map();
+import { mkdirSync, writeFileSync } from 'node:fs';
+import { readFile } from 'node:fs/promises';
 
 /** @type {Set<string & {_b?:'name'}>} */
 let names = new Set();
-/** @type {Map<string & {_b?:'hash'}, string & {_b?:'uniqueComponentName'}>} */
-let uniqueComponentNames = new Map();
 
 /** @type {Array<[string & {_b?:'endpointId'}, string & {_b?:'content'}]>} */
 const indexFileParts = [];
@@ -27,9 +16,23 @@ const schemaFileParts = [];
 const componentsFileParts = [];
 
 /**
+ * @typedef {string & {_b?:'hash'}} Hash Hash of the component definition
+ * @typedef {string & {_b?:'endpointId'}} EndpointId Endpoint ID
+ * @typedef {string & {_b?:'componentName'}} ComponentName Component name
+ * @typedef {string & {_b?:'content'}} Content type definition text
+ * @typedef {string & {_b?:'uniqueComponentName'}} UniqueComponentName Unique component name
+ * @typedef {readonly [EndpointId, ComponentName, Content]} ComponentInfo Component information
+ * @typedef {string & {_b?:'inputTypeName'}} InputTypeName Input type name
+ * @typedef {string & {_b?:'safeInputTypeName'}} SafeInputTypeName Safe input type name
+ * @typedef {string & {_b?:'outputTypeName'}} OutputTypeName Output type name
+ * @typedef {string & {_b?:'safeOutputTypeName'}} SafeOutputTypeName Safe output type name
+ */
+/** @typedef {readonly [Hash, readonly ComponentInfo[]]} ComponentsType */
+
+/**
  * @param {string} prefix
  * @param {number} [len]
- * @returns {string & {_b?:'uniqueComponentName'}}
+ * @returns {UniqueComponentName}
  */
 const getUniqueComponentName = (prefix, len = 3) => {
     let name = prefix;
@@ -129,37 +132,95 @@ const withRetries = async (
 };
 
 /**
- * @param {string} endpointId
- * @param {number} [waitTime]
+ * @param {EndpointId} endpointId
+ * @returns {Promise<{localPath: string, openapiJson: {paths: {[x in `/${string}`]: {post: {requestBody: {content: {['application/json']: {schema: {'$ref': string}}}}}, get: {responses: {['200']: {content: {['application/json']: {schema: {'$ref': string}}}}}}}}}}>}
  */
-const doEndpoint = async (endpointId, waitTime = 0, onlyComponents = false) => {
-    if (waitTime > 0) {
-        await new Promise((resolve) => setTimeout(resolve, waitTime * 100));
-    }
+const getOpenapiJson = async (endpointId) => {
+    const machineName = endpointId.replace(/[^a-zA-Z0-9_-]+/g, '_');
     const url = `https://fal.ai/api/openapi/queue/openapi.json?endpoint_id=${endpointId}`;
+    const openapiJsonLocalPath = `build-cache/openapi-json/${machineName}.json`;
+    try {
+        const cachedJson = JSON.parse(
+            (await readFile(openapiJsonLocalPath, 'utf8').catch(() => 'null')) || 'null'
+        );
+        if (
+            cachedJson &&
+            typeof cachedJson === 'object' &&
+            cachedJson !== null &&
+            Object.keys(cachedJson).length > 0
+        ) {
+            return { localPath: openapiJsonLocalPath, openapiJson: cachedJson };
+        }
+    } catch (err) {
+        //
+    }
     const json = await withRetries(
         async () => await fetch(url).then((res) => res.json()),
         10,
         undefined,
         3000
     );
+    writeFileSync(openapiJsonLocalPath, JSON.stringify(json));
+    return { localPath: openapiJsonLocalPath, openapiJson: json };
+};
+
+/**
+ * @param {EndpointId} endpointId
+ * @returns {Promise<{localPath: string, inputTypeName: InputTypeName | undefined, outputTypeName: OutputTypeName | undefined, outputJson: string, prefixTypeName: string}>}
+ */
+const getEndpointInputOutput = async (endpointId) => {
+    const machineName = endpointId.replace(/[^a-zA-Z0-9_-]+/g, '_');
+    const endpointInputOutputLocalPath = `build-cache/endpoints-input-output/${machineName}.json`;
+    try {
+        const cachedInputOutput = JSON.parse(
+            (await readFile(endpointInputOutputLocalPath, 'utf8').catch(() => 'null')) || 'null'
+        );
+        if (
+            cachedInputOutput &&
+            typeof cachedInputOutput === 'object' &&
+            cachedInputOutput !== null &&
+            typeof cachedInputOutput.inputTypeName === 'string' &&
+            typeof cachedInputOutput.outputTypeName === 'string' &&
+            typeof cachedInputOutput.outputJson === 'string'
+        ) {
+            return {
+                localPath: endpointInputOutputLocalPath,
+                inputTypeName: cachedInputOutput.inputTypeName,
+                outputTypeName: cachedInputOutput.outputTypeName,
+                outputJson: cachedInputOutput.outputJson,
+                prefixTypeName: cachedInputOutput.prefixTypeName,
+            };
+        }
+    } catch (err) {
+        //
+    }
+    const { localPath, openapiJson } = await getOpenapiJson(endpointId);
+
     if (
-        !json?.paths?.[`/${endpointId}`]?.post?.requestBody?.content?.['application/json']?.schema
+        !openapiJson?.paths?.[`/${endpointId}`]?.post?.requestBody?.content?.['application/json']
+            ?.schema
     ) {
         console.log(`- Skipping ${endpointId} because it has no input type`);
-        return;
+        // @ts-ignore
+        return [];
     }
     // console.log(JSON.stringify(json, null, 2));
     const inputType =
-        json.paths[`/${endpointId}`].post.requestBody.content['application/json'].schema;
+        openapiJson.paths[`/${endpointId}`]?.post?.requestBody?.content?.['application/json']
+            ?.schema;
     const outputType =
-        json.paths[`/${endpointId}/requests/{request_id}`].get.responses['200'].content[
+        openapiJson.paths[`/${endpointId}/requests/{request_id}`]?.get?.responses['200']?.content?.[
             'application/json'
-        ].schema;
-    const inputTypeName = inputType['$ref'].split('/').pop();
+        ]?.schema;
+    const inputTypeName = inputType ? inputType['$ref'].split('/').pop() : undefined;
     // console.log(inputTypeName);
-    const outputTypeName = outputType['$ref'].split('/').pop();
+    const outputTypeName = outputType ? outputType['$ref'].split('/').pop() : undefined;
     // console.log(outputTypeName);
+    if (!inputTypeName && !outputTypeName) {
+        console.log(`- Skipping ${endpointId} components because it has no input and output type`);
+        // @ts-ignore
+        return [];
+    }
     let prefixTypeName =
         endpointId.split('/')[0] !== 'fal-ai' ?
             endpointId
@@ -171,10 +232,6 @@ const doEndpoint = async (endpointId, waitTime = 0, onlyComponents = false) => {
         prefixTypeName = `${prefixTypeName.charAt(0).toUpperCase()}${prefixTypeName.slice(1).toLowerCase()}`;
     }
 
-    if (waitTime > 0) {
-        await new Promise((resolve) => setTimeout(resolve, waitTime * 100));
-    }
-
     let output = null;
     try {
         output = await withRetries(
@@ -182,7 +239,7 @@ const doEndpoint = async (endpointId, waitTime = 0, onlyComponents = false) => {
                 new Promise((resolve, reject) => {
                     try {
                         const r = execSync(
-                            `npx -y openapi-typescript "${url}" --root-types --root-types-no-schema-prefix --path-params-as-types --alphabetize `
+                            `npx -y openapi-typescript "${localPath}" --root-types --root-types-no-schema-prefix --path-params-as-types --alphabetize `
                         );
                         resolve(r);
                     } catch (err) {
@@ -194,11 +251,76 @@ const doEndpoint = async (endpointId, waitTime = 0, onlyComponents = false) => {
             3000
         );
     } catch (err) {
-        console.log(`- Skipping ${endpointId} because it failed to generate output`);
-        return;
+        console.log(`- Skipping ${endpointId} components because it failed to generate output`);
+        // @ts-ignore
+        return [];
     }
     // console.log(output.toString());
     const outputJson = output.toString().replaceAll(' | null', '');
+    writeFileSync(
+        endpointInputOutputLocalPath,
+        JSON.stringify({
+            inputTypeName: inputTypeName,
+            outputTypeName: outputTypeName,
+            outputJson: outputJson,
+            prefixTypeName: prefixTypeName,
+        })
+    );
+    return {
+        localPath: endpointInputOutputLocalPath,
+        inputTypeName: inputTypeName,
+        outputTypeName: outputTypeName,
+        outputJson: outputJson,
+        prefixTypeName: prefixTypeName,
+    };
+};
+/**
+ * @param {string} endpointId
+ * @returns {Promise<{components: ComponentsType, inputComponent: [InputTypeName, SafeInputTypeName, Content], outputComponent: [OutputTypeName, SafeOutputTypeName, Content]}>}
+ */
+const doEndpointComponents = async (endpointId) => {
+    const machineName = endpointId.replace(/[^a-zA-Z0-9_-]+/g, '_');
+    const endpointComponentsLocalPath = `build-cache/endpoints-components/${machineName}.json`;
+    try {
+        /** @type {{components: ComponentsType, inputComponent: [InputTypeName, SafeInputTypeName, Content], outputComponent: [OutputTypeName, SafeOutputTypeName, Content]}} */
+        const cachedComponents = JSON.parse(
+            (await readFile(endpointComponentsLocalPath, 'utf8').catch(() => 'null')) || 'null'
+        );
+        if (
+            cachedComponents &&
+            typeof cachedComponents === 'object' &&
+            cachedComponents !== null &&
+            cachedComponents.inputComponent &&
+            cachedComponents.components &&
+            Array.isArray(cachedComponents.components)
+        ) {
+            return {
+                inputComponent: cachedComponents.inputComponent,
+                outputComponent: cachedComponents.outputComponent,
+                components: cachedComponents.components,
+            };
+        }
+    } catch (err) {
+        //
+    }
+
+    const {
+        inputTypeName = '',
+        outputTypeName = '',
+        outputJson,
+        prefixTypeName,
+    } = await getEndpointInputOutput(endpointId);
+    if (!inputTypeName && !outputTypeName) {
+        console.log(`- Skipping ${endpointId} components because it has no input and output type`);
+        return {
+            // @ts-ignore
+            inputComponent: [],
+            // @ts-ignore
+            outputComponent: [],
+            // @ts-ignore
+            components: [],
+        };
+    }
     let isInComponents = false;
     let inputTypeDefinition = '';
     let isInInputType = false;
@@ -210,6 +332,12 @@ const doEndpoint = async (endpointId, waitTime = 0, onlyComponents = false) => {
     let done = false;
     // console.log(outputJson);
     const components = new Map();
+    /** @type {[InputTypeName, SafeInputTypeName, Content]} */
+    // @ts-ignore
+    let inputComponent = [];
+    /** @type {[OutputTypeName, SafeOutputTypeName, Content]} */
+    // @ts-ignore
+    let outputComponent = [];
     for (let line of outputJson.split('\n')) {
         if (line.includes('export interface components {')) {
             isInComponents = true;
@@ -266,6 +394,21 @@ const doEndpoint = async (endpointId, waitTime = 0, onlyComponents = false) => {
                         line = line.replace(': ', '?: ');
                         lastCommentSetDefault = false;
                     }
+                    if (line.trim().endsWith(' unknown;')) {
+                        line = line.replace(' unknown;', ' {[x:string]:any} | null;');
+                    }
+                    if (line.trim().endsWith(' unknown[];')) {
+                        line = line.replace(' unknown[];', ' {[x:string]:any}[];');
+                    }
+                    if (line.trim().endsWith(': Record<string, never> | number;')) {
+                        line = line.replace(
+                            ' Record<string, never> | number;',
+                            ' Record<string, number> | number;'
+                        );
+                    }
+                    if (line.trim().endsWith(': Record<string, never>;')) {
+                        line = line.replace(' Record<string, never>;', ' Record<string, number>;');
+                    }
                     components.set(
                         currentComponentName,
                         `${components.get(currentComponentName)}\n${line}`
@@ -276,6 +419,18 @@ const doEndpoint = async (endpointId, waitTime = 0, onlyComponents = false) => {
                 currentComponentName = line.split(': {')[0].trim().replace(/["]+/g, '');
                 // console.log('currentComponentName?', `${currentComponentName}`);
                 components.set(currentComponentName, `{\n`);
+            } else if (line.trim().endsWith(': unknown;')) {
+                currentComponentName = line.split(': unknown;')[0].trim().replace(/["]+/g, '');
+                components.set(currentComponentName, `{ };`);
+                currentComponentName = '';
+                currentComponentIndent = 0;
+                lastCommentSetDefault = false;
+            } else if (line.trim().endsWith(': unknown[];')) {
+                currentComponentName = line.split(': unknown[];')[0].trim().replace(/["]+/g, '');
+                components.set(currentComponentName, `[];`);
+                currentComponentName = '';
+                currentComponentIndent = 0;
+                lastCommentSetDefault = false;
             } else {
                 // console.log('line?', `${line}`);
             }
@@ -285,27 +440,27 @@ const doEndpoint = async (endpointId, waitTime = 0, onlyComponents = false) => {
     }
 
     const componentNames = Array.from(components.keys());
-    // console.log('componentNames', componentNames);
-    for (let t = 0; t < 3; t++) {
-        for (let [componentName, componentDefinition] of components.entries()) {
-            let updatedDef = componentDefinition;
-            for (const ref of componentNames) {
-                if (componentDefinition.includes(`components["schemas"]["${ref}"]`)) {
-                    // console.log('ref', ref, 'updatedDef', componentName);
-                    updatedDef = updatedDef.replaceAll(
-                        `components["schemas"]["${ref}"]`,
-                        components.get(ref)
-                    );
-                }
-            }
-            components.set(componentName, updatedDef);
-        }
-    }
 
-    /** @type {Map<string & {_b?:'componentName'}, string & {_b?:'hash'}>} */
-    const localComponents = new Map();
-    for (const [componentName, componentDefinition] of components.entries()) {
-        if ([inputTypeName, outputTypeName, 'QueueStatus'].includes(componentName)) {
+    /** @type {Map<Hash, readonly ComponentInfo[]>} */
+    const hashComponents = new Map();
+    for (const componentName of componentNames) {
+        if (componentName === 'QueueStatus') {
+            continue;
+        }
+        if (componentName === inputTypeName) {
+            inputComponent = [
+                componentName,
+                `${prefixTypeName}${inputTypeName.replace(/[^a-zA-Z0-9_]+/g, '')}`,
+                components.get(componentName),
+            ];
+            continue;
+        }
+        if (componentName === outputTypeName) {
+            outputComponent = [
+                componentName,
+                `${prefixTypeName}${outputTypeName.replace(/[^a-zA-Z0-9_]+/g, '')}`,
+                components.get(componentName),
+            ];
             continue;
         }
         const safeComponentName = componentName
@@ -315,200 +470,61 @@ const doEndpoint = async (endpointId, waitTime = 0, onlyComponents = false) => {
             'npx',
             ['-y', 'prettier', '--parser', 'typescript'],
             {
-                input: `export interface ${safeComponentName} ${componentDefinition}`,
+                input: `export interface ${safeComponentName} ${components.get(componentName)}`,
             }
         ).toString();
         // console.log('formattedDefinition', formattedDefinition);
-        const hash = createHash('sha256').update(formattedDefinition).digest('hex');
-        /** @type {string & {_b?:'uniqueComponentName'}} */
+        /** @type {Hash} */
+        const hash = createHash('sha256')
+            .update(formattedDefinition.replace(`export interface ${safeComponentName}`, '').trim())
+            .digest('hex');
+        hashComponents.set(
+            hash,
+            (hashComponents.get(hash) || []).concat([
+                [endpointId, componentName, components.get(componentName)],
+            ])
+        );
+    }
+    const hashComponentsEntries = Array.from(hashComponents.entries());
+    writeFileSync(
+        endpointComponentsLocalPath,
+        JSON.stringify({
+            components: hashComponentsEntries,
+            inputComponent: inputComponent,
+            outputComponent: outputComponent,
+        })
+    );
+
+    return {
         // @ts-ignore
-        const uniqueComponentName =
-            uniqueComponentNames.has(hash) ?
-                uniqueComponentNames.get(hash)
-            :   uniqueComponentNames.set(hash, getUniqueComponentName(safeComponentName)).get(hash);
-        if (!componentsSigned.has(hash)) {
-            // await appendFileSync(
-            //     `types/fal/endpoints/components.next.d.ts`,
-            //     `\n\nexport interface ${uniqueComponentName} ${componentDefinition}\n\n`
-            // );
-            componentsFileParts.push([
-                uniqueComponentName,
-                `\n\nexport interface ${uniqueComponentName} ${componentDefinition}\n\n`,
-            ]);
-            componentsSigned.set(hash, [componentName]);
-        } else {
-            // @ts-ignore
-            componentsSigned.get(hash).push(componentName);
-        }
+        components: hashComponentsEntries,
         // @ts-ignore
-        localComponents.set(componentName, hash);
-    }
-
-    if (onlyComponents) {
-        return;
-    }
-    isInInputType = false;
-    isInOutputType = false;
-    isInComponents = false;
-    currentComponentName = '';
-    currentComponentIndent = 0;
-    lastCommentSetDefault = false;
-
-    for (let line of outputJson.split('\n')) {
-        if (done) {
-            break;
-        }
-        if (isInComponents) {
-            if (
-                !line.trim().startsWith('/*') &&
-                !line.trim().startsWith('*') &&
-                line.includes('export ')
-            ) {
-                isInComponents = false;
-            }
-            if (isInInputType) {
-                if (line.trim().startsWith('/*') || line.trim().startsWith('*')) {
-                    if (line.trim().startsWith('/*')) {
-                        lastCommentSetDefault = false;
-                    }
-                    if (line.includes('@default')) {
-                        lastCommentSetDefault = true;
-                    }
-                    inputTypeDefinition += `${line}\n`;
-                    continue;
-                }
-                if (line.includes('};') || line.includes('}];') || line.includes('}[];')) {
-                    if (currentComponentIndent > 0) {
-                        currentComponentIndent--;
-                        inputTypeDefinition += `${line}\n`;
-                        continue;
-                    }
-                    inputTypeDefinition += '}\n';
-                    isInInputType = false;
-                } else {
-                    if (line.includes(`components["schemas"]["`)) {
-                        let updatedLine = line;
-                        for (const [componentName, hash] of localComponents.entries()) {
-                            if (line.includes(`components["schemas"]["${componentName}"]`)) {
-                                updatedLine = updatedLine.replace(
-                                    `components["schemas"]["${componentName}"]`,
-                                    `Components.${uniqueComponentNames.get(hash)}`
-                                );
-                            }
-                        }
-                        line = updatedLine;
-                    }
-                    if (line.trim().endsWith('{')) {
-                        currentComponentIndent++;
-                    }
-                    if (lastCommentSetDefault && line.includes(': ') && !line.includes('?: ')) {
-                        line = line.replace(': ', '?: ');
-                        lastCommentSetDefault = false;
-                    }
-                    inputTypeDefinition += `${line}\n`;
-                }
-            } else if (line.includes(`${inputTypeName}:`) || line.includes(`"${inputTypeName}":`)) {
-                inputTypeDefinition = `export interface ${prefixTypeName}${inputTypeName.replace(/[^a-zA-Z0-9_]+/g, '')} {\n`;
-                isInInputType = true;
-                continue;
-            }
-            if (isInOutputType) {
-                if (line.trim().startsWith('/*') || line.trim().startsWith('*')) {
-                    if (line.trim().startsWith('/*')) {
-                        lastCommentSetDefault = false;
-                    }
-                    if (line.includes('@default')) {
-                        lastCommentSetDefault = true;
-                    }
-                    outputTypeDefinition += `${line}\n`;
-                    continue;
-                }
-                if (line.includes('};') || line.includes('}];') || line.includes('}[];')) {
-                    if (currentComponentIndent > 0) {
-                        currentComponentIndent--;
-                        outputTypeDefinition += `${line}\n`;
-                        continue;
-                    }
-                    outputTypeDefinition += '}\n';
-                    isInOutputType = false;
-                } else {
-                    if (line.includes(`components["schemas"]["`)) {
-                        let updatedLine = line;
-                        for (const [componentName, hash] of localComponents.entries()) {
-                            if (line.includes(`components["schemas"]["${componentName}"]`)) {
-                                updatedLine = updatedLine.replace(
-                                    `components["schemas"]["${componentName}"]`,
-                                    `Components.${uniqueComponentNames.get(hash)}`
-                                );
-                            }
-                        }
-                        line = updatedLine;
-                    }
-                    if (line.trim().endsWith('{')) {
-                        currentComponentIndent++;
-                    }
-                    if (lastCommentSetDefault && line.includes(': ') && !line.includes('?: ')) {
-                        line = line.replace(': ', '?: ');
-                        lastCommentSetDefault = false;
-                    }
-                    outputTypeDefinition += `${line}\n`;
-                }
-            } else if (
-                line.includes(`${outputTypeName}:`) ||
-                line.includes(`"${outputTypeName}":`)
-            ) {
-                outputTypeDefinition = `export interface ${prefixTypeName}${outputTypeName.replace(/[^a-zA-Z0-9_]+/g, '')} {\n`;
-                isInOutputType = true;
-                continue;
-            }
-        }
-        if (line.includes('export interface components {')) {
-            isInComponents = true;
-        }
-    }
-
-    schemaFileParts.push([
-        endpointId,
-        `
-
-        ${inputTypeDefinition}\n\n${outputTypeDefinition}
-        `,
-    ]);
-
-    indexFileParts.push([
-        endpointId,
-        `
-              '${endpointId}': {
-                input: falEndpoints.${prefixTypeName}${inputTypeName.replace(/[^a-zA-Z0-9_]+/g, '')};
-                output: falEndpoints.${prefixTypeName}${outputTypeName.replace(/[^a-zA-Z0-9_]+/g, '')};
-              };
-        
-          `,
-    ]);
+        inputComponent: inputComponent,
+        // @ts-ignore
+        outputComponent: outputComponent,
+    };
 };
 
-mkdirSync('types/fal/endpoints', { recursive: true });
-
-let lastCompleted = 0;
-if (lastCompleted === 0) {
-    await rmSync('types/fal/endpoints/index.next.d.ts', { force: true });
-    await rmSync('types/fal/endpoints/schema.next.d.ts', { force: true });
-    await rmSync('types/fal/endpoints/components.next.d.ts', { force: true });
-}
-
-// await doEndpoint('fal-ai/f-lite/texture', 0, true);
-
-// await doEndpoint('fal-ai/gpt-image-1.5', 0, true);
-// process.exit(0);
-
 const getEndpoints = async () => {
-    /** @type {Set<string>} */
+    try {
+        /** @type {EndpointId[]} */
+        // @ts-ignore
+        const cachedEndpoints = JSON.parse(
+            (await readFile('build-cache/endpoints.json', 'utf8').catch(() => 'null')) || 'null'
+        );
+        if (cachedEndpoints && Array.isArray(cachedEndpoints) && cachedEndpoints.length > 0) {
+            return cachedEndpoints;
+        }
+    } catch (err) {
+        //
+    }
+    /** @type {Set<EndpointId>} */
     const endpoints = new Set();
     let page = 1;
     while (true) {
         const currentSize = endpoints.size;
         await fetch(`https://fal.ai/api/models?page=${page}`)
-            .then((res) => /** @type {Promise<{items: {id: string}[]}>} */ (res.json()))
+            .then((res) => /** @type {Promise<{items: {id: EndpointId}[]}>} */ (res.json()))
             .then((data) => {
                 data.items.forEach((endpoint) => {
                     endpoints.add(endpoint.id);
@@ -521,67 +537,246 @@ const getEndpoints = async () => {
         page++;
     }
     console.log(`${endpoints.size} endpoints found`);
-    return Array.from(endpoints).sort((a, b) => a.localeCompare(b));
+    const sortedEndpoints = Array.from(endpoints).sort((a, b) => a.localeCompare(b));
+    writeFileSync('build-cache/endpoints.json', JSON.stringify(sortedEndpoints, null, 2));
+    return sortedEndpoints;
 };
 
-const generateAll = async () => {
-    /** @type {string[]} */
+const generateComponents = async () => {
+    await mkdirSync('build-cache/endpoints-components', { recursive: true });
     const endpoints = await getEndpoints();
-
-    const slices = arrayChunks(endpoints, 200);
+    const slices = arrayChunks(endpoints, 150);
     let i = 0;
-    await Promise.all(
+    const results = await Promise.all(
         slices.map(async (endpointsSlice, sliceIndex) => {
-            let promisesa = [];
-            let promisesb = [];
-            let localI = 0;
+            /** @type {{endpointId: EndpointId, components: ComponentsType, inputComponent: [InputTypeName, SafeInputTypeName, Content], outputComponent: [OutputTypeName, SafeOutputTypeName, Content]}[]} */
+            let localComponents = [];
+            /** @type {Promise<{endpointId: EndpointId, components: ComponentsType, inputComponent: [InputTypeName, SafeInputTypeName, Content], outputComponent: [OutputTypeName, SafeOutputTypeName, Content]}>[]} */
+            let promises = [];
+            /** @type {number} */
             for (const endpoint of endpointsSlice) {
-                if (Math.random() < 0.1) {
+                if (Math.random() < 0.05) {
                     await new Promise((resolve) => setTimeout(resolve, 2500));
                 }
-                localI += 1;
-                i += 1;
-                console.log(`- Generating types for ${endpoint} (${i}/${endpoints.length})`);
-                if (localI % 2 === 0) {
-                    promisesa.push(doEndpoint(endpoint, promisesa.length));
-                    if (promisesa.length >= sliceIndex + 2) {
-                        await Promise.all(promisesa);
-                        promisesa = [];
-                    }
+                if (Math.random() < 0.2) {
+                    await Promise.all(promises);
+                    promises = [];
+                }
+                console.log(`- Generating components for ${endpoint} (${i}/${endpoints.length})`);
+                i++;
+                promises.push(
+                    doEndpointComponents(endpoint).then((result) => ({
+                        endpointId: endpoint,
+                        ...result,
+                    }))
+                );
+                if (promises.length >= sliceIndex + 1) {
+                    const localResults = await Promise.all(promises);
+                    localComponents.push(...localResults);
+                    promises = [];
+                }
+            }
+            if (promises.length > 0) {
+                const localResults = await Promise.all(promises);
+                localComponents.push(...localResults);
+            }
+            return localComponents;
+        })
+    );
+    const flatResults = results.flat(1);
+    return {
+        /** @type {Map<Hash, UniqueComponentName>} */
+        uniqueComponentNames: new Map(),
+        components: flatResults.reduce((acc, result) => {
+            for (const c of result.components) {
+                /** @type {readonly [Hash, readonly ComponentInfo[]]} */
+                // @ts-ignore
+                const [hash, componentNames] = c;
+                if (!acc.has(hash)) {
+                    acc.set(hash, componentNames);
                 } else {
-                    promisesb.push(doEndpoint(endpoint, promisesb.length + 1));
-                    if (promisesb.length >= sliceIndex + 2) {
-                        await Promise.all(promisesb);
-                        promisesb = [];
+                    acc.set(hash, (acc.get(hash) || []).concat(componentNames));
+                }
+            }
+            return acc;
+        }, /** @type {Map<Hash, readonly ComponentInfo[]>} */ (new Map())),
+        mainComponents: flatResults.reduce((acc, r) => {
+            acc[r.endpointId] = {
+                inputComponent: r.inputComponent,
+                outputComponent: r.outputComponent,
+            };
+            return acc;
+        }, /** @type {Record<EndpointId, {inputComponent: [InputTypeName, SafeInputTypeName, Content], outputComponent: [OutputTypeName, SafeOutputTypeName, Content]}>} */ ({})),
+    };
+};
+
+mkdirSync('types/fal/endpoints', { recursive: true });
+mkdirSync('build-cache', { recursive: true });
+mkdirSync('build-cache/endpoints-input-output', { recursive: true });
+mkdirSync('build-cache/endpoints-components', { recursive: true });
+mkdirSync('build-cache/openapi-json', { recursive: true });
+
+const generatedComponents = await generateComponents();
+
+const entries = Array.from(generatedComponents.components.entries()).sort(
+    (a, b) => b[1].length - a[1].length
+);
+for (const [hash, componentNames] of entries) {
+    // console.log('hash', hash.slice(0, 10).concat('...'));
+    // console.log(
+    //     'componentNames',
+    //     componentNames
+    //         .map(([endpointId, componentName]) => `${endpointId}/components/${componentName}`)
+    //         .filter((c, i, a) => a.indexOf(c) === i)
+    //         .join(', ')
+    // );
+    if (!generatedComponents.uniqueComponentNames.has(hash)) {
+        const safeComponentName = componentNames
+            .reduce(
+                (acc, [, componentName]) =>
+                    !acc ? componentName
+                    : acc.length > componentName.length ? componentName
+                    : acc,
+                ''
+            )
+            .replace(/[^a-zA-Z0-9_]+/g, '')
+            .replace(/^[0-9]+/, '');
+        const uniqueComponentName = getUniqueComponentName(safeComponentName);
+        generatedComponents.uniqueComponentNames.set(hash, uniqueComponentName);
+    }
+}
+
+let repeat = 5;
+for (let i = 0; i < repeat; i++) {
+    for (const [componentHash, componentInfos] of generatedComponents.components.entries()) {
+        /** @type {typeof componentInfos} */
+        let localComponentInfos = [];
+        for (const [endpointId, componentName, content] of componentInfos) {
+            let localContent = content;
+            for (let e = 0; e < repeat; e++) {
+                for (const [hash, refComponentInfos] of generatedComponents.components.entries()) {
+                    for (const [, refComponentName] of refComponentInfos) {
+                        if (componentHash === hash) {
+                            // console.log(
+                            //     `- Skipping ${refComponentName} because it is the same component`
+                            // );
+                            continue;
+                        }
+                        const uniqueComponentName =
+                            generatedComponents.uniqueComponentNames.get(hash);
+                        if (
+                            uniqueComponentName &&
+                            localContent.includes(`components["schemas"]["${refComponentName}"]`)
+                        ) {
+                            localContent = localContent.replaceAll(
+                                `components["schemas"]["${refComponentName}"]`,
+                                `Components.${uniqueComponentName}`
+                            );
+                            // console.log(
+                            //     `- Replaced ${refComponentName} with ${uniqueComponentName}`
+                            // );
+                        } else {
+                            // console.log(
+                            //     `- Skipping ${refComponentName} because it is not found in the content`
+                            // );
+                        }
                     }
                 }
             }
-            if (promisesa.length > 0) {
-                await Promise.all(promisesa);
-            }
-            if (promisesb.length > 0) {
-                await Promise.all(promisesb);
-            }
-        })
-    );
-    //
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    console.log(`Done generating ${i} types`);
+            // @ts-ignore
+            localComponentInfos.push([endpointId, componentName, localContent]);
+        }
+        generatedComponents.components.set(componentHash, localComponentInfos);
+    }
+}
 
-    writeFileSync(
-        `types/fal/endpoints/index.next.d.ts`,
-        `import type * as falEndpoints from './schema.js';
+for (const [componentHash, componentInfos] of generatedComponents.components.entries()) {
+    for (const [endpointId, componentName] of componentInfos) {
+        const { inputComponent, outputComponent } = generatedComponents.mainComponents[endpointId];
+        if (!inputComponent[2]) {
+            console.log(endpointId, componentName);
+            process.exit(0);
+            continue;
+        }
+        if (inputComponent[2].includes(`components["schemas"]["${componentName}"]`)) {
+            generatedComponents.mainComponents[endpointId].inputComponent[2] =
+                inputComponent[2].replaceAll(
+                    `components["schemas"]["${componentName}"]`,
+                    `Components.${generatedComponents.uniqueComponentNames.get(componentHash)}`
+                );
+            console.log(
+                `- Replaced ${componentName} with ${generatedComponents.uniqueComponentNames.get(componentHash)} in input component`
+            );
+        }
+        if (outputComponent[2].includes(`components["schemas"]["${componentName}"]`)) {
+            generatedComponents.mainComponents[endpointId].outputComponent[2] =
+                outputComponent[2].replaceAll(
+                    `components["schemas"]["${componentName}"]`,
+                    `Components.${generatedComponents.uniqueComponentNames.get(componentHash)}`
+                );
+            console.log(
+                `- Replaced ${componentName} with ${generatedComponents.uniqueComponentNames.get(componentHash)} in output component`
+            );
+        }
+    }
+}
+
+for (const entry of generatedComponents.uniqueComponentNames.entries()) {
+    const [hash, uniqueComponentName] = entry;
+    const [[, , content]] = generatedComponents.components.get(hash) || [];
+    componentsFileParts.push([
+        uniqueComponentName,
+        content.trim() === '[];' ?
+            `\n\nexport type ${uniqueComponentName} = {[x:string]:any}[];\n\n`
+        :   `\n\nexport interface ${uniqueComponentName} ${content.replaceAll('Components.', '')}\n\n`,
+    ]);
+}
+
+for (const [endpointId, { inputComponent, outputComponent }] of Object.entries(
+    generatedComponents.mainComponents
+)) {
+    indexFileParts.push([
+        endpointId,
+        `
+          '${endpointId}': {
+            input: ${inputComponent[1] ? `falEndpoints.${inputComponent[1]}` : `{ [x in string]: any }`};
+            output: ${outputComponent[1] ? `falEndpoints.${outputComponent[1]}` : `{ [x in string]: any }`};
+          };
+        `,
+    ]);
+    if (inputComponent[2]) {
+        schemaFileParts.push([
+            endpointId,
+            `
+
+            \n\nexport interface ${inputComponent[1]} ${inputComponent[2]}\n\n
+            `,
+        ]);
+    }
+    if (outputComponent[2]) {
+        schemaFileParts.push([
+            endpointId,
+            `
+
+            \n\nexport interface ${outputComponent[1]} ${outputComponent[2]}\n\n
+            `,
+        ]);
+    }
+}
+
+writeFileSync(
+    'types/fal/endpoints/index.d.ts',
+    `import type * as falEndpoints from './schema.js';
 
 declare global {
 export namespace fal {}
 export namespace fal.endpoints {
 export interface Endpoints {
 
-${indexFileParts
-    .sort((a, b) => a[0].localeCompare(b[0]))
-    .map(([_, content]) => content)
-    .join('\n')}
-
+    ${indexFileParts
+        .sort((a, b) => b[0].localeCompare(a[0]))
+        .map(([_, content]) => content)
+        .join('\n')}
     }
   }
 }
@@ -589,49 +784,34 @@ ${indexFileParts
 export {};
 
 `
-    );
-    writeFileSync(
-        `types/fal/endpoints/schema.next.d.ts`,
-        `import type * as Components from './components.js';
-
+);
+writeFileSync(
+    'types/fal/endpoints/schema.d.ts',
+    `import type * as Components from './components.js';
 
 ${schemaFileParts
-    .sort((a, b) => a[0].localeCompare(b[0]))
-    .map(([_, content]) => content)
-    .join('\n')}
-
-
-export {};
-`
-    );
-
-    const schemaContent = readFileSync('types/fal/endpoints/schema.next.d.ts', 'utf8');
-
-    writeFileSync(
-        `types/fal/endpoints/components.next.d.ts`,
-        `
-
-${componentsFileParts
-    .filter(([uniqueComponentName]) => schemaContent.includes(`Components.${uniqueComponentName}`))
-    .sort((a, b) => a[0].localeCompare(b[0]))
+    .sort((a, b) => b[0].localeCompare(a[0]))
     .map(([_, content]) => content)
     .join('\n')}
 
 export {};
 
 `
-    );
+);
+writeFileSync(
+    'types/fal/endpoints/components.d.ts',
+    `
+    ${componentsFileParts
+        .sort((a, b) => b[0].localeCompare(a[0]))
+        .map(([_, content]) => content)
+        .join('\n\n')}
 
-    rmSync('types/fal/endpoints/index.d.ts', { force: true });
-    rmSync('types/fal/endpoints/schema.d.ts', { force: true });
-    rmSync('types/fal/endpoints/components.d.ts', { force: true });
-    renameSync('types/fal/endpoints/index.next.d.ts', 'types/fal/endpoints/index.d.ts');
-    renameSync('types/fal/endpoints/schema.next.d.ts', 'types/fal/endpoints/schema.d.ts');
-    renameSync('types/fal/endpoints/components.next.d.ts', 'types/fal/endpoints/components.d.ts');
+export {};
 
-    execSync('./node_modules/.bin/prettier --write "types/fal/endpoints/schema.d.ts"');
-    execSync('./node_modules/.bin/prettier --write "types/fal/endpoints/index.d.ts"');
-    execSync('./node_modules/.bin/prettier --write "types/fal/endpoints/components.d.ts"');
-};
+`
+);
+// await generateAll(generatedComponents);
 
-await generateAll();
+execSync('./node_modules/.bin/prettier --write "types/fal/endpoints/schema.d.ts"');
+execSync('./node_modules/.bin/prettier --write "types/fal/endpoints/index.d.ts"');
+execSync('./node_modules/.bin/prettier --write "types/fal/endpoints/components.d.ts"');

@@ -3,3 +3,4 @@ types/fal/endpoints/index.next.d.ts
 types/fal/endpoints/schema.next.d.ts
 .DS_Store
 save
+build-cache

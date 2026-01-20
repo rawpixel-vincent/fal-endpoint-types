@@ -36,16 +36,14 @@ if (!isOutput) {
 // to infer the type of the returned value,
 // this example uses an index signature.
 // The input type is infered in the function.
-const FalInputs: {
-    [x: number | string | symbol]: any;
-} & {
-    [K in fal.Endpoint]?: (userInputs: Record<string, any>) => fal.EndpointInput<K>;
-} = {
+const FalInputs = {
     'fal-ai/flux-kontext/dev': (userInputs) => ({
         // typed FluxKontextDevInput
         prompt: typeof userInputs['prompt'] === 'string' ? userInputs['prompt'] : '',
         image_url: typeof userInputs['image_url'] === 'string' ? userInputs['image_url'] : '',
     }),
+} as {
+    [K in fal.Endpoint]: (userInputs: Record<string, any>) => fal.EndpointInput<K>;
 };
 
 const endpointIdString = String('fal-ai/flux-kontext/dev');
