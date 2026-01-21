@@ -477,7 +477,7 @@ const doEndpointComponents = async (endpointId) => {
         ).toString();
         // console.log('formattedDefinition', formattedDefinition);
         /** @type {Hash} */
-        const hash = createHash('sha1')
+        const hash = createHash('sha256')
             .update(formattedDefinition.replace(`export interface ${safeComponentName}`, '').trim())
             .digest('hex');
         hashComponents.set(
@@ -569,7 +569,7 @@ const generateComponents = async () => {
                     promises = [];
                 } else if (Math.random() < 0.1) {
                     await new Promise((resolve) =>
-                        setTimeout(resolve, 1000 * Math.random() * 1000)
+                        setTimeout(resolve, 1000 + Math.random() * 1000)
                     );
                 }
                 console.log(`- Generating components for ${endpoint} (${i}/${endpoints.length})`);
@@ -792,7 +792,7 @@ for (const [endpointId, { inputComponent, outputComponent }] of Object.entries(
                     });
                     const formattedInputContent = result.toString();
 
-                    const inputHash = createHash('sha1')
+                    const inputHash = createHash('sha256')
                         .update(
                             formattedInputContent
                                 .replace(`export interface ${cp.inputComponent[1]}`, '')
@@ -857,7 +857,7 @@ for (const [endpointId, { inputComponent, outputComponent }] of Object.entries(
                         process.stdin.end();
                     });
                     const formattedOutputContent = result.toString();
-                    const outputHash = createHash('sha1')
+                    const outputHash = createHash('sha256')
                         .update(
                             formattedOutputContent
                                 .replace(`export interface ${cp.outputComponent[1]}`, '')
