@@ -1,3 +1,21 @@
+export interface WhisperChunk {
+    /**
+     * Speaker
+     * @description Speaker ID of the chunk. Only present if diarization is enabled.
+     */
+    speaker?: string;
+    /**
+     * Text
+     * @description Transcription of the chunk
+     */
+    text: string;
+    /**
+     * Timestamp
+     * @description Start and end timestamp of the chunk
+     */
+    timestamp: { [x: string]: any }[];
+}
+
 export interface VoiceSetting {
     /**
      * Emotion
@@ -54,58 +72,40 @@ export interface VoiceSetting {
     vol?: number;
 }
 
-export interface VideoFile_mwp {
+export interface VideoFormat {
     /**
-     * Content Type
-     * @description The mime type of the file.
-     * @example image/png
+     * Bitrate
+     * @description Video bitrate in bits per second
      */
-    content_type?: string;
+    bitrate: number;
     /**
-     * Duration
-     * @description The duration of the video
+     * Container
+     * @description Container format of the video
      */
-    duration?: number;
+    container: string;
     /**
-     * File Name
-     * @description The name of the file. It will be auto-generated if not provided.
-     * @example z9RV14K95DvU.png
+     * Level
+     * @description Codec level (e.g., 4.1)
      */
-    file_name?: string;
+    level: number;
     /**
-     * File Size
-     * @description The size of the file in bytes.
-     * @example 4404019
+     * Pixel Format
+     * @description Pixel format used (e.g., 'yuv420p')
      */
-    file_size?: number;
+    pixel_format: string;
     /**
-     * Fps
-     * @description The FPS of the video
+     * Profile
+     * @description Codec profile (e.g., 'main', 'high')
      */
-    fps?: number;
+    profile: string;
     /**
-     * Height
-     * @description The height of the video
+     * Video Codec
+     * @description Video codec used (e.g., 'h264')
      */
-    height?: number;
-    /**
-     * Num Frames
-     * @description The number of frames in the video
-     */
-    num_frames?: number;
-    /**
-     * Url
-     * @description The URL where the file can be downloaded from.
-     */
-    url: string;
-    /**
-     * Width
-     * @description The width of the video
-     */
-    width?: number;
+    video_codec: string;
 }
 
-export interface VideoFile {
+export interface VideoFile_1 {
     /**
      * Content Type
      * @description The mime type of the file.
@@ -162,7 +162,58 @@ export interface VideoFile {
     width?: number;
 }
 
-export interface VideoConditioningInput_dre {
+export interface VideoFile {
+    /**
+     * Content Type
+     * @description The mime type of the file.
+     * @example image/png
+     */
+    content_type?: string;
+    /**
+     * Duration
+     * @description The duration of the video
+     */
+    duration?: number;
+    /**
+     * File Name
+     * @description The name of the file. It will be auto-generated if not provided.
+     * @example z9RV14K95DvU.png
+     */
+    file_name?: string;
+    /**
+     * File Size
+     * @description The size of the file in bytes.
+     * @example 4404019
+     */
+    file_size?: number;
+    /**
+     * Fps
+     * @description The FPS of the video
+     */
+    fps?: number;
+    /**
+     * Height
+     * @description The height of the video
+     */
+    height?: number;
+    /**
+     * Num Frames
+     * @description The number of frames in the video
+     */
+    num_frames?: number;
+    /**
+     * Url
+     * @description The URL where the file can be downloaded from.
+     */
+    url: string;
+    /**
+     * Width
+     * @description The width of the video
+     */
+    width?: number;
+}
+
+export interface VideoConditioningInput_2 {
     /**
      * Conditioning Type
      * @description Type of conditioning this video provides. This is relevant to ensure in-context LoRA weights are applied correctly, as well as selecting the correct preprocessing pipeline, when enabled.
@@ -224,6 +275,19 @@ export interface VideoConditioningInput_dre {
     /**
      * Video URL
      * @description URL of video to use as conditioning
+     */
+    video_url: string;
+}
+
+export interface VideoConditioningInput_1 {
+    /**
+     * Start Frame Num
+     * @description Frame number of the video from which the conditioning starts. Must be a multiple of 8.
+     */
+    start_frame_num: number;
+    /**
+     * Video Url
+     * @description URL of video to be extended
      */
     video_url: string;
 }
@@ -314,6 +378,87 @@ export interface VideoCondition {
     video_url: string;
 }
 
+export interface Video_1 {
+    /** @description Audio track information if video has audio */
+    audio?: AudioTrack;
+    /**
+     * Bitrate
+     * @description Overall bitrate of the media in bits per second
+     */
+    bitrate: number;
+    /**
+     * Codec
+     * @description Codec used to encode the media
+     */
+    codec: string;
+    /**
+     * Container
+     * @description Container format of the media file (e.g., 'mp4', 'mov')
+     */
+    container: string;
+    /**
+     * Content Type
+     * @description MIME type of the media file
+     */
+    content_type: string;
+    /**
+     * Duration
+     * @description Duration of the media in seconds
+     */
+    duration: number;
+    /**
+     * End Frame Url
+     * @description URL of the extracted last frame
+     */
+    end_frame_url?: string;
+    /**
+     * File Name
+     * @description Original filename of the media
+     */
+    file_name: string;
+    /**
+     * File Size
+     * @description Size of the file in bytes
+     */
+    file_size: number;
+    /** @description Detailed video format information */
+    format: VideoFormat;
+    /**
+     * Fps
+     * @description Frames per second
+     */
+    fps: number;
+    /**
+     * Frame Count
+     * @description Total number of frames in the video
+     */
+    frame_count: number;
+    /**
+     * Media Type
+     * @description Type of media (always 'video')
+     * @default video
+     * @constant
+     */
+    media_type?: 'video';
+    /** @description Video resolution information */
+    resolution: Resolution;
+    /**
+     * Start Frame Url
+     * @description URL of the extracted first frame
+     */
+    start_frame_url?: string;
+    /**
+     * Timebase
+     * @description Time base used for frame timestamps
+     */
+    timebase: string;
+    /**
+     * Url
+     * @description URL where the media file can be accessed
+     */
+    url: string;
+}
+
 export interface Video {
     /**
      * Content Type
@@ -395,7 +540,7 @@ export interface V2VValidation {
     reference_video_url: string;
 }
 
-export interface UsageInfo {
+export interface UsageInfo_1 {
     /** Completion Tokens */
     completion_tokens?: number;
     /** Cost */
@@ -407,6 +552,34 @@ export interface UsageInfo {
      * @default 0
      */
     total_tokens?: number;
+}
+
+export interface UsageInfo {
+    /**
+     * Decode Time Ms
+     * @description Time taken for decoding in milliseconds
+     */
+    decode_time_ms: number;
+    /**
+     * Input Tokens
+     * @description Number of input tokens processed
+     */
+    input_tokens: number;
+    /**
+     * Output Tokens
+     * @description Number of output tokens generated
+     */
+    output_tokens: number;
+    /**
+     * Prefill Time Ms
+     * @description Time taken for prefill in milliseconds
+     */
+    prefill_time_ms: number;
+    /**
+     * Ttft Ms
+     * @description Time to first token in milliseconds
+     */
+    ttft_ms: number;
 }
 
 export interface Turn {
@@ -442,6 +615,60 @@ export interface TranscriptionWord {
      * @description Type of element (word, spacing, or audio_event)
      */
     type: string;
+}
+
+export interface TrajectoryParameters {
+    /**
+     * Phi
+     * @description Vertical rotation angles (degrees) for each keyframe.
+     * @example [
+     *       0,
+     *       -3,
+     *       -8,
+     *       -15,
+     *       -20,
+     *       -15,
+     *       -10,
+     *       -5,
+     *       0
+     *     ]
+     */
+    phi: number[];
+    /**
+     * Radius
+     * @description Camera distance scaling factors for each keyframe.
+     * @example [
+     *       0,
+     *       0.02,
+     *       0.09,
+     *       0.16,
+     *       0.25,
+     *       0.2,
+     *       0.09,
+     *       0
+     *     ]
+     */
+    radius: number[];
+    /**
+     * Theta
+     * @description Horizontal rotation angles (degrees) for each keyframe.
+     * @example [
+     *       0,
+     *       2,
+     *       8,
+     *       10,
+     *       5,
+     *       3,
+     *       0,
+     *       -2,
+     *       -5,
+     *       -8,
+     *       -5,
+     *       -3,
+     *       0
+     *     ]
+     */
+    theta: number[];
 }
 
 export interface Trajectory {
@@ -493,6 +720,29 @@ export interface TimestepsInput {
      * @enum {string}
      */
     method?: 'default' | 'array';
+}
+
+export interface TextureFiles {
+    /**
+     * Base Color
+     * @description Base color texture
+     */
+    base_color: File_1;
+    /**
+     * Metallic
+     * @description Metallic texture (PBR)
+     */
+    metallic?: File_1;
+    /**
+     * Normal
+     * @description Normal texture (PBR)
+     */
+    normal?: File_1;
+    /**
+     * Roughness
+     * @description Roughness texture (PBR)
+     */
+    roughness?: File_1;
 }
 
 export interface StructuredPrompt {
@@ -645,6 +895,113 @@ export interface SemanticImageInput {
     reference: string;
 }
 
+export interface SAM3DObjectMetadata {
+    /**
+     * Camera Pose
+     * @description Camera pose matrix
+     */
+    camera_pose?: number[][];
+    /**
+     * Object Index
+     * @description Index of the object in the scene
+     */
+    object_index: number;
+    /**
+     * Rotation
+     * @description Rotation quaternion [x, y, z, w]
+     */
+    rotation?: number[][];
+    /**
+     * Scale
+     * @description Scale factors [sx, sy, sz]
+     */
+    scale?: number[][];
+    /**
+     * Translation
+     * @description Translation [tx, ty, tz]
+     */
+    translation?: number[][];
+}
+
+export interface SAM3DBodyPersonMetadata {
+    /**
+     * Bbox
+     * @description Bounding box [x_min, y_min, x_max, y_max]
+     */
+    bbox: number[];
+    /**
+     * Focal Length
+     * @description Estimated focal length
+     */
+    focal_length: number;
+    /**
+     * Keypoints 2D
+     * @description 2D keypoints [[x, y], ...] - 70 body keypoints
+     */
+    keypoints_2d: number[][];
+    /**
+     * Keypoints 3D
+     * @description 3D keypoints [[x, y, z], ...] - 70 body keypoints in camera space
+     */
+    keypoints_3d?: number[][];
+    /**
+     * Person Id
+     * @description Index of the person in the scene
+     */
+    person_id: number;
+    /**
+     * Pred Cam T
+     * @description Predicted camera translation [tx, ty, tz]
+     */
+    pred_cam_t: number[];
+}
+
+export interface SAM3DBodyMetadata {
+    /**
+     * Num People
+     * @description Number of people detected
+     */
+    num_people: number;
+    /**
+     * People
+     * @description Per-person metadata
+     */
+    people: SAM3DBodyPersonMetadata[];
+}
+
+export interface SAM3DBodyAlignmentInfo {
+    /**
+     * Cropped Vertices Count
+     * @description Number of cropped vertices
+     */
+    cropped_vertices_count: number;
+    /**
+     * Focal Length
+     * @description Focal length used
+     */
+    focal_length: number;
+    /**
+     * Person Id
+     * @description Index of the person
+     */
+    person_id: number;
+    /**
+     * Scale Factor
+     * @description Scale factor applied for alignment
+     */
+    scale_factor: number;
+    /**
+     * Target Points Count
+     * @description Number of target points for alignment
+     */
+    target_points_count: number;
+    /**
+     * Translation
+     * @description Translation [tx, ty, tz]
+     */
+    translation: number[];
+}
+
 export interface RGBColor {
     /**
      * B
@@ -664,6 +1021,24 @@ export interface RGBColor {
      * @default 0
      */
     r?: number;
+}
+
+export interface Resolution {
+    /**
+     * Aspect Ratio
+     * @description Display aspect ratio (e.g., '16:9')
+     */
+    aspect_ratio: string;
+    /**
+     * Height
+     * @description Height of the video in pixels
+     */
+    height: number;
+    /**
+     * Width
+     * @description Width of the video in pixels
+     */
+    width: number;
 }
 
 export interface Region {
@@ -700,6 +1075,14 @@ export interface ReferenceImageInput {
      * @description The image to use for the measurement.
      */
     reference: string;
+}
+
+export interface ReferenceFace {
+    /**
+     * Image Url
+     * @description URL of the reference face image
+     */
+    image_url: string;
 }
 
 export interface PronunciationDictionaryLocator {
@@ -824,6 +1207,72 @@ export interface Polygon {
     }[];
 }
 
+export interface PointPromptBase {
+    /**
+     * Label
+     * @description 1 for foreground, 0 for background
+     * @enum {integer}
+     */
+    label?: 0 | 1;
+    /**
+     * Object Id
+     * @description Optional object identifier. Prompts sharing an object id refine the same object.
+     */
+    object_id?: number;
+    /**
+     * X
+     * @description X Coordinate of the prompt
+     */
+    x?: number;
+    /**
+     * Y
+     * @description Y Coordinate of the prompt
+     */
+    y?: number;
+}
+
+export interface PointPrompt {
+    /**
+     * Frame Index
+     * @description The frame index to interact with.
+     */
+    frame_index?: number;
+    /**
+     * Label
+     * @description 1 for foreground, 0 for background
+     * @enum {integer}
+     */
+    label?: 0 | 1;
+    /**
+     * Object Id
+     * @description Optional object identifier. Prompts sharing an object id refine the same object.
+     */
+    object_id?: number;
+    /**
+     * X
+     * @description X Coordinate of the prompt
+     */
+    x?: number;
+    /**
+     * Y
+     * @description Y Coordinate of the prompt
+     */
+    y?: number;
+}
+
+export interface Point {
+    /**
+     * X
+     * @description X coordinate of the point in normalized format (0 to 1)
+     */
+    x: number;
+    /**
+     * Y
+     * @description Y coordinate of the point in normalized format (0 to 1)
+     */
+    y: number;
+}
+
 export interface PhotographicCharacteristics {
     /**
      * Camera Angle
@@ -881,6 +1330,29 @@ export interface OCRBoundingBox {
      * @description List of quadrilateral boxes
      */
     quad_boxes: BoundingBox[];
+}
+
+export interface Object {
+    /**
+     * X Max
+     * @description Right boundary of detection box in normalized format (0 to 1)
+     */
+    x_max: number;
+    /**
+     * X Min
+     * @description Left boundary of detection box in normalized format (0 to 1)
+     */
+    x_min: number;
+    /**
+     * Y Max
+     * @description Bottom boundary of detection box in normalized format (0 to 1)
+     */
+    y_max: number;
+    /**
+     * Y Min
+     * @description Top boundary of detection box in normalized format (0 to 1)
+     */
+    y_min: number;
 }
 
 export interface NovaSRTimings {
@@ -963,27 +1435,78 @@ export interface MoondreamInputParam {
     prompt?: string;
 }
 
-export interface ModelUrls {
+export interface ModelUrls_1 {
     /**
      * Fbx
      * @description FBX format 3D model
      */
-    fbx?: File_4lp;
+    fbx?: File_1;
     /**
      * Glb
      * @description GLB format 3D model
      */
-    glb?: File_4lp;
+    glb?: File_1;
     /**
      * Obj
      * @description OBJ format 3D model
      */
-    obj?: File_4lp;
+    obj?: File_1;
     /**
      * Usdz
      * @description USDZ format 3D model
      */
-    usdz?: File_4lp;
+    usdz?: File_1;
+}
+
+export interface ModelUrls {
+    /**
+     * Blend
+     * @description Blender format 3D model
+     */
+    blend?: File_1;
+    /**
+     * Fbx
+     * @description FBX format 3D model
+     */
+    fbx?: File_1;
+    /**
+     * Glb
+     * @description GLB format 3D model
+     */
+    glb?: File_1;
+    /**
+     * Obj
+     * @description OBJ format 3D model
+     */
+    obj?: File_1;
+    /**
+     * Stl
+     * @description STL format 3D model
+     */
+    stl?: File_1;
+    /**
+     * Usdz
+     * @description USDZ format 3D model
+     */
+    usdz?: File_1;
+}
+
+export interface MaskMetadata {
+    /**
+     * Box
+     * @description Bounding box for the mask in normalized cxcywh coordinates.
+     */
+    box?: number[];
+    /**
+     * Index
+     * @description Index of the mask inside the model output.
+     */
+    index: number;
+    /**
+     * Score
+     * @description Score for this mask.
+     */
+    score?: number;
 }
 
 export interface LoudnormSummary {
@@ -1066,7 +1589,75 @@ export interface LoudnessNormalizationSetting {
     target_range?: number;
 }
 
-export interface LoRAWeight_upk {
+export interface LoraWeight_5 {
+    /**
+     * Path
+     * @description URL or the path to the LoRA weights.
+     */
+    path: string;
+    /**
+     * Scale
+     * @description The scale of the LoRA weight. This is used to scale the LoRA weight
+     *                 before merging it with the base model.
+     * @default 1
+     */
+    scale?: number;
+    /**
+     * Weight Name
+     * @description Name of the LoRA weight. Used only if `path` is a Hugging Face repository, and required only if you have more than 1 safetensors file in the repo.
+     */
+    weight_name?: string;
+}
+
+export interface LoraWeight_4 {
+    /**
+     * Path
+     * @description URL or the path to the LoRA weights.
+     * @example https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_offset_example-lora_1.0.safetensors
+     */
+    path: string;
+    /**
+     * Scale
+     * @description The scale of the LoRA weight. This is used to scale the LoRA weight
+     *                 before merging it with the base model.
+     * @default 0.1
+     */
+    scale?: number;
+}
+
+export interface LoraWeight_3 {
+    /**
+     * Path
+     * @description URL or the path to the LoRA weights. Or HF model name.
+     * @example https://civitai.com/api/download/models/135931
+     * @example https://filebin.net/3chfqasxpqu21y8n/my-custom-lora-v1.safetensors
+     */
+    path: string;
+    /**
+     * Scale
+     * @description The scale of the LoRA weight. This is used to scale the LoRA weight
+     *                 before merging it with the base model.
+     * @default 1
+     */
+    scale?: number;
+}
+
+export interface LoraWeight_2 {
+    /**
+     * Path
+     * @description URL or the path to the LoRA weights.
+     */
+    path: string;
+    /**
+     * Scale
+     * @description The scale of the LoRA weight. This is used to scale the LoRA weight
+     *                 before merging it with the base model. Providing a dictionary as {"layer_name":layer_scale} allows per-layer lora scale settings. Layers with no scale provided will have scale 1.0.
+     * @default 1
+     */
+    scale?: Record<string, number> | number;
+}
+
+export interface LoRAWeight_1 {
     /**
      * Path
      * @description URL or the path to the LoRA weights.
@@ -1093,75 +1684,7 @@ export interface LoRAWeight_upk {
     weight_name?: string;
 }
 
-export interface LoraWeight_ppw {
-    /**
-     * Path
-     * @description URL or the path to the LoRA weights.
-     */
-    path: string;
-    /**
-     * Scale
-     * @description The scale of the LoRA weight. This is used to scale the LoRA weight
-     *                 before merging it with the base model.
-     * @default 1
-     */
-    scale?: number;
-    /**
-     * Weight Name
-     * @description Name of the LoRA weight. Used only if `path` is a Hugging Face repository, and required only if you have more than 1 safetensors file in the repo.
-     */
-    weight_name?: string;
-}
-
-export interface LoraWeight_hcy {
-    /**
-     * Path
-     * @description URL or the path to the LoRA weights. Or HF model name.
-     * @example https://civitai.com/api/download/models/135931
-     * @example https://filebin.net/3chfqasxpqu21y8n/my-custom-lora-v1.safetensors
-     */
-    path: string;
-    /**
-     * Scale
-     * @description The scale of the LoRA weight. This is used to scale the LoRA weight
-     *                 before merging it with the base model.
-     * @default 1
-     */
-    scale?: number;
-}
-
-export interface LoraWeight_9cy {
-    /**
-     * Path
-     * @description URL or the path to the LoRA weights.
-     * @example https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_offset_example-lora_1.0.safetensors
-     */
-    path: string;
-    /**
-     * Scale
-     * @description The scale of the LoRA weight. This is used to scale the LoRA weight
-     *                 before merging it with the base model.
-     * @default 0.1
-     */
-    scale?: number;
-}
-
-export interface LoraWeight_7z3 {
-    /**
-     * Path
-     * @description URL or the path to the LoRA weights.
-     */
-    path: string;
-    /**
-     * Scale
-     * @description The scale of the LoRA weight. This is used to scale the LoRA weight
-     *                 before merging it with the base model. Providing a dictionary as {"layer_name":layer_scale} allows per-layer lora scale settings. Layers with no scale provided will have scale 1.0.
-     * @default 1
-     */
-    scale?: Record<string, number> | number;
-}
-
-export interface LoraWeight_7md {
+export interface LoraWeight_1 {
     /**
      * Force
      * @description If set to true, the embedding will be forced to be used.
@@ -1218,7 +1741,7 @@ export interface LoraWeight {
     scale?: number;
 }
 
-export interface LoRAInput_ihy {
+export interface LoRAInput_2 {
     /**
      * Path
      * @description URL, HuggingFace repo ID (owner/repo) to lora weights.
@@ -1232,7 +1755,7 @@ export interface LoRAInput_ihy {
     scale?: number;
 }
 
-export interface LoRAInput_hef {
+export interface LoRAInput_1 {
     /**
      * Path
      * @description URL, HuggingFace repo ID (owner/repo), or local path to LoRA weights.
@@ -1316,7 +1839,7 @@ export interface Keyframe {
     url: string;
 }
 
-export interface IPAdapter_k5s {
+export interface IPAdapter_1 {
     /**
      * Image Projection Shortcut
      * @description The value to set the image projection shortcut to. For FaceID plus V1 models,
@@ -1430,6 +1953,21 @@ export interface IPAdapter {
     weight_name?: string;
 }
 
+export interface InpaintSection {
+    /**
+     * End
+     * @description End time in seconds of the section to inpaint.
+     * @example 9.45
+     */
+    end: number;
+    /**
+     * Start
+     * @description Start time in seconds of the section to inpaint.
+     * @example 0
+     */
+    start: number;
+}
+
 export interface ImageSize {
     /**
      * Height
@@ -1474,7 +2012,7 @@ export interface ImageInput {
     hypothesis: string;
 }
 
-export interface ImageFillInput_irq {
+export interface ImageFillInput_1 {
     /**
      * Fill Image Url
      * @description URLs of images to be filled into the masked area.
@@ -1545,6 +2083,19 @@ export interface ImageFile {
     width?: number;
 }
 
+export interface ImageConditioningInput_1 {
+    /**
+     * Image Url
+     * @description URL of image to use as conditioning
+     */
+    image_url: string;
+    /**
+     * Start Frame Num
+     * @description Frame number of the image from which the conditioning starts. Must be a multiple of 8.
+     */
+    start_frame_num: number;
+}
+
 export interface ImageConditioningInput {
     /**
      * Image URL
@@ -1585,7 +2136,7 @@ export interface ImageCondition {
     strength?: number;
 }
 
-export interface Image_p8c {
+export interface Image_3 {
     /**
      * Content Type
      * @description The mime type of the file.
@@ -1624,21 +2175,7 @@ export interface Image_p8c {
     width?: number;
 }
 
-export interface Image_p3s {
-    /**
-     * Content Type
-     * @default image/jpeg
-     */
-    content_type?: string;
-    /** Height */
-    height: number;
-    /** Url */
-    url: string;
-    /** Width */
-    width: number;
-}
-
-export interface Image_2hl {
+export interface Image_2 {
     /**
      * Content Type
      * @description The mime type of the file.
@@ -1674,6 +2211,20 @@ export interface Image_2hl {
      * @example 1024
      */
     width?: number;
+}
+
+export interface Image_1 {
+    /**
+     * Content Type
+     * @default image/jpeg
+     */
+    content_type?: string;
+    /** Height */
+    height: number;
+    /** Url */
+    url: string;
+    /** Width */
+    width: number;
 }
 
 export interface Image {
@@ -1752,7 +2303,7 @@ export interface Frame {
     url: string;
 }
 
-export interface File_z5y {
+export interface File_2 {
     /**
      * Content Type
      * @description The mime type of the file.
@@ -1779,7 +2330,7 @@ export interface File_z5y {
     url: string;
 }
 
-export interface File_4lp {
+export interface File_1 {
     /**
      * Content Type
      * @description The mime type of the file.
@@ -1940,7 +2491,7 @@ export interface EmotionalStrengths {
     surprised?: number;
 }
 
-export interface Embedding_cux {
+export interface Embedding_1 {
     /**
      * Path
      * @description URL or the path to the embedding weights.
@@ -2031,6 +2582,19 @@ export interface DynamicMask {
      *     ]
      */
     trajectories?: Trajectory[];
+}
+
+export interface DiarizationSegment {
+    /**
+     * Speaker
+     * @description Speaker ID of the segment
+     */
+    speaker: string;
+    /**
+     * Timestamp
+     * @description Start and end timestamp of the segment
+     */
+    timestamp: { [x: string]: any }[];
 }
 
 export interface DialogueBlock {
@@ -2158,7 +2722,7 @@ export interface ControlNetUnion {
     variant?: string;
 }
 
-export interface ControlNet_brx {
+export interface ControlNet_1 {
     /**
      * Conditioning Scale
      * @description The scale of the control net weight. This is used to scale the control net weight
@@ -2290,24 +2854,6 @@ export interface ControlLoraWeight {
     scale?: Record<string, number> | number;
 }
 
-export interface CompletionUsage {
-    /**
-     * Completion Tokens
-     * @description Number of tokens in the completion
-     */
-    completion_tokens: number;
-    /**
-     * Prompt Tokens
-     * @description Number of tokens in the prompt
-     */
-    prompt_tokens: number;
-    /**
-     * Total Tokens
-     * @description Total tokens used
-     */
-    total_tokens: number;
-}
-
 export interface ColorPaletteMember {
     /**
      * Color Weight
@@ -2344,6 +2890,22 @@ export interface ChronoLoraWeight {
      * @default 1
      */
     scale?: number;
+}
+
+export interface CameraControl {
+    /**
+     * Movement Type
+     * @description The type of camera movement
+     * @example horizontal
+     * @enum {string}
+     */
+    movement_type: 'horizontal' | 'vertical' | 'pan' | 'tilt' | 'roll' | 'zoom';
+    /**
+     * Movement Value
+     * @description The value of the camera movement
+     * @example 10
+     */
+    movement_value: number;
 }
 
 export interface bria_fibovlm_StructuredPrompt {
@@ -2420,7 +2982,7 @@ export interface bria_fibovlm_Aesthetics {
     preference_score: string;
 }
 
-export interface BoxPromptBase {
+export interface BoxPromptBase_1 {
     /**
      * X Max
      * @description X Max Coordinate of the prompt
@@ -2443,6 +3005,67 @@ export interface BoxPromptBase {
      * Y Min
      * @description Y Min Coordinate of the box
      * @default 0
+     */
+    y_min?: number;
+}
+
+export interface BoxPromptBase {
+    /**
+     * Object Id
+     * @description Optional object identifier. Boxes sharing an object id refine the same object.
+     */
+    object_id?: number;
+    /**
+     * X Max
+     * @description X Max Coordinate of the box
+     */
+    x_max?: number;
+    /**
+     * X Min
+     * @description X Min Coordinate of the box
+     */
+    x_min?: number;
+    /**
+     * Y Max
+     * @description Y Max Coordinate of the box
+     */
+    y_max?: number;
+    /**
+     * Y Min
+     * @description Y Min Coordinate of the box
+     */
+    y_min?: number;
+}
+
+export interface BoxPrompt {
+    /**
+     * Frame Index
+     * @description The frame index to interact with.
+     */
+    frame_index?: number;
+    /**
+     * Object Id
+     * @description Optional object identifier. Boxes sharing an object id refine the same object.
+     */
+    object_id?: number;
+    /**
+     * X Max
+     * @description X Max Coordinate of the box
+     */
+    x_max?: number;
+    /**
+     * X Min
+     * @description X Min Coordinate of the box
+     */
+    x_min?: number;
+    /**
+     * Y Max
+     * @description Y Max Coordinate of the box
+     */
+    y_max?: number;
+    /**
+     * Y Min
+     * @description Y Min Coordinate of the box
      */
     y_min?: number;
 }
@@ -2510,6 +3133,76 @@ export interface BBoxPromptBase {
     y_min?: number;
 }
 
+export interface AudioTrack {
+    /**
+     * Bitrate
+     * @description Audio bitrate in bits per second
+     */
+    bitrate: number;
+    /**
+     * Channels
+     * @description Number of audio channels
+     */
+    channels: number;
+    /**
+     * Codec
+     * @description Audio codec used (e.g., 'aac', 'mp3')
+     */
+    codec: string;
+    /**
+     * Sample Rate
+     * @description Audio sample rate in Hz
+     */
+    sample_rate: number;
+}
+
+export interface AudioTimeSpan {
+    /**
+     * End
+     * @description End time of the span in seconds
+     * @example 1.5
+     * @example 4
+     */
+    end: number;
+    /**
+     * Include
+     * @description Whether to include (True) or exclude (False) sounds in this span
+     * @default true
+     */
+    include?: boolean;
+    /**
+     * Start
+     * @description Start time of the span in seconds
+     * @example 0.5
+     * @example 2
+     */
+    start: number;
+}
+
+export interface AudioSetting_1 {
+    /**
+     * Bitrate
+     * @description Bitrate of generated audio
+     * @default 256000
+     * @enum {integer}
+     */
+    bitrate?: 32000 | 64000 | 128000 | 256000;
+    /**
+     * Format
+     * @description Audio format
+     * @default mp3
+     * @enum {string}
+     */
+    format?: 'mp3' | 'pcm' | 'flac';
+    /**
+     * Sample Rate
+     * @description Sample rate of generated audio
+     * @default 44100
+     * @enum {integer}
+     */
+    sample_rate?: 8000 | 16000 | 22050 | 24000 | 32000 | 44100;
+}
+
 export interface AudioSetting {
     /**
      * Bitrate
@@ -2541,7 +3234,7 @@ export interface AudioSetting {
     sample_rate?: 8000 | 16000 | 22050 | 24000 | 32000 | 44100;
 }
 
-export interface AudioFile_j1v {
+export interface AudioFile_1 {
     /**
      * Content Type
      * @default audio/wav
@@ -2615,6 +3308,66 @@ export interface AudioFile {
     /**
      * Url
      * @description The URL where the file can be downloaded from.
+     */
+    url: string;
+}
+
+export interface Audio {
+    /**
+     * Bitrate
+     * @description Overall bitrate of the media in bits per second
+     */
+    bitrate: number;
+    /**
+     * Channels
+     * @description Number of audio channels
+     */
+    channels: number;
+    /**
+     * Codec
+     * @description Codec used to encode the media
+     */
+    codec: string;
+    /**
+     * Container
+     * @description Container format of the media file (e.g., 'mp4', 'mov')
+     */
+    container: string;
+    /**
+     * Content Type
+     * @description MIME type of the media file
+     */
+    content_type: string;
+    /**
+     * Duration
+     * @description Duration of the media in seconds
+     */
+    duration: number;
+    /**
+     * File Name
+     * @description Original filename of the media
+     */
+    file_name: string;
+    /**
+     * File Size
+     * @description Size of the file in bytes
+     */
+    file_size: number;
+    /**
+     * Media Type
+     * @description Type of media (always 'audio')
+     * @default audio
+     * @constant
+     */
+    media_type?: 'audio';
+    /**
+     * Sample Rate
+     * @description Audio sample rate in Hz
+     */
+    sample_rate: number;
+    /**
+     * Url
+     * @description URL where the media file can be accessed
      */
     url: string;
 }
