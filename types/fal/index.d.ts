@@ -14,7 +14,7 @@ declare global {
         export type EndpointsOutputsCombined<
             E extends fal.Endpoint,
             T extends readonly fal.Endpoint[] = readonly [E, ...(readonly [E])],
-            O extends Record<string, any> = Record<string, any>,
+            O extends Record<string, never> = Record<string, never>,
         > =
             T extends readonly [infer M, ...infer R extends readonly fal.Endpoint[]] ?
                 R extends never ?
