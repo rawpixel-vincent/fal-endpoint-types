@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { createHash } from 'node:crypto';
-import { execFileSync, execSync } from 'node:child_process';
+import { execFile, execFileSync, execSync } from 'node:child_process';
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { readFile } from 'node:fs/promises';
 
@@ -32,14 +32,14 @@ const componentsFileParts = [];
 /**
  * @param {string} prefix
  * @param {string} [separator]
- * @param {number} [idx]
  * @returns {UniqueComponentName}
  */
-const getUniqueComponentName = (prefix, separator = '_', idx = 1) => {
+const getUniqueComponentName = (prefix, separator = '_') => {
+    let suffix = 1;
     let name = prefix;
-    if (names.has(name)) {
-        name = `${name}${separator}${idx}`;
-        return getUniqueComponentName(name, '', idx + 1);
+    while (names.has(name)) {
+        name = `${prefix}${separator}${suffix}`;
+        suffix++;
     }
     names.add(name);
     return name;
@@ -477,7 +477,7 @@ const doEndpointComponents = async (endpointId) => {
         ).toString();
         // console.log('formattedDefinition', formattedDefinition);
         /** @type {Hash} */
-        const hash = createHash('sha256')
+        const hash = createHash('sha1')
             .update(formattedDefinition.replace(`export interface ${safeComponentName}`, '').trim())
             .digest('hex');
         hashComponents.set(
@@ -553,22 +553,24 @@ const getEndpoints = async () => {
 const generateComponents = async () => {
     await mkdirSync('build-cache/endpoints-components', { recursive: true });
     const endpoints = await getEndpoints();
-    const slices = arrayChunks(endpoints, 150);
+    const slices = arrayChunks(endpoints, 250);
     let i = 0;
     const results = await Promise.all(
         slices.map(async (endpointsSlice, sliceIndex) => {
+            await new Promise((resolve) => setTimeout(resolve, Math.random() * 1000));
             /** @type {{endpointId: EndpointId, components: ComponentsType, inputComponent: [InputTypeName, SafeInputTypeName, Content], outputComponent: [OutputTypeName, SafeOutputTypeName, Content]}[]} */
             let localComponents = [];
             /** @type {Promise<{endpointId: EndpointId, components: ComponentsType, inputComponent: [InputTypeName, SafeInputTypeName, Content], outputComponent: [OutputTypeName, SafeOutputTypeName, Content]}>[]} */
             let promises = [];
             /** @type {number} */
             for (const endpoint of endpointsSlice) {
-                if (Math.random() < 0.05) {
-                    await new Promise((resolve) => setTimeout(resolve, 2500));
-                }
-                if (Math.random() < 0.2) {
+                if (promises.length > 0 && Math.random() < 0.1) {
                     await Promise.all(promises);
                     promises = [];
+                } else if (Math.random() < 0.1) {
+                    await new Promise((resolve) =>
+                        setTimeout(resolve, 1000 * Math.random() * 1000)
+                    );
                 }
                 console.log(`- Generating components for ${endpoint} (${i}/${endpoints.length})`);
                 i++;
@@ -752,92 +754,148 @@ const totalEndpoints = Object.keys(generatedComponents.mainComponents).length;
 for (const [endpointId, { inputComponent, outputComponent }] of Object.entries(
     generatedComponents.mainComponents
 )) {
-    hashedCount++;
-    if (inputComponent[1]) {
-        const formattedInputContent = execFileSync(
-            'npx',
-            ['-y', 'prettier', '--parser', 'typescript'],
-            {
-                input: `export interface ${inputComponent[1]} ${inputComponent[2] || '{ [x in string]: any }'}`,
-            }
-        ).toString();
+    await Promise.all(
+        [{ inputComponent }, { outputComponent }].map(async (cp) => {
+            if (cp.inputComponent) {
+                hashedCount++;
+                if (cp.inputComponent[1]) {
+                    // const formattedInputContent = execFileSync(
+                    //     'npx',
+                    //     ['-y', 'prettier', '--parser', 'typescript'],
+                    //     {
+                    //         input: `export interface ${inputComponent[1]} ${inputComponent[2] || '{ [x in string]: any }'}`,
+                    //     }
+                    // ).toString();
+                    const result = await new Promise((resolve, reject) => {
+                        const process = execFile(
+                            'npx',
+                            ['-y', 'prettier', '--parser', 'typescript'],
+                            (error, stdout, stderr) => {
+                                if (error) {
+                                    console.error(error);
+                                    reject(error);
+                                }
+                                if (stderr) {
+                                    console.error(stderr);
+                                    reject(new Error(stderr));
+                                }
+                                resolve(stdout);
+                            }
+                        );
+                        if (!process.stdin) {
+                            throw new Error('stdin is not available');
+                        }
+                        process.stdin.write(
+                            `export interface ${cp.inputComponent[1]} ${cp.inputComponent[2] || '{ [x in string]: any }'}`
+                        );
+                        process.stdin.end();
+                    });
+                    const formattedInputContent = result.toString();
 
-        const inputHash = createHash('sha256')
-            .update(
-                formattedInputContent.replace(`export interface ${inputComponent[1]}`, '').trim()
-            )
-            .digest('hex');
-        if (!dedupMainComponents.has(inputHash)) {
-            dedupMainComponents.set(inputHash, [
-                [
-                    endpointId,
-                    'input',
-                    inputComponent[1],
-                    formattedInputContent
-                        .replace(`export interface ${inputComponent[1]}`, '')
-                        .trim(),
-                ],
-            ]);
-        } else {
-            dedupMainComponents.set(
-                inputHash,
-                (dedupMainComponents.get(inputHash) || []).concat([
-                    [
-                        endpointId,
-                        'input',
-                        inputComponent[1],
-                        formattedInputContent
-                            .replace(`export interface ${inputComponent[1]}`, '')
-                            .trim(),
-                    ],
-                ])
-            );
-            duplicatesCount++;
-        }
-    }
-    hashedCount++;
-    if (outputComponent[1]) {
-        const formattedOutputContent = execFileSync(
-            'npx',
-            ['-y', 'prettier', '--parser', 'typescript'],
-            {
-                input: `export interface ${outputComponent[1]} ${outputComponent[2] || '{ [x in string]: any }'}`,
-            }
-        ).toString();
-        const outputHash = createHash('sha256')
-            .update(
-                formattedOutputContent.replace(`export interface ${outputComponent[1]}`, '').trim()
-            )
-            .digest('hex');
-        if (!dedupMainComponents.has(outputHash)) {
-            dedupMainComponents.set(outputHash, [
-                [
-                    endpointId,
-                    'output',
-                    outputComponent[1],
-                    formattedOutputContent
-                        .replace(`export interface ${outputComponent[1]}`, '')
-                        .trim(),
-                ],
-            ]);
-        } else {
-            dedupMainComponents.set(
-                outputHash,
-                (dedupMainComponents.get(outputHash) || []).concat([
-                    [
-                        endpointId,
-                        'output',
-                        outputComponent[1],
-                        formattedOutputContent
-                            .replace(`export interface ${outputComponent[1]}`, '')
-                            .trim(),
-                    ],
-                ])
-            );
-            duplicatesCount++;
-        }
-    }
+                    const inputHash = createHash('sha1')
+                        .update(
+                            formattedInputContent
+                                .replace(`export interface ${cp.inputComponent[1]}`, '')
+                                .trim()
+                        )
+                        .digest('hex');
+                    if (!dedupMainComponents.has(inputHash)) {
+                        dedupMainComponents.set(inputHash, [
+                            [
+                                endpointId,
+                                'input',
+                                cp.inputComponent[1],
+                                formattedInputContent
+                                    .replace(`export interface ${cp.inputComponent[1]}`, '')
+                                    .trim(),
+                            ],
+                        ]);
+                    } else {
+                        dedupMainComponents.set(
+                            inputHash,
+                            (dedupMainComponents.get(inputHash) || []).concat([
+                                [
+                                    endpointId,
+                                    'input',
+                                    cp.inputComponent[1],
+                                    formattedInputContent
+                                        .replace(`export interface ${cp.inputComponent[1]}`, '')
+                                        .trim(),
+                                ],
+                            ])
+                        );
+                        duplicatesCount++;
+                    }
+                }
+                return;
+            } else if (cp.outputComponent) {
+                hashedCount++;
+                if (cp.outputComponent[1]) {
+                    const result = await new Promise((resolve, reject) => {
+                        const process = execFile(
+                            'npx',
+                            ['-y', 'prettier', '--parser', 'typescript'],
 
+                            (error, stdout, stderr) => {
+                                if (error) {
+                                    console.error(error);
+                                    reject(error);
+                                }
+                                if (stderr) {
+                                    console.error(stderr);
+                                    reject(new Error(stderr));
+                                }
+                                resolve(stdout);
+                            }
+                        );
+                        if (!process.stdin) {
+                            throw new Error('stdin is not available');
+                        }
+                        process.stdin.write(
+                            `export interface ${cp.outputComponent[1]} ${cp.outputComponent[2] || '{ [x in string]: any }'}`
+                        );
+                        process.stdin.end();
+                    });
+                    const formattedOutputContent = result.toString();
+                    const outputHash = createHash('sha1')
+                        .update(
+                            formattedOutputContent
+                                .replace(`export interface ${cp.outputComponent[1]}`, '')
+                                .trim()
+                        )
+                        .digest('hex');
+                    if (!dedupMainComponents.has(outputHash)) {
+                        dedupMainComponents.set(outputHash, [
+                            [
+                                endpointId,
+                                'output',
+                                cp.outputComponent[1],
+                                formattedOutputContent
+                                    .replace(`export interface ${cp.outputComponent[1]}`, '')
+                                    .trim(),
+                            ],
+                        ]);
+                    } else {
+                        dedupMainComponents.set(
+                            outputHash,
+                            (dedupMainComponents.get(outputHash) || []).concat([
+                                [
+                                    endpointId,
+                                    'output',
+                                    cp.outputComponent[1],
+                                    formattedOutputContent
+                                        .replace(`export interface ${cp.outputComponent[1]}`, '')
+                                        .trim(),
+                                ],
+                            ])
+                        );
+                        duplicatesCount++;
+                    }
+                }
+                return;
+            }
+        })
+    );
     if (hashedCount % 50 === 0) {
         console.log(
             `- Hashed ${hashedCount} components / ${totalEndpoints * 2} unique components / ${duplicatesCount} duplicates`
@@ -870,7 +928,11 @@ for (const [endpointId, { inputComponent, outputComponent }] of Object.entries(
     // }
 }
 const withDuplicates = Array.from(dedupMainComponents.entries())
-    .filter(([_, values]) => values.length > 1)
+    .filter(
+        ([_, values]) =>
+            values.filter(([_, duplicateType]) => duplicateType === 'input').length > 1 ||
+            values.filter(([_, duplicateType]) => duplicateType === 'output').length > 1
+    )
     .sort((a, b) => b[0].localeCompare(a[0]));
 
 /** @type {Map<EndpointId, UniqueComponentName>} */
@@ -887,13 +949,20 @@ if (withDuplicates.length > 0) {
             \n\nexport interface ${uniqueComponentName} ${values[0][3]}\n\n
             `,
         ]);
-        for (const [endpointId, duplicateType, duplicateName, duplicateContent] of values) {
-            // sharedComponentsContent.set(uniqueComponentName, value[0][3]);
-            if (duplicateType === 'input') {
-                sharedInputComponents.set(endpointId, uniqueComponentName);
+
+        if (values.filter(([_, duplicateType]) => duplicateType === 'input').length > 1) {
+            for (const [endpointId, duplicateType] of values) {
+                if (duplicateType === 'input') {
+                    sharedInputComponents.set(endpointId, uniqueComponentName);
+                }
             }
-            if (duplicateType === 'output') {
-                sharedOutputComponents.set(endpointId, uniqueComponentName);
+        }
+
+        if (values.filter(([_, duplicateType]) => duplicateType === 'output').length > 1) {
+            for (const [endpointId, duplicateType] of values) {
+                if (duplicateType === 'output') {
+                    sharedOutputComponents.set(endpointId, uniqueComponentName);
+                }
             }
         }
     }
