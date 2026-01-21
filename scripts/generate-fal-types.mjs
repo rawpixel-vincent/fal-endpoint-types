@@ -557,7 +557,7 @@ const generateComponents = async () => {
     let i = 0;
     const results = await Promise.all(
         slices.map(async (endpointsSlice, sliceIndex) => {
-            await new Promise((resolve) => setTimeout(resolve, Math.random() * 1000));
+            await new Promise((rs) => setTimeout(rs, Math.random() * 1000));
             /** @type {{endpointId: EndpointId, components: ComponentsType, inputComponent: [InputTypeName, SafeInputTypeName, Content], outputComponent: [OutputTypeName, SafeOutputTypeName, Content]}[]} */
             let localComponents = [];
             /** @type {Promise<{endpointId: EndpointId, components: ComponentsType, inputComponent: [InputTypeName, SafeInputTypeName, Content], outputComponent: [OutputTypeName, SafeOutputTypeName, Content]}>[]} */
@@ -568,9 +568,7 @@ const generateComponents = async () => {
                     await Promise.all(promises);
                     promises = [];
                 } else if (Math.random() < 0.1) {
-                    await new Promise((resolve) =>
-                        setTimeout(resolve, 1000 + Math.random() * 1000)
-                    );
+                    await new Promise((rs) => setTimeout(rs, 1000 + Math.random() * 1000));
                 }
                 console.log(`- Generating components for ${endpoint} (${i}/${endpoints.length})`);
                 i++;
@@ -928,12 +926,8 @@ for (const [endpointId, { inputComponent, outputComponent }] of Object.entries(
     // }
 }
 const withDuplicates = Array.from(dedupMainComponents.entries())
-    .filter(
-        ([_, values]) =>
-            values.filter(([_, duplicateType]) => duplicateType === 'input').length > 1 ||
-            values.filter(([_, duplicateType]) => duplicateType === 'output').length > 1
-    )
-    .sort((a, b) => b[0].localeCompare(a[0]));
+    .filter(([_, values]) => values.length > 1)
+    .sort((a, b) => a[1].length - b[1].length);
 
 /** @type {Map<EndpointId, UniqueComponentName>} */
 const sharedInputComponents = new Map();
@@ -950,19 +944,12 @@ if (withDuplicates.length > 0) {
             `,
         ]);
 
-        if (values.filter(([_, duplicateType]) => duplicateType === 'input').length > 1) {
-            for (const [endpointId, duplicateType] of values) {
-                if (duplicateType === 'input') {
-                    sharedInputComponents.set(endpointId, uniqueComponentName);
-                }
+        for (const [endpointId, duplicateType] of values) {
+            if (duplicateType === 'input') {
+                sharedInputComponents.set(endpointId, uniqueComponentName);
             }
-        }
-
-        if (values.filter(([_, duplicateType]) => duplicateType === 'output').length > 1) {
-            for (const [endpointId, duplicateType] of values) {
-                if (duplicateType === 'output') {
-                    sharedOutputComponents.set(endpointId, uniqueComponentName);
-                }
+            if (duplicateType === 'output') {
+                sharedOutputComponents.set(endpointId, uniqueComponentName);
             }
         }
     }
