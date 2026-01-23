@@ -1,3 +1,16 @@
+export interface WhisperChunk_1 {
+    /**
+     * Text
+     * @description Transcription of the chunk
+     */
+    text: string;
+    /**
+     * Timestamp
+     * @description Start and end timestamp of the chunk
+     */
+    timestamp: [number, number];
+}
+
 export interface WhisperChunk {
     /**
      * Speaker
@@ -617,60 +630,6 @@ export interface TranscriptionWord {
     type: string;
 }
 
-export interface TrajectoryParameters {
-    /**
-     * Phi
-     * @description Vertical rotation angles (degrees) for each keyframe.
-     * @example [
-     *       0,
-     *       -3,
-     *       -8,
-     *       -15,
-     *       -20,
-     *       -15,
-     *       -10,
-     *       -5,
-     *       0
-     *     ]
-     */
-    phi: number[];
-    /**
-     * Radius
-     * @description Camera distance scaling factors for each keyframe.
-     * @example [
-     *       0,
-     *       0.02,
-     *       0.09,
-     *       0.16,
-     *       0.25,
-     *       0.2,
-     *       0.09,
-     *       0
-     *     ]
-     */
-    radius: number[];
-    /**
-     * Theta
-     * @description Horizontal rotation angles (degrees) for each keyframe.
-     * @example [
-     *       0,
-     *       2,
-     *       8,
-     *       10,
-     *       5,
-     *       3,
-     *       0,
-     *       -2,
-     *       -5,
-     *       -8,
-     *       -5,
-     *       -3,
-     *       0
-     *     ]
-     */
-    theta: number[];
-}
-
 export interface Trajectory {
     /**
      * X
@@ -840,19 +799,6 @@ export interface StructuredInstruction {
      * @default []
      */
     text_render?: { [x: string]: any }[];
-}
-
-export interface SpeechTimestamp {
-    /**
-     * End Time
-     * @description The end time of the speech in seconds.
-     */
-    end: number;
-    /**
-     * Start Time
-     * @description The start time of the speech in seconds.
-     */
-    start: number;
 }
 
 export interface Speaker {
@@ -1041,6 +987,36 @@ export interface Resolution {
     width: number;
 }
 
+export interface RelightParameters {
+    /**
+     * Bg Source
+     * @description Direction of the light source (used for IC-light).
+     * @default Left
+     * @enum {string}
+     */
+    bg_source?: 'Left' | 'Right' | 'Top' | 'Bottom';
+    /**
+     * Cfg
+     * @description Classifier-free guidance scale for relighting.
+     * @default 2
+     */
+    cfg?: number;
+    /**
+     * Relight Prompt
+     * @description Text prompt describing the desired lighting condition.
+     * @example Sunlight
+     * @example Red and Blue Neon Light
+     * @example Warm indoor lighting
+     */
+    relight_prompt: string;
+    /**
+     * Use Sky Mask
+     * @description Whether to use sky masking for outdoor scenes.
+     * @default false
+     */
+    use_sky_mask?: boolean;
+}
+
 export interface Region {
     /**
      * X1
@@ -1227,6 +1203,34 @@ export interface PointPromptBase {
     /**
      * Y
      * @description Y Coordinate of the prompt
+     */
+    y?: number;
+}
+
+export interface PointPrompt_1 {
+    /**
+     * Frame Index
+     * @description The frame index to interact with.
+     * @default 0
+     */
+    frame_index?: number;
+    /**
+     * Label
+     * @description Label of the prompt. 1 for foreground, 0 for background
+     * @default 1
+     * @enum {integer}
+     */
+    label?: 0 | 1;
+    /**
+     * X
+     * @description X Coordinate of the prompt
+     * @default 305
+     */
+    x?: number;
+    /**
+     * Y
+     * @description Y Coordinate of the prompt
+     * @default 350
      */
     y?: number;
 }
@@ -1489,24 +1493,6 @@ export interface ModelUrls {
      * @description USDZ format 3D model
      */
     usdz?: File_1;
-}
-
-export interface MaskMetadata {
-    /**
-     * Box
-     * @description Bounding box for the mask in normalized cxcywh coordinates.
-     */
-    box?: number[];
-    /**
-     * Index
-     * @description Index of the mask inside the model output.
-     */
-    index: number;
-    /**
-     * Score
-     * @description Score for this mask.
-     */
-    score?: number;
 }
 
 export interface LoudnormSummary {
@@ -2039,6 +2025,42 @@ export interface ImageFillInput {
      * @default []
      */
     fill_image_url?: string | string[];
+}
+
+export interface ImageFile_1 {
+    /**
+     * Content Type
+     * @description The mime type of the file.
+     * @example image/png
+     */
+    content_type?: string;
+    /**
+     * File Name
+     * @description The name of the file. It will be auto-generated if not provided.
+     * @example z9RV14K95DvU.png
+     */
+    file_name?: string;
+    /**
+     * File Size
+     * @description The size of the file in bytes.
+     * @example 4404019
+     */
+    file_size?: number;
+    /**
+     * Height
+     * @description The height of the image
+     */
+    height?: number;
+    /**
+     * Url
+     * @description The URL where the file can be downloaded from.
+     */
+    url: string;
+    /**
+     * Width
+     * @description The width of the image
+     */
+    width?: number;
 }
 
 export interface ImageFile {
@@ -2722,6 +2744,38 @@ export interface ControlNetUnion {
     variant?: string;
 }
 
+export interface ControlNet_2 {
+    /**
+     * Conditioning Scale
+     * @description The scale of the control net weight. This is used to scale the control net weight
+     *                 before merging it with the base model.
+     * @default 1
+     */
+    conditioning_scale?: number;
+    /**
+     * Control Image Url
+     * @description URL of the image to be used as the control image.
+     */
+    control_image_url: string;
+    /**
+     * End Percentage
+     * @description The percentage of the image to end applying the controlnet in terms of the total timesteps.
+     * @default 1
+     */
+    end_percentage?: number;
+    /**
+     * Path
+     * @description URL or the path to the control net weights.
+     */
+    path: string;
+    /**
+     * Start Percentage
+     * @description The percentage of the image to start applying the controlnet in terms of the total timesteps.
+     * @default 0
+     */
+    start_percentage?: number;
+}
+
 export interface ControlNet_1 {
     /**
      * Conditioning Scale
@@ -3033,6 +3087,39 @@ export interface BoxPromptBase {
     /**
      * Y Min
      * @description Y Min Coordinate of the box
+     */
+    y_min?: number;
+}
+
+export interface BoxPrompt_1 {
+    /**
+     * Frame Index
+     * @description The frame index to interact with.
+     * @default 0
+     */
+    frame_index?: number;
+    /**
+     * X Max
+     * @description X Max Coordinate of the prompt
+     * @default 0
+     */
+    x_max?: number;
+    /**
+     * X Min
+     * @description X Min Coordinate of the box
+     * @default 0
+     */
+    x_min?: number;
+    /**
+     * Y Max
+     * @description Y Max Coordinate of the prompt
+     * @default 0
+     */
+    y_max?: number;
+    /**
+     * Y Min
+     * @description Y Min Coordinate of the box
+     * @default 0
      */
     y_min?: number;
 }
