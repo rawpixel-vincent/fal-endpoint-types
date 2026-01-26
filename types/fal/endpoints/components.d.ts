@@ -131,12 +131,6 @@ export interface VideoFile_1 {
      */
     duration?: number;
     /**
-     * File Data
-     * Format: binary
-     * @description File data
-     */
-    file_data?: string;
-    /**
      * File Name
      * @description The name of the file. It will be auto-generated if not provided.
      * @example z9RV14K95DvU.png
@@ -187,6 +181,12 @@ export interface VideoFile {
      * @description The duration of the video
      */
     duration?: number;
+    /**
+     * File Data
+     * Format: binary
+     * @description File data
+     */
+    file_data?: string;
     /**
      * File Name
      * @description The name of the file. It will be auto-generated if not provided.
@@ -554,20 +554,6 @@ export interface V2VValidation {
 }
 
 export interface UsageInfo_1 {
-    /** Completion Tokens */
-    completion_tokens?: number;
-    /** Cost */
-    cost: number;
-    /** Prompt Tokens */
-    prompt_tokens?: number;
-    /**
-     * Total Tokens
-     * @default 0
-     */
-    total_tokens?: number;
-}
-
-export interface UsageInfo {
     /**
      * Decode Time Ms
      * @description Time taken for decoding in milliseconds
@@ -593,6 +579,20 @@ export interface UsageInfo {
      * @description Time to first token in milliseconds
      */
     ttft_ms: number;
+}
+
+export interface UsageInfo {
+    /** Completion Tokens */
+    completion_tokens?: number;
+    /** Cost */
+    cost: number;
+    /** Prompt Tokens */
+    prompt_tokens?: number;
+    /**
+     * Total Tokens
+     * @default 0
+     */
+    total_tokens?: number;
 }
 
 export interface Turn {
@@ -628,6 +628,60 @@ export interface TranscriptionWord {
      * @description Type of element (word, spacing, or audio_event)
      */
     type: string;
+}
+
+export interface TrajectoryParameters {
+    /**
+     * Phi
+     * @description Vertical rotation angles (degrees) for each keyframe.
+     * @example [
+     *       0,
+     *       -3,
+     *       -8,
+     *       -15,
+     *       -20,
+     *       -15,
+     *       -10,
+     *       -5,
+     *       0
+     *     ]
+     */
+    phi: number[];
+    /**
+     * Radius
+     * @description Camera distance scaling factors for each keyframe.
+     * @example [
+     *       0,
+     *       0.02,
+     *       0.09,
+     *       0.16,
+     *       0.25,
+     *       0.2,
+     *       0.09,
+     *       0
+     *     ]
+     */
+    radius: number[];
+    /**
+     * Theta
+     * @description Horizontal rotation angles (degrees) for each keyframe.
+     * @example [
+     *       0,
+     *       2,
+     *       8,
+     *       10,
+     *       5,
+     *       3,
+     *       0,
+     *       -2,
+     *       -5,
+     *       -8,
+     *       -5,
+     *       -3,
+     *       0
+     *     ]
+     */
+    theta: number[];
 }
 
 export interface Trajectory {
@@ -1495,6 +1549,24 @@ export interface ModelUrls {
     usdz?: File_1;
 }
 
+export interface MaskMetadata {
+    /**
+     * Box
+     * @description Bounding box for the mask in normalized cxcywh coordinates.
+     */
+    box?: number[];
+    /**
+     * Index
+     * @description Index of the mask inside the model output.
+     */
+    index: number;
+    /**
+     * Score
+     * @description Score for this mask.
+     */
+    score?: number;
+}
+
 export interface LoudnormSummary {
     /**
      * Input Integrated
@@ -1744,20 +1816,6 @@ export interface LoRAInput_2 {
 export interface LoRAInput_1 {
     /**
      * Path
-     * @description URL, HuggingFace repo ID (owner/repo), or local path to LoRA weights.
-     */
-    path: string;
-    /**
-     * Scale
-     * @description Scale factor for LoRA application (0.0 to 4.0).
-     * @default 1
-     */
-    scale?: number;
-}
-
-export interface LoRAInput {
-    /**
-     * Path
      * @description URL, HuggingFace repo ID (owner/repo) to lora weights.
      */
     path: string;
@@ -1772,6 +1830,20 @@ export interface LoRAInput {
      * @description Name of the LoRA weight. Only used if `path` is a HuggingFace repository, and is only required when the repository contains multiple LoRA weights.
      */
     weight_name?: string;
+}
+
+export interface LoRAInput {
+    /**
+     * Path
+     * @description URL, HuggingFace repo ID (owner/repo), or local path to LoRA weights.
+     */
+    path: string;
+    /**
+     * Scale
+     * @description Scale factor for LoRA application (0.0 to 4.0).
+     * @default 1
+     */
+    scale?: number;
 }
 
 export interface Lighting {
@@ -2025,42 +2097,6 @@ export interface ImageFillInput {
      * @default []
      */
     fill_image_url?: string | string[];
-}
-
-export interface ImageFile_1 {
-    /**
-     * Content Type
-     * @description The mime type of the file.
-     * @example image/png
-     */
-    content_type?: string;
-    /**
-     * File Name
-     * @description The name of the file. It will be auto-generated if not provided.
-     * @example z9RV14K95DvU.png
-     */
-    file_name?: string;
-    /**
-     * File Size
-     * @description The size of the file in bytes.
-     * @example 4404019
-     */
-    file_size?: number;
-    /**
-     * Height
-     * @description The height of the image
-     */
-    height?: number;
-    /**
-     * Url
-     * @description The URL where the file can be downloaded from.
-     */
-    url: string;
-    /**
-     * Width
-     * @description The width of the image
-     */
-    width?: number;
 }
 
 export interface ImageFile {
@@ -2906,6 +2942,24 @@ export interface ControlLoraWeight {
      * @default 1
      */
     scale?: Record<string, number> | number;
+}
+
+export interface CompletionUsage {
+    /**
+     * Completion Tokens
+     * @description Number of tokens in the completion
+     */
+    completion_tokens: number;
+    /**
+     * Prompt Tokens
+     * @description Number of tokens in the prompt
+     */
+    prompt_tokens: number;
+    /**
+     * Total Tokens
+     * @description Total tokens used
+     */
+    total_tokens: number;
 }
 
 export interface ColorPaletteMember {
