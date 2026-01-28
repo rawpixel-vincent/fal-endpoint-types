@@ -131,6 +131,12 @@ export interface VideoFile_1 {
      */
     duration?: number;
     /**
+     * File Data
+     * Format: binary
+     * @description File data
+     */
+    file_data?: string;
+    /**
      * File Name
      * @description The name of the file. It will be auto-generated if not provided.
      * @example z9RV14K95DvU.png
@@ -181,12 +187,6 @@ export interface VideoFile {
      * @description The duration of the video
      */
     duration?: number;
-    /**
-     * File Data
-     * Format: binary
-     * @description File data
-     */
-    file_data?: string;
     /**
      * File Name
      * @description The name of the file. It will be auto-generated if not provided.
@@ -554,6 +554,20 @@ export interface V2VValidation {
 }
 
 export interface UsageInfo_1 {
+    /** Completion Tokens */
+    completion_tokens?: number;
+    /** Cost */
+    cost: number;
+    /** Prompt Tokens */
+    prompt_tokens?: number;
+    /**
+     * Total Tokens
+     * @default 0
+     */
+    total_tokens?: number;
+}
+
+export interface UsageInfo {
     /**
      * Decode Time Ms
      * @description Time taken for decoding in milliseconds
@@ -579,20 +593,6 @@ export interface UsageInfo_1 {
      * @description Time to first token in milliseconds
      */
     ttft_ms: number;
-}
-
-export interface UsageInfo {
-    /** Completion Tokens */
-    completion_tokens?: number;
-    /** Cost */
-    cost: number;
-    /** Prompt Tokens */
-    prompt_tokens?: number;
-    /**
-     * Total Tokens
-     * @default 0
-     */
-    total_tokens?: number;
 }
 
 export interface Turn {
@@ -855,6 +855,19 @@ export interface StructuredInstruction {
     text_render?: { [x: string]: any }[];
 }
 
+export interface SpeechTimestamp {
+    /**
+     * End Time
+     * @description The end time of the speech in seconds.
+     */
+    end: number;
+    /**
+     * Start Time
+     * @description The start time of the speech in seconds.
+     */
+    start: number;
+}
+
 export interface Speaker {
     /** Audio Url */
     audio_url: string;
@@ -893,80 +906,6 @@ export interface SemanticImageInput {
      * @description The text reference to use for the measurement.
      */
     reference: string;
-}
-
-export interface SAM3DObjectMetadata {
-    /**
-     * Camera Pose
-     * @description Camera pose matrix
-     */
-    camera_pose?: number[][];
-    /**
-     * Object Index
-     * @description Index of the object in the scene
-     */
-    object_index: number;
-    /**
-     * Rotation
-     * @description Rotation quaternion [x, y, z, w]
-     */
-    rotation?: number[][];
-    /**
-     * Scale
-     * @description Scale factors [sx, sy, sz]
-     */
-    scale?: number[][];
-    /**
-     * Translation
-     * @description Translation [tx, ty, tz]
-     */
-    translation?: number[][];
-}
-
-export interface SAM3DBodyPersonMetadata {
-    /**
-     * Bbox
-     * @description Bounding box [x_min, y_min, x_max, y_max]
-     */
-    bbox: number[];
-    /**
-     * Focal Length
-     * @description Estimated focal length
-     */
-    focal_length: number;
-    /**
-     * Keypoints 2D
-     * @description 2D keypoints [[x, y], ...] - 70 body keypoints
-     */
-    keypoints_2d: number[][];
-    /**
-     * Keypoints 3D
-     * @description 3D keypoints [[x, y, z], ...] - 70 body keypoints in camera space
-     */
-    keypoints_3d?: number[][];
-    /**
-     * Person Id
-     * @description Index of the person in the scene
-     */
-    person_id: number;
-    /**
-     * Pred Cam T
-     * @description Predicted camera translation [tx, ty, tz]
-     */
-    pred_cam_t: number[];
-}
-
-export interface SAM3DBodyMetadata {
-    /**
-     * Num People
-     * @description Number of people detected
-     */
-    num_people: number;
-    /**
-     * People
-     * @description Per-person metadata
-     */
-    people: SAM3DBodyPersonMetadata[];
 }
 
 export interface SAM3DBodyAlignmentInfo {
@@ -1364,7 +1303,7 @@ export interface OmniVideoElementInput {
     frontal_image_url: string;
     /**
      * Reference Image Urls
-     * @description Additional reference images from different angles. 1-3 images supported. At least one image is required.
+     * @description Additional reference images from different angles. 1-4 images supported. At least one image is required.
      */
     reference_image_urls?: string[];
 }
@@ -1816,6 +1755,20 @@ export interface LoRAInput_2 {
 export interface LoRAInput_1 {
     /**
      * Path
+     * @description URL, HuggingFace repo ID (owner/repo), or local path to LoRA weights.
+     */
+    path: string;
+    /**
+     * Scale
+     * @description Scale factor for LoRA application (0.0 to 4.0).
+     * @default 1
+     */
+    scale?: number;
+}
+
+export interface LoRAInput {
+    /**
+     * Path
      * @description URL, HuggingFace repo ID (owner/repo) to lora weights.
      */
     path: string;
@@ -1830,20 +1783,6 @@ export interface LoRAInput_1 {
      * @description Name of the LoRA weight. Only used if `path` is a HuggingFace repository, and is only required when the repository contains multiple LoRA weights.
      */
     weight_name?: string;
-}
-
-export interface LoRAInput {
-    /**
-     * Path
-     * @description URL, HuggingFace repo ID (owner/repo), or local path to LoRA weights.
-     */
-    path: string;
-    /**
-     * Scale
-     * @description Scale factor for LoRA application (0.0 to 4.0).
-     * @default 1
-     */
-    scale?: number;
 }
 
 export interface Lighting {
@@ -2097,6 +2036,42 @@ export interface ImageFillInput {
      * @default []
      */
     fill_image_url?: string | string[];
+}
+
+export interface ImageFile_1 {
+    /**
+     * Content Type
+     * @description The mime type of the file.
+     * @example image/png
+     */
+    content_type?: string;
+    /**
+     * File Name
+     * @description The name of the file. It will be auto-generated if not provided.
+     * @example z9RV14K95DvU.png
+     */
+    file_name?: string;
+    /**
+     * File Size
+     * @description The size of the file in bytes.
+     * @example 4404019
+     */
+    file_size?: number;
+    /**
+     * Height
+     * @description The height of the image
+     */
+    height?: number;
+    /**
+     * Url
+     * @description The URL where the file can be downloaded from.
+     */
+    url: string;
+    /**
+     * Width
+     * @description The width of the image
+     */
+    width?: number;
 }
 
 export interface ImageFile {
@@ -2446,58 +2421,6 @@ export interface File {
     url: string;
 }
 
-export interface ExtendVideoConditioningInput {
-    /**
-     * Limit Number of Frames
-     * @description Whether to limit the number of frames used from the video. If True, the `max_num_frames` parameter will be used to limit the number of frames.
-     * @default false
-     */
-    limit_num_frames?: boolean;
-    /**
-     * Maximum Number of Frames
-     * @description Maximum number of frames to use from the video. If None, all frames will be used.
-     * @default 1441
-     * @example 1441
-     */
-    max_num_frames?: number;
-    /**
-     * Resample FPS
-     * @description Whether to resample the video to a specific FPS. If True, the `target_fps` parameter will be used to resample the video.
-     * @default false
-     */
-    resample_fps?: boolean;
-    /**
-     * Reverse Video
-     * @description Whether to reverse the video. This is useful for tasks where the video conditioning should be applied in reverse order.
-     * @default false
-     */
-    reverse_video?: boolean;
-    /**
-     * Start Frame Number
-     * @description Frame number of the video from which the conditioning starts. Must be a multiple of 8.
-     * @default 0
-     */
-    start_frame_num?: number;
-    /**
-     * Strength
-     * @description Strength of the conditioning. 0.0 means no conditioning, 1.0 means full conditioning.
-     * @default 1
-     */
-    strength?: number;
-    /**
-     * Target FPS
-     * @description Target FPS to resample the video to. Only relevant if `resample_fps` is True.
-     * @default 24
-     * @example 24
-     */
-    target_fps?: number;
-    /**
-     * Video URL
-     * @description URL of video to use as conditioning
-     */
-    video_url: string;
-}
-
 export interface EmotionalStrengths {
     /**
      * Afraid
@@ -2780,38 +2703,6 @@ export interface ControlNetUnion {
     variant?: string;
 }
 
-export interface ControlNet_2 {
-    /**
-     * Conditioning Scale
-     * @description The scale of the control net weight. This is used to scale the control net weight
-     *                 before merging it with the base model.
-     * @default 1
-     */
-    conditioning_scale?: number;
-    /**
-     * Control Image Url
-     * @description URL of the image to be used as the control image.
-     */
-    control_image_url: string;
-    /**
-     * End Percentage
-     * @description The percentage of the image to end applying the controlnet in terms of the total timesteps.
-     * @default 1
-     */
-    end_percentage?: number;
-    /**
-     * Path
-     * @description URL or the path to the control net weights.
-     */
-    path: string;
-    /**
-     * Start Percentage
-     * @description The percentage of the image to start applying the controlnet in terms of the total timesteps.
-     * @default 0
-     */
-    start_percentage?: number;
-}
-
 export interface ControlNet_1 {
     /**
      * Conditioning Scale
@@ -3092,33 +2983,6 @@ export interface bria_fibovlm_Aesthetics {
 
 export interface BoxPromptBase_1 {
     /**
-     * X Max
-     * @description X Max Coordinate of the prompt
-     * @default 0
-     */
-    x_max?: number;
-    /**
-     * X Min
-     * @description X Min Coordinate of the box
-     * @default 0
-     */
-    x_min?: number;
-    /**
-     * Y Max
-     * @description Y Max Coordinate of the prompt
-     * @default 0
-     */
-    y_max?: number;
-    /**
-     * Y Min
-     * @description Y Min Coordinate of the box
-     * @default 0
-     */
-    y_min?: number;
-}
-
-export interface BoxPromptBase {
-    /**
      * Object Id
      * @description Optional object identifier. Boxes sharing an object id refine the same object.
      */
@@ -3141,6 +3005,33 @@ export interface BoxPromptBase {
     /**
      * Y Min
      * @description Y Min Coordinate of the box
+     */
+    y_min?: number;
+}
+
+export interface BoxPromptBase {
+    /**
+     * X Max
+     * @description X Max Coordinate of the prompt
+     * @default 0
+     */
+    x_max?: number;
+    /**
+     * X Min
+     * @description X Min Coordinate of the box
+     * @default 0
+     */
+    x_min?: number;
+    /**
+     * Y Max
+     * @description Y Max Coordinate of the prompt
+     * @default 0
+     */
+    y_max?: number;
+    /**
+     * Y Min
+     * @description Y Min Coordinate of the box
+     * @default 0
      */
     y_min?: number;
 }
@@ -3375,7 +3266,7 @@ export interface AudioSetting {
     sample_rate?: 8000 | 16000 | 22050 | 24000 | 32000 | 44100;
 }
 
-export interface AudioFile_1 {
+export interface AudioFile_2 {
     /**
      * Content Type
      * @default audio/wav
@@ -3401,12 +3292,64 @@ export interface AudioFile_1 {
     url: string;
 }
 
-export interface AudioFile {
+export interface AudioFile_1 {
     /**
      * Bitrate
      * @description The bitrate of the audio
      */
     bitrate?: string;
+    /**
+     * Channels
+     * @description The number of channels in the audio
+     */
+    channels?: number;
+    /**
+     * Content Type
+     * @description The mime type of the file.
+     * @example image/png
+     */
+    content_type?: string;
+    /**
+     * Duration
+     * @description The duration of the audio
+     */
+    duration?: number;
+    /**
+     * File Data
+     * Format: binary
+     * @description File data
+     */
+    file_data?: string;
+    /**
+     * File Name
+     * @description The name of the file. It will be auto-generated if not provided.
+     * @example z9RV14K95DvU.png
+     */
+    file_name?: string;
+    /**
+     * File Size
+     * @description The size of the file in bytes.
+     * @example 4404019
+     */
+    file_size?: number;
+    /**
+     * Sample Rate
+     * @description The sample rate of the audio
+     */
+    sample_rate?: number;
+    /**
+     * Url
+     * @description The URL where the file can be downloaded from.
+     */
+    url: string;
+}
+
+export interface AudioFile {
+    /**
+     * Bitrate
+     * @description The bitrate of the audio (e.g., '192k' or 192000)
+     */
+    bitrate?: string | number;
     /**
      * Channels
      * @description The number of channels in the audio
