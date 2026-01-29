@@ -554,20 +554,6 @@ export interface V2VValidation {
 }
 
 export interface UsageInfo_1 {
-    /** Completion Tokens */
-    completion_tokens?: number;
-    /** Cost */
-    cost: number;
-    /** Prompt Tokens */
-    prompt_tokens?: number;
-    /**
-     * Total Tokens
-     * @default 0
-     */
-    total_tokens?: number;
-}
-
-export interface UsageInfo {
     /**
      * Decode Time Ms
      * @description Time taken for decoding in milliseconds
@@ -593,6 +579,20 @@ export interface UsageInfo {
      * @description Time to first token in milliseconds
      */
     ttft_ms: number;
+}
+
+export interface UsageInfo {
+    /** Completion Tokens */
+    completion_tokens?: number;
+    /** Cost */
+    cost: number;
+    /** Prompt Tokens */
+    prompt_tokens?: number;
+    /**
+     * Total Tokens
+     * @default 0
+     */
+    total_tokens?: number;
 }
 
 export interface Turn {
@@ -906,6 +906,80 @@ export interface SemanticImageInput {
      * @description The text reference to use for the measurement.
      */
     reference: string;
+}
+
+export interface SAM3DObjectMetadata {
+    /**
+     * Camera Pose
+     * @description Camera pose matrix
+     */
+    camera_pose?: number[][];
+    /**
+     * Object Index
+     * @description Index of the object in the scene
+     */
+    object_index: number;
+    /**
+     * Rotation
+     * @description Rotation quaternion [x, y, z, w]
+     */
+    rotation?: number[][];
+    /**
+     * Scale
+     * @description Scale factors [sx, sy, sz]
+     */
+    scale?: number[][];
+    /**
+     * Translation
+     * @description Translation [tx, ty, tz]
+     */
+    translation?: number[][];
+}
+
+export interface SAM3DBodyPersonMetadata {
+    /**
+     * Bbox
+     * @description Bounding box [x_min, y_min, x_max, y_max]
+     */
+    bbox: number[];
+    /**
+     * Focal Length
+     * @description Estimated focal length
+     */
+    focal_length: number;
+    /**
+     * Keypoints 2D
+     * @description 2D keypoints [[x, y], ...] - 70 body keypoints
+     */
+    keypoints_2d: number[][];
+    /**
+     * Keypoints 3D
+     * @description 3D keypoints [[x, y, z], ...] - 70 body keypoints in camera space
+     */
+    keypoints_3d?: number[][];
+    /**
+     * Person Id
+     * @description Index of the person in the scene
+     */
+    person_id: number;
+    /**
+     * Pred Cam T
+     * @description Predicted camera translation [tx, ty, tz]
+     */
+    pred_cam_t: number[];
+}
+
+export interface SAM3DBodyMetadata {
+    /**
+     * Num People
+     * @description Number of people detected
+     */
+    num_people: number;
+    /**
+     * People
+     * @description Per-person metadata
+     */
+    people: SAM3DBodyPersonMetadata[];
 }
 
 export interface SAM3DBodyAlignmentInfo {
@@ -2421,6 +2495,58 @@ export interface File {
     url: string;
 }
 
+export interface ExtendVideoConditioningInput {
+    /**
+     * Limit Number of Frames
+     * @description Whether to limit the number of frames used from the video. If True, the `max_num_frames` parameter will be used to limit the number of frames.
+     * @default false
+     */
+    limit_num_frames?: boolean;
+    /**
+     * Maximum Number of Frames
+     * @description Maximum number of frames to use from the video. If None, all frames will be used.
+     * @default 1441
+     * @example 1441
+     */
+    max_num_frames?: number;
+    /**
+     * Resample FPS
+     * @description Whether to resample the video to a specific FPS. If True, the `target_fps` parameter will be used to resample the video.
+     * @default false
+     */
+    resample_fps?: boolean;
+    /**
+     * Reverse Video
+     * @description Whether to reverse the video. This is useful for tasks where the video conditioning should be applied in reverse order.
+     * @default false
+     */
+    reverse_video?: boolean;
+    /**
+     * Start Frame Number
+     * @description Frame number of the video from which the conditioning starts. Must be a multiple of 8.
+     * @default 0
+     */
+    start_frame_num?: number;
+    /**
+     * Strength
+     * @description Strength of the conditioning. 0.0 means no conditioning, 1.0 means full conditioning.
+     * @default 1
+     */
+    strength?: number;
+    /**
+     * Target FPS
+     * @description Target FPS to resample the video to. Only relevant if `resample_fps` is True.
+     * @default 24
+     * @example 24
+     */
+    target_fps?: number;
+    /**
+     * Video URL
+     * @description URL of video to use as conditioning
+     */
+    video_url: string;
+}
+
 export interface EmotionalStrengths {
     /**
      * Afraid
@@ -2703,6 +2829,38 @@ export interface ControlNetUnion {
     variant?: string;
 }
 
+export interface ControlNet_2 {
+    /**
+     * Conditioning Scale
+     * @description The scale of the control net weight. This is used to scale the control net weight
+     *                 before merging it with the base model.
+     * @default 1
+     */
+    conditioning_scale?: number;
+    /**
+     * Control Image Url
+     * @description URL of the image to be used as the control image.
+     */
+    control_image_url: string;
+    /**
+     * End Percentage
+     * @description The percentage of the image to end applying the controlnet in terms of the total timesteps.
+     * @default 1
+     */
+    end_percentage?: number;
+    /**
+     * Path
+     * @description URL or the path to the control net weights.
+     */
+    path: string;
+    /**
+     * Start Percentage
+     * @description The percentage of the image to start applying the controlnet in terms of the total timesteps.
+     * @default 0
+     */
+    start_percentage?: number;
+}
+
 export interface ControlNet_1 {
     /**
      * Conditioning Scale
@@ -2983,6 +3141,33 @@ export interface bria_fibovlm_Aesthetics {
 
 export interface BoxPromptBase_1 {
     /**
+     * X Max
+     * @description X Max Coordinate of the prompt
+     * @default 0
+     */
+    x_max?: number;
+    /**
+     * X Min
+     * @description X Min Coordinate of the box
+     * @default 0
+     */
+    x_min?: number;
+    /**
+     * Y Max
+     * @description Y Max Coordinate of the prompt
+     * @default 0
+     */
+    y_max?: number;
+    /**
+     * Y Min
+     * @description Y Min Coordinate of the box
+     * @default 0
+     */
+    y_min?: number;
+}
+
+export interface BoxPromptBase {
+    /**
      * Object Id
      * @description Optional object identifier. Boxes sharing an object id refine the same object.
      */
@@ -3005,33 +3190,6 @@ export interface BoxPromptBase_1 {
     /**
      * Y Min
      * @description Y Min Coordinate of the box
-     */
-    y_min?: number;
-}
-
-export interface BoxPromptBase {
-    /**
-     * X Max
-     * @description X Max Coordinate of the prompt
-     * @default 0
-     */
-    x_max?: number;
-    /**
-     * X Min
-     * @description X Min Coordinate of the box
-     * @default 0
-     */
-    x_min?: number;
-    /**
-     * Y Max
-     * @description Y Max Coordinate of the prompt
-     * @default 0
-     */
-    y_max?: number;
-    /**
-     * Y Min
-     * @description Y Min Coordinate of the box
-     * @default 0
      */
     y_min?: number;
 }
