@@ -565,7 +565,8 @@ const generateComponents = async () => {
             /** @type {number} */
             for (const endpoint of endpointsSlice) {
                 if (promises.length > 0 && Math.random() < 0.1) {
-                    await Promise.all(promises);
+                    const localResults = await Promise.all(promises);
+                    localComponents.push(...localResults);
                     promises = [];
                 } else if (Math.random() < 0.1) {
                     await new Promise((rs) => setTimeout(rs, 1000 + Math.random() * 1000));
