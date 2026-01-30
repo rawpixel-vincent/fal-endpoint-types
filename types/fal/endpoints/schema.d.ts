@@ -2219,6 +2219,84 @@ export interface SharedType_ec2 {
     video: Components.File;
 }
 
+export interface SharedType_eac {
+    /**
+     * Aspect Ratio
+     * @description The aspect ratio of the generated image.
+     * @default auto
+     */
+    aspect_ratio?:
+        | 'auto'
+        | '21:9'
+        | '16:9'
+        | '3:2'
+        | '4:3'
+        | '5:4'
+        | '1:1'
+        | '4:5'
+        | '3:4'
+        | '2:3'
+        | '9:16';
+    /**
+     * Enable Web Search
+     * @description Enable web search for the image generation task. This will allow the model to use the latest information from the web to generate the image.
+     * @default false
+     */
+    enable_web_search?: boolean;
+    /**
+     * Image URLs
+     * @description The URLs of the images to use for image-to-image generation or image editing.
+     * @example [
+     *       "https://storage.googleapis.com/falserverless/example_inputs/nano-banana-edit-input.png",
+     *       "https://storage.googleapis.com/falserverless/example_inputs/nano-banana-edit-input-2.png"
+     *     ]
+     */
+    image_urls: string[];
+    /**
+     * Limit Generations
+     * @description Experimental parameter to limit the number of generations from each round of prompting to 1. Set to `True` to to disregard any instructions in the prompt regarding the number of images to generate.
+     * @default false
+     */
+    limit_generations?: boolean;
+    /**
+     * Number of Images
+     * @description The number of images to generate.
+     * @default 1
+     */
+    num_images?: number;
+    /**
+     * Output Format
+     * @description The format of the generated image.
+     * @default png
+     * @enum {string}
+     */
+    output_format?: 'jpeg' | 'png' | 'webp';
+    /**
+     * Prompt
+     * @description The prompt for image editing.
+     * @example make a photo of the man driving the car down the california coastline
+     */
+    prompt: string;
+    /**
+     * Resolution
+     * @description The resolution of the image to generate.
+     * @default 1K
+     * @enum {string}
+     */
+    resolution?: '1K' | '2K' | '4K';
+    /**
+     * Seed
+     * @description The seed for the random number generator.
+     */
+    seed?: number;
+    /**
+     * Sync Mode
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
+     * @default false
+     */
+    sync_mode?: boolean;
+}
+
 export interface SharedType_e74 {
     /**
      * Expand Prompt
@@ -6316,6 +6394,26 @@ export interface SharedType_87d {
     video: Components.File;
 }
 
+export interface SharedType_876 {
+    /**
+     * Description
+     * @description The description of the generated images.
+     */
+    description: string;
+    /**
+     * Images
+     * @description The edited images.
+     * @example [
+     *       {
+     *         "file_name": "nano-banana-multi-edit-output.png",
+     *         "content_type": "image/png",
+     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/nano-banana-multi-edit-output.png"
+     *       }
+     *     ]
+     */
+    images: Components.ImageFile_1[];
+}
+
 export interface SharedType_86b {
     /**
      * Audio Path
@@ -6899,6 +6997,26 @@ export interface SharedType_7da {
      *     }
      */
     video: Components.File_1;
+}
+
+export interface SharedType_7b9 {
+    /**
+     * Description
+     * @description The description of the generated images.
+     */
+    description: string;
+    /**
+     * Images
+     * @description The generated images.
+     * @example [
+     *       {
+     *         "file_name": "nano-banana-t2i-output.png",
+     *         "content_type": "image/png",
+     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/nano-banana-t2i-output.png"
+     *       }
+     *     ]
+     */
+    images: Components.ImageFile_1[];
 }
 
 export interface SharedType_7a3 {
@@ -34063,125 +34181,13 @@ export interface NanoBananaEditInput extends SharedType_813 {}
 
 export interface NanoBananaEditOutput extends SharedType_98c {}
 
-export interface NanoBananaProEditInput {
-    /**
-     * Aspect Ratio
-     * @description The aspect ratio of the generated image.
-     * @default auto
-     */
-    aspect_ratio?:
-        | 'auto'
-        | '21:9'
-        | '16:9'
-        | '3:2'
-        | '4:3'
-        | '5:4'
-        | '1:1'
-        | '4:5'
-        | '3:4'
-        | '2:3'
-        | '9:16';
-    /**
-     * Enable Web Search
-     * @description Enable web search for the image generation task. This will allow the model to use the latest information from the web to generate the image.
-     * @default false
-     */
-    enable_web_search?: boolean;
-    /**
-     * Image URLs
-     * @description The URLs of the images to use for image-to-image generation or image editing.
-     * @example [
-     *       "https://storage.googleapis.com/falserverless/example_inputs/nano-banana-edit-input.png",
-     *       "https://storage.googleapis.com/falserverless/example_inputs/nano-banana-edit-input-2.png"
-     *     ]
-     */
-    image_urls: string[];
-    /**
-     * Limit Generations
-     * @description Experimental parameter to limit the number of generations from each round of prompting to 1. Set to `True` to to disregard any instructions in the prompt regarding the number of images to generate.
-     * @default false
-     */
-    limit_generations?: boolean;
-    /**
-     * Number of Images
-     * @description The number of images to generate.
-     * @default 1
-     */
-    num_images?: number;
-    /**
-     * Output Format
-     * @description The format of the generated image.
-     * @default png
-     * @enum {string}
-     */
-    output_format?: 'jpeg' | 'png' | 'webp';
-    /**
-     * Prompt
-     * @description The prompt for image editing.
-     * @example make a photo of the man driving the car down the california coastline
-     */
-    prompt: string;
-    /**
-     * Resolution
-     * @description The resolution of the image to generate.
-     * @default 1K
-     * @enum {string}
-     */
-    resolution?: '1K' | '2K' | '4K';
-    /**
-     * Seed
-     * @description The seed for the random number generator.
-     */
-    seed?: number;
-    /**
-     * Sync Mode
-     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
-     * @default false
-     */
-    sync_mode?: boolean;
-}
+export interface NanoBananaProEditInput extends SharedType_eac {}
 
-export interface NanoBananaProEditOutput {
-    /**
-     * Description
-     * @description The description of the generated images.
-     */
-    description: string;
-    /**
-     * Images
-     * @description The edited images.
-     * @example [
-     *       {
-     *         "file_name": "nano-banana-multi-edit-output.png",
-     *         "content_type": "image/png",
-     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/nano-banana-multi-edit-output.png"
-     *       }
-     *     ]
-     */
-    images: Components.ImageFile_1[];
-}
+export interface NanoBananaProEditOutput extends SharedType_876 {}
 
 export interface NanoBananaProInput extends SharedType_c18 {}
 
-export interface NanoBananaProOutput {
-    /**
-     * Description
-     * @description The description of the generated images.
-     */
-    description: string;
-    /**
-     * Images
-     * @description The generated images.
-     * @example [
-     *       {
-     *         "file_name": "nano-banana-t2i-output.png",
-     *         "content_type": "image/png",
-     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/nano-banana-t2i-output.png"
-     *       }
-     *     ]
-     */
-    images: Components.ImageFile_1[];
-}
+export interface NanoBananaProOutput extends SharedType_7b9 {}
 
 export interface NanoBananaInput extends SharedType_97e {}
 
@@ -36095,7 +36101,7 @@ export interface MeshyV6PreviewTextTo3dOutput {
      *       }
      *     }
      */
-    model_urls: Components.ModelUrls;
+    model_urls: Components.ModelUrls_1;
     /**
      * Prompt
      * @description The text prompt used for generation
@@ -36247,7 +36253,7 @@ export interface MeshyV6PreviewImageTo3dOutput {
      *       }
      *     }
      */
-    model_urls: Components.ModelUrls;
+    model_urls: Components.ModelUrls_1;
     /**
      * Seed
      * @description The seed used for generation (if available)
@@ -36367,7 +36373,7 @@ export interface MeshyV5RetextureOutput {
      *       }
      *     }
      */
-    model_urls: Components.ModelUrls;
+    model_urls: Components.ModelUrls_1;
     /**
      * Text Style Prompt
      * @description The text prompt used for texturing (if provided)
@@ -36480,7 +36486,7 @@ export interface MeshyV5RemeshOutput {
      *       }
      *     }
      */
-    model_urls: Components.ModelUrls;
+    model_urls: Components.ModelUrls_1;
 }
 
 export interface MeshyV5MultiImageTo3dInput {
@@ -36598,7 +36604,7 @@ export interface MeshyV5MultiImageTo3dOutput {
      *       }
      *     }
      */
-    model_urls: Components.ModelUrls;
+    model_urls: Components.ModelUrls_1;
     /**
      * Seed
      * @description The seed used for generation (if available)
@@ -54401,7 +54407,7 @@ export interface Hunyuan3dV3TextTo3dOutput {
      *       }
      *     }
      */
-    model_urls: Components.ModelUrls_1;
+    model_urls: Components.ModelUrls_2;
     /**
      * Seed
      * @description The seed used for generation
@@ -54477,7 +54483,7 @@ export interface Hunyuan3dV3SketchTo3dOutput {
      *       }
      *     }
      */
-    model_urls: Components.ModelUrls_1;
+    model_urls: Components.ModelUrls_2;
     /**
      * Seed
      * @description The seed used for generation
@@ -54576,7 +54582,7 @@ export interface Hunyuan3dV3ImageTo3dOutput {
      *       }
      *     }
      */
-    model_urls: Components.ModelUrls_1;
+    model_urls: Components.ModelUrls_2;
     /**
      * Seed
      * @description The seed used for generation
@@ -55846,6 +55852,482 @@ export interface HunyuanAvatarOutput {
      *     }
      */
     video: Components.File;
+}
+
+export interface Hunyuan3dV31SmartTopologyInput {
+    /**
+     * Face Level
+     * @description Target polygon density. high: more detail/polygons, medium: balanced, low: fewer polygons.
+     * @default medium
+     * @enum {string}
+     */
+    face_level?: 'high' | 'medium' | 'low';
+    /**
+     * Input File Type
+     * @description Input 3D file format.
+     * @default glb
+     * @enum {string}
+     */
+    input_file_type?: 'glb' | 'obj';
+    /**
+     * Input File Url
+     * @description URL of GLB or OBJ file to optimize topology. Max size: 200MB.
+     * @default https://v3b.fal.media/files/b/0a8c09c0/VYDiCTcDGK55qY2-idGbX_model.glb
+     * @example https://v3b.fal.media/files/b/0a8c09c0/VYDiCTcDGK55qY2-idGbX_model.glb
+     */
+    input_file_url?: string;
+    /**
+     * Polygon Type
+     * @description Output polygon type. triangle: triangular faces only. quadrilateral: mixed quad and triangle faces.
+     * @default triangle
+     * @enum {string}
+     */
+    polygon_type?: 'triangle' | 'quadrilateral';
+}
+
+export interface Hunyuan3dV31SmartTopologyOutput {
+    /**
+     * Model Glb
+     * @description Processed 3D model with optimized topology (primary file).
+     * @example {
+     *       "file_size": 394409,
+     *       "file_name": "model.obj",
+     *       "content_type": "model/obj",
+     *       "url": "https://v3b.fal.media/files/b/0a8c0ab4/tqMY5NJLnHjpwN8rQ15dj_model.obj"
+     *     }
+     */
+    model_glb: Components.File;
+    /**
+     * Model Urls
+     * @description URLs for different 3D model formats
+     * @example {
+     *       "glb": {
+     *         "file_size": 206004,
+     *         "file_name": "model.glb",
+     *         "content_type": "model/gltf-binary",
+     *         "url": "https://v3b.fal.media/files/b/0a8c0ab4/eX-_x0Wv8fZL05l9CGp6Y_model.glb"
+     *       },
+     *       "obj": {
+     *         "file_size": 394409,
+     *         "file_name": "model.obj",
+     *         "content_type": "model/obj",
+     *         "url": "https://v3b.fal.media/files/b/0a8c0ab4/tqMY5NJLnHjpwN8rQ15dj_model.obj"
+     *       }
+     *     }
+     */
+    model_urls: Components.ModelUrls;
+}
+
+export interface Hunyuan3dV31RapidTextTo3dInput {
+    /**
+     * Enable Geometry
+     * @description Generate geometry-only white model without textures. When enabled, enable_pbr is ignored and OBJ is not supported (default output is GLB).
+     * @default false
+     */
+    enable_geometry?: boolean;
+    /**
+     * Enable Pbr
+     * @description Enable PBR material generation (metallic, roughness, normal textures). Does not take effect when enable_geometry is True.
+     * @default false
+     */
+    enable_pbr?: boolean;
+    /**
+     * Prompt
+     * @description Text description of the 3D content to generate. Max 200 UTF-8 characters.
+     * @example A rustic wooden treasure chest with metal bands and ornate lock
+     */
+    prompt: string;
+}
+
+export interface Hunyuan3dV31RapidTextTo3dOutput {
+    /**
+     * Material Mtl
+     * @description MTL material file for the OBJ model.
+     * @example {
+     *       "file_size": 157,
+     *       "file_name": "material.mtl",
+     *       "content_type": "text/plain",
+     *       "url": "https://v3b.fal.media/files/b/0a8c44d5/EHzTxJtHpdIliaMNnEke-_material.mtl"
+     *     }
+     */
+    material_mtl?: Components.File;
+    /**
+     * Model Obj
+     * @description Generated 3D model in OBJ format.
+     * @example {
+     *       "file_size": 5306476,
+     *       "file_name": "0f7f7a1ac578c80d4397a7f2b69b40ff.obj",
+     *       "content_type": "model/obj",
+     *       "url": "https://v3b.fal.media/files/b/0a8c44d5/2W2KRP1DM_-4qI8F_n05b_0f7f7a1ac578c80d4397a7f2b69b40ff.obj"
+     *     }
+     */
+    model_obj?: Components.File;
+    /**
+     * Model Urls
+     * @description URLs for different 3D model formats.
+     * @example {
+     *       "texture": {
+     *         "file_size": 5915609,
+     *         "file_name": "material.png",
+     *         "content_type": "image/png",
+     *         "url": "https://v3b.fal.media/files/b/0a8c44d5/T0q-P0aqXVG_y7jff-XTa_material.png"
+     *       },
+     *       "mtl": {
+     *         "file_size": 157,
+     *         "file_name": "material.mtl",
+     *         "content_type": "text/plain",
+     *         "url": "https://v3b.fal.media/files/b/0a8c44d5/EHzTxJtHpdIliaMNnEke-_material.mtl"
+     *       },
+     *       "obj": {
+     *         "file_size": 5306476,
+     *         "file_name": "0f7f7a1ac578c80d4397a7f2b69b40ff.obj",
+     *         "content_type": "model/obj",
+     *         "url": "https://v3b.fal.media/files/b/0a8c44d5/2W2KRP1DM_-4qI8F_n05b_0f7f7a1ac578c80d4397a7f2b69b40ff.obj"
+     *       }
+     *     }
+     */
+    model_urls: Components.ModelUrls;
+    /**
+     * Texture
+     * @description Texture image for the 3D model.
+     * @example {
+     *       "file_size": 5915609,
+     *       "file_name": "material.png",
+     *       "content_type": "image/png",
+     *       "url": "https://v3b.fal.media/files/b/0a8c44d5/T0q-P0aqXVG_y7jff-XTa_material.png"
+     *     }
+     */
+    texture?: Components.File;
+    /**
+     * Thumbnail
+     * @description Preview thumbnail of the generated model
+     * @example {
+     *       "file_size": 281374,
+     *       "file_name": "preview.png",
+     *       "content_type": "image/png",
+     *       "url": "https://v3b.fal.media/files/b/0a8c44d6/D9_IYgpugP0deXvSwBC2J_preview.png"
+     *     }
+     */
+    thumbnail?: Components.File;
+}
+
+export interface Hunyuan3dV31RapidImageTo3dInput {
+    /**
+     * Enable Geometry
+     * @description Generate geometry-only white model without textures. When enabled, enable_pbr is ignored and OBJ is not supported (default output is GLB).
+     * @default false
+     */
+    enable_geometry?: boolean;
+    /**
+     * Enable Pbr
+     * @description Enable PBR material generation (metallic, roughness, normal textures). Does not take effect when enable_geometry is True.
+     * @default false
+     */
+    enable_pbr?: boolean;
+    /**
+     * Input Image Url
+     * @description Front view image URL. Resolution: 128-5000px, max 8MB (recommended ≤6MB for base64 encoding), formats: JPG/PNG/WEBP. Tips: simple background, single object, object >50% of frame.
+     * @example https://v3b.fal.media/files/b/0a865ab1/omYcawLUo4RZbO8J6ZgZR.png
+     */
+    input_image_url: string;
+}
+
+export interface Hunyuan3dV31RapidImageTo3dOutput {
+    /**
+     * Material Mtl
+     * @description MTL material file for the OBJ model.
+     * @example {
+     *       "file_size": 88,
+     *       "file_name": "material.mtl",
+     *       "content_type": "text/plain",
+     *       "url": "https://v3b.fal.media/files/b/0a8c4439/_RhytNH4xZ5EFHr34YzJt_material.mtl"
+     *     }
+     */
+    material_mtl?: Components.File;
+    /**
+     * Model Glb
+     * @description Generated 3D model file. Contains GLB if available, otherwise OBJ.
+     * @example {
+     *       "file_size": 3172659,
+     *       "file_name": "8b1dbea208d194b9089a950abc2df426.obj",
+     *       "content_type": "model/obj",
+     *       "url": "https://v3b.fal.media/files/b/0a8c4439/vj933H8B4W3wbd3e2RNby_8b1dbea208d194b9089a950abc2df426.obj"
+     *     }
+     */
+    model_glb?: Components.File;
+    /**
+     * Model Urls
+     * @description URLs for different 3D model formats.
+     * @example {
+     *       "texture": {
+     *         "file_size": 11728567,
+     *         "file_name": "texture_20250901.png",
+     *         "content_type": "image/png",
+     *         "url": "https://v3b.fal.media/files/b/0a8c4439/_4NXiSoGcZ-GYwmgUTfHZ_texture_20250901.png"
+     *       },
+     *       "mtl": {
+     *         "file_size": 88,
+     *         "file_name": "material.mtl",
+     *         "content_type": "text/plain",
+     *         "url": "https://v3b.fal.media/files/b/0a8c4439/_RhytNH4xZ5EFHr34YzJt_material.mtl"
+     *       },
+     *       "obj": {
+     *         "file_size": 3172659,
+     *         "file_name": "8b1dbea208d194b9089a950abc2df426.obj",
+     *         "content_type": "model/obj",
+     *         "url": "https://v3b.fal.media/files/b/0a8c4439/vj933H8B4W3wbd3e2RNby_8b1dbea208d194b9089a950abc2df426.obj"
+     *       }
+     *     }
+     */
+    model_urls: Components.ModelUrls;
+    /**
+     * Texture
+     * @description Texture image for the 3D model.
+     * @example {
+     *       "file_size": 11728567,
+     *       "file_name": "texture_20250901.png",
+     *       "content_type": "image/png",
+     *       "url": "https://v3b.fal.media/files/b/0a8c4439/_4NXiSoGcZ-GYwmgUTfHZ_texture_20250901.png"
+     *     }
+     */
+    texture?: Components.File;
+    /**
+     * Thumbnail
+     * @description Preview thumbnail of the generated model
+     * @example {
+     *       "file_size": 82521,
+     *       "file_name": "preview.png",
+     *       "content_type": "image/png",
+     *       "url": "https://v3b.fal.media/files/b/0a8c4439/70Sm1pZ16SQP-mEbaKICC_preview.png"
+     *     }
+     */
+    thumbnail?: Components.File;
+}
+
+export interface Hunyuan3dV31ProTextTo3dInput {
+    /**
+     * Enable Pbr
+     * @description Enable PBR material generation (metallic, roughness, normal textures). Ignored when generate_type is Geometry.
+     * @default false
+     */
+    enable_pbr?: boolean;
+    /**
+     * Face Count
+     * @description Target polygon face count. Range: 40,000-1,500,000. Default: 500,000.
+     * @default 500000
+     */
+    face_count?: number;
+    /**
+     * Generate Type
+     * @description Generation task type. Normal: textured model. Geometry: geometry-only white model (no textures). LowPoly/Sketch are not available in v3.1.
+     * @default Normal
+     * @enum {string}
+     */
+    generate_type?: 'Normal' | 'Geometry';
+    /**
+     * Prompt
+     * @description Text description of the 3D content to generate. Max 1024 UTF-8 characters.
+     * @example A super cool space ship with details
+     */
+    prompt: string;
+}
+
+export interface Hunyuan3dV31ProTextTo3dOutput {
+    /**
+     * Model Glb
+     * @description Generated 3D object in GLB format.
+     * @example {
+     *       "file_size": 35833072,
+     *       "file_name": "model.glb",
+     *       "content_type": "model/gltf-binary",
+     *       "url": "https://v3b.fal.media/files/b/0a8c5483/z6sbpr5wBRjqgnQlJM2Ot_model.glb"
+     *     }
+     */
+    model_glb: Components.File;
+    /**
+     * Model Urls
+     * @description URLs for different 3D model formats
+     * @example {
+     *       "texture": {
+     *         "file_size": 19996580,
+     *         "file_name": "texture_20250901.png",
+     *         "content_type": "image/png",
+     *         "url": "https://v3b.fal.media/files/b/0a8c5482/jOL2nBpcOGspwxQf0_U-z_texture_20250901.png"
+     *       },
+     *       "mtl": {
+     *         "file_size": 88,
+     *         "file_name": "material.mtl",
+     *         "content_type": "text/plain",
+     *         "url": "https://v3b.fal.media/files/b/0a8c5482/ZxJepsEkhM67VSugmZ7QT_material.mtl"
+     *       },
+     *       "glb": {
+     *         "file_size": 35833072,
+     *         "file_name": "model.glb",
+     *         "content_type": "model/gltf-binary",
+     *         "url": "https://v3b.fal.media/files/b/0a8c5483/z6sbpr5wBRjqgnQlJM2Ot_model.glb"
+     *       },
+     *       "obj": {
+     *         "file_size": 34755929,
+     *         "file_name": "6168030a8817075aaa55c94cc5145000.obj",
+     *         "content_type": "model/obj",
+     *         "url": "https://v3b.fal.media/files/b/0a8c5482/ZzC1xlOftyGQxhDkbZzVW_6168030a8817075aaa55c94cc5145000.obj"
+     *       }
+     *     }
+     */
+    model_urls: Components.ModelUrls;
+    /**
+     * Seed
+     * @description The seed used for generation
+     */
+    seed?: number;
+    /**
+     * Thumbnail
+     * @description Preview thumbnail of the generated model
+     * @example {
+     *       "file_size": 68927,
+     *       "file_name": "preview.png",
+     *       "content_type": "image/png",
+     *       "url": "https://v3b.fal.media/files/b/0a8c5483/EE97ZV7cM-3UVG4peyWTQ_preview.png"
+     *     }
+     */
+    thumbnail?: Components.File;
+}
+
+export interface Hunyuan3dV31ProImageTo3dInput {
+    /**
+     * Back Image Url
+     * @description Optional back/rear view image URL (JPG/PNG recommended).
+     */
+    back_image_url?: string;
+    /**
+     * Bottom Image Url
+     * @description Optional bottom view image URL (v3.1 exclusive, JPG/PNG recommended).
+     */
+    bottom_image_url?: string;
+    /**
+     * Enable Pbr
+     * @description Enable PBR material generation (metallic, roughness, normal textures). Ignored when generate_type is Geometry.
+     * @default false
+     */
+    enable_pbr?: boolean;
+    /**
+     * Face Count
+     * @description Target polygon face count. Range: 40,000-1,500,000. Default: 500,000.
+     * @default 500000
+     */
+    face_count?: number;
+    /**
+     * Generate Type
+     * @description Generation task type. Normal: textured model. Geometry: geometry-only white model (no textures). LowPoly/Sketch are not available in v3.1.
+     * @default Normal
+     * @enum {string}
+     */
+    generate_type?: 'Normal' | 'Geometry';
+    /**
+     * Input Image Url
+     * @description Front view image URL. Resolution: 128-5000px, max 8MB, formats: JPG/PNG/WEBP. Tips: simple background, single object, object >50% of frame.
+     * @example https://v3b.fal.media/files/b/0a8c3155/BTXNRrzOFsO6OvdSxdXmv_6ZcaGmrY.png
+     */
+    input_image_url: string;
+    /**
+     * Left Front Image Url
+     * @description Optional left-front 45 degree angle view image URL (v3.1 exclusive, JPG/PNG recommended).
+     */
+    left_front_image_url?: string;
+    /**
+     * Left Image Url
+     * @description Optional left side view image URL (JPG/PNG recommended).
+     */
+    left_image_url?: string;
+    /**
+     * Right Front Image Url
+     * @description Optional right-front 45 degree angle view image URL (v3.1 exclusive, JPG/PNG recommended).
+     */
+    right_front_image_url?: string;
+    /**
+     * Right Image Url
+     * @description Optional right side view image URL (JPG/PNG recommended).
+     */
+    right_image_url?: string;
+    /**
+     * Top Image Url
+     * @description Optional top view image URL (v3.1 exclusive, JPG/PNG recommended).
+     */
+    top_image_url?: string;
+}
+
+export interface Hunyuan3dV31ProImageTo3dOutput {
+    /**
+     * Model Glb
+     * @description Generated 3D object in GLB format.
+     * @example {
+     *       "file_size": 38554640,
+     *       "file_name": "model.glb",
+     *       "content_type": "model/gltf-binary",
+     *       "url": "https://v3b.fal.media/files/b/0a8c3187/jOeZmtBuhdQMkDu65AkdT_model.glb"
+     *     }
+     */
+    model_glb: Components.File;
+    /**
+     * Model Urls
+     * @description URLs for different 3D model formats
+     * @example {
+     *       "glb": {
+     *         "file_size": 38554640,
+     *         "file_name": "model.glb",
+     *         "content_type": "model/gltf-binary",
+     *         "url": "https://v3b.fal.media/files/b/0a8c3187/jOeZmtBuhdQMkDu65AkdT_model.glb"
+     *       },
+     *       "obj": {
+     *         "file_size": 31447160,
+     *         "file_name": "model.obj",
+     *         "content_type": "model/obj",
+     *         "url": "https://v3b.fal.media/files/b/0a8c3186/no-aBFEDnOuthILfv-wzs_model.obj"
+     *       }
+     *     }
+     */
+    model_urls: Components.ModelUrls;
+    /**
+     * Seed
+     * @description The seed used for generation
+     */
+    seed?: number;
+    /**
+     * Thumbnail
+     * @description Preview thumbnail of the generated model
+     * @example {
+     *       "file_size": 194908,
+     *       "file_name": "preview.png",
+     *       "content_type": "image/png",
+     *       "url": "https://v3b.fal.media/files/b/0a8c3187/gxidaODj4OvPXruCfrZ-__preview.png"
+     *     }
+     */
+    thumbnail?: Components.File;
+}
+
+export interface Hunyuan3dV31PartInput {
+    /**
+     * Input File Url
+     * @description URL of FBX file to split into parts. ONLY FBX format supported. Max size: 100MB, face count ≤30,000. Recommended: AIGC-generated models.
+     * @example https://v3b.fal.media/files/b/0a8bf92a/XECcItG5QHt0LViFTRCON_converted.fbx
+     */
+    input_file_url: string;
+}
+
+export interface Hunyuan3dV31PartOutput {
+    /**
+     * Result Files
+     * @description List of generated part files in FBX format
+     * @example [
+     *       {
+     *         "file_size": 2048000,
+     *         "file_name": "part_0.fbx",
+     *         "content_type": "application/octet-stream",
+     *         "url": "https://v3b.fal.media/files/b/0a8bf94b/zOP--lT23slziGKp99dJm_part_0.fbx"
+     *       }
+     *     ]
+     */
+    result_files: Components.File[];
 }
 
 export interface Hunyuan_worldImageToWorldInput {
@@ -57163,90 +57645,13 @@ export interface GeminiFlashEditInput {
 
 export interface GeminiFlashEditOutput extends SharedType_1b2 {}
 
-export interface Gemini3ProImagePreviewEditInput {
-    /**
-     * Aspect Ratio
-     * @description The aspect ratio of the generated image.
-     * @default auto
-     * @enum {string}
-     */
-    aspect_ratio?:
-        | 'auto'
-        | '21:9'
-        | '16:9'
-        | '3:2'
-        | '4:3'
-        | '5:4'
-        | '1:1'
-        | '4:5'
-        | '3:4'
-        | '2:3'
-        | '9:16';
-    /**
-     * Enable Web Search
-     * @description Enable web search for the image generation task. This will allow the model to use the latest information from the web to generate the image.
-     * @default false
-     */
-    enable_web_search?: boolean;
-    /**
-     * Image URLs
-     * @description The URLs of the images to use for image-to-image generation or image editing.
-     * @example [
-     *       "https://storage.googleapis.com/falserverless/example_inputs/nano-banana-edit-input.png",
-     *       "https://storage.googleapis.com/falserverless/example_inputs/nano-banana-edit-input-2.png"
-     *     ]
-     */
-    image_urls: string[];
-    /**
-     * Limit Generations
-     * @description Experimental parameter to limit the number of generations from each round of prompting to 1. Set to `True` to to disregard any instructions in the prompt regarding the number of images to generate.
-     * @default false
-     */
-    limit_generations?: boolean;
-    /**
-     * Number of Images
-     * @description The number of images to generate.
-     * @default 1
-     */
-    num_images?: number;
-    /**
-     * Output Format
-     * @description The format of the generated image.
-     * @default png
-     * @enum {string}
-     */
-    output_format?: 'jpeg' | 'png' | 'webp';
-    /**
-     * Prompt
-     * @description The prompt for image editing.
-     * @example make a photo of the man driving the car down the california coastline
-     */
-    prompt: string;
-    /**
-     * Resolution
-     * @description The resolution of the image to generate.
-     * @default 1K
-     * @enum {string}
-     */
-    resolution?: '1K' | '2K' | '4K';
-    /**
-     * Seed
-     * @description The seed for the random number generator.
-     */
-    seed?: number;
-    /**
-     * Sync Mode
-     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
-     * @default false
-     */
-    sync_mode?: boolean;
-}
+export interface Gemini3ProImagePreviewEditInput extends SharedType_eac {}
 
-export interface Gemini3ProImagePreviewEditOutput extends SharedType_98c {}
+export interface Gemini3ProImagePreviewEditOutput extends SharedType_876 {}
 
 export interface Gemini3ProImagePreviewInput extends SharedType_c18 {}
 
-export interface Gemini3ProImagePreviewOutput extends SharedType_662 {}
+export interface Gemini3ProImagePreviewOutput extends SharedType_7b9 {}
 
 export interface Gemini25FlashImageEditInput extends SharedType_813 {}
 
@@ -71225,220 +71630,220 @@ export interface ElevenlabsSpeechToTextScribeV2Output {
      * Words
      * @description Word-level transcription details
      * @example {
-     *       "end": 0.539,
+     *       "text": "Hey,",
      *       "start": 0.079,
      *       "type": "word",
-     *       "text": "Hey,",
+     *       "end": 0.539,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 0.599,
+     *       "text": " ",
      *       "start": 0.539,
      *       "type": "spacing",
-     *       "text": " ",
+     *       "end": 0.599,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 0.679,
+     *       "text": "this",
      *       "start": 0.599,
      *       "type": "word",
-     *       "text": "this",
+     *       "end": 0.679,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 0.739,
+     *       "text": " ",
      *       "start": 0.679,
      *       "type": "spacing",
-     *       "text": " ",
+     *       "end": 0.739,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 0.799,
+     *       "text": "is",
      *       "start": 0.739,
      *       "type": "word",
-     *       "text": "is",
+     *       "end": 0.799,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 0.939,
+     *       "text": " ",
      *       "start": 0.799,
      *       "type": "spacing",
-     *       "text": " ",
+     *       "end": 0.939,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 0.939,
+     *       "text": "a",
      *       "start": 0.939,
      *       "type": "word",
-     *       "text": "a",
+     *       "end": 0.939,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 0.959,
+     *       "text": " ",
      *       "start": 0.939,
      *       "type": "spacing",
-     *       "text": " ",
+     *       "end": 0.959,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 1.179,
+     *       "text": "test",
      *       "start": 0.959,
      *       "type": "word",
-     *       "text": "test",
+     *       "end": 1.179,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 1.219,
+     *       "text": " ",
      *       "start": 1.179,
      *       "type": "spacing",
-     *       "text": " ",
+     *       "end": 1.219,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 1.719,
+     *       "text": "recording",
      *       "start": 1.22,
      *       "type": "word",
-     *       "text": "recording",
+     *       "end": 1.719,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 1.719,
+     *       "text": " ",
      *       "start": 1.719,
      *       "type": "spacing",
-     *       "text": " ",
+     *       "end": 1.719,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 1.86,
+     *       "text": "for",
      *       "start": 1.719,
      *       "type": "word",
-     *       "text": "for",
+     *       "end": 1.86,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 1.879,
+     *       "text": " ",
      *       "start": 1.86,
      *       "type": "spacing",
-     *       "text": " ",
+     *       "end": 1.879,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 2.24,
+     *       "text": "Scribe",
      *       "start": 1.879,
      *       "type": "word",
-     *       "text": "Scribe",
+     *       "end": 2.24,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 2.319,
+     *       "text": " ",
      *       "start": 2.24,
      *       "type": "spacing",
-     *       "text": " ",
+     *       "end": 2.319,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 2.759,
+     *       "text": "version",
      *       "start": 2.319,
      *       "type": "word",
-     *       "text": "version",
+     *       "end": 2.759,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 2.779,
+     *       "text": " ",
      *       "start": 2.759,
      *       "type": "spacing",
-     *       "text": " ",
+     *       "end": 2.779,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 3.379,
+     *       "text": "two,",
      *       "start": 2.779,
      *       "type": "word",
-     *       "text": "two,",
+     *       "end": 3.379,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 3.399,
+     *       "text": " ",
      *       "start": 3.379,
      *       "type": "spacing",
-     *       "text": " ",
+     *       "end": 3.399,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 3.519,
+     *       "text": "which",
      *       "start": 3.399,
      *       "type": "word",
-     *       "text": "which",
+     *       "end": 3.519,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 3.539,
+     *       "text": " ",
      *       "start": 3.519,
      *       "type": "spacing",
-     *       "text": " ",
+     *       "end": 3.539,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 3.659,
+     *       "text": "is",
      *       "start": 3.539,
      *       "type": "word",
-     *       "text": "is",
+     *       "end": 3.659,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 3.699,
+     *       "text": " ",
      *       "start": 3.659,
      *       "type": "spacing",
-     *       "text": " ",
+     *       "end": 3.699,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 3.839,
+     *       "text": "now",
      *       "start": 3.699,
      *       "type": "word",
-     *       "text": "now",
+     *       "end": 3.839,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 3.839,
+     *       "text": " ",
      *       "start": 3.839,
      *       "type": "spacing",
-     *       "text": " ",
+     *       "end": 3.839,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 4.319,
+     *       "text": "available",
      *       "start": 3.839,
      *       "type": "word",
-     *       "text": "available",
+     *       "end": 4.319,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 4.339,
+     *       "text": " ",
      *       "start": 4.319,
      *       "type": "spacing",
-     *       "text": " ",
+     *       "end": 4.339,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 4.579,
+     *       "text": "on",
      *       "start": 4.339,
      *       "type": "word",
-     *       "text": "on",
+     *       "end": 4.579,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 4.599,
+     *       "text": " ",
      *       "start": 4.579,
      *       "type": "spacing",
-     *       "text": " ",
+     *       "end": 4.599,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 5.699,
+     *       "text": "fal.ai.",
      *       "start": 4.599,
      *       "type": "word",
-     *       "text": "fal.ai.",
+     *       "end": 5.699,
      *       "speaker_id": "speaker_0"
      *     }
      */

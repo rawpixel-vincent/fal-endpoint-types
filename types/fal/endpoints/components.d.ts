@@ -1506,7 +1506,7 @@ export interface MoondreamInputParam {
     prompt?: string;
 }
 
-export interface ModelUrls_1 {
+export interface ModelUrls_2 {
     /**
      * Fbx
      * @description FBX format 3D model
@@ -1529,7 +1529,7 @@ export interface ModelUrls_1 {
     usdz?: File_1;
 }
 
-export interface ModelUrls {
+export interface ModelUrls_1 {
     /**
      * Blend
      * @description Blender format 3D model
@@ -1555,6 +1555,39 @@ export interface ModelUrls {
      * @description STL format 3D model
      */
     stl?: File_1;
+    /**
+     * Usdz
+     * @description USDZ format 3D model
+     */
+    usdz?: File_1;
+}
+
+export interface ModelUrls {
+    /**
+     * Fbx
+     * @description FBX format 3D model
+     */
+    fbx?: File_1;
+    /**
+     * Glb
+     * @description GLB format 3D model
+     */
+    glb?: File_1;
+    /**
+     * Mtl
+     * @description MTL material file for OBJ model
+     */
+    mtl?: File_1;
+    /**
+     * Obj
+     * @description OBJ format 3D model
+     */
+    obj?: File_1;
+    /**
+     * Texture
+     * @description Texture image for the 3D model
+     */
+    texture?: File_1;
     /**
      * Usdz
      * @description USDZ format 3D model

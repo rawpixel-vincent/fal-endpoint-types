@@ -3864,6 +3864,36 @@ declare global {
                 output: falEndpoints.HunyuanAvatarOutput;
             };
 
+            'fal-ai/hunyuan-3d/v3.1/smart-topology': {
+                input: falEndpoints.Hunyuan3dV31SmartTopologyInput;
+                output: falEndpoints.Hunyuan3dV31SmartTopologyOutput;
+            };
+
+            'fal-ai/hunyuan-3d/v3.1/rapid/text-to-3d': {
+                input: falEndpoints.Hunyuan3dV31RapidTextTo3dInput;
+                output: falEndpoints.Hunyuan3dV31RapidTextTo3dOutput;
+            };
+
+            'fal-ai/hunyuan-3d/v3.1/rapid/image-to-3d': {
+                input: falEndpoints.Hunyuan3dV31RapidImageTo3dInput;
+                output: falEndpoints.Hunyuan3dV31RapidImageTo3dOutput;
+            };
+
+            'fal-ai/hunyuan-3d/v3.1/pro/text-to-3d': {
+                input: falEndpoints.Hunyuan3dV31ProTextTo3dInput;
+                output: falEndpoints.Hunyuan3dV31ProTextTo3dOutput;
+            };
+
+            'fal-ai/hunyuan-3d/v3.1/pro/image-to-3d': {
+                input: falEndpoints.Hunyuan3dV31ProImageTo3dInput;
+                output: falEndpoints.Hunyuan3dV31ProImageTo3dOutput;
+            };
+
+            'fal-ai/hunyuan-3d/v3.1/part': {
+                input: falEndpoints.Hunyuan3dV31PartInput;
+                output: falEndpoints.Hunyuan3dV31PartOutput;
+            };
+
             'fal-ai/hunyuan_world/image-to-world': {
                 input: falEndpoints.Hunyuan_worldImageToWorldInput;
                 output: falEndpoints.Hunyuan_worldImageToWorldOutput;
