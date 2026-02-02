@@ -1377,7 +1377,7 @@ export interface OmniVideoElementInput {
     frontal_image_url: string;
     /**
      * Reference Image Urls
-     * @description Additional reference images from different angles. 1-4 images supported. At least one image is required.
+     * @description Additional reference images from different angles. 1-3 images supported. At least one image is required.
      */
     reference_image_urls?: string[];
 }

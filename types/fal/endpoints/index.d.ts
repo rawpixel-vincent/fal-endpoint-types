@@ -729,6 +729,16 @@ declare global {
                 output: falEndpoints.ViduReferenceToImageOutput;
             };
 
+            'fal-ai/vidu/q3/text-to-video': {
+                input: falEndpoints.ViduQ3TextToVideoInput;
+                output: falEndpoints.ViduQ3TextToVideoOutput;
+            };
+
+            'fal-ai/vidu/q3/image-to-video': {
+                input: falEndpoints.ViduQ3ImageToVideoInput;
+                output: falEndpoints.ViduQ3ImageToVideoOutput;
+            };
+
             'fal-ai/vidu/q2/video-extension/pro': {
                 input: falEndpoints.ViduQ2VideoExtensionProInput;
                 output: falEndpoints.ViduQ2VideoExtensionProOutput;

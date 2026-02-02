@@ -31,20 +31,19 @@ export interface XaiGrokImagineVideoTextToVideoInput {
 
 export interface XaiGrokImagineVideoTextToVideoOutput {
     /**
-     * Video
      * @description The generated video.
      * @example {
      *       "height": 720,
      *       "duration": 6.041667,
      *       "url": "https://v3b.fal.media/files/b/0a8b90e4/RUAbFYlssdqnbjNLmE8qP_IX7BNYGP.mp4",
-     *       "width": 1280,
      *       "fps": 24,
+     *       "width": 1280,
      *       "file_name": "RUAbFYlssdqnbjNLmE8qP_IX7BNYGP.mp4",
-     *       "num_frames": 145,
-     *       "content_type": "video/mp4"
+     *       "content_type": "video/mp4",
+     *       "num_frames": 145
      *     }
      */
-    video: Components.VideoFile_1;
+    video: Components.VideoFile;
 }
 
 export interface XaiGrokImagineVideoImageToVideoInput {
@@ -52,7 +51,6 @@ export interface XaiGrokImagineVideoImageToVideoInput {
      * Aspect Ratio
      * @description Aspect ratio of the generated video.
      * @default auto
-     * @enum {string}
      */
     aspect_ratio?: 'auto' | '16:9' | '4:3' | '3:2' | '1:1' | '2:3' | '3:4' | '9:16';
     /**
@@ -84,20 +82,19 @@ export interface XaiGrokImagineVideoImageToVideoInput {
 
 export interface XaiGrokImagineVideoImageToVideoOutput {
     /**
-     * Video
      * @description The generated video.
      * @example {
      *       "height": 720,
      *       "duration": 6.041667,
      *       "url": "https://v3b.fal.media/files/b/0a8b90e0/0Ci1dviuSnEyUZzBUq-_5_nu7MrAAa.mp4",
-     *       "width": 1280,
      *       "fps": 24,
+     *       "width": 1280,
      *       "file_name": "0Ci1dviuSnEyUZzBUq-_5_nu7MrAAa.mp4",
-     *       "num_frames": 145,
-     *       "content_type": "video/mp4"
+     *       "content_type": "video/mp4",
+     *       "num_frames": 145
      *     }
      */
-    video: Components.VideoFile_1;
+    video: Components.VideoFile;
 }
 
 export interface XaiGrokImagineVideoEditVideoInput {
@@ -124,20 +121,19 @@ export interface XaiGrokImagineVideoEditVideoInput {
 
 export interface XaiGrokImagineVideoEditVideoOutput {
     /**
-     * Video
      * @description The generated video.
      * @example {
      *       "height": 720,
      *       "duration": 5.041667,
      *       "url": "https://v3b.fal.media/files/b/0a8b9113/EuDrZuQTW9m1phBXOsauz_EpJH3s8X.mp4",
-     *       "width": 1280,
      *       "fps": 24,
+     *       "width": 1280,
      *       "file_name": "EuDrZuQTW9m1phBXOsauz_EpJH3s8X.mp4",
-     *       "num_frames": 121,
-     *       "content_type": "video/mp4"
+     *       "content_type": "video/mp4",
+     *       "num_frames": 121
      *     }
      */
-    video: Components.VideoFile_1;
+    video: Components.VideoFile;
 }
 
 export interface XaiGrokImagineImageEditInput {
@@ -184,7 +180,7 @@ export interface XaiGrokImagineImageEditOutput {
      *       }
      *     ]
      */
-    images: Components.ImageFile[];
+    images: Components.ImageFile_1[];
     /**
      * Revised Prompt
      * @description The enhanced prompt that was used to generate the image.
@@ -250,7 +246,7 @@ export interface XaiGrokImagineImageOutput {
      *       }
      *     ]
      */
-    images: Components.ImageFile[];
+    images: Components.ImageFile_1[];
     /**
      * Revised Prompt
      * @description The enhanced prompt that was used to generate the image.
@@ -5285,6 +5281,35 @@ export interface SharedType_a1c {
     video: Components.File;
 }
 
+export interface SharedType_a00 {
+    /**
+     * Prompt
+     * @description The prompt used for the generation.
+     * @example Continue the scene naturally, maintaining the same style and motion.
+     */
+    prompt: string;
+    /**
+     * Seed
+     * @description The seed used for the random number generator.
+     * @example 866232447
+     */
+    seed: number;
+    /**
+     * @description The generated video.
+     * @example {
+     *       "height": 704,
+     *       "duration": 10.28,
+     *       "url": "https://v3b.fal.media/files/b/0a88289e/CJcQGDrxOSRg2YFl5GNDt_glXPMoji.mp4",
+     *       "fps": 25,
+     *       "width": 1248,
+     *       "file_name": "CJcQGDrxOSRg2YFl5GNDt_glXPMoji.mp4",
+     *       "content_type": "video/mp4",
+     *       "num_frames": 257
+     *     }
+     */
+    video: Components.VideoFile;
+}
+
 export interface SharedType_9fe {
     /**
      * Video
@@ -6429,6 +6454,58 @@ export interface SharedType_86b {
     use_pnc?: boolean;
 }
 
+export interface SharedType_868 {
+    /**
+     * Aspect Ratio
+     * @description The aspect ratio of the generated image.
+     * @enum {string}
+     */
+    aspect_ratio?: '21:9' | '16:9' | '4:3' | '3:2' | '1:1' | '2:3' | '3:4' | '9:16' | '9:21';
+    /**
+     * Guidance Scale
+     * @description The CFG (Classifier Free Guidance) scale is a measure of how close you want the model to stick to your prompt when looking for a related image to show you.
+     * @default 3.5
+     */
+    guidance_scale?: number;
+    /**
+     * Image URL
+     * @description Image prompt for the omni model.
+     * @example https://v3.fal.media/files/zebra/hAjCkcyly4gsS9-cptD3Y_image%20(20).png
+     */
+    image_url: string;
+    /**
+     * Num Inference Steps
+     * @description Number of inference steps for sampling.
+     * @default 30
+     */
+    num_inference_steps?: number;
+    /**
+     * Output Format
+     * @description The format of the generated image.
+     * @default jpeg
+     * @enum {string}
+     */
+    output_format?: 'jpeg' | 'png';
+    /**
+     * Safety Tolerance
+     * @description The safety tolerance level for the generated image. 1 being the most strict and 6 being the most permissive.
+     * @default 2
+     * @enum {string}
+     */
+    safety_tolerance?: '1' | '2' | '3' | '4' | '5' | '6';
+    /**
+     * Seed
+     * @description The same seed and the same prompt given to the same version of the model will output the same image every time.
+     */
+    seed?: number;
+    /**
+     * Sync Mode
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
+     * @default false
+     */
+    sync_mode?: boolean;
+}
+
 export interface SharedType_82f {
     /** @description ZIP archive of all video frames if requested. */
     frames_zip?: Components.File_1;
@@ -7452,35 +7529,6 @@ export interface SharedType_6f9 {
     sync_mode?: boolean;
 }
 
-export interface SharedType_6ef {
-    /**
-     * Prompt
-     * @description The prompt used for the generation.
-     * @example A cowboy walking through a dusty town at high noon, camera following from behind, cinematic depth, realistic lighting, western mood, 4K film grain.
-     */
-    prompt: string;
-    /**
-     * Seed
-     * @description The seed used for the random number generator.
-     * @example 149063119
-     */
-    seed: number;
-    /**
-     * @description The generated video.
-     * @example {
-     *       "height": 704,
-     *       "duration": 6.44,
-     *       "url": "https://v3b.fal.media/files/b/0a8824b1/sdm0KfmenrlywesfzY1Y1_if6euPp1.mp4",
-     *       "width": 1248,
-     *       "fps": 25,
-     *       "file_name": "sdm0KfmenrlywesfzY1Y1_if6euPp1.mp4",
-     *       "content_type": "video/mp4",
-     *       "num_frames": 161
-     *     }
-     */
-    video: Components.VideoFile;
-}
-
 export interface SharedType_6ea {
     /**
      * Actual Prompt
@@ -7934,6 +7982,35 @@ export interface SharedType_63d {
     video: Components.File;
 }
 
+export interface SharedType_61b {
+    /**
+     * Prompt
+     * @description The prompt used for the generation.
+     * @example A cowboy walking through a dusty town at high noon, camera following from behind, cinematic depth, realistic lighting, western mood, 4K film grain.
+     */
+    prompt: string;
+    /**
+     * Seed
+     * @description The seed used for the random number generator.
+     * @example 149063119
+     */
+    seed: number;
+    /**
+     * @description The generated video.
+     * @example {
+     *       "height": 704,
+     *       "duration": 6.44,
+     *       "url": "https://v3b.fal.media/files/b/0a8824b1/sdm0KfmenrlywesfzY1Y1_if6euPp1.mp4",
+     *       "fps": 25,
+     *       "width": 1248,
+     *       "file_name": "sdm0KfmenrlywesfzY1Y1_if6euPp1.mp4",
+     *       "content_type": "video/mp4",
+     *       "num_frames": 161
+     *     }
+     */
+    video: Components.VideoFile;
+}
+
 export interface SharedType_618 {
     /**
      * Video
@@ -8093,35 +8170,6 @@ export interface SharedType_5f3 {
      * @default false
      */
     sync_mode?: boolean;
-}
-
-export interface SharedType_5db {
-    /**
-     * Prompt
-     * @description The prompt used for the generation.
-     * @example A woman stands still amid a busy neon-lit street at night. The camera slowly dollies in toward her face as people blur past, their motion emphasizing her calm presence. City lights flicker and reflections shift across her denim jacket.
-     */
-    prompt: string;
-    /**
-     * Seed
-     * @description The seed used for the random number generator.
-     * @example 2078003885
-     */
-    seed: number;
-    /**
-     * @description The generated video.
-     * @example {
-     *       "height": 704,
-     *       "duration": 6.44,
-     *       "url": "https://v3b.fal.media/files/b/0a894013/N9lnMTq7W3uMC0lOQg845_BknRPV8I.mp4",
-     *       "width": 1248,
-     *       "fps": 25,
-     *       "file_name": "CJcQGDrxOSRg2YFl5GNDt_glXPMoji.mp4",
-     *       "content_type": "video/mp4",
-     *       "num_frames": 161
-     *     }
-     */
-    video: Components.VideoFile;
 }
 
 export interface SharedType_5da {
@@ -8689,6 +8737,35 @@ export interface SharedType_56f {
     video: Components.File;
 }
 
+export interface SharedType_567 {
+    /**
+     * Prompt
+     * @description The prompt used for the generation.
+     * @example A woman stands still amid a busy neon-lit street at night. The camera slowly dollies in toward her face as people blur past, their motion emphasizing her calm presence. City lights flicker and reflections shift across her denim jacket.
+     */
+    prompt: string;
+    /**
+     * Seed
+     * @description The seed used for the random number generator.
+     * @example 2078003885
+     */
+    seed: number;
+    /**
+     * @description The generated video.
+     * @example {
+     *       "height": 704,
+     *       "duration": 6.44,
+     *       "url": "https://v3b.fal.media/files/b/0a894013/N9lnMTq7W3uMC0lOQg845_BknRPV8I.mp4",
+     *       "fps": 25,
+     *       "width": 1248,
+     *       "file_name": "CJcQGDrxOSRg2YFl5GNDt_glXPMoji.mp4",
+     *       "content_type": "video/mp4",
+     *       "num_frames": 161
+     *     }
+     */
+    video: Components.VideoFile;
+}
+
 export interface SharedType_54d {
     /**
      * Default Caption
@@ -8829,6 +8906,35 @@ export interface SharedType_4f2 {
      *     }
      */
     video: Components.VideoFile_1;
+}
+
+export interface SharedType_4ed {
+    /**
+     * Prompt
+     * @description The prompt used for the generation.
+     * @example black-and-white video, a cowboy walks through a dusty town, film grain
+     */
+    prompt: string;
+    /**
+     * Seed
+     * @description The seed used for the random number generator.
+     * @example 1490631192028410600
+     */
+    seed: number;
+    /**
+     * @description The generated video.
+     * @example {
+     *       "height": 704,
+     *       "duration": 6.44,
+     *       "url": "https://v3b.fal.media/files/b/0a895ed5/SaTGe87IpMUMiSq33w5Qb_RoCJFZhc.mp4",
+     *       "fps": 25,
+     *       "width": 1248,
+     *       "file_name": "SaTGe87IpMUMiSq33w5Qb_RoCJFZhc.mp4",
+     *       "content_type": "video/mp4",
+     *       "num_frames": 161
+     *     }
+     */
+    video: Components.VideoFile;
 }
 
 export interface SharedType_4c2 {
@@ -9354,35 +9460,6 @@ export interface SharedType_441 {
      * @default false
      */
     sync_mode?: boolean;
-}
-
-export interface SharedType_437 {
-    /**
-     * Prompt
-     * @description The prompt used for the generation.
-     * @example Continue the scene naturally, maintaining the same style and motion.
-     */
-    prompt: string;
-    /**
-     * Seed
-     * @description The seed used for the random number generator.
-     * @example 866232447
-     */
-    seed: number;
-    /**
-     * @description The generated video.
-     * @example {
-     *       "height": 704,
-     *       "duration": 10.28,
-     *       "url": "https://v3b.fal.media/files/b/0a88289e/CJcQGDrxOSRg2YFl5GNDt_glXPMoji.mp4",
-     *       "width": 1248,
-     *       "fps": 25,
-     *       "file_name": "CJcQGDrxOSRg2YFl5GNDt_glXPMoji.mp4",
-     *       "content_type": "video/mp4",
-     *       "num_frames": 257
-     *     }
-     */
-    video: Components.VideoFile;
 }
 
 export interface SharedType_424 {
@@ -10373,58 +10450,6 @@ export interface SharedType_215 {
     sync_mode?: boolean;
 }
 
-export interface SharedType_212 {
-    /**
-     * Aspect Ratio
-     * @description The aspect ratio of the generated image.
-     * @enum {string}
-     */
-    aspect_ratio?: '21:9' | '16:9' | '4:3' | '3:2' | '1:1' | '2:3' | '3:4' | '9:16' | '9:21';
-    /**
-     * Guidance Scale
-     * @description The CFG (Classifier Free Guidance) scale is a measure of how close you want the model to stick to your prompt when looking for a related image to show you.
-     * @default 3.5
-     */
-    guidance_scale?: number;
-    /**
-     * Image URL
-     * @description Image prompt for the omni model.
-     * @example https://v3.fal.media/files/zebra/hAjCkcyly4gsS9-cptD3Y_image%20(20).png
-     */
-    image_url: string;
-    /**
-     * Num Inference Steps
-     * @description Number of inference steps for sampling.
-     * @default 30
-     */
-    num_inference_steps?: number;
-    /**
-     * Output Format
-     * @description The format of the generated image.
-     * @default jpeg
-     * @enum {string}
-     */
-    output_format?: 'jpeg' | 'png';
-    /**
-     * Safety Tolerance
-     * @description The safety tolerance level for the generated image. 1 being the most strict and 6 being the most permissive.
-     * @default 2
-     * @enum {string}
-     */
-    safety_tolerance?: '1' | '2' | '3' | '4' | '5' | '6';
-    /**
-     * Seed
-     * @description The same seed and the same prompt given to the same version of the model will output the same image every time.
-     */
-    seed?: number;
-    /**
-     * Sync Mode
-     * @description If set to true, the function will wait for the image to be generated and uploaded before returning the response. This will increase the latency of the function but it allows you to get the image directly in the response without going through the CDN.
-     * @default false
-     */
-    sync_mode?: boolean;
-}
-
 export interface SharedType_207 {
     /**
      * Enable Safety Checker
@@ -10498,35 +10523,6 @@ export interface SharedType_207 {
      * @default false
      */
     sync_mode?: boolean;
-}
-
-export interface SharedType_1f5 {
-    /**
-     * Prompt
-     * @description The prompt used for the generation.
-     * @example black-and-white video, a cowboy walks through a dusty town, film grain
-     */
-    prompt: string;
-    /**
-     * Seed
-     * @description The seed used for the random number generator.
-     * @example 1490631192028410600
-     */
-    seed: number;
-    /**
-     * @description The generated video.
-     * @example {
-     *       "height": 704,
-     *       "duration": 6.44,
-     *       "url": "https://v3b.fal.media/files/b/0a895ed5/SaTGe87IpMUMiSq33w5Qb_RoCJFZhc.mp4",
-     *       "width": 1248,
-     *       "fps": 25,
-     *       "file_name": "SaTGe87IpMUMiSq33w5Qb_RoCJFZhc.mp4",
-     *       "content_type": "video/mp4",
-     *       "num_frames": 161
-     *     }
-     */
-    video: Components.VideoFile;
 }
 
 export interface SharedType_1d1 {
@@ -20445,6 +20441,107 @@ export interface ViduReferenceToVideoOutput {
 export interface ViduReferenceToImageInput extends SharedType_79c {}
 
 export interface ViduReferenceToImageOutput extends SharedType_b81 {}
+
+export interface ViduQ3TextToVideoInput {
+    /**
+     * Aspect Ratio
+     * @description The aspect ratio of the output video
+     * @default 16:9
+     * @enum {string}
+     */
+    aspect_ratio?: '16:9' | '9:16' | '4:3' | '3:4' | '1:1';
+    /**
+     * Audio
+     * @description Whether to use direct audio-video generation. When true, outputs video with sound.
+     * @default true
+     */
+    audio?: boolean;
+    /**
+     * Duration
+     * @description Duration of the video in seconds
+     * @default 5
+     */
+    duration?: number;
+    /**
+     * Prompt
+     * @description Text prompt for video generation, max 2000 characters
+     * @example In an ultra-realistic fashion photography style featuring light blue and pale amber tones, an astronaut in a spacesuit walks through the fog.
+     */
+    prompt: string;
+    /**
+     * Resolution
+     * @description Output video resolution
+     * @default 720p
+     * @enum {string}
+     */
+    resolution?: '360p' | '540p' | '720p' | '1080p';
+    /**
+     * Seed
+     * @description Random seed for reproducibility. If None, a random seed is chosen.
+     */
+    seed?: number;
+}
+
+export interface ViduQ3TextToVideoOutput {
+    /**
+     * Video
+     * @description The generated video from text using the Q3 model
+     * @example {
+     *       "url": "https://v3b.fal.media/files/b/0a8c915a/8dtkty-vyhotySs--cTKS_output.mp4"
+     *     }
+     */
+    video: Components.File;
+}
+
+export interface ViduQ3ImageToVideoInput {
+    /**
+     * Audio
+     * @description Whether to use direct audio-video generation. When true, outputs video with sound.
+     * @default true
+     */
+    audio?: boolean;
+    /**
+     * Duration
+     * @description Duration of the video in seconds
+     * @default 5
+     */
+    duration?: number;
+    /**
+     * Image Url
+     * @description URL or base64 image to use as the starting frame
+     * @example https://prod-ss-images.s3.cn-northwest-1.amazonaws.com.cn/vidu-maas/template/image2video.png
+     */
+    image_url: string;
+    /**
+     * Prompt
+     * @description Text prompt for video generation, max 2000 characters
+     * @example The astronaut waved and the camera moved up.
+     */
+    prompt: string;
+    /**
+     * Resolution
+     * @description Output video resolution
+     * @default 720p
+     * @enum {string}
+     */
+    resolution?: '360p' | '540p' | '720p' | '1080p';
+    /**
+     * Seed
+     * @description Random seed for reproducibility. If None, a random seed is chosen.
+     */
+    seed?: number;
+}
+
+export interface ViduQ3ImageToVideoOutput {
+    /**
+     * Video
+     * @description The generated video from image using the Q3 model
+     * @example {
+     *       "url": "https://v3b.fal.media/files/b/0a8c9189/n9z3uUDPqmU2msAtqr25-_output.mp4"
+     *     }
+     */
+    video: Components.File;
+}
 
 export interface ViduQ2VideoExtensionProInput {
     /**
@@ -34063,16 +34160,16 @@ export interface NovaSrOutput {
      * Audio
      * @description The enhanced audio file.
      * @example {
-     *       "channels": 1,
+     *       "bitrate": "192k",
      *       "duration": 12.283291666666667,
      *       "url": "https://v3b.fal.media/files/b/0a8a3f1a/lTKExJu-R6ZJdnFlpzEeq_TxmNTNhl.mp3",
      *       "file_name": "lTKExJu-R6ZJdnFlpzEeq_TxmNTNhl.mp3",
      *       "sample_rate": 48000,
      *       "content_type": "audio/mpeg",
-     *       "bitrate": "192k"
+     *       "channels": 1
      *     }
      */
-    audio: Components.AudioFile_1;
+    audio: Components.AudioFile;
     /**
      * Timings
      * @description Timings for each step in the pipeline.
@@ -40389,6 +40486,17 @@ export interface Ltx219bVideoToVideoLoraInput {
      */
     acceleration?: 'none' | 'regular' | 'high' | 'full';
     /**
+     * Audio Strength
+     * @description Audio conditioning strength. Lower values represent more freedom given to the model to change the audio content.
+     * @default 1
+     */
+    audio_strength?: number;
+    /**
+     * Audio URL
+     * @description An optional URL of an audio to use as the audio for the video. If not provided, any audio present in the input video will be used.
+     */
+    audio_url?: string;
+    /**
      * Camera LoRA
      * @description The camera LoRA to use. This allows you to control the camera movement of the generated video more accurately than just prompting the model to move the camera.
      * @default none
@@ -40413,7 +40521,7 @@ export interface Ltx219bVideoToVideoLoraInput {
     /**
      * Enable Prompt Expansion
      * @description Whether to enable prompt expansion.
-     * @default false
+     * @default true
      */
     enable_prompt_expansion?: boolean;
     /**
@@ -40422,6 +40530,17 @@ export interface Ltx219bVideoToVideoLoraInput {
      * @default true
      */
     enable_safety_checker?: boolean;
+    /**
+     * End Image Strength
+     * @description The strength of the end image to use for the video generation.
+     * @default 1
+     */
+    end_image_strength?: number;
+    /**
+     * End Image URL
+     * @description The URL of the image to use as the end of the video.
+     */
+    end_image_url?: string;
     /**
      * FPS
      * @description The frames per second of the generated video.
@@ -40582,7 +40701,7 @@ export interface Ltx219bVideoToVideoLoraInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx219bVideoToVideoLoraOutput extends SharedType_1f5 {}
+export interface Ltx219bVideoToVideoLoraOutput extends SharedType_4ed {}
 
 export interface Ltx219bVideoToVideoInput {
     /**
@@ -40593,6 +40712,17 @@ export interface Ltx219bVideoToVideoInput {
      * @enum {string}
      */
     acceleration?: 'none' | 'regular' | 'high' | 'full';
+    /**
+     * Audio Strength
+     * @description Audio conditioning strength. Lower values represent more freedom given to the model to change the audio content.
+     * @default 1
+     */
+    audio_strength?: number;
+    /**
+     * Audio URL
+     * @description An optional URL of an audio to use as the audio for the video. If not provided, any audio present in the input video will be used.
+     */
+    audio_url?: string;
     /**
      * Camera LoRA
      * @description The camera LoRA to use. This allows you to control the camera movement of the generated video more accurately than just prompting the model to move the camera.
@@ -40618,7 +40748,7 @@ export interface Ltx219bVideoToVideoInput {
     /**
      * Enable Prompt Expansion
      * @description Whether to enable prompt expansion.
-     * @default false
+     * @default true
      */
     enable_prompt_expansion?: boolean;
     /**
@@ -40627,6 +40757,17 @@ export interface Ltx219bVideoToVideoInput {
      * @default true
      */
     enable_safety_checker?: boolean;
+    /**
+     * End Image Strength
+     * @description The strength of the end image to use for the video generation.
+     * @default 1
+     */
+    end_image_strength?: number;
+    /**
+     * End Image URL
+     * @description The URL of the image to use as the end of the video.
+     */
+    end_image_url?: string;
     /**
      * FPS
      * @description The frames per second of the generated video.
@@ -40782,7 +40923,7 @@ export interface Ltx219bVideoToVideoInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx219bVideoToVideoOutput extends SharedType_1f5 {}
+export interface Ltx219bVideoToVideoOutput extends SharedType_4ed {}
 
 export interface Ltx219bTextToVideoLoraInput {
     /**
@@ -40818,7 +40959,7 @@ export interface Ltx219bTextToVideoLoraInput {
     /**
      * Enable Prompt Expansion
      * @description Whether to enable prompt expansion.
-     * @default false
+     * @default true
      */
     enable_prompt_expansion?: boolean;
     /**
@@ -40929,7 +41070,7 @@ export interface Ltx219bTextToVideoLoraInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx219bTextToVideoLoraOutput extends SharedType_6ef {}
+export interface Ltx219bTextToVideoLoraOutput extends SharedType_61b {}
 
 export interface Ltx219bTextToVideoInput {
     /**
@@ -40965,7 +41106,7 @@ export interface Ltx219bTextToVideoInput {
     /**
      * Enable Prompt Expansion
      * @description Whether to enable prompt expansion.
-     * @default false
+     * @default true
      */
     enable_prompt_expansion?: boolean;
     /**
@@ -41071,7 +41212,7 @@ export interface Ltx219bTextToVideoInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx219bTextToVideoOutput extends SharedType_6ef {}
+export interface Ltx219bTextToVideoOutput extends SharedType_61b {}
 
 export interface Ltx219bImageToVideoLoraInput {
     /**
@@ -41107,7 +41248,7 @@ export interface Ltx219bImageToVideoLoraInput {
     /**
      * Enable Prompt Expansion
      * @description Whether to enable prompt expansion.
-     * @default false
+     * @default true
      */
     enable_prompt_expansion?: boolean;
     /**
@@ -41116,6 +41257,17 @@ export interface Ltx219bImageToVideoLoraInput {
      * @default true
      */
     enable_safety_checker?: boolean;
+    /**
+     * End Image Strength
+     * @description The strength of the end image to use for the video generation.
+     * @default 1
+     */
+    end_image_strength?: number;
+    /**
+     * End Image URL
+     * @description The URL of the image to use as the end of the video.
+     */
+    end_image_url?: string;
     /**
      * FPS
      * @description The frames per second of the generated video.
@@ -41146,6 +41298,13 @@ export interface Ltx219bImageToVideoLoraInput {
      * @example https://storage.googleapis.com/falserverless/example_inputs/ltxv-2-i2v-input.jpg
      */
     image_url: string;
+    /**
+     * Interpolation Direction
+     * @description The direction to interpolate the image sequence in. 'Forward' goes from the start image to the end image, 'Backward' goes from the end image to the start image.
+     * @default forward
+     * @enum {string}
+     */
+    interpolation_direction?: 'forward' | 'backward';
     /**
      * LoRAs
      * @description The LoRAs to use for the generation.
@@ -41231,7 +41390,7 @@ export interface Ltx219bImageToVideoLoraInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx219bImageToVideoLoraOutput extends SharedType_437 {}
+export interface Ltx219bImageToVideoLoraOutput extends SharedType_a00 {}
 
 export interface Ltx219bImageToVideoInput {
     /**
@@ -41267,7 +41426,7 @@ export interface Ltx219bImageToVideoInput {
     /**
      * Enable Prompt Expansion
      * @description Whether to enable prompt expansion.
-     * @default false
+     * @default true
      */
     enable_prompt_expansion?: boolean;
     /**
@@ -41276,6 +41435,17 @@ export interface Ltx219bImageToVideoInput {
      * @default true
      */
     enable_safety_checker?: boolean;
+    /**
+     * End Image Strength
+     * @description The strength of the end image to use for the video generation.
+     * @default 1
+     */
+    end_image_strength?: number;
+    /**
+     * End Image URL
+     * @description The URL of the image to use as the end of the video.
+     */
+    end_image_url?: string;
     /**
      * FPS
      * @description The frames per second of the generated video.
@@ -41306,6 +41476,13 @@ export interface Ltx219bImageToVideoInput {
      * @example https://storage.googleapis.com/falserverless/example_inputs/ltxv-2-i2v-input.jpg
      */
     image_url: string;
+    /**
+     * Interpolation Direction
+     * @description The direction to interpolate the image sequence in. 'Forward' goes from the start image to the end image, 'Backward' goes from the end image to the start image.
+     * @default forward
+     * @enum {string}
+     */
+    interpolation_direction?: 'forward' | 'backward';
     /**
      * Negative Prompt
      * @description The negative prompt to generate the video from.
@@ -41386,7 +41563,7 @@ export interface Ltx219bImageToVideoInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx219bImageToVideoOutput extends SharedType_437 {}
+export interface Ltx219bImageToVideoOutput extends SharedType_a00 {}
 
 export interface Ltx219bExtendVideoLoraInput {
     /**
@@ -41428,7 +41605,7 @@ export interface Ltx219bExtendVideoLoraInput {
     /**
      * Enable Prompt Expansion
      * @description Whether to enable prompt expansion.
-     * @default false
+     * @default true
      */
     enable_prompt_expansion?: boolean;
     /**
@@ -41437,6 +41614,24 @@ export interface Ltx219bExtendVideoLoraInput {
      * @default true
      */
     enable_safety_checker?: boolean;
+    /**
+     * End Image Strength
+     * @description The strength of the end image to use for the video generation.
+     * @default 1
+     */
+    end_image_strength?: number;
+    /**
+     * End Image URL
+     * @description The URL of the image to use as the end of the extended video.
+     */
+    end_image_url?: string;
+    /**
+     * Extend Direction
+     * @description Direction to extend the video. 'forward' extends from the end of the video, 'backward' extends from the beginning.
+     * @default forward
+     * @enum {string}
+     */
+    extend_direction?: 'forward' | 'backward';
     /**
      * FPS
      * @description The frames per second of the generated video.
@@ -41564,7 +41759,7 @@ export interface Ltx219bExtendVideoLoraInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx219bExtendVideoLoraOutput extends SharedType_5db {}
+export interface Ltx219bExtendVideoLoraOutput extends SharedType_567 {}
 
 export interface Ltx219bExtendVideoInput {
     /**
@@ -41606,7 +41801,7 @@ export interface Ltx219bExtendVideoInput {
     /**
      * Enable Prompt Expansion
      * @description Whether to enable prompt expansion.
-     * @default false
+     * @default true
      */
     enable_prompt_expansion?: boolean;
     /**
@@ -41615,6 +41810,24 @@ export interface Ltx219bExtendVideoInput {
      * @default true
      */
     enable_safety_checker?: boolean;
+    /**
+     * End Image Strength
+     * @description The strength of the end image to use for the video generation.
+     * @default 1
+     */
+    end_image_strength?: number;
+    /**
+     * End Image URL
+     * @description The URL of the image to use as the end of the extended video.
+     */
+    end_image_url?: string;
+    /**
+     * Extend Direction
+     * @description Direction to extend the video. 'forward' extends from the end of the video, 'backward' extends from the beginning.
+     * @default forward
+     * @enum {string}
+     */
+    extend_direction?: 'forward' | 'backward';
     /**
      * FPS
      * @description The frames per second of the generated video.
@@ -41737,7 +41950,7 @@ export interface Ltx219bExtendVideoInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx219bExtendVideoOutput extends SharedType_5db {}
+export interface Ltx219bExtendVideoOutput extends SharedType_567 {}
 
 export interface Ltx219bDistilledVideoToVideoLoraInput {
     /**
@@ -41748,6 +41961,17 @@ export interface Ltx219bDistilledVideoToVideoLoraInput {
      * @enum {string}
      */
     acceleration?: 'none' | 'regular' | 'high' | 'full';
+    /**
+     * Audio Strength
+     * @description Audio conditioning strength. Lower values represent more freedom given to the model to change the audio content.
+     * @default 1
+     */
+    audio_strength?: number;
+    /**
+     * Audio URL
+     * @description An optional URL of an audio to use as the audio for the video. If not provided, any audio present in the input video will be used.
+     */
+    audio_url?: string;
     /**
      * Camera LoRA
      * @description The camera LoRA to use. This allows you to control the camera movement of the generated video more accurately than just prompting the model to move the camera.
@@ -41773,7 +41997,7 @@ export interface Ltx219bDistilledVideoToVideoLoraInput {
     /**
      * Enable Prompt Expansion
      * @description Whether to enable prompt expansion.
-     * @default false
+     * @default true
      */
     enable_prompt_expansion?: boolean;
     /**
@@ -41782,6 +42006,17 @@ export interface Ltx219bDistilledVideoToVideoLoraInput {
      * @default true
      */
     enable_safety_checker?: boolean;
+    /**
+     * End Image Strength
+     * @description The strength of the end image to use for the video generation.
+     * @default 1
+     */
+    end_image_strength?: number;
+    /**
+     * End Image URL
+     * @description The URL of the image to use as the end of the video.
+     */
+    end_image_url?: string;
     /**
      * FPS
      * @description The frames per second of the generated video.
@@ -41930,7 +42165,7 @@ export interface Ltx219bDistilledVideoToVideoLoraInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx219bDistilledVideoToVideoLoraOutput extends SharedType_1f5 {}
+export interface Ltx219bDistilledVideoToVideoLoraOutput extends SharedType_4ed {}
 
 export interface Ltx219bDistilledVideoToVideoInput {
     /**
@@ -41941,6 +42176,17 @@ export interface Ltx219bDistilledVideoToVideoInput {
      * @enum {string}
      */
     acceleration?: 'none' | 'regular' | 'high' | 'full';
+    /**
+     * Audio Strength
+     * @description Audio conditioning strength. Lower values represent more freedom given to the model to change the audio content.
+     * @default 1
+     */
+    audio_strength?: number;
+    /**
+     * Audio URL
+     * @description An optional URL of an audio to use as the audio for the video. If not provided, any audio present in the input video will be used.
+     */
+    audio_url?: string;
     /**
      * Camera LoRA
      * @description The camera LoRA to use. This allows you to control the camera movement of the generated video more accurately than just prompting the model to move the camera.
@@ -41966,7 +42212,7 @@ export interface Ltx219bDistilledVideoToVideoInput {
     /**
      * Enable Prompt Expansion
      * @description Whether to enable prompt expansion.
-     * @default false
+     * @default true
      */
     enable_prompt_expansion?: boolean;
     /**
@@ -41975,6 +42221,17 @@ export interface Ltx219bDistilledVideoToVideoInput {
      * @default true
      */
     enable_safety_checker?: boolean;
+    /**
+     * End Image Strength
+     * @description The strength of the end image to use for the video generation.
+     * @default 1
+     */
+    end_image_strength?: number;
+    /**
+     * End Image URL
+     * @description The URL of the image to use as the end of the video.
+     */
+    end_image_url?: string;
     /**
      * FPS
      * @description The frames per second of the generated video.
@@ -42118,7 +42375,7 @@ export interface Ltx219bDistilledVideoToVideoInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx219bDistilledVideoToVideoOutput extends SharedType_1f5 {}
+export interface Ltx219bDistilledVideoToVideoOutput extends SharedType_4ed {}
 
 export interface Ltx219bDistilledTextToVideoLoraInput {
     /**
@@ -42154,7 +42411,7 @@ export interface Ltx219bDistilledTextToVideoLoraInput {
     /**
      * Enable Prompt Expansion
      * @description Whether to enable prompt expansion.
-     * @default false
+     * @default true
      */
     enable_prompt_expansion?: boolean;
     /**
@@ -42253,7 +42510,7 @@ export interface Ltx219bDistilledTextToVideoLoraInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx219bDistilledTextToVideoLoraOutput extends SharedType_6ef {}
+export interface Ltx219bDistilledTextToVideoLoraOutput extends SharedType_61b {}
 
 export interface Ltx219bDistilledTextToVideoInput {
     /**
@@ -42289,7 +42546,7 @@ export interface Ltx219bDistilledTextToVideoInput {
     /**
      * Enable Prompt Expansion
      * @description Whether to enable prompt expansion.
-     * @default false
+     * @default true
      */
     enable_prompt_expansion?: boolean;
     /**
@@ -42383,7 +42640,7 @@ export interface Ltx219bDistilledTextToVideoInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx219bDistilledTextToVideoOutput extends SharedType_6ef {}
+export interface Ltx219bDistilledTextToVideoOutput extends SharedType_61b {}
 
 export interface Ltx219bDistilledImageToVideoLoraInput {
     /**
@@ -42419,7 +42676,7 @@ export interface Ltx219bDistilledImageToVideoLoraInput {
     /**
      * Enable Prompt Expansion
      * @description Whether to enable prompt expansion.
-     * @default false
+     * @default true
      */
     enable_prompt_expansion?: boolean;
     /**
@@ -42428,6 +42685,17 @@ export interface Ltx219bDistilledImageToVideoLoraInput {
      * @default true
      */
     enable_safety_checker?: boolean;
+    /**
+     * End Image Strength
+     * @description The strength of the end image to use for the video generation.
+     * @default 1
+     */
+    end_image_strength?: number;
+    /**
+     * End Image URL
+     * @description The URL of the image to use as the end of the video.
+     */
+    end_image_url?: string;
     /**
      * FPS
      * @description The frames per second of the generated video.
@@ -42452,6 +42720,13 @@ export interface Ltx219bDistilledImageToVideoLoraInput {
      * @example https://storage.googleapis.com/falserverless/example_inputs/ltxv-2-i2v-input.jpg
      */
     image_url: string;
+    /**
+     * Interpolation Direction
+     * @description The direction to interpolate the image sequence in. 'Forward' goes from the start image to the end image, 'Backward' goes from the end image to the start image.
+     * @default forward
+     * @enum {string}
+     */
+    interpolation_direction?: 'forward' | 'backward';
     /**
      * LoRAs
      * @description The LoRAs to use for the generation.
@@ -42531,7 +42806,7 @@ export interface Ltx219bDistilledImageToVideoLoraInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx219bDistilledImageToVideoLoraOutput extends SharedType_437 {}
+export interface Ltx219bDistilledImageToVideoLoraOutput extends SharedType_a00 {}
 
 export interface Ltx219bDistilledImageToVideoInput {
     /**
@@ -42567,7 +42842,7 @@ export interface Ltx219bDistilledImageToVideoInput {
     /**
      * Enable Prompt Expansion
      * @description Whether to enable prompt expansion.
-     * @default false
+     * @default true
      */
     enable_prompt_expansion?: boolean;
     /**
@@ -42576,6 +42851,17 @@ export interface Ltx219bDistilledImageToVideoInput {
      * @default true
      */
     enable_safety_checker?: boolean;
+    /**
+     * End Image Strength
+     * @description The strength of the end image to use for the video generation.
+     * @default 1
+     */
+    end_image_strength?: number;
+    /**
+     * End Image URL
+     * @description The URL of the image to use as the end of the video.
+     */
+    end_image_url?: string;
     /**
      * FPS
      * @description The frames per second of the generated video.
@@ -42600,6 +42886,13 @@ export interface Ltx219bDistilledImageToVideoInput {
      * @example https://storage.googleapis.com/falserverless/example_inputs/ltxv-2-i2v-input.jpg
      */
     image_url: string;
+    /**
+     * Interpolation Direction
+     * @description The direction to interpolate the image sequence in. 'Forward' goes from the start image to the end image, 'Backward' goes from the end image to the start image.
+     * @default forward
+     * @enum {string}
+     */
+    interpolation_direction?: 'forward' | 'backward';
     /**
      * Negative Prompt
      * @description The negative prompt to generate the video from.
@@ -42674,7 +42967,7 @@ export interface Ltx219bDistilledImageToVideoInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx219bDistilledImageToVideoOutput extends SharedType_437 {}
+export interface Ltx219bDistilledImageToVideoOutput extends SharedType_a00 {}
 
 export interface Ltx219bDistilledExtendVideoLoraInput {
     /**
@@ -42716,7 +43009,7 @@ export interface Ltx219bDistilledExtendVideoLoraInput {
     /**
      * Enable Prompt Expansion
      * @description Whether to enable prompt expansion.
-     * @default false
+     * @default true
      */
     enable_prompt_expansion?: boolean;
     /**
@@ -42725,6 +43018,24 @@ export interface Ltx219bDistilledExtendVideoLoraInput {
      * @default true
      */
     enable_safety_checker?: boolean;
+    /**
+     * End Image Strength
+     * @description The strength of the end image to use for the video generation.
+     * @default 1
+     */
+    end_image_strength?: number;
+    /**
+     * End Image URL
+     * @description The URL of the image to use as the end of the extended video.
+     */
+    end_image_url?: string;
+    /**
+     * Extend Direction
+     * @description Direction to extend the video. 'forward' extends from the end of the video, 'backward' extends from the beginning.
+     * @default forward
+     * @enum {string}
+     */
+    extend_direction?: 'forward' | 'backward';
     /**
      * FPS
      * @description The frames per second of the generated video.
@@ -42840,7 +43151,7 @@ export interface Ltx219bDistilledExtendVideoLoraInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx219bDistilledExtendVideoLoraOutput extends SharedType_5db {}
+export interface Ltx219bDistilledExtendVideoLoraOutput extends SharedType_567 {}
 
 export interface Ltx219bDistilledExtendVideoInput {
     /**
@@ -42882,7 +43193,7 @@ export interface Ltx219bDistilledExtendVideoInput {
     /**
      * Enable Prompt Expansion
      * @description Whether to enable prompt expansion.
-     * @default false
+     * @default true
      */
     enable_prompt_expansion?: boolean;
     /**
@@ -42891,6 +43202,24 @@ export interface Ltx219bDistilledExtendVideoInput {
      * @default true
      */
     enable_safety_checker?: boolean;
+    /**
+     * End Image Strength
+     * @description The strength of the end image to use for the video generation.
+     * @default 1
+     */
+    end_image_strength?: number;
+    /**
+     * End Image URL
+     * @description The URL of the image to use as the end of the extended video.
+     */
+    end_image_url?: string;
+    /**
+     * Extend Direction
+     * @description Direction to extend the video. 'forward' extends from the end of the video, 'backward' extends from the beginning.
+     * @default forward
+     * @enum {string}
+     */
+    extend_direction?: 'forward' | 'backward';
     /**
      * FPS
      * @description The frames per second of the generated video.
@@ -43001,7 +43330,7 @@ export interface Ltx219bDistilledExtendVideoInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx219bDistilledExtendVideoOutput extends SharedType_5db {}
+export interface Ltx219bDistilledExtendVideoOutput extends SharedType_567 {}
 
 export interface Ltx219bDistilledAudioToVideoLoraInput {
     /**
@@ -43049,7 +43378,7 @@ export interface Ltx219bDistilledAudioToVideoLoraInput {
     /**
      * Enable Prompt Expansion
      * @description Whether to enable prompt expansion.
-     * @default false
+     * @default true
      */
     enable_prompt_expansion?: boolean;
     /**
@@ -43058,6 +43387,17 @@ export interface Ltx219bDistilledAudioToVideoLoraInput {
      * @default true
      */
     enable_safety_checker?: boolean;
+    /**
+     * End Image Strength
+     * @description The strength of the end image to use for the video generation.
+     * @default 1
+     */
+    end_image_strength?: number;
+    /**
+     * End Image URL
+     * @description The URL of the image to use as the end of the video.
+     */
+    end_image_url?: string;
     /**
      * FPS
      * @description The frames per second of the generated video.
@@ -43215,7 +43555,7 @@ export interface Ltx219bDistilledAudioToVideoInput {
     /**
      * Enable Prompt Expansion
      * @description Whether to enable prompt expansion.
-     * @default false
+     * @default true
      */
     enable_prompt_expansion?: boolean;
     /**
@@ -43224,6 +43564,17 @@ export interface Ltx219bDistilledAudioToVideoInput {
      * @default true
      */
     enable_safety_checker?: boolean;
+    /**
+     * End Image Strength
+     * @description The strength of the end image to use for the video generation.
+     * @default 1
+     */
+    end_image_strength?: number;
+    /**
+     * End Image URL
+     * @description The URL of the image to use as the end of the video.
+     */
+    end_image_url?: string;
     /**
      * FPS
      * @description The frames per second of the generated video.
@@ -43376,7 +43727,7 @@ export interface Ltx219bAudioToVideoLoraInput {
     /**
      * Enable Prompt Expansion
      * @description Whether to enable prompt expansion.
-     * @default false
+     * @default true
      */
     enable_prompt_expansion?: boolean;
     /**
@@ -43385,6 +43736,17 @@ export interface Ltx219bAudioToVideoLoraInput {
      * @default true
      */
     enable_safety_checker?: boolean;
+    /**
+     * End Image Strength
+     * @description The strength of the end image to use for the video generation.
+     * @default 1
+     */
+    end_image_strength?: number;
+    /**
+     * End Image URL
+     * @description The URL of the image to use as the end of the video.
+     */
+    end_image_url?: string;
     /**
      * FPS
      * @description The frames per second of the generated video.
@@ -43554,7 +43916,7 @@ export interface Ltx219bAudioToVideoInput {
     /**
      * Enable Prompt Expansion
      * @description Whether to enable prompt expansion.
-     * @default false
+     * @default true
      */
     enable_prompt_expansion?: boolean;
     /**
@@ -43563,6 +43925,17 @@ export interface Ltx219bAudioToVideoInput {
      * @default true
      */
     enable_safety_checker?: boolean;
+    /**
+     * End Image Strength
+     * @description The strength of the end image to use for the video generation.
+     * @default 1
+     */
+    end_image_strength?: number;
+    /**
+     * End Image URL
+     * @description The URL of the image to use as the end of the video.
+     */
+    end_image_url?: string;
     /**
      * FPS
      * @description The frames per second of the generated video.
@@ -50522,7 +50895,7 @@ export interface ImageEditingYoutubeThumbnailsInput {
     seed?: number;
     /**
      * Sync Mode
-     * @description If set to true, the function will wait for the image to be generated and uploaded before returning the response. This will increase the latency of the function but it allows you to get the image directly in the response without going through the CDN.
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
      * @default false
      */
     sync_mode?: boolean;
@@ -50580,7 +50953,7 @@ export interface ImageEditingWojakStyleInput {
     seed?: number;
     /**
      * Sync Mode
-     * @description If set to true, the function will wait for the image to be generated and uploaded before returning the response. This will increase the latency of the function but it allows you to get the image directly in the response without going through the CDN.
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
      * @default false
      */
     sync_mode?: boolean;
@@ -50653,7 +51026,7 @@ export interface ImageEditingWeatherEffectInput {
     seed?: number;
     /**
      * Sync Mode
-     * @description If set to true, the function will wait for the image to be generated and uploaded before returning the response. This will increase the latency of the function but it allows you to get the image directly in the response without going through the CDN.
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
      * @default false
      */
     sync_mode?: boolean;
@@ -50726,7 +51099,7 @@ export interface ImageEditingTimeOfDayInput {
     seed?: number;
     /**
      * Sync Mode
-     * @description If set to true, the function will wait for the image to be generated and uploaded before returning the response. This will increase the latency of the function but it allows you to get the image directly in the response without going through the CDN.
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
      * @default false
      */
     sync_mode?: boolean;
@@ -50792,7 +51165,7 @@ export interface ImageEditingTextRemovalInput {
     seed?: number;
     /**
      * Sync Mode
-     * @description If set to true, the function will wait for the image to be generated and uploaded before returning the response. This will increase the latency of the function but it allows you to get the image directly in the response without going through the CDN.
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
      * @default false
      */
     sync_mode?: boolean;
@@ -50865,7 +51238,7 @@ export interface ImageEditingStyleTransferInput {
     seed?: number;
     /**
      * Sync Mode
-     * @description If set to true, the function will wait for the image to be generated and uploaded before returning the response. This will increase the latency of the function but it allows you to get the image directly in the response without going through the CDN.
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
      * @default false
      */
     sync_mode?: boolean;
@@ -50938,7 +51311,7 @@ export interface ImageEditingSceneCompositionInput {
     seed?: number;
     /**
      * Sync Mode
-     * @description If set to true, the function will wait for the image to be generated and uploaded before returning the response. This will increase the latency of the function but it allows you to get the image directly in the response without going through the CDN.
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
      * @default false
      */
     sync_mode?: boolean;
@@ -50996,7 +51369,7 @@ export interface ImageEditingRetouchInput {
     seed?: number;
     /**
      * Sync Mode
-     * @description If set to true, the function will wait for the image to be generated and uploaded before returning the response. This will increase the latency of the function but it allows you to get the image directly in the response without going through the CDN.
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
      * @default false
      */
     sync_mode?: boolean;
@@ -51064,7 +51437,7 @@ export interface ImageEditingReframeInput {
     seed?: number;
     /**
      * Sync Mode
-     * @description If set to true, the function will wait for the image to be generated and uploaded before returning the response. This will increase the latency of the function but it allows you to get the image directly in the response without going through the CDN.
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
      * @default false
      */
     sync_mode?: boolean;
@@ -51122,7 +51495,7 @@ export interface ImageEditingRealismInput {
     seed?: number;
     /**
      * Sync Mode
-     * @description If set to true, the function will wait for the image to be generated and uploaded before returning the response. This will increase the latency of the function but it allows you to get the image directly in the response without going through the CDN.
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
      * @default false
      */
     sync_mode?: boolean;
@@ -51142,7 +51515,7 @@ export interface ImageEditingRealismOutput {
     seed: number;
 }
 
-export interface ImageEditingProfessionalPhotoInput extends SharedType_212 {}
+export interface ImageEditingProfessionalPhotoInput extends SharedType_868 {}
 
 export interface ImageEditingProfessionalPhotoOutput {
     /**
@@ -51196,7 +51569,7 @@ export interface ImageEditingPlushieStyleInput {
     seed?: number;
     /**
      * Sync Mode
-     * @description If set to true, the function will wait for the image to be generated and uploaded before returning the response. This will increase the latency of the function but it allows you to get the image directly in the response without going through the CDN.
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
      * @default false
      */
     sync_mode?: boolean;
@@ -51262,7 +51635,7 @@ export interface ImageEditingPhotoRestorationInput {
     seed?: number;
     /**
      * Sync Mode
-     * @description If set to true, the function will wait for the image to be generated and uploaded before returning the response. This will increase the latency of the function but it allows you to get the image directly in the response without going through the CDN.
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
      * @default false
      */
     sync_mode?: boolean;
@@ -51335,7 +51708,7 @@ export interface ImageEditingObjectRemovalInput {
     seed?: number;
     /**
      * Sync Mode
-     * @description If set to true, the function will wait for the image to be generated and uploaded before returning the response. This will increase the latency of the function but it allows you to get the image directly in the response without going through the CDN.
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
      * @default false
      */
     sync_mode?: boolean;
@@ -51408,7 +51781,7 @@ export interface ImageEditingHairChangeInput {
     seed?: number;
     /**
      * Sync Mode
-     * @description If set to true, the function will wait for the image to be generated and uploaded before returning the response. This will increase the latency of the function but it allows you to get the image directly in the response without going through the CDN.
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
      * @default false
      */
     sync_mode?: boolean;
@@ -51428,7 +51801,7 @@ export interface ImageEditingHairChangeOutput {
     seed: number;
 }
 
-export interface ImageEditingFaceEnhancementInput extends SharedType_212 {}
+export interface ImageEditingFaceEnhancementInput extends SharedType_868 {}
 
 export interface ImageEditingFaceEnhancementOutput {
     /**
@@ -51497,7 +51870,7 @@ export interface ImageEditingExpressionChangeInput {
     seed?: number;
     /**
      * Sync Mode
-     * @description If set to true, the function will wait for the image to be generated and uploaded before returning the response. This will increase the latency of the function but it allows you to get the image directly in the response without going through the CDN.
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
      * @default false
      */
     sync_mode?: boolean;
@@ -51517,7 +51890,7 @@ export interface ImageEditingExpressionChangeOutput {
     seed: number;
 }
 
-export interface ImageEditingColorCorrectionInput extends SharedType_212 {}
+export interface ImageEditingColorCorrectionInput extends SharedType_868 {}
 
 export interface ImageEditingColorCorrectionOutput {
     /**
@@ -51533,7 +51906,7 @@ export interface ImageEditingColorCorrectionOutput {
     seed: number;
 }
 
-export interface ImageEditingCartoonifyInput extends SharedType_212 {}
+export interface ImageEditingCartoonifyInput extends SharedType_868 {}
 
 export interface ImageEditingCartoonifyOutput {
     /**
@@ -51587,7 +51960,7 @@ export interface ImageEditingBroccoliHaircutInput {
     seed?: number;
     /**
      * Sync Mode
-     * @description If set to true, the function will wait for the image to be generated and uploaded before returning the response. This will increase the latency of the function but it allows you to get the image directly in the response without going through the CDN.
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
      * @default false
      */
     sync_mode?: boolean;
@@ -51660,7 +52033,7 @@ export interface ImageEditingBackgroundChangeInput {
     seed?: number;
     /**
      * Sync Mode
-     * @description If set to true, the function will wait for the image to be generated and uploaded before returning the response. This will increase the latency of the function but it allows you to get the image directly in the response without going through the CDN.
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
      * @default false
      */
     sync_mode?: boolean;
@@ -51726,7 +52099,7 @@ export interface ImageEditingBabyVersionInput {
     seed?: number;
     /**
      * Sync Mode
-     * @description If set to true, the function will wait for the image to be generated and uploaded before returning the response. This will increase the latency of the function but it allows you to get the image directly in the response without going through the CDN.
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
      * @default false
      */
     sync_mode?: boolean;
@@ -51799,7 +52172,7 @@ export interface ImageEditingAgeProgressionInput {
     seed?: number;
     /**
      * Sync Mode
-     * @description If set to true, the function will wait for the image to be generated and uploaded before returning the response. This will increase the latency of the function but it allows you to get the image directly in the response without going through the CDN.
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
      * @default false
      */
     sync_mode?: boolean;
@@ -56160,17 +56533,17 @@ export interface Hunyuan3dV31ProTextTo3dOutput {
      *         "content_type": "text/plain",
      *         "url": "https://v3b.fal.media/files/b/0a8c5482/ZxJepsEkhM67VSugmZ7QT_material.mtl"
      *       },
-     *       "glb": {
-     *         "file_size": 35833072,
-     *         "file_name": "model.glb",
-     *         "content_type": "model/gltf-binary",
-     *         "url": "https://v3b.fal.media/files/b/0a8c5483/z6sbpr5wBRjqgnQlJM2Ot_model.glb"
-     *       },
      *       "obj": {
      *         "file_size": 34755929,
      *         "file_name": "6168030a8817075aaa55c94cc5145000.obj",
      *         "content_type": "model/obj",
      *         "url": "https://v3b.fal.media/files/b/0a8c5482/ZzC1xlOftyGQxhDkbZzVW_6168030a8817075aaa55c94cc5145000.obj"
+     *       },
+     *       "glb": {
+     *         "file_size": 35833072,
+     *         "file_name": "model.glb",
+     *         "content_type": "model/gltf-binary",
+     *         "url": "https://v3b.fal.media/files/b/0a8c5483/z6sbpr5wBRjqgnQlJM2Ot_model.glb"
      *       }
      *     }
      */
