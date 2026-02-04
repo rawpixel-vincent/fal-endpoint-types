@@ -31,6 +31,7 @@ export interface XaiGrokImagineVideoTextToVideoInput {
 
 export interface XaiGrokImagineVideoTextToVideoOutput {
     /**
+     * Video
      * @description The generated video.
      * @example {
      *       "height": 720,
@@ -39,11 +40,11 @@ export interface XaiGrokImagineVideoTextToVideoOutput {
      *       "fps": 24,
      *       "width": 1280,
      *       "file_name": "RUAbFYlssdqnbjNLmE8qP_IX7BNYGP.mp4",
-     *       "content_type": "video/mp4",
-     *       "num_frames": 145
+     *       "num_frames": 145,
+     *       "content_type": "video/mp4"
      *     }
      */
-    video: Components.VideoFile;
+    video: Components.VideoFile_1;
 }
 
 export interface XaiGrokImagineVideoImageToVideoInput {
@@ -51,6 +52,7 @@ export interface XaiGrokImagineVideoImageToVideoInput {
      * Aspect Ratio
      * @description Aspect ratio of the generated video.
      * @default auto
+     * @enum {string}
      */
     aspect_ratio?: 'auto' | '16:9' | '4:3' | '3:2' | '1:1' | '2:3' | '3:4' | '9:16';
     /**
@@ -82,6 +84,7 @@ export interface XaiGrokImagineVideoImageToVideoInput {
 
 export interface XaiGrokImagineVideoImageToVideoOutput {
     /**
+     * Video
      * @description The generated video.
      * @example {
      *       "height": 720,
@@ -90,11 +93,11 @@ export interface XaiGrokImagineVideoImageToVideoOutput {
      *       "fps": 24,
      *       "width": 1280,
      *       "file_name": "0Ci1dviuSnEyUZzBUq-_5_nu7MrAAa.mp4",
-     *       "content_type": "video/mp4",
-     *       "num_frames": 145
+     *       "num_frames": 145,
+     *       "content_type": "video/mp4"
      *     }
      */
-    video: Components.VideoFile;
+    video: Components.VideoFile_1;
 }
 
 export interface XaiGrokImagineVideoEditVideoInput {
@@ -121,6 +124,7 @@ export interface XaiGrokImagineVideoEditVideoInput {
 
 export interface XaiGrokImagineVideoEditVideoOutput {
     /**
+     * Video
      * @description The generated video.
      * @example {
      *       "height": 720,
@@ -129,11 +133,11 @@ export interface XaiGrokImagineVideoEditVideoOutput {
      *       "fps": 24,
      *       "width": 1280,
      *       "file_name": "EuDrZuQTW9m1phBXOsauz_EpJH3s8X.mp4",
-     *       "content_type": "video/mp4",
-     *       "num_frames": 121
+     *       "num_frames": 121,
+     *       "content_type": "video/mp4"
      *     }
      */
-    video: Components.VideoFile;
+    video: Components.VideoFile_1;
 }
 
 export interface XaiGrokImagineImageEditInput {
@@ -180,7 +184,7 @@ export interface XaiGrokImagineImageEditOutput {
      *       }
      *     ]
      */
-    images: Components.ImageFile_1[];
+    images: Components.ImageFile[];
     /**
      * Revised Prompt
      * @description The enhanced prompt that was used to generate the image.
@@ -246,7 +250,7 @@ export interface XaiGrokImagineImageOutput {
      *       }
      *     ]
      */
-    images: Components.ImageFile_1[];
+    images: Components.ImageFile[];
     /**
      * Revised Prompt
      * @description The enhanced prompt that was used to generate the image.
@@ -3906,65 +3910,6 @@ export interface SharedType_c3a {
      *     ]
      */
     speakers: Components.VibeVoiceSpeaker[];
-}
-
-export interface SharedType_c18 {
-    /**
-     * Aspect Ratio
-     * @description The aspect ratio of the generated image.
-     * @default 1:1
-     * @enum {string}
-     */
-    aspect_ratio?: '21:9' | '16:9' | '3:2' | '4:3' | '5:4' | '1:1' | '4:5' | '3:4' | '2:3' | '9:16';
-    /**
-     * Enable Web Search
-     * @description Enable web search for the image generation task. This will allow the model to use the latest information from the web to generate the image.
-     * @default false
-     */
-    enable_web_search?: boolean;
-    /**
-     * Limit Generations
-     * @description Experimental parameter to limit the number of generations from each round of prompting to 1. Set to `True` to to disregard any instructions in the prompt regarding the number of images to generate.
-     * @default false
-     */
-    limit_generations?: boolean;
-    /**
-     * Number of Images
-     * @description The number of images to generate.
-     * @default 1
-     */
-    num_images?: number;
-    /**
-     * Output Format
-     * @description The format of the generated image.
-     * @default png
-     * @enum {string}
-     */
-    output_format?: 'jpeg' | 'png' | 'webp';
-    /**
-     * Prompt
-     * @description The text prompt to generate an image from.
-     * @example An action shot of a black lab swimming in an inground suburban swimming pool. The camera is placed meticulously on the water line, dividing the image in half, revealing both the dogs head above water holding a tennis ball in it's mouth, and it's paws paddling underwater.
-     */
-    prompt: string;
-    /**
-     * Resolution
-     * @description The resolution of the image to generate.
-     * @default 1K
-     * @enum {string}
-     */
-    resolution?: '1K' | '2K' | '4K';
-    /**
-     * Seed
-     * @description The seed for the random number generator.
-     */
-    seed?: number;
-    /**
-     * Sync Mode
-     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
-     * @default false
-     */
-    sync_mode?: boolean;
 }
 
 export interface SharedType_bf2 {
@@ -10133,6 +10078,75 @@ export interface SharedType_2c4 {
      * @enum {string}
      */
     resolution?: '720p' | '1080p';
+}
+
+export interface SharedType_2a3 {
+    /**
+     * Aspect Ratio
+     * @description The aspect ratio of the generated image. Use "auto" to let the model decide based on the prompt.
+     * @default 1:1
+     */
+    aspect_ratio?:
+        | 'auto'
+        | '21:9'
+        | '16:9'
+        | '3:2'
+        | '4:3'
+        | '5:4'
+        | '1:1'
+        | '4:5'
+        | '3:4'
+        | '2:3'
+        | '9:16';
+    /**
+     * Enable Web Search
+     * @description Enable web search for the image generation task. This will allow the model to use the latest information from the web to generate the image.
+     * @default false
+     */
+    enable_web_search?: boolean;
+    /**
+     * Limit Generations
+     * @description Experimental parameter to limit the number of generations from each round of prompting to 1. Set to `True` to to disregard any instructions in the prompt regarding the number of images to generate.
+     * @default false
+     */
+    limit_generations?: boolean;
+    /**
+     * Number of Images
+     * @description The number of images to generate.
+     * @default 1
+     */
+    num_images?: number;
+    /**
+     * Output Format
+     * @description The format of the generated image.
+     * @default png
+     * @enum {string}
+     */
+    output_format?: 'jpeg' | 'png' | 'webp';
+    /**
+     * Prompt
+     * @description The text prompt to generate an image from.
+     * @example An action shot of a black lab swimming in an inground suburban swimming pool. The camera is placed meticulously on the water line, dividing the image in half, revealing both the dogs head above water holding a tennis ball in it's mouth, and it's paws paddling underwater.
+     */
+    prompt: string;
+    /**
+     * Resolution
+     * @description The resolution of the image to generate.
+     * @default 1K
+     * @enum {string}
+     */
+    resolution?: '1K' | '2K' | '4K';
+    /**
+     * Seed
+     * @description The seed for the random number generator.
+     */
+    seed?: number;
+    /**
+     * Sync Mode
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
+     * @default false
+     */
+    sync_mode?: boolean;
 }
 
 export interface SharedType_298 {
@@ -34282,7 +34296,7 @@ export interface NanoBananaProEditInput extends SharedType_eac {}
 
 export interface NanoBananaProEditOutput extends SharedType_876 {}
 
-export interface NanoBananaProInput extends SharedType_c18 {}
+export interface NanoBananaProInput extends SharedType_2a3 {}
 
 export interface NanoBananaProOutput extends SharedType_7b9 {}
 
@@ -49154,7 +49168,7 @@ export interface KlingImageO1Input {
      *       }
      *     ]
      */
-    elements?: Components.OmniImageElementInput[];
+    elements?: Components.ElementInput[];
     /**
      * Image Urls
      * @description List of reference images. Reference images in prompt using @Image1, @Image2, etc. (1-indexed). Max 10 images.
@@ -57291,7 +57305,7 @@ export interface GptImage1TextToImageOutput {
      *       }
      *     ]
      */
-    images: Components.ImageFile[];
+    images: Components.ImageFile_1[];
 }
 
 export interface GptImage1EditImageInput {
@@ -57373,7 +57387,7 @@ export interface GptImage1EditImageOutput {
      *       }
      *     ]
      */
-    images: Components.ImageFile[];
+    images: Components.ImageFile_1[];
 }
 
 export interface GptImage15EditInput {
@@ -57605,7 +57619,7 @@ export interface GptImage1MiniEditOutput {
      *       }
      *     ]
      */
-    images: Components.ImageFile[];
+    images: Components.ImageFile_1[];
 }
 
 export interface GptImage1MiniInput {
@@ -57672,7 +57686,7 @@ export interface GptImage1MiniOutput {
      *       }
      *     ]
      */
-    images: Components.ImageFile[];
+    images: Components.ImageFile_1[];
 }
 
 export interface GotOcrV2Input {
@@ -58022,7 +58036,7 @@ export interface Gemini3ProImagePreviewEditInput extends SharedType_eac {}
 
 export interface Gemini3ProImagePreviewEditOutput extends SharedType_876 {}
 
-export interface Gemini3ProImagePreviewInput extends SharedType_c18 {}
+export interface Gemini3ProImagePreviewInput extends SharedType_2a3 {}
 
 export interface Gemini3ProImagePreviewOutput extends SharedType_7b9 {}
 
@@ -61673,9 +61687,7 @@ export interface FluxLoraDepthInput {
     seed?: number;
     /**
      * Sync Mode
-     * @description If set to true, the function will wait for the image to be generated and uploaded
-     *                 before returning the response. This will increase the latency of the function but
-     *                 it allows you to get the image directly in the response without going through the CDN.
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
      * @default false
      */
     sync_mode?: boolean;

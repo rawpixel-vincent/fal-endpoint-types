@@ -1382,19 +1382,6 @@ export interface OmniVideoElementInput {
     reference_image_urls?: string[];
 }
 
-export interface OmniImageElementInput {
-    /**
-     * Frontal Image Url
-     * @description The frontal image of the element (main view).
-     */
-    frontal_image_url: string;
-    /**
-     * Reference Image Urls
-     * @description Additional reference images from different angles. 1-3 images supported. At least one image is required.
-     */
-    reference_image_urls?: string[];
-}
-
 export interface OCRBoundingBox {
     /**
      * Quad Boxes
@@ -2665,6 +2652,19 @@ export interface Embedding {
      *     ]
      */
     tokens?: string[];
+}
+
+export interface ElementInput {
+    /**
+     * Frontal Image Url
+     * @description The frontal image of the element (main view). Optional.
+     */
+    frontal_image_url?: string;
+    /**
+     * Reference Image Urls
+     * @description Additional reference images from different angles. 0-3 images supported. Optional.
+     */
+    reference_image_urls?: string[];
 }
 
 export interface EasyControlWeight {
