@@ -2,13 +2,11 @@
 
 declare global {
     export namespace fal {
-        export type Endpoint = keyof fal.endpoints.Endpoints | (string & {});
+        export type Endpoint = keyof fal.endpoints.Endpoints;
         export type EndpointInput<T extends fal.Endpoint> =
-            T extends keyof fal.endpoints.Endpoints ? fal.endpoints.Endpoints[T]['input']
-            :   { [K in string]: any };
+            T extends keyof fal.endpoints.Endpoints ? fal.endpoints.Endpoints[T]['input'] : never;
         export type EndpointOutput<T extends fal.Endpoint> =
-            T extends keyof fal.endpoints.Endpoints ? fal.endpoints.Endpoints[T]['output']
-            :   { [K in string]: any };
+            T extends keyof fal.endpoints.Endpoints ? fal.endpoints.Endpoints[T]['output'] : never;
 
         /** Show all possible output properties for a set of endpoints. */
         export type EndpointsOutputsCombined<
