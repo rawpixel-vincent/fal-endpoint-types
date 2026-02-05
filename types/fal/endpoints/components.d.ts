@@ -85,6 +85,27 @@ export interface VoiceSetting {
     vol?: number;
 }
 
+export interface VoiceModify {
+    /**
+     * Intensity
+     * @description Intensity/energy of the voice. Range: -100 to 100. Higher values create more energetic speech.
+     * @default 0
+     */
+    intensity?: number;
+    /**
+     * Pitch
+     * @description Pitch adjustment in semitones. Range: -100 to 100. Positive values raise pitch, negative values lower it.
+     * @default 0
+     */
+    pitch?: number;
+    /**
+     * Timbre
+     * @description Timbre adjustment. Range: -100 to 100. Affects the tonal quality of the voice.
+     * @default 0
+     */
+    timbre?: number;
+}
+
 export interface VideoFormat {
     /**
      * Bitrate
@@ -1895,6 +1916,58 @@ export interface Lighting {
      * @description The shadows in the image to be generated.
      */
     shadows?: string;
+}
+
+export interface KlingV3MultiPromptElement {
+    /**
+     * Duration
+     * @description The duration of this shot in seconds
+     * @default 5
+     * @enum {string}
+     */
+    duration?: '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' | '13' | '14' | '15';
+    /**
+     * Prompt
+     * @description The prompt for this shot.
+     */
+    prompt: string;
+}
+
+export interface KlingV3ImageElementInput {
+    /**
+     * Frontal Image Url
+     * @description The frontal image of the element (main view).
+     *
+     *     Max file size: 10.0MB, Min width: 300px, Min height: 300px, Min aspect ratio: 0.40, Max aspect ratio: 2.50, Timeout: 20.0s
+     */
+    frontal_image_url?: string;
+    /**
+     * Reference Image Urls
+     * @description Additional reference images from different angles. 1-3 images supported. At least one image is required.
+     */
+    reference_image_urls?: string[];
+}
+
+export interface KlingV3ComboElementInput {
+    /**
+     * Frontal Image Url
+     * @description The frontal image of the element (main view).
+     *
+     *     Max file size: 10.0MB, Min width: 300px, Min height: 300px, Min aspect ratio: 0.40, Max aspect ratio: 2.50, Timeout: 20.0s
+     */
+    frontal_image_url?: string;
+    /**
+     * Reference Image Urls
+     * @description Additional reference images from different angles. 1-3 images supported. At least one image is required.
+     */
+    reference_image_urls?: string[];
+    /**
+     * Video Url
+     * @description The video URL of the element. A request can only have one element with a video.
+     *
+     *     Max file size: 200.0MB, Min width: 720px, Min height: 720px, Max width: 2160px, Max height: 2160px, Min duration: 3.0s, Max duration: 10.05s, Min FPS: 24.0, Max FPS: 60.0, Timeout: 30.0s
+     */
+    video_url?: string;
 }
 
 export interface KeyframeTransition {

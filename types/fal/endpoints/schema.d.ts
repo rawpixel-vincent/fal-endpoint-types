@@ -37,8 +37,8 @@ export interface XaiGrokImagineVideoTextToVideoOutput {
      *       "height": 720,
      *       "duration": 6.041667,
      *       "url": "https://v3b.fal.media/files/b/0a8b90e4/RUAbFYlssdqnbjNLmE8qP_IX7BNYGP.mp4",
-     *       "fps": 24,
      *       "width": 1280,
+     *       "fps": 24,
      *       "file_name": "RUAbFYlssdqnbjNLmE8qP_IX7BNYGP.mp4",
      *       "num_frames": 145,
      *       "content_type": "video/mp4"
@@ -90,8 +90,8 @@ export interface XaiGrokImagineVideoImageToVideoOutput {
      *       "height": 720,
      *       "duration": 6.041667,
      *       "url": "https://v3b.fal.media/files/b/0a8b90e0/0Ci1dviuSnEyUZzBUq-_5_nu7MrAAa.mp4",
-     *       "fps": 24,
      *       "width": 1280,
+     *       "fps": 24,
      *       "file_name": "0Ci1dviuSnEyUZzBUq-_5_nu7MrAAa.mp4",
      *       "num_frames": 145,
      *       "content_type": "video/mp4"
@@ -130,8 +130,8 @@ export interface XaiGrokImagineVideoEditVideoOutput {
      *       "height": 720,
      *       "duration": 5.041667,
      *       "url": "https://v3b.fal.media/files/b/0a8b9113/EuDrZuQTW9m1phBXOsauz_EpJH3s8X.mp4",
-     *       "fps": 24,
      *       "width": 1280,
+     *       "fps": 24,
      *       "file_name": "EuDrZuQTW9m1phBXOsauz_EpJH3s8X.mp4",
      *       "num_frames": 121,
      *       "content_type": "video/mp4"
@@ -2219,82 +2219,18 @@ export interface SharedType_ec2 {
     video: Components.File;
 }
 
-export interface SharedType_eac {
+export interface SharedType_e8e {
     /**
-     * Aspect Ratio
-     * @description The aspect ratio of the generated image.
-     * @default auto
+     * Video
+     * @description The generated video.
+     * @example {
+     *       "file_size": 12037975,
+     *       "file_name": "output.mp4",
+     *       "content_type": "video/mp4",
+     *       "url": "https://v3b.fal.media/files/b/0a8d0278/pgIO9yOXTFCTetKBsqDwX_output.mp4"
+     *     }
      */
-    aspect_ratio?:
-        | 'auto'
-        | '21:9'
-        | '16:9'
-        | '3:2'
-        | '4:3'
-        | '5:4'
-        | '1:1'
-        | '4:5'
-        | '3:4'
-        | '2:3'
-        | '9:16';
-    /**
-     * Enable Web Search
-     * @description Enable web search for the image generation task. This will allow the model to use the latest information from the web to generate the image.
-     * @default false
-     */
-    enable_web_search?: boolean;
-    /**
-     * Image URLs
-     * @description The URLs of the images to use for image-to-image generation or image editing.
-     * @example [
-     *       "https://storage.googleapis.com/falserverless/example_inputs/nano-banana-edit-input.png",
-     *       "https://storage.googleapis.com/falserverless/example_inputs/nano-banana-edit-input-2.png"
-     *     ]
-     */
-    image_urls: string[];
-    /**
-     * Limit Generations
-     * @description Experimental parameter to limit the number of generations from each round of prompting to 1. Set to `True` to to disregard any instructions in the prompt regarding the number of images to generate.
-     * @default false
-     */
-    limit_generations?: boolean;
-    /**
-     * Number of Images
-     * @description The number of images to generate.
-     * @default 1
-     */
-    num_images?: number;
-    /**
-     * Output Format
-     * @description The format of the generated image.
-     * @default png
-     * @enum {string}
-     */
-    output_format?: 'jpeg' | 'png' | 'webp';
-    /**
-     * Prompt
-     * @description The prompt for image editing.
-     * @example make a photo of the man driving the car down the california coastline
-     */
-    prompt: string;
-    /**
-     * Resolution
-     * @description The resolution of the image to generate.
-     * @default 1K
-     * @enum {string}
-     */
-    resolution?: '1K' | '2K' | '4K';
-    /**
-     * Seed
-     * @description The seed for the random number generator.
-     */
-    seed?: number;
-    /**
-     * Sync Mode
-     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
-     * @default false
-     */
-    sync_mode?: boolean;
+    video: Components.File;
 }
 
 export interface SharedType_e74 {
@@ -3153,6 +3089,54 @@ export interface SharedType_d98 {
      *     }
      */
     video: Components.File;
+}
+
+export interface SharedType_d8f {
+    /**
+     * Duration
+     * @description Video duration in seconds (3-15s).
+     * @default 5
+     * @example 10
+     * @enum {string}
+     */
+    duration?: '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' | '13' | '14' | '15';
+    /**
+     * End Image Url
+     * @description URL of the end frame image (optional).
+     * @example https://v3b.fal.media/files/b/0a8d0248/S415GcxackjjLKom6f3jq_VTImWrNO.png
+     */
+    end_image_url?: string;
+    /**
+     * Generate Audio
+     * @description Whether to generate native audio for the video.
+     * @default false
+     */
+    generate_audio?: boolean;
+    /**
+     * Image Url
+     * @description URL of the start frame image.
+     * @example https://v3b.fal.media/files/b/0a8cfd5a/8ABMp4n9rh3kfD2Rq8fHd_start_frame.png
+     */
+    image_url: string;
+    /**
+     * Multi Prompt
+     * @description List of prompts for multi-shot video generation.
+     * @example null
+     */
+    multi_prompt?: Components.KlingV3MultiPromptElement[];
+    /**
+     * Prompt
+     * @description Text prompt for video generation. Either prompt or multi_prompt must be provided, but not both.
+     * @example The character walks forward slowly, with the camera following from behind.
+     */
+    prompt?: string;
+    /**
+     * Shot Type
+     * @description The type of multi-shot video generation.
+     * @default customize
+     * @enum {string}
+     */
+    shot_type?: 'customize';
 }
 
 export interface SharedType_d4a {
@@ -6186,6 +6170,82 @@ export interface SharedType_8c5 {
      * @example 42
      */
     seed: number;
+}
+
+export interface SharedType_8c2 {
+    /**
+     * Aspect Ratio
+     * @description The aspect ratio of the generated image. Use "auto" to let the model decide based on the prompt.
+     * @default 1:1
+     */
+    aspect_ratio?:
+        | 'auto'
+        | '21:9'
+        | '16:9'
+        | '3:2'
+        | '4:3'
+        | '5:4'
+        | '1:1'
+        | '4:5'
+        | '3:4'
+        | '2:3'
+        | '9:16';
+    /**
+     * Enable Web Search
+     * @description Enable web search for the image generation task. This will allow the model to use the latest information from the web to generate the image.
+     * @default false
+     */
+    enable_web_search?: boolean;
+    /**
+     * Limit Generations
+     * @description Experimental parameter to limit the number of generations from each round of prompting to 1. Set to `True` to to disregard any instructions in the prompt regarding the number of images to generate.
+     * @default false
+     */
+    limit_generations?: boolean;
+    /**
+     * Number of Images
+     * @description The number of images to generate.
+     * @default 1
+     */
+    num_images?: number;
+    /**
+     * Output Format
+     * @description The format of the generated image.
+     * @default png
+     * @enum {string}
+     */
+    output_format?: 'jpeg' | 'png' | 'webp';
+    /**
+     * Prompt
+     * @description The text prompt to generate an image from.
+     * @example An action shot of a black lab swimming in an inground suburban swimming pool. The camera is placed meticulously on the water line, dividing the image in half, revealing both the dogs head above water holding a tennis ball in it's mouth, and it's paws paddling underwater.
+     */
+    prompt: string;
+    /**
+     * Resolution
+     * @description The resolution of the image to generate.
+     * @default 1K
+     * @enum {string}
+     */
+    resolution?: '1K' | '2K' | '4K';
+    /**
+     * Safety Tolerance
+     * @description The safety tolerance level for content moderation. 1 is the most strict (blocks most content), 6 is the least strict.
+     * @default 4
+     * @enum {string}
+     */
+    safety_tolerance?: '1' | '2' | '3' | '4' | '5' | '6';
+    /**
+     * Seed
+     * @description The seed for the random number generator.
+     */
+    seed?: number;
+    /**
+     * Sync Mode
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
+     * @default false
+     */
+    sync_mode?: boolean;
 }
 
 export interface SharedType_8c0 {
@@ -9917,6 +9977,91 @@ export interface SharedType_368 {
     };
 }
 
+export interface SharedType_367 {
+    /**
+     * Aspect Ratio
+     * @description The aspect ratio of the generated image.
+     * @default auto
+     */
+    aspect_ratio?:
+        | 'auto'
+        | '21:9'
+        | '16:9'
+        | '3:2'
+        | '4:3'
+        | '5:4'
+        | '1:1'
+        | '4:5'
+        | '3:4'
+        | '2:3'
+        | '9:16';
+    /**
+     * Enable Web Search
+     * @description Enable web search for the image generation task. This will allow the model to use the latest information from the web to generate the image.
+     * @default false
+     */
+    enable_web_search?: boolean;
+    /**
+     * Image URLs
+     * @description The URLs of the images to use for image-to-image generation or image editing.
+     * @example [
+     *       "https://storage.googleapis.com/falserverless/example_inputs/nano-banana-edit-input.png",
+     *       "https://storage.googleapis.com/falserverless/example_inputs/nano-banana-edit-input-2.png"
+     *     ]
+     */
+    image_urls: string[];
+    /**
+     * Limit Generations
+     * @description Experimental parameter to limit the number of generations from each round of prompting to 1. Set to `True` to to disregard any instructions in the prompt regarding the number of images to generate.
+     * @default false
+     */
+    limit_generations?: boolean;
+    /**
+     * Number of Images
+     * @description The number of images to generate.
+     * @default 1
+     */
+    num_images?: number;
+    /**
+     * Output Format
+     * @description The format of the generated image.
+     * @default png
+     * @enum {string}
+     */
+    output_format?: 'jpeg' | 'png' | 'webp';
+    /**
+     * Prompt
+     * @description The prompt for image editing.
+     * @example make a photo of the man driving the car down the california coastline
+     */
+    prompt: string;
+    /**
+     * Resolution
+     * @description The resolution of the image to generate.
+     * @default 1K
+     * @enum {string}
+     */
+    resolution?: '1K' | '2K' | '4K';
+    /**
+     * Safety Tolerance
+     * @description The safety tolerance level for content moderation. 1 is the most strict (blocks most content), 6 is the least strict.
+     * @default 4
+     * @enum {string}
+     */
+    safety_tolerance?: '1' | '2' | '3' | '4' | '5' | '6';
+    /**
+     * Seed
+     * @description The seed for the random number generator.
+     */
+    seed?: number;
+    /**
+     * Sync Mode
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
+     * @default false
+     */
+    sync_mode?: boolean;
+}
+
 export interface SharedType_35f {
     /**
      * Has Nsfw Concepts
@@ -10078,75 +10223,6 @@ export interface SharedType_2c4 {
      * @enum {string}
      */
     resolution?: '720p' | '1080p';
-}
-
-export interface SharedType_2a3 {
-    /**
-     * Aspect Ratio
-     * @description The aspect ratio of the generated image. Use "auto" to let the model decide based on the prompt.
-     * @default 1:1
-     */
-    aspect_ratio?:
-        | 'auto'
-        | '21:9'
-        | '16:9'
-        | '3:2'
-        | '4:3'
-        | '5:4'
-        | '1:1'
-        | '4:5'
-        | '3:4'
-        | '2:3'
-        | '9:16';
-    /**
-     * Enable Web Search
-     * @description Enable web search for the image generation task. This will allow the model to use the latest information from the web to generate the image.
-     * @default false
-     */
-    enable_web_search?: boolean;
-    /**
-     * Limit Generations
-     * @description Experimental parameter to limit the number of generations from each round of prompting to 1. Set to `True` to to disregard any instructions in the prompt regarding the number of images to generate.
-     * @default false
-     */
-    limit_generations?: boolean;
-    /**
-     * Number of Images
-     * @description The number of images to generate.
-     * @default 1
-     */
-    num_images?: number;
-    /**
-     * Output Format
-     * @description The format of the generated image.
-     * @default png
-     * @enum {string}
-     */
-    output_format?: 'jpeg' | 'png' | 'webp';
-    /**
-     * Prompt
-     * @description The text prompt to generate an image from.
-     * @example An action shot of a black lab swimming in an inground suburban swimming pool. The camera is placed meticulously on the water line, dividing the image in half, revealing both the dogs head above water holding a tennis ball in it's mouth, and it's paws paddling underwater.
-     */
-    prompt: string;
-    /**
-     * Resolution
-     * @description The resolution of the image to generate.
-     * @default 1K
-     * @enum {string}
-     */
-    resolution?: '1K' | '2K' | '4K';
-    /**
-     * Seed
-     * @description The seed for the random number generator.
-     */
-    seed?: number;
-    /**
-     * Sync Mode
-     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
-     * @default false
-     */
-    sync_mode?: boolean;
 }
 
 export interface SharedType_298 {
@@ -34292,11 +34368,11 @@ export interface NanoBananaEditInput extends SharedType_813 {}
 
 export interface NanoBananaEditOutput extends SharedType_98c {}
 
-export interface NanoBananaProEditInput extends SharedType_eac {}
+export interface NanoBananaProEditInput extends SharedType_367 {}
 
 export interface NanoBananaProEditOutput extends SharedType_876 {}
 
-export interface NanoBananaProInput extends SharedType_2a3 {}
+export interface NanoBananaProInput extends SharedType_8c2 {}
 
 export interface NanoBananaProOutput extends SharedType_7b9 {}
 
@@ -35332,6 +35408,222 @@ export interface MinimaxVideo01Input {
 }
 
 export interface MinimaxVideo01Output extends SharedType_25a {}
+
+export interface MinimaxSpeech28TurboInput {
+    /**
+     * Audio Setting
+     * @description Audio configuration settings
+     */
+    audio_setting?: Components.AudioSetting;
+    /**
+     * Language Boost
+     * @description Enhance recognition of specified languages and dialects
+     * @enum {string}
+     */
+    language_boost?:
+        | 'Chinese'
+        | 'Chinese,Yue'
+        | 'English'
+        | 'Arabic'
+        | 'Russian'
+        | 'Spanish'
+        | 'French'
+        | 'Portuguese'
+        | 'German'
+        | 'Turkish'
+        | 'Dutch'
+        | 'Ukrainian'
+        | 'Vietnamese'
+        | 'Indonesian'
+        | 'Japanese'
+        | 'Italian'
+        | 'Korean'
+        | 'Thai'
+        | 'Polish'
+        | 'Romanian'
+        | 'Greek'
+        | 'Czech'
+        | 'Finnish'
+        | 'Hindi'
+        | 'Bulgarian'
+        | 'Danish'
+        | 'Hebrew'
+        | 'Malay'
+        | 'Slovak'
+        | 'Swedish'
+        | 'Croatian'
+        | 'Hungarian'
+        | 'Norwegian'
+        | 'Slovenian'
+        | 'Catalan'
+        | 'Nynorsk'
+        | 'Afrikaans'
+        | 'auto';
+    /**
+     * Normalization Setting
+     * @description Loudness normalization settings for the audio
+     */
+    normalization_setting?: Components.LoudnessNormalizationSetting;
+    /**
+     * Output Format
+     * @description Format of the output content (non-streaming only)
+     * @default hex
+     * @enum {string}
+     */
+    output_format?: 'url' | 'hex';
+    /**
+     * Prompt
+     * @description Text to convert to speech. Use `<#x#>` for pauses (x = 0.01-99.99 seconds). Supports interjection tags: `(laughs)`, `(sighs)`, `(coughs)`, `(clears throat)`, `(gasps)`, `(sniffs)`, `(groans)`, `(yawns)`.
+     * @example Hello world! Welcome to MiniMax's new text to speech model <#0.1#> Speech 2.8 Turbo (sighs) now available on Fal!
+     */
+    prompt: string;
+    /**
+     * Pronunciation Dict
+     * @description Custom pronunciation dictionary for text replacement
+     */
+    pronunciation_dict?: Components.PronunciationDict;
+    /**
+     * Voice Modify
+     * @description Voice modification settings to adjust pitch, intensity, and timbre.
+     */
+    voice_modify?: Components.VoiceModify;
+    /**
+     * Voice Setting
+     * @description Voice configuration settings
+     * @default {
+     *       "speed": 1,
+     *       "vol": 1,
+     *       "voice_id": "Wise_Woman",
+     *       "pitch": 0,
+     *       "english_normalization": false
+     *     }
+     */
+    voice_setting?: Components.VoiceSetting;
+}
+
+export interface MinimaxSpeech28TurboOutput {
+    /**
+     * Audio
+     * @description The generated audio file
+     * @example {
+     *       "url": "https://v3b.fal.media/files/b/0a8d0bf6/AE2KhEIGf4SkSMrWIDs45_speech.mp3"
+     *     }
+     */
+    audio: Components.File;
+    /**
+     * Duration Ms
+     * @description Duration of the audio in milliseconds
+     */
+    duration_ms: number;
+}
+
+export interface MinimaxSpeech28HdInput {
+    /**
+     * Audio Setting
+     * @description Audio configuration settings
+     */
+    audio_setting?: Components.AudioSetting;
+    /**
+     * Language Boost
+     * @description Enhance recognition of specified languages and dialects
+     * @enum {string}
+     */
+    language_boost?:
+        | 'Chinese'
+        | 'Chinese,Yue'
+        | 'English'
+        | 'Arabic'
+        | 'Russian'
+        | 'Spanish'
+        | 'French'
+        | 'Portuguese'
+        | 'German'
+        | 'Turkish'
+        | 'Dutch'
+        | 'Ukrainian'
+        | 'Vietnamese'
+        | 'Indonesian'
+        | 'Japanese'
+        | 'Italian'
+        | 'Korean'
+        | 'Thai'
+        | 'Polish'
+        | 'Romanian'
+        | 'Greek'
+        | 'Czech'
+        | 'Finnish'
+        | 'Hindi'
+        | 'Bulgarian'
+        | 'Danish'
+        | 'Hebrew'
+        | 'Malay'
+        | 'Slovak'
+        | 'Swedish'
+        | 'Croatian'
+        | 'Hungarian'
+        | 'Norwegian'
+        | 'Slovenian'
+        | 'Catalan'
+        | 'Nynorsk'
+        | 'Afrikaans'
+        | 'auto';
+    /**
+     * Normalization Setting
+     * @description Loudness normalization settings for the audio
+     */
+    normalization_setting?: Components.LoudnessNormalizationSetting;
+    /**
+     * Output Format
+     * @description Format of the output content (non-streaming only)
+     * @default hex
+     * @enum {string}
+     */
+    output_format?: 'url' | 'hex';
+    /**
+     * Prompt
+     * @description Text to convert to speech. Use `<#x#>` for pauses (x = 0.01-99.99 seconds). Supports interjection tags: `(laughs)`, `(sighs)`, `(coughs)`, `(clears throat)`, `(gasps)`, `(sniffs)`, `(groans)`, `(yawns)`.
+     * @example Hello world! Welcome to MiniMax's new text to speech model <#0.1#> Speech 2.8 HD (laughs) now available on Fal!
+     */
+    prompt: string;
+    /**
+     * Pronunciation Dict
+     * @description Custom pronunciation dictionary for text replacement
+     */
+    pronunciation_dict?: Components.PronunciationDict;
+    /**
+     * Voice Modify
+     * @description Voice modification settings to adjust pitch, intensity, and timbre.
+     */
+    voice_modify?: Components.VoiceModify;
+    /**
+     * Voice Setting
+     * @description Voice configuration settings
+     * @default {
+     *       "speed": 1,
+     *       "vol": 1,
+     *       "voice_id": "Wise_Woman",
+     *       "pitch": 0,
+     *       "english_normalization": false
+     *     }
+     */
+    voice_setting?: Components.VoiceSetting;
+}
+
+export interface MinimaxSpeech28HdOutput {
+    /**
+     * Audio
+     * @description The generated audio file
+     * @example {
+     *       "url": "https://v3b.fal.media/files/b/0a8d0bda/pF8woD8Iafl8vL6BMk4k4_speech.mp3"
+     *     }
+     */
+    audio: Components.File;
+    /**
+     * Duration Ms
+     * @description Duration of the audio in milliseconds
+     */
+    duration_ms: number;
+}
 
 export interface MinimaxSpeech26TurboInput {
     /**
@@ -48086,6 +48378,354 @@ export interface KlingVideoVideoToAudioOutput {
     video: Components.File;
 }
 
+export interface KlingVideoV3StandardTextToVideoInput {
+    /**
+     * Aspect Ratio
+     * @description The aspect ratio of the generated video frame
+     * @default 16:9
+     * @enum {string}
+     */
+    aspect_ratio?: '16:9' | '9:16' | '1:1';
+    /**
+     * Cfg Scale
+     * @description The CFG (Classifier Free Guidance) scale is a measure of how close you want
+     *                 the model to stick to your prompt.
+     * @default 0.5
+     */
+    cfg_scale?: number;
+    /**
+     * Duration
+     * @description The duration of the generated video in seconds
+     * @default 5
+     * @enum {string}
+     */
+    duration?: '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' | '13' | '14' | '15';
+    /**
+     * Generate Audio
+     * @description Whether to generate native audio for the video. Supports Chinese and English voice output. Other languages are automatically translated to English. For English speech, use lowercase letters; for acronyms or proper nouns, use uppercase.
+     * @default true
+     */
+    generate_audio?: boolean;
+    /**
+     * Multi Prompt
+     * @description List of prompts for multi-shot video generation. If provided, overrides the single prompt and divides the video into multiple shots with specified prompts and durations.
+     * @example null
+     */
+    multi_prompt?: Components.KlingV3MultiPromptElement[];
+    /**
+     * Negative Prompt
+     * @default blur, distort, and low quality
+     */
+    negative_prompt?: string;
+    /**
+     * Prompt
+     * @description Text prompt for video generation. Either prompt or multi_prompt must be provided, but not both.
+     * @example Cinematic drone shot flying through ancient stone ruins covered in moss and vines at golden hour. Camera starts low, rises through crumbling archways, revealing a vast misty valley beyond. Volumetric light rays pierce through gaps in the stone. Epic scale, photorealistic, 8K quality.
+     */
+    prompt?: string;
+    /**
+     * Shot Type
+     * @description The type of multi-shot video generation
+     * @default customize
+     * @enum {string}
+     */
+    shot_type?: 'customize' | 'intelligent';
+    /**
+     * Voice Ids
+     * @description Optional Voice IDs for video generation. Reference voices in your prompt with <<<voice_1>>> and <<<voice_2>>> (maximum 2 voices per task). Get voice IDs from the kling video create-voice endpoint: https://fal.ai/models/fal-ai/kling-video/create-voice
+     */
+    voice_ids?: string[];
+}
+
+export interface KlingVideoV3StandardTextToVideoOutput {
+    /**
+     * Video
+     * @description The generated video
+     * @example {
+     *       "file_size": 6797486,
+     *       "file_name": "output.mp4",
+     *       "content_type": "video/mp4",
+     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/kling-v3/standard-t2v/out.mp4"
+     *     }
+     */
+    video: Components.File;
+}
+
+export interface KlingVideoV3StandardImageToVideoInput {
+    /**
+     * Aspect Ratio
+     * @description The aspect ratio of the generated video frame
+     * @default 16:9
+     * @enum {string}
+     */
+    aspect_ratio?: '16:9' | '9:16' | '1:1';
+    /**
+     * Cfg Scale
+     * @description The CFG (Classifier Free Guidance) scale is a measure of how close you want
+     *                 the model to stick to your prompt.
+     * @default 0.5
+     */
+    cfg_scale?: number;
+    /**
+     * Duration
+     * @description The duration of the generated video in seconds
+     * @default 5
+     * @example 12
+     * @enum {string}
+     */
+    duration?: '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' | '13' | '14' | '15';
+    /**
+     * Elements
+     * @description Elements (characters/objects) to include in the video. Each example can either be an image set (frontal + reference images) or a video. Reference in prompt as @Element1, @Element2, etc.
+     * @example [
+     *       {
+     *         "reference_image_urls": [
+     *           "https://v3b.fal.media/files/b/0a8cfd62/psPCmzrD1y9vDgdyNfKAL_glasses_back.png"
+     *         ],
+     *         "frontal_image_url": "https://v3b.fal.media/files/b/0a8cfd5f/-kZL-ha3Iuelku5IHXC-A_glasses.png"
+     *       },
+     *       {
+     *         "video_url": "https://v3b.fal.media/files/b/0a8cfd66/b03SOiQvKLlFx_jqdNZ9z_child_video.mp4"
+     *       }
+     *     ]
+     */
+    elements?: Components.KlingV3ComboElementInput[];
+    /**
+     * End Image Url
+     * @description URL of the image to be used for the end of the video
+     */
+    end_image_url?: string;
+    /**
+     * Generate Audio
+     * @description Whether to generate native audio for the video. Supports Chinese and English voice output. Other languages are automatically translated to English. For English speech, use lowercase letters; for acronyms or proper nouns, use uppercase.
+     * @default true
+     */
+    generate_audio?: boolean;
+    /**
+     * Multi Prompt
+     * @description List of prompts for multi-shot video generation. If provided, divides the video into multiple shots.
+     * @example null
+     */
+    multi_prompt?: Components.KlingV3MultiPromptElement[];
+    /**
+     * Negative Prompt
+     * @default blur, distort, and low quality
+     */
+    negative_prompt?: string;
+    /**
+     * Prompt
+     * @description Text prompt for video generation. Either prompt or multi_prompt must be provided, but not both.
+     * @example Camera slowly orbits around the vase. Soft light shifts across the ceramic surface. The pampas grass sways gently. Shadows move elegantly. Smooth continuous motion, premium feel.
+     */
+    prompt?: string;
+    /**
+     * Shot Type
+     * @description The type of multi-shot video generation. Required when multi_prompt is provided.
+     * @default customize
+     * @enum {string}
+     */
+    shot_type?: 'customize';
+    /**
+     * Start Image Url
+     * @description URL of the image to be used for the video
+     * @example https://storage.googleapis.com/falserverless/example_inputs/kling-v3/standard-i2v/start_image.png
+     */
+    start_image_url: string;
+    /**
+     * Voice Ids
+     * @description Optional Voice IDs for video generation. Reference voices in your prompt with <<<voice_1>>> and <<<voice_2>>> (maximum 2 voices per task). Get voice IDs from the kling video create-voice endpoint: https://fal.ai/models/fal-ai/kling-video/create-voice
+     */
+    voice_ids?: string[];
+}
+
+export interface KlingVideoV3StandardImageToVideoOutput {
+    /**
+     * Video
+     * @description The generated video
+     * @example {
+     *       "file_size": 3149129,
+     *       "file_name": "out.mp4",
+     *       "content_type": "video/mp4",
+     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/kling-v3/standard-i2v/out.mp4"
+     *     }
+     */
+    video: Components.File;
+}
+
+export interface KlingVideoV3ProTextToVideoInput {
+    /**
+     * Aspect Ratio
+     * @description The aspect ratio of the generated video frame
+     * @default 16:9
+     * @enum {string}
+     */
+    aspect_ratio?: '16:9' | '9:16' | '1:1';
+    /**
+     * Cfg Scale
+     * @description The CFG (Classifier Free Guidance) scale is a measure of how close you want
+     *                 the model to stick to your prompt.
+     * @default 0.5
+     */
+    cfg_scale?: number;
+    /**
+     * Duration
+     * @description The duration of the generated video in seconds
+     * @default 5
+     * @enum {string}
+     */
+    duration?: '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' | '13' | '14' | '15';
+    /**
+     * Generate Audio
+     * @description Whether to generate native audio for the video. Supports Chinese and English voice output. Other languages are automatically translated to English. For English speech, use lowercase letters; for acronyms or proper nouns, use uppercase.
+     * @default true
+     */
+    generate_audio?: boolean;
+    /**
+     * Multi Prompt
+     * @description List of prompts for multi-shot video generation. If provided, overrides the single prompt and divides the video into multiple shots with specified prompts and durations.
+     * @example null
+     */
+    multi_prompt?: Components.KlingV3MultiPromptElement[];
+    /**
+     * Negative Prompt
+     * @default blur, distort, and low quality
+     */
+    negative_prompt?: string;
+    /**
+     * Prompt
+     * @description Text prompt for video generation. Either prompt or multi_prompt must be provided, but not both.
+     * @example Close-up of glowing fireflies dancing in a dark forest at twilight. Soft bioluminescent particles float through the air. Shallow depth of field, bokeh lights in background. Magical atmosphere, gentle movement.
+     */
+    prompt?: string;
+    /**
+     * Shot Type
+     * @description The type of multi-shot video generation
+     * @default customize
+     * @enum {string}
+     */
+    shot_type?: 'customize' | 'intelligent';
+    /**
+     * Voice Ids
+     * @description Optional Voice IDs for video generation. Reference voices in your prompt with <<<voice_1>>> and <<<voice_2>>> (maximum 2 voices per task). Get voice IDs from the kling video create-voice endpoint: https://fal.ai/models/fal-ai/kling-video/create-voice
+     */
+    voice_ids?: string[];
+}
+
+export interface KlingVideoV3ProTextToVideoOutput {
+    /**
+     * Video
+     * @description The generated video
+     * @example {
+     *       "file_size": 8062911,
+     *       "file_name": "output.mp4",
+     *       "content_type": "video/mp4",
+     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/kling-v3/pro-t2v/out.mp4"
+     *     }
+     */
+    video: Components.File;
+}
+
+export interface KlingVideoV3ProImageToVideoInput {
+    /**
+     * Aspect Ratio
+     * @description The aspect ratio of the generated video frame
+     * @default 16:9
+     * @enum {string}
+     */
+    aspect_ratio?: '16:9' | '9:16' | '1:1';
+    /**
+     * Cfg Scale
+     * @description The CFG (Classifier Free Guidance) scale is a measure of how close you want
+     *                 the model to stick to your prompt.
+     * @default 0.5
+     */
+    cfg_scale?: number;
+    /**
+     * Duration
+     * @description The duration of the generated video in seconds
+     * @default 5
+     * @example 12
+     * @enum {string}
+     */
+    duration?: '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' | '13' | '14' | '15';
+    /**
+     * Elements
+     * @description Elements (characters/objects) to include in the video. Each example can either be an image set (frontal + reference images) or a video. Reference in prompt as @Element1, @Element2, etc.
+     * @example [
+     *       {
+     *         "reference_image_urls": [
+     *           "https://v3b.fal.media/files/b/0a8cfd62/psPCmzrD1y9vDgdyNfKAL_glasses_back.png"
+     *         ],
+     *         "frontal_image_url": "https://v3b.fal.media/files/b/0a8cfd5f/-kZL-ha3Iuelku5IHXC-A_glasses.png"
+     *       },
+     *       {
+     *         "video_url": "https://v3b.fal.media/files/b/0a8cfd66/b03SOiQvKLlFx_jqdNZ9z_child_video.mp4"
+     *       }
+     *     ]
+     */
+    elements?: Components.KlingV3ComboElementInput[];
+    /**
+     * End Image Url
+     * @description URL of the image to be used for the end of the video
+     */
+    end_image_url?: string;
+    /**
+     * Generate Audio
+     * @description Whether to generate native audio for the video. Supports Chinese and English voice output. Other languages are automatically translated to English. For English speech, use lowercase letters; for acronyms or proper nouns, use uppercase.
+     * @default true
+     */
+    generate_audio?: boolean;
+    /**
+     * Multi Prompt
+     * @description List of prompts for multi-shot video generation. If provided, divides the video into multiple shots.
+     * @example null
+     */
+    multi_prompt?: Components.KlingV3MultiPromptElement[];
+    /**
+     * Negative Prompt
+     * @default blur, distort, and low quality
+     */
+    negative_prompt?: string;
+    /**
+     * Prompt
+     * @description Text prompt for video generation. Either prompt or multi_prompt must be provided, but not both.
+     * @example The craftsman slowly examines the bowl, turning it gently in his weathered hands. His eyes reflect years of wisdom. Subtle smile forms on his face. Dust particles drift in warm light. Breathing motion, blinking eyes.
+     */
+    prompt?: string;
+    /**
+     * Shot Type
+     * @description The type of multi-shot video generation. Required when multi_prompt is provided.
+     * @default customize
+     * @enum {string}
+     */
+    shot_type?: 'customize';
+    /**
+     * Start Image Url
+     * @description URL of the image to be used for the video
+     * @example https://storage.googleapis.com/falserverless/example_inputs/kling-v3/pro-i2v/start_image.png
+     */
+    start_image_url: string;
+    /**
+     * Voice Ids
+     * @description Optional Voice IDs for video generation. Reference voices in your prompt with <<<voice_1>>> and <<<voice_2>>> (maximum 2 voices per task). Get voice IDs from the kling video create-voice endpoint: https://fal.ai/models/fal-ai/kling-video/create-voice
+     */
+    voice_ids?: string[];
+}
+
+export interface KlingVideoV3ProImageToVideoOutput {
+    /**
+     * Video
+     * @description The generated video
+     * @example {
+     *       "file_size": 8431922,
+     *       "file_name": "out.mp4",
+     *       "content_type": "video/mp4",
+     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/kling-v3/pro-i2v/out.mp4"
+     *     }
+     */
+    video: Components.File;
+}
+
 export interface KlingVideoV2MasterTextToVideoInput {
     /**
      * Aspect Ratio
@@ -48274,7 +48914,7 @@ export interface KlingVideoV26ProImageToVideoInput {
     start_image_url: string;
     /**
      * Voice Ids
-     * @description List of voice IDs to use for voice control. Reference voices in the prompt using <<<voice_1>>>, <<<voice_2>>>. Maximum 2 voices allowed. When provided and referenced in prompt, enables voice control billing.
+     * @description Optional Voice IDs for video generation. Reference voices in your prompt with <<<voice_1>>> and <<<voice_2>>> (maximum 2 voices per task). Get voice IDs from the kling video create-voice endpoint: https://fal.ai/models/fal-ai/kling-video/create-voice
      */
     voice_ids?: string[];
 }
@@ -48972,6 +49612,549 @@ export interface KlingVideoV15ProEffectsInput extends SharedType_9db {}
 
 export interface KlingVideoV15ProEffectsOutput extends SharedType_95d {}
 
+export interface KlingVideoO3StandardVideoToVideoReferenceInput {
+    /**
+     * Aspect Ratio
+     * @description Aspect ratio.
+     * @default auto
+     * @example auto
+     * @enum {string}
+     */
+    aspect_ratio?: 'auto' | '16:9' | '9:16' | '1:1';
+    /**
+     * Duration
+     * @description Video duration in seconds (3-15s for reference video).
+     * @example 5
+     * @enum {string}
+     */
+    duration?: '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' | '13' | '14' | '15';
+    /**
+     * Elements
+     * @description Elements (characters/objects) to include. Reference in prompt as @Element1, @Element2.
+     * @example [
+     *       {
+     *         "reference_image_urls": [
+     *           "https://storage.googleapis.com/falserverless/example_inputs/kling-o3/standard-v2v-reference/element1_reference1.png"
+     *         ],
+     *         "frontal_image_url": "https://storage.googleapis.com/falserverless/example_inputs/kling-o3/standard-v2v-reference/element1_front.png"
+     *       },
+     *       {
+     *         "reference_image_urls": [
+     *           "https://storage.googleapis.com/falserverless/example_inputs/kling-o3/standard-v2v-reference/element2_reference1.png"
+     *         ],
+     *         "frontal_image_url": "https://storage.googleapis.com/falserverless/example_inputs/kling-o3/standard-v2v-reference/element2_front.png"
+     *       }
+     *     ]
+     */
+    elements?: Components.KlingV3ImageElementInput[];
+    /**
+     * Image Urls
+     * @description Reference images for style/appearance. Reference in prompt as @Image1, @Image2, etc. Maximum 4 total (elements + reference images) when using video.
+     * @example null
+     */
+    image_urls?: string[];
+    /**
+     * Keep Audio
+     * @description Whether to keep the original audio from the reference video.
+     * @default true
+     * @example false
+     */
+    keep_audio?: boolean;
+    /**
+     * Prompt
+     * @description Text prompt for video generation. Reference video as @Video1.
+     * @example Replace both character with @Element1 and @Element2
+     */
+    prompt: string;
+    /**
+     * Shot Type
+     * @description The type of multi-shot video generation.
+     * @default customize
+     * @enum {string}
+     */
+    shot_type?: 'customize';
+    /**
+     * Video Url
+     * @description Reference video URL. Only .mp4/.mov formats, 3-10s duration, 720-2160px resolution, max 200MB.
+     * @example https://storage.googleapis.com/falserverless/example_inputs/kling-o3/standard-v2v-reference/video_reference.mp4
+     */
+    video_url: string;
+}
+
+export interface KlingVideoO3StandardVideoToVideoReferenceOutput {
+    /**
+     * Video
+     * @description The generated video.
+     * @example {
+     *       "file_size": 7992288,
+     *       "file_name": "output.mp4",
+     *       "content_type": "video/mp4",
+     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/kling-o3/standard-v2v-reference/output.mp4"
+     *     }
+     */
+    video: Components.File;
+}
+
+export interface KlingVideoO3StandardVideoToVideoEditInput {
+    /**
+     * Elements
+     * @description Elements (characters/objects) to include. Reference in prompt as @Element1, @Element2.
+     * @example [
+     *       {
+     *         "reference_image_urls": [
+     *           "https://storage.googleapis.com/falserverless/example_inputs/kling-o3/standard-v2v-edit/standard_element1_reference1.jpg"
+     *         ],
+     *         "frontal_image_url": "https://storage.googleapis.com/falserverless/example_inputs/kling-o3/standard-v2v-edit/element1_front.jpg"
+     *       }
+     *     ]
+     */
+    elements?: Components.KlingV3ImageElementInput[];
+    /**
+     * Image Urls
+     * @description Reference images for style/appearance. Reference in prompt as @Image1, @Image2, etc. Maximum 4 total (elements + reference images) when using video.
+     * @example null
+     */
+    image_urls?: string[];
+    /**
+     * Keep Audio
+     * @description Whether to keep the original audio from the reference video.
+     * @default true
+     */
+    keep_audio?: boolean;
+    /**
+     * Prompt
+     * @description Text prompt for video generation. Reference video as @Video1.
+     * @example change the main character to be Popeye from @Element1, dark lighting and rain, 3d character. make him sad, with rain dropping on him, dark light on the character.
+     */
+    prompt: string;
+    /**
+     * Shot Type
+     * @description The type of multi-shot video generation.
+     * @default customize
+     * @enum {string}
+     */
+    shot_type?: 'customize';
+    /**
+     * Video Url
+     * @description Reference video URL. Only .mp4/.mov formats, 3-10s duration, 720-2160px resolution, max 200MB.
+     * @example https://storage.googleapis.com/falserverless/example_inputs/kling-o3/standard-v2v-edit/standard_video_reference.mp4
+     */
+    video_url: string;
+}
+
+export interface KlingVideoO3StandardVideoToVideoEditOutput {
+    /**
+     * Video
+     * @description The generated video.
+     * @example {
+     *       "file_size": 4322769,
+     *       "file_name": "output.mp4",
+     *       "content_type": "video/mp4",
+     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/kling-o3/standard-v2v-edit/output.mp4"
+     *     }
+     */
+    video: Components.File;
+}
+
+export interface KlingVideoO3StandardReferenceToVideoInput {
+    /**
+     * Aspect Ratio
+     * @description The aspect ratio of the generated video frame.
+     * @default 16:9
+     * @enum {string}
+     */
+    aspect_ratio?: '16:9' | '9:16' | '1:1';
+    /**
+     * Duration
+     * @description Video duration in seconds (3-15s).
+     * @default 5
+     * @example 8
+     * @enum {string}
+     */
+    duration?: '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' | '13' | '14' | '15';
+    /**
+     * Elements
+     * @description Elements (characters/objects) to include. Reference in prompt as @Element1, @Element2.
+     * @example [
+     *       {
+     *         "reference_image_urls": [
+     *           "https://v3b.fal.media/files/b/0a8d1b5e/Gl1qUHJeTG63vAGtQmGM-_S3kPW32v.png"
+     *         ],
+     *         "frontal_image_url": "https://v3b.fal.media/files/b/0a8d1b64/-ddhNV-utVpHj_1uGfuY-_i6viYke3.png"
+     *       },
+     *       {
+     *         "reference_image_urls": [
+     *           "https://v3b.fal.media/files/b/0a8d1b60/Dt21s8LElZdSccIGDC7ec_Nuaraa9P.png"
+     *         ],
+     *         "frontal_image_url": "https://v3b.fal.media/files/b/0a8d1b66/cWe8LC84I_OF6ee9ZtnsO_nY9Hw5UB.png"
+     *       }
+     *     ]
+     */
+    elements?: Components.KlingV3ComboElementInput[];
+    /**
+     * End Image Url
+     * @description Image to use as the last frame of the video.
+     */
+    end_image_url?: string;
+    /**
+     * Generate Audio
+     * @description Whether to generate native audio for the video.
+     * @default false
+     */
+    generate_audio?: boolean;
+    /**
+     * Image Urls
+     * @description Reference images for style/appearance. Reference in prompt as @Image1, @Image2, etc. Maximum 4 total (elements + reference images) when using video.
+     * @example [
+     *       "https://v3b.fal.media/files/b/0a8d1b63/EcYdmuNB1LTFjtn3Ryjrf_6ROoQV4u.png"
+     *     ]
+     */
+    image_urls?: string[];
+    /**
+     * Multi Prompt
+     * @description List of prompts for multi-shot video generation.
+     * @example null
+     */
+    multi_prompt?: Components.KlingV3MultiPromptElement[];
+    /**
+     * Prompt
+     * @description Text prompt for video generation. Either prompt or multi_prompt must be provided, but not both.
+     * @example @Element1 and @Element2 is having dinner at this table on @Image1
+     */
+    prompt?: string;
+    /**
+     * Shot Type
+     * @description The type of multi-shot video generation.
+     * @default customize
+     * @enum {string}
+     */
+    shot_type?: 'customize';
+    /**
+     * Start Image Url
+     * @description Image to use as the first frame of the video.
+     * @example https://v3b.fal.media/files/b/0a8d1b63/EcYdmuNB1LTFjtn3Ryjrf_6ROoQV4u.png
+     */
+    start_image_url?: string;
+}
+
+export interface KlingVideoO3StandardReferenceToVideoOutput {
+    /**
+     * Video
+     * @description The generated video.
+     * @example {
+     *       "file_size": 3192162,
+     *       "file_name": "output.mp4",
+     *       "content_type": "video/mp4",
+     *       "url": "https://v3b.fal.media/files/b/0a8d200d/ejCxI5DalzOPlP4yf6uP3_output.mp4"
+     *     }
+     */
+    video: Components.File;
+}
+
+export interface KlingVideoO3StandardImageToVideoInput extends SharedType_d8f {}
+
+export interface KlingVideoO3StandardImageToVideoOutput extends SharedType_e8e {}
+
+export interface KlingVideoO3ProVideoToVideoReferenceInput {
+    /**
+     * Aspect Ratio
+     * @description Aspect ratio.
+     * @default auto
+     * @example auto
+     * @enum {string}
+     */
+    aspect_ratio?: 'auto' | '16:9' | '9:16' | '1:1';
+    /**
+     * Duration
+     * @description Video duration in seconds (3-15s for reference video).
+     * @example 5
+     * @enum {string}
+     */
+    duration?: '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' | '13' | '14' | '15';
+    /**
+     * Elements
+     * @description Elements (characters/objects) to include. Reference in prompt as @Element1, @Element2.
+     * @example [
+     *       {
+     *         "reference_image_urls": [
+     *           "https://storage.googleapis.com/falserverless/example_inputs/kling-o3/pro-v2v-reference/element1_reference1.png"
+     *         ],
+     *         "frontal_image_url": "https://storage.googleapis.com/falserverless/example_inputs/kling-o3/pro-v2v-reference/element1_front.png"
+     *       }
+     *     ]
+     */
+    elements?: Components.KlingV3ImageElementInput[];
+    /**
+     * Image Urls
+     * @description Reference images for style/appearance. Reference in prompt as @Image1, @Image2, etc. Maximum 4 total (elements + reference images) when using video.
+     * @example [
+     *       "https://storage.googleapis.com/falserverless/example_inputs/kling-o3/pro-v2v-reference/image_url1.jpg",
+     *       "https://storage.googleapis.com/falserverless/example_inputs/kling-o3/pro-v2v-reference/image_url2.jpg"
+     *     ]
+     */
+    image_urls?: string[];
+    /**
+     * Keep Audio
+     * @description Whether to keep the original audio from the reference video.
+     * @default true
+     * @example false
+     */
+    keep_audio?: boolean;
+    /**
+     * Prompt
+     * @description Text prompt for video generation. Reference video as @Video1.
+     * @example Integrate @Element1 in the scene. Style video should be following watercolor style of @Image1
+     */
+    prompt: string;
+    /**
+     * Shot Type
+     * @description The type of multi-shot video generation.
+     * @default customize
+     * @enum {string}
+     */
+    shot_type?: 'customize';
+    /**
+     * Video Url
+     * @description Reference video URL. Only .mp4/.mov formats, 3-10s duration, 720-2160px resolution, max 200MB.
+     * @example https://storage.googleapis.com/falserverless/example_inputs/kling-o3/pro-v2v-reference/video_reference.mp4
+     */
+    video_url: string;
+}
+
+export interface KlingVideoO3ProVideoToVideoReferenceOutput {
+    /**
+     * Video
+     * @description The generated video.
+     * @example {
+     *       "file_size": 15809901,
+     *       "file_name": "output.mp4",
+     *       "content_type": "video/mp4",
+     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/kling-o3/pro-v2v-reference/output.mp4"
+     *     }
+     */
+    video: Components.File;
+}
+
+export interface KlingVideoO3ProVideoToVideoEditInput {
+    /**
+     * Elements
+     * @description Elements (characters/objects) to include. Reference in prompt as @Element1, @Element2.
+     * @example [
+     *       {
+     *         "reference_image_urls": [
+     *           "https://storage.googleapis.com/falserverless/example_inputs/kling-o3/pro-v2v-edit/element1_reference1.png"
+     *         ],
+     *         "frontal_image_url": "https://storage.googleapis.com/falserverless/example_inputs/kling-o3/pro-v2v-edit/element1_front.png"
+     *       }
+     *     ]
+     */
+    elements?: Components.KlingV3ImageElementInput[];
+    /**
+     * Image Urls
+     * @description Reference images for style/appearance. Reference in prompt as @Image1, @Image2, etc. Maximum 4 total (elements + reference images) when using video.
+     * @example [
+     *       "https://storage.googleapis.com/falserverless/example_inputs/kling-o3/pro-v2v-edit/image_url1.jpg"
+     *     ]
+     */
+    image_urls?: string[];
+    /**
+     * Keep Audio
+     * @description Whether to keep the original audio from the reference video.
+     * @default true
+     */
+    keep_audio?: boolean;
+    /**
+     * Prompt
+     * @description Text prompt for video generation. Reference video as @Video1.
+     * @example Change environment to be fully snow as @Image1. Replace animal with @Element1
+     */
+    prompt: string;
+    /**
+     * Shot Type
+     * @description The type of multi-shot video generation.
+     * @default customize
+     * @enum {string}
+     */
+    shot_type?: 'customize';
+    /**
+     * Video Url
+     * @description Reference video URL. Only .mp4/.mov formats, 3-10s duration, 720-2160px resolution, max 200MB.
+     * @example https://storage.googleapis.com/falserverless/example_inputs/kling-o3/pro-v2v-edit/video_reference.mp4
+     */
+    video_url: string;
+}
+
+export interface KlingVideoO3ProVideoToVideoEditOutput {
+    /**
+     * Video
+     * @description The generated video.
+     * @example {
+     *       "file_size": 4322769,
+     *       "file_name": "output.mp4",
+     *       "content_type": "video/mp4",
+     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/kling-o3/pro-v2v-edit/output.mp4"
+     *     }
+     */
+    video: Components.File;
+}
+
+export interface KlingVideoO3ProTextToVideoInput {
+    /**
+     * Aspect Ratio
+     * @description Aspect ratio of the generated video.
+     * @default 16:9
+     * @enum {string}
+     */
+    aspect_ratio?: '16:9' | '9:16' | '1:1';
+    /**
+     * Duration
+     * @description Video duration in seconds (3-15s).
+     * @default 5
+     * @enum {string}
+     */
+    duration?: '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' | '13' | '14' | '15';
+    /**
+     * Generate Audio
+     * @description Whether to generate native audio for the video.
+     * @default false
+     */
+    generate_audio?: boolean;
+    /**
+     * Multi Prompt
+     * @description List of prompts for multi-shot video generation.
+     * @example null
+     */
+    multi_prompt?: Components.KlingV3MultiPromptElement[];
+    /**
+     * Prompt
+     * @description Text prompt for video generation. Required unless multi_prompt is provided.
+     * @example A mecha lands on the ground to save the city, and says "I'm here", in anime style
+     */
+    prompt?: string;
+    /**
+     * Shot Type
+     * @description The type of multi-shot video generation.
+     * @default customize
+     * @enum {string}
+     */
+    shot_type?: 'customize';
+    /**
+     * Voice Ids
+     * @description Optional Voice IDs for video generation. Reference voices in your prompt with <<<voice_1>>> and <<<voice_2>>> (maximum 2 voices per task). Get voice IDs from the kling video create-voice endpoint: https://fal.ai/models/fal-ai/kling-video/create-voice
+     */
+    voice_ids?: string[];
+}
+
+export interface KlingVideoO3ProTextToVideoOutput {
+    /**
+     * Video
+     * @description The generated video.
+     * @example {
+     *       "file_size": 13096952,
+     *       "file_name": "output.mp4",
+     *       "content_type": "video/mp4",
+     *       "url": "https://v3b.fal.media/files/b/0a8d04e2/idOb9V-Q9ujlggPSKqsfS_output.mp4"
+     *     }
+     */
+    video: Components.File;
+}
+
+export interface KlingVideoO3ProReferenceToVideoInput {
+    /**
+     * Aspect Ratio
+     * @description The aspect ratio of the generated video frame.
+     * @default 16:9
+     * @enum {string}
+     */
+    aspect_ratio?: '16:9' | '9:16' | '1:1';
+    /**
+     * Duration
+     * @description Video duration in seconds (3-15s).
+     * @default 5
+     * @example 8
+     * @enum {string}
+     */
+    duration?: '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' | '13' | '14' | '15';
+    /**
+     * Elements
+     * @description Elements (characters/objects) to include. Reference in prompt as @Element1, @Element2.
+     * @example [
+     *       {
+     *         "reference_image_urls": [
+     *           "https://v3b.fal.media/files/b/0a8d1b1a/eZfSbcQ58EzD_l2SEbevg_F3U9GMLK.png"
+     *         ],
+     *         "frontal_image_url": "https://v3b.fal.media/files/b/0a8d1b2e/yiHiZP1Now0V5JC5_OClE_PaKOtOGJ.png"
+     *       },
+     *       {
+     *         "reference_image_urls": [
+     *           "https://v3b.fal.media/files/b/0a8d1b3c/_ZE2iIjkb-Eun3WXXGP4x_TSG1ELBo.png"
+     *         ],
+     *         "frontal_image_url": "https://v3b.fal.media/files/b/0a8d1b19/_eIj7GjmI5zgQkMN936YJ_2f3hZ7Xb.png"
+     *       }
+     *     ]
+     */
+    elements?: Components.KlingV3ComboElementInput[];
+    /**
+     * End Image Url
+     * @description Image to use as the last frame of the video.
+     */
+    end_image_url?: string;
+    /**
+     * Generate Audio
+     * @description Whether to generate native audio for the video.
+     * @default false
+     */
+    generate_audio?: boolean;
+    /**
+     * Image Urls
+     * @description Reference images for style/appearance. Reference in prompt as @Image1, @Image2, etc. Maximum 4 total (elements + reference images) when using video.
+     */
+    image_urls?: string[];
+    /**
+     * Multi Prompt
+     * @description List of prompts for multi-shot video generation.
+     * @example null
+     */
+    multi_prompt?: Components.KlingV3MultiPromptElement[];
+    /**
+     * Prompt
+     * @description Text prompt for video generation. Either prompt or multi_prompt must be provided, but not both.
+     * @example @Element1 and @Element2 enters the scene from two sides. Elephant starts to play with the ball
+     */
+    prompt?: string;
+    /**
+     * Shot Type
+     * @description The type of multi-shot video generation.
+     * @default customize
+     * @enum {string}
+     */
+    shot_type?: 'customize';
+    /**
+     * Start Image Url
+     * @description Image to use as the first frame of the video.
+     * @example https://v3b.fal.media/files/b/0a8d1b38/myilPNN_WYdJCmpTy4Sjr_6XNBi9Mm.png
+     */
+    start_image_url?: string;
+}
+
+export interface KlingVideoO3ProReferenceToVideoOutput {
+    /**
+     * Video
+     * @description The generated video.
+     * @example {
+     *       "file_size": 18468404,
+     *       "file_name": "output.mp4",
+     *       "content_type": "video/mp4",
+     *       "url": "https://v3b.fal.media/files/b/0a8d1c8a/ZxdKrvPb3CQEmeuS-u_kU_output.mp4"
+     *     }
+     */
+    video: Components.File;
+}
+
+export interface KlingVideoO3ProImageToVideoInput extends SharedType_d8f {}
+
+export interface KlingVideoO3ProImageToVideoOutput extends SharedType_e8e {}
+
 export interface KlingVideoO1VideoToVideoReferenceInput extends SharedType_cc5 {}
 
 export interface KlingVideoO1VideoToVideoReferenceOutput extends SharedType_815 {}
@@ -49147,6 +50330,301 @@ export interface KlingVideoAiAvatarV2StandardOutput extends SharedType_a1c {}
 export interface KlingVideoAiAvatarV2ProInput extends SharedType_c85 {}
 
 export interface KlingVideoAiAvatarV2ProOutput extends SharedType_a1c {}
+
+export interface KlingImageV3TextToImageInput {
+    /**
+     * Aspect Ratio
+     * @description Aspect ratio of generated images.
+     * @default 16:9
+     * @enum {string}
+     */
+    aspect_ratio?: '16:9' | '9:16' | '1:1' | '4:3' | '3:4' | '3:2' | '2:3' | '21:9';
+    /**
+     * Elements
+     * @description Optional: Elements (characters/objects) to include in the image for face control. Each element can have a frontal image and optionally reference images.
+     */
+    elements?: Components.ElementInput[];
+    /**
+     * Negative Prompt
+     * @description Negative text prompt. It is recommended to supplement negative prompt information through negative sentences directly within positive prompts.
+     */
+    negative_prompt?: string;
+    /**
+     * Num Images
+     * @description Number of images to generate (1-9).
+     * @default 1
+     */
+    num_images?: number;
+    /**
+     * Output Format
+     * @description The format of the generated image.
+     * @default png
+     * @enum {string}
+     */
+    output_format?: 'jpeg' | 'png' | 'webp';
+    /**
+     * Prompt
+     * @description Text prompt for image generation. Max 2500 characters.
+     * @example Extremely realistic image of a hobbit's study filled with maps and curiosities, roaring fireplace, rain against round windows, stacks of handwritten journals, warm tungsten lighting, inviting atmosphere. Hobbit is sitting on the chair.
+     */
+    prompt: string;
+    /**
+     * Resolution
+     * @description Image generation resolution. 1K: standard, 2K: high-res.
+     * @default 1K
+     * @enum {string}
+     */
+    resolution?: '1K' | '2K';
+    /**
+     * Sync Mode
+     * @description If `True`, the media will be returned as a data URI.
+     * @default false
+     */
+    sync_mode?: boolean;
+}
+
+export interface KlingImageV3TextToImageOutput {
+    /**
+     * Images
+     * @description Generated images
+     * @example [
+     *       {
+     *         "file_size": 1637946,
+     *         "file_name": "a889cacced76430d85d08c60ca3d023d.png",
+     *         "content_type": "image/png",
+     *         "url": "https://v3b.fal.media/files/b/0a8d0681/Qos5QbCS93YpsPzZ3i8zT_a889cacced76430d85d08c60ca3d023d.png"
+     *       }
+     *     ]
+     */
+    images: Components.Image[];
+}
+
+export interface KlingImageV3ImageToImageInput {
+    /**
+     * Aspect Ratio
+     * @description Aspect ratio of generated images.
+     * @default 16:9
+     * @enum {string}
+     */
+    aspect_ratio?: '16:9' | '9:16' | '1:1' | '4:3' | '3:4' | '3:2' | '2:3' | '21:9';
+    /**
+     * Elements
+     * @description Optional: Elements (characters/objects) to include in the image for face control.
+     */
+    elements?: Components.ElementInput[];
+    /**
+     * Image Url
+     * @description Reference image for image-to-image generation.
+     * @example https://v3b.fal.media/files/b/0a8d06b9/3zxm2qoj2xYWSNwEe5Vd9_a74d767fc42e47a0bf657117fbcf8b90.png
+     */
+    image_url: string;
+    /**
+     * Num Images
+     * @description Number of images to generate (1-9).
+     * @default 1
+     */
+    num_images?: number;
+    /**
+     * Output Format
+     * @description The format of the generated image.
+     * @default png
+     * @enum {string}
+     */
+    output_format?: 'jpeg' | 'png' | 'webp';
+    /**
+     * Prompt
+     * @description Text prompt for image generation. Max 2500 characters.
+     * @example Transform to deep winter, heavy snow covering all surfaces, bare frozen trees, overcast sky, footprints in fresh powder, cold blue color grade
+     */
+    prompt: string;
+    /**
+     * Resolution
+     * @description Image generation resolution. 1K: standard, 2K: high-res.
+     * @default 1K
+     * @enum {string}
+     */
+    resolution?: '1K' | '2K';
+    /**
+     * Sync Mode
+     * @description If `True`, the media will be returned as a data URI.
+     * @default false
+     */
+    sync_mode?: boolean;
+}
+
+export interface KlingImageV3ImageToImageOutput {
+    /**
+     * Images
+     * @description Generated images
+     * @example [
+     *       {
+     *         "file_size": 2085483,
+     *         "file_name": "49222c3290cd4cefb3baacac2cb004ce.png",
+     *         "content_type": "image/png",
+     *         "url": "https://v3b.fal.media/files/b/0a8d06c0/PJqs6iVST-NaBlt8uMwVJ_49222c3290cd4cefb3baacac2cb004ce.png"
+     *       }
+     *     ]
+     */
+    images: Components.Image[];
+}
+
+export interface KlingImageO3TextToImageInput {
+    /**
+     * Aspect Ratio
+     * @description Aspect ratio of generated images.
+     * @default 16:9
+     * @enum {string}
+     */
+    aspect_ratio?: '16:9' | '9:16' | '1:1' | '4:3' | '3:4' | '3:2' | '2:3' | '21:9';
+    /**
+     * Elements
+     * @description Optional: Elements (characters/objects) for face control. Reference in prompt as @Element1, @Element2, etc.
+     */
+    elements?: Components.ElementInput[];
+    /**
+     * Num Images
+     * @description Number of images to generate (1-9). Only used when result_type is 'single'.
+     * @default 1
+     */
+    num_images?: number;
+    /**
+     * Output Format
+     * @description The format of the generated image.
+     * @default png
+     * @enum {string}
+     */
+    output_format?: 'jpeg' | 'png' | 'webp';
+    /**
+     * Prompt
+     * @description Text prompt for image generation. Max 2500 characters.
+     * @example A poster design says 'Kling Omni 3 Image is available on fal' with a cool font in the background as several rows and big font size. Big gap between the rows. High fashion model wearing a dress made entirely of living moss and small white flowers, standing in an abandoned greenhouse, shafts of light, editorial photography.
+     */
+    prompt: string;
+    /**
+     * Resolution
+     * @description Image generation resolution. 1K: standard, 2K: high-res, 4K: ultra high-res.
+     * @default 1K
+     * @enum {string}
+     */
+    resolution?: '1K' | '2K' | '4K';
+    /**
+     * Result Type
+     * @description Result type. 'single' for one image, 'series' for a series of related images.
+     * @default single
+     * @enum {string}
+     */
+    result_type?: 'single' | 'series';
+    /**
+     * Series Amount
+     * @description Number of images in series (2-9). Only used when result_type is 'series'.
+     */
+    series_amount?: number;
+    /**
+     * Sync Mode
+     * @description If `True`, the media will be returned as a data URI.
+     * @default false
+     */
+    sync_mode?: boolean;
+}
+
+export interface KlingImageO3TextToImageOutput {
+    /**
+     * Images
+     * @description Generated images
+     * @example [
+     *       {
+     *         "file_size": 1748857,
+     *         "file_name": "4b654d5a07b64b498ebdb091a76611ad.png",
+     *         "content_type": "image/png",
+     *         "url": "https://v3b.fal.media/files/b/0a8d069f/8kVewB_BV3u0f8vORGZYy_4b654d5a07b64b498ebdb091a76611ad.png"
+     *       }
+     *     ]
+     */
+    images: Components.Image[];
+}
+
+export interface KlingImageO3ImageToImageInput {
+    /**
+     * Aspect Ratio
+     * @description Aspect ratio of generated images. 'auto' intelligently determines based on input content.
+     * @default auto
+     * @enum {string}
+     */
+    aspect_ratio?: '16:9' | '9:16' | '1:1' | '4:3' | '3:4' | '3:2' | '2:3' | '21:9' | 'auto';
+    /**
+     * Elements
+     * @description Optional: Elements (characters/objects) for face control. Reference in prompt as @Element1, @Element2, etc.
+     */
+    elements?: Components.ElementInput[];
+    /**
+     * Image Urls
+     * @description List of reference images. Reference images in prompt using @Image1, @Image2, etc. (1-indexed). Max 10 images.
+     * @example [
+     *       "https://v3b.fal.media/files/b/0a8d06d1/FTrwBsV9WI5twqMPkqvRh_19db9852c5ed4a109d81c52d27c9e433.png"
+     *     ]
+     */
+    image_urls: string[];
+    /**
+     * Num Images
+     * @description Number of images to generate (1-9). Only used when result_type is 'single'.
+     * @default 1
+     */
+    num_images?: number;
+    /**
+     * Output Format
+     * @description The format of the generated image.
+     * @default png
+     * @enum {string}
+     */
+    output_format?: 'jpeg' | 'png' | 'webp';
+    /**
+     * Prompt
+     * @description Text prompt for image generation. Reference images using @Image1, @Image2, etc. (or @Image if only one image). Max 2500 characters.
+     * @example Transform into photorealistic 3D render, add proper lighting and shadows, realistic materials and textures, maintain exact proportions and design from sketch, product visualization quality
+     */
+    prompt: string;
+    /**
+     * Resolution
+     * @description Image generation resolution. 1K: standard, 2K: high-res, 4K: ultra high-res.
+     * @default 1K
+     * @enum {string}
+     */
+    resolution?: '1K' | '2K' | '4K';
+    /**
+     * Result Type
+     * @description Result type. 'single' for one image, 'series' for a series of related images.
+     * @default single
+     * @enum {string}
+     */
+    result_type?: 'single' | 'series';
+    /**
+     * Series Amount
+     * @description Number of images in series (2-9). Only used when result_type is 'series'.
+     */
+    series_amount?: number;
+    /**
+     * Sync Mode
+     * @description If `True`, the media will be returned as a data URI.
+     * @default false
+     */
+    sync_mode?: boolean;
+}
+
+export interface KlingImageO3ImageToImageOutput {
+    /**
+     * Images
+     * @description Generated images
+     * @example [
+     *       {
+     *         "file_size": 793847,
+     *         "file_name": "19db9852c5ed4a109d81c52d27c9e433.png",
+     *         "content_type": "image/png",
+     *         "url": "https://v3b.fal.media/files/b/0a8d06d1/FTrwBsV9WI5twqMPkqvRh_19db9852c5ed4a109d81c52d27c9e433.png"
+     *       }
+     *     ]
+     */
+    images: Components.Image[];
+}
 
 export interface KlingImageO1Input {
     /**
@@ -58032,11 +59510,11 @@ export interface GeminiFlashEditInput {
 
 export interface GeminiFlashEditOutput extends SharedType_1b2 {}
 
-export interface Gemini3ProImagePreviewEditInput extends SharedType_eac {}
+export interface Gemini3ProImagePreviewEditInput extends SharedType_367 {}
 
 export interface Gemini3ProImagePreviewEditOutput extends SharedType_876 {}
 
-export interface Gemini3ProImagePreviewInput extends SharedType_2a3 {}
+export interface Gemini3ProImagePreviewInput extends SharedType_8c2 {}
 
 export interface Gemini3ProImagePreviewOutput extends SharedType_7b9 {}
 

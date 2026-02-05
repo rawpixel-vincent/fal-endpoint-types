@@ -2259,6 +2259,16 @@ declare global {
                 output: falEndpoints.MinimaxVideo01Output;
             };
 
+            'fal-ai/minimax/speech-2.8-turbo': {
+                input: falEndpoints.MinimaxSpeech28TurboInput;
+                output: falEndpoints.MinimaxSpeech28TurboOutput;
+            };
+
+            'fal-ai/minimax/speech-2.8-hd': {
+                input: falEndpoints.MinimaxSpeech28HdInput;
+                output: falEndpoints.MinimaxSpeech28HdOutput;
+            };
+
             'fal-ai/minimax/speech-2.6-turbo': {
                 input: falEndpoints.MinimaxSpeech26TurboInput;
                 output: falEndpoints.MinimaxSpeech26TurboOutput;
@@ -2984,6 +2994,26 @@ declare global {
                 output: falEndpoints.KlingVideoVideoToAudioOutput;
             };
 
+            'fal-ai/kling-video/v3/standard/text-to-video': {
+                input: falEndpoints.KlingVideoV3StandardTextToVideoInput;
+                output: falEndpoints.KlingVideoV3StandardTextToVideoOutput;
+            };
+
+            'fal-ai/kling-video/v3/standard/image-to-video': {
+                input: falEndpoints.KlingVideoV3StandardImageToVideoInput;
+                output: falEndpoints.KlingVideoV3StandardImageToVideoOutput;
+            };
+
+            'fal-ai/kling-video/v3/pro/text-to-video': {
+                input: falEndpoints.KlingVideoV3ProTextToVideoInput;
+                output: falEndpoints.KlingVideoV3ProTextToVideoOutput;
+            };
+
+            'fal-ai/kling-video/v3/pro/image-to-video': {
+                input: falEndpoints.KlingVideoV3ProImageToVideoInput;
+                output: falEndpoints.KlingVideoV3ProImageToVideoOutput;
+            };
+
             'fal-ai/kling-video/v2/master/text-to-video': {
                 input: falEndpoints.KlingVideoV2MasterTextToVideoInput;
                 output: falEndpoints.KlingVideoV2MasterTextToVideoOutput;
@@ -3144,6 +3174,51 @@ declare global {
                 output: falEndpoints.KlingVideoV15ProEffectsOutput;
             };
 
+            'fal-ai/kling-video/o3/standard/video-to-video/reference': {
+                input: falEndpoints.KlingVideoO3StandardVideoToVideoReferenceInput;
+                output: falEndpoints.KlingVideoO3StandardVideoToVideoReferenceOutput;
+            };
+
+            'fal-ai/kling-video/o3/standard/video-to-video/edit': {
+                input: falEndpoints.KlingVideoO3StandardVideoToVideoEditInput;
+                output: falEndpoints.KlingVideoO3StandardVideoToVideoEditOutput;
+            };
+
+            'fal-ai/kling-video/o3/standard/reference-to-video': {
+                input: falEndpoints.KlingVideoO3StandardReferenceToVideoInput;
+                output: falEndpoints.KlingVideoO3StandardReferenceToVideoOutput;
+            };
+
+            'fal-ai/kling-video/o3/standard/image-to-video': {
+                input: falEndpoints.KlingVideoO3StandardImageToVideoInput;
+                output: falEndpoints.KlingVideoO3StandardImageToVideoOutput;
+            };
+
+            'fal-ai/kling-video/o3/pro/video-to-video/reference': {
+                input: falEndpoints.KlingVideoO3ProVideoToVideoReferenceInput;
+                output: falEndpoints.KlingVideoO3ProVideoToVideoReferenceOutput;
+            };
+
+            'fal-ai/kling-video/o3/pro/video-to-video/edit': {
+                input: falEndpoints.KlingVideoO3ProVideoToVideoEditInput;
+                output: falEndpoints.KlingVideoO3ProVideoToVideoEditOutput;
+            };
+
+            'fal-ai/kling-video/o3/pro/text-to-video': {
+                input: falEndpoints.KlingVideoO3ProTextToVideoInput;
+                output: falEndpoints.KlingVideoO3ProTextToVideoOutput;
+            };
+
+            'fal-ai/kling-video/o3/pro/reference-to-video': {
+                input: falEndpoints.KlingVideoO3ProReferenceToVideoInput;
+                output: falEndpoints.KlingVideoO3ProReferenceToVideoOutput;
+            };
+
+            'fal-ai/kling-video/o3/pro/image-to-video': {
+                input: falEndpoints.KlingVideoO3ProImageToVideoInput;
+                output: falEndpoints.KlingVideoO3ProImageToVideoOutput;
+            };
+
             'fal-ai/kling-video/o1/video-to-video/reference': {
                 input: falEndpoints.KlingVideoO1VideoToVideoReferenceInput;
                 output: falEndpoints.KlingVideoO1VideoToVideoReferenceOutput;
@@ -3207,6 +3282,26 @@ declare global {
             'fal-ai/kling-video/ai-avatar/v2/pro': {
                 input: falEndpoints.KlingVideoAiAvatarV2ProInput;
                 output: falEndpoints.KlingVideoAiAvatarV2ProOutput;
+            };
+
+            'fal-ai/kling-image/v3/text-to-image': {
+                input: falEndpoints.KlingImageV3TextToImageInput;
+                output: falEndpoints.KlingImageV3TextToImageOutput;
+            };
+
+            'fal-ai/kling-image/v3/image-to-image': {
+                input: falEndpoints.KlingImageV3ImageToImageInput;
+                output: falEndpoints.KlingImageV3ImageToImageOutput;
+            };
+
+            'fal-ai/kling-image/o3/text-to-image': {
+                input: falEndpoints.KlingImageO3TextToImageInput;
+                output: falEndpoints.KlingImageO3TextToImageOutput;
+            };
+
+            'fal-ai/kling-image/o3/image-to-image': {
+                input: falEndpoints.KlingImageO3ImageToImageInput;
+                output: falEndpoints.KlingImageO3ImageToImageOutput;
             };
 
             'fal-ai/kling-image/o1': {
