@@ -3184,6 +3184,11 @@ declare global {
                 output: falEndpoints.KlingVideoO3StandardVideoToVideoEditOutput;
             };
 
+            'fal-ai/kling-video/o3/standard/text-to-video': {
+                input: falEndpoints.KlingVideoO3StandardTextToVideoInput;
+                output: falEndpoints.KlingVideoO3StandardTextToVideoOutput;
+            };
+
             'fal-ai/kling-video/o3/standard/reference-to-video': {
                 input: falEndpoints.KlingVideoO3StandardReferenceToVideoInput;
                 output: falEndpoints.KlingVideoO3StandardReferenceToVideoOutput;

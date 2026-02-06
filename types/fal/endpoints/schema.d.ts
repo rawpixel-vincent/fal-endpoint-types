@@ -37,11 +37,11 @@ export interface XaiGrokImagineVideoTextToVideoOutput {
      *       "height": 720,
      *       "duration": 6.041667,
      *       "url": "https://v3b.fal.media/files/b/0a8b90e4/RUAbFYlssdqnbjNLmE8qP_IX7BNYGP.mp4",
-     *       "width": 1280,
      *       "fps": 24,
+     *       "width": 1280,
      *       "file_name": "RUAbFYlssdqnbjNLmE8qP_IX7BNYGP.mp4",
-     *       "num_frames": 145,
-     *       "content_type": "video/mp4"
+     *       "content_type": "video/mp4",
+     *       "num_frames": 145
      *     }
      */
     video: Components.VideoFile_1;
@@ -90,11 +90,11 @@ export interface XaiGrokImagineVideoImageToVideoOutput {
      *       "height": 720,
      *       "duration": 6.041667,
      *       "url": "https://v3b.fal.media/files/b/0a8b90e0/0Ci1dviuSnEyUZzBUq-_5_nu7MrAAa.mp4",
-     *       "width": 1280,
      *       "fps": 24,
+     *       "width": 1280,
      *       "file_name": "0Ci1dviuSnEyUZzBUq-_5_nu7MrAAa.mp4",
-     *       "num_frames": 145,
-     *       "content_type": "video/mp4"
+     *       "content_type": "video/mp4",
+     *       "num_frames": 145
      *     }
      */
     video: Components.VideoFile_1;
@@ -130,11 +130,11 @@ export interface XaiGrokImagineVideoEditVideoOutput {
      *       "height": 720,
      *       "duration": 5.041667,
      *       "url": "https://v3b.fal.media/files/b/0a8b9113/EuDrZuQTW9m1phBXOsauz_EpJH3s8X.mp4",
-     *       "width": 1280,
      *       "fps": 24,
+     *       "width": 1280,
      *       "file_name": "EuDrZuQTW9m1phBXOsauz_EpJH3s8X.mp4",
-     *       "num_frames": 121,
-     *       "content_type": "video/mp4"
+     *       "content_type": "video/mp4",
+     *       "num_frames": 121
      *     }
      */
     video: Components.VideoFile_1;
@@ -7720,6 +7720,20 @@ export interface SharedType_6b3 {
     };
 }
 
+export interface SharedType_6a3 {
+    /**
+     * Video
+     * @description The generated video.
+     * @example {
+     *       "file_size": 13096952,
+     *       "file_name": "output.mp4",
+     *       "content_type": "video/mp4",
+     *       "url": "https://v3b.fal.media/files/b/0a8d04e2/idOb9V-Q9ujlggPSKqsfS_output.mp4"
+     *     }
+     */
+    video: Components.File;
+}
+
 export interface SharedType_68c {
     /**
      * Images
@@ -8265,6 +8279,53 @@ export interface SharedType_5bb {
     timings: {
         [key: string]: number;
     };
+}
+
+export interface SharedType_5b7 {
+    /**
+     * Aspect Ratio
+     * @description Aspect ratio of the generated video.
+     * @default 16:9
+     * @enum {string}
+     */
+    aspect_ratio?: '16:9' | '9:16' | '1:1';
+    /**
+     * Duration
+     * @description Video duration in seconds (3-15s).
+     * @default 5
+     * @enum {string}
+     */
+    duration?: '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' | '13' | '14' | '15';
+    /**
+     * Generate Audio
+     * @description Whether to generate native audio for the video.
+     * @default false
+     */
+    generate_audio?: boolean;
+    /**
+     * Multi Prompt
+     * @description List of prompts for multi-shot video generation.
+     * @example null
+     */
+    multi_prompt?: Components.KlingV3MultiPromptElement[];
+    /**
+     * Prompt
+     * @description Text prompt for video generation. Required unless multi_prompt is provided.
+     * @example A mecha lands on the ground to save the city, and says "I'm here", in anime style
+     */
+    prompt?: string;
+    /**
+     * Shot Type
+     * @description The type of multi-shot video generation.
+     * @default customize
+     * @enum {string}
+     */
+    shot_type?: 'customize';
+    /**
+     * Voice Ids
+     * @description Optional Voice IDs for video generation. Reference voices in your prompt with <<<voice_1>>> and <<<voice_2>>> (maximum 2 voices per task). Get voice IDs from the kling video create-voice endpoint: https://fal.ai/models/fal-ai/kling-video/create-voice
+     */
+    voice_ids?: string[];
 }
 
 export interface SharedType_5a8 {
@@ -25853,15 +25914,15 @@ export interface Sam2VideoInput {
      * @example [
      *       {
      *         "y": 350,
-     *         "label": 1,
+     *         "x": 210,
      *         "frame_index": 0,
-     *         "x": 210
+     *         "label": 1
      *       },
      *       {
      *         "y": 220,
-     *         "label": 1,
+     *         "x": 250,
      *         "frame_index": 0,
-     *         "x": 250
+     *         "label": 1
      *       }
      *     ]
      */
@@ -25928,8 +25989,8 @@ export interface Sam2ImageInput {
      * @example [
      *       {
      *         "y": 375,
-     *         "label": 1,
-     *         "x": 500
+     *         "x": 500,
+     *         "label": 1
      *       }
      *     ]
      */
@@ -49756,6 +49817,10 @@ export interface KlingVideoO3StandardVideoToVideoEditOutput {
     video: Components.File;
 }
 
+export interface KlingVideoO3StandardTextToVideoInput extends SharedType_5b7 {}
+
+export interface KlingVideoO3StandardTextToVideoOutput extends SharedType_6a3 {}
+
 export interface KlingVideoO3StandardReferenceToVideoInput {
     /**
      * Aspect Ratio
@@ -49998,66 +50063,9 @@ export interface KlingVideoO3ProVideoToVideoEditOutput {
     video: Components.File;
 }
 
-export interface KlingVideoO3ProTextToVideoInput {
-    /**
-     * Aspect Ratio
-     * @description Aspect ratio of the generated video.
-     * @default 16:9
-     * @enum {string}
-     */
-    aspect_ratio?: '16:9' | '9:16' | '1:1';
-    /**
-     * Duration
-     * @description Video duration in seconds (3-15s).
-     * @default 5
-     * @enum {string}
-     */
-    duration?: '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' | '13' | '14' | '15';
-    /**
-     * Generate Audio
-     * @description Whether to generate native audio for the video.
-     * @default false
-     */
-    generate_audio?: boolean;
-    /**
-     * Multi Prompt
-     * @description List of prompts for multi-shot video generation.
-     * @example null
-     */
-    multi_prompt?: Components.KlingV3MultiPromptElement[];
-    /**
-     * Prompt
-     * @description Text prompt for video generation. Required unless multi_prompt is provided.
-     * @example A mecha lands on the ground to save the city, and says "I'm here", in anime style
-     */
-    prompt?: string;
-    /**
-     * Shot Type
-     * @description The type of multi-shot video generation.
-     * @default customize
-     * @enum {string}
-     */
-    shot_type?: 'customize';
-    /**
-     * Voice Ids
-     * @description Optional Voice IDs for video generation. Reference voices in your prompt with <<<voice_1>>> and <<<voice_2>>> (maximum 2 voices per task). Get voice IDs from the kling video create-voice endpoint: https://fal.ai/models/fal-ai/kling-video/create-voice
-     */
-    voice_ids?: string[];
-}
+export interface KlingVideoO3ProTextToVideoInput extends SharedType_5b7 {}
 
-export interface KlingVideoO3ProTextToVideoOutput {
-    /**
-     * Video
-     * @description The generated video.
-     * @example {
-     *       "file_size": 13096952,
-     *       "file_name": "output.mp4",
-     *       "content_type": "video/mp4",
-     *       "url": "https://v3b.fal.media/files/b/0a8d04e2/idOb9V-Q9ujlggPSKqsfS_output.mp4"
-     *     }
-     */
-    video: Components.File;
-}
+export interface KlingVideoO3ProTextToVideoOutput extends SharedType_6a3 {}
 
 export interface KlingVideoO3ProReferenceToVideoInput {
     /**
