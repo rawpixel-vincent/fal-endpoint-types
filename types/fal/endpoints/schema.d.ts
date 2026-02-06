@@ -26498,6 +26498,11 @@ export interface Sam33dObjectsInput {
      */
     box_prompts?: Components.BoxPromptBase[];
     /**
+     * Detection Threshold
+     * @description Detection confidence threshold (0.1-1.0). Lower = more detections but less precise. If not set, uses the model's default.
+     */
+    detection_threshold?: number;
+    /**
      * Export Textured Glb
      * @description If True, exports GLB with baked texture and UVs instead of vertex colors.
      * @default false
