@@ -39,6 +39,11 @@ declare global {
                 output: falEndpoints.WanV26TextToImageOutput;
             };
 
+            'wan/v2.6/reference-to-video/flash': {
+                input: falEndpoints.WanV26ReferenceToVideoFlashInput;
+                output: falEndpoints.WanV26ReferenceToVideoFlashOutput;
+            };
+
             'wan/v2.6/reference-to-video': {
                 input: falEndpoints.WanV26ReferenceToVideoInput;
                 output: falEndpoints.WanV26ReferenceToVideoOutput;
@@ -1412,6 +1417,11 @@ declare global {
             'fal-ai/qwen-image/image-to-image': {
                 input: falEndpoints.QwenImageImageToImageInput;
                 output: falEndpoints.QwenImageImageToImageOutput;
+            };
+
+            'fal-ai/qwen-image-trainer-v2': {
+                input: falEndpoints.QwenImageTrainerV2Input;
+                output: falEndpoints.QwenImageTrainerV2Output;
             };
 
             'fal-ai/qwen-image-trainer': {
@@ -5362,6 +5372,11 @@ declare global {
             'fal-ai/bytedance/dreamina/v3.1/text-to-image': {
                 input: falEndpoints.BytedanceDreaminaV31TextToImageInput;
                 output: falEndpoints.BytedanceDreaminaV31TextToImageOutput;
+            };
+
+            'fal-ai/bytedance/dreamactor/v2': {
+                input: falEndpoints.BytedanceDreamactorV2Input;
+                output: falEndpoints.BytedanceDreamactorV2Output;
             };
 
             'fal-ai/bytedance-upscaler/upscale/video': {

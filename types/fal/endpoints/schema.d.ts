@@ -37,11 +37,11 @@ export interface XaiGrokImagineVideoTextToVideoOutput {
      *       "height": 720,
      *       "duration": 6.041667,
      *       "url": "https://v3b.fal.media/files/b/0a8b90e4/RUAbFYlssdqnbjNLmE8qP_IX7BNYGP.mp4",
-     *       "fps": 24,
      *       "width": 1280,
+     *       "fps": 24,
      *       "file_name": "RUAbFYlssdqnbjNLmE8qP_IX7BNYGP.mp4",
-     *       "content_type": "video/mp4",
-     *       "num_frames": 145
+     *       "num_frames": 145,
+     *       "content_type": "video/mp4"
      *     }
      */
     video: Components.VideoFile_1;
@@ -90,11 +90,11 @@ export interface XaiGrokImagineVideoImageToVideoOutput {
      *       "height": 720,
      *       "duration": 6.041667,
      *       "url": "https://v3b.fal.media/files/b/0a8b90e0/0Ci1dviuSnEyUZzBUq-_5_nu7MrAAa.mp4",
-     *       "fps": 24,
      *       "width": 1280,
+     *       "fps": 24,
      *       "file_name": "0Ci1dviuSnEyUZzBUq-_5_nu7MrAAa.mp4",
-     *       "content_type": "video/mp4",
-     *       "num_frames": 145
+     *       "num_frames": 145,
+     *       "content_type": "video/mp4"
      *     }
      */
     video: Components.VideoFile_1;
@@ -130,11 +130,11 @@ export interface XaiGrokImagineVideoEditVideoOutput {
      *       "height": 720,
      *       "duration": 5.041667,
      *       "url": "https://v3b.fal.media/files/b/0a8b9113/EuDrZuQTW9m1phBXOsauz_EpJH3s8X.mp4",
-     *       "fps": 24,
      *       "width": 1280,
+     *       "fps": 24,
      *       "file_name": "EuDrZuQTW9m1phBXOsauz_EpJH3s8X.mp4",
-     *       "content_type": "video/mp4",
-     *       "num_frames": 121
+     *       "num_frames": 121,
+     *       "content_type": "video/mp4"
      *     }
      */
     video: Components.VideoFile_1;
@@ -449,6 +449,93 @@ export interface WanV26TextToImageOutput {
     seed: number;
 }
 
+export interface WanV26ReferenceToVideoFlashInput {
+    /**
+     * Aspect Ratio
+     * @description The aspect ratio of the generated video.
+     * @default 16:9
+     * @enum {string}
+     */
+    aspect_ratio?: '16:9' | '9:16' | '1:1' | '4:3' | '3:4';
+    /**
+     * Duration
+     * @description Duration of the generated video in seconds. R2V Flash supports only 5 or 10 seconds.
+     * @default 5
+     * @example 5
+     * @example 10
+     * @enum {string}
+     */
+    duration?: '5' | '10';
+    /**
+     * Enable Audio
+     * @description Whether to generate a video with audio. Set to false for silent video generation. Silent videos are faster and cost 25% of the audio version price.
+     * @default true
+     */
+    enable_audio?: boolean;
+    /**
+     * Enable Prompt Expansion
+     * @description Whether to enable prompt rewriting using LLM.
+     * @default true
+     */
+    enable_prompt_expansion?: boolean;
+    /**
+     * Enable Safety Checker
+     * @description If set to true, the safety checker will be enabled.
+     * @default true
+     * @example true
+     */
+    enable_safety_checker?: boolean;
+    /**
+     * Image Urls
+     * @description Reference images for subject consistency (0-5 images). Combined with video_urls, total references cannot exceed 5. Formats: JPEG, JPG, PNG (no alpha), BMP, WEBP. Resolution: 240-5000px. Max 10MB each. Reference order: image_urls continue numbering after video_urls.
+     * @example [
+     *       "https://v3b.fal.media/files/b/0a8d6d49/4XDgJcWQHLgkmUOL2JlPt_iXGPlm9y.png"
+     *     ]
+     */
+    image_urls?: string[];
+    /**
+     * Multi Shots
+     * @description When true (default), enables intelligent multi-shot segmentation for coherent narrative videos with multiple shots. When false, generates single continuous shot. Only active when enable_prompt_expansion is True.
+     * @default true
+     */
+    multi_shots?: boolean;
+    /**
+     * Negative Prompt
+     * @description Negative prompt to describe content to avoid. Max 500 characters.
+     * @default
+     * @example low resolution, error, worst quality, low quality, defects
+     */
+    negative_prompt?: string;
+    /**
+     * Prompt
+     * @description Use Character1, Character2, etc. to reference subjects from your reference files. Works for people, animals, or objects. For multi-shot prompts: '[0-3s] Shot 1. [3-6s] Shot 2.' Max 1500 characters. Reference order: video_urls first, then image_urls.
+     * @example Dance battle between Character1 and Character2.
+     */
+    prompt: string;
+    /**
+     * Resolution
+     * @description Video resolution tier. R2V Flash only supports 720p and 1080p.
+     * @default 1080p
+     * @enum {string}
+     */
+    resolution?: '720p' | '1080p';
+    /**
+     * Seed
+     * @description Random seed for reproducibility. If None, a random seed is chosen.
+     */
+    seed?: number;
+    /**
+     * Video Urls
+     * @description Reference videos for subject consistency (0-3 videos). Videos' FPS must be at least 16 FPS. Combined with image_urls, total references cannot exceed 5. Reference order: video_urls are numbered first (Character1, Character2...), then image_urls continue the sequence.
+     * @example [
+     *       "https://v3b.fal.media/files/b/0a8d6d47/FtSBJGfZuivKfBIrRuWxa_video.mp4"
+     *     ]
+     */
+    video_urls?: string[];
+}
+
+export interface WanV26ReferenceToVideoFlashOutput extends SharedType_a7f {}
+
 export interface WanV26ReferenceToVideoInput {
     /**
      * Aspect Ratio
@@ -521,29 +608,7 @@ export interface WanV26ReferenceToVideoInput {
     video_urls: string[];
 }
 
-export interface WanV26ReferenceToVideoOutput {
-    /**
-     * Actual Prompt
-     * @description The actual prompt used if prompt rewriting was enabled
-     * @example Dance battle between Character1 and Character2, cinematic lighting, dynamic camera movement.
-     */
-    actual_prompt?: string;
-    /**
-     * Seed
-     * @description The seed used for generation
-     * @example 175932751
-     */
-    seed: number;
-    /**
-     * Video
-     * @description The generated video file
-     * @example {
-     *       "content_type": "video/mp4",
-     *       "url": "https://v3b.fal.media/files/b/0a86762b/iDknfPkLFSFwWkyMgJi0U_QIzjwBDQ.mp4"
-     *     }
-     */
-    video: Components.VideoFile_1;
-}
+export interface WanV26ReferenceToVideoOutput extends SharedType_a7f {}
 
 export interface WanV26ImageToVideoFlashInput extends SharedType_d35 {}
 
@@ -2337,6 +2402,43 @@ export interface SharedType_e5a {
     timings: {
         [key: string]: number;
     };
+}
+
+export interface SharedType_e4b {
+    /**
+     * Default Caption
+     * @description Default caption to use when caption files are missing. If None, missing captions will cause an error.
+     */
+    default_caption?: string;
+    /**
+     * Image Data Url
+     * @description URL to the input data zip archive for text-to-image training.
+     *
+     *         The zip should contain images with their corresponding text captions:
+     *
+     *         image.EXT and image.txt
+     *         For example:
+     *         photo.jpg and photo.txt
+     *
+     *         The text file contains the caption/prompt describing the target image.
+     *
+     *         If no text file is provided for an image, the default_caption will be used.
+     *
+     *         If no default_caption is provided and a text file is missing, the training will fail.
+     */
+    image_data_url: string;
+    /**
+     * Learning Rate
+     * @description Learning rate for LoRA parameters.
+     * @default 0.0005
+     */
+    learning_rate?: number;
+    /**
+     * Steps
+     * @description Number of steps to train for
+     * @default 1000
+     */
+    steps?: number;
 }
 
 export interface SharedType_e3b {
@@ -4919,6 +5021,30 @@ export interface SharedType_a88 {
     timings: {
         [key: string]: number;
     };
+}
+
+export interface SharedType_a7f {
+    /**
+     * Actual Prompt
+     * @description The actual prompt used if prompt rewriting was enabled
+     * @example Dance battle between Character1 and Character2, cinematic lighting, dynamic camera movement.
+     */
+    actual_prompt?: string;
+    /**
+     * Seed
+     * @description The seed used for generation
+     * @example 175932751
+     */
+    seed: number;
+    /**
+     * Video
+     * @description The generated video file
+     * @example {
+     *       "content_type": "video/mp4",
+     *       "url": "https://v3b.fal.media/files/b/0a86762b/iDknfPkLFSFwWkyMgJi0U_QIzjwBDQ.mp4"
+     *     }
+     */
+    video: Components.VideoFile_1;
 }
 
 export interface SharedType_a77 {
@@ -20647,16 +20773,21 @@ export interface ViduQ3TextToVideoOutput {
 export interface ViduQ3ImageToVideoInput {
     /**
      * Audio
-     * @description Whether to use direct audio-video generation. When true, outputs video with sound.
+     * @description Whether to use direct audio-video generation. When true, outputs video with sound (including dialogue and sound effects).
      * @default true
      */
     audio?: boolean;
     /**
      * Duration
-     * @description Duration of the video in seconds
+     * @description Duration of the video in seconds (1-16 for Q3 models)
      * @default 5
      */
     duration?: number;
+    /**
+     * End Image Url
+     * @description URL of the image to use as the ending frame. When provided, generates a transition video between start and end frames.
+     */
+    end_image_url?: string;
     /**
      * Image Url
      * @description URL or base64 image to use as the starting frame
@@ -20666,12 +20797,13 @@ export interface ViduQ3ImageToVideoInput {
     /**
      * Prompt
      * @description Text prompt for video generation, max 2000 characters
+     * @default
      * @example The astronaut waved and the camera moved up.
      */
-    prompt: string;
+    prompt?: string;
     /**
      * Resolution
-     * @description Output video resolution
+     * @description Output video resolution. Note: 360p is not available when end_image_url is provided.
      * @default 720p
      * @enum {string}
      */
@@ -27934,6 +28066,10 @@ export interface QwenImageImageToImageOutput {
     };
 }
 
+export interface QwenImageTrainerV2Input extends SharedType_e4b {}
+
+export interface QwenImageTrainerV2Output extends SharedType_b8b {}
+
 export interface QwenImageTrainerInput {
     /**
      * Image Data Url
@@ -29337,42 +29473,7 @@ export interface QwenImage2512TrainerV2Input extends SharedType_54d {}
 
 export interface QwenImage2512TrainerV2Output extends SharedType_b8b {}
 
-export interface QwenImage2512TrainerInput {
-    /**
-     * Default Caption
-     * @description Default caption to use when caption files are missing. If None, missing captions will cause an error.
-     */
-    default_caption?: string;
-    /**
-     * Image Data Url
-     * @description URL to the input data zip archive for text-to-image training.
-     *
-     *         The zip should contain images with their corresponding text captions:
-     *
-     *         image.EXT and image.txt
-     *         For example:
-     *         photo.jpg and photo.txt
-     *
-     *         The text file contains the caption/prompt describing the target image.
-     *
-     *         If no text file is provided for an image, the default_caption will be used.
-     *
-     *         If no default_caption is provided and a text file is missing, the training will fail.
-     */
-    image_data_url: string;
-    /**
-     * Learning Rate
-     * @description Learning rate for LoRA parameters.
-     * @default 0.0005
-     */
-    learning_rate?: number;
-    /**
-     * Steps
-     * @description Number of steps to train for
-     * @default 1000
-     */
-    steps?: number;
-}
+export interface QwenImage2512TrainerInput extends SharedType_e4b {}
 
 export interface QwenImage2512TrainerOutput extends SharedType_b8b {}
 
@@ -58038,17 +58139,17 @@ export interface Hunyuan3dV31ProTextTo3dOutput {
      *         "content_type": "text/plain",
      *         "url": "https://v3b.fal.media/files/b/0a8c5482/ZxJepsEkhM67VSugmZ7QT_material.mtl"
      *       },
-     *       "obj": {
-     *         "file_size": 34755929,
-     *         "file_name": "6168030a8817075aaa55c94cc5145000.obj",
-     *         "content_type": "model/obj",
-     *         "url": "https://v3b.fal.media/files/b/0a8c5482/ZzC1xlOftyGQxhDkbZzVW_6168030a8817075aaa55c94cc5145000.obj"
-     *       },
      *       "glb": {
      *         "file_size": 35833072,
      *         "file_name": "model.glb",
      *         "content_type": "model/gltf-binary",
      *         "url": "https://v3b.fal.media/files/b/0a8c5483/z6sbpr5wBRjqgnQlJM2Ot_model.glb"
+     *       },
+     *       "obj": {
+     *         "file_size": 34755929,
+     *         "file_name": "6168030a8817075aaa55c94cc5145000.obj",
+     *         "content_type": "model/obj",
+     *         "url": "https://v3b.fal.media/files/b/0a8c5482/ZzC1xlOftyGQxhDkbZzVW_6168030a8817075aaa55c94cc5145000.obj"
      *       }
      *     }
      */
@@ -77964,6 +78065,38 @@ export interface BytedanceDreaminaV31TextToImageOutput {
      * @example 746406749
      */
     seed: number;
+}
+
+export interface BytedanceDreamactorV2Input {
+    /**
+     * Image Url
+     * @description The URL of the reference image to animate. Supports real people, animation, pets, etc. Format: jpeg, jpg or png. Max size: 4.7 MB. Resolution: between 480x480 and 1920x1080 (larger images will be proportionally reduced).
+     * @example https://v3b.fal.media/files/b/0a8d6292/E9WNRJh8K8DF9lSV0bkXs_image.png
+     */
+    image_url: string;
+    /**
+     * Trim First Second
+     * @description Whether to crop the first second of the output video. The output has a 1-second transition at the beginning; enable this to remove it.
+     * @default true
+     */
+    trim_first_second?: boolean;
+    /**
+     * Video Url
+     * @description The URL of the driving template video providing motion, facial expressions, and lip movement reference. Max duration: 30 seconds. Format: mp4, mov or webm. Resolution: between 200x200 and 2048x1440. Supports full face and body driving.
+     * @example https://v3b.fal.media/files/b/0a8d633f/u5Ye7jXL0Cfo0ijz5M6YY_input_example_dreamactor.mp4
+     */
+    video_url: string;
+}
+
+export interface BytedanceDreamactorV2Output {
+    /**
+     * Video
+     * @description Generated video file.
+     * @example {
+     *       "url": "https://v3b.fal.media/files/b/0a8d6313/ONsZwYeJrFqi1W1jbnfYF_9HU7tPvX1hUlMMxXCepTz_video%20(1)%20(1).mp4"
+     *     }
+     */
+    video: Components.File;
 }
 
 export interface BytedanceUpscalerUpscaleVideoInput {
