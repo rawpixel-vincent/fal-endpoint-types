@@ -414,9 +414,29 @@ declare global {
                 output: falEndpoints.WorkflowUtilitiesInterleaveVideoOutput;
             };
 
+            'fal-ai/workflow-utilities/impulse-response': {
+                input: falEndpoints.WorkflowUtilitiesImpulseResponseInput;
+                output: falEndpoints.WorkflowUtilitiesImpulseResponseOutput;
+            };
+
+            'fal-ai/workflow-utilities/extract-nth-frame': {
+                input: falEndpoints.WorkflowUtilitiesExtractNthFrameInput;
+                output: falEndpoints.WorkflowUtilitiesExtractNthFrameOutput;
+            };
+
+            'fal-ai/workflow-utilities/blend-video': {
+                input: falEndpoints.WorkflowUtilitiesBlendVideoInput;
+                output: falEndpoints.WorkflowUtilitiesBlendVideoOutput;
+            };
+
             'fal-ai/workflow-utilities/auto-subtitle': {
                 input: falEndpoints.WorkflowUtilitiesAutoSubtitleInput;
                 output: falEndpoints.WorkflowUtilitiesAutoSubtitleOutput;
+            };
+
+            'fal-ai/workflow-utilities/audio-compressor': {
+                input: falEndpoints.WorkflowUtilitiesAudioCompressorInput;
+                output: falEndpoints.WorkflowUtilitiesAudioCompressorOutput;
             };
 
             'fal-ai/wizper': {

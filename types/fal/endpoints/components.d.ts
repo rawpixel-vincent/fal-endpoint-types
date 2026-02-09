@@ -3530,7 +3530,7 @@ export interface AudioSetting {
     sample_rate?: 8000 | 16000 | 22050 | 24000 | 32000 | 44100;
 }
 
-export interface AudioFile_2 {
+export interface AudioFile_3 {
     /**
      * Content Type
      * @default audio/wav
@@ -3556,7 +3556,7 @@ export interface AudioFile_2 {
     url: string;
 }
 
-export interface AudioFile_1 {
+export interface AudioFile_2 {
     /**
      * Bitrate
      * @description The bitrate of the audio
@@ -3604,6 +3604,29 @@ export interface AudioFile_1 {
     /**
      * Url
      * @description The URL where the file can be downloaded from.
+     */
+    url: string;
+}
+
+export interface AudioFile_1 {
+    /**
+     * Content Type
+     * @description Content type of the audio file
+     */
+    content_type: string;
+    /**
+     * File Name
+     * @description Name of the audio file
+     */
+    file_name: string;
+    /**
+     * File Size
+     * @description Size of the audio file in bytes
+     */
+    file_size: number;
+    /**
+     * Url
+     * @description URL of the audio file
      */
     url: string;
 }

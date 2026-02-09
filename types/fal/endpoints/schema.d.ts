@@ -40,8 +40,8 @@ export interface XaiGrokImagineVideoTextToVideoOutput {
      *       "width": 1280,
      *       "fps": 24,
      *       "file_name": "RUAbFYlssdqnbjNLmE8qP_IX7BNYGP.mp4",
-     *       "num_frames": 145,
-     *       "content_type": "video/mp4"
+     *       "content_type": "video/mp4",
+     *       "num_frames": 145
      *     }
      */
     video: Components.VideoFile_1;
@@ -93,8 +93,8 @@ export interface XaiGrokImagineVideoImageToVideoOutput {
      *       "width": 1280,
      *       "fps": 24,
      *       "file_name": "0Ci1dviuSnEyUZzBUq-_5_nu7MrAAa.mp4",
-     *       "num_frames": 145,
-     *       "content_type": "video/mp4"
+     *       "content_type": "video/mp4",
+     *       "num_frames": 145
      *     }
      */
     video: Components.VideoFile_1;
@@ -133,8 +133,8 @@ export interface XaiGrokImagineVideoEditVideoOutput {
      *       "width": 1280,
      *       "fps": 24,
      *       "file_name": "EuDrZuQTW9m1phBXOsauz_EpJH3s8X.mp4",
-     *       "num_frames": 121,
-     *       "content_type": "video/mp4"
+     *       "content_type": "video/mp4",
+     *       "num_frames": 121
      *     }
      */
     video: Components.VideoFile_1;
@@ -10353,6 +10353,77 @@ export interface SharedType_2fc {
     video: Components.File;
 }
 
+export interface SharedType_2db {
+    /**
+     * Enable Safety Checker
+     * @description If set to true, the safety checker will be enabled.
+     * @default true
+     */
+    enable_safety_checker?: boolean;
+    /**
+     * Image Size
+     * @description The size of the generated image. If not provided, uses the input image size.
+     * @example {
+     *       "height": 1152,
+     *       "width": 2016
+     *     }
+     */
+    image_size?:
+        | Components.ImageSize
+        | (
+              | 'square_hd'
+              | 'square'
+              | 'portrait_4_3'
+              | 'portrait_16_9'
+              | 'landscape_4_3'
+              | 'landscape_16_9'
+          );
+    /**
+     * Image URLs
+     * @description The URLs of the images for editing. A maximum of 4 images are allowed.
+     * @example [
+     *       "https://v3b.fal.media/files/b/0a8a69d5/kkXxFfj1QeVtw35kxy5Py_1a7e3511-bd2c-46be-923a-8e6be2496f12.png"
+     *     ]
+     */
+    image_urls: string[];
+    /**
+     * Number of Images
+     * @description The number of images to generate.
+     * @default 1
+     */
+    num_images?: number;
+    /**
+     * Number of Inference Steps
+     * @description The number of inference steps to perform.
+     * @default 4
+     */
+    num_inference_steps?: number;
+    /**
+     * Output Format
+     * @description The format of the generated image.
+     * @default png
+     * @enum {string}
+     */
+    output_format?: 'jpeg' | 'png' | 'webp';
+    /**
+     * Prompt
+     * @description The prompt to edit the image.
+     * @example Turn this into a realistic image
+     */
+    prompt: string;
+    /**
+     * Seed
+     * @description The seed to use for the generation. If not provided, a random seed will be used.
+     */
+    seed?: number;
+    /**
+     * Sync Mode
+     * @description If `True`, the media will be returned as a data URI. Output is not stored when this is True.
+     * @default false
+     */
+    sync_mode?: boolean;
+}
+
 export interface SharedType_2c5 {
     /**
      * Video
@@ -15230,6 +15301,211 @@ export interface WorkflowUtilitiesInterleaveVideoOutput {
     video: Components.File;
 }
 
+export interface WorkflowUtilitiesImpulseResponseInput {
+    /**
+     * Audio Url
+     * @description URL of the main audio file to process
+     * @example https://v3.fal.media/files/panda/1-0iezBUIePBa3Sz5YY5B_tmpy1jyshw9.wav
+     */
+    audio_url: string;
+    /**
+     * Dry Level
+     * @description Level of the original (dry) signal in the mix (0.0-1.0)
+     * @default 0.7
+     */
+    dry_level?: number;
+    /**
+     * Impulse Response Url
+     * @description URL of the impulse response WAV file (reverb/effect profile)
+     * @example https://v3.fal.media/files/panda/1-0iezBUIePBa3Sz5YY5B_tmpy1jyshw9.wav
+     */
+    impulse_response_url: string;
+    /**
+     * Loudness I
+     * @description Target integrated loudness in LUFS (typically -24 to -14)
+     * @default -18
+     */
+    loudness_i?: number;
+    /**
+     * Loudness Lra
+     * @description Loudness Range target in LU (typically 5-15)
+     * @default 8
+     */
+    loudness_lra?: number;
+    /**
+     * Loudness Tp
+     * @description Maximum true peak in dBTP (typically -2 to -1)
+     * @default -1.5
+     */
+    loudness_tp?: number;
+    /**
+     * Output Bitrate
+     * @description Output audio bitrate
+     * @default 192k
+     * @enum {string}
+     */
+    output_bitrate?: '128k' | '192k' | '256k' | '320k';
+    /**
+     * Wet Level
+     * @description Level of the processed (wet) signal in the mix (0.0-1.0)
+     * @default 0.3
+     */
+    wet_level?: number;
+}
+
+export interface WorkflowUtilitiesImpulseResponseOutput {
+    /**
+     * Audio
+     * @description The processed audio file with reverb applied
+     * @example {
+     *       "file_size": 2456789,
+     *       "file_name": "impulse_output.wav",
+     *       "content_type": "application/octet-stream",
+     *       "url": "https://v3b.fal.media/files/b/panda/impulse_output.wav"
+     *     }
+     */
+    audio: Components.AudioFile_1;
+}
+
+export interface WorkflowUtilitiesExtractNthFrameInput {
+    /**
+     * Frame Interval
+     * @description Extract every Nth frame (e.g., 3 = every 3rd frame, 12 = every 12th frame)
+     * @default 12
+     */
+    frame_interval?: number;
+    /**
+     * Max Frames
+     * @description Maximum number of frames to extract
+     * @default 100
+     */
+    max_frames?: number;
+    /**
+     * Output Format
+     * @description Output format for extracted frames
+     * @default png
+     * @enum {string}
+     */
+    output_format?: 'png' | 'jpg' | 'jpeg' | 'webp';
+    /**
+     * Quality
+     * @description Quality for jpg/webp output (1-100)
+     * @default 95
+     */
+    quality?: number;
+    /**
+     * Video Url
+     * @description URL of the video file to extract frames from
+     *
+     *     Max file size: 95.4MB, Timeout: 30.0s
+     * @example https://storage.googleapis.com/falserverless/example_outputs/wan-25-i2v-output.mp4
+     */
+    video_url: string;
+}
+
+export interface WorkflowUtilitiesExtractNthFrameOutput {
+    /**
+     * Frame Count
+     * @description Total number of frames extracted
+     * @example 25
+     */
+    frame_count: number;
+    /**
+     * Images
+     * @description Array of extracted frame images
+     * @example [
+     *       {
+     *         "file_size": 102400,
+     *         "file_name": "frame_001.png",
+     *         "content_type": "image/png",
+     *         "url": "https://v3b.fal.media/files/b/tiger/frame_001.png"
+     *       },
+     *       {
+     *         "file_size": 102400,
+     *         "file_name": "frame_002.png",
+     *         "content_type": "image/png",
+     *         "url": "https://v3b.fal.media/files/b/tiger/frame_002.png"
+     *       }
+     *     ]
+     */
+    images: Components.Image[];
+}
+
+export interface WorkflowUtilitiesBlendVideoInput {
+    /**
+     * Blend Mode
+     * @description Blend mode to use for combining the videos
+     * @default overlay
+     * @enum {string}
+     */
+    blend_mode?:
+        | 'addition'
+        | 'average'
+        | 'burn'
+        | 'darken'
+        | 'difference'
+        | 'divide'
+        | 'dodge'
+        | 'exclusion'
+        | 'grainextract'
+        | 'grainmerge'
+        | 'hardlight'
+        | 'lighten'
+        | 'multiply'
+        | 'negation'
+        | 'normal'
+        | 'overlay'
+        | 'phoenix'
+        | 'pinlight'
+        | 'reflect'
+        | 'screen'
+        | 'softlight'
+        | 'subtract'
+        | 'vividlight';
+    /**
+     * Bottom Video Url
+     * @description URL of the bottom layer video
+     *
+     *     Max file size: 95.4MB, Timeout: 30.0s
+     * @example https://storage.googleapis.com/falserverless/model_tests/kling/kling-v2.5-turbo-pro-image-to-video-output.mp4
+     */
+    bottom_video_url: string;
+    /**
+     * Opacity
+     * @description Opacity of the top layer (0.0-1.0)
+     * @default 1
+     */
+    opacity?: number;
+    /**
+     * Shortest
+     * @description End output when the shortest input ends
+     * @default true
+     */
+    shortest?: boolean;
+    /**
+     * Top Video Url
+     * @description URL of the top layer video
+     *
+     *     Max file size: 95.4MB, Timeout: 30.0s
+     * @example https://storage.googleapis.com/falserverless/example_outputs/wan-25-i2v-output.mp4
+     */
+    top_video_url: string;
+}
+
+export interface WorkflowUtilitiesBlendVideoOutput {
+    /**
+     * Video
+     * @description The blended video output
+     * @example {
+     *       "file_size": 3886177,
+     *       "file_name": "blended_output.mp4",
+     *       "content_type": "video/mp4",
+     *       "url": "https://v3b.fal.media/files/b/monkey/blended_output.mp4"
+     *     }
+     */
+    video: Components.File;
+}
+
 export interface WorkflowUtilitiesAutoSubtitleInput {
     /**
      * Background Color
@@ -15436,6 +15712,72 @@ export interface WorkflowUtilitiesAutoSubtitleOutput {
      * @description Word-level timing information from transcription service
      */
     words?: Record<string, never>[];
+}
+
+export interface WorkflowUtilitiesAudioCompressorInput {
+    /**
+     * Attack
+     * @description Attack time in milliseconds (how fast compression starts)
+     * @default 5
+     */
+    attack?: number;
+    /**
+     * Audio Url
+     * @description URL of the audio file to compress
+     * @example https://v3.fal.media/files/panda/1-0iezBUIePBa3Sz5YY5B_tmpy1jyshw9.wav
+     */
+    audio_url: string;
+    /**
+     * Knee
+     * @description Knee width in dB for soft knee compression (0 = hard knee)
+     * @default 2.83
+     */
+    knee?: number;
+    /**
+     * Makeup
+     * @description Makeup gain in dB to compensate for volume reduction
+     * @default 8
+     */
+    makeup?: number;
+    /**
+     * Output Bitrate
+     * @description Output audio bitrate
+     * @default 192k
+     * @enum {string}
+     */
+    output_bitrate?: '128k' | '192k' | '256k' | '320k';
+    /**
+     * Ratio
+     * @description Compression ratio (1 = no compression, higher = more compression)
+     * @default 3
+     */
+    ratio?: number;
+    /**
+     * Release
+     * @description Release time in milliseconds (how fast compression stops)
+     * @default 50
+     */
+    release?: number;
+    /**
+     * Threshold
+     * @description Threshold level in dB above which compression is applied (-60 to 0)
+     * @default -18
+     */
+    threshold?: number;
+}
+
+export interface WorkflowUtilitiesAudioCompressorOutput {
+    /**
+     * Audio
+     * @description The compressed audio file
+     * @example {
+     *       "file_size": 1234567,
+     *       "file_name": "compressed_audio.wav",
+     *       "content_type": "application/octet-stream",
+     *       "url": "https://v3b.fal.media/files/b/panda/compressed_audio.wav"
+     *     }
+     */
+    audio: Components.AudioFile_1;
 }
 
 export interface WizperInput {
@@ -20773,21 +21115,16 @@ export interface ViduQ3TextToVideoOutput {
 export interface ViduQ3ImageToVideoInput {
     /**
      * Audio
-     * @description Whether to use direct audio-video generation. When true, outputs video with sound (including dialogue and sound effects).
+     * @description Whether to use direct audio-video generation. When true, outputs video with sound.
      * @default true
      */
     audio?: boolean;
     /**
      * Duration
-     * @description Duration of the video in seconds (1-16 for Q3 models)
+     * @description Duration of the video in seconds
      * @default 5
      */
     duration?: number;
-    /**
-     * End Image Url
-     * @description URL of the image to use as the ending frame. When provided, generates a transition video between start and end frames.
-     */
-    end_image_url?: string;
     /**
      * Image Url
      * @description URL or base64 image to use as the starting frame
@@ -20797,13 +21134,12 @@ export interface ViduQ3ImageToVideoInput {
     /**
      * Prompt
      * @description Text prompt for video generation, max 2000 characters
-     * @default
      * @example The astronaut waved and the camera moved up.
      */
-    prompt?: string;
+    prompt: string;
     /**
      * Resolution
-     * @description Output video resolution. Note: 360p is not available when end_image_url is provided.
+     * @description Output video resolution
      * @default 720p
      * @enum {string}
      */
@@ -66002,109 +66338,9 @@ export interface Flux2LoraOutput {
     };
 }
 
-export interface Flux2Klein9bEditInput {
-    /**
-     * Enable Safety Checker
-     * @description If set to true, the safety checker will be enabled.
-     * @default true
-     */
-    enable_safety_checker?: boolean;
-    /**
-     * Image Size
-     * @description The size of the generated image. If not provided, uses the input image size.
-     * @example {
-     *       "height": 1152,
-     *       "width": 2016
-     *     }
-     */
-    image_size?:
-        | Components.ImageSize
-        | (
-              | 'square_hd'
-              | 'square'
-              | 'portrait_4_3'
-              | 'portrait_16_9'
-              | 'landscape_4_3'
-              | 'landscape_16_9'
-          );
-    /**
-     * Image URLs
-     * @description The URLs of the images for editing. A maximum of 4 images are allowed.
-     * @example [
-     *       "https://v3b.fal.media/files/b/0a8a69d5/kkXxFfj1QeVtw35kxy5Py_1a7e3511-bd2c-46be-923a-8e6be2496f12.png"
-     *     ]
-     */
-    image_urls: string[];
-    /**
-     * Number of Images
-     * @description The number of images to generate.
-     * @default 1
-     */
-    num_images?: number;
-    /**
-     * Number of Inference Steps
-     * @description The number of inference steps to perform.
-     * @default 4
-     */
-    num_inference_steps?: number;
-    /**
-     * Output Format
-     * @description The format of the generated image.
-     * @default png
-     * @enum {string}
-     */
-    output_format?: 'jpeg' | 'png' | 'webp';
-    /**
-     * Prompt
-     * @description The prompt to edit the image.
-     * @example Show me a full body image
-     */
-    prompt: string;
-    /**
-     * Seed
-     * @description The seed to use for the generation. If not provided, a random seed will be used.
-     */
-    seed?: number;
-    /**
-     * Sync Mode
-     * @description If `True`, the media will be returned as a data URI. Output is not stored when this is True.
-     * @default false
-     */
-    sync_mode?: boolean;
-}
+export interface Flux2Klein9bEditInput extends SharedType_2db {}
 
-export interface Flux2Klein9bEditOutput {
-    /**
-     * Has Nsfw Concepts
-     * @description Whether the generated images contain NSFW concepts.
-     */
-    has_nsfw_concepts: boolean[];
-    /**
-     * Images
-     * @description The edited images
-     * @example [
-     *       {
-     *         "url": "https://v3b.fal.media/files/b/0a8b8b22/zxpzgthoJaMfiLfSqjTwX.png"
-     *       }
-     *     ]
-     */
-    images: Components.ImageFile[];
-    /**
-     * Prompt
-     * @description The prompt used for generating the image.
-     */
-    prompt: string;
-    /**
-     * Seed
-     * @description Seed of the generated Image. It will be the same value of the one passed in the
-     *                 input or the randomly generated that was used in case none was passed.
-     */
-    seed: number;
-    /** Timings */
-    timings: {
-        [key: string]: number;
-    };
-}
+export interface Flux2Klein9bEditOutput extends SharedType_3e8 {}
 
 export interface Flux2Klein9bBaseLoraInput extends SharedType_e34 {}
 
@@ -66442,76 +66678,7 @@ export interface Flux2Klein9bOutput {
     };
 }
 
-export interface Flux2Klein4bEditInput {
-    /**
-     * Enable Safety Checker
-     * @description If set to true, the safety checker will be enabled.
-     * @default true
-     */
-    enable_safety_checker?: boolean;
-    /**
-     * Image Size
-     * @description The size of the generated image. If not provided, uses the input image size.
-     * @example {
-     *       "height": 1152,
-     *       "width": 2016
-     *     }
-     */
-    image_size?:
-        | Components.ImageSize
-        | (
-              | 'square_hd'
-              | 'square'
-              | 'portrait_4_3'
-              | 'portrait_16_9'
-              | 'landscape_4_3'
-              | 'landscape_16_9'
-          );
-    /**
-     * Image URLs
-     * @description The URLs of the images for editing. A maximum of 4 images are allowed.
-     * @example [
-     *       "https://v3b.fal.media/files/b/0a8a69d5/kkXxFfj1QeVtw35kxy5Py_1a7e3511-bd2c-46be-923a-8e6be2496f12.png"
-     *     ]
-     */
-    image_urls: string[];
-    /**
-     * Number of Images
-     * @description The number of images to generate.
-     * @default 1
-     */
-    num_images?: number;
-    /**
-     * Number of Inference Steps
-     * @description The number of inference steps to perform.
-     * @default 4
-     */
-    num_inference_steps?: number;
-    /**
-     * Output Format
-     * @description The format of the generated image.
-     * @default png
-     * @enum {string}
-     */
-    output_format?: 'jpeg' | 'png' | 'webp';
-    /**
-     * Prompt
-     * @description The prompt to edit the image.
-     * @example Turn this into a realistic image
-     */
-    prompt: string;
-    /**
-     * Seed
-     * @description The seed to use for the generation. If not provided, a random seed will be used.
-     */
-    seed?: number;
-    /**
-     * Sync Mode
-     * @description If `True`, the media will be returned as a data URI. Output is not stored when this is True.
-     * @default false
-     */
-    sync_mode?: boolean;
-}
+export interface Flux2Klein4bEditInput extends SharedType_2db {}
 
 export interface Flux2Klein4bEditOutput {
     /**
@@ -72965,7 +73132,7 @@ export interface F5TtsOutput {
      * Generated Speech
      * @description The audio file containing the generated speech.
      */
-    audio_url: Components.AudioFile_2;
+    audio_url: Components.AudioFile_3;
 }
 
 export interface FLiteTextureInput extends SharedType_b7d {}
@@ -73561,9 +73728,6 @@ export interface ElevenlabsSpeechToTextScribeV2Input {
      * Keyterms
      * @description Words or sentences to bias the model towards transcribing. Up to 100 keyterms, max 50 characters each. Adds 30% premium over base transcription price.
      * @default []
-     * @example [
-     *       "fal.ai"
-     *     ]
      */
     keyterms?: string[];
     /**
@@ -73607,220 +73771,220 @@ export interface ElevenlabsSpeechToTextScribeV2Output {
      * Words
      * @description Word-level transcription details
      * @example {
-     *       "text": "Hey,",
+     *       "end": 0.539,
      *       "start": 0.079,
      *       "type": "word",
-     *       "end": 0.539,
+     *       "text": "Hey,",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": " ",
+     *       "end": 0.599,
      *       "start": 0.539,
      *       "type": "spacing",
-     *       "end": 0.599,
+     *       "text": " ",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": "this",
+     *       "end": 0.679,
      *       "start": 0.599,
      *       "type": "word",
-     *       "end": 0.679,
+     *       "text": "this",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": " ",
+     *       "end": 0.739,
      *       "start": 0.679,
      *       "type": "spacing",
-     *       "end": 0.739,
+     *       "text": " ",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": "is",
+     *       "end": 0.799,
      *       "start": 0.739,
      *       "type": "word",
-     *       "end": 0.799,
+     *       "text": "is",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": " ",
+     *       "end": 0.939,
      *       "start": 0.799,
      *       "type": "spacing",
-     *       "end": 0.939,
+     *       "text": " ",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": "a",
+     *       "end": 0.939,
      *       "start": 0.939,
      *       "type": "word",
-     *       "end": 0.939,
+     *       "text": "a",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": " ",
+     *       "end": 0.959,
      *       "start": 0.939,
      *       "type": "spacing",
-     *       "end": 0.959,
+     *       "text": " ",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": "test",
+     *       "end": 1.179,
      *       "start": 0.959,
      *       "type": "word",
-     *       "end": 1.179,
+     *       "text": "test",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": " ",
+     *       "end": 1.219,
      *       "start": 1.179,
      *       "type": "spacing",
-     *       "end": 1.219,
+     *       "text": " ",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": "recording",
+     *       "end": 1.719,
      *       "start": 1.22,
      *       "type": "word",
-     *       "end": 1.719,
+     *       "text": "recording",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": " ",
+     *       "end": 1.719,
      *       "start": 1.719,
      *       "type": "spacing",
-     *       "end": 1.719,
+     *       "text": " ",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": "for",
+     *       "end": 1.86,
      *       "start": 1.719,
      *       "type": "word",
-     *       "end": 1.86,
+     *       "text": "for",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": " ",
+     *       "end": 1.879,
      *       "start": 1.86,
      *       "type": "spacing",
-     *       "end": 1.879,
+     *       "text": " ",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": "Scribe",
+     *       "end": 2.24,
      *       "start": 1.879,
      *       "type": "word",
-     *       "end": 2.24,
+     *       "text": "Scribe",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": " ",
+     *       "end": 2.319,
      *       "start": 2.24,
      *       "type": "spacing",
-     *       "end": 2.319,
+     *       "text": " ",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": "version",
+     *       "end": 2.759,
      *       "start": 2.319,
      *       "type": "word",
-     *       "end": 2.759,
+     *       "text": "version",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": " ",
+     *       "end": 2.779,
      *       "start": 2.759,
      *       "type": "spacing",
-     *       "end": 2.779,
+     *       "text": " ",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": "two,",
+     *       "end": 3.379,
      *       "start": 2.779,
      *       "type": "word",
-     *       "end": 3.379,
+     *       "text": "two,",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": " ",
+     *       "end": 3.399,
      *       "start": 3.379,
      *       "type": "spacing",
-     *       "end": 3.399,
+     *       "text": " ",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": "which",
+     *       "end": 3.519,
      *       "start": 3.399,
      *       "type": "word",
-     *       "end": 3.519,
+     *       "text": "which",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": " ",
+     *       "end": 3.539,
      *       "start": 3.519,
      *       "type": "spacing",
-     *       "end": 3.539,
+     *       "text": " ",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": "is",
+     *       "end": 3.659,
      *       "start": 3.539,
      *       "type": "word",
-     *       "end": 3.659,
+     *       "text": "is",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": " ",
+     *       "end": 3.699,
      *       "start": 3.659,
      *       "type": "spacing",
-     *       "end": 3.699,
+     *       "text": " ",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": "now",
+     *       "end": 3.839,
      *       "start": 3.699,
      *       "type": "word",
-     *       "end": 3.839,
+     *       "text": "now",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": " ",
+     *       "end": 3.839,
      *       "start": 3.839,
      *       "type": "spacing",
-     *       "end": 3.839,
+     *       "text": " ",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": "available",
+     *       "end": 4.319,
      *       "start": 3.839,
      *       "type": "word",
-     *       "end": 4.319,
+     *       "text": "available",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": " ",
+     *       "end": 4.339,
      *       "start": 4.319,
      *       "type": "spacing",
-     *       "end": 4.339,
+     *       "text": " ",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": "on",
+     *       "end": 4.579,
      *       "start": 4.339,
      *       "type": "word",
-     *       "end": 4.579,
+     *       "text": "on",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": " ",
+     *       "end": 4.599,
      *       "start": 4.579,
      *       "type": "spacing",
-     *       "end": 4.599,
+     *       "text": " ",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": "fal.ai.",
+     *       "end": 5.699,
      *       "start": 4.599,
      *       "type": "word",
-     *       "end": 5.699,
+     *       "text": "fal.ai.",
      *       "speaker_id": "speaker_0"
      *     }
      */
@@ -75072,7 +75236,7 @@ export interface Deepfilternet3Output {
      *       "bitrate": "192k"
      *     }
      */
-    audio_file: Components.AudioFile_1;
+    audio_file: Components.AudioFile_2;
     /**
      * Timings
      * @description Timings for each step in the pipeline.
