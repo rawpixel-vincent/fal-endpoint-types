@@ -299,9 +299,19 @@ declare global {
                 output: falEndpoints.HalfmoonaiAiHomeEditOutput;
             };
 
+            'half-moon-ai/ai-face-swap/faceswapvideomulti': {
+                input: falEndpoints.HalfmoonaiAiFaceSwapFaceswapvideomultiInput;
+                output: falEndpoints.HalfmoonaiAiFaceSwapFaceswapvideomultiOutput;
+            };
+
             'half-moon-ai/ai-face-swap/faceswapvideo': {
                 input: falEndpoints.HalfmoonaiAiFaceSwapFaceswapvideoInput;
                 output: falEndpoints.HalfmoonaiAiFaceSwapFaceswapvideoOutput;
+            };
+
+            'half-moon-ai/ai-face-swap/faceswapimagemulti': {
+                input: falEndpoints.HalfmoonaiAiFaceSwapFaceswapimagemultiInput;
+                output: falEndpoints.HalfmoonaiAiFaceSwapFaceswapimagemultiOutput;
             };
 
             'half-moon-ai/ai-face-swap/faceswapimage': {
@@ -2409,6 +2419,16 @@ declare global {
                 output: falEndpoints.MinimaxMusicOutput;
             };
 
+            'fal-ai/meshy/v6/text-to-3d': {
+                input: falEndpoints.MeshyV6TextTo3dInput;
+                output: falEndpoints.MeshyV6TextTo3dOutput;
+            };
+
+            'fal-ai/meshy/v6/image-to-3d': {
+                input: falEndpoints.MeshyV6ImageTo3dInput;
+                output: falEndpoints.MeshyV6ImageTo3dOutput;
+            };
+
             'fal-ai/meshy/v6-preview/text-to-3d': {
                 input: falEndpoints.MeshyV6PreviewTextTo3dInput;
                 output: falEndpoints.MeshyV6PreviewTextTo3dOutput;
@@ -4477,6 +4497,11 @@ declare global {
             'fal-ai/flux-2/lora': {
                 input: falEndpoints.Flux2LoraInput;
                 output: falEndpoints.Flux2LoraOutput;
+            };
+
+            'fal-ai/flux-2/klein/realtime': {
+                input: falEndpoints.Flux2KleinRealtimeInput;
+                output: falEndpoints.Flux2KleinRealtimeOutput;
             };
 
             'fal-ai/flux-2/klein/9b/edit': {

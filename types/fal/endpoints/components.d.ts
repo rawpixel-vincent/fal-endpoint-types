@@ -152,12 +152,6 @@ export interface VideoFile_1 {
      */
     duration?: number;
     /**
-     * File Data
-     * Format: binary
-     * @description File data
-     */
-    file_data?: string;
-    /**
      * File Name
      * @description The name of the file. It will be auto-generated if not provided.
      * @example z9RV14K95DvU.png
@@ -208,6 +202,12 @@ export interface VideoFile {
      * @description The duration of the video
      */
     duration?: number;
+    /**
+     * File Data
+     * Format: binary
+     * @description File data
+     */
+    file_data?: string;
     /**
      * File Name
      * @description The name of the file. It will be auto-generated if not provided.
@@ -779,6 +779,88 @@ export interface TextureFiles {
     roughness?: File_1;
 }
 
+export interface TextRender {
+    /**
+     * Appearance Details
+     * @description Any other notable visual details.
+     */
+    appearance_details?: string;
+    /**
+     * Color
+     * @description E.g., 'red', 'blue', 'green'.
+     */
+    color: string;
+    /**
+     * Font
+     * @description E.g., 'realistic', 'cartoonish', 'minimalist'.
+     */
+    font: string;
+    /**
+     * Location
+     * @description E.g., 'center', 'top-left', 'bottom-right foreground'.
+     */
+    location: string;
+    /**
+     * Size
+     * @description E.g., 'small', 'medium', 'large within frame'.
+     */
+    size: string;
+    /**
+     * Text
+     * @description The text content.
+     */
+    text: string;
+}
+
+export interface StructuredPrompt_1 {
+    /** @description Details about the image aesthetics. */
+    aesthetics: AestheticsDetails;
+    /**
+     * Artistic Style
+     * @description describe specific artistic characteristics, 3 words maximum.
+     */
+    artistic_style: string;
+    /**
+     * Background Setting
+     * @description Describe the overall environment, setting, or background, including any notable background elements.
+     */
+    background_setting: string;
+    /**
+     * Context
+     * @description Provide any additional context that helps understand the image better.
+     */
+    context: string;
+    /** @description Details about the lighting. */
+    lighting: LightingDetails;
+    /**
+     * Objects
+     * @description List of prominent foreground/midground objects.
+     */
+    objects: ObjectDescription[];
+    /** @description Details about photographic characteristics. */
+    photographic_characteristics?: PhotographicCharacteristicsDetails;
+    /**
+     * Short Description
+     * @description A concise summary of the image content, 200 words maximum.
+     */
+    short_description: string;
+    /**
+     * Style Medium
+     * @description Identify the artistic style or medium.
+     */
+    style_medium?: string;
+    /**
+     * Subject Emotions
+     * @description Explicitly describe any visible emotions or expressions on subjects.
+     */
+    subject_emotions?: string;
+    /**
+     * Text Render
+     * @description List of text renders in the image.
+     */
+    text_render?: TextRender[];
+}
+
 export interface StructuredPrompt {
     /** @description The aesthetics of the image to be generated. */
     aesthetics?: Aesthetics;
@@ -1149,6 +1231,23 @@ export interface ReferenceFace {
     image_url: string;
 }
 
+export interface RawImage {
+    /**
+     * Content
+     * Format: binary
+     */
+    content: string;
+    /**
+     * Content Type
+     * @default image/jpeg
+     */
+    content_type?: string;
+    /** Height */
+    height: number;
+    /** Width */
+    width: number;
+}
+
 export interface PronunciationDictionaryLocator {
     /**
      * Pronunciation Dictionary Id
@@ -1365,6 +1464,29 @@ export interface Point {
     y: number;
 }
 
+export interface PhotographicCharacteristicsDetails {
+    /**
+     * Camera Angle
+     * @description E.g., 'eye-level', 'low angle', 'high angle', 'dutch angle'.
+     */
+    camera_angle: string;
+    /**
+     * Depth Of Field
+     * @description E.g., 'shallow', 'deep', 'bokeh background'.
+     */
+    depth_of_field: string;
+    /**
+     * Focus
+     * @description E.g., 'sharp focus on subject', 'soft focus', 'motion blur'.
+     */
+    focus: string;
+    /**
+     * Lens Focal Length
+     * @description E.g., 'wide-angle', 'telephoto', 'macro', 'fisheye'.
+     */
+    lens_focal_length: string;
+}
+
 export interface PhotographicCharacteristics {
     /**
      * Camera Angle
@@ -1409,6 +1531,84 @@ export interface OCRBoundingBox {
      * @description List of quadrilateral boxes
      */
     quad_boxes: BoundingBox[];
+}
+
+export interface ObjectDescription {
+    /**
+     * Action
+     * @description Describe the action of the human.
+     */
+    action?: string;
+    /**
+     * Appearance Details
+     * @description Any other notable visual details.
+     */
+    appearance_details?: string;
+    /**
+     * Clothing
+     * @description Describe attire.
+     */
+    clothing?: string;
+    /**
+     * Description
+     * @description Short description of the object.
+     */
+    description: string;
+    /**
+     * Expression
+     * @description Describe facial expression.
+     */
+    expression?: string;
+    /**
+     * Gender
+     * @description Describe the gender of the human.
+     */
+    gender?: string;
+    /**
+     * Location
+     * @description E.g., 'center', 'top-left', 'bottom-right foreground'.
+     */
+    location: string;
+    /**
+     * Number Of Objects
+     * @description The number of objects in the cluster.
+     */
+    number_of_objects?: number;
+    /**
+     * Orientation
+     * @description Describe the orientation of the human.
+     */
+    orientation?: string;
+    /**
+     * Pose
+     * @description Describe the body position.
+     */
+    pose?: string;
+    /**
+     * Relationship
+     * @description Describe the relationship between the object and the other objects in the image.
+     */
+    relationship: string;
+    /**
+     * Relative Size
+     * @description E.g., 'small', 'medium', 'large within frame'.
+     */
+    relative_size?: string;
+    /**
+     * Shape And Color
+     * @description Describe the basic shape and dominant color.
+     */
+    shape_and_color?: string;
+    /**
+     * Skin Tone And Texture
+     * @description Describe the skin tone and texture.
+     */
+    skin_tone_and_texture?: string;
+    /**
+     * Texture
+     * @description E.g., 'smooth', 'rough', 'metallic', 'furry'.
+     */
+    texture?: string;
 }
 
 export interface Object {
@@ -1539,39 +1739,6 @@ export interface ModelUrls_2 {
 
 export interface ModelUrls_1 {
     /**
-     * Blend
-     * @description Blender format 3D model
-     */
-    blend?: File_1;
-    /**
-     * Fbx
-     * @description FBX format 3D model
-     */
-    fbx?: File_1;
-    /**
-     * Glb
-     * @description GLB format 3D model
-     */
-    glb?: File_1;
-    /**
-     * Obj
-     * @description OBJ format 3D model
-     */
-    obj?: File_1;
-    /**
-     * Stl
-     * @description STL format 3D model
-     */
-    stl?: File_1;
-    /**
-     * Usdz
-     * @description USDZ format 3D model
-     */
-    usdz?: File_1;
-}
-
-export interface ModelUrls {
-    /**
      * Fbx
      * @description FBX format 3D model
      */
@@ -1596,6 +1763,39 @@ export interface ModelUrls {
      * @description Texture image for the 3D model
      */
     texture?: File_1;
+    /**
+     * Usdz
+     * @description USDZ format 3D model
+     */
+    usdz?: File_1;
+}
+
+export interface ModelUrls {
+    /**
+     * Blend
+     * @description Blender format 3D model
+     */
+    blend?: File_1;
+    /**
+     * Fbx
+     * @description FBX format 3D model
+     */
+    fbx?: File_1;
+    /**
+     * Glb
+     * @description GLB format 3D model
+     */
+    glb?: File_1;
+    /**
+     * Obj
+     * @description OBJ format 3D model
+     */
+    obj?: File_1;
+    /**
+     * Stl
+     * @description STL format 3D model
+     */
+    stl?: File_1;
     /**
      * Usdz
      * @description USDZ format 3D model
@@ -1898,6 +2098,24 @@ export interface LoRAInput {
      * @description Name of the LoRA weight. Only used if `path` is a HuggingFace repository, and is only required when the repository contains multiple LoRA weights.
      */
     weight_name?: string;
+}
+
+export interface LightingDetails {
+    /**
+     * Conditions
+     * @description E.g., 'bright daylight', 'dim indoor', 'studio lighting', 'golden hour'.
+     */
+    conditions: string;
+    /**
+     * Direction
+     * @description E.g., 'front-lit', 'backlit', 'side-lit from left'.
+     */
+    direction: string;
+    /**
+     * Shadows
+     * @description Describe the presence of shadows.
+     */
+    shadows?: string;
 }
 
 export interface Lighting {
@@ -3171,80 +3389,6 @@ export interface CameraControl {
     movement_value: number;
 }
 
-export interface bria_fibovlm_StructuredPrompt {
-    /** @description The aesthetics of the image to be generated. */
-    aesthetics?: bria_fibovlm_Aesthetics;
-    /**
-     * Artistic Style
-     * @description The artistic style of the image to be generated.
-     */
-    artistic_style?: string;
-    /**
-     * Background Setting
-     * @description The background setting of the image to be generated.
-     */
-    background_setting?: string;
-    /**
-     * Context
-     * @description The context of the image to be generated.
-     */
-    context?: string;
-    /** @description The lighting of the image to be generated. */
-    lighting?: Lighting;
-    /**
-     * Objects
-     * @description A list of objects in the image to be generated, along with their attributes and relationships to other objects in the image.
-     * @default []
-     */
-    objects?: PromptObject[];
-    /** @description The photographic characteristics of the image to be generated. */
-    photographic_characteristics?: PhotographicCharacteristics;
-    /**
-     * Short Description
-     * @description A short description of the image to be generated.
-     */
-    short_description?: string;
-    /**
-     * Style Medium
-     * @description The style medium of the image to be generated.
-     */
-    style_medium?: string;
-    /**
-     * Text Render
-     * @description A list of text to be rendered in the image.
-     * @default []
-     */
-    text_render?: { [x: string]: any }[];
-}
-
-export interface bria_fibovlm_Aesthetics {
-    /**
-     * Aesthetic Score
-     * @description The aesthetic score of the image.
-     */
-    aesthetic_score: string;
-    /**
-     * Color Scheme
-     * @description The color scheme of the image to be generated.
-     */
-    color_scheme?: string;
-    /**
-     * Composition
-     * @description The composition of the image to be generated.
-     */
-    composition?: string;
-    /**
-     * Mood Atmosphere
-     * @description The mood and atmosphere of the image to be generated.
-     */
-    mood_atmosphere?: string;
-    /**
-     * Preference Score
-     * @description The preference score of the image.
-     */
-    preference_score: string;
-}
-
 export interface BoxPromptBase_1 {
     /**
      * X Max
@@ -3751,6 +3895,62 @@ export interface AspectRatio {
      * @enum {string}
      */
     ratio?: '1:1' | '16:9' | '9:16' | '4:3' | '3:4';
+}
+
+export interface AestheticsDetails {
+    /**
+     * Aesthetic Score
+     * @description E.g., 'very low', 'low', 'medium', 'high', 'very high'.
+     */
+    aesthetic_score: string;
+    /**
+     * Color Scheme
+     * @description E.g., 'monochromatic blue', 'warm complementary colors', 'high contrast'.
+     */
+    color_scheme: string;
+    /**
+     * Composition
+     * @description E.g., 'rule of thirds', 'symmetrical', 'centered', 'leading lines'.
+     */
+    composition: string;
+    /**
+     * Mood Atmosphere
+     * @description E.g., 'serene', 'energetic', 'mysterious', 'joyful'.
+     */
+    mood_atmosphere: string;
+    /**
+     * Preference Score
+     * @description E.g., 'very low', 'low', 'medium', 'high', 'very high'.
+     */
+    preference_score: string;
+}
+
+export interface Aesthetics_1 {
+    /**
+     * Aesthetic Score
+     * @description The aesthetic score of the image.
+     */
+    aesthetic_score: string;
+    /**
+     * Color Scheme
+     * @description The color scheme of the image to be generated.
+     */
+    color_scheme?: string;
+    /**
+     * Composition
+     * @description The composition of the image to be generated.
+     */
+    composition?: string;
+    /**
+     * Mood Atmosphere
+     * @description The mood and atmosphere of the image to be generated.
+     */
+    mood_atmosphere?: string;
+    /**
+     * Preference Score
+     * @description The preference score of the image.
+     */
+    preference_score: string;
 }
 
 export interface Aesthetics {
