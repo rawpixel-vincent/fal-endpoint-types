@@ -1,6 +1,6 @@
 {
     "name": "fal-endpoint-types",
-    "version": "1.3.20",
+    "version": "1.3.21",
     "description": "TypeScript types for Fal AI endpoints generated from the OpenAPI schemas.",
     "homepage": "https://github.com/rawpixel-vincent/fal-endpoint-types#readme",
     "bugs": {

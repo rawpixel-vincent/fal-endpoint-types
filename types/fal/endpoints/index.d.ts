@@ -299,19 +299,9 @@ declare global {
                 output: falEndpoints.HalfmoonaiAiHomeEditOutput;
             };
 
-            'half-moon-ai/ai-face-swap/faceswapvideomulti': {
-                input: falEndpoints.HalfmoonaiAiFaceSwapFaceswapvideomultiInput;
-                output: falEndpoints.HalfmoonaiAiFaceSwapFaceswapvideomultiOutput;
-            };
-
             'half-moon-ai/ai-face-swap/faceswapvideo': {
                 input: falEndpoints.HalfmoonaiAiFaceSwapFaceswapvideoInput;
                 output: falEndpoints.HalfmoonaiAiFaceSwapFaceswapvideoOutput;
-            };
-
-            'half-moon-ai/ai-face-swap/faceswapimagemulti': {
-                input: falEndpoints.HalfmoonaiAiFaceSwapFaceswapimagemultiInput;
-                output: falEndpoints.HalfmoonaiAiFaceSwapFaceswapimagemultiOutput;
             };
 
             'half-moon-ai/ai-face-swap/faceswapimage': {
@@ -417,6 +407,11 @@ declare global {
             'fal-ai/x-ailab/nsfw': {
                 input: falEndpoints.XAilabNsfwInput;
                 output: falEndpoints.XAilabNsfwOutput;
+            };
+
+            'fal-ai/workflow-utilities/trim-video': {
+                input: falEndpoints.WorkflowUtilitiesTrimVideoInput;
+                output: falEndpoints.WorkflowUtilitiesTrimVideoOutput;
             };
 
             'fal-ai/workflow-utilities/interleave-video': {
@@ -2042,6 +2037,11 @@ declare global {
             'fal-ai/photomaker': {
                 input: falEndpoints.PhotomakerInput;
                 output: falEndpoints.PhotomakerOutput;
+            };
+
+            'fal-ai/personaplex': {
+                input: falEndpoints.PersonaplexInput;
+                output: falEndpoints.PersonaplexOutput;
             };
 
             'fal-ai/pasd': {

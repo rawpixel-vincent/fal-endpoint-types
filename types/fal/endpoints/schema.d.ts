@@ -40,8 +40,8 @@ export interface XaiGrokImagineVideoTextToVideoOutput {
      *       "width": 1280,
      *       "fps": 24,
      *       "file_name": "RUAbFYlssdqnbjNLmE8qP_IX7BNYGP.mp4",
-     *       "content_type": "video/mp4",
-     *       "num_frames": 145
+     *       "num_frames": 145,
+     *       "content_type": "video/mp4"
      *     }
      */
     video: Components.VideoFile;
@@ -93,8 +93,8 @@ export interface XaiGrokImagineVideoImageToVideoOutput {
      *       "width": 1280,
      *       "fps": 24,
      *       "file_name": "0Ci1dviuSnEyUZzBUq-_5_nu7MrAAa.mp4",
-     *       "content_type": "video/mp4",
-     *       "num_frames": 145
+     *       "num_frames": 145,
+     *       "content_type": "video/mp4"
      *     }
      */
     video: Components.VideoFile;
@@ -133,8 +133,8 @@ export interface XaiGrokImagineVideoEditVideoOutput {
      *       "width": 1280,
      *       "fps": 24,
      *       "file_name": "EuDrZuQTW9m1phBXOsauz_EpJH3s8X.mp4",
-     *       "content_type": "video/mp4",
-     *       "num_frames": 121
+     *       "num_frames": 121,
+     *       "content_type": "video/mp4"
      *     }
      */
     video: Components.VideoFile;
@@ -2102,6 +2102,59 @@ export interface SharedType_f5e {
      * @description The seed for the random number generator.
      */
     seed?: number;
+}
+
+export interface SharedType_f57 {
+    /**
+     * Aspect Ratio
+     * @description The aspect ratio of the generated image.
+     * @default 1:1
+     * @enum {string}
+     */
+    aspect_ratio?: '21:9' | '16:9' | '3:2' | '4:3' | '5:4' | '1:1' | '4:5' | '3:4' | '2:3' | '9:16';
+    /**
+     * Limit Generations
+     * @description Experimental parameter to limit the number of generations from each round of prompting to 1. Set to `True` to to disregard any instructions in the prompt regarding the number of images to generate.
+     * @default false
+     */
+    limit_generations?: boolean;
+    /**
+     * Number of Images
+     * @description The number of images to generate.
+     * @default 1
+     */
+    num_images?: number;
+    /**
+     * Output Format
+     * @description The format of the generated image.
+     * @default png
+     * @enum {string}
+     */
+    output_format?: 'jpeg' | 'png' | 'webp';
+    /**
+     * Prompt
+     * @description The text prompt to generate an image from.
+     * @example An action shot of a black lab swimming in an inground suburban swimming pool. The camera is placed meticulously on the water line, dividing the image in half, revealing both the dogs head above water holding a tennis ball in it's mouth, and it's paws paddling underwater.
+     */
+    prompt: string;
+    /**
+     * Safety Tolerance
+     * @description The safety tolerance level for content moderation. 1 is the most strict (blocks most content), 6 is the least strict.
+     * @default 4
+     * @enum {string}
+     */
+    safety_tolerance?: '1' | '2' | '3' | '4' | '5' | '6';
+    /**
+     * Seed
+     * @description The seed for the random number generator.
+     */
+    seed?: number;
+    /**
+     * Sync Mode
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
+     * @default false
+     */
+    sync_mode?: boolean;
 }
 
 export interface SharedType_f51 {
@@ -6064,26 +6117,6 @@ export interface SharedType_9af {
     topology?: 'quad' | 'triangle';
 }
 
-export interface SharedType_98c {
-    /**
-     * Description
-     * @description The description of the generated images.
-     */
-    description: string;
-    /**
-     * Images
-     * @description The edited images.
-     * @example [
-     *       {
-     *         "file_name": "nano-banana-multi-edit-output.png",
-     *         "content_type": "image/png",
-     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/nano-banana-multi-edit-output.png"
-     *       }
-     *     ]
-     */
-    images: Components.ImageFile[];
-}
-
 export interface SharedType_97f {
     /**
      * Values
@@ -6096,47 +6129,6 @@ export interface SharedType_97f {
                   [key: string]: number;
               };
     }[];
-}
-
-export interface SharedType_97e {
-    /**
-     * Aspect Ratio
-     * @description The aspect ratio of the generated image.
-     * @default 1:1
-     * @enum {string}
-     */
-    aspect_ratio?: '21:9' | '16:9' | '3:2' | '4:3' | '5:4' | '1:1' | '4:5' | '3:4' | '2:3' | '9:16';
-    /**
-     * Limit Generations
-     * @description Experimental parameter to limit the number of generations from each round of prompting to 1. Set to `True` to to disregard any instructions in the prompt regarding the number of images to generate.
-     * @default false
-     */
-    limit_generations?: boolean;
-    /**
-     * Number of Images
-     * @description The number of images to generate.
-     * @default 1
-     */
-    num_images?: number;
-    /**
-     * Output Format
-     * @description The format of the generated image.
-     * @default png
-     * @enum {string}
-     */
-    output_format?: 'jpeg' | 'png' | 'webp';
-    /**
-     * Prompt
-     * @description The text prompt to generate an image from.
-     * @example An action shot of a black lab swimming in an inground suburban swimming pool. The camera is placed meticulously on the water line, dividing the image in half, revealing both the dogs head above water holding a tennis ball in it's mouth, and it's paws paddling underwater.
-     */
-    prompt: string;
-    /**
-     * Sync Mode
-     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
-     * @default false
-     */
-    sync_mode?: boolean;
 }
 
 export interface SharedType_977 {
@@ -6735,6 +6727,82 @@ export interface SharedType_8c5 {
     seed: number;
 }
 
+export interface SharedType_8c2 {
+    /**
+     * Aspect Ratio
+     * @description The aspect ratio of the generated image. Use "auto" to let the model decide based on the prompt.
+     * @default 1:1
+     */
+    aspect_ratio?:
+        | 'auto'
+        | '21:9'
+        | '16:9'
+        | '3:2'
+        | '4:3'
+        | '5:4'
+        | '1:1'
+        | '4:5'
+        | '3:4'
+        | '2:3'
+        | '9:16';
+    /**
+     * Enable Web Search
+     * @description Enable web search for the image generation task. This will allow the model to use the latest information from the web to generate the image.
+     * @default false
+     */
+    enable_web_search?: boolean;
+    /**
+     * Limit Generations
+     * @description Experimental parameter to limit the number of generations from each round of prompting to 1. Set to `True` to to disregard any instructions in the prompt regarding the number of images to generate.
+     * @default false
+     */
+    limit_generations?: boolean;
+    /**
+     * Number of Images
+     * @description The number of images to generate.
+     * @default 1
+     */
+    num_images?: number;
+    /**
+     * Output Format
+     * @description The format of the generated image.
+     * @default png
+     * @enum {string}
+     */
+    output_format?: 'jpeg' | 'png' | 'webp';
+    /**
+     * Prompt
+     * @description The text prompt to generate an image from.
+     * @example An action shot of a black lab swimming in an inground suburban swimming pool. The camera is placed meticulously on the water line, dividing the image in half, revealing both the dogs head above water holding a tennis ball in it's mouth, and it's paws paddling underwater.
+     */
+    prompt: string;
+    /**
+     * Resolution
+     * @description The resolution of the image to generate.
+     * @default 1K
+     * @enum {string}
+     */
+    resolution?: '1K' | '2K' | '4K';
+    /**
+     * Safety Tolerance
+     * @description The safety tolerance level for content moderation. 1 is the most strict (blocks most content), 6 is the least strict.
+     * @default 4
+     * @enum {string}
+     */
+    safety_tolerance?: '1' | '2' | '3' | '4' | '5' | '6';
+    /**
+     * Seed
+     * @description The seed for the random number generator.
+     */
+    seed?: number;
+    /**
+     * Sync Mode
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
+     * @default false
+     */
+    sync_mode?: boolean;
+}
+
 export interface SharedType_8c0 {
     /**
      * Seed
@@ -6803,6 +6871,26 @@ export interface SharedType_87d {
     video: Components.File;
 }
 
+export interface SharedType_876 {
+    /**
+     * Description
+     * @description The description of the generated images.
+     */
+    description: string;
+    /**
+     * Images
+     * @description The edited images.
+     * @example [
+     *       {
+     *         "file_name": "nano-banana-multi-edit-output.png",
+     *         "content_type": "image/png",
+     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/nano-banana-multi-edit-output.png"
+     *       }
+     *     ]
+     */
+    images: Components.ImageFile_1[];
+}
+
 export interface SharedType_86b {
     /**
      * Audio Path
@@ -6860,6 +6948,78 @@ export interface SharedType_868 {
     /**
      * Seed
      * @description The same seed and the same prompt given to the same version of the model will output the same image every time.
+     */
+    seed?: number;
+    /**
+     * Sync Mode
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
+     * @default false
+     */
+    sync_mode?: boolean;
+}
+
+export interface SharedType_85d {
+    /**
+     * Aspect Ratio
+     * @description The aspect ratio of the generated image.
+     * @default auto
+     */
+    aspect_ratio?:
+        | 'auto'
+        | '21:9'
+        | '16:9'
+        | '3:2'
+        | '4:3'
+        | '5:4'
+        | '1:1'
+        | '4:5'
+        | '3:4'
+        | '2:3'
+        | '9:16';
+    /**
+     * Image URLs
+     * @description The URLs of the images to use for image-to-image generation or image editing.
+     * @example [
+     *       "https://storage.googleapis.com/falserverless/example_inputs/nano-banana-edit-input.png",
+     *       "https://storage.googleapis.com/falserverless/example_inputs/nano-banana-edit-input-2.png"
+     *     ]
+     */
+    image_urls: string[];
+    /**
+     * Limit Generations
+     * @description Experimental parameter to limit the number of generations from each round of prompting to 1. Set to `True` to to disregard any instructions in the prompt regarding the number of images to generate.
+     * @default false
+     */
+    limit_generations?: boolean;
+    /**
+     * Number of Images
+     * @description The number of images to generate.
+     * @default 1
+     */
+    num_images?: number;
+    /**
+     * Output Format
+     * @description The format of the generated image.
+     * @default png
+     * @enum {string}
+     */
+    output_format?: 'jpeg' | 'png' | 'webp';
+    /**
+     * Prompt
+     * @description The prompt for image editing.
+     * @example make a photo of the man driving the car down the california coastline
+     */
+    prompt: string;
+    /**
+     * Safety Tolerance
+     * @description The safety tolerance level for content moderation. 1 is the most strict (blocks most content), 6 is the least strict.
+     * @default 4
+     * @enum {string}
+     */
+    safety_tolerance?: '1' | '2' | '3' | '4' | '5' | '6';
+    /**
+     * Seed
+     * @description The seed for the random number generator.
      */
     seed?: number;
     /**
@@ -7110,67 +7270,6 @@ export interface SharedType_815 {
     video: Components.File;
 }
 
-export interface SharedType_813 {
-    /**
-     * Aspect Ratio
-     * @description The aspect ratio of the generated image.
-     * @default auto
-     * @enum {string}
-     */
-    aspect_ratio?:
-        | 'auto'
-        | '21:9'
-        | '16:9'
-        | '3:2'
-        | '4:3'
-        | '5:4'
-        | '1:1'
-        | '4:5'
-        | '3:4'
-        | '2:3'
-        | '9:16';
-    /**
-     * Image URLs
-     * @description The URLs of the images to use for image-to-image generation or image editing.
-     * @example [
-     *       "https://storage.googleapis.com/falserverless/example_inputs/nano-banana-edit-input.png",
-     *       "https://storage.googleapis.com/falserverless/example_inputs/nano-banana-edit-input-2.png"
-     *     ]
-     */
-    image_urls: string[];
-    /**
-     * Limit Generations
-     * @description Experimental parameter to limit the number of generations from each round of prompting to 1. Set to `True` to to disregard any instructions in the prompt regarding the number of images to generate.
-     * @default false
-     */
-    limit_generations?: boolean;
-    /**
-     * Number of Images
-     * @description The number of images to generate.
-     * @default 1
-     */
-    num_images?: number;
-    /**
-     * Output Format
-     * @description The format of the generated image.
-     * @default png
-     * @enum {string}
-     */
-    output_format?: 'jpeg' | 'png' | 'webp';
-    /**
-     * Prompt
-     * @description The prompt for image editing.
-     * @example make a photo of the man driving the car down the california coastline
-     */
-    prompt: string;
-    /**
-     * Sync Mode
-     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
-     * @default false
-     */
-    sync_mode?: boolean;
-}
-
 export interface SharedType_812 {
     /**
      * Video
@@ -7378,6 +7477,26 @@ export interface SharedType_7e9 {
      *     }
      */
     video?: Components.File;
+}
+
+export interface SharedType_7b9 {
+    /**
+     * Description
+     * @description The description of the generated images.
+     */
+    description: string;
+    /**
+     * Images
+     * @description The generated images.
+     * @example [
+     *       {
+     *         "file_name": "nano-banana-t2i-output.png",
+     *         "content_type": "image/png",
+     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/nano-banana-t2i-output.png"
+     *       }
+     *     ]
+     */
+    images: Components.ImageFile_1[];
 }
 
 export interface SharedType_7a3 {
@@ -8250,26 +8369,6 @@ export interface SharedType_663 {
      * @default false
      */
     sync_mode?: boolean;
-}
-
-export interface SharedType_662 {
-    /**
-     * Description
-     * @description The description of the generated images.
-     */
-    description: string;
-    /**
-     * Images
-     * @description The generated images.
-     * @example [
-     *       {
-     *         "file_name": "nano-banana-t2i-output.png",
-     *         "content_type": "image/png",
-     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/nano-banana-t2i-output.png"
-     *       }
-     *     ]
-     */
-    images: Components.ImageFile[];
 }
 
 export interface SharedType_659 {
@@ -10190,6 +10289,91 @@ export interface SharedType_368 {
     timings: {
         [key: string]: number;
     };
+}
+
+export interface SharedType_367 {
+    /**
+     * Aspect Ratio
+     * @description The aspect ratio of the generated image.
+     * @default auto
+     */
+    aspect_ratio?:
+        | 'auto'
+        | '21:9'
+        | '16:9'
+        | '3:2'
+        | '4:3'
+        | '5:4'
+        | '1:1'
+        | '4:5'
+        | '3:4'
+        | '2:3'
+        | '9:16';
+    /**
+     * Enable Web Search
+     * @description Enable web search for the image generation task. This will allow the model to use the latest information from the web to generate the image.
+     * @default false
+     */
+    enable_web_search?: boolean;
+    /**
+     * Image URLs
+     * @description The URLs of the images to use for image-to-image generation or image editing.
+     * @example [
+     *       "https://storage.googleapis.com/falserverless/example_inputs/nano-banana-edit-input.png",
+     *       "https://storage.googleapis.com/falserverless/example_inputs/nano-banana-edit-input-2.png"
+     *     ]
+     */
+    image_urls: string[];
+    /**
+     * Limit Generations
+     * @description Experimental parameter to limit the number of generations from each round of prompting to 1. Set to `True` to to disregard any instructions in the prompt regarding the number of images to generate.
+     * @default false
+     */
+    limit_generations?: boolean;
+    /**
+     * Number of Images
+     * @description The number of images to generate.
+     * @default 1
+     */
+    num_images?: number;
+    /**
+     * Output Format
+     * @description The format of the generated image.
+     * @default png
+     * @enum {string}
+     */
+    output_format?: 'jpeg' | 'png' | 'webp';
+    /**
+     * Prompt
+     * @description The prompt for image editing.
+     * @example make a photo of the man driving the car down the california coastline
+     */
+    prompt: string;
+    /**
+     * Resolution
+     * @description The resolution of the image to generate.
+     * @default 1K
+     * @enum {string}
+     */
+    resolution?: '1K' | '2K' | '4K';
+    /**
+     * Safety Tolerance
+     * @description The safety tolerance level for content moderation. 1 is the most strict (blocks most content), 6 is the least strict.
+     * @default 4
+     * @enum {string}
+     */
+    safety_tolerance?: '1' | '2' | '3' | '4' | '5' | '6';
+    /**
+     * Seed
+     * @description The seed for the random number generator.
+     */
+    seed?: number;
+    /**
+     * Sync Mode
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
+     * @default false
+     */
+    sync_mode?: boolean;
 }
 
 export interface SharedType_35f {
@@ -13804,66 +13988,6 @@ export interface HalfmoonaiAiHomeEditOutput {
     status: string;
 }
 
-export interface HalfmoonaiAiFaceSwapFaceswapvideomultiInput {
-    /**
-     * Enable Occlusion Prevention
-     * @description Enable occlusion prevention for handling faces covered by hands/objects. Warning: Enabling this runs an occlusion-aware model which costs 2x more.
-     * @default false
-     */
-    enable_occlusion_prevention?: boolean;
-    /**
-     * Source Face Url 1
-     * @description First source face image (will be mapped to faces matching source_gender_1). Allowed items: bmp, jpeg, png, tiff, webp
-     * @example https://images.pexels.com/photos/1642228/pexels-photo-1642228.jpeg
-     */
-    source_face_url_1: string;
-    /**
-     * Source Face Url 2
-     * @description Second source face image (optional, will be mapped to faces matching source_gender_2). If provided, source_gender_2 must also be specified. Allowed items: bmp, jpeg, png, tiff, webp
-     * @example https://images.pexels.com/photos/6066877/pexels-photo-6066877.jpeg
-     */
-    source_face_url_2?: string;
-    /**
-     * Source Gender 1
-     * @description Gender of source 1 face - faces matching this gender in target will be swapped with source_face_url_1
-     * @enum {string}
-     */
-    source_gender_1: 'female' | 'male';
-    /**
-     * Source Gender 2
-     * @description Gender of source 2 face - required when source_face_url_2 is provided. Faces matching this gender in target will be swapped with source_face_url_2
-     * @default male
-     */
-    source_gender_2?: 'female' | 'male';
-    /**
-     * Target Video Url
-     * @description Target video URL (max 25 minutes, will be truncated if longer; FPS capped at 25). Allowed items: avi, m4v, mkv, mp4, mpeg, mov, mxf, webm, wmv
-     * @example https://www.pexels.com/download/video/5686255/
-     */
-    target_video_url: string;
-}
-
-export interface HalfmoonaiAiFaceSwapFaceswapvideomultiOutput {
-    /**
-     * Processing Time Ms
-     * @description Optional processing duration in milliseconds
-     */
-    processing_time_ms?: number;
-    /**
-     * @description Generated video result
-     * @example {
-     *       "content_type": "video/mp4",
-     *       "url": "https://v3b.fal.media/files/b/0a8c13e7/TI9qpBqF8L_9nuOajc55C_swapped_with_audio.mp4"
-     *     }
-     */
-    video: Components.File_1;
-    /**
-     * Warning
-     * @description Warning message if video was modified (e.g., truncated or FPS reduced)
-     */
-    warning?: string;
-}
-
 export interface HalfmoonaiAiFaceSwapFaceswapvideoInput {
     /**
      * Enable Occlusion Prevention
@@ -13904,63 +14028,6 @@ export interface HalfmoonaiAiFaceSwapFaceswapvideoOutput {
      * @description Warning message if video was modified (e.g., truncated or FPS reduced)
      */
     warning?: string;
-}
-
-export interface HalfmoonaiAiFaceSwapFaceswapimagemultiInput {
-    /**
-     * Enable Occlusion Prevention
-     * @description Enable occlusion prevention for handling faces covered by hands/objects. Warning: Enabling this runs an occlusion-aware model which costs 2x more.
-     * @default false
-     */
-    enable_occlusion_prevention?: boolean;
-    /**
-     * Source Face Url 1
-     * @description First source face image (will be mapped to faces matching source_gender_1). Allowed items: bmp, jpeg, png, tiff, webp
-     * @example https://images.pexels.com/photos/1642228/pexels-photo-1642228.jpeg
-     */
-    source_face_url_1: string;
-    /**
-     * Source Face Url 2
-     * @description Second source face image (optional, will be mapped to faces matching source_gender_2). If provided, source_gender_2 must also be specified. Allowed items: bmp, jpeg, png, tiff, webp
-     * @example https://images.pexels.com/photos/6066877/pexels-photo-6066877.jpeg
-     */
-    source_face_url_2?: string;
-    /**
-     * Source Gender 1
-     * @description Gender of source 1 face - faces matching this gender in target will be swapped with source_face_url_1
-     * @enum {string}
-     */
-    source_gender_1: 'female' | 'male';
-    /**
-     * Source Gender 2
-     * @description Gender of source 2 face - required when source_face_url_2 is provided. Faces matching this gender in target will be swapped with source_face_url_2
-     * @default male
-     */
-    source_gender_2?: 'female' | 'male';
-    /**
-     * Target Image Url
-     * @description Target image URL. Allowed items: bmp, jpeg, png, tiff, webp
-     * @example https://images.pexels.com/photos/16280336/pexels-photo-16280336.jpeg
-     */
-    target_image_url: string;
-}
-
-export interface HalfmoonaiAiFaceSwapFaceswapimagemultiOutput {
-    /**
-     * @description Generated image result
-     * @example {
-     *       "height": 742,
-     *       "content_type": "image/jpeg",
-     *       "url": "https://v3b.fal.media/files/b/0a8c136c/B7HMnRi-GNwIhlRBwaHrU_b41c39d877904258903121452d9668ab.jpg",
-     *       "width": 520
-     *     }
-     */
-    image: Components.Image_2;
-    /**
-     * Processing Time Ms
-     * @description Optional processing duration in milliseconds
-     */
-    processing_time_ms?: number;
 }
 
 export interface HalfmoonaiAiFaceSwapFaceswapimageInput {
@@ -15391,6 +15458,61 @@ export interface XAilabNsfwOutput {
      *     ]
      */
     has_nsfw_concepts: boolean[];
+}
+
+export interface WorkflowUtilitiesTrimVideoInput {
+    /**
+     * Duration
+     * @description Duration in seconds from start_time. Ignored if end_time is provided.
+     * @default 2
+     */
+    duration?: number;
+    /**
+     * End Time
+     * @description End time in seconds. If not provided, uses duration instead.
+     * @example 3
+     */
+    end_time?: number;
+    /**
+     * Start Time
+     * @description Start time in seconds
+     * @default 1
+     */
+    start_time?: number;
+    /**
+     * Video Url
+     * @description URL of the video file to trim
+     *
+     *     Max file size: 476.8MB, Timeout: 30.0s
+     * @example https://storage.googleapis.com/falserverless/example_outputs/wan-25-i2v-output.mp4
+     */
+    video_url: string;
+}
+
+export interface WorkflowUtilitiesTrimVideoOutput {
+    /**
+     * Original Duration
+     * @description Duration of the original video in seconds
+     * @example 5.041667
+     */
+    original_duration: number;
+    /**
+     * Trimmed Duration
+     * @description Duration of the trimmed video in seconds
+     * @example 2
+     */
+    trimmed_duration: number;
+    /**
+     * Video
+     * @description The trimmed video
+     * @example {
+     *       "file_size": 2550671,
+     *       "file_name": "output.mp4",
+     *       "content_type": "application/octet-stream",
+     *       "url": "https://v3b.fal.media/files/b/0a8dcc60/sIg2GuYYYrmYAa2lUVgum_output.mp4"
+     *     }
+     */
+    video: Components.File;
 }
 
 export interface WorkflowUtilitiesInterleaveVideoInput {
@@ -23069,13 +23191,12 @@ export interface TopazUpscaleVideoInput {
 
 export interface TopazUpscaleVideoOutput {
     /**
-     * Video
      * @description The upscaled video file
      * @example {
      *       "url": "https://v3.fal.media/files/penguin/ztj_LB4gQlW6HIfVs8zX4_upscaled.mp4"
      *     }
      */
-    video: Components.File;
+    video: Components.File_1;
 }
 
 export interface TopazUpscaleImageInput {
@@ -23145,7 +23266,10 @@ export interface TopazUpscaleImageInput {
     upscale_factor?: number;
 }
 
-export interface TopazUpscaleImageOutput extends SharedType_df4 {}
+export interface TopazUpscaleImageOutput {
+    /** @description The upscaled image. */
+    image: Components.File_1;
+}
 
 export interface ThinksoundAudioInput extends SharedType_4bc {}
 
@@ -32914,7 +33038,7 @@ export interface PixverseSwapInput {
     image_url: string;
     /**
      * Keyframe Id
-     * @description The keyframe ID (from 1 to the last frame position)
+     * @description The keyframe ID to use for face/object mapping. The input video is normalized to 24 FPS before processing, so keyframe 1 = first frame, keyframe 24 = 1 second in, etc. Valid range: 1 to (duration_seconds * 24).
      * @default 1
      */
     keyframe_id?: number;
@@ -32938,6 +33062,11 @@ export interface PixverseSwapInput {
      * @enum {string}
      */
     resolution?: '360p' | '540p' | '720p';
+    /**
+     * Seed
+     * @description Random seed for generation
+     */
+    seed?: number;
     /**
      * Video Url
      * @description URL of the external video to swap
@@ -34007,6 +34136,103 @@ export interface PhotomakerOutput {
     seed: number;
 }
 
+export interface PersonaplexInput {
+    /**
+     * Audio Url
+     * @description URL to the input audio file (user's speech).
+     * @example https://v3b.fal.media/files/b/0a8dd5a2/hS140ygvRuxn-eY_qPhlv_assets_test_input_service.wav
+     */
+    audio_url: string;
+    /**
+     * Prompt
+     * @description Text prompt describing the AI persona and conversation context.
+     * @default You are a wise and friendly teacher. Answer questions or provide advice in a clear and engaging way.
+     * @example You work for SwiftPlex Appliances which is a appliance repair company and your name is Farhod Toshmatov. Information: The dishwasher model is out of stock for replacement parts; we can use an alternative part with a 3-day delay. Labor cost remains $60 per hour.
+     */
+    prompt?: string;
+    /**
+     * Seed
+     * @description Random seed for reproducibility.
+     */
+    seed?: number;
+    /**
+     * Temperature Audio
+     * @description Audio sampling temperature. Higher values produce more diverse outputs.
+     * @default 0.8
+     */
+    temperature_audio?: number;
+    /**
+     * Temperature Text
+     * @description Text sampling temperature. Higher values produce more diverse outputs.
+     * @default 0.7
+     */
+    temperature_text?: number;
+    /**
+     * Top K Audio
+     * @description Top-K sampling for audio tokens.
+     * @default 250
+     */
+    top_k_audio?: number;
+    /**
+     * Top K Text
+     * @description Top-K sampling for text tokens.
+     * @default 25
+     */
+    top_k_text?: number;
+    /**
+     * Voice
+     * @description Voice ID for the AI response. NAT = natural, VAR = variety. F = female, M = male.
+     * @default NATF2
+     * @enum {string}
+     */
+    voice?:
+        | 'NATF0'
+        | 'NATF1'
+        | 'NATF2'
+        | 'NATF3'
+        | 'NATM0'
+        | 'NATM1'
+        | 'NATM2'
+        | 'NATM3'
+        | 'VARF0'
+        | 'VARF1'
+        | 'VARF2'
+        | 'VARF3'
+        | 'VARF4'
+        | 'VARM0'
+        | 'VARM1'
+        | 'VARM2'
+        | 'VARM3'
+        | 'VARM4';
+}
+
+export interface PersonaplexOutput {
+    /**
+     * Audio
+     * @description The generated AI response audio (WAV, 24kHz).
+     * @example https://v3b.fal.media/files/b/0a8dd5a4/9vFUMdauY7vobpLtXq4Np_output.wav
+     */
+    audio: Components.File;
+    /**
+     * Duration
+     * @description Duration of the generated audio in seconds.
+     * @example 20
+     */
+    duration: number;
+    /**
+     * Seed
+     * @description The seed used for generation.
+     * @example 60112277
+     */
+    seed: number;
+    /**
+     * Text
+     * @description Transcribed text of the AI's response.
+     * @example Thank you for calling SwiftPlex Appliances. This is Farhod, how can I help you today? I understand your concern. The replacement part is out of stock, so we can't ship it right away. We can use an alternative part that will arrive in 3 days. Would you like to proceed with that?
+     */
+    text: string;
+}
+
 export interface PasdInput {
     /**
      * Conditioning Scale
@@ -34616,9 +34842,7 @@ export interface OmnigenV1Input {
     seed?: number;
     /**
      * Sync Mode
-     * @description If set to true, the function will wait for the image to be generated and uploaded
-     *                 before returning the response. This will increase the latency of the function but
-     *                 it allows you to get the image directly in the response without going through the CDN.
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
      * @default false
      */
     sync_mode?: boolean;
@@ -34985,180 +35209,21 @@ export interface NemotronAsrOutput {
     partial?: boolean;
 }
 
-export interface NanoBananaEditInput extends SharedType_813 {}
+export interface NanoBananaEditInput extends SharedType_85d {}
 
-export interface NanoBananaEditOutput extends SharedType_98c {}
+export interface NanoBananaEditOutput extends SharedType_876 {}
 
-export interface NanoBananaProEditInput {
-    /**
-     * Aspect Ratio
-     * @description The aspect ratio of the generated image.
-     * @default auto
-     * @enum {string}
-     */
-    aspect_ratio?:
-        | 'auto'
-        | '21:9'
-        | '16:9'
-        | '3:2'
-        | '4:3'
-        | '5:4'
-        | '1:1'
-        | '4:5'
-        | '3:4'
-        | '2:3'
-        | '9:16';
-    /**
-     * Enable Web Search
-     * @description Enable web search for the image generation task. This will allow the model to use the latest information from the web to generate the image.
-     * @default false
-     */
-    enable_web_search?: boolean;
-    /**
-     * Image URLs
-     * @description The URLs of the images to use for image-to-image generation or image editing.
-     * @example [
-     *       "https://storage.googleapis.com/falserverless/example_inputs/nano-banana-edit-input.png",
-     *       "https://storage.googleapis.com/falserverless/example_inputs/nano-banana-edit-input-2.png"
-     *     ]
-     */
-    image_urls: string[];
-    /**
-     * Limit Generations
-     * @description Experimental parameter to limit the number of generations from each round of prompting to 1. Set to `True` to to disregard any instructions in the prompt regarding the number of images to generate.
-     * @default false
-     */
-    limit_generations?: boolean;
-    /**
-     * Number of Images
-     * @description The number of images to generate.
-     * @default 1
-     */
-    num_images?: number;
-    /**
-     * Output Format
-     * @description The format of the generated image.
-     * @default png
-     * @enum {string}
-     */
-    output_format?: 'jpeg' | 'png' | 'webp';
-    /**
-     * Prompt
-     * @description The prompt for image editing.
-     * @example make a photo of the man driving the car down the california coastline
-     */
-    prompt: string;
-    /**
-     * Resolution
-     * @description The resolution of the image to generate.
-     * @default 1K
-     * @enum {string}
-     */
-    resolution?: '1K' | '2K' | '4K';
-    /**
-     * Safety Tolerance
-     * @description The safety tolerance level for content moderation. 1 is the most strict (blocks most content), 6 is the least strict.
-     * @default 4
-     * @enum {string}
-     */
-    safety_tolerance?: '1' | '2' | '3' | '4' | '5' | '6';
-    /**
-     * Seed
-     * @description The seed for the random number generator.
-     */
-    seed?: number;
-    /**
-     * Sync Mode
-     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
-     * @default false
-     */
-    sync_mode?: boolean;
-}
+export interface NanoBananaProEditInput extends SharedType_367 {}
 
-export interface NanoBananaProEditOutput extends SharedType_98c {}
+export interface NanoBananaProEditOutput extends SharedType_876 {}
 
-export interface NanoBananaProInput {
-    /**
-     * Aspect Ratio
-     * @description The aspect ratio of the generated image. Use "auto" to let the model decide based on the prompt.
-     * @default 1:1
-     * @enum {string}
-     */
-    aspect_ratio?:
-        | 'auto'
-        | '21:9'
-        | '16:9'
-        | '3:2'
-        | '4:3'
-        | '5:4'
-        | '1:1'
-        | '4:5'
-        | '3:4'
-        | '2:3'
-        | '9:16';
-    /**
-     * Enable Web Search
-     * @description Enable web search for the image generation task. This will allow the model to use the latest information from the web to generate the image.
-     * @default false
-     */
-    enable_web_search?: boolean;
-    /**
-     * Limit Generations
-     * @description Experimental parameter to limit the number of generations from each round of prompting to 1. Set to `True` to to disregard any instructions in the prompt regarding the number of images to generate.
-     * @default false
-     */
-    limit_generations?: boolean;
-    /**
-     * Number of Images
-     * @description The number of images to generate.
-     * @default 1
-     */
-    num_images?: number;
-    /**
-     * Output Format
-     * @description The format of the generated image.
-     * @default png
-     * @enum {string}
-     */
-    output_format?: 'jpeg' | 'png' | 'webp';
-    /**
-     * Prompt
-     * @description The text prompt to generate an image from.
-     * @example An action shot of a black lab swimming in an inground suburban swimming pool. The camera is placed meticulously on the water line, dividing the image in half, revealing both the dogs head above water holding a tennis ball in it's mouth, and it's paws paddling underwater.
-     */
-    prompt: string;
-    /**
-     * Resolution
-     * @description The resolution of the image to generate.
-     * @default 1K
-     * @enum {string}
-     */
-    resolution?: '1K' | '2K' | '4K';
-    /**
-     * Safety Tolerance
-     * @description The safety tolerance level for content moderation. 1 is the most strict (blocks most content), 6 is the least strict.
-     * @default 4
-     * @enum {string}
-     */
-    safety_tolerance?: '1' | '2' | '3' | '4' | '5' | '6';
-    /**
-     * Seed
-     * @description The seed for the random number generator.
-     */
-    seed?: number;
-    /**
-     * Sync Mode
-     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
-     * @default false
-     */
-    sync_mode?: boolean;
-}
+export interface NanoBananaProInput extends SharedType_8c2 {}
 
-export interface NanoBananaProOutput extends SharedType_662 {}
+export interface NanoBananaProOutput extends SharedType_7b9 {}
 
-export interface NanoBananaInput extends SharedType_97e {}
+export interface NanoBananaInput extends SharedType_f57 {}
 
-export interface NanoBananaOutput extends SharedType_662 {}
+export interface NanoBananaOutput extends SharedType_7b9 {}
 
 export interface NafnetDenoiseInput {
     /**
@@ -59373,7 +59438,7 @@ export interface GptImage15EditOutput {
      *       }
      *     ]
      */
-    images: Components.ImageFile[];
+    images: Components.ImageFile_1[];
 }
 
 export interface GptImage15Input {
@@ -59440,7 +59505,7 @@ export interface GptImage15Output {
      *       }
      *     ]
      */
-    images: Components.ImageFile[];
+    images: Components.ImageFile_1[];
 }
 
 export interface GptImage1MiniEditInput {
@@ -59931,214 +59996,21 @@ export interface GeminiFlashEditInput {
 
 export interface GeminiFlashEditOutput extends SharedType_1b2 {}
 
-export interface Gemini3ProImagePreviewEditInput {
-    /**
-     * Aspect Ratio
-     * @description The aspect ratio of the generated image.
-     * @default auto
-     */
-    aspect_ratio?:
-        | 'auto'
-        | '21:9'
-        | '16:9'
-        | '3:2'
-        | '4:3'
-        | '5:4'
-        | '1:1'
-        | '4:5'
-        | '3:4'
-        | '2:3'
-        | '9:16';
-    /**
-     * Enable Web Search
-     * @description Enable web search for the image generation task. This will allow the model to use the latest information from the web to generate the image.
-     * @default false
-     */
-    enable_web_search?: boolean;
-    /**
-     * Image URLs
-     * @description The URLs of the images to use for image-to-image generation or image editing.
-     * @example [
-     *       "https://storage.googleapis.com/falserverless/example_inputs/nano-banana-edit-input.png",
-     *       "https://storage.googleapis.com/falserverless/example_inputs/nano-banana-edit-input-2.png"
-     *     ]
-     */
-    image_urls: string[];
-    /**
-     * Limit Generations
-     * @description Experimental parameter to limit the number of generations from each round of prompting to 1. Set to `True` to to disregard any instructions in the prompt regarding the number of images to generate.
-     * @default false
-     */
-    limit_generations?: boolean;
-    /**
-     * Number of Images
-     * @description The number of images to generate.
-     * @default 1
-     */
-    num_images?: number;
-    /**
-     * Output Format
-     * @description The format of the generated image.
-     * @default png
-     * @enum {string}
-     */
-    output_format?: 'jpeg' | 'png' | 'webp';
-    /**
-     * Prompt
-     * @description The prompt for image editing.
-     * @example make a photo of the man driving the car down the california coastline
-     */
-    prompt: string;
-    /**
-     * Resolution
-     * @description The resolution of the image to generate.
-     * @default 1K
-     * @enum {string}
-     */
-    resolution?: '1K' | '2K' | '4K';
-    /**
-     * Safety Tolerance
-     * @description The safety tolerance level for content moderation. 1 is the most strict (blocks most content), 6 is the least strict.
-     * @default 4
-     * @enum {string}
-     */
-    safety_tolerance?: '1' | '2' | '3' | '4' | '5' | '6';
-    /**
-     * Seed
-     * @description The seed for the random number generator.
-     */
-    seed?: number;
-    /**
-     * Sync Mode
-     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
-     * @default false
-     */
-    sync_mode?: boolean;
-}
+export interface Gemini3ProImagePreviewEditInput extends SharedType_367 {}
 
-export interface Gemini3ProImagePreviewEditOutput {
-    /**
-     * Description
-     * @description The description of the generated images.
-     */
-    description: string;
-    /**
-     * Images
-     * @description The edited images.
-     * @example [
-     *       {
-     *         "file_name": "nano-banana-multi-edit-output.png",
-     *         "content_type": "image/png",
-     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/nano-banana-multi-edit-output.png"
-     *       }
-     *     ]
-     */
-    images: Components.ImageFile_1[];
-}
+export interface Gemini3ProImagePreviewEditOutput extends SharedType_876 {}
 
-export interface Gemini3ProImagePreviewInput {
-    /**
-     * Aspect Ratio
-     * @description The aspect ratio of the generated image. Use "auto" to let the model decide based on the prompt.
-     * @default 1:1
-     */
-    aspect_ratio?:
-        | 'auto'
-        | '21:9'
-        | '16:9'
-        | '3:2'
-        | '4:3'
-        | '5:4'
-        | '1:1'
-        | '4:5'
-        | '3:4'
-        | '2:3'
-        | '9:16';
-    /**
-     * Enable Web Search
-     * @description Enable web search for the image generation task. This will allow the model to use the latest information from the web to generate the image.
-     * @default false
-     */
-    enable_web_search?: boolean;
-    /**
-     * Limit Generations
-     * @description Experimental parameter to limit the number of generations from each round of prompting to 1. Set to `True` to to disregard any instructions in the prompt regarding the number of images to generate.
-     * @default false
-     */
-    limit_generations?: boolean;
-    /**
-     * Number of Images
-     * @description The number of images to generate.
-     * @default 1
-     */
-    num_images?: number;
-    /**
-     * Output Format
-     * @description The format of the generated image.
-     * @default png
-     * @enum {string}
-     */
-    output_format?: 'jpeg' | 'png' | 'webp';
-    /**
-     * Prompt
-     * @description The text prompt to generate an image from.
-     * @example An action shot of a black lab swimming in an inground suburban swimming pool. The camera is placed meticulously on the water line, dividing the image in half, revealing both the dogs head above water holding a tennis ball in it's mouth, and it's paws paddling underwater.
-     */
-    prompt: string;
-    /**
-     * Resolution
-     * @description The resolution of the image to generate.
-     * @default 1K
-     * @enum {string}
-     */
-    resolution?: '1K' | '2K' | '4K';
-    /**
-     * Safety Tolerance
-     * @description The safety tolerance level for content moderation. 1 is the most strict (blocks most content), 6 is the least strict.
-     * @default 4
-     * @enum {string}
-     */
-    safety_tolerance?: '1' | '2' | '3' | '4' | '5' | '6';
-    /**
-     * Seed
-     * @description The seed for the random number generator.
-     */
-    seed?: number;
-    /**
-     * Sync Mode
-     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
-     * @default false
-     */
-    sync_mode?: boolean;
-}
+export interface Gemini3ProImagePreviewInput extends SharedType_8c2 {}
 
-export interface Gemini3ProImagePreviewOutput {
-    /**
-     * Description
-     * @description The description of the generated images.
-     */
-    description: string;
-    /**
-     * Images
-     * @description The generated images.
-     * @example [
-     *       {
-     *         "file_name": "nano-banana-t2i-output.png",
-     *         "content_type": "image/png",
-     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/nano-banana-t2i-output.png"
-     *       }
-     *     ]
-     */
-    images: Components.ImageFile_1[];
-}
+export interface Gemini3ProImagePreviewOutput extends SharedType_7b9 {}
 
-export interface Gemini25FlashImageEditInput extends SharedType_813 {}
+export interface Gemini25FlashImageEditInput extends SharedType_85d {}
 
-export interface Gemini25FlashImageEditOutput extends SharedType_98c {}
+export interface Gemini25FlashImageEditOutput extends SharedType_876 {}
 
-export interface Gemini25FlashImageInput extends SharedType_97e {}
+export interface Gemini25FlashImageInput extends SharedType_f57 {}
 
-export interface Gemini25FlashImageOutput extends SharedType_662 {}
+export interface Gemini25FlashImageOutput extends SharedType_7b9 {}
 
 export interface FramepackFlf2vInput {
     /**
@@ -79825,8 +79697,8 @@ export interface BagelEditOutput {
      * @description The edited images.
      * @example [
      *       {
-     *         "file_size": 423052,
      *         "height": 1024,
+     *         "file_size": 423052,
      *         "file_name": "hQnndOMvGSt2UsYAiV3vs.jpeg",
      *         "content_type": "image/jpeg",
      *         "url": "https://storage.googleapis.com/falserverless/bagel/hQnndOMvGSt2UsYAiV3vs.jpeg",
@@ -79889,8 +79761,8 @@ export interface BagelOutput {
      * @description The generated images.
      * @example [
      *       {
-     *         "file_size": 423052,
      *         "height": 1024,
+     *         "file_size": 423052,
      *         "file_name": "wRhCPSyiKTiLnnWvUpGIl.jpeg",
      *         "content_type": "image/jpeg",
      *         "url": "https://storage.googleapis.com/falserverless/bagel/wRhCPSyiKTiLnnWvUpGIl.jpeg",
@@ -80007,7 +79879,7 @@ export interface AuraSrInput {
      * @example 4
      * @enum {integer}
      */
-    upscaling_factor?: 4;
+    upscale_factor?: 4;
 }
 
 export interface AuraSrOutput {
