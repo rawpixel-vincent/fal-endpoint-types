@@ -3674,7 +3674,7 @@ export interface AudioSetting {
     sample_rate?: 8000 | 16000 | 22050 | 24000 | 32000 | 44100;
 }
 
-export interface AudioFile_3 {
+export interface AudioFile_2 {
     /**
      * Content Type
      * @default audio/wav
@@ -3696,58 +3696,6 @@ export interface AudioFile_3 {
     /**
      * Url
      * @example https://v2.fal.media/files/8535dd59e911496a947daa35c07e67a3_tmplkcy6tut.wav
-     */
-    url: string;
-}
-
-export interface AudioFile_2 {
-    /**
-     * Bitrate
-     * @description The bitrate of the audio
-     */
-    bitrate?: string;
-    /**
-     * Channels
-     * @description The number of channels in the audio
-     */
-    channels?: number;
-    /**
-     * Content Type
-     * @description The mime type of the file.
-     * @example image/png
-     */
-    content_type?: string;
-    /**
-     * Duration
-     * @description The duration of the audio
-     */
-    duration?: number;
-    /**
-     * File Data
-     * Format: binary
-     * @description File data
-     */
-    file_data?: string;
-    /**
-     * File Name
-     * @description The name of the file. It will be auto-generated if not provided.
-     * @example z9RV14K95DvU.png
-     */
-    file_name?: string;
-    /**
-     * File Size
-     * @description The size of the file in bytes.
-     * @example 4404019
-     */
-    file_size?: number;
-    /**
-     * Sample Rate
-     * @description The sample rate of the audio
-     */
-    sample_rate?: number;
-    /**
-     * Url
-     * @description The URL where the file can be downloaded from.
      */
     url: string;
 }

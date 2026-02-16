@@ -759,9 +759,19 @@ declare global {
                 output: falEndpoints.ViduReferenceToImageOutput;
             };
 
+            'fal-ai/vidu/q3/text-to-video/turbo': {
+                input: falEndpoints.ViduQ3TextToVideoTurboInput;
+                output: falEndpoints.ViduQ3TextToVideoTurboOutput;
+            };
+
             'fal-ai/vidu/q3/text-to-video': {
                 input: falEndpoints.ViduQ3TextToVideoInput;
                 output: falEndpoints.ViduQ3TextToVideoOutput;
+            };
+
+            'fal-ai/vidu/q3/image-to-video/turbo': {
+                input: falEndpoints.ViduQ3ImageToVideoTurboInput;
+                output: falEndpoints.ViduQ3ImageToVideoTurboOutput;
             };
 
             'fal-ai/vidu/q3/image-to-video': {
@@ -4137,6 +4147,16 @@ declare global {
             'fal-ai/ghiblify': {
                 input: falEndpoints.GhiblifyInput;
                 output: falEndpoints.GhiblifyOutput;
+            };
+
+            'fal-ai/genfocus/all-in-focus': {
+                input: falEndpoints.GenfocusAllInFocusInput;
+                output: falEndpoints.GenfocusAllInFocusOutput;
+            };
+
+            'fal-ai/genfocus': {
+                input: falEndpoints.GenfocusInput;
+                output: falEndpoints.GenfocusOutput;
             };
 
             'fal-ai/gemini-flash-edit/multi': {
