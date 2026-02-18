@@ -414,6 +414,11 @@ declare global {
                 output: falEndpoints.WorkflowUtilitiesTrimVideoOutput;
             };
 
+            'fal-ai/workflow-utilities/scale-video': {
+                input: falEndpoints.WorkflowUtilitiesScaleVideoInput;
+                output: falEndpoints.WorkflowUtilitiesScaleVideoOutput;
+            };
+
             'fal-ai/workflow-utilities/interleave-video': {
                 input: falEndpoints.WorkflowUtilitiesInterleaveVideoInput;
                 output: falEndpoints.WorkflowUtilitiesInterleaveVideoOutput;
@@ -1412,6 +1417,26 @@ declare global {
             'fal-ai/recraft/vectorize': {
                 input: falEndpoints.RecraftVectorizeInput;
                 output: falEndpoints.RecraftVectorizeOutput;
+            };
+
+            'fal-ai/recraft/v4/text-to-vector': {
+                input: falEndpoints.RecraftV4TextToVectorInput;
+                output: falEndpoints.RecraftV4TextToVectorOutput;
+            };
+
+            'fal-ai/recraft/v4/text-to-image': {
+                input: falEndpoints.RecraftV4TextToImageInput;
+                output: falEndpoints.RecraftV4TextToImageOutput;
+            };
+
+            'fal-ai/recraft/v4/pro/text-to-vector': {
+                input: falEndpoints.RecraftV4ProTextToVectorInput;
+                output: falEndpoints.RecraftV4ProTextToVectorOutput;
+            };
+
+            'fal-ai/recraft/v4/pro/text-to-image': {
+                input: falEndpoints.RecraftV4ProTextToImageInput;
+                output: falEndpoints.RecraftV4ProTextToImageOutput;
             };
 
             'fal-ai/recraft/v3/text-to-image': {

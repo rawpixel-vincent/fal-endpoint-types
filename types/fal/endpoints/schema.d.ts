@@ -31,19 +31,20 @@ export interface XaiGrokImagineVideoTextToVideoInput {
 
 export interface XaiGrokImagineVideoTextToVideoOutput {
     /**
+     * Video
      * @description The generated video.
      * @example {
      *       "height": 720,
      *       "duration": 6.041667,
      *       "url": "https://v3b.fal.media/files/b/0a8b90e4/RUAbFYlssdqnbjNLmE8qP_IX7BNYGP.mp4",
-     *       "fps": 24,
      *       "width": 1280,
+     *       "fps": 24,
      *       "file_name": "RUAbFYlssdqnbjNLmE8qP_IX7BNYGP.mp4",
-     *       "content_type": "video/mp4",
-     *       "num_frames": 145
+     *       "num_frames": 145,
+     *       "content_type": "video/mp4"
      *     }
      */
-    video: Components.VideoFile_1;
+    video: Components.VideoFile;
 }
 
 export interface XaiGrokImagineVideoImageToVideoInput {
@@ -51,6 +52,7 @@ export interface XaiGrokImagineVideoImageToVideoInput {
      * Aspect Ratio
      * @description Aspect ratio of the generated video.
      * @default auto
+     * @enum {string}
      */
     aspect_ratio?: 'auto' | '16:9' | '4:3' | '3:2' | '1:1' | '2:3' | '3:4' | '9:16';
     /**
@@ -82,19 +84,20 @@ export interface XaiGrokImagineVideoImageToVideoInput {
 
 export interface XaiGrokImagineVideoImageToVideoOutput {
     /**
+     * Video
      * @description The generated video.
      * @example {
      *       "height": 720,
      *       "duration": 6.041667,
      *       "url": "https://v3b.fal.media/files/b/0a8b90e0/0Ci1dviuSnEyUZzBUq-_5_nu7MrAAa.mp4",
-     *       "fps": 24,
      *       "width": 1280,
+     *       "fps": 24,
      *       "file_name": "0Ci1dviuSnEyUZzBUq-_5_nu7MrAAa.mp4",
-     *       "content_type": "video/mp4",
-     *       "num_frames": 145
+     *       "num_frames": 145,
+     *       "content_type": "video/mp4"
      *     }
      */
-    video: Components.VideoFile_1;
+    video: Components.VideoFile;
 }
 
 export interface XaiGrokImagineVideoEditVideoInput {
@@ -121,19 +124,20 @@ export interface XaiGrokImagineVideoEditVideoInput {
 
 export interface XaiGrokImagineVideoEditVideoOutput {
     /**
+     * Video
      * @description The generated video.
      * @example {
      *       "height": 720,
      *       "duration": 5.041667,
      *       "url": "https://v3b.fal.media/files/b/0a8b9113/EuDrZuQTW9m1phBXOsauz_EpJH3s8X.mp4",
-     *       "fps": 24,
      *       "width": 1280,
+     *       "fps": 24,
      *       "file_name": "EuDrZuQTW9m1phBXOsauz_EpJH3s8X.mp4",
-     *       "content_type": "video/mp4",
-     *       "num_frames": 121
+     *       "num_frames": 121,
+     *       "content_type": "video/mp4"
      *     }
      */
-    video: Components.VideoFile_1;
+    video: Components.VideoFile;
 }
 
 export interface XaiGrokImagineImageEditInput {
@@ -180,7 +184,7 @@ export interface XaiGrokImagineImageEditOutput {
      *       }
      *     ]
      */
-    images: Components.ImageFile_1[];
+    images: Components.ImageFile[];
     /**
      * Revised Prompt
      * @description The enhanced prompt that was used to generate the image.
@@ -246,7 +250,7 @@ export interface XaiGrokImagineImageOutput {
      *       }
      *     ]
      */
-    images: Components.ImageFile_1[];
+    images: Components.ImageFile[];
     /**
      * Revised Prompt
      * @description The enhanced prompt that was used to generate the image.
@@ -2796,6 +2800,29 @@ export interface SharedType_e34 {
     sync_mode?: boolean;
 }
 
+export interface SharedType_e19 {
+    /**
+     * Images
+     * @description The generated images
+     * @example [
+     *       {
+     *         "height": 1536,
+     *         "file_size": 3731290,
+     *         "file_name": "257cf8e7bd3a47c2959396343d5b38cf.png",
+     *         "content_type": "image/png",
+     *         "url": "https://v3.fal.media/files/tiger/48e63e0K6C9XQYBuomoU-_257cf8e7bd3a47c2959396343d5b38cf.png",
+     *         "width": 1536
+     *       }
+     *     ]
+     */
+    images: Components.Image[];
+    /**
+     * Seed
+     * @description Seed value used for generation.
+     */
+    seed: number;
+}
+
 export interface SharedType_e18 {
     /**
      * Default Caption
@@ -5224,29 +5251,6 @@ export interface SharedType_ab0 {
      * @example 0.8
      */
     strength: number;
-}
-
-export interface SharedType_a97 {
-    /**
-     * Images
-     * @description The generated images
-     * @example [
-     *       {
-     *         "file_size": 3731290,
-     *         "height": 1536,
-     *         "file_name": "257cf8e7bd3a47c2959396343d5b38cf.png",
-     *         "content_type": "image/png",
-     *         "url": "https://v3.fal.media/files/tiger/48e63e0K6C9XQYBuomoU-_257cf8e7bd3a47c2959396343d5b38cf.png",
-     *         "width": 1536
-     *       }
-     *     ]
-     */
-    images: Components.Image[];
-    /**
-     * Seed
-     * @description Seed value used for generation.
-     */
-    seed: number;
 }
 
 export interface SharedType_a96 {
@@ -15645,6 +15649,105 @@ export interface WorkflowUtilitiesTrimVideoOutput {
      *       "file_name": "output.mp4",
      *       "content_type": "application/octet-stream",
      *       "url": "https://v3b.fal.media/files/b/0a8dcc60/sIg2GuYYYrmYAa2lUVgum_output.mp4"
+     *     }
+     */
+    video: Components.File;
+}
+
+export interface WorkflowUtilitiesScaleVideoInput {
+    /**
+     * Codec
+     * @description Video codec to use for encoding. libx264 (H.264) is widely compatible, libx265 (H.265/HEVC) offers better compression.
+     * @default libx264
+     * @enum {string}
+     */
+    codec?: 'libx264' | 'libx265';
+    /**
+     * Crf
+     * @description Constant Rate Factor for quality (0-51). Lower values mean better quality and larger files. 18 is visually lossless for most content.
+     * @default 18
+     */
+    crf?: number;
+    /**
+     * Height
+     * @description Target height in pixels
+     * @example 1080
+     * @example 2160
+     * @example 720
+     */
+    height: number;
+    /**
+     * Mode
+     * @description Scaling mode. 'stretch' scales the video to the exact target dimensions (may distort aspect ratio). 'pad' scales to fit within the target dimensions while preserving aspect ratio, then pads with the chosen color to fill the remaining space (letterbox/pillarbox). 'crop' scales to cover the target dimensions while preserving aspect ratio, then center-crops to the exact target size.
+     * @default stretch
+     * @enum {string}
+     */
+    mode?: 'stretch' | 'pad' | 'crop';
+    /**
+     * Pad Color
+     * @description Padding color when mode is 'pad'. Ignored for other modes.
+     * @default black
+     * @enum {string}
+     */
+    pad_color?: 'black' | 'white' | 'red' | 'green' | 'blue' | 'gray';
+    /**
+     * Preset
+     * @description Encoding speed preset. Slower presets give better compression but take longer.
+     * @default fast
+     * @enum {string}
+     */
+    preset?: 'ultrafast' | 'fast' | 'medium' | 'slow';
+    /**
+     * Video Url
+     * @description URL of the video file to scale/resize. Height and Width of the video must be even numbers for compatibility with video codecs.
+     *
+     *     Max file size: 476.8MB, Timeout: 30.0s
+     * @example https://storage.googleapis.com/falserverless/example_outputs/wan-25-i2v-output.mp4
+     */
+    video_url: string;
+    /**
+     * Width
+     * @description Target width in pixels
+     * @example 1920
+     * @example 3840
+     * @example 1280
+     */
+    width: number;
+}
+
+export interface WorkflowUtilitiesScaleVideoOutput {
+    /**
+     * Original Height
+     * @description Height of the original video in pixels
+     * @example 1082
+     */
+    original_height: number;
+    /**
+     * Original Width
+     * @description Width of the original video in pixels
+     * @example 1929
+     */
+    original_width: number;
+    /**
+     * Scaled Height
+     * @description Height of the output video in pixels
+     * @example 1080
+     */
+    scaled_height: number;
+    /**
+     * Scaled Width
+     * @description Width of the output video in pixels
+     * @example 1920
+     */
+    scaled_width: number;
+    /**
+     * Video
+     * @description The scaled/resized video
+     * @example {
+     *       "file_size": 3456789,
+     *       "file_name": "output.mp4",
+     *       "content_type": "video/mp4",
+     *       "url": "https://v3b.fal.media/files/b/monkey/scaled_output.mp4"
      *     }
      */
     video: Components.File;
@@ -26845,10 +26948,22 @@ export interface SamAudioVisualSeparateInput {
      */
     acceleration?: 'fast' | 'balanced' | 'quality';
     /**
+     * Chunk Overlap
+     * @description Overlap duration (in seconds) between chunks for crossfade blending.
+     * @default 5
+     */
+    chunk_overlap?: number;
+    /**
      * Mask Video Url
      * @description URL of the mask video (binary mask indicating target object). Black=target, White=background.
      */
     mask_video_url?: string;
+    /**
+     * Max Chunk Duration
+     * @description Maximum audio duration (in seconds) to process in a single pass. Longer audio will be chunked with overlap and blended.
+     * @default 60
+     */
+    max_chunk_duration?: number;
     /**
      * Output Format
      * @description Output audio format.
@@ -26925,6 +27040,18 @@ export interface SamAudioSpanSeparateInput {
      */
     audio_url: string;
     /**
+     * Chunk Overlap
+     * @description Overlap duration (in seconds) between chunks for crossfade blending.
+     * @default 5
+     */
+    chunk_overlap?: number;
+    /**
+     * Max Chunk Duration
+     * @description Maximum audio duration (in seconds) to process in a single pass. Longer audio will be chunked with overlap and blended.
+     * @default 60
+     */
+    max_chunk_duration?: number;
+    /**
      * Output Format
      * @description Output audio format.
      * @default wav
@@ -26962,6 +27089,12 @@ export interface SamAudioSpanSeparateInput {
      * @default false
      */
     trim_to_span?: boolean;
+    /**
+     * Use Sound Activity Ranking
+     * @description Use sound activity detection to rank reranking candidates based on how well each candidate's non-silent regions match the provided spans. Enables effective reranking even without a text prompt (span-only separation). Requires reranking_candidates > 1.
+     * @default false
+     */
+    use_sound_activity_ranking?: boolean;
 }
 
 export interface SamAudioSpanSeparateOutput {
@@ -27011,6 +27144,18 @@ export interface SamAudioSeparateInput {
      * @example https://v3b.fal.media/files/b/0a88511f/tUUCI9eDmeC2RqJEOXrZk_assets_avatar_multi_sing_woman.WAV
      */
     audio_url: string;
+    /**
+     * Chunk Overlap
+     * @description Overlap duration (in seconds) between chunks for crossfade blending.
+     * @default 5
+     */
+    chunk_overlap?: number;
+    /**
+     * Max Chunk Duration
+     * @description Maximum audio duration (in seconds) to process in a single pass. Longer audio will be chunked with overlap and blended.
+     * @default 60
+     */
+    max_chunk_duration?: number;
     /**
      * Output Format
      * @description Output audio format.
@@ -27919,6 +28064,226 @@ export interface RecraftVectorizeOutput {
      *     }
      */
     image: Components.File;
+}
+
+export interface RecraftV4TextToVectorInput {
+    /**
+     * Background Color
+     * @description The preferable background color of the generated images.
+     */
+    background_color?: Components.RGBColor;
+    /**
+     * Colors
+     * @description An array of preferable colors
+     * @default []
+     */
+    colors?: Components.RGBColor[];
+    /**
+     * Enable Safety Checker
+     * @description If set to true, the safety checker will be enabled.
+     * @default true
+     */
+    enable_safety_checker?: boolean;
+    /**
+     * Image Size
+     * @default square_hd
+     * @example landscape_16_9
+     */
+    image_size?:
+        | Components.ImageSize
+        | (
+              | 'square_hd'
+              | 'square'
+              | 'portrait_4_3'
+              | 'portrait_16_9'
+              | 'landscape_4_3'
+              | 'landscape_16_9'
+          );
+    /**
+     * Prompt
+     * @example a cute character fox with cool clothes, 3d flat color, design
+     */
+    prompt: string;
+}
+
+export interface RecraftV4TextToVectorOutput {
+    /**
+     * Images
+     * @example [
+     *       {
+     *         "file_size": 1722022,
+     *         "file_name": "image.svg",
+     *         "content_type": "image/svg+xml",
+     *         "url": "https://v3b.fal.media/files/b/0a8ee4fd/sw8YD36iblpO64JeQZEDt_image.svg"
+     *       }
+     *     ]
+     */
+    images: Components.File[];
+}
+
+export interface RecraftV4TextToImageInput {
+    /**
+     * Background Color
+     * @description The preferable background color of the generated images.
+     */
+    background_color?: Components.RGBColor;
+    /**
+     * Colors
+     * @description An array of preferable colors
+     * @default []
+     */
+    colors?: Components.RGBColor[];
+    /**
+     * Enable Safety Checker
+     * @description If set to true, the safety checker will be enabled.
+     * @default true
+     */
+    enable_safety_checker?: boolean;
+    /**
+     * Image Size
+     * @default square_hd
+     * @example landscape_16_9
+     */
+    image_size?:
+        | Components.ImageSize
+        | (
+              | 'square_hd'
+              | 'square'
+              | 'portrait_4_3'
+              | 'portrait_16_9'
+              | 'landscape_4_3'
+              | 'landscape_16_9'
+          );
+    /**
+     * Prompt
+     * @example Tilt-shift miniature effect on a real Portuguese fishing village at golden hour, colorful boats in the harbor appearing toy-like, selective focus band across the middle, saturated primary colors of blue red and yellow boats against white buildings, 90mm tilt-shift lens, the familiar made fantastical, Wes Anderson color sensibility
+     */
+    prompt: string;
+}
+
+export interface RecraftV4TextToImageOutput {
+    /**
+     * Images
+     * @example [
+     *       {
+     *         "file_size": 272628,
+     *         "file_name": "image.webp",
+     *         "content_type": "image/webp",
+     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/recraft-v4/standard-output.webp"
+     *       }
+     *     ]
+     */
+    images: Components.File[];
+}
+
+export interface RecraftV4ProTextToVectorInput {
+    /**
+     * Background Color
+     * @description The preferable background color of the generated images.
+     */
+    background_color?: Components.RGBColor;
+    /**
+     * Colors
+     * @description An array of preferable colors
+     * @default []
+     */
+    colors?: Components.RGBColor[];
+    /**
+     * Enable Safety Checker
+     * @description If set to true, the safety checker will be enabled.
+     * @default true
+     */
+    enable_safety_checker?: boolean;
+    /**
+     * Image Size
+     * @default square_hd
+     * @example landscape_16_9
+     */
+    image_size?:
+        | Components.ImageSize
+        | (
+              | 'square_hd'
+              | 'square'
+              | 'portrait_4_3'
+              | 'portrait_16_9'
+              | 'landscape_4_3'
+              | 'landscape_16_9'
+          );
+    /**
+     * Prompt
+     * @example a cute character panda with cool clothes, 3d flat color, design
+     */
+    prompt: string;
+}
+
+export interface RecraftV4ProTextToVectorOutput {
+    /**
+     * Images
+     * @example [
+     *       {
+     *         "file_size": 1818794,
+     *         "file_name": "image.svg",
+     *         "content_type": "image/svg+xml",
+     *         "url": "https://v3b.fal.media/files/b/0a8ee4de/lmXuapOPV309mE533swE0_image.svg"
+     *       }
+     *     ]
+     */
+    images: Components.File[];
+}
+
+export interface RecraftV4ProTextToImageInput {
+    /**
+     * Background Color
+     * @description The preferable background color of the generated images.
+     */
+    background_color?: Components.RGBColor;
+    /**
+     * Colors
+     * @description An array of preferable colors
+     * @default []
+     */
+    colors?: Components.RGBColor[];
+    /**
+     * Enable Safety Checker
+     * @description If set to true, the safety checker will be enabled.
+     * @default true
+     */
+    enable_safety_checker?: boolean;
+    /**
+     * Image Size
+     * @default square_hd
+     * @example landscape_16_9
+     */
+    image_size?:
+        | Components.ImageSize
+        | (
+              | 'square_hd'
+              | 'square'
+              | 'portrait_4_3'
+              | 'portrait_16_9'
+              | 'landscape_4_3'
+              | 'landscape_16_9'
+          );
+    /**
+     * Prompt
+     * @example Crash zoom frozen at the moment of impact as a kingfisher breaks the surface of a pond, water crown splash forming a perfect circle, the bird's beak piercing the mirror-like surface, fish visible just below, frozen at 1/8000s, 400mm super telephoto with 2x extender, ring flash fill, pre-dawn blue light with single shaft of gold, BBC Frozen Planet production quality
+     */
+    prompt: string;
+}
+
+export interface RecraftV4ProTextToImageOutput {
+    /**
+     * Images
+     * @example [
+     *       {
+     *         "file_size": 1949504,
+     *         "file_name": "image.webp",
+     *         "content_type": "image/webp",
+     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/recraft-v4/pro-output.webp"
+     *       }
+     *     ]
+     */
+    images: Components.File[];
 }
 
 export interface RecraftV3TextToImageInput {
@@ -57837,7 +58202,7 @@ export interface HunyuanImageV3InstructEditInput {
           );
     /**
      * Image Urls
-     * @description The URLs of the images to use as a reference for the generation. A maximum of 2 images are supported.
+     * @description The URLs of the images to use as a reference for the generation. A maximum of 3 images are supported.
      * @example [
      *       "https://v3b.fal.media/files/b/0a8c3cf9/voXcX8hd5maRSrSvZalXh_jAMqrScj.png"
      *     ]
@@ -60276,9 +60641,9 @@ export interface FooocusUpscaleOrVaryInput {
      * Styles
      * @description The style to use.
      * @default [
+     *       "Fooocus Sharp",
      *       "Fooocus Enhance",
-     *       "Fooocus V2",
-     *       "Fooocus Sharp"
+     *       "Fooocus V2"
      *     ]
      */
     styles?: (
@@ -60562,9 +60927,7 @@ export interface FooocusUpscaleOrVaryInput {
     )[];
     /**
      * Sync Mode
-     * @description If set to true, the function will wait for the image to be generated and uploaded
-     *                 before returning the response. This will increase the latency of the function but
-     *                 it allows you to get the image directly in the response without going through the CDN.
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
      * @default false
      */
     sync_mode?: boolean;
@@ -60787,9 +61150,9 @@ export interface FooocusInpaintInput {
      * Styles
      * @description The style to use.
      * @default [
+     *       "Fooocus Sharp",
      *       "Fooocus Enhance",
-     *       "Fooocus V2",
-     *       "Fooocus Sharp"
+     *       "Fooocus V2"
      *     ]
      */
     styles?: (
@@ -61073,9 +61436,7 @@ export interface FooocusInpaintInput {
     )[];
     /**
      * Sync Mode
-     * @description If set to true, the function will wait for the image to be generated and uploaded
-     *                 before returning the response. This will increase the latency of the function but
-     *                 it allows you to get the image directly in the response without going through the CDN.
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
      * @default false
      */
     sync_mode?: boolean;
@@ -61107,10 +61468,10 @@ export interface FooocusImagePromptInput {
     /**
      * Image Prompt 1
      * @example {
-     *       "weight": 1,
+     *       "image_url": "https://storage.googleapis.com/falserverless/model_tests/fooocus/Pikachu.webp",
      *       "stop_at": 1,
      *       "type": "PyraCanny",
-     *       "image_url": "https://storage.googleapis.com/falserverless/model_tests/fooocus/Pikachu.webp"
+     *       "weight": 1
      *     }
      */
     image_prompt_1: Components.ImagePrompt;
@@ -61241,9 +61602,9 @@ export interface FooocusImagePromptInput {
      * Styles
      * @description The style to use.
      * @default [
+     *       "Fooocus Sharp",
      *       "Fooocus Enhance",
-     *       "Fooocus V2",
-     *       "Fooocus Sharp"
+     *       "Fooocus V2"
      *     ]
      */
     styles?: (
@@ -61527,9 +61888,7 @@ export interface FooocusImagePromptInput {
     )[];
     /**
      * Sync Mode
-     * @description If set to true, the function will wait for the image to be generated and uploaded
-     *                 before returning the response. This will increase the latency of the function but
-     *                 it allows you to get the image directly in the response without going through the CDN.
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
      * @default false
      */
     sync_mode?: boolean;
@@ -61701,9 +62060,9 @@ export interface FooocusInput {
      * Styles
      * @description The style to use.
      * @default [
+     *       "Fooocus Sharp",
      *       "Fooocus Enhance",
-     *       "Fooocus V2",
-     *       "Fooocus Sharp"
+     *       "Fooocus V2"
      *     ]
      */
     styles?: (
@@ -61987,9 +62346,7 @@ export interface FooocusInput {
     )[];
     /**
      * Sync Mode
-     * @description If set to true, the function will wait for the image to be generated and uploaded
-     *                 before returning the response. This will increase the latency of the function but
-     *                 it allows you to get the image directly in the response without going through the CDN.
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
      * @default false
      */
     sync_mode?: boolean;
@@ -74080,29 +74437,11 @@ export interface ElevenlabsTtsElevenV3Input {
      */
     language_code?: string;
     /**
-     * Similarity Boost
-     * @description Similarity boost (0-1)
-     * @default 0.75
-     */
-    similarity_boost?: number;
-    /**
-     * Speed
-     * @description Speech speed (0.7-1.2). Values below 1.0 slow down the speech, above 1.0 speed it up. Extreme values may affect quality.
-     * @default 1
-     */
-    speed?: number;
-    /**
      * Stability
      * @description Voice stability (0-1)
      * @default 0.5
      */
     stability?: number;
-    /**
-     * Style
-     * @description Style exaggeration (0-1)
-     * @default 0
-     */
-    style?: number;
     /**
      * Text
      * @description The text to convert to speech
@@ -78797,7 +79136,7 @@ export interface BytedanceUpscalerUpscaleVideoOutput {
 
 export interface BriaTextToImageHdInput extends SharedType_411 {}
 
-export interface BriaTextToImageHdOutput extends SharedType_a97 {}
+export interface BriaTextToImageHdOutput extends SharedType_e19 {}
 
 export interface BriaTextToImageFastInput {
     /**
@@ -78870,11 +79209,11 @@ export interface BriaTextToImageFastInput {
     sync_mode?: boolean;
 }
 
-export interface BriaTextToImageFastOutput extends SharedType_a97 {}
+export interface BriaTextToImageFastOutput extends SharedType_e19 {}
 
 export interface BriaTextToImageBaseInput extends SharedType_411 {}
 
-export interface BriaTextToImageBaseOutput extends SharedType_a97 {}
+export interface BriaTextToImageBaseOutput extends SharedType_e19 {}
 
 export interface BriaReimagineInput {
     /**
@@ -79103,8 +79442,8 @@ export interface BriaGenfillOutput {
      * @description Generated Images
      * @example [
      *       {
-     *         "file_size": 1064550,
      *         "height": 768,
+     *         "file_size": 1064550,
      *         "file_name": "a0d138e6820c4ad58f1fd3c758f16047.png",
      *         "content_type": "image/png",
      *         "url": "https://storage.googleapis.com/falserverless/bria/bria_genfill_res.png",
@@ -79113,6 +79452,11 @@ export interface BriaGenfillOutput {
      *     ]
      */
     images: Components.Image[];
+    /**
+     * Seed
+     * @description Seed value used for generation.
+     */
+    seed: number;
 }
 
 export interface BriaExpandInput {
@@ -79185,8 +79529,8 @@ export interface BriaExpandOutput {
      * Image
      * @description The generated image
      * @example {
-     *       "file_size": 1471342,
      *       "height": 674,
+     *       "file_size": 1471342,
      *       "file_name": "afa402a35ea742cdb5c3e219b2b19bfb.png",
      *       "content_type": "image/png",
      *       "url": "https://v3.fal.media/files/koala/8np-spgxxG-I1r3cjthRV_afa402a35ea742cdb5c3e219b2b19bfb.png",
@@ -79344,8 +79688,8 @@ export interface BriaBackgroundRemoveOutput {
      * Image
      * @description The generated image
      * @example {
-     *       "file_size": 1076276,
      *       "height": 1024,
+     *       "file_size": 1076276,
      *       "file_name": "070c731993e949d993c10ef6283d335d.png",
      *       "content_type": "image/png",
      *       "url": "https://v3.fal.media/files/tiger/GQEMNjRyxSoza7N8LPPqb_070c731993e949d993c10ef6283d335d.png",
@@ -79451,8 +79795,8 @@ export interface BirefnetV2VideoOutput {
      *       "height": 1080,
      *       "duration": 8,
      *       "url": "https://storage.googleapis.com/falserverless/example_outputs/birefnet-video-output.webm",
-     *       "fps": 24,
      *       "width": 1920,
+     *       "fps": 24,
      *       "file_name": "birefnet-video-output.webm",
      *       "content_type": "video/webm",
      *       "num_frames": 192
