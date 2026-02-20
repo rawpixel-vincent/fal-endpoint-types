@@ -289,46 +289,6 @@ declare global {
                 output: falEndpoints.ImagineartImagineart15PreviewTextToImageOutput;
             };
 
-            'half-moon-ai/ai-home/style': {
-                input: falEndpoints.HalfmoonaiAiHomeStyleInput;
-                output: falEndpoints.HalfmoonaiAiHomeStyleOutput;
-            };
-
-            'half-moon-ai/ai-home/edit': {
-                input: falEndpoints.HalfmoonaiAiHomeEditInput;
-                output: falEndpoints.HalfmoonaiAiHomeEditOutput;
-            };
-
-            'half-moon-ai/ai-face-swap/faceswapvideo': {
-                input: falEndpoints.HalfmoonaiAiFaceSwapFaceswapvideoInput;
-                output: falEndpoints.HalfmoonaiAiFaceSwapFaceswapvideoOutput;
-            };
-
-            'half-moon-ai/ai-face-swap/faceswapimage': {
-                input: falEndpoints.HalfmoonaiAiFaceSwapFaceswapimageInput;
-                output: falEndpoints.HalfmoonaiAiFaceSwapFaceswapimageOutput;
-            };
-
-            'half-moon-ai/ai-detector/detect-text': {
-                input: falEndpoints.HalfmoonaiAiDetectorDetectTextInput;
-                output: falEndpoints.HalfmoonaiAiDetectorDetectTextOutput;
-            };
-
-            'half-moon-ai/ai-detector/detect-image': {
-                input: falEndpoints.HalfmoonaiAiDetectorDetectImageInput;
-                output: falEndpoints.HalfmoonaiAiDetectorDetectImageOutput;
-            };
-
-            'half-moon-ai/ai-baby-and-aging-generator/single': {
-                input: falEndpoints.HalfmoonaiAiBabyAndAgingGeneratorSingleInput;
-                output: falEndpoints.HalfmoonaiAiBabyAndAgingGeneratorSingleOutput;
-            };
-
-            'half-moon-ai/ai-baby-and-aging-generator/multi': {
-                input: falEndpoints.HalfmoonaiAiBabyAndAgingGeneratorMultiInput;
-                output: falEndpoints.HalfmoonaiAiBabyAndAgingGeneratorMultiOutput;
-            };
-
             'fal-ai/zonos': {
                 input: falEndpoints.ZonosInput;
                 output: falEndpoints.ZonosOutput;
@@ -417,6 +377,11 @@ declare global {
             'fal-ai/workflow-utilities/scale-video': {
                 input: falEndpoints.WorkflowUtilitiesScaleVideoInput;
                 output: falEndpoints.WorkflowUtilitiesScaleVideoOutput;
+            };
+
+            'fal-ai/workflow-utilities/reverse-video': {
+                input: falEndpoints.WorkflowUtilitiesReverseVideoInput;
+                output: falEndpoints.WorkflowUtilitiesReverseVideoOutput;
             };
 
             'fal-ai/workflow-utilities/interleave-video': {
@@ -2945,8 +2910,8 @@ declare global {
             };
 
             'fal-ai/live-portrait/image': {
-                input: falEndpoints.LivePortraitImageInput;
-                output: falEndpoints.LivePortraitImageOutput;
+                input: { [x in string]: any };
+                output: { [x in string]: any };
             };
 
             'fal-ai/live-portrait': {
@@ -4884,6 +4849,11 @@ declare global {
                 output: falEndpoints.FlashvsrUpscaleVideoOutput;
             };
 
+            'fal-ai/firered-image-edit': {
+                input: falEndpoints.FireredImageEditInput;
+                output: falEndpoints.FireredImageEditOutput;
+            };
+
             'fal-ai/finegrain-eraser/mask': {
                 input: falEndpoints.FinegrainEraserMaskInput;
                 output: falEndpoints.FinegrainEraserMaskOutput;
@@ -5442,11 +5412,6 @@ declare global {
             'fal-ai/bytedance/seedance/v1.5/pro/image-to-video': {
                 input: falEndpoints.BytedanceSeedanceV15ProImageToVideoInput;
                 output: falEndpoints.BytedanceSeedanceV15ProImageToVideoOutput;
-            };
-
-            'fal-ai/bytedance/seed3d/image-to-3d': {
-                input: falEndpoints.BytedanceSeed3dImageTo3dInput;
-                output: falEndpoints.BytedanceSeed3dImageTo3dOutput;
             };
 
             'fal-ai/bytedance/omnihuman/v1.5': {

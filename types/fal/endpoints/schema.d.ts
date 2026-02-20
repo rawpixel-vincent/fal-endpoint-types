@@ -40,8 +40,8 @@ export interface XaiGrokImagineVideoTextToVideoOutput {
      *       "width": 1280,
      *       "fps": 24,
      *       "file_name": "RUAbFYlssdqnbjNLmE8qP_IX7BNYGP.mp4",
-     *       "num_frames": 145,
-     *       "content_type": "video/mp4"
+     *       "content_type": "video/mp4",
+     *       "num_frames": 145
      *     }
      */
     video: Components.VideoFile;
@@ -93,8 +93,8 @@ export interface XaiGrokImagineVideoImageToVideoOutput {
      *       "width": 1280,
      *       "fps": 24,
      *       "file_name": "0Ci1dviuSnEyUZzBUq-_5_nu7MrAAa.mp4",
-     *       "num_frames": 145,
-     *       "content_type": "video/mp4"
+     *       "content_type": "video/mp4",
+     *       "num_frames": 145
      *     }
      */
     video: Components.VideoFile;
@@ -133,8 +133,8 @@ export interface XaiGrokImagineVideoEditVideoOutput {
      *       "width": 1280,
      *       "fps": 24,
      *       "file_name": "EuDrZuQTW9m1phBXOsauz_EpJH3s8X.mp4",
-     *       "num_frames": 121,
-     *       "content_type": "video/mp4"
+     *       "content_type": "video/mp4",
+     *       "num_frames": 121
      *     }
      */
     video: Components.VideoFile;
@@ -1661,28 +1661,6 @@ export interface SharedType_fb3 {
     seed?: number;
 }
 
-export interface SharedType_fb1 {
-    /** @description ZIP archive of all video frames if requested. */
-    frames_zip?: Components.File_1;
-    /**
-     * Prompt
-     * @description The prompt used for generation.
-     */
-    prompt: string;
-    /**
-     * Seed
-     * @description The seed used for generation.
-     */
-    seed: number;
-    /**
-     * @description The generated pose video file.
-     * @example {
-     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/wan-vace-pose-output.mp4"
-     *     }
-     */
-    video: Components.VideoFile_1;
-}
-
 export interface SharedType_faf {
     /**
      * Acceleration
@@ -2866,220 +2844,6 @@ export interface SharedType_e18 {
     steps?: number;
 }
 
-export interface SharedType_e15 {
-    /**
-     * Acceleration
-     * @description Acceleration to use for inference. Options are 'none' or 'regular'. Accelerated inference will very slightly affect output, but will be significantly faster.
-     * @default regular
-     * @example regular
-     */
-    acceleration?: 'none' | 'low' | 'regular';
-    /**
-     * Aspect Ratio
-     * @description Aspect ratio of the generated video.
-     * @default auto
-     * @enum {string}
-     */
-    aspect_ratio?: 'auto' | '16:9' | '1:1' | '9:16';
-    /**
-     * Auto Downsample Min FPS
-     * @description The minimum frames per second to downsample the video to. This is used to help determine the auto downsample factor to try and find the lowest detail-preserving downsample factor. The default value is appropriate for most videos, if you are using a video with very fast motion, you may need to increase this value. If your video has a very low amount of motion, you could decrease this value to allow for higher downsampling and thus longer sequences.
-     * @default 15
-     * @example 15
-     */
-    auto_downsample_min_fps?: number;
-    /**
-     * Enable Auto Downsample
-     * @description If true, the model will automatically temporally downsample the video to an appropriate frame length for the model, then will interpolate it back to the original frame length.
-     * @default false
-     * @example false
-     */
-    enable_auto_downsample?: boolean;
-    /**
-     * Enable Prompt Expansion
-     * @description Whether to enable prompt expansion.
-     * @default false
-     * @example false
-     */
-    enable_prompt_expansion?: boolean;
-    /**
-     * Enable Safety Checker
-     * @description If set to true, the safety checker will be enabled.
-     * @default false
-     * @example true
-     */
-    enable_safety_checker?: boolean;
-    /**
-     * First Frame URL
-     * @description URL to the first frame of the video. If provided, the model will use this frame as a reference.
-     */
-    first_frame_url?: string;
-    /**
-     * Frames per Second
-     * @description Frames per second of the generated video. Must be between 5 to 30. Ignored if match_input_frames_per_second is true.
-     * @default 16
-     */
-    frames_per_second?: number;
-    /**
-     * Guidance Scale
-     * @description Guidance scale for classifier-free guidance. Higher values encourage the model to generate images closely related to the text prompt.
-     * @default 5
-     * @example 5
-     */
-    guidance_scale?: number;
-    /**
-     * Interpolator Model
-     * @description The model to use for frame interpolation. Options are 'rife' or 'film'.
-     * @default film
-     * @example film
-     * @enum {string}
-     */
-    interpolator_model?: 'rife' | 'film';
-    /**
-     * Last Frame URL
-     * @description URL to the last frame of the video. If provided, the model will use this frame as a reference.
-     */
-    last_frame_url?: string;
-    /**
-     * Match Input Frames Per Second
-     * @description If true, the frames per second of the generated video will match the input video. If false, the frames per second will be determined by the frames_per_second parameter.
-     * @default true
-     * @example true
-     */
-    match_input_frames_per_second?: boolean;
-    /**
-     * Match Input Number of Frames
-     * @description If true, the number of frames in the generated video will match the number of frames in the input video. If false, the number of frames will be determined by the num_frames parameter.
-     * @default true
-     * @example true
-     */
-    match_input_num_frames?: boolean;
-    /**
-     * Negative Prompt
-     * @description Negative prompt for video generation.
-     * @default letterboxing, borders, black bars, bright colors, overexposed, static, blurred details, subtitles, style, artwork, painting, picture, still, overall gray, worst quality, low quality, JPEG compression residue, ugly, incomplete, extra fingers, poorly drawn hands, poorly drawn faces, deformed, disfigured, malformed limbs, fused fingers, still picture, cluttered background, three legs, many people in the background, walking backwards
-     * @example letterboxing, borders, black bars, bright colors, overexposed, static, blurred details, subtitles, style, artwork, painting, picture, still, overall gray, worst quality, low quality, JPEG compression residue, ugly, incomplete, extra fingers, poorly drawn hands, poorly drawn faces, deformed, disfigured, malformed limbs, fused fingers, still picture, cluttered background, three legs, many people in the background, walking backwards
-     */
-    negative_prompt?: string;
-    /**
-     * Number of Frames
-     * @description Number of frames to generate. Must be between 81 to 241 (inclusive).
-     * @default 81
-     */
-    num_frames?: number;
-    /**
-     * Number of Inference Steps
-     * @description Number of inference steps for sampling. Higher values give better quality but take longer.
-     * @default 30
-     */
-    num_inference_steps?: number;
-    /**
-     * Number of Interpolated Frames
-     * @description Number of frames to interpolate between the original frames. A value of 0 means no interpolation.
-     * @default 0
-     * @example 0
-     */
-    num_interpolated_frames?: number;
-    /**
-     * Prompt
-     * @description The text prompt to guide video generation. Optional for reframing.
-     * @default
-     * @example
-     */
-    prompt?: string;
-    /**
-     * Resolution
-     * @description Resolution of the generated video.
-     * @default auto
-     * @enum {string}
-     */
-    resolution?: 'auto' | '240p' | '360p' | '480p' | '580p' | '720p';
-    /**
-     * Return Frames Zip
-     * @description If true, also return a ZIP file containing all generated frames.
-     * @default false
-     * @example false
-     */
-    return_frames_zip?: boolean;
-    /**
-     * Sampler
-     * @description Sampler to use for video generation.
-     * @default unipc
-     * @example unipc
-     * @enum {string}
-     */
-    sampler?: 'unipc' | 'dpm++' | 'euler';
-    /**
-     * Seed
-     * @description Random seed for reproducibility. If None, a random seed is chosen.
-     */
-    seed?: number;
-    /**
-     * Shift
-     * @description Shift parameter for video generation.
-     * @default 5
-     */
-    shift?: number;
-    /**
-     * Sync Mode
-     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
-     * @default false
-     * @example false
-     */
-    sync_mode?: boolean;
-    /**
-     * Temporal Downsample Factor
-     * @description Temporal downsample factor for the video. This is an integer value that determines how many frames to skip in the video. A value of 0 means no downsampling. For each downsample factor, one upsample factor will automatically be applied.
-     * @default 0
-     * @example 0
-     */
-    temporal_downsample_factor?: number;
-    /**
-     * Transparency Mode
-     * @description The transparency mode to apply to the first and last frames. This controls how the transparent areas of the first and last frames are filled.
-     * @default content_aware
-     * @example content_aware
-     * @enum {string}
-     */
-    transparency_mode?: 'content_aware' | 'white' | 'black';
-    /**
-     * Trim Borders
-     * @description Whether to trim borders from the video.
-     * @default true
-     * @example true
-     */
-    trim_borders?: boolean;
-    /**
-     * Video Quality
-     * @description The quality of the generated video.
-     * @default high
-     * @example high
-     * @enum {string}
-     */
-    video_quality?: 'low' | 'medium' | 'high' | 'maximum';
-    /**
-     * Video URL
-     * @description URL to the source video file. This video will be used as a reference for the reframe task.
-     * @example https://storage.googleapis.com/falserverless/web-examples/wan/t2v.mp4
-     */
-    video_url: string;
-    /**
-     * Video Write Mode
-     * @description The write mode of the generated video.
-     * @default balanced
-     * @example balanced
-     * @enum {string}
-     */
-    video_write_mode?: 'fast' | 'balanced' | 'small';
-    /**
-     * Zoom Factor
-     * @description Zoom factor for the video. When this value is greater than 0, the video will be zoomed in by this factor (in relation to the canvas size,) cutting off the edges of the video. A value of 0 means no zoom.
-     * @default 0
-     * @example 0
-     */
-    zoom_factor?: number;
-}
-
 export interface SharedType_e01 {
     /**
      * Seed
@@ -3094,6 +2858,92 @@ export interface SharedType_e01 {
      *     }
      */
     video: Components.File;
+}
+
+export interface SharedType_dfb {
+    /**
+     * Aspect Ratio
+     * @description The aspect ratio of the generated image.
+     * @default auto
+     * @enum {string}
+     */
+    aspect_ratio?:
+        | 'auto'
+        | '21:9'
+        | '16:9'
+        | '3:2'
+        | '4:3'
+        | '5:4'
+        | '1:1'
+        | '4:5'
+        | '3:4'
+        | '2:3'
+        | '9:16';
+    /**
+     * Enable Web Search
+     * @description Enable web search for the image generation task. This will allow the model to use the latest information from the web to generate the image.
+     * @default false
+     */
+    enable_web_search?: boolean;
+    /**
+     * Image URLs
+     * @description The URLs of the images to use for image-to-image generation or image editing.
+     * @example [
+     *       "https://storage.googleapis.com/falserverless/example_inputs/nano-banana-edit-input.png",
+     *       "https://storage.googleapis.com/falserverless/example_inputs/nano-banana-edit-input-2.png"
+     *     ]
+     */
+    image_urls: string[];
+    /**
+     * Limit Generations
+     * @description Experimental parameter to limit the number of generations from each round of prompting to 1. Set to `True` to to disregard any instructions in the prompt regarding the number of images to generate.
+     * @default false
+     */
+    limit_generations?: boolean;
+    /**
+     * Number of Images
+     * @description The number of images to generate.
+     * @default 1
+     */
+    num_images?: number;
+    /**
+     * Output Format
+     * @description The format of the generated image.
+     * @default png
+     * @enum {string}
+     */
+    output_format?: 'jpeg' | 'png' | 'webp';
+    /**
+     * Prompt
+     * @description The prompt for image editing.
+     * @example make a photo of the man driving the car down the california coastline
+     */
+    prompt: string;
+    /**
+     * Resolution
+     * @description The resolution of the image to generate.
+     * @default 1K
+     * @enum {string}
+     */
+    resolution?: '1K' | '2K' | '4K';
+    /**
+     * Safety Tolerance
+     * @description The safety tolerance level for content moderation. 1 is the most strict (blocks most content), 6 is the least strict.
+     * @default 4
+     * @enum {string}
+     */
+    safety_tolerance?: '1' | '2' | '3' | '4' | '5' | '6';
+    /**
+     * Seed
+     * @description The seed for the random number generator.
+     */
+    seed?: number;
+    /**
+     * Sync Mode
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
+     * @default false
+     */
+    sync_mode?: boolean;
 }
 
 export interface SharedType_df4 {
@@ -3380,27 +3230,6 @@ export interface SharedType_dbd {
      * @description The seed used for generation
      */
     seed: number;
-}
-
-export interface SharedType_da9 {
-    /**
-     * Output
-     * @description Generated output from video processing
-     * @example that's the way I look at it and I don't know what you would say. Sooner or later the child gets run over.
-     *     They seem to be too local, too provincial.
-     */
-    output: string;
-    /**
-     * Usage
-     * @description Token usage information
-     * @example {
-     *       "prompt_tokens": 1000,
-     *       "total_tokens": 1100,
-     *       "completion_tokens": 100,
-     *       "cost": 0.0005
-     *     }
-     */
-    usage?: Components.UsageInfo;
 }
 
 export interface SharedType_da5 {
@@ -3703,28 +3532,6 @@ export interface SharedType_d19 {
      * @example https://fal.media/files/monkey/5BLHmbX3qxu5cD5gQzTqw_output.mp4
      */
     video: Components.File;
-}
-
-export interface SharedType_d17 {
-    /** @description ZIP archive of all video frames if requested. */
-    frames_zip?: Components.File_1;
-    /**
-     * Prompt
-     * @description The prompt used for generation.
-     */
-    prompt: string;
-    /**
-     * Seed
-     * @description The seed used for generation.
-     */
-    seed: number;
-    /**
-     * @description The generated reframe video file.
-     * @example {
-     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/wan-vace-reframe-output.mp4"
-     *     }
-     */
-    video: Components.VideoFile_1;
 }
 
 export interface SharedType_d0e {
@@ -4841,6 +4648,27 @@ export interface SharedType_b7d {
      * @default false
      */
     sync_mode?: boolean;
+}
+
+export interface SharedType_b6b {
+    /**
+     * Output
+     * @description Generated output from video processing
+     * @example that's the way I look at it and I don't know what you would say. Sooner or later the child gets run over.
+     *     They seem to be too local, too provincial.
+     */
+    output: string;
+    /**
+     * Usage
+     * @description Token usage information
+     * @example {
+     *       "completion_tokens": 100,
+     *       "total_tokens": 1100,
+     *       "prompt_tokens": 1000,
+     *       "cost": 0.0005
+     *     }
+     */
+    usage?: Components.UsageInfo;
 }
 
 export interface SharedType_b69 {
@@ -6074,6 +5902,26 @@ export interface SharedType_9af {
     topology?: 'quad' | 'triangle';
 }
 
+export interface SharedType_98c {
+    /**
+     * Description
+     * @description The description of the generated images.
+     */
+    description: string;
+    /**
+     * Images
+     * @description The edited images.
+     * @example [
+     *       {
+     *         "file_name": "nano-banana-multi-edit-output.png",
+     *         "content_type": "image/png",
+     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/nano-banana-multi-edit-output.png"
+     *       }
+     *     ]
+     */
+    images: Components.ImageFile[];
+}
+
 export interface SharedType_97f {
     /**
      * Values
@@ -6218,6 +6066,83 @@ export interface SharedType_962 {
     };
 }
 
+export interface SharedType_961 {
+    /**
+     * Aspect Ratio
+     * @description The aspect ratio of the generated image. Use "auto" to let the model decide based on the prompt.
+     * @default 1:1
+     * @enum {string}
+     */
+    aspect_ratio?:
+        | 'auto'
+        | '21:9'
+        | '16:9'
+        | '3:2'
+        | '4:3'
+        | '5:4'
+        | '1:1'
+        | '4:5'
+        | '3:4'
+        | '2:3'
+        | '9:16';
+    /**
+     * Enable Web Search
+     * @description Enable web search for the image generation task. This will allow the model to use the latest information from the web to generate the image.
+     * @default false
+     */
+    enable_web_search?: boolean;
+    /**
+     * Limit Generations
+     * @description Experimental parameter to limit the number of generations from each round of prompting to 1. Set to `True` to to disregard any instructions in the prompt regarding the number of images to generate.
+     * @default false
+     */
+    limit_generations?: boolean;
+    /**
+     * Number of Images
+     * @description The number of images to generate.
+     * @default 1
+     */
+    num_images?: number;
+    /**
+     * Output Format
+     * @description The format of the generated image.
+     * @default png
+     * @enum {string}
+     */
+    output_format?: 'jpeg' | 'png' | 'webp';
+    /**
+     * Prompt
+     * @description The text prompt to generate an image from.
+     * @example An action shot of a black lab swimming in an inground suburban swimming pool. The camera is placed meticulously on the water line, dividing the image in half, revealing both the dogs head above water holding a tennis ball in it's mouth, and it's paws paddling underwater.
+     */
+    prompt: string;
+    /**
+     * Resolution
+     * @description The resolution of the image to generate.
+     * @default 1K
+     * @enum {string}
+     */
+    resolution?: '1K' | '2K' | '4K';
+    /**
+     * Safety Tolerance
+     * @description The safety tolerance level for content moderation. 1 is the most strict (blocks most content), 6 is the least strict.
+     * @default 4
+     * @enum {string}
+     */
+    safety_tolerance?: '1' | '2' | '3' | '4' | '5' | '6';
+    /**
+     * Seed
+     * @description The seed for the random number generator.
+     */
+    seed?: number;
+    /**
+     * Sync Mode
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
+     * @default false
+     */
+    sync_mode?: boolean;
+}
+
 export interface SharedType_95d1 {
     /**
      * Video
@@ -6306,245 +6231,6 @@ export interface SharedType_91c {
      * @example https://storage.googleapis.com/falserverless/model_tests/image_preprocessors/cat.png
      */
     image_url: string;
-}
-
-export interface SharedType_913 {
-    /**
-     * Acceleration
-     * @description Acceleration to use for inference. Options are 'none' or 'regular'. Accelerated inference will very slightly affect output, but will be significantly faster.
-     * @default regular
-     * @example regular
-     */
-    acceleration?: 'none' | 'low' | 'regular';
-    /**
-     * Aspect Ratio
-     * @description Aspect ratio of the generated video.
-     * @default auto
-     * @enum {string}
-     */
-    aspect_ratio?: 'auto' | '16:9' | '1:1' | '9:16';
-    /**
-     * Auto Downsample Min FPS
-     * @description The minimum frames per second to downsample the video to. This is used to help determine the auto downsample factor to try and find the lowest detail-preserving downsample factor. The default value is appropriate for most videos, if you are using a video with very fast motion, you may need to increase this value. If your video has a very low amount of motion, you could decrease this value to allow for higher downsampling and thus longer sequences.
-     * @default 15
-     * @example 15
-     */
-    auto_downsample_min_fps?: number;
-    /**
-     * Enable Auto Downsample
-     * @description If true, the model will automatically temporally downsample the video to an appropriate frame length for the model, then will interpolate it back to the original frame length.
-     * @default false
-     * @example false
-     */
-    enable_auto_downsample?: boolean;
-    /**
-     * Enable Prompt Expansion
-     * @description Whether to enable prompt expansion.
-     * @default false
-     * @example false
-     */
-    enable_prompt_expansion?: boolean;
-    /**
-     * Enable Safety Checker
-     * @description If set to true, the safety checker will be enabled.
-     * @default false
-     * @example true
-     */
-    enable_safety_checker?: boolean;
-    /**
-     * Expand Bottom
-     * @description Whether to expand the video to the bottom.
-     * @default false
-     * @example true
-     */
-    expand_bottom?: boolean;
-    /**
-     * Expand Left
-     * @description Whether to expand the video to the left.
-     * @default false
-     * @example true
-     */
-    expand_left?: boolean;
-    /**
-     * Expand Ratio
-     * @description Amount of expansion. This is a float value between 0 and 1, where 0.25 adds 25% to the original video size on the specified sides.
-     * @default 0.25
-     * @example 0.25
-     */
-    expand_ratio?: number;
-    /**
-     * Expand Right
-     * @description Whether to expand the video to the right.
-     * @default false
-     * @example true
-     */
-    expand_right?: boolean;
-    /**
-     * Expand Top
-     * @description Whether to expand the video to the top.
-     * @default false
-     * @example true
-     */
-    expand_top?: boolean;
-    /**
-     * First Frame URL
-     * @description URL to the first frame of the video. If provided, the model will use this frame as a reference.
-     */
-    first_frame_url?: string;
-    /**
-     * Frames per Second
-     * @description Frames per second of the generated video. Must be between 5 to 30. Ignored if match_input_frames_per_second is true.
-     * @default 16
-     */
-    frames_per_second?: number;
-    /**
-     * Guidance Scale
-     * @description Guidance scale for classifier-free guidance. Higher values encourage the model to generate images closely related to the text prompt.
-     * @default 5
-     * @example 5
-     */
-    guidance_scale?: number;
-    /**
-     * Interpolator Model
-     * @description The model to use for frame interpolation. Options are 'rife' or 'film'.
-     * @default film
-     * @example film
-     * @enum {string}
-     */
-    interpolator_model?: 'rife' | 'film';
-    /**
-     * Last Frame URL
-     * @description URL to the last frame of the video. If provided, the model will use this frame as a reference.
-     */
-    last_frame_url?: string;
-    /**
-     * Match Input Frames Per Second
-     * @description If true, the frames per second of the generated video will match the input video. If false, the frames per second will be determined by the frames_per_second parameter.
-     * @default false
-     * @example false
-     */
-    match_input_frames_per_second?: boolean;
-    /**
-     * Match Input Number of Frames
-     * @description If true, the number of frames in the generated video will match the number of frames in the input video. If false, the number of frames will be determined by the num_frames parameter.
-     * @default false
-     * @example false
-     */
-    match_input_num_frames?: boolean;
-    /**
-     * Negative Prompt
-     * @description Negative prompt for video generation.
-     * @default letterboxing, borders, black bars, bright colors, overexposed, static, blurred details, subtitles, style, artwork, painting, picture, still, overall gray, worst quality, low quality, JPEG compression residue, ugly, incomplete, extra fingers, poorly drawn hands, poorly drawn faces, deformed, disfigured, malformed limbs, fused fingers, still picture, cluttered background, three legs, many people in the background, walking backwards
-     * @example letterboxing, borders, black bars, bright colors, overexposed, static, blurred details, subtitles, style, artwork, painting, picture, still, overall gray, worst quality, low quality, JPEG compression residue, ugly, incomplete, extra fingers, poorly drawn hands, poorly drawn faces, deformed, disfigured, malformed limbs, fused fingers, still picture, cluttered background, three legs, many people in the background, walking backwards
-     */
-    negative_prompt?: string;
-    /**
-     * Number of Frames
-     * @description Number of frames to generate. Must be between 81 to 241 (inclusive).
-     * @default 81
-     */
-    num_frames?: number;
-    /**
-     * Number of Inference Steps
-     * @description Number of inference steps for sampling. Higher values give better quality but take longer.
-     * @default 30
-     */
-    num_inference_steps?: number;
-    /**
-     * Number of Interpolated Frames
-     * @description Number of frames to interpolate between the original frames. A value of 0 means no interpolation.
-     * @default 0
-     * @example 0
-     */
-    num_interpolated_frames?: number;
-    /**
-     * Prompt
-     * @description The text prompt to guide video generation.
-     * @example A lone woman strides through the neon-drenched streets of Tokyo at night.  Her crimson dress, a vibrant splash of color against the deep blues and blacks of the cityscape, flows slightly with each step. A tailored black jacket, crisp and elegant, contrasts sharply with the dress's rich texture. Medium shot:  The city hums around her, blurred lights creating streaks of color in the background. Close-up:  The fabric of her dress catches the streetlight's glow, revealing a subtle silk sheen and the intricate stitching at the hem. Her black jacket’s subtle texture is visible – a fine wool perhaps, with a matte finish. The overall mood is one of quiet confidence and mystery, a vibrant woman navigating a bustling, nocturnal landscape. High resolution 4k.
-     */
-    prompt: string;
-    /**
-     * Reference Image URLs
-     * @description URLs to source reference image. If provided, the model will use this image as reference.
-     */
-    ref_image_urls?: string[];
-    /**
-     * Resolution
-     * @description Resolution of the generated video.
-     * @default auto
-     * @enum {string}
-     */
-    resolution?: 'auto' | '240p' | '360p' | '480p' | '580p' | '720p';
-    /**
-     * Return Frames Zip
-     * @description If true, also return a ZIP file containing all generated frames.
-     * @default false
-     * @example false
-     */
-    return_frames_zip?: boolean;
-    /**
-     * Sampler
-     * @description Sampler to use for video generation.
-     * @default unipc
-     * @example unipc
-     * @enum {string}
-     */
-    sampler?: 'unipc' | 'dpm++' | 'euler';
-    /**
-     * Seed
-     * @description Random seed for reproducibility. If None, a random seed is chosen.
-     */
-    seed?: number;
-    /**
-     * Shift
-     * @description Shift parameter for video generation.
-     * @default 5
-     */
-    shift?: number;
-    /**
-     * Sync Mode
-     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
-     * @default false
-     * @example false
-     */
-    sync_mode?: boolean;
-    /**
-     * Temporal Downsample Factor
-     * @description Temporal downsample factor for the video. This is an integer value that determines how many frames to skip in the video. A value of 0 means no downsampling. For each downsample factor, one upsample factor will automatically be applied.
-     * @default 0
-     * @example 0
-     */
-    temporal_downsample_factor?: number;
-    /**
-     * Transparency Mode
-     * @description The transparency mode to apply to the first and last frames. This controls how the transparent areas of the first and last frames are filled.
-     * @default content_aware
-     * @example content_aware
-     * @enum {string}
-     */
-    transparency_mode?: 'content_aware' | 'white' | 'black';
-    /**
-     * Video Quality
-     * @description The quality of the generated video.
-     * @default high
-     * @example high
-     * @enum {string}
-     */
-    video_quality?: 'low' | 'medium' | 'high' | 'maximum';
-    /**
-     * Video URL
-     * @description URL to the source video file. Required for outpainting.
-     * @example https://storage.googleapis.com/falserverless/web-examples/wan/t2v.mp4
-     */
-    video_url: string;
-    /**
-     * Video Write Mode
-     * @description The write mode of the generated video.
-     * @default balanced
-     * @example balanced
-     * @enum {string}
-     */
-    video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
 export interface SharedType_905 {
@@ -6799,82 +6485,6 @@ export interface SharedType_8c5 {
      * @example 42
      */
     seed: number;
-}
-
-export interface SharedType_8c2 {
-    /**
-     * Aspect Ratio
-     * @description The aspect ratio of the generated image. Use "auto" to let the model decide based on the prompt.
-     * @default 1:1
-     */
-    aspect_ratio?:
-        | 'auto'
-        | '21:9'
-        | '16:9'
-        | '3:2'
-        | '4:3'
-        | '5:4'
-        | '1:1'
-        | '4:5'
-        | '3:4'
-        | '2:3'
-        | '9:16';
-    /**
-     * Enable Web Search
-     * @description Enable web search for the image generation task. This will allow the model to use the latest information from the web to generate the image.
-     * @default false
-     */
-    enable_web_search?: boolean;
-    /**
-     * Limit Generations
-     * @description Experimental parameter to limit the number of generations from each round of prompting to 1. Set to `True` to to disregard any instructions in the prompt regarding the number of images to generate.
-     * @default false
-     */
-    limit_generations?: boolean;
-    /**
-     * Number of Images
-     * @description The number of images to generate.
-     * @default 1
-     */
-    num_images?: number;
-    /**
-     * Output Format
-     * @description The format of the generated image.
-     * @default png
-     * @enum {string}
-     */
-    output_format?: 'jpeg' | 'png' | 'webp';
-    /**
-     * Prompt
-     * @description The text prompt to generate an image from.
-     * @example An action shot of a black lab swimming in an inground suburban swimming pool. The camera is placed meticulously on the water line, dividing the image in half, revealing both the dogs head above water holding a tennis ball in it's mouth, and it's paws paddling underwater.
-     */
-    prompt: string;
-    /**
-     * Resolution
-     * @description The resolution of the image to generate.
-     * @default 1K
-     * @enum {string}
-     */
-    resolution?: '1K' | '2K' | '4K';
-    /**
-     * Safety Tolerance
-     * @description The safety tolerance level for content moderation. 1 is the most strict (blocks most content), 6 is the least strict.
-     * @default 4
-     * @enum {string}
-     */
-    safety_tolerance?: '1' | '2' | '3' | '4' | '5' | '6';
-    /**
-     * Seed
-     * @description The seed for the random number generator.
-     */
-    seed?: number;
-    /**
-     * Sync Mode
-     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
-     * @default false
-     */
-    sync_mode?: boolean;
 }
 
 export interface SharedType_8c0 {
@@ -8390,6 +8000,26 @@ export interface SharedType_663 {
     sync_mode?: boolean;
 }
 
+export interface SharedType_662 {
+    /**
+     * Description
+     * @description The description of the generated images.
+     */
+    description: string;
+    /**
+     * Images
+     * @description The generated images.
+     * @example [
+     *       {
+     *         "file_name": "nano-banana-t2i-output.png",
+     *         "content_type": "image/png",
+     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/nano-banana-t2i-output.png"
+     *       }
+     *     ]
+     */
+    images: Components.ImageFile[];
+}
+
 export interface SharedType_659 {
     /** @description Image with depth map */
     image: Components.Image_2;
@@ -8950,217 +8580,6 @@ export interface SharedType_57f {
     video: Components.File;
 }
 
-export interface SharedType_57e {
-    /**
-     * Acceleration
-     * @description Acceleration to use for inference. Options are 'none' or 'regular'. Accelerated inference will very slightly affect output, but will be significantly faster.
-     * @default regular
-     * @example regular
-     */
-    acceleration?: 'none' | 'low' | 'regular';
-    /**
-     * Aspect Ratio
-     * @description Aspect ratio of the generated video.
-     * @default auto
-     * @enum {string}
-     */
-    aspect_ratio?: 'auto' | '16:9' | '1:1' | '9:16';
-    /**
-     * Auto Downsample Min FPS
-     * @description The minimum frames per second to downsample the video to. This is used to help determine the auto downsample factor to try and find the lowest detail-preserving downsample factor. The default value is appropriate for most videos, if you are using a video with very fast motion, you may need to increase this value. If your video has a very low amount of motion, you could decrease this value to allow for higher downsampling and thus longer sequences.
-     * @default 15
-     * @example 15
-     */
-    auto_downsample_min_fps?: number;
-    /**
-     * Enable Auto Downsample
-     * @description If true, the model will automatically temporally downsample the video to an appropriate frame length for the model, then will interpolate it back to the original frame length.
-     * @default false
-     * @example false
-     */
-    enable_auto_downsample?: boolean;
-    /**
-     * Enable Prompt Expansion
-     * @description Whether to enable prompt expansion.
-     * @default false
-     * @example false
-     */
-    enable_prompt_expansion?: boolean;
-    /**
-     * Enable Safety Checker
-     * @description If set to true, the safety checker will be enabled.
-     * @default false
-     * @example true
-     */
-    enable_safety_checker?: boolean;
-    /**
-     * First Frame URL
-     * @description URL to the first frame of the video. If provided, the model will use this frame as a reference.
-     */
-    first_frame_url?: string;
-    /**
-     * Frames per Second
-     * @description Frames per second of the generated video. Must be between 5 to 30. Ignored if match_input_frames_per_second is true.
-     * @default 16
-     */
-    frames_per_second?: number;
-    /**
-     * Guidance Scale
-     * @description Guidance scale for classifier-free guidance. Higher values encourage the model to generate images closely related to the text prompt.
-     * @default 5
-     * @example 5
-     */
-    guidance_scale?: number;
-    /**
-     * Interpolator Model
-     * @description The model to use for frame interpolation. Options are 'rife' or 'film'.
-     * @default film
-     * @example film
-     * @enum {string}
-     */
-    interpolator_model?: 'rife' | 'film';
-    /**
-     * Last Frame URL
-     * @description URL to the last frame of the video. If provided, the model will use this frame as a reference.
-     */
-    last_frame_url?: string;
-    /**
-     * Match Input Frames Per Second
-     * @description If true, the frames per second of the generated video will match the input video. If false, the frames per second will be determined by the frames_per_second parameter.
-     * @default false
-     * @example false
-     */
-    match_input_frames_per_second?: boolean;
-    /**
-     * Match Input Number of Frames
-     * @description If true, the number of frames in the generated video will match the number of frames in the input video. If false, the number of frames will be determined by the num_frames parameter.
-     * @default false
-     * @example false
-     */
-    match_input_num_frames?: boolean;
-    /**
-     * Negative Prompt
-     * @description Negative prompt for video generation.
-     * @default letterboxing, borders, black bars, bright colors, overexposed, static, blurred details, subtitles, style, artwork, painting, picture, still, overall gray, worst quality, low quality, JPEG compression residue, ugly, incomplete, extra fingers, poorly drawn hands, poorly drawn faces, deformed, disfigured, malformed limbs, fused fingers, still picture, cluttered background, three legs, many people in the background, walking backwards
-     * @example letterboxing, borders, black bars, bright colors, overexposed, static, blurred details, subtitles, style, artwork, painting, picture, still, overall gray, worst quality, low quality, JPEG compression residue, ugly, incomplete, extra fingers, poorly drawn hands, poorly drawn faces, deformed, disfigured, malformed limbs, fused fingers, still picture, cluttered background, three legs, many people in the background, walking backwards
-     */
-    negative_prompt?: string;
-    /**
-     * Number of Frames
-     * @description Number of frames to generate. Must be between 81 to 241 (inclusive).
-     * @default 81
-     */
-    num_frames?: number;
-    /**
-     * Number of Inference Steps
-     * @description Number of inference steps for sampling. Higher values give better quality but take longer.
-     * @default 30
-     */
-    num_inference_steps?: number;
-    /**
-     * Number of Interpolated Frames
-     * @description Number of frames to interpolate between the original frames. A value of 0 means no interpolation.
-     * @default 0
-     * @example 0
-     */
-    num_interpolated_frames?: number;
-    /**
-     * Preprocess
-     * @description Whether to preprocess the input video.
-     * @default false
-     * @example false
-     */
-    preprocess?: boolean;
-    /**
-     * Prompt
-     * @description The text prompt to guide video generation.
-     * @example A confident woman strides toward the camera down a sun-drenched, empty street. Her vibrant summer dress, a flowing emerald green with delicate white floral embroidery, billows slightly in the gentle breeze.  She carries a stylish, woven straw bag, its natural tan contrasting beautifully with the dress. The dress's fabric shimmers subtly, catching the light. The white embroidery is intricate, each tiny flower meticulously detailed.  Her expression is focused, yet relaxed, radiating self-assuredness. Her auburn hair, partially pulled back in a loose braid, catches the sunlight, creating warm highlights. The street itself is paved with warm, grey cobblestones, reflecting the bright sun. The mood is optimistic and serene, emphasizing the woman's independence and carefree spirit. High resolution 4k
-     */
-    prompt: string;
-    /**
-     * Reference Image URLs
-     * @description URLs to source reference image. If provided, the model will use this image as reference.
-     */
-    ref_image_urls?: string[];
-    /**
-     * Resolution
-     * @description Resolution of the generated video.
-     * @default auto
-     * @enum {string}
-     */
-    resolution?: 'auto' | '240p' | '360p' | '480p' | '580p' | '720p';
-    /**
-     * Return Frames Zip
-     * @description If true, also return a ZIP file containing all generated frames.
-     * @default false
-     * @example false
-     */
-    return_frames_zip?: boolean;
-    /**
-     * Sampler
-     * @description Sampler to use for video generation.
-     * @default unipc
-     * @example unipc
-     * @enum {string}
-     */
-    sampler?: 'unipc' | 'dpm++' | 'euler';
-    /**
-     * Seed
-     * @description Random seed for reproducibility. If None, a random seed is chosen.
-     */
-    seed?: number;
-    /**
-     * Shift
-     * @description Shift parameter for video generation.
-     * @default 5
-     */
-    shift?: number;
-    /**
-     * Sync Mode
-     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
-     * @default false
-     * @example false
-     */
-    sync_mode?: boolean;
-    /**
-     * Temporal Downsample Factor
-     * @description Temporal downsample factor for the video. This is an integer value that determines how many frames to skip in the video. A value of 0 means no downsampling. For each downsample factor, one upsample factor will automatically be applied.
-     * @default 0
-     * @example 0
-     */
-    temporal_downsample_factor?: number;
-    /**
-     * Transparency Mode
-     * @description The transparency mode to apply to the first and last frames. This controls how the transparent areas of the first and last frames are filled.
-     * @default content_aware
-     * @example content_aware
-     * @enum {string}
-     */
-    transparency_mode?: 'content_aware' | 'white' | 'black';
-    /**
-     * Video Quality
-     * @description The quality of the generated video.
-     * @default high
-     * @example high
-     * @enum {string}
-     */
-    video_quality?: 'low' | 'medium' | 'high' | 'maximum';
-    /**
-     * Video URL
-     * @description URL to the source video file. Required for depth task.
-     * @example https://storage.googleapis.com/falserverless/example_inputs/wan-vace-depth-video.mp4
-     */
-    video_url: string;
-    /**
-     * Video Write Mode
-     * @description The write mode of the generated video.
-     * @default balanced
-     * @example balanced
-     * @enum {string}
-     */
-    video_write_mode?: 'fast' | 'balanced' | 'small';
-}
-
 export interface SharedType_57a {
     /**
      * Has Nsfw Concepts
@@ -9336,28 +8755,6 @@ export interface SharedType_54a {
      * @description Start Y coordinate for reframing
      */
     y_start?: number;
-}
-
-export interface SharedType_524 {
-    /** @description ZIP archive of all video frames if requested. */
-    frames_zip?: Components.File_1;
-    /**
-     * Prompt
-     * @description The prompt used for generation.
-     */
-    prompt: string;
-    /**
-     * Seed
-     * @description The seed used for generation.
-     */
-    seed: number;
-    /**
-     * @description The generated inpainting video file.
-     * @example {
-     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/wan-vace-inpainting-output.mp4"
-     *     }
-     */
-    video: Components.VideoFile_1;
 }
 
 export interface SharedType_4c2 {
@@ -10022,217 +9419,6 @@ export interface SharedType_3c3 {
     video: Components.File;
 }
 
-export interface SharedType_397 {
-    /**
-     * Acceleration
-     * @description Acceleration to use for inference. Options are 'none' or 'regular'. Accelerated inference will very slightly affect output, but will be significantly faster.
-     * @default regular
-     * @example regular
-     */
-    acceleration?: 'none' | 'low' | 'regular';
-    /**
-     * Aspect Ratio
-     * @description Aspect ratio of the generated video.
-     * @default auto
-     * @enum {string}
-     */
-    aspect_ratio?: 'auto' | '16:9' | '1:1' | '9:16';
-    /**
-     * Auto Downsample Min FPS
-     * @description The minimum frames per second to downsample the video to. This is used to help determine the auto downsample factor to try and find the lowest detail-preserving downsample factor. The default value is appropriate for most videos, if you are using a video with very fast motion, you may need to increase this value. If your video has a very low amount of motion, you could decrease this value to allow for higher downsampling and thus longer sequences.
-     * @default 15
-     * @example 15
-     */
-    auto_downsample_min_fps?: number;
-    /**
-     * Enable Auto Downsample
-     * @description If true, the model will automatically temporally downsample the video to an appropriate frame length for the model, then will interpolate it back to the original frame length.
-     * @default false
-     * @example false
-     */
-    enable_auto_downsample?: boolean;
-    /**
-     * Enable Prompt Expansion
-     * @description Whether to enable prompt expansion.
-     * @default false
-     * @example false
-     */
-    enable_prompt_expansion?: boolean;
-    /**
-     * Enable Safety Checker
-     * @description If set to true, the safety checker will be enabled.
-     * @default false
-     * @example true
-     */
-    enable_safety_checker?: boolean;
-    /**
-     * First Frame URL
-     * @description URL to the first frame of the video. If provided, the model will use this frame as a reference.
-     */
-    first_frame_url?: string;
-    /**
-     * Frames per Second
-     * @description Frames per second of the generated video. Must be between 5 to 30. Ignored if match_input_frames_per_second is true.
-     * @default 16
-     */
-    frames_per_second?: number;
-    /**
-     * Guidance Scale
-     * @description Guidance scale for classifier-free guidance. Higher values encourage the model to generate images closely related to the text prompt.
-     * @default 5
-     * @example 5
-     */
-    guidance_scale?: number;
-    /**
-     * Interpolator Model
-     * @description The model to use for frame interpolation. Options are 'rife' or 'film'.
-     * @default film
-     * @example film
-     * @enum {string}
-     */
-    interpolator_model?: 'rife' | 'film';
-    /**
-     * Last Frame URL
-     * @description URL to the last frame of the video. If provided, the model will use this frame as a reference.
-     */
-    last_frame_url?: string;
-    /**
-     * Match Input Frames Per Second
-     * @description If true, the frames per second of the generated video will match the input video. If false, the frames per second will be determined by the frames_per_second parameter.
-     * @default false
-     * @example false
-     */
-    match_input_frames_per_second?: boolean;
-    /**
-     * Match Input Number of Frames
-     * @description If true, the number of frames in the generated video will match the number of frames in the input video. If false, the number of frames will be determined by the num_frames parameter.
-     * @default false
-     * @example false
-     */
-    match_input_num_frames?: boolean;
-    /**
-     * Negative Prompt
-     * @description Negative prompt for video generation.
-     * @default letterboxing, borders, black bars, bright colors, overexposed, static, blurred details, subtitles, style, artwork, painting, picture, still, overall gray, worst quality, low quality, JPEG compression residue, ugly, incomplete, extra fingers, poorly drawn hands, poorly drawn faces, deformed, disfigured, malformed limbs, fused fingers, still picture, cluttered background, three legs, many people in the background, walking backwards
-     * @example letterboxing, borders, black bars, bright colors, overexposed, static, blurred details, subtitles, style, artwork, painting, picture, still, overall gray, worst quality, low quality, JPEG compression residue, ugly, incomplete, extra fingers, poorly drawn hands, poorly drawn faces, deformed, disfigured, malformed limbs, fused fingers, still picture, cluttered background, three legs, many people in the background, walking backwards
-     */
-    negative_prompt?: string;
-    /**
-     * Number of Frames
-     * @description Number of frames to generate. Must be between 81 to 241 (inclusive).
-     * @default 81
-     */
-    num_frames?: number;
-    /**
-     * Number of Inference Steps
-     * @description Number of inference steps for sampling. Higher values give better quality but take longer.
-     * @default 30
-     */
-    num_inference_steps?: number;
-    /**
-     * Number of Interpolated Frames
-     * @description Number of frames to interpolate between the original frames. A value of 0 means no interpolation.
-     * @default 0
-     * @example 0
-     */
-    num_interpolated_frames?: number;
-    /**
-     * Preprocess
-     * @description Whether to preprocess the input video.
-     * @default false
-     * @example false
-     */
-    preprocess?: boolean;
-    /**
-     * Prompt
-     * @description The text prompt to guide video generation. For pose task, the prompt should describe the desired pose and action of the subject in the video.
-     * @example A sharply dressed man walks toward the camera down a sun-drenched hallway.  Medium shot: He's framed from the knees up, his confident stride filling the frame.  His navy blue business suit is impeccably tailored, the fabric subtly shimmering under the light streaming through the tall, arched windows lining the hallway. Close-up:  The rich texture of the suit's wool is visible, each thread reflecting the light.  His crisp white shirt contrasts beautifully with the deep crimson of his silk tie, the knot perfectly formed.  The sunlight highlights the subtle sheen of his polished shoes.  The windows cast long shadows, highlighting the architectural detail of the hallway, creating a sense of both elegance and movement. High resolution 4k.
-     */
-    prompt: string;
-    /**
-     * Reference Image URLs
-     * @description URLs to source reference image. If provided, the model will use this image as reference.
-     */
-    ref_image_urls?: string[];
-    /**
-     * Resolution
-     * @description Resolution of the generated video.
-     * @default auto
-     * @enum {string}
-     */
-    resolution?: 'auto' | '240p' | '360p' | '480p' | '580p' | '720p';
-    /**
-     * Return Frames Zip
-     * @description If true, also return a ZIP file containing all generated frames.
-     * @default false
-     * @example false
-     */
-    return_frames_zip?: boolean;
-    /**
-     * Sampler
-     * @description Sampler to use for video generation.
-     * @default unipc
-     * @example unipc
-     * @enum {string}
-     */
-    sampler?: 'unipc' | 'dpm++' | 'euler';
-    /**
-     * Seed
-     * @description Random seed for reproducibility. If None, a random seed is chosen.
-     */
-    seed?: number;
-    /**
-     * Shift
-     * @description Shift parameter for video generation.
-     * @default 5
-     */
-    shift?: number;
-    /**
-     * Sync Mode
-     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
-     * @default false
-     * @example false
-     */
-    sync_mode?: boolean;
-    /**
-     * Temporal Downsample Factor
-     * @description Temporal downsample factor for the video. This is an integer value that determines how many frames to skip in the video. A value of 0 means no downsampling. For each downsample factor, one upsample factor will automatically be applied.
-     * @default 0
-     * @example 0
-     */
-    temporal_downsample_factor?: number;
-    /**
-     * Transparency Mode
-     * @description The transparency mode to apply to the first and last frames. This controls how the transparent areas of the first and last frames are filled.
-     * @default content_aware
-     * @example content_aware
-     * @enum {string}
-     */
-    transparency_mode?: 'content_aware' | 'white' | 'black';
-    /**
-     * Video Quality
-     * @description The quality of the generated video.
-     * @default high
-     * @example high
-     * @enum {string}
-     */
-    video_quality?: 'low' | 'medium' | 'high' | 'maximum';
-    /**
-     * Video URL
-     * @description URL to the source video file. Required for pose task.
-     * @example https://storage.googleapis.com/falserverless/example_inputs/wan-vace-pose-video.mp4
-     */
-    video_url: string;
-    /**
-     * Video Write Mode
-     * @description The write mode of the generated video.
-     * @default balanced
-     * @example balanced
-     * @enum {string}
-     */
-    video_write_mode?: 'fast' | 'balanced' | 'small';
-}
-
 export interface SharedType_38d {
     /**
      * Image Url
@@ -10372,91 +9558,6 @@ export interface SharedType_368 {
     timings: {
         [key: string]: number;
     };
-}
-
-export interface SharedType_367 {
-    /**
-     * Aspect Ratio
-     * @description The aspect ratio of the generated image.
-     * @default auto
-     */
-    aspect_ratio?:
-        | 'auto'
-        | '21:9'
-        | '16:9'
-        | '3:2'
-        | '4:3'
-        | '5:4'
-        | '1:1'
-        | '4:5'
-        | '3:4'
-        | '2:3'
-        | '9:16';
-    /**
-     * Enable Web Search
-     * @description Enable web search for the image generation task. This will allow the model to use the latest information from the web to generate the image.
-     * @default false
-     */
-    enable_web_search?: boolean;
-    /**
-     * Image URLs
-     * @description The URLs of the images to use for image-to-image generation or image editing.
-     * @example [
-     *       "https://storage.googleapis.com/falserverless/example_inputs/nano-banana-edit-input.png",
-     *       "https://storage.googleapis.com/falserverless/example_inputs/nano-banana-edit-input-2.png"
-     *     ]
-     */
-    image_urls: string[];
-    /**
-     * Limit Generations
-     * @description Experimental parameter to limit the number of generations from each round of prompting to 1. Set to `True` to to disregard any instructions in the prompt regarding the number of images to generate.
-     * @default false
-     */
-    limit_generations?: boolean;
-    /**
-     * Number of Images
-     * @description The number of images to generate.
-     * @default 1
-     */
-    num_images?: number;
-    /**
-     * Output Format
-     * @description The format of the generated image.
-     * @default png
-     * @enum {string}
-     */
-    output_format?: 'jpeg' | 'png' | 'webp';
-    /**
-     * Prompt
-     * @description The prompt for image editing.
-     * @example make a photo of the man driving the car down the california coastline
-     */
-    prompt: string;
-    /**
-     * Resolution
-     * @description The resolution of the image to generate.
-     * @default 1K
-     * @enum {string}
-     */
-    resolution?: '1K' | '2K' | '4K';
-    /**
-     * Safety Tolerance
-     * @description The safety tolerance level for content moderation. 1 is the most strict (blocks most content), 6 is the least strict.
-     * @default 4
-     * @enum {string}
-     */
-    safety_tolerance?: '1' | '2' | '3' | '4' | '5' | '6';
-    /**
-     * Seed
-     * @description The seed for the random number generator.
-     */
-    seed?: number;
-    /**
-     * Sync Mode
-     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
-     * @default false
-     */
-    sync_mode?: boolean;
 }
 
 export interface SharedType_35f {
@@ -11069,28 +10170,6 @@ export interface SharedType_207 {
     sync_mode?: boolean;
 }
 
-export interface SharedType_1fe {
-    /** @description ZIP archive of all video frames if requested. */
-    frames_zip?: Components.File_1;
-    /**
-     * Prompt
-     * @description The prompt used for generation.
-     */
-    prompt: string;
-    /**
-     * Seed
-     * @description The seed used for generation.
-     */
-    seed: number;
-    /**
-     * @description The generated depth video file.
-     * @example {
-     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/wan-vace-depth-output.mp4"
-     *     }
-     */
-    video: Components.VideoFile_1;
-}
-
 export interface SharedType_1d1 {
     /**
      * Audio Setting
@@ -11307,28 +10386,6 @@ export interface SharedType_187 {
      * @default 1000
      */
     steps?: number;
-}
-
-export interface SharedType_164 {
-    /** @description ZIP archive of all video frames if requested. */
-    frames_zip?: Components.File_1;
-    /**
-     * Prompt
-     * @description The prompt used for generation.
-     */
-    prompt: string;
-    /**
-     * Seed
-     * @description The seed used for generation.
-     */
-    seed: number;
-    /**
-     * @description The generated outpainting video file.
-     * @example {
-     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/wan-vace-outpainting-output.mp4"
-     *     }
-     */
-    video: Components.VideoFile_1;
 }
 
 export interface SharedType_156 {
@@ -11710,231 +10767,6 @@ export interface SharedType_0bd {
      *     }
      */
     video: Components.File;
-}
-
-export interface SharedType_0ab {
-    /**
-     * Acceleration
-     * @description Acceleration to use for inference. Options are 'none' or 'regular'. Accelerated inference will very slightly affect output, but will be significantly faster.
-     * @default regular
-     * @example regular
-     */
-    acceleration?: 'none' | 'low' | 'regular';
-    /**
-     * Aspect Ratio
-     * @description Aspect ratio of the generated video.
-     * @default auto
-     * @enum {string}
-     */
-    aspect_ratio?: 'auto' | '16:9' | '1:1' | '9:16';
-    /**
-     * Auto Downsample Min FPS
-     * @description The minimum frames per second to downsample the video to. This is used to help determine the auto downsample factor to try and find the lowest detail-preserving downsample factor. The default value is appropriate for most videos, if you are using a video with very fast motion, you may need to increase this value. If your video has a very low amount of motion, you could decrease this value to allow for higher downsampling and thus longer sequences.
-     * @default 15
-     * @example 15
-     */
-    auto_downsample_min_fps?: number;
-    /**
-     * Enable Auto Downsample
-     * @description If true, the model will automatically temporally downsample the video to an appropriate frame length for the model, then will interpolate it back to the original frame length.
-     * @default false
-     * @example false
-     */
-    enable_auto_downsample?: boolean;
-    /**
-     * Enable Prompt Expansion
-     * @description Whether to enable prompt expansion.
-     * @default false
-     * @example false
-     */
-    enable_prompt_expansion?: boolean;
-    /**
-     * Enable Safety Checker
-     * @description If set to true, the safety checker will be enabled.
-     * @default false
-     * @example true
-     */
-    enable_safety_checker?: boolean;
-    /**
-     * First Frame URL
-     * @description URL to the first frame of the video. If provided, the model will use this frame as a reference.
-     */
-    first_frame_url?: string;
-    /**
-     * Frames per Second
-     * @description Frames per second of the generated video. Must be between 5 to 30. Ignored if match_input_frames_per_second is true.
-     * @default 16
-     */
-    frames_per_second?: number;
-    /**
-     * Guidance Scale
-     * @description Guidance scale for classifier-free guidance. Higher values encourage the model to generate images closely related to the text prompt.
-     * @default 5
-     * @example 5
-     */
-    guidance_scale?: number;
-    /**
-     * Interpolator Model
-     * @description The model to use for frame interpolation. Options are 'rife' or 'film'.
-     * @default film
-     * @example film
-     * @enum {string}
-     */
-    interpolator_model?: 'rife' | 'film';
-    /**
-     * Last Frame URL
-     * @description URL to the last frame of the video. If provided, the model will use this frame as a reference.
-     */
-    last_frame_url?: string;
-    /**
-     * Mask Image URL
-     * @description URL to the guiding mask file. If provided, the model will use this mask as a reference to create masked video using salient mask tracking. Will be ignored if mask_video_url is provided.
-     */
-    mask_image_url?: string;
-    /**
-     * Mask Video URL
-     * @description URL to the source mask file. Required for inpainting.
-     * @example https://storage.googleapis.com/falserverless/vace/src_mask.mp4
-     */
-    mask_video_url: string;
-    /**
-     * Match Input Frames Per Second
-     * @description If true, the frames per second of the generated video will match the input video. If false, the frames per second will be determined by the frames_per_second parameter.
-     * @default false
-     * @example false
-     */
-    match_input_frames_per_second?: boolean;
-    /**
-     * Match Input Number of Frames
-     * @description If true, the number of frames in the generated video will match the number of frames in the input video. If false, the number of frames will be determined by the num_frames parameter.
-     * @default false
-     * @example false
-     */
-    match_input_num_frames?: boolean;
-    /**
-     * Negative Prompt
-     * @description Negative prompt for video generation.
-     * @default letterboxing, borders, black bars, bright colors, overexposed, static, blurred details, subtitles, style, artwork, painting, picture, still, overall gray, worst quality, low quality, JPEG compression residue, ugly, incomplete, extra fingers, poorly drawn hands, poorly drawn faces, deformed, disfigured, malformed limbs, fused fingers, still picture, cluttered background, three legs, many people in the background, walking backwards
-     * @example letterboxing, borders, black bars, bright colors, overexposed, static, blurred details, subtitles, style, artwork, painting, picture, still, overall gray, worst quality, low quality, JPEG compression residue, ugly, incomplete, extra fingers, poorly drawn hands, poorly drawn faces, deformed, disfigured, malformed limbs, fused fingers, still picture, cluttered background, three legs, many people in the background, walking backwards
-     */
-    negative_prompt?: string;
-    /**
-     * Number of Frames
-     * @description Number of frames to generate. Must be between 81 to 241 (inclusive).
-     * @default 81
-     */
-    num_frames?: number;
-    /**
-     * Number of Inference Steps
-     * @description Number of inference steps for sampling. Higher values give better quality but take longer.
-     * @default 30
-     */
-    num_inference_steps?: number;
-    /**
-     * Number of Interpolated Frames
-     * @description Number of frames to interpolate between the original frames. A value of 0 means no interpolation.
-     * @default 0
-     * @example 0
-     */
-    num_interpolated_frames?: number;
-    /**
-     * Preprocess
-     * @description Whether to preprocess the input video.
-     * @default false
-     * @example false
-     */
-    preprocess?: boolean;
-    /**
-     * Prompt
-     * @description The text prompt to guide video generation.
-     * @example The video shows a man riding a horse on a vast grassland. He has long lavender hair and wears a traditional dress of a white top and black pants. The animation style makes him look like he is doing some kind of outdoor activity or performing. The background is a spectacular mountain range and cloud sky, giving a sense of tranquility and vastness. The entire video is shot from a fixed angle, focusing on the rider and his horse.
-     */
-    prompt: string;
-    /**
-     * Reference Image URLs
-     * @description Urls to source reference image. If provided, the model will use this image as reference.
-     * @example [
-     *       "https://storage.googleapis.com/falserverless/vace/src_ref_image_1.png"
-     *     ]
-     */
-    ref_image_urls?: string[];
-    /**
-     * Resolution
-     * @description Resolution of the generated video.
-     * @default auto
-     * @enum {string}
-     */
-    resolution?: 'auto' | '240p' | '360p' | '480p' | '580p' | '720p';
-    /**
-     * Return Frames Zip
-     * @description If true, also return a ZIP file containing all generated frames.
-     * @default false
-     * @example false
-     */
-    return_frames_zip?: boolean;
-    /**
-     * Sampler
-     * @description Sampler to use for video generation.
-     * @default unipc
-     * @example unipc
-     * @enum {string}
-     */
-    sampler?: 'unipc' | 'dpm++' | 'euler';
-    /**
-     * Seed
-     * @description Random seed for reproducibility. If None, a random seed is chosen.
-     */
-    seed?: number;
-    /**
-     * Shift
-     * @description Shift parameter for video generation.
-     * @default 5
-     */
-    shift?: number;
-    /**
-     * Sync Mode
-     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
-     * @default false
-     * @example false
-     */
-    sync_mode?: boolean;
-    /**
-     * Temporal Downsample Factor
-     * @description Temporal downsample factor for the video. This is an integer value that determines how many frames to skip in the video. A value of 0 means no downsampling. For each downsample factor, one upsample factor will automatically be applied.
-     * @default 0
-     * @example 0
-     */
-    temporal_downsample_factor?: number;
-    /**
-     * Transparency Mode
-     * @description The transparency mode to apply to the first and last frames. This controls how the transparent areas of the first and last frames are filled.
-     * @default content_aware
-     * @example content_aware
-     * @enum {string}
-     */
-    transparency_mode?: 'content_aware' | 'white' | 'black';
-    /**
-     * Video Quality
-     * @description The quality of the generated video.
-     * @default high
-     * @example high
-     * @enum {string}
-     */
-    video_quality?: 'low' | 'medium' | 'high' | 'maximum';
-    /**
-     * Video URL
-     * @description URL to the source video file. Required for inpainting.
-     * @example https://storage.googleapis.com/falserverless/vace/src_video.mp4
-     */
-    video_url: string;
-    /**
-     * Video Write Mode
-     * @description The write mode of the generated video.
-     * @default balanced
-     * @example balanced
-     * @enum {string}
-     */
-    video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
 export interface SharedType_0a0 {
@@ -12996,6 +11828,7 @@ export interface OpenrouterRouterVisionInput {
      * Model
      * @description Name of the model to use. Charged based on actual token usage.
      * @example google/gemini-2.5-flash
+     * @example anthropic/claude-sonnet-4.6
      * @example anthropic/claude-sonnet-4.5
      * @example openai/gpt-4o
      * @example qwen/qwen3-vl-235b-a22b-instruct
@@ -13039,9 +11872,9 @@ export interface OpenrouterRouterVisionOutput {
      * Usage
      * @description Token usage information
      * @example {
-     *       "prompt_tokens": 1340,
-     *       "total_tokens": 1403,
      *       "completion_tokens": 63,
+     *       "total_tokens": 1403,
+     *       "prompt_tokens": 1340,
      *       "cost": 0.0005595
      *     }
      */
@@ -13105,7 +11938,7 @@ export interface OpenrouterRouterVideoEnterpriseInput {
     video_urls?: string[];
 }
 
-export interface OpenrouterRouterVideoEnterpriseOutput extends SharedType_da9 {}
+export interface OpenrouterRouterVideoEnterpriseOutput extends SharedType_b6b {}
 
 export interface OpenrouterRouterVideoInput {
     /**
@@ -13157,7 +11990,7 @@ export interface OpenrouterRouterVideoInput {
     video_urls?: string[];
 }
 
-export interface OpenrouterRouterVideoOutput extends SharedType_da9 {}
+export interface OpenrouterRouterVideoOutput extends SharedType_b6b {}
 
 export interface OpenrouterRouterAudioInput {
     /**
@@ -13217,9 +12050,9 @@ export interface OpenrouterRouterAudioOutput {
      * Usage
      * @description Token usage information
      * @example {
-     *       "prompt_tokens": 500,
-     *       "total_tokens": 550,
      *       "completion_tokens": 50,
+     *       "total_tokens": 550,
+     *       "prompt_tokens": 500,
      *       "cost": 0.0003
      *     }
      */
@@ -13236,7 +12069,11 @@ export interface OpenrouterRouterInput {
      * Model
      * @description Name of the model to use. Charged based on actual token usage.
      * @example google/gemini-2.5-flash
+     * @example anthropic/claude-sonnet-4.6
+     * @example anthropic/claude-opus-4.6
      * @example anthropic/claude-sonnet-4.5
+     * @example anthropic/claude-sonnet-4.6
+     * @example anthropic/claude-opus-4.6
      * @example openai/gpt-4.1
      * @example openai/gpt-oss-120b
      * @example meta-llama/llama-4-maverick
@@ -13298,9 +12135,9 @@ export interface OpenrouterRouterOutput {
      * Usage
      * @description Token usage information
      * @example {
-     *       "prompt_tokens": 40,
-     *       "total_tokens": 267,
      *       "completion_tokens": 227,
+     *       "total_tokens": 267,
+     *       "prompt_tokens": 40,
      *       "cost": 0.0005795
      *     }
      */
@@ -13660,837 +12497,6 @@ export interface ImagineartImagineart15PreviewTextToImageOutput {
      *     ]
      */
     images: Components.Image_2[];
-}
-
-export interface HalfmoonaiAiHomeStyleInput {
-    /**
-     * Additional Elements
-     * @description Additional elements to include in the options above (e.g., plants, lighting)
-     * @default
-     */
-    additional_elements?: string;
-    /**
-     * Architecture Type
-     * @description Type of architecture for appropriate furniture selection
-     * @example living room-interior
-     * @enum {string}
-     */
-    architecture_type:
-        | 'living room-interior'
-        | 'bedroom-interior'
-        | 'kitchen-interior'
-        | 'dining room-interior'
-        | 'bathroom-interior'
-        | 'laundry room-interior'
-        | 'home office-interior'
-        | 'study room-interior'
-        | 'dorm room-interior'
-        | 'coffee shop-interior'
-        | 'gaming room-interior'
-        | 'restaurant-interior'
-        | 'office-interior'
-        | 'attic-interior'
-        | 'toilet-interior'
-        | 'other-interior'
-        | 'house-exterior'
-        | 'villa-exterior'
-        | 'backyard-exterior'
-        | 'courtyard-exterior'
-        | 'ranch-exterior'
-        | 'office-exterior'
-        | 'retail-exterior'
-        | 'tower-exterior'
-        | 'apartment-exterior'
-        | 'school-exterior'
-        | 'museum-exterior'
-        | 'commercial-exterior'
-        | 'residential-exterior'
-        | 'other-exterior';
-    /**
-     * Color Palette
-     * @description Color palette for furniture and decor
-     * @example golden beige
-     * @enum {string}
-     */
-    color_palette:
-        | 'surprise me'
-        | 'golden beige'
-        | 'refined blues'
-        | 'dusky elegance'
-        | 'emerald charm'
-        | 'crimson luxury'
-        | 'golden sapphire'
-        | 'soft pastures'
-        | 'candy sky'
-        | 'peach meadow'
-        | 'muted sands'
-        | 'ocean breeze'
-        | 'frosted pastels'
-        | 'spring bloom'
-        | 'gentle horizon'
-        | 'seaside breeze'
-        | 'azure coast'
-        | 'golden shore'
-        | 'mediterranean gem'
-        | 'ocean serenity'
-        | 'serene blush'
-        | 'muted horizon'
-        | 'pastel shores'
-        | 'dusky calm'
-        | 'woodland retreat'
-        | 'meadow glow'
-        | 'forest canopy'
-        | 'riverbank calm'
-        | 'earthy tones'
-        | 'earthy neutrals'
-        | 'arctic mist'
-        | 'aqua drift'
-        | 'blush bloom'
-        | 'coral haze'
-        | 'retro rust'
-        | 'autumn glow'
-        | 'rustic charm'
-        | 'vintage sage'
-        | 'faded plum'
-        | 'electric lime'
-        | 'violet pulse'
-        | 'neon sorbet'
-        | 'aqua glow'
-        | 'fluorescent sunset'
-        | 'lavender bloom'
-        | 'petal fresh'
-        | 'meadow light'
-        | 'sunny pastures'
-        | 'frosted mauve'
-        | 'snowy hearth'
-        | 'icy blues'
-        | 'winter twilight'
-        | 'earthy hues'
-        | 'stone balance'
-        | 'neutral sands'
-        | 'slate shades';
-    /**
-     * Custom Prompt
-     * @description Custom prompt for architectural editing, it overrides above options when used
-     * @default
-     * @example
-     */
-    custom_prompt?: string;
-    /**
-     * Enhanced Rendering
-     * @description It gives better rendering quality with more processing time, additional cost is 0.01 USD per image
-     * @default false
-     */
-    enhanced_rendering?: boolean;
-    /**
-     * Input Image Strength
-     * @description Strength of the input image
-     * @default 0.85
-     */
-    input_image_strength?: number;
-    /**
-     * Input Image Url
-     * @description URL of the image to do architectural styling
-     * @example https://v3.fal.media/files/kangaroo/BLwbXwxQI_MNwUF-P6ITl_zen_living_room_input.jpg
-     */
-    input_image_url: string;
-    /**
-     * Output Format
-     * @description The format of the generated image. Choose from: 'jpeg' or 'png'.
-     * @default jpeg
-     * @enum {string}
-     */
-    output_format?: 'jpeg' | 'png';
-    /**
-     * Style
-     * @description Style for furniture and decor
-     * @example rustic-interior
-     * @enum {string}
-     */
-    style:
-        | 'minimalistic-interior'
-        | 'farmhouse-interior'
-        | 'luxury-interior'
-        | 'modern-interior'
-        | 'zen-interior'
-        | 'mid century-interior'
-        | 'airbnb-interior'
-        | 'cozy-interior'
-        | 'rustic-interior'
-        | 'christmas-interior'
-        | 'bohemian-interior'
-        | 'tropical-interior'
-        | 'industrial-interior'
-        | 'japanese-interior'
-        | 'vintage-interior'
-        | 'loft-interior'
-        | 'halloween-interior'
-        | 'soho-interior'
-        | 'baroque-interior'
-        | 'kids room-interior'
-        | 'girls room-interior'
-        | 'boys room-interior'
-        | 'scandinavian-interior'
-        | 'french country-interior'
-        | 'mediterranean-interior'
-        | 'cyberpunk-interior'
-        | 'hot pink-interior'
-        | 'biophilic-interior'
-        | 'ancient egypt-interior'
-        | 'pixel-interior'
-        | 'art deco-interior'
-        | 'modern-exterior'
-        | 'minimalistic-exterior'
-        | 'farmhouse-exterior'
-        | 'cozy-exterior'
-        | 'luxury-exterior'
-        | 'colonial-exterior'
-        | 'zen-exterior'
-        | 'asian-exterior'
-        | 'creepy-exterior'
-        | 'airstone-exterior'
-        | 'ancient greek-exterior'
-        | 'art deco-exterior'
-        | 'brutalist-exterior'
-        | 'christmas lights-exterior'
-        | 'contemporary-exterior'
-        | 'cottage-exterior'
-        | 'dutch colonial-exterior'
-        | 'federal colonial-exterior'
-        | 'fire-exterior'
-        | 'french provincial-exterior'
-        | 'full glass-exterior'
-        | 'georgian colonial-exterior'
-        | 'gothic-exterior'
-        | 'greek revival-exterior'
-        | 'ice-exterior'
-        | 'italianate-exterior'
-        | 'mediterranean-exterior'
-        | 'midcentury-exterior'
-        | 'middle eastern-exterior'
-        | 'minecraft-exterior'
-        | 'morocco-exterior'
-        | 'neoclassical-exterior'
-        | 'spanish-exterior'
-        | 'tudor-exterior'
-        | 'underwater-exterior'
-        | 'winter-exterior'
-        | 'yard lighting-exterior';
-    /**
-     * Style Image Url
-     * @description URL of the style image, optional. If given, other parameters are ignored
-     * @default
-     */
-    style_image_url?: string;
-}
-
-export interface HalfmoonaiAiHomeStyleOutput {
-    /**
-     * @description Generated image
-     * @example {
-     *       "content_type": "image/jpeg",
-     *       "url": "https://v3b.fal.media/files/b/0a89afbe/Yyo8q4mBMcUmqJQ7qaFGi_294eca9bfc3a455998e7080781e442a1.jpg"
-     *     }
-     */
-    image: Components.Image_2;
-    /**
-     * Status
-     * @description Status message with processing details
-     */
-    status: string;
-}
-
-export interface HalfmoonaiAiHomeEditInput {
-    /**
-     * Additional Elements
-     * @description Additional elements to include in the options above (e.g., plants, lighting)
-     * @default
-     */
-    additional_elements?: string;
-    /**
-     * Architecture Type
-     * @description Type of architecture for appropriate furniture selection
-     * @example living room-interior
-     * @enum {string}
-     */
-    architecture_type:
-        | 'living room-interior'
-        | 'bedroom-interior'
-        | 'kitchen-interior'
-        | 'dining room-interior'
-        | 'bathroom-interior'
-        | 'laundry room-interior'
-        | 'home office-interior'
-        | 'study room-interior'
-        | 'dorm room-interior'
-        | 'coffee shop-interior'
-        | 'gaming room-interior'
-        | 'restaurant-interior'
-        | 'office-interior'
-        | 'attic-interior'
-        | 'toilet-interior'
-        | 'other-interior'
-        | 'house-exterior'
-        | 'villa-exterior'
-        | 'backyard-exterior'
-        | 'courtyard-exterior'
-        | 'ranch-exterior'
-        | 'office-exterior'
-        | 'retail-exterior'
-        | 'tower-exterior'
-        | 'apartment-exterior'
-        | 'school-exterior'
-        | 'museum-exterior'
-        | 'commercial-exterior'
-        | 'residential-exterior'
-        | 'other-exterior';
-    /**
-     * Color Palette
-     * @description Color palette for furniture and decor
-     * @example golden beige
-     * @enum {string}
-     */
-    color_palette:
-        | 'surprise me'
-        | 'golden beige'
-        | 'refined blues'
-        | 'dusky elegance'
-        | 'emerald charm'
-        | 'crimson luxury'
-        | 'golden sapphire'
-        | 'soft pastures'
-        | 'candy sky'
-        | 'peach meadow'
-        | 'muted sands'
-        | 'ocean breeze'
-        | 'frosted pastels'
-        | 'spring bloom'
-        | 'gentle horizon'
-        | 'seaside breeze'
-        | 'azure coast'
-        | 'golden shore'
-        | 'mediterranean gem'
-        | 'ocean serenity'
-        | 'serene blush'
-        | 'muted horizon'
-        | 'pastel shores'
-        | 'dusky calm'
-        | 'woodland retreat'
-        | 'meadow glow'
-        | 'forest canopy'
-        | 'riverbank calm'
-        | 'earthy tones'
-        | 'earthy neutrals'
-        | 'arctic mist'
-        | 'aqua drift'
-        | 'blush bloom'
-        | 'coral haze'
-        | 'retro rust'
-        | 'autumn glow'
-        | 'rustic charm'
-        | 'vintage sage'
-        | 'faded plum'
-        | 'electric lime'
-        | 'violet pulse'
-        | 'neon sorbet'
-        | 'aqua glow'
-        | 'fluorescent sunset'
-        | 'lavender bloom'
-        | 'petal fresh'
-        | 'meadow light'
-        | 'sunny pastures'
-        | 'frosted mauve'
-        | 'snowy hearth'
-        | 'icy blues'
-        | 'winter twilight'
-        | 'earthy hues'
-        | 'stone balance'
-        | 'neutral sands'
-        | 'slate shades';
-    /**
-     * Custom Prompt
-     * @description Custom prompt for architectural editing, it overrides above options when used
-     * @default
-     * @example
-     */
-    custom_prompt?: string;
-    /**
-     * Editing Type
-     * @description Type of editing. Structural editing only edits structural elements such as windows, walls etc. Virtual staging edits your furniture. Both do full editing including structural and furniture
-     * @example both
-     * @enum {string}
-     */
-    editing_type: 'structural editing' | 'virtual staging' | 'both';
-    /**
-     * Input Image Url
-     * @description URL of the image to do architectural editing
-     * @example https://v3.fal.media/files/kangaroo/BLwbXwxQI_MNwUF-P6ITl_zen_living_room_input.jpg
-     */
-    input_image_url: string;
-    /**
-     * Output Format
-     * @description The format of the generated image. Choose from: 'jpeg' or 'png'.
-     * @default jpeg
-     * @enum {string}
-     */
-    output_format?: 'jpeg' | 'png';
-    /**
-     * Style
-     * @description Style for furniture and decor
-     * @example rustic-interior
-     * @enum {string}
-     */
-    style:
-        | 'minimalistic-interior'
-        | 'farmhouse-interior'
-        | 'luxury-interior'
-        | 'modern-interior'
-        | 'zen-interior'
-        | 'mid century-interior'
-        | 'airbnb-interior'
-        | 'cozy-interior'
-        | 'rustic-interior'
-        | 'christmas-interior'
-        | 'bohemian-interior'
-        | 'tropical-interior'
-        | 'industrial-interior'
-        | 'japanese-interior'
-        | 'vintage-interior'
-        | 'loft-interior'
-        | 'halloween-interior'
-        | 'soho-interior'
-        | 'baroque-interior'
-        | 'kids room-interior'
-        | 'girls room-interior'
-        | 'boys room-interior'
-        | 'scandinavian-interior'
-        | 'french country-interior'
-        | 'mediterranean-interior'
-        | 'cyberpunk-interior'
-        | 'hot pink-interior'
-        | 'biophilic-interior'
-        | 'ancient egypt-interior'
-        | 'pixel-interior'
-        | 'art deco-interior'
-        | 'modern-exterior'
-        | 'minimalistic-exterior'
-        | 'farmhouse-exterior'
-        | 'cozy-exterior'
-        | 'luxury-exterior'
-        | 'colonial-exterior'
-        | 'zen-exterior'
-        | 'asian-exterior'
-        | 'creepy-exterior'
-        | 'airstone-exterior'
-        | 'ancient greek-exterior'
-        | 'art deco-exterior'
-        | 'brutalist-exterior'
-        | 'christmas lights-exterior'
-        | 'contemporary-exterior'
-        | 'cottage-exterior'
-        | 'dutch colonial-exterior'
-        | 'federal colonial-exterior'
-        | 'fire-exterior'
-        | 'french provincial-exterior'
-        | 'full glass-exterior'
-        | 'georgian colonial-exterior'
-        | 'gothic-exterior'
-        | 'greek revival-exterior'
-        | 'ice-exterior'
-        | 'italianate-exterior'
-        | 'mediterranean-exterior'
-        | 'midcentury-exterior'
-        | 'middle eastern-exterior'
-        | 'minecraft-exterior'
-        | 'morocco-exterior'
-        | 'neoclassical-exterior'
-        | 'spanish-exterior'
-        | 'tudor-exterior'
-        | 'underwater-exterior'
-        | 'winter-exterior'
-        | 'yard lighting-exterior';
-}
-
-export interface HalfmoonaiAiHomeEditOutput {
-    /**
-     * @description Generated image
-     * @example {
-     *       "content_type": "image/jpeg",
-     *       "url": "https://v3b.fal.media/files/b/monkey/DjC7In1m3u5B-XXDwFDP3_043cd0d5929a42a78f7d762c60bda00a.jpg"
-     *     }
-     */
-    image: Components.Image_2;
-    /**
-     * Status
-     * @description Status message with processing details
-     */
-    status: string;
-}
-
-export interface HalfmoonaiAiFaceSwapFaceswapvideoInput {
-    /**
-     * Enable Occlusion Prevention
-     * @description Enable occlusion prevention for handling faces covered by hands/objects. Warning: Enabling this runs an occlusion-aware model which costs 2x more.
-     * @default false
-     */
-    enable_occlusion_prevention?: boolean;
-    /**
-     * Source Face Url
-     * @description Source face image. Allowed items: bmp, jpeg, png, tiff, webp
-     * @example https://images.pexels.com/photos/1642228/pexels-photo-1642228.jpeg
-     */
-    source_face_url: string;
-    /**
-     * Target Video Url
-     * @description Target video URL (max 25 minutes, will be truncated if longer; FPS capped at 25). Allowed items: avi, m4v, mkv, mp4, mpeg, mov, mxf, webm, wmv
-     * @example https://videos.pexels.com/video-files/3201691/3201691-hd_1920_1080_25fps.mp4
-     */
-    target_video_url: string;
-}
-
-export interface HalfmoonaiAiFaceSwapFaceswapvideoOutput {
-    /**
-     * Processing Time Ms
-     * @description Optional processing duration in milliseconds
-     */
-    processing_time_ms?: number;
-    /**
-     * @description Generated video result
-     * @example {
-     *       "content_type": "video/mp4",
-     *       "url": "https://ai-tests.angeneraltest.com/test-files/faceswapvideo.mp4"
-     *     }
-     */
-    video: Components.File_1;
-    /**
-     * Warning
-     * @description Warning message if video was modified (e.g., truncated or FPS reduced)
-     */
-    warning?: string;
-}
-
-export interface HalfmoonaiAiFaceSwapFaceswapimageInput {
-    /**
-     * Enable Occlusion Prevention
-     * @description Enable occlusion prevention for handling faces covered by hands/objects. Warning: Enabling this runs an occlusion-aware model which costs 2x more.
-     * @default false
-     */
-    enable_occlusion_prevention?: boolean;
-    /**
-     * Source Face Url
-     * @description Source face image. Allowed items: bmp, jpeg, png, tiff, webp
-     * @example https://images.pexels.com/photos/1642228/pexels-photo-1642228.jpeg
-     */
-    source_face_url: string;
-    /**
-     * Target Image Url
-     * @description Target image URL. Allowed items: bmp, jpeg, png, tiff, webp
-     * @example https://wpmedia.wonderwall.com/2024/02/09103702/shutterstock_editorial_1581851a.jpg
-     */
-    target_image_url: string;
-}
-
-export interface HalfmoonaiAiFaceSwapFaceswapimageOutput {
-    /**
-     * @description Generated image result
-     * @example {
-     *       "content_type": "image/jpeg",
-     *       "url": "https://ai-tests.angeneraltest.com/test-files/faceswapimage.jpg"
-     *     }
-     */
-    image: Components.Image_2;
-    /**
-     * Processing Time Ms
-     * @description Optional processing duration in milliseconds
-     */
-    processing_time_ms?: number;
-}
-
-export interface HalfmoonaiAiDetectorDetectTextInput {
-    /**
-     * Text
-     * @description Text content to analyze for AI generation.
-     * @example yo guys so i just tried this new coffee place downtown and honestly?? not worth the hype. waited like 30 mins for a latte that tasted burnt lol. maybe i caught them on a bad day idk but wont be going back anytime soon
-     */
-    text: string;
-}
-
-export interface HalfmoonaiAiDetectorDetectTextOutput {
-    /**
-     * Confidence
-     * @example 0.85
-     */
-    confidence: number;
-    /**
-     * Is Ai Generated
-     * @example false
-     */
-    is_ai_generated: boolean;
-    /**
-     * Latency
-     * @example 13.617770671844482
-     */
-    latency: number;
-    /**
-     * Verdict
-     * @example human
-     */
-    verdict: string;
-}
-
-export interface HalfmoonaiAiDetectorDetectImageInput {
-    /**
-     * Image Url
-     * @description URL pointing to an image to analyze for AI generation.(Max: 3000 characters)
-     * @example https://v3b.fal.media/files/b/zebra/3E1W5H2yzHnq4ivo8kdW7_beach_google.png
-     */
-    image_url: string;
-}
-
-export interface HalfmoonaiAiDetectorDetectImageOutput {
-    /**
-     * Confidence
-     * @example 0.92
-     */
-    confidence: number;
-    /**
-     * Is Ai Generated
-     * @example true
-     */
-    is_ai_generated: boolean;
-    /**
-     * Latency
-     * @example 14.015489339828491
-     */
-    latency: number;
-    /**
-     * Verdict
-     * @example ai
-     */
-    verdict: string;
-}
-
-export interface HalfmoonaiAiBabyAndAgingGeneratorSingleInput {
-    /**
-     * Age Group
-     * @description Age group for the generated image. Choose from: 'baby' (0-12 months), 'toddler' (1-3 years), 'preschool' (3-5 years), 'gradeschooler' (6-12 years), 'teen' (13-19 years), 'adult' (20-40 years), 'mid' (40-60 years), 'senior' (60+ years).
-     * @example baby
-     * @enum {string}
-     */
-    age_group:
-        | 'baby'
-        | 'toddler'
-        | 'preschool'
-        | 'gradeschooler'
-        | 'teen'
-        | 'adult'
-        | 'mid'
-        | 'senior';
-    /**
-     * Gender
-     * @description Gender for the generated image. Choose from: 'male' or 'female'.
-     * @example male
-     * @enum {string}
-     */
-    gender: 'male' | 'female';
-    /**
-     * Id Image Urls
-     * @description List of ID images for single mode (or general reference images)
-     * @example [
-     *       "https://images.pexels.com/photos/1642228/pexels-photo-1642228.jpeg"
-     *     ]
-     */
-    id_image_urls: string[];
-    /**
-     * Image Size
-     * @description The size of the generated image
-     * @default {
-     *       "height": 1152,
-     *       "width": 864
-     *     }
-     */
-    image_size?:
-        | Components.ImageSize
-        | (
-              | 'square_hd'
-              | 'square'
-              | 'portrait_4_3'
-              | 'portrait_16_9'
-              | 'landscape_4_3'
-              | 'landscape_16_9'
-          );
-    /**
-     * Num Images
-     * @description Number of images to generate
-     * @default 1
-     * @example 1
-     */
-    num_images?: number;
-    /**
-     * Output Format
-     * @description The format of the generated image. Choose from: 'jpeg' or 'png'.
-     * @default jpeg
-     * @enum {string}
-     */
-    output_format?: 'jpeg' | 'png';
-    /**
-     * Prompt
-     * @description Text prompt to guide the image generation
-     * @default a newborn baby, well dressed
-     * @example a newborn baby, well dressed
-     */
-    prompt?: string;
-    /**
-     * Seed
-     * @description Random seed for reproducibility. If None, a random seed will be used
-     * @example 42
-     */
-    seed?: number;
-}
-
-export interface HalfmoonaiAiBabyAndAgingGeneratorSingleOutput {
-    /**
-     * Images
-     * @description The generated image files info
-     * @example [
-     *       {
-     *         "height": 1152,
-     *         "content_type": "image/jpeg",
-     *         "url": "https://ai-tests.angeneraltest.com/test-files/ai_baby_1.jpg",
-     *         "width": 864
-     *       }
-     *     ]
-     */
-    images: Components.Image_2[];
-    /**
-     * Prompt
-     * @description The final prompt used for generation
-     */
-    prompt: string;
-    /**
-     * Seed
-     * @description The seed used for generation
-     */
-    seed: number;
-}
-
-export interface HalfmoonaiAiBabyAndAgingGeneratorMultiInput {
-    /**
-     * Age Group
-     * @description Age group for the generated image. Choose from: 'baby' (0-12 months), 'toddler' (1-3 years), 'preschool' (3-5 years), 'gradeschooler' (6-12 years), 'teen' (13-19 years), 'adult' (20-40 years), 'mid' (40-60 years), 'senior' (60+ years).
-     * @example baby
-     * @enum {string}
-     */
-    age_group:
-        | 'baby'
-        | 'toddler'
-        | 'preschool'
-        | 'gradeschooler'
-        | 'teen'
-        | 'adult'
-        | 'mid'
-        | 'senior';
-    /**
-     * Father Image Urls
-     * @description List of father images for multi mode
-     * @example [
-     *       "https://hips.hearstapps.com/hmg-prod/images/gettyimages-498622514.jpg?crop=1xw:1.0xh;center,top&resize=640:*"
-     *     ]
-     */
-    father_image_urls: string[];
-    /**
-     * Father Weight
-     * @description Weight of the father's influence in multi mode generation
-     * @default 0.5
-     * @example 0.5
-     */
-    father_weight?: number;
-    /**
-     * Gender
-     * @description Gender for the generated image. Choose from: 'male' or 'female'.
-     * @example male
-     * @enum {string}
-     */
-    gender: 'male' | 'female';
-    /**
-     * Image Size
-     * @description The size of the generated image
-     * @default {
-     *       "height": 1152,
-     *       "width": 864
-     *     }
-     */
-    image_size?:
-        | Components.ImageSize
-        | (
-              | 'square_hd'
-              | 'square'
-              | 'portrait_4_3'
-              | 'portrait_16_9'
-              | 'landscape_4_3'
-              | 'landscape_16_9'
-          );
-    /**
-     * Mother Image Urls
-     * @description List of mother images for multi mode
-     * @example [
-     *       "https://cdn.britannica.com/56/172456-050-F518B29E/Gwyneth-Paltrow-2013.jpg?w=400&h=300&c=crop"
-     *     ]
-     */
-    mother_image_urls: string[];
-    /**
-     * Num Images
-     * @description Number of images to generate
-     * @default 1
-     * @example 1
-     */
-    num_images?: number;
-    /**
-     * Output Format
-     * @description The format of the generated image. Choose from: 'jpeg' or 'png'.
-     * @default jpeg
-     * @enum {string}
-     */
-    output_format?: 'jpeg' | 'png';
-    /**
-     * Prompt
-     * @description Text prompt to guide the image generation
-     * @default a newborn baby, well dressed
-     * @example a newborn baby, well dressed
-     */
-    prompt?: string;
-    /**
-     * Seed
-     * @description Random seed for reproducibility. If None, a random seed will be used
-     * @example 42
-     */
-    seed?: number;
-}
-
-export interface HalfmoonaiAiBabyAndAgingGeneratorMultiOutput {
-    /**
-     * Images
-     * @description The generated image files info
-     * @example [
-     *       {
-     *         "height": 1152,
-     *         "content_type": "image/jpeg",
-     *         "url": "https://ai-tests.angeneraltest.com/test-files/ai_baby_2.jpg",
-     *         "width": 864
-     *       }
-     *     ]
-     */
-    images: Components.Image_2[];
-    /**
-     * Prompt
-     * @description The final prompt used for generation
-     */
-    prompt: string;
-    /**
-     * Seed
-     * @description The seed used for generation
-     */
-    seed: number;
 }
 
 export interface ZonosInput {
@@ -15748,6 +13754,31 @@ export interface WorkflowUtilitiesScaleVideoOutput {
      *       "file_name": "output.mp4",
      *       "content_type": "video/mp4",
      *       "url": "https://v3b.fal.media/files/b/monkey/scaled_output.mp4"
+     *     }
+     */
+    video: Components.File;
+}
+
+export interface WorkflowUtilitiesReverseVideoInput {
+    /**
+     * Video Url
+     * @description URL of the video file to reverse
+     *
+     *     Max file size: 500.0MB, Timeout: 30.0s
+     * @example https://storage.googleapis.com/falserverless/example_outputs/wan-25-i2v-output.mp4
+     */
+    video_url: string;
+}
+
+export interface WorkflowUtilitiesReverseVideoOutput {
+    /**
+     * Video
+     * @description The reversed video
+     * @example {
+     *       "file_size": 3456789,
+     *       "file_name": "output.mp4",
+     *       "content_type": "video/mp4",
+     *       "url": "ttps://v3b.fal.media/files/b/0a8f1bc2/HZdek_1QHprZFiE-46DyO_output.mp4"
      *     }
      */
     video: Components.File;
@@ -19340,25 +17371,1215 @@ export interface WanVaceAppsLongReframeOutput {
     video: Components.VideoFile;
 }
 
-export interface WanVace14bReframeInput extends SharedType_e15 {}
+export interface WanVace14bReframeInput {
+    /**
+     * Acceleration
+     * @description Acceleration to use for inference. Options are 'none' or 'regular'. Accelerated inference will very slightly affect output, but will be significantly faster.
+     * @default regular
+     * @example regular
+     */
+    acceleration?: 'none' | 'low' | 'regular';
+    /**
+     * Aspect Ratio
+     * @description Aspect ratio of the generated video.
+     * @default auto
+     * @enum {string}
+     */
+    aspect_ratio?: 'auto' | '16:9' | '1:1' | '9:16';
+    /**
+     * Auto Downsample Min FPS
+     * @description The minimum frames per second to downsample the video to. This is used to help determine the auto downsample factor to try and find the lowest detail-preserving downsample factor. The default value is appropriate for most videos, if you are using a video with very fast motion, you may need to increase this value. If your video has a very low amount of motion, you could decrease this value to allow for higher downsampling and thus longer sequences.
+     * @default 15
+     * @example 15
+     */
+    auto_downsample_min_fps?: number;
+    /**
+     * Enable Auto Downsample
+     * @description If true, the model will automatically temporally downsample the video to an appropriate frame length for the model, then will interpolate it back to the original frame length.
+     * @default false
+     * @example false
+     */
+    enable_auto_downsample?: boolean;
+    /**
+     * Enable Prompt Expansion
+     * @description Whether to enable prompt expansion.
+     * @default false
+     * @example false
+     */
+    enable_prompt_expansion?: boolean;
+    /**
+     * Enable Safety Checker
+     * @description If set to true, the safety checker will be enabled.
+     * @default false
+     * @example true
+     */
+    enable_safety_checker?: boolean;
+    /**
+     * First Frame URL
+     * @description URL to the first frame of the video. If provided, the model will use this frame as a reference.
+     */
+    first_frame_url?: string;
+    /**
+     * Frames per Second
+     * @description Frames per second of the generated video. Must be between 5 to 30. Ignored if match_input_frames_per_second is true.
+     * @default 16
+     */
+    frames_per_second?: number;
+    /**
+     * Guidance Scale
+     * @description Guidance scale for classifier-free guidance. Higher values encourage the model to generate images closely related to the text prompt.
+     * @default 5
+     * @example 5
+     */
+    guidance_scale?: number;
+    /**
+     * Interpolator Model
+     * @description The model to use for frame interpolation. Options are 'rife' or 'film'.
+     * @default film
+     * @example film
+     * @enum {string}
+     */
+    interpolator_model?: 'rife' | 'film';
+    /**
+     * Last Frame URL
+     * @description URL to the last frame of the video. If provided, the model will use this frame as a reference.
+     */
+    last_frame_url?: string;
+    /**
+     * Match Input Frames Per Second
+     * @description If true, the frames per second of the generated video will match the input video. If false, the frames per second will be determined by the frames_per_second parameter.
+     * @default true
+     * @example true
+     */
+    match_input_frames_per_second?: boolean;
+    /**
+     * Match Input Number of Frames
+     * @description If true, the number of frames in the generated video will match the number of frames in the input video. If false, the number of frames will be determined by the num_frames parameter.
+     * @default true
+     * @example true
+     */
+    match_input_num_frames?: boolean;
+    /**
+     * Negative Prompt
+     * @description Negative prompt for video generation.
+     * @default letterboxing, borders, black bars, bright colors, overexposed, static, blurred details, subtitles, style, artwork, painting, picture, still, overall gray, worst quality, low quality, JPEG compression residue, ugly, incomplete, extra fingers, poorly drawn hands, poorly drawn faces, deformed, disfigured, malformed limbs, fused fingers, still picture, cluttered background, three legs, many people in the background, walking backwards
+     * @example letterboxing, borders, black bars, bright colors, overexposed, static, blurred details, subtitles, style, artwork, painting, picture, still, overall gray, worst quality, low quality, JPEG compression residue, ugly, incomplete, extra fingers, poorly drawn hands, poorly drawn faces, deformed, disfigured, malformed limbs, fused fingers, still picture, cluttered background, three legs, many people in the background, walking backwards
+     */
+    negative_prompt?: string;
+    /**
+     * Number of Frames
+     * @description Number of frames to generate. Must be between 81 to 241 (inclusive).
+     * @default 81
+     */
+    num_frames?: number;
+    /**
+     * Number of Inference Steps
+     * @description Number of inference steps for sampling. Higher values give better quality but take longer.
+     * @default 30
+     */
+    num_inference_steps?: number;
+    /**
+     * Number of Interpolated Frames
+     * @description Number of frames to interpolate between the original frames. A value of 0 means no interpolation.
+     * @default 0
+     * @example 0
+     */
+    num_interpolated_frames?: number;
+    /**
+     * Prompt
+     * @description The text prompt to guide video generation. Optional for reframing.
+     * @default
+     * @example
+     */
+    prompt?: string;
+    /**
+     * Resolution
+     * @description Resolution of the generated video.
+     * @default auto
+     * @enum {string}
+     */
+    resolution?: 'auto' | '240p' | '360p' | '480p' | '580p' | '720p';
+    /**
+     * Return Frames Zip
+     * @description If true, also return a ZIP file containing all generated frames.
+     * @default false
+     * @example false
+     */
+    return_frames_zip?: boolean;
+    /**
+     * Sampler
+     * @description Sampler to use for video generation.
+     * @default unipc
+     * @example unipc
+     * @enum {string}
+     */
+    sampler?: 'unipc' | 'dpm++' | 'euler';
+    /**
+     * Seed
+     * @description Random seed for reproducibility. If None, a random seed is chosen.
+     */
+    seed?: number;
+    /**
+     * Shift
+     * @description Shift parameter for video generation.
+     * @default 5
+     */
+    shift?: number;
+    /**
+     * Sync Mode
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
+     * @default false
+     * @example false
+     */
+    sync_mode?: boolean;
+    /**
+     * Temporal Downsample Factor
+     * @description Temporal downsample factor for the video. This is an integer value that determines how many frames to skip in the video. A value of 0 means no downsampling. For each downsample factor, one upsample factor will automatically be applied.
+     * @default 0
+     * @example 0
+     */
+    temporal_downsample_factor?: number;
+    /**
+     * Transparency Mode
+     * @description The transparency mode to apply to the first and last frames. This controls how the transparent areas of the first and last frames are filled.
+     * @default content_aware
+     * @example content_aware
+     * @enum {string}
+     */
+    transparency_mode?: 'content_aware' | 'white' | 'black';
+    /**
+     * Trim Borders
+     * @description Whether to trim borders from the video.
+     * @default true
+     * @example true
+     */
+    trim_borders?: boolean;
+    /**
+     * Video Quality
+     * @description The quality of the generated video.
+     * @default high
+     * @example high
+     * @enum {string}
+     */
+    video_quality?: 'low' | 'medium' | 'high' | 'maximum';
+    /**
+     * Video URL
+     * @description URL to the source video file. This video will be used as a reference for the reframe task.
+     * @example https://storage.googleapis.com/falserverless/web-examples/wan/t2v.mp4
+     */
+    video_url: string;
+    /**
+     * Video Write Mode
+     * @description The write mode of the generated video.
+     * @default balanced
+     * @example balanced
+     * @enum {string}
+     */
+    video_write_mode?: 'fast' | 'balanced' | 'small';
+    /**
+     * Zoom Factor
+     * @description Zoom factor for the video. When this value is greater than 0, the video will be zoomed in by this factor (in relation to the canvas size,) cutting off the edges of the video. A value of 0 means no zoom.
+     * @default 0
+     * @example 0
+     */
+    zoom_factor?: number;
+}
 
-export interface WanVace14bReframeOutput extends SharedType_d17 {}
+export interface WanVace14bReframeOutput {
+    /** @description ZIP archive of all video frames if requested. */
+    frames_zip?: Components.File_1;
+    /**
+     * Prompt
+     * @description The prompt used for generation.
+     */
+    prompt: string;
+    /**
+     * Seed
+     * @description The seed used for generation.
+     */
+    seed: number;
+    /**
+     * @description The generated reframe video file.
+     * @example {
+     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/wan-vace-reframe-output.mp4"
+     *     }
+     */
+    video: Components.VideoFile_1;
+}
 
-export interface WanVace14bPoseInput extends SharedType_397 {}
+export interface WanVace14bPoseInput {
+    /**
+     * Acceleration
+     * @description Acceleration to use for inference. Options are 'none' or 'regular'. Accelerated inference will very slightly affect output, but will be significantly faster.
+     * @default regular
+     * @example regular
+     */
+    acceleration?: 'none' | 'low' | 'regular';
+    /**
+     * Aspect Ratio
+     * @description Aspect ratio of the generated video.
+     * @default auto
+     * @enum {string}
+     */
+    aspect_ratio?: 'auto' | '16:9' | '1:1' | '9:16';
+    /**
+     * Auto Downsample Min FPS
+     * @description The minimum frames per second to downsample the video to. This is used to help determine the auto downsample factor to try and find the lowest detail-preserving downsample factor. The default value is appropriate for most videos, if you are using a video with very fast motion, you may need to increase this value. If your video has a very low amount of motion, you could decrease this value to allow for higher downsampling and thus longer sequences.
+     * @default 15
+     * @example 15
+     */
+    auto_downsample_min_fps?: number;
+    /**
+     * Enable Auto Downsample
+     * @description If true, the model will automatically temporally downsample the video to an appropriate frame length for the model, then will interpolate it back to the original frame length.
+     * @default false
+     * @example false
+     */
+    enable_auto_downsample?: boolean;
+    /**
+     * Enable Prompt Expansion
+     * @description Whether to enable prompt expansion.
+     * @default false
+     * @example false
+     */
+    enable_prompt_expansion?: boolean;
+    /**
+     * Enable Safety Checker
+     * @description If set to true, the safety checker will be enabled.
+     * @default false
+     * @example true
+     */
+    enable_safety_checker?: boolean;
+    /**
+     * First Frame URL
+     * @description URL to the first frame of the video. If provided, the model will use this frame as a reference.
+     */
+    first_frame_url?: string;
+    /**
+     * Frames per Second
+     * @description Frames per second of the generated video. Must be between 5 to 30. Ignored if match_input_frames_per_second is true.
+     * @default 16
+     */
+    frames_per_second?: number;
+    /**
+     * Guidance Scale
+     * @description Guidance scale for classifier-free guidance. Higher values encourage the model to generate images closely related to the text prompt.
+     * @default 5
+     * @example 5
+     */
+    guidance_scale?: number;
+    /**
+     * Interpolator Model
+     * @description The model to use for frame interpolation. Options are 'rife' or 'film'.
+     * @default film
+     * @example film
+     * @enum {string}
+     */
+    interpolator_model?: 'rife' | 'film';
+    /**
+     * Last Frame URL
+     * @description URL to the last frame of the video. If provided, the model will use this frame as a reference.
+     */
+    last_frame_url?: string;
+    /**
+     * Match Input Frames Per Second
+     * @description If true, the frames per second of the generated video will match the input video. If false, the frames per second will be determined by the frames_per_second parameter.
+     * @default false
+     * @example false
+     */
+    match_input_frames_per_second?: boolean;
+    /**
+     * Match Input Number of Frames
+     * @description If true, the number of frames in the generated video will match the number of frames in the input video. If false, the number of frames will be determined by the num_frames parameter.
+     * @default false
+     * @example false
+     */
+    match_input_num_frames?: boolean;
+    /**
+     * Negative Prompt
+     * @description Negative prompt for video generation.
+     * @default letterboxing, borders, black bars, bright colors, overexposed, static, blurred details, subtitles, style, artwork, painting, picture, still, overall gray, worst quality, low quality, JPEG compression residue, ugly, incomplete, extra fingers, poorly drawn hands, poorly drawn faces, deformed, disfigured, malformed limbs, fused fingers, still picture, cluttered background, three legs, many people in the background, walking backwards
+     * @example letterboxing, borders, black bars, bright colors, overexposed, static, blurred details, subtitles, style, artwork, painting, picture, still, overall gray, worst quality, low quality, JPEG compression residue, ugly, incomplete, extra fingers, poorly drawn hands, poorly drawn faces, deformed, disfigured, malformed limbs, fused fingers, still picture, cluttered background, three legs, many people in the background, walking backwards
+     */
+    negative_prompt?: string;
+    /**
+     * Number of Frames
+     * @description Number of frames to generate. Must be between 81 to 241 (inclusive).
+     * @default 81
+     */
+    num_frames?: number;
+    /**
+     * Number of Inference Steps
+     * @description Number of inference steps for sampling. Higher values give better quality but take longer.
+     * @default 30
+     */
+    num_inference_steps?: number;
+    /**
+     * Number of Interpolated Frames
+     * @description Number of frames to interpolate between the original frames. A value of 0 means no interpolation.
+     * @default 0
+     * @example 0
+     */
+    num_interpolated_frames?: number;
+    /**
+     * Preprocess
+     * @description Whether to preprocess the input video.
+     * @default false
+     * @example false
+     */
+    preprocess?: boolean;
+    /**
+     * Prompt
+     * @description The text prompt to guide video generation. For pose task, the prompt should describe the desired pose and action of the subject in the video.
+     * @example A sharply dressed man walks toward the camera down a sun-drenched hallway.  Medium shot: He's framed from the knees up, his confident stride filling the frame.  His navy blue business suit is impeccably tailored, the fabric subtly shimmering under the light streaming through the tall, arched windows lining the hallway. Close-up:  The rich texture of the suit's wool is visible, each thread reflecting the light.  His crisp white shirt contrasts beautifully with the deep crimson of his silk tie, the knot perfectly formed.  The sunlight highlights the subtle sheen of his polished shoes.  The windows cast long shadows, highlighting the architectural detail of the hallway, creating a sense of both elegance and movement. High resolution 4k.
+     */
+    prompt: string;
+    /**
+     * Reference Image URLs
+     * @description URLs to source reference image. If provided, the model will use this image as reference.
+     */
+    ref_image_urls?: string[];
+    /**
+     * Resolution
+     * @description Resolution of the generated video.
+     * @default auto
+     * @enum {string}
+     */
+    resolution?: 'auto' | '240p' | '360p' | '480p' | '580p' | '720p';
+    /**
+     * Return Frames Zip
+     * @description If true, also return a ZIP file containing all generated frames.
+     * @default false
+     * @example false
+     */
+    return_frames_zip?: boolean;
+    /**
+     * Sampler
+     * @description Sampler to use for video generation.
+     * @default unipc
+     * @example unipc
+     * @enum {string}
+     */
+    sampler?: 'unipc' | 'dpm++' | 'euler';
+    /**
+     * Seed
+     * @description Random seed for reproducibility. If None, a random seed is chosen.
+     */
+    seed?: number;
+    /**
+     * Shift
+     * @description Shift parameter for video generation.
+     * @default 5
+     */
+    shift?: number;
+    /**
+     * Sync Mode
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
+     * @default false
+     * @example false
+     */
+    sync_mode?: boolean;
+    /**
+     * Temporal Downsample Factor
+     * @description Temporal downsample factor for the video. This is an integer value that determines how many frames to skip in the video. A value of 0 means no downsampling. For each downsample factor, one upsample factor will automatically be applied.
+     * @default 0
+     * @example 0
+     */
+    temporal_downsample_factor?: number;
+    /**
+     * Transparency Mode
+     * @description The transparency mode to apply to the first and last frames. This controls how the transparent areas of the first and last frames are filled.
+     * @default content_aware
+     * @example content_aware
+     * @enum {string}
+     */
+    transparency_mode?: 'content_aware' | 'white' | 'black';
+    /**
+     * Video Quality
+     * @description The quality of the generated video.
+     * @default high
+     * @example high
+     * @enum {string}
+     */
+    video_quality?: 'low' | 'medium' | 'high' | 'maximum';
+    /**
+     * Video URL
+     * @description URL to the source video file. Required for pose task.
+     * @example https://storage.googleapis.com/falserverless/example_inputs/wan-vace-pose-video.mp4
+     */
+    video_url: string;
+    /**
+     * Video Write Mode
+     * @description The write mode of the generated video.
+     * @default balanced
+     * @example balanced
+     * @enum {string}
+     */
+    video_write_mode?: 'fast' | 'balanced' | 'small';
+}
 
-export interface WanVace14bPoseOutput extends SharedType_fb1 {}
+export interface WanVace14bPoseOutput {
+    /** @description ZIP archive of all video frames if requested. */
+    frames_zip?: Components.File_1;
+    /**
+     * Prompt
+     * @description The prompt used for generation.
+     */
+    prompt: string;
+    /**
+     * Seed
+     * @description The seed used for generation.
+     */
+    seed: number;
+    /**
+     * @description The generated pose video file.
+     * @example {
+     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/wan-vace-pose-output.mp4"
+     *     }
+     */
+    video: Components.VideoFile_1;
+}
 
-export interface WanVace14bOutpaintingInput extends SharedType_913 {}
+export interface WanVace14bOutpaintingInput {
+    /**
+     * Acceleration
+     * @description Acceleration to use for inference. Options are 'none' or 'regular'. Accelerated inference will very slightly affect output, but will be significantly faster.
+     * @default regular
+     * @example regular
+     */
+    acceleration?: 'none' | 'low' | 'regular';
+    /**
+     * Aspect Ratio
+     * @description Aspect ratio of the generated video.
+     * @default auto
+     * @enum {string}
+     */
+    aspect_ratio?: 'auto' | '16:9' | '1:1' | '9:16';
+    /**
+     * Auto Downsample Min FPS
+     * @description The minimum frames per second to downsample the video to. This is used to help determine the auto downsample factor to try and find the lowest detail-preserving downsample factor. The default value is appropriate for most videos, if you are using a video with very fast motion, you may need to increase this value. If your video has a very low amount of motion, you could decrease this value to allow for higher downsampling and thus longer sequences.
+     * @default 15
+     * @example 15
+     */
+    auto_downsample_min_fps?: number;
+    /**
+     * Enable Auto Downsample
+     * @description If true, the model will automatically temporally downsample the video to an appropriate frame length for the model, then will interpolate it back to the original frame length.
+     * @default false
+     * @example false
+     */
+    enable_auto_downsample?: boolean;
+    /**
+     * Enable Prompt Expansion
+     * @description Whether to enable prompt expansion.
+     * @default false
+     * @example false
+     */
+    enable_prompt_expansion?: boolean;
+    /**
+     * Enable Safety Checker
+     * @description If set to true, the safety checker will be enabled.
+     * @default false
+     * @example true
+     */
+    enable_safety_checker?: boolean;
+    /**
+     * Expand Bottom
+     * @description Whether to expand the video to the bottom.
+     * @default false
+     * @example true
+     */
+    expand_bottom?: boolean;
+    /**
+     * Expand Left
+     * @description Whether to expand the video to the left.
+     * @default false
+     * @example true
+     */
+    expand_left?: boolean;
+    /**
+     * Expand Ratio
+     * @description Amount of expansion. This is a float value between 0 and 1, where 0.25 adds 25% to the original video size on the specified sides.
+     * @default 0.25
+     * @example 0.25
+     */
+    expand_ratio?: number;
+    /**
+     * Expand Right
+     * @description Whether to expand the video to the right.
+     * @default false
+     * @example true
+     */
+    expand_right?: boolean;
+    /**
+     * Expand Top
+     * @description Whether to expand the video to the top.
+     * @default false
+     * @example true
+     */
+    expand_top?: boolean;
+    /**
+     * First Frame URL
+     * @description URL to the first frame of the video. If provided, the model will use this frame as a reference.
+     */
+    first_frame_url?: string;
+    /**
+     * Frames per Second
+     * @description Frames per second of the generated video. Must be between 5 to 30. Ignored if match_input_frames_per_second is true.
+     * @default 16
+     */
+    frames_per_second?: number;
+    /**
+     * Guidance Scale
+     * @description Guidance scale for classifier-free guidance. Higher values encourage the model to generate images closely related to the text prompt.
+     * @default 5
+     * @example 5
+     */
+    guidance_scale?: number;
+    /**
+     * Interpolator Model
+     * @description The model to use for frame interpolation. Options are 'rife' or 'film'.
+     * @default film
+     * @example film
+     * @enum {string}
+     */
+    interpolator_model?: 'rife' | 'film';
+    /**
+     * Last Frame URL
+     * @description URL to the last frame of the video. If provided, the model will use this frame as a reference.
+     */
+    last_frame_url?: string;
+    /**
+     * Match Input Frames Per Second
+     * @description If true, the frames per second of the generated video will match the input video. If false, the frames per second will be determined by the frames_per_second parameter.
+     * @default false
+     * @example false
+     */
+    match_input_frames_per_second?: boolean;
+    /**
+     * Match Input Number of Frames
+     * @description If true, the number of frames in the generated video will match the number of frames in the input video. If false, the number of frames will be determined by the num_frames parameter.
+     * @default false
+     * @example false
+     */
+    match_input_num_frames?: boolean;
+    /**
+     * Negative Prompt
+     * @description Negative prompt for video generation.
+     * @default letterboxing, borders, black bars, bright colors, overexposed, static, blurred details, subtitles, style, artwork, painting, picture, still, overall gray, worst quality, low quality, JPEG compression residue, ugly, incomplete, extra fingers, poorly drawn hands, poorly drawn faces, deformed, disfigured, malformed limbs, fused fingers, still picture, cluttered background, three legs, many people in the background, walking backwards
+     * @example letterboxing, borders, black bars, bright colors, overexposed, static, blurred details, subtitles, style, artwork, painting, picture, still, overall gray, worst quality, low quality, JPEG compression residue, ugly, incomplete, extra fingers, poorly drawn hands, poorly drawn faces, deformed, disfigured, malformed limbs, fused fingers, still picture, cluttered background, three legs, many people in the background, walking backwards
+     */
+    negative_prompt?: string;
+    /**
+     * Number of Frames
+     * @description Number of frames to generate. Must be between 81 to 241 (inclusive).
+     * @default 81
+     */
+    num_frames?: number;
+    /**
+     * Number of Inference Steps
+     * @description Number of inference steps for sampling. Higher values give better quality but take longer.
+     * @default 30
+     */
+    num_inference_steps?: number;
+    /**
+     * Number of Interpolated Frames
+     * @description Number of frames to interpolate between the original frames. A value of 0 means no interpolation.
+     * @default 0
+     * @example 0
+     */
+    num_interpolated_frames?: number;
+    /**
+     * Prompt
+     * @description The text prompt to guide video generation.
+     * @example A lone woman strides through the neon-drenched streets of Tokyo at night.  Her crimson dress, a vibrant splash of color against the deep blues and blacks of the cityscape, flows slightly with each step. A tailored black jacket, crisp and elegant, contrasts sharply with the dress's rich texture. Medium shot:  The city hums around her, blurred lights creating streaks of color in the background. Close-up:  The fabric of her dress catches the streetlight's glow, revealing a subtle silk sheen and the intricate stitching at the hem. Her black jacket’s subtle texture is visible – a fine wool perhaps, with a matte finish. The overall mood is one of quiet confidence and mystery, a vibrant woman navigating a bustling, nocturnal landscape. High resolution 4k.
+     */
+    prompt: string;
+    /**
+     * Reference Image URLs
+     * @description URLs to source reference image. If provided, the model will use this image as reference.
+     */
+    ref_image_urls?: string[];
+    /**
+     * Resolution
+     * @description Resolution of the generated video.
+     * @default auto
+     * @enum {string}
+     */
+    resolution?: 'auto' | '240p' | '360p' | '480p' | '580p' | '720p';
+    /**
+     * Return Frames Zip
+     * @description If true, also return a ZIP file containing all generated frames.
+     * @default false
+     * @example false
+     */
+    return_frames_zip?: boolean;
+    /**
+     * Sampler
+     * @description Sampler to use for video generation.
+     * @default unipc
+     * @example unipc
+     * @enum {string}
+     */
+    sampler?: 'unipc' | 'dpm++' | 'euler';
+    /**
+     * Seed
+     * @description Random seed for reproducibility. If None, a random seed is chosen.
+     */
+    seed?: number;
+    /**
+     * Shift
+     * @description Shift parameter for video generation.
+     * @default 5
+     */
+    shift?: number;
+    /**
+     * Sync Mode
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
+     * @default false
+     * @example false
+     */
+    sync_mode?: boolean;
+    /**
+     * Temporal Downsample Factor
+     * @description Temporal downsample factor for the video. This is an integer value that determines how many frames to skip in the video. A value of 0 means no downsampling. For each downsample factor, one upsample factor will automatically be applied.
+     * @default 0
+     * @example 0
+     */
+    temporal_downsample_factor?: number;
+    /**
+     * Transparency Mode
+     * @description The transparency mode to apply to the first and last frames. This controls how the transparent areas of the first and last frames are filled.
+     * @default content_aware
+     * @example content_aware
+     * @enum {string}
+     */
+    transparency_mode?: 'content_aware' | 'white' | 'black';
+    /**
+     * Video Quality
+     * @description The quality of the generated video.
+     * @default high
+     * @example high
+     * @enum {string}
+     */
+    video_quality?: 'low' | 'medium' | 'high' | 'maximum';
+    /**
+     * Video URL
+     * @description URL to the source video file. Required for outpainting.
+     * @example https://storage.googleapis.com/falserverless/web-examples/wan/t2v.mp4
+     */
+    video_url: string;
+    /**
+     * Video Write Mode
+     * @description The write mode of the generated video.
+     * @default balanced
+     * @example balanced
+     * @enum {string}
+     */
+    video_write_mode?: 'fast' | 'balanced' | 'small';
+}
 
-export interface WanVace14bOutpaintingOutput extends SharedType_164 {}
+export interface WanVace14bOutpaintingOutput {
+    /** @description ZIP archive of all video frames if requested. */
+    frames_zip?: Components.File_1;
+    /**
+     * Prompt
+     * @description The prompt used for generation.
+     */
+    prompt: string;
+    /**
+     * Seed
+     * @description The seed used for generation.
+     */
+    seed: number;
+    /**
+     * @description The generated outpainting video file.
+     * @example {
+     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/wan-vace-outpainting-output.mp4"
+     *     }
+     */
+    video: Components.VideoFile_1;
+}
 
-export interface WanVace14bInpaintingInput extends SharedType_0ab {}
+export interface WanVace14bInpaintingInput {
+    /**
+     * Acceleration
+     * @description Acceleration to use for inference. Options are 'none' or 'regular'. Accelerated inference will very slightly affect output, but will be significantly faster.
+     * @default regular
+     * @example regular
+     */
+    acceleration?: 'none' | 'low' | 'regular';
+    /**
+     * Aspect Ratio
+     * @description Aspect ratio of the generated video.
+     * @default auto
+     * @enum {string}
+     */
+    aspect_ratio?: 'auto' | '16:9' | '1:1' | '9:16';
+    /**
+     * Auto Downsample Min FPS
+     * @description The minimum frames per second to downsample the video to. This is used to help determine the auto downsample factor to try and find the lowest detail-preserving downsample factor. The default value is appropriate for most videos, if you are using a video with very fast motion, you may need to increase this value. If your video has a very low amount of motion, you could decrease this value to allow for higher downsampling and thus longer sequences.
+     * @default 15
+     * @example 15
+     */
+    auto_downsample_min_fps?: number;
+    /**
+     * Enable Auto Downsample
+     * @description If true, the model will automatically temporally downsample the video to an appropriate frame length for the model, then will interpolate it back to the original frame length.
+     * @default false
+     * @example false
+     */
+    enable_auto_downsample?: boolean;
+    /**
+     * Enable Prompt Expansion
+     * @description Whether to enable prompt expansion.
+     * @default false
+     * @example false
+     */
+    enable_prompt_expansion?: boolean;
+    /**
+     * Enable Safety Checker
+     * @description If set to true, the safety checker will be enabled.
+     * @default false
+     * @example true
+     */
+    enable_safety_checker?: boolean;
+    /**
+     * First Frame URL
+     * @description URL to the first frame of the video. If provided, the model will use this frame as a reference.
+     */
+    first_frame_url?: string;
+    /**
+     * Frames per Second
+     * @description Frames per second of the generated video. Must be between 5 to 30. Ignored if match_input_frames_per_second is true.
+     * @default 16
+     */
+    frames_per_second?: number;
+    /**
+     * Guidance Scale
+     * @description Guidance scale for classifier-free guidance. Higher values encourage the model to generate images closely related to the text prompt.
+     * @default 5
+     * @example 5
+     */
+    guidance_scale?: number;
+    /**
+     * Interpolator Model
+     * @description The model to use for frame interpolation. Options are 'rife' or 'film'.
+     * @default film
+     * @example film
+     * @enum {string}
+     */
+    interpolator_model?: 'rife' | 'film';
+    /**
+     * Last Frame URL
+     * @description URL to the last frame of the video. If provided, the model will use this frame as a reference.
+     */
+    last_frame_url?: string;
+    /**
+     * Mask Image URL
+     * @description URL to the guiding mask file. If provided, the model will use this mask as a reference to create masked video using salient mask tracking. Will be ignored if mask_video_url is provided.
+     */
+    mask_image_url?: string;
+    /**
+     * Mask Video URL
+     * @description URL to the source mask file. Required for inpainting.
+     * @example https://storage.googleapis.com/falserverless/vace/src_mask.mp4
+     */
+    mask_video_url: string;
+    /**
+     * Match Input Frames Per Second
+     * @description If true, the frames per second of the generated video will match the input video. If false, the frames per second will be determined by the frames_per_second parameter.
+     * @default false
+     * @example false
+     */
+    match_input_frames_per_second?: boolean;
+    /**
+     * Match Input Number of Frames
+     * @description If true, the number of frames in the generated video will match the number of frames in the input video. If false, the number of frames will be determined by the num_frames parameter.
+     * @default false
+     * @example false
+     */
+    match_input_num_frames?: boolean;
+    /**
+     * Negative Prompt
+     * @description Negative prompt for video generation.
+     * @default letterboxing, borders, black bars, bright colors, overexposed, static, blurred details, subtitles, style, artwork, painting, picture, still, overall gray, worst quality, low quality, JPEG compression residue, ugly, incomplete, extra fingers, poorly drawn hands, poorly drawn faces, deformed, disfigured, malformed limbs, fused fingers, still picture, cluttered background, three legs, many people in the background, walking backwards
+     * @example letterboxing, borders, black bars, bright colors, overexposed, static, blurred details, subtitles, style, artwork, painting, picture, still, overall gray, worst quality, low quality, JPEG compression residue, ugly, incomplete, extra fingers, poorly drawn hands, poorly drawn faces, deformed, disfigured, malformed limbs, fused fingers, still picture, cluttered background, three legs, many people in the background, walking backwards
+     */
+    negative_prompt?: string;
+    /**
+     * Number of Frames
+     * @description Number of frames to generate. Must be between 81 to 241 (inclusive).
+     * @default 81
+     */
+    num_frames?: number;
+    /**
+     * Number of Inference Steps
+     * @description Number of inference steps for sampling. Higher values give better quality but take longer.
+     * @default 30
+     */
+    num_inference_steps?: number;
+    /**
+     * Number of Interpolated Frames
+     * @description Number of frames to interpolate between the original frames. A value of 0 means no interpolation.
+     * @default 0
+     * @example 0
+     */
+    num_interpolated_frames?: number;
+    /**
+     * Preprocess
+     * @description Whether to preprocess the input video.
+     * @default false
+     * @example false
+     */
+    preprocess?: boolean;
+    /**
+     * Prompt
+     * @description The text prompt to guide video generation.
+     * @example The video shows a man riding a horse on a vast grassland. He has long lavender hair and wears a traditional dress of a white top and black pants. The animation style makes him look like he is doing some kind of outdoor activity or performing. The background is a spectacular mountain range and cloud sky, giving a sense of tranquility and vastness. The entire video is shot from a fixed angle, focusing on the rider and his horse.
+     */
+    prompt: string;
+    /**
+     * Reference Image URLs
+     * @description Urls to source reference image. If provided, the model will use this image as reference.
+     * @example [
+     *       "https://storage.googleapis.com/falserverless/vace/src_ref_image_1.png"
+     *     ]
+     */
+    ref_image_urls?: string[];
+    /**
+     * Resolution
+     * @description Resolution of the generated video.
+     * @default auto
+     * @enum {string}
+     */
+    resolution?: 'auto' | '240p' | '360p' | '480p' | '580p' | '720p';
+    /**
+     * Return Frames Zip
+     * @description If true, also return a ZIP file containing all generated frames.
+     * @default false
+     * @example false
+     */
+    return_frames_zip?: boolean;
+    /**
+     * Sampler
+     * @description Sampler to use for video generation.
+     * @default unipc
+     * @example unipc
+     * @enum {string}
+     */
+    sampler?: 'unipc' | 'dpm++' | 'euler';
+    /**
+     * Seed
+     * @description Random seed for reproducibility. If None, a random seed is chosen.
+     */
+    seed?: number;
+    /**
+     * Shift
+     * @description Shift parameter for video generation.
+     * @default 5
+     */
+    shift?: number;
+    /**
+     * Sync Mode
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
+     * @default false
+     * @example false
+     */
+    sync_mode?: boolean;
+    /**
+     * Temporal Downsample Factor
+     * @description Temporal downsample factor for the video. This is an integer value that determines how many frames to skip in the video. A value of 0 means no downsampling. For each downsample factor, one upsample factor will automatically be applied.
+     * @default 0
+     * @example 0
+     */
+    temporal_downsample_factor?: number;
+    /**
+     * Transparency Mode
+     * @description The transparency mode to apply to the first and last frames. This controls how the transparent areas of the first and last frames are filled.
+     * @default content_aware
+     * @example content_aware
+     * @enum {string}
+     */
+    transparency_mode?: 'content_aware' | 'white' | 'black';
+    /**
+     * Video Quality
+     * @description The quality of the generated video.
+     * @default high
+     * @example high
+     * @enum {string}
+     */
+    video_quality?: 'low' | 'medium' | 'high' | 'maximum';
+    /**
+     * Video URL
+     * @description URL to the source video file. Required for inpainting.
+     * @example https://storage.googleapis.com/falserverless/vace/src_video.mp4
+     */
+    video_url: string;
+    /**
+     * Video Write Mode
+     * @description The write mode of the generated video.
+     * @default balanced
+     * @example balanced
+     * @enum {string}
+     */
+    video_write_mode?: 'fast' | 'balanced' | 'small';
+}
 
-export interface WanVace14bInpaintingOutput extends SharedType_524 {}
+export interface WanVace14bInpaintingOutput {
+    /** @description ZIP archive of all video frames if requested. */
+    frames_zip?: Components.File_1;
+    /**
+     * Prompt
+     * @description The prompt used for generation.
+     */
+    prompt: string;
+    /**
+     * Seed
+     * @description The seed used for generation.
+     */
+    seed: number;
+    /**
+     * @description The generated inpainting video file.
+     * @example {
+     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/wan-vace-inpainting-output.mp4"
+     *     }
+     */
+    video: Components.VideoFile_1;
+}
 
-export interface WanVace14bDepthInput extends SharedType_57e {}
+export interface WanVace14bDepthInput {
+    /**
+     * Acceleration
+     * @description Acceleration to use for inference. Options are 'none' or 'regular'. Accelerated inference will very slightly affect output, but will be significantly faster.
+     * @default regular
+     * @example regular
+     */
+    acceleration?: 'none' | 'low' | 'regular';
+    /**
+     * Aspect Ratio
+     * @description Aspect ratio of the generated video.
+     * @default auto
+     * @enum {string}
+     */
+    aspect_ratio?: 'auto' | '16:9' | '1:1' | '9:16';
+    /**
+     * Auto Downsample Min FPS
+     * @description The minimum frames per second to downsample the video to. This is used to help determine the auto downsample factor to try and find the lowest detail-preserving downsample factor. The default value is appropriate for most videos, if you are using a video with very fast motion, you may need to increase this value. If your video has a very low amount of motion, you could decrease this value to allow for higher downsampling and thus longer sequences.
+     * @default 15
+     * @example 15
+     */
+    auto_downsample_min_fps?: number;
+    /**
+     * Enable Auto Downsample
+     * @description If true, the model will automatically temporally downsample the video to an appropriate frame length for the model, then will interpolate it back to the original frame length.
+     * @default false
+     * @example false
+     */
+    enable_auto_downsample?: boolean;
+    /**
+     * Enable Prompt Expansion
+     * @description Whether to enable prompt expansion.
+     * @default false
+     * @example false
+     */
+    enable_prompt_expansion?: boolean;
+    /**
+     * Enable Safety Checker
+     * @description If set to true, the safety checker will be enabled.
+     * @default false
+     * @example true
+     */
+    enable_safety_checker?: boolean;
+    /**
+     * First Frame URL
+     * @description URL to the first frame of the video. If provided, the model will use this frame as a reference.
+     */
+    first_frame_url?: string;
+    /**
+     * Frames per Second
+     * @description Frames per second of the generated video. Must be between 5 to 30. Ignored if match_input_frames_per_second is true.
+     * @default 16
+     */
+    frames_per_second?: number;
+    /**
+     * Guidance Scale
+     * @description Guidance scale for classifier-free guidance. Higher values encourage the model to generate images closely related to the text prompt.
+     * @default 5
+     * @example 5
+     */
+    guidance_scale?: number;
+    /**
+     * Interpolator Model
+     * @description The model to use for frame interpolation. Options are 'rife' or 'film'.
+     * @default film
+     * @example film
+     * @enum {string}
+     */
+    interpolator_model?: 'rife' | 'film';
+    /**
+     * Last Frame URL
+     * @description URL to the last frame of the video. If provided, the model will use this frame as a reference.
+     */
+    last_frame_url?: string;
+    /**
+     * Match Input Frames Per Second
+     * @description If true, the frames per second of the generated video will match the input video. If false, the frames per second will be determined by the frames_per_second parameter.
+     * @default false
+     * @example false
+     */
+    match_input_frames_per_second?: boolean;
+    /**
+     * Match Input Number of Frames
+     * @description If true, the number of frames in the generated video will match the number of frames in the input video. If false, the number of frames will be determined by the num_frames parameter.
+     * @default false
+     * @example false
+     */
+    match_input_num_frames?: boolean;
+    /**
+     * Negative Prompt
+     * @description Negative prompt for video generation.
+     * @default letterboxing, borders, black bars, bright colors, overexposed, static, blurred details, subtitles, style, artwork, painting, picture, still, overall gray, worst quality, low quality, JPEG compression residue, ugly, incomplete, extra fingers, poorly drawn hands, poorly drawn faces, deformed, disfigured, malformed limbs, fused fingers, still picture, cluttered background, three legs, many people in the background, walking backwards
+     * @example letterboxing, borders, black bars, bright colors, overexposed, static, blurred details, subtitles, style, artwork, painting, picture, still, overall gray, worst quality, low quality, JPEG compression residue, ugly, incomplete, extra fingers, poorly drawn hands, poorly drawn faces, deformed, disfigured, malformed limbs, fused fingers, still picture, cluttered background, three legs, many people in the background, walking backwards
+     */
+    negative_prompt?: string;
+    /**
+     * Number of Frames
+     * @description Number of frames to generate. Must be between 81 to 241 (inclusive).
+     * @default 81
+     */
+    num_frames?: number;
+    /**
+     * Number of Inference Steps
+     * @description Number of inference steps for sampling. Higher values give better quality but take longer.
+     * @default 30
+     */
+    num_inference_steps?: number;
+    /**
+     * Number of Interpolated Frames
+     * @description Number of frames to interpolate between the original frames. A value of 0 means no interpolation.
+     * @default 0
+     * @example 0
+     */
+    num_interpolated_frames?: number;
+    /**
+     * Preprocess
+     * @description Whether to preprocess the input video.
+     * @default false
+     * @example false
+     */
+    preprocess?: boolean;
+    /**
+     * Prompt
+     * @description The text prompt to guide video generation.
+     * @example A confident woman strides toward the camera down a sun-drenched, empty street. Her vibrant summer dress, a flowing emerald green with delicate white floral embroidery, billows slightly in the gentle breeze.  She carries a stylish, woven straw bag, its natural tan contrasting beautifully with the dress. The dress's fabric shimmers subtly, catching the light. The white embroidery is intricate, each tiny flower meticulously detailed.  Her expression is focused, yet relaxed, radiating self-assuredness. Her auburn hair, partially pulled back in a loose braid, catches the sunlight, creating warm highlights. The street itself is paved with warm, grey cobblestones, reflecting the bright sun. The mood is optimistic and serene, emphasizing the woman's independence and carefree spirit. High resolution 4k
+     */
+    prompt: string;
+    /**
+     * Reference Image URLs
+     * @description URLs to source reference image. If provided, the model will use this image as reference.
+     */
+    ref_image_urls?: string[];
+    /**
+     * Resolution
+     * @description Resolution of the generated video.
+     * @default auto
+     * @enum {string}
+     */
+    resolution?: 'auto' | '240p' | '360p' | '480p' | '580p' | '720p';
+    /**
+     * Return Frames Zip
+     * @description If true, also return a ZIP file containing all generated frames.
+     * @default false
+     * @example false
+     */
+    return_frames_zip?: boolean;
+    /**
+     * Sampler
+     * @description Sampler to use for video generation.
+     * @default unipc
+     * @example unipc
+     * @enum {string}
+     */
+    sampler?: 'unipc' | 'dpm++' | 'euler';
+    /**
+     * Seed
+     * @description Random seed for reproducibility. If None, a random seed is chosen.
+     */
+    seed?: number;
+    /**
+     * Shift
+     * @description Shift parameter for video generation.
+     * @default 5
+     */
+    shift?: number;
+    /**
+     * Sync Mode
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
+     * @default false
+     * @example false
+     */
+    sync_mode?: boolean;
+    /**
+     * Temporal Downsample Factor
+     * @description Temporal downsample factor for the video. This is an integer value that determines how many frames to skip in the video. A value of 0 means no downsampling. For each downsample factor, one upsample factor will automatically be applied.
+     * @default 0
+     * @example 0
+     */
+    temporal_downsample_factor?: number;
+    /**
+     * Transparency Mode
+     * @description The transparency mode to apply to the first and last frames. This controls how the transparent areas of the first and last frames are filled.
+     * @default content_aware
+     * @example content_aware
+     * @enum {string}
+     */
+    transparency_mode?: 'content_aware' | 'white' | 'black';
+    /**
+     * Video Quality
+     * @description The quality of the generated video.
+     * @default high
+     * @example high
+     * @enum {string}
+     */
+    video_quality?: 'low' | 'medium' | 'high' | 'maximum';
+    /**
+     * Video URL
+     * @description URL to the source video file. Required for depth task.
+     * @example https://storage.googleapis.com/falserverless/example_inputs/wan-vace-depth-video.mp4
+     */
+    video_url: string;
+    /**
+     * Video Write Mode
+     * @description The write mode of the generated video.
+     * @default balanced
+     * @example balanced
+     * @enum {string}
+     */
+    video_write_mode?: 'fast' | 'balanced' | 'small';
+}
 
-export interface WanVace14bDepthOutput extends SharedType_1fe {}
+export interface WanVace14bDepthOutput {
+    /** @description ZIP archive of all video frames if requested. */
+    frames_zip?: Components.File_1;
+    /**
+     * Prompt
+     * @description The prompt used for generation.
+     */
+    prompt: string;
+    /**
+     * Seed
+     * @description The seed used for generation.
+     */
+    seed: number;
+    /**
+     * @description The generated depth video file.
+     * @example {
+     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/wan-vace-depth-output.mp4"
+     *     }
+     */
+    video: Components.VideoFile_1;
+}
 
 export interface WanVace14bInput {
     /**
@@ -21110,25 +20331,1240 @@ export interface Wan25PreviewImageToImageOutput {
     seeds: number[];
 }
 
-export interface Wan22VaceFunA14bReframeInput extends SharedType_e15 {}
+export interface Wan22VaceFunA14bReframeInput {
+    /**
+     * Acceleration
+     * @description Acceleration to use for inference. Options are 'none' or 'regular'. Accelerated inference will very slightly affect output, but will be significantly faster.
+     * @default regular
+     * @example regular
+     * @enum {string}
+     */
+    acceleration?: 'none' | 'low' | 'regular';
+    /**
+     * Aspect Ratio
+     * @description Aspect ratio of the generated video.
+     * @default auto
+     * @enum {string}
+     */
+    aspect_ratio?: 'auto' | '16:9' | '1:1' | '9:16';
+    /**
+     * Auto Downsample Min FPS
+     * @description The minimum frames per second to downsample the video to. This is used to help determine the auto downsample factor to try and find the lowest detail-preserving downsample factor. The default value is appropriate for most videos, if you are using a video with very fast motion, you may need to increase this value. If your video has a very low amount of motion, you could decrease this value to allow for higher downsampling and thus longer sequences.
+     * @default 15
+     * @example 15
+     */
+    auto_downsample_min_fps?: number;
+    /**
+     * Enable Auto Downsample
+     * @description If true, the model will automatically temporally downsample the video to an appropriate frame length for the model, then will interpolate it back to the original frame length.
+     * @default false
+     * @example false
+     */
+    enable_auto_downsample?: boolean;
+    /**
+     * Enable Prompt Expansion
+     * @description Whether to enable prompt expansion.
+     * @default false
+     * @example false
+     */
+    enable_prompt_expansion?: boolean;
+    /**
+     * Enable Safety Checker
+     * @description If set to true, the safety checker will be enabled.
+     * @default false
+     * @example true
+     */
+    enable_safety_checker?: boolean;
+    /**
+     * First Frame URL
+     * @description URL to the first frame of the video. If provided, the model will use this frame as a reference.
+     */
+    first_frame_url?: string;
+    /**
+     * Frames per Second
+     * @description Frames per second of the generated video. Must be between 5 to 30. Ignored if match_input_frames_per_second is true.
+     * @default 16
+     */
+    frames_per_second?: number;
+    /**
+     * Guidance Scale
+     * @description Guidance scale for classifier-free guidance. Higher values encourage the model to generate images closely related to the text prompt.
+     * @default 5
+     * @example 5
+     */
+    guidance_scale?: number;
+    /**
+     * Interpolator Model
+     * @description The model to use for frame interpolation. Options are 'rife' or 'film'.
+     * @default film
+     * @example film
+     * @enum {string}
+     */
+    interpolator_model?: 'rife' | 'film';
+    /**
+     * Last Frame URL
+     * @description URL to the last frame of the video. If provided, the model will use this frame as a reference.
+     */
+    last_frame_url?: string;
+    /**
+     * Match Input Frames Per Second
+     * @description If true, the frames per second of the generated video will match the input video. If false, the frames per second will be determined by the frames_per_second parameter.
+     * @default true
+     * @example true
+     */
+    match_input_frames_per_second?: boolean;
+    /**
+     * Match Input Number of Frames
+     * @description If true, the number of frames in the generated video will match the number of frames in the input video. If false, the number of frames will be determined by the num_frames parameter.
+     * @default true
+     * @example true
+     */
+    match_input_num_frames?: boolean;
+    /**
+     * Negative Prompt
+     * @description Negative prompt for video generation.
+     * @default letterboxing, borders, black bars, bright colors, overexposed, static, blurred details, subtitles, style, artwork, painting, picture, still, overall gray, worst quality, low quality, JPEG compression residue, ugly, incomplete, extra fingers, poorly drawn hands, poorly drawn faces, deformed, disfigured, malformed limbs, fused fingers, still picture, cluttered background, three legs, many people in the background, walking backwards
+     * @example letterboxing, borders, black bars, bright colors, overexposed, static, blurred details, subtitles, style, artwork, painting, picture, still, overall gray, worst quality, low quality, JPEG compression residue, ugly, incomplete, extra fingers, poorly drawn hands, poorly drawn faces, deformed, disfigured, malformed limbs, fused fingers, still picture, cluttered background, three legs, many people in the background, walking backwards
+     */
+    negative_prompt?: string;
+    /**
+     * Number of Frames
+     * @description Number of frames to generate. Must be between 81 to 241 (inclusive).
+     * @default 81
+     */
+    num_frames?: number;
+    /**
+     * Number of Inference Steps
+     * @description Number of inference steps for sampling. Higher values give better quality but take longer.
+     * @default 30
+     */
+    num_inference_steps?: number;
+    /**
+     * Number of Interpolated Frames
+     * @description Number of frames to interpolate between the original frames. A value of 0 means no interpolation.
+     * @default 0
+     * @example 0
+     */
+    num_interpolated_frames?: number;
+    /**
+     * Prompt
+     * @description The text prompt to guide video generation. Optional for reframing.
+     * @default
+     * @example
+     */
+    prompt?: string;
+    /**
+     * Resolution
+     * @description Resolution of the generated video.
+     * @default auto
+     * @enum {string}
+     */
+    resolution?: 'auto' | '240p' | '360p' | '480p' | '580p' | '720p';
+    /**
+     * Return Frames Zip
+     * @description If true, also return a ZIP file containing all generated frames.
+     * @default false
+     * @example false
+     */
+    return_frames_zip?: boolean;
+    /**
+     * Sampler
+     * @description Sampler to use for video generation.
+     * @default unipc
+     * @example unipc
+     * @enum {string}
+     */
+    sampler?: 'unipc' | 'dpm++' | 'euler';
+    /**
+     * Seed
+     * @description Random seed for reproducibility. If None, a random seed is chosen.
+     */
+    seed?: number;
+    /**
+     * Shift
+     * @description Shift parameter for video generation.
+     * @default 5
+     */
+    shift?: number;
+    /**
+     * Sync Mode
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
+     * @default false
+     * @example false
+     */
+    sync_mode?: boolean;
+    /**
+     * Temporal Downsample Factor
+     * @description Temporal downsample factor for the video. This is an integer value that determines how many frames to skip in the video. A value of 0 means no downsampling. For each downsample factor, one upsample factor will automatically be applied.
+     * @default 0
+     * @example 0
+     */
+    temporal_downsample_factor?: number;
+    /**
+     * Transparency Mode
+     * @description The transparency mode to apply to the first and last frames. This controls how the transparent areas of the first and last frames are filled.
+     * @default content_aware
+     * @example content_aware
+     * @enum {string}
+     */
+    transparency_mode?: 'content_aware' | 'white' | 'black';
+    /**
+     * Trim Borders
+     * @description Whether to trim borders from the video.
+     * @default true
+     * @example true
+     */
+    trim_borders?: boolean;
+    /**
+     * Video Quality
+     * @description The quality of the generated video.
+     * @default high
+     * @example high
+     * @enum {string}
+     */
+    video_quality?: 'low' | 'medium' | 'high' | 'maximum';
+    /**
+     * Video URL
+     * @description URL to the source video file. This video will be used as a reference for the reframe task.
+     * @example https://storage.googleapis.com/falserverless/web-examples/wan/t2v.mp4
+     */
+    video_url: string;
+    /**
+     * Video Write Mode
+     * @description The write mode of the generated video.
+     * @default balanced
+     * @example balanced
+     * @enum {string}
+     */
+    video_write_mode?: 'fast' | 'balanced' | 'small';
+    /**
+     * Zoom Factor
+     * @description Zoom factor for the video. When this value is greater than 0, the video will be zoomed in by this factor (in relation to the canvas size,) cutting off the edges of the video. A value of 0 means no zoom.
+     * @default 0
+     * @example 0
+     */
+    zoom_factor?: number;
+}
 
-export interface Wan22VaceFunA14bReframeOutput extends SharedType_d17 {}
+export interface Wan22VaceFunA14bReframeOutput {
+    /**
+     * Frames Zip
+     * @description ZIP archive of all video frames if requested.
+     */
+    frames_zip?: Components.File;
+    /**
+     * Prompt
+     * @description The prompt used for generation.
+     */
+    prompt: string;
+    /**
+     * Seed
+     * @description The seed used for generation.
+     */
+    seed: number;
+    /**
+     * Video
+     * @description The generated reframe video file.
+     * @example {
+     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/wan-vace-reframe-output.mp4"
+     *     }
+     */
+    video: Components.VideoFile;
+}
 
-export interface Wan22VaceFunA14bPoseInput extends SharedType_397 {}
+export interface Wan22VaceFunA14bPoseInput {
+    /**
+     * Acceleration
+     * @description Acceleration to use for inference. Options are 'none' or 'regular'. Accelerated inference will very slightly affect output, but will be significantly faster.
+     * @default regular
+     * @example regular
+     * @enum {string}
+     */
+    acceleration?: 'none' | 'low' | 'regular';
+    /**
+     * Aspect Ratio
+     * @description Aspect ratio of the generated video.
+     * @default auto
+     * @enum {string}
+     */
+    aspect_ratio?: 'auto' | '16:9' | '1:1' | '9:16';
+    /**
+     * Auto Downsample Min FPS
+     * @description The minimum frames per second to downsample the video to. This is used to help determine the auto downsample factor to try and find the lowest detail-preserving downsample factor. The default value is appropriate for most videos, if you are using a video with very fast motion, you may need to increase this value. If your video has a very low amount of motion, you could decrease this value to allow for higher downsampling and thus longer sequences.
+     * @default 15
+     * @example 15
+     */
+    auto_downsample_min_fps?: number;
+    /**
+     * Enable Auto Downsample
+     * @description If true, the model will automatically temporally downsample the video to an appropriate frame length for the model, then will interpolate it back to the original frame length.
+     * @default false
+     * @example false
+     */
+    enable_auto_downsample?: boolean;
+    /**
+     * Enable Prompt Expansion
+     * @description Whether to enable prompt expansion.
+     * @default false
+     * @example false
+     */
+    enable_prompt_expansion?: boolean;
+    /**
+     * Enable Safety Checker
+     * @description If set to true, the safety checker will be enabled.
+     * @default false
+     * @example true
+     */
+    enable_safety_checker?: boolean;
+    /**
+     * First Frame URL
+     * @description URL to the first frame of the video. If provided, the model will use this frame as a reference.
+     */
+    first_frame_url?: string;
+    /**
+     * Frames per Second
+     * @description Frames per second of the generated video. Must be between 5 to 30. Ignored if match_input_frames_per_second is true.
+     * @default 16
+     */
+    frames_per_second?: number;
+    /**
+     * Guidance Scale
+     * @description Guidance scale for classifier-free guidance. Higher values encourage the model to generate images closely related to the text prompt.
+     * @default 5
+     * @example 5
+     */
+    guidance_scale?: number;
+    /**
+     * Interpolator Model
+     * @description The model to use for frame interpolation. Options are 'rife' or 'film'.
+     * @default film
+     * @example film
+     * @enum {string}
+     */
+    interpolator_model?: 'rife' | 'film';
+    /**
+     * Last Frame URL
+     * @description URL to the last frame of the video. If provided, the model will use this frame as a reference.
+     */
+    last_frame_url?: string;
+    /**
+     * Match Input Frames Per Second
+     * @description If true, the frames per second of the generated video will match the input video. If false, the frames per second will be determined by the frames_per_second parameter.
+     * @default false
+     * @example false
+     */
+    match_input_frames_per_second?: boolean;
+    /**
+     * Match Input Number of Frames
+     * @description If true, the number of frames in the generated video will match the number of frames in the input video. If false, the number of frames will be determined by the num_frames parameter.
+     * @default false
+     * @example false
+     */
+    match_input_num_frames?: boolean;
+    /**
+     * Negative Prompt
+     * @description Negative prompt for video generation.
+     * @default letterboxing, borders, black bars, bright colors, overexposed, static, blurred details, subtitles, style, artwork, painting, picture, still, overall gray, worst quality, low quality, JPEG compression residue, ugly, incomplete, extra fingers, poorly drawn hands, poorly drawn faces, deformed, disfigured, malformed limbs, fused fingers, still picture, cluttered background, three legs, many people in the background, walking backwards
+     * @example letterboxing, borders, black bars, bright colors, overexposed, static, blurred details, subtitles, style, artwork, painting, picture, still, overall gray, worst quality, low quality, JPEG compression residue, ugly, incomplete, extra fingers, poorly drawn hands, poorly drawn faces, deformed, disfigured, malformed limbs, fused fingers, still picture, cluttered background, three legs, many people in the background, walking backwards
+     */
+    negative_prompt?: string;
+    /**
+     * Number of Frames
+     * @description Number of frames to generate. Must be between 81 to 241 (inclusive).
+     * @default 81
+     */
+    num_frames?: number;
+    /**
+     * Number of Inference Steps
+     * @description Number of inference steps for sampling. Higher values give better quality but take longer.
+     * @default 30
+     */
+    num_inference_steps?: number;
+    /**
+     * Number of Interpolated Frames
+     * @description Number of frames to interpolate between the original frames. A value of 0 means no interpolation.
+     * @default 0
+     * @example 0
+     */
+    num_interpolated_frames?: number;
+    /**
+     * Preprocess
+     * @description Whether to preprocess the input video.
+     * @default false
+     * @example false
+     */
+    preprocess?: boolean;
+    /**
+     * Prompt
+     * @description The text prompt to guide video generation. For pose task, the prompt should describe the desired pose and action of the subject in the video.
+     * @example A sharply dressed man walks toward the camera down a sun-drenched hallway.  Medium shot: He's framed from the knees up, his confident stride filling the frame.  His navy blue business suit is impeccably tailored, the fabric subtly shimmering under the light streaming through the tall, arched windows lining the hallway. Close-up:  The rich texture of the suit's wool is visible, each thread reflecting the light.  His crisp white shirt contrasts beautifully with the deep crimson of his silk tie, the knot perfectly formed.  The sunlight highlights the subtle sheen of his polished shoes.  The windows cast long shadows, highlighting the architectural detail of the hallway, creating a sense of both elegance and movement. High resolution 4k.
+     */
+    prompt: string;
+    /**
+     * Reference Image URLs
+     * @description URLs to source reference image. If provided, the model will use this image as reference.
+     */
+    ref_image_urls?: string[];
+    /**
+     * Resolution
+     * @description Resolution of the generated video.
+     * @default auto
+     * @enum {string}
+     */
+    resolution?: 'auto' | '240p' | '360p' | '480p' | '580p' | '720p';
+    /**
+     * Return Frames Zip
+     * @description If true, also return a ZIP file containing all generated frames.
+     * @default false
+     * @example false
+     */
+    return_frames_zip?: boolean;
+    /**
+     * Sampler
+     * @description Sampler to use for video generation.
+     * @default unipc
+     * @example unipc
+     * @enum {string}
+     */
+    sampler?: 'unipc' | 'dpm++' | 'euler';
+    /**
+     * Seed
+     * @description Random seed for reproducibility. If None, a random seed is chosen.
+     */
+    seed?: number;
+    /**
+     * Shift
+     * @description Shift parameter for video generation.
+     * @default 5
+     */
+    shift?: number;
+    /**
+     * Sync Mode
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
+     * @default false
+     * @example false
+     */
+    sync_mode?: boolean;
+    /**
+     * Temporal Downsample Factor
+     * @description Temporal downsample factor for the video. This is an integer value that determines how many frames to skip in the video. A value of 0 means no downsampling. For each downsample factor, one upsample factor will automatically be applied.
+     * @default 0
+     * @example 0
+     */
+    temporal_downsample_factor?: number;
+    /**
+     * Transparency Mode
+     * @description The transparency mode to apply to the first and last frames. This controls how the transparent areas of the first and last frames are filled.
+     * @default content_aware
+     * @example content_aware
+     * @enum {string}
+     */
+    transparency_mode?: 'content_aware' | 'white' | 'black';
+    /**
+     * Video Quality
+     * @description The quality of the generated video.
+     * @default high
+     * @example high
+     * @enum {string}
+     */
+    video_quality?: 'low' | 'medium' | 'high' | 'maximum';
+    /**
+     * Video URL
+     * @description URL to the source video file. Required for pose task.
+     * @example https://storage.googleapis.com/falserverless/example_inputs/wan-vace-pose-video.mp4
+     */
+    video_url: string;
+    /**
+     * Video Write Mode
+     * @description The write mode of the generated video.
+     * @default balanced
+     * @example balanced
+     * @enum {string}
+     */
+    video_write_mode?: 'fast' | 'balanced' | 'small';
+}
 
-export interface Wan22VaceFunA14bPoseOutput extends SharedType_fb1 {}
+export interface Wan22VaceFunA14bPoseOutput {
+    /**
+     * Frames Zip
+     * @description ZIP archive of all video frames if requested.
+     */
+    frames_zip?: Components.File;
+    /**
+     * Prompt
+     * @description The prompt used for generation.
+     */
+    prompt: string;
+    /**
+     * Seed
+     * @description The seed used for generation.
+     */
+    seed: number;
+    /**
+     * Video
+     * @description The generated pose video file.
+     * @example {
+     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/wan-vace-pose-output.mp4"
+     *     }
+     */
+    video: Components.VideoFile;
+}
 
-export interface Wan22VaceFunA14bOutpaintingInput extends SharedType_913 {}
+export interface Wan22VaceFunA14bOutpaintingInput {
+    /**
+     * Acceleration
+     * @description Acceleration to use for inference. Options are 'none' or 'regular'. Accelerated inference will very slightly affect output, but will be significantly faster.
+     * @default regular
+     * @example regular
+     * @enum {string}
+     */
+    acceleration?: 'none' | 'low' | 'regular';
+    /**
+     * Aspect Ratio
+     * @description Aspect ratio of the generated video.
+     * @default auto
+     * @enum {string}
+     */
+    aspect_ratio?: 'auto' | '16:9' | '1:1' | '9:16';
+    /**
+     * Auto Downsample Min FPS
+     * @description The minimum frames per second to downsample the video to. This is used to help determine the auto downsample factor to try and find the lowest detail-preserving downsample factor. The default value is appropriate for most videos, if you are using a video with very fast motion, you may need to increase this value. If your video has a very low amount of motion, you could decrease this value to allow for higher downsampling and thus longer sequences.
+     * @default 15
+     * @example 15
+     */
+    auto_downsample_min_fps?: number;
+    /**
+     * Enable Auto Downsample
+     * @description If true, the model will automatically temporally downsample the video to an appropriate frame length for the model, then will interpolate it back to the original frame length.
+     * @default false
+     * @example false
+     */
+    enable_auto_downsample?: boolean;
+    /**
+     * Enable Prompt Expansion
+     * @description Whether to enable prompt expansion.
+     * @default false
+     * @example false
+     */
+    enable_prompt_expansion?: boolean;
+    /**
+     * Enable Safety Checker
+     * @description If set to true, the safety checker will be enabled.
+     * @default false
+     * @example true
+     */
+    enable_safety_checker?: boolean;
+    /**
+     * Expand Bottom
+     * @description Whether to expand the video to the bottom.
+     * @default false
+     * @example true
+     */
+    expand_bottom?: boolean;
+    /**
+     * Expand Left
+     * @description Whether to expand the video to the left.
+     * @default false
+     * @example true
+     */
+    expand_left?: boolean;
+    /**
+     * Expand Ratio
+     * @description Amount of expansion. This is a float value between 0 and 1, where 0.25 adds 25% to the original video size on the specified sides.
+     * @default 0.25
+     * @example 0.25
+     */
+    expand_ratio?: number;
+    /**
+     * Expand Right
+     * @description Whether to expand the video to the right.
+     * @default false
+     * @example true
+     */
+    expand_right?: boolean;
+    /**
+     * Expand Top
+     * @description Whether to expand the video to the top.
+     * @default false
+     * @example true
+     */
+    expand_top?: boolean;
+    /**
+     * First Frame URL
+     * @description URL to the first frame of the video. If provided, the model will use this frame as a reference.
+     */
+    first_frame_url?: string;
+    /**
+     * Frames per Second
+     * @description Frames per second of the generated video. Must be between 5 to 30. Ignored if match_input_frames_per_second is true.
+     * @default 16
+     */
+    frames_per_second?: number;
+    /**
+     * Guidance Scale
+     * @description Guidance scale for classifier-free guidance. Higher values encourage the model to generate images closely related to the text prompt.
+     * @default 5
+     * @example 5
+     */
+    guidance_scale?: number;
+    /**
+     * Interpolator Model
+     * @description The model to use for frame interpolation. Options are 'rife' or 'film'.
+     * @default film
+     * @example film
+     * @enum {string}
+     */
+    interpolator_model?: 'rife' | 'film';
+    /**
+     * Last Frame URL
+     * @description URL to the last frame of the video. If provided, the model will use this frame as a reference.
+     */
+    last_frame_url?: string;
+    /**
+     * Match Input Frames Per Second
+     * @description If true, the frames per second of the generated video will match the input video. If false, the frames per second will be determined by the frames_per_second parameter.
+     * @default false
+     * @example false
+     */
+    match_input_frames_per_second?: boolean;
+    /**
+     * Match Input Number of Frames
+     * @description If true, the number of frames in the generated video will match the number of frames in the input video. If false, the number of frames will be determined by the num_frames parameter.
+     * @default false
+     * @example false
+     */
+    match_input_num_frames?: boolean;
+    /**
+     * Negative Prompt
+     * @description Negative prompt for video generation.
+     * @default letterboxing, borders, black bars, bright colors, overexposed, static, blurred details, subtitles, style, artwork, painting, picture, still, overall gray, worst quality, low quality, JPEG compression residue, ugly, incomplete, extra fingers, poorly drawn hands, poorly drawn faces, deformed, disfigured, malformed limbs, fused fingers, still picture, cluttered background, three legs, many people in the background, walking backwards
+     * @example letterboxing, borders, black bars, bright colors, overexposed, static, blurred details, subtitles, style, artwork, painting, picture, still, overall gray, worst quality, low quality, JPEG compression residue, ugly, incomplete, extra fingers, poorly drawn hands, poorly drawn faces, deformed, disfigured, malformed limbs, fused fingers, still picture, cluttered background, three legs, many people in the background, walking backwards
+     */
+    negative_prompt?: string;
+    /**
+     * Number of Frames
+     * @description Number of frames to generate. Must be between 81 to 241 (inclusive).
+     * @default 81
+     */
+    num_frames?: number;
+    /**
+     * Number of Inference Steps
+     * @description Number of inference steps for sampling. Higher values give better quality but take longer.
+     * @default 30
+     */
+    num_inference_steps?: number;
+    /**
+     * Number of Interpolated Frames
+     * @description Number of frames to interpolate between the original frames. A value of 0 means no interpolation.
+     * @default 0
+     * @example 0
+     */
+    num_interpolated_frames?: number;
+    /**
+     * Prompt
+     * @description The text prompt to guide video generation.
+     * @example A lone woman strides through the neon-drenched streets of Tokyo at night.  Her crimson dress, a vibrant splash of color against the deep blues and blacks of the cityscape, flows slightly with each step. A tailored black jacket, crisp and elegant, contrasts sharply with the dress's rich texture. Medium shot:  The city hums around her, blurred lights creating streaks of color in the background. Close-up:  The fabric of her dress catches the streetlight's glow, revealing a subtle silk sheen and the intricate stitching at the hem. Her black jacket’s subtle texture is visible – a fine wool perhaps, with a matte finish. The overall mood is one of quiet confidence and mystery, a vibrant woman navigating a bustling, nocturnal landscape. High resolution 4k.
+     */
+    prompt: string;
+    /**
+     * Reference Image URLs
+     * @description URLs to source reference image. If provided, the model will use this image as reference.
+     */
+    ref_image_urls?: string[];
+    /**
+     * Resolution
+     * @description Resolution of the generated video.
+     * @default auto
+     * @enum {string}
+     */
+    resolution?: 'auto' | '240p' | '360p' | '480p' | '580p' | '720p';
+    /**
+     * Return Frames Zip
+     * @description If true, also return a ZIP file containing all generated frames.
+     * @default false
+     * @example false
+     */
+    return_frames_zip?: boolean;
+    /**
+     * Sampler
+     * @description Sampler to use for video generation.
+     * @default unipc
+     * @example unipc
+     * @enum {string}
+     */
+    sampler?: 'unipc' | 'dpm++' | 'euler';
+    /**
+     * Seed
+     * @description Random seed for reproducibility. If None, a random seed is chosen.
+     */
+    seed?: number;
+    /**
+     * Shift
+     * @description Shift parameter for video generation.
+     * @default 5
+     */
+    shift?: number;
+    /**
+     * Sync Mode
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
+     * @default false
+     * @example false
+     */
+    sync_mode?: boolean;
+    /**
+     * Temporal Downsample Factor
+     * @description Temporal downsample factor for the video. This is an integer value that determines how many frames to skip in the video. A value of 0 means no downsampling. For each downsample factor, one upsample factor will automatically be applied.
+     * @default 0
+     * @example 0
+     */
+    temporal_downsample_factor?: number;
+    /**
+     * Transparency Mode
+     * @description The transparency mode to apply to the first and last frames. This controls how the transparent areas of the first and last frames are filled.
+     * @default content_aware
+     * @example content_aware
+     * @enum {string}
+     */
+    transparency_mode?: 'content_aware' | 'white' | 'black';
+    /**
+     * Video Quality
+     * @description The quality of the generated video.
+     * @default high
+     * @example high
+     * @enum {string}
+     */
+    video_quality?: 'low' | 'medium' | 'high' | 'maximum';
+    /**
+     * Video URL
+     * @description URL to the source video file. Required for outpainting.
+     * @example https://storage.googleapis.com/falserverless/web-examples/wan/t2v.mp4
+     */
+    video_url: string;
+    /**
+     * Video Write Mode
+     * @description The write mode of the generated video.
+     * @default balanced
+     * @example balanced
+     * @enum {string}
+     */
+    video_write_mode?: 'fast' | 'balanced' | 'small';
+}
 
-export interface Wan22VaceFunA14bOutpaintingOutput extends SharedType_164 {}
+export interface Wan22VaceFunA14bOutpaintingOutput {
+    /**
+     * Frames Zip
+     * @description ZIP archive of all video frames if requested.
+     */
+    frames_zip?: Components.File;
+    /**
+     * Prompt
+     * @description The prompt used for generation.
+     */
+    prompt: string;
+    /**
+     * Seed
+     * @description The seed used for generation.
+     */
+    seed: number;
+    /**
+     * Video
+     * @description The generated outpainting video file.
+     * @example {
+     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/wan-vace-outpainting-output.mp4"
+     *     }
+     */
+    video: Components.VideoFile;
+}
 
-export interface Wan22VaceFunA14bInpaintingInput extends SharedType_0ab {}
+export interface Wan22VaceFunA14bInpaintingInput {
+    /**
+     * Acceleration
+     * @description Acceleration to use for inference. Options are 'none' or 'regular'. Accelerated inference will very slightly affect output, but will be significantly faster.
+     * @default regular
+     * @example regular
+     * @enum {string}
+     */
+    acceleration?: 'none' | 'low' | 'regular';
+    /**
+     * Aspect Ratio
+     * @description Aspect ratio of the generated video.
+     * @default auto
+     * @enum {string}
+     */
+    aspect_ratio?: 'auto' | '16:9' | '1:1' | '9:16';
+    /**
+     * Auto Downsample Min FPS
+     * @description The minimum frames per second to downsample the video to. This is used to help determine the auto downsample factor to try and find the lowest detail-preserving downsample factor. The default value is appropriate for most videos, if you are using a video with very fast motion, you may need to increase this value. If your video has a very low amount of motion, you could decrease this value to allow for higher downsampling and thus longer sequences.
+     * @default 15
+     * @example 15
+     */
+    auto_downsample_min_fps?: number;
+    /**
+     * Enable Auto Downsample
+     * @description If true, the model will automatically temporally downsample the video to an appropriate frame length for the model, then will interpolate it back to the original frame length.
+     * @default false
+     * @example false
+     */
+    enable_auto_downsample?: boolean;
+    /**
+     * Enable Prompt Expansion
+     * @description Whether to enable prompt expansion.
+     * @default false
+     * @example false
+     */
+    enable_prompt_expansion?: boolean;
+    /**
+     * Enable Safety Checker
+     * @description If set to true, the safety checker will be enabled.
+     * @default false
+     * @example true
+     */
+    enable_safety_checker?: boolean;
+    /**
+     * First Frame URL
+     * @description URL to the first frame of the video. If provided, the model will use this frame as a reference.
+     */
+    first_frame_url?: string;
+    /**
+     * Frames per Second
+     * @description Frames per second of the generated video. Must be between 5 to 30. Ignored if match_input_frames_per_second is true.
+     * @default 16
+     */
+    frames_per_second?: number;
+    /**
+     * Guidance Scale
+     * @description Guidance scale for classifier-free guidance. Higher values encourage the model to generate images closely related to the text prompt.
+     * @default 5
+     * @example 5
+     */
+    guidance_scale?: number;
+    /**
+     * Interpolator Model
+     * @description The model to use for frame interpolation. Options are 'rife' or 'film'.
+     * @default film
+     * @example film
+     * @enum {string}
+     */
+    interpolator_model?: 'rife' | 'film';
+    /**
+     * Last Frame URL
+     * @description URL to the last frame of the video. If provided, the model will use this frame as a reference.
+     */
+    last_frame_url?: string;
+    /**
+     * Mask Image URL
+     * @description URL to the guiding mask file. If provided, the model will use this mask as a reference to create masked video using salient mask tracking. Will be ignored if mask_video_url is provided.
+     */
+    mask_image_url?: string;
+    /**
+     * Mask Video URL
+     * @description URL to the source mask file. Required for inpainting.
+     * @example https://storage.googleapis.com/falserverless/vace/src_mask.mp4
+     */
+    mask_video_url?: string;
+    /**
+     * Match Input Frames Per Second
+     * @description If true, the frames per second of the generated video will match the input video. If false, the frames per second will be determined by the frames_per_second parameter.
+     * @default false
+     * @example false
+     */
+    match_input_frames_per_second?: boolean;
+    /**
+     * Match Input Number of Frames
+     * @description If true, the number of frames in the generated video will match the number of frames in the input video. If false, the number of frames will be determined by the num_frames parameter.
+     * @default false
+     * @example false
+     */
+    match_input_num_frames?: boolean;
+    /**
+     * Negative Prompt
+     * @description Negative prompt for video generation.
+     * @default letterboxing, borders, black bars, bright colors, overexposed, static, blurred details, subtitles, style, artwork, painting, picture, still, overall gray, worst quality, low quality, JPEG compression residue, ugly, incomplete, extra fingers, poorly drawn hands, poorly drawn faces, deformed, disfigured, malformed limbs, fused fingers, still picture, cluttered background, three legs, many people in the background, walking backwards
+     * @example letterboxing, borders, black bars, bright colors, overexposed, static, blurred details, subtitles, style, artwork, painting, picture, still, overall gray, worst quality, low quality, JPEG compression residue, ugly, incomplete, extra fingers, poorly drawn hands, poorly drawn faces, deformed, disfigured, malformed limbs, fused fingers, still picture, cluttered background, three legs, many people in the background, walking backwards
+     */
+    negative_prompt?: string;
+    /**
+     * Number of Frames
+     * @description Number of frames to generate. Must be between 81 to 241 (inclusive).
+     * @default 81
+     */
+    num_frames?: number;
+    /**
+     * Number of Inference Steps
+     * @description Number of inference steps for sampling. Higher values give better quality but take longer.
+     * @default 30
+     */
+    num_inference_steps?: number;
+    /**
+     * Number of Interpolated Frames
+     * @description Number of frames to interpolate between the original frames. A value of 0 means no interpolation.
+     * @default 0
+     * @example 0
+     */
+    num_interpolated_frames?: number;
+    /**
+     * Preprocess
+     * @description Whether to preprocess the input video.
+     * @default false
+     * @example false
+     */
+    preprocess?: boolean;
+    /**
+     * Prompt
+     * @description The text prompt to guide video generation.
+     * @example The video shows a man riding a horse on a vast grassland. He has long lavender hair and wears a traditional dress of a white top and black pants. The animation style makes him look like he is doing some kind of outdoor activity or performing. The background is a spectacular mountain range and cloud sky, giving a sense of tranquility and vastness. The entire video is shot from a fixed angle, focusing on the rider and his horse.
+     */
+    prompt: string;
+    /**
+     * Reference Image URLs
+     * @description Urls to source reference image. If provided, the model will use this image as reference.
+     * @example [
+     *       "https://storage.googleapis.com/falserverless/vace/src_ref_image_1.png"
+     *     ]
+     */
+    ref_image_urls?: string[];
+    /**
+     * Resolution
+     * @description Resolution of the generated video.
+     * @default auto
+     * @enum {string}
+     */
+    resolution?: 'auto' | '240p' | '360p' | '480p' | '580p' | '720p';
+    /**
+     * Return Frames Zip
+     * @description If true, also return a ZIP file containing all generated frames.
+     * @default false
+     * @example false
+     */
+    return_frames_zip?: boolean;
+    /**
+     * Sampler
+     * @description Sampler to use for video generation.
+     * @default unipc
+     * @example unipc
+     * @enum {string}
+     */
+    sampler?: 'unipc' | 'dpm++' | 'euler';
+    /**
+     * Seed
+     * @description Random seed for reproducibility. If None, a random seed is chosen.
+     */
+    seed?: number;
+    /**
+     * Shift
+     * @description Shift parameter for video generation.
+     * @default 5
+     */
+    shift?: number;
+    /**
+     * Sync Mode
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
+     * @default false
+     * @example false
+     */
+    sync_mode?: boolean;
+    /**
+     * Temporal Downsample Factor
+     * @description Temporal downsample factor for the video. This is an integer value that determines how many frames to skip in the video. A value of 0 means no downsampling. For each downsample factor, one upsample factor will automatically be applied.
+     * @default 0
+     * @example 0
+     */
+    temporal_downsample_factor?: number;
+    /**
+     * Transparency Mode
+     * @description The transparency mode to apply to the first and last frames. This controls how the transparent areas of the first and last frames are filled.
+     * @default content_aware
+     * @example content_aware
+     * @enum {string}
+     */
+    transparency_mode?: 'content_aware' | 'white' | 'black';
+    /**
+     * Video Quality
+     * @description The quality of the generated video.
+     * @default high
+     * @example high
+     * @enum {string}
+     */
+    video_quality?: 'low' | 'medium' | 'high' | 'maximum';
+    /**
+     * Video URL
+     * @description URL to the source video file. Required for inpainting.
+     * @example https://storage.googleapis.com/falserverless/vace/src_video.mp4
+     */
+    video_url: string;
+    /**
+     * Video Write Mode
+     * @description The write mode of the generated video.
+     * @default balanced
+     * @example balanced
+     * @enum {string}
+     */
+    video_write_mode?: 'fast' | 'balanced' | 'small';
+}
 
-export interface Wan22VaceFunA14bInpaintingOutput extends SharedType_524 {}
+export interface Wan22VaceFunA14bInpaintingOutput {
+    /**
+     * Frames Zip
+     * @description ZIP archive of all video frames if requested.
+     */
+    frames_zip?: Components.File;
+    /**
+     * Prompt
+     * @description The prompt used for generation.
+     */
+    prompt: string;
+    /**
+     * Seed
+     * @description The seed used for generation.
+     */
+    seed: number;
+    /**
+     * Video
+     * @description The generated inpainting video file.
+     * @example {
+     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/wan-vace-inpainting-output.mp4"
+     *     }
+     */
+    video: Components.VideoFile;
+}
 
-export interface Wan22VaceFunA14bDepthInput extends SharedType_57e {}
+export interface Wan22VaceFunA14bDepthInput {
+    /**
+     * Acceleration
+     * @description Acceleration to use for inference. Options are 'none' or 'regular'. Accelerated inference will very slightly affect output, but will be significantly faster.
+     * @default regular
+     * @example regular
+     * @enum {string}
+     */
+    acceleration?: 'none' | 'low' | 'regular';
+    /**
+     * Aspect Ratio
+     * @description Aspect ratio of the generated video.
+     * @default auto
+     * @enum {string}
+     */
+    aspect_ratio?: 'auto' | '16:9' | '1:1' | '9:16';
+    /**
+     * Auto Downsample Min FPS
+     * @description The minimum frames per second to downsample the video to. This is used to help determine the auto downsample factor to try and find the lowest detail-preserving downsample factor. The default value is appropriate for most videos, if you are using a video with very fast motion, you may need to increase this value. If your video has a very low amount of motion, you could decrease this value to allow for higher downsampling and thus longer sequences.
+     * @default 15
+     * @example 15
+     */
+    auto_downsample_min_fps?: number;
+    /**
+     * Enable Auto Downsample
+     * @description If true, the model will automatically temporally downsample the video to an appropriate frame length for the model, then will interpolate it back to the original frame length.
+     * @default false
+     * @example false
+     */
+    enable_auto_downsample?: boolean;
+    /**
+     * Enable Prompt Expansion
+     * @description Whether to enable prompt expansion.
+     * @default false
+     * @example false
+     */
+    enable_prompt_expansion?: boolean;
+    /**
+     * Enable Safety Checker
+     * @description If set to true, the safety checker will be enabled.
+     * @default false
+     * @example true
+     */
+    enable_safety_checker?: boolean;
+    /**
+     * First Frame URL
+     * @description URL to the first frame of the video. If provided, the model will use this frame as a reference.
+     */
+    first_frame_url?: string;
+    /**
+     * Frames per Second
+     * @description Frames per second of the generated video. Must be between 5 to 30. Ignored if match_input_frames_per_second is true.
+     * @default 16
+     */
+    frames_per_second?: number;
+    /**
+     * Guidance Scale
+     * @description Guidance scale for classifier-free guidance. Higher values encourage the model to generate images closely related to the text prompt.
+     * @default 5
+     * @example 5
+     */
+    guidance_scale?: number;
+    /**
+     * Interpolator Model
+     * @description The model to use for frame interpolation. Options are 'rife' or 'film'.
+     * @default film
+     * @example film
+     * @enum {string}
+     */
+    interpolator_model?: 'rife' | 'film';
+    /**
+     * Last Frame URL
+     * @description URL to the last frame of the video. If provided, the model will use this frame as a reference.
+     */
+    last_frame_url?: string;
+    /**
+     * Match Input Frames Per Second
+     * @description If true, the frames per second of the generated video will match the input video. If false, the frames per second will be determined by the frames_per_second parameter.
+     * @default false
+     * @example false
+     */
+    match_input_frames_per_second?: boolean;
+    /**
+     * Match Input Number of Frames
+     * @description If true, the number of frames in the generated video will match the number of frames in the input video. If false, the number of frames will be determined by the num_frames parameter.
+     * @default false
+     * @example false
+     */
+    match_input_num_frames?: boolean;
+    /**
+     * Negative Prompt
+     * @description Negative prompt for video generation.
+     * @default letterboxing, borders, black bars, bright colors, overexposed, static, blurred details, subtitles, style, artwork, painting, picture, still, overall gray, worst quality, low quality, JPEG compression residue, ugly, incomplete, extra fingers, poorly drawn hands, poorly drawn faces, deformed, disfigured, malformed limbs, fused fingers, still picture, cluttered background, three legs, many people in the background, walking backwards
+     * @example letterboxing, borders, black bars, bright colors, overexposed, static, blurred details, subtitles, style, artwork, painting, picture, still, overall gray, worst quality, low quality, JPEG compression residue, ugly, incomplete, extra fingers, poorly drawn hands, poorly drawn faces, deformed, disfigured, malformed limbs, fused fingers, still picture, cluttered background, three legs, many people in the background, walking backwards
+     */
+    negative_prompt?: string;
+    /**
+     * Number of Frames
+     * @description Number of frames to generate. Must be between 81 to 241 (inclusive).
+     * @default 81
+     */
+    num_frames?: number;
+    /**
+     * Number of Inference Steps
+     * @description Number of inference steps for sampling. Higher values give better quality but take longer.
+     * @default 30
+     */
+    num_inference_steps?: number;
+    /**
+     * Number of Interpolated Frames
+     * @description Number of frames to interpolate between the original frames. A value of 0 means no interpolation.
+     * @default 0
+     * @example 0
+     */
+    num_interpolated_frames?: number;
+    /**
+     * Preprocess
+     * @description Whether to preprocess the input video.
+     * @default false
+     * @example false
+     */
+    preprocess?: boolean;
+    /**
+     * Prompt
+     * @description The text prompt to guide video generation.
+     * @example A confident woman strides toward the camera down a sun-drenched, empty street. Her vibrant summer dress, a flowing emerald green with delicate white floral embroidery, billows slightly in the gentle breeze.  She carries a stylish, woven straw bag, its natural tan contrasting beautifully with the dress. The dress's fabric shimmers subtly, catching the light. The white embroidery is intricate, each tiny flower meticulously detailed.  Her expression is focused, yet relaxed, radiating self-assuredness. Her auburn hair, partially pulled back in a loose braid, catches the sunlight, creating warm highlights. The street itself is paved with warm, grey cobblestones, reflecting the bright sun. The mood is optimistic and serene, emphasizing the woman's independence and carefree spirit. High resolution 4k
+     */
+    prompt: string;
+    /**
+     * Reference Image URLs
+     * @description URLs to source reference image. If provided, the model will use this image as reference.
+     */
+    ref_image_urls?: string[];
+    /**
+     * Resolution
+     * @description Resolution of the generated video.
+     * @default auto
+     * @enum {string}
+     */
+    resolution?: 'auto' | '240p' | '360p' | '480p' | '580p' | '720p';
+    /**
+     * Return Frames Zip
+     * @description If true, also return a ZIP file containing all generated frames.
+     * @default false
+     * @example false
+     */
+    return_frames_zip?: boolean;
+    /**
+     * Sampler
+     * @description Sampler to use for video generation.
+     * @default unipc
+     * @example unipc
+     * @enum {string}
+     */
+    sampler?: 'unipc' | 'dpm++' | 'euler';
+    /**
+     * Seed
+     * @description Random seed for reproducibility. If None, a random seed is chosen.
+     */
+    seed?: number;
+    /**
+     * Shift
+     * @description Shift parameter for video generation.
+     * @default 5
+     */
+    shift?: number;
+    /**
+     * Sync Mode
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
+     * @default false
+     * @example false
+     */
+    sync_mode?: boolean;
+    /**
+     * Temporal Downsample Factor
+     * @description Temporal downsample factor for the video. This is an integer value that determines how many frames to skip in the video. A value of 0 means no downsampling. For each downsample factor, one upsample factor will automatically be applied.
+     * @default 0
+     * @example 0
+     */
+    temporal_downsample_factor?: number;
+    /**
+     * Transparency Mode
+     * @description The transparency mode to apply to the first and last frames. This controls how the transparent areas of the first and last frames are filled.
+     * @default content_aware
+     * @example content_aware
+     * @enum {string}
+     */
+    transparency_mode?: 'content_aware' | 'white' | 'black';
+    /**
+     * Video Quality
+     * @description The quality of the generated video.
+     * @default high
+     * @example high
+     * @enum {string}
+     */
+    video_quality?: 'low' | 'medium' | 'high' | 'maximum';
+    /**
+     * Video URL
+     * @description URL to the source video file. Required for depth task.
+     * @example https://storage.googleapis.com/falserverless/example_inputs/wan-vace-depth-video.mp4
+     */
+    video_url: string;
+    /**
+     * Video Write Mode
+     * @description The write mode of the generated video.
+     * @default balanced
+     * @example balanced
+     * @enum {string}
+     */
+    video_write_mode?: 'fast' | 'balanced' | 'small';
+}
 
-export interface Wan22VaceFunA14bDepthOutput extends SharedType_1fe {}
+export interface Wan22VaceFunA14bDepthOutput {
+    /**
+     * Frames Zip
+     * @description ZIP archive of all video frames if requested.
+     */
+    frames_zip?: Components.File;
+    /**
+     * Prompt
+     * @description The prompt used for generation.
+     */
+    prompt: string;
+    /**
+     * Seed
+     * @description The seed used for generation.
+     */
+    seed: number;
+    /**
+     * Video
+     * @description The generated depth video file.
+     * @example {
+     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/wan-vace-depth-output.mp4"
+     *     }
+     */
+    video: Components.VideoFile;
+}
 
 export interface Wan22ImageTrainerInput {
     /**
@@ -34592,7 +35028,7 @@ export interface PersonaplexInput {
     top_k_text?: number;
     /**
      * Voice
-     * @description Voice ID for the AI response. NAT = natural, VAR = variety. F = female, M = male.
+     * @description Voice ID for the AI response. NAT = natural, VAR = variety. F = female, M = male. Ignored when voice_audio_url is provided.
      * @default NATF2
      * @enum {string}
      */
@@ -34615,6 +35051,11 @@ export interface PersonaplexInput {
         | 'VARM2'
         | 'VARM3'
         | 'VARM4';
+    /**
+     * Voice Audio Url
+     * @description URL to a voice sample audio for on-the-fly voice cloning. When provided, the AI responds in the cloned voice instead of the preset 'voice'. 10+ seconds of clear speech recommended. Billed at 2x rate.
+     */
+    voice_audio_url?: string;
 }
 
 export interface PersonaplexOutput {
@@ -35626,13 +36067,13 @@ export interface NanoBananaEditInput extends SharedType_85d {}
 
 export interface NanoBananaEditOutput extends SharedType_876 {}
 
-export interface NanoBananaProEditInput extends SharedType_367 {}
+export interface NanoBananaProEditInput extends SharedType_dfb {}
 
-export interface NanoBananaProEditOutput extends SharedType_876 {}
+export interface NanoBananaProEditOutput extends SharedType_98c {}
 
-export interface NanoBananaProInput extends SharedType_8c2 {}
+export interface NanoBananaProInput extends SharedType_961 {}
 
-export interface NanoBananaProOutput extends SharedType_7b9 {}
+export interface NanoBananaProOutput extends SharedType_662 {}
 
 export interface NanoBananaInput extends SharedType_f57 {}
 
@@ -47404,157 +47845,6 @@ export interface LlavaNextOutput {
      * @default false
      */
     partial?: boolean;
-}
-
-export interface LivePortraitImageInput {
-    /**
-     * Aaa
-     * @description Amount to open mouth in 'aaa' shape
-     * @default 0
-     */
-    aaa?: number;
-    /**
-     * Blink
-     * @description Amount to blink the eyes
-     * @default 0
-     */
-    blink?: number;
-    /**
-     * Dsize
-     * @description Size of the output image.
-     * @default 512
-     */
-    dsize?: number;
-    /**
-     * Eee
-     * @description Amount to shape mouth in 'eee' position
-     * @default 0
-     */
-    eee?: number;
-    /**
-     * Enable Safety Checker
-     * @description Whether to enable the safety checker. If enabled, the model will check if the input image contains a face before processing it.
-     *             The safety checker will process the input image
-     * @default false
-     */
-    enable_safety_checker?: boolean;
-    /**
-     * Eyebrow
-     * @description Amount to raise or lower eyebrows
-     * @default 0
-     */
-    eyebrow?: number;
-    /**
-     * Flag Do Crop
-     * @description Whether to crop the source portrait to the face-cropping space.
-     * @default true
-     */
-    flag_do_crop?: boolean;
-    /**
-     * Flag Do Rot
-     * @description Whether to conduct the rotation when flag_do_crop is True.
-     * @default true
-     */
-    flag_do_rot?: boolean;
-    /**
-     * Flag Lip Zero
-     * @description Whether to set the lip to closed state before animation. Only takes effect when flag_eye_retargeting and flag_lip_retargeting are False.
-     * @default true
-     */
-    flag_lip_zero?: boolean;
-    /**
-     * Flag Pasteback
-     * @description Whether to paste-back/stitch the animated face cropping from the face-cropping space to the original image space.
-     * @default true
-     */
-    flag_pasteback?: boolean;
-    /**
-     * Image Url
-     * @description URL of the image to be animated
-     * @example https://storage.googleapis.com/falserverless/model_tests/live-portrait/XKEmk3mAzGHUjK3qqH-UL.jpeg
-     */
-    image_url: string;
-    /**
-     * Output Format
-     * @description Output format
-     * @default jpeg
-     * @enum {string}
-     */
-    output_format?: 'jpeg' | 'png';
-    /**
-     * Pupil X
-     * @description Amount to move pupils horizontally
-     * @default 0
-     */
-    pupil_x?: number;
-    /**
-     * Pupil Y
-     * @description Amount to move pupils vertically
-     * @default 0
-     */
-    pupil_y?: number;
-    /**
-     * Rotate Pitch
-     * @description Amount to rotate the face in pitch
-     * @default 0
-     */
-    rotate_pitch?: number;
-    /**
-     * Rotate Roll
-     * @description Amount to rotate the face in roll
-     * @default 0
-     */
-    rotate_roll?: number;
-    /**
-     * Rotate Yaw
-     * @description Amount to rotate the face in yaw
-     * @default 0
-     */
-    rotate_yaw?: number;
-    /**
-     * Scale
-     * @description Scaling factor for the face crop.
-     * @default 2.3
-     */
-    scale?: number;
-    /**
-     * Smile
-     * @description Amount to smile
-     * @default 0
-     */
-    smile?: number;
-    /**
-     * Vx Ratio
-     * @description Horizontal offset ratio for face crop.
-     * @default 0
-     */
-    vx_ratio?: number;
-    /**
-     * Vy Ratio
-     * @description Vertical offset ratio for face crop. Positive values move up, negative values move down.
-     * @default -0.125
-     */
-    vy_ratio?: number;
-    /**
-     * Wink
-     * @description Amount to wink
-     * @default 0
-     */
-    wink?: number;
-    /**
-     * Woo
-     * @description Amount to shape mouth in 'woo' position
-     * @default 0
-     */
-    woo?: number;
-}
-
-export interface LivePortraitImageOutput {
-    /**
-     * Image
-     * @description The generated image file.
-     */
-    image: Components.Image;
 }
 
 export interface LivePortraitInput {
@@ -60414,13 +60704,13 @@ export interface GeminiFlashEditInput {
 
 export interface GeminiFlashEditOutput extends SharedType_1b2 {}
 
-export interface Gemini3ProImagePreviewEditInput extends SharedType_367 {}
+export interface Gemini3ProImagePreviewEditInput extends SharedType_dfb {}
 
-export interface Gemini3ProImagePreviewEditOutput extends SharedType_876 {}
+export interface Gemini3ProImagePreviewEditOutput extends SharedType_98c {}
 
-export interface Gemini3ProImagePreviewInput extends SharedType_8c2 {}
+export interface Gemini3ProImagePreviewInput extends SharedType_961 {}
 
-export interface Gemini3ProImagePreviewOutput extends SharedType_7b9 {}
+export interface Gemini3ProImagePreviewOutput extends SharedType_662 {}
 
 export interface Gemini25FlashImageEditInput extends SharedType_85d {}
 
@@ -70934,6 +71224,134 @@ export interface FlashvsrUpscaleVideoOutput {
     video: Components.File;
 }
 
+export interface FireredImageEditInput {
+    /**
+     * Acceleration
+     * @description The acceleration level to use for inference speed optimization.
+     * @default regular
+     * @enum {string}
+     */
+    acceleration?: 'none' | 'regular' | 'high';
+    /**
+     * Enable Safety Checker
+     * @description If set to true, the safety checker will be enabled.
+     * @default true
+     */
+    enable_safety_checker?: boolean;
+    /**
+     * Guidance scale
+     * @description Classifier-free guidance scale. Higher values make the model follow the prompt more closely.
+     * @default 4
+     */
+    guidance_scale?: number;
+    /**
+     * Image Size
+     * @description The size of the generated image. If None, uses the input image dimensions.
+     * @example {
+     *       "height": 768,
+     *       "width": 1536
+     *     }
+     */
+    image_size?:
+        | Components.ImageSize
+        | (
+              | 'square_hd'
+              | 'square'
+              | 'portrait_4_3'
+              | 'portrait_16_9'
+              | 'landscape_4_3'
+              | 'landscape_16_9'
+          );
+    /**
+     * Image URLs
+     * @description The URLs of the images to edit. Supports single image editing and multi-image references (e.g., virtual try-on, style transfer from reference).
+     * @example [
+     *       "https://v3b.fal.media/files/b/0a8ed7f7/ElaLDgkUJiEazYH90eqJ3.jpg",
+     *       "https://v3b.fal.media/files/b/0a8ed7f9/4keTvi5q_yV4pCIUzAyFR.jpg"
+     *     ]
+     */
+    image_urls: string[];
+    /**
+     * Negative Prompt
+     * @description The negative prompt for the generation.
+     * @default
+     */
+    negative_prompt?: string;
+    /**
+     * Num Images
+     * @description The number of images to generate.
+     * @default 1
+     */
+    num_images?: number;
+    /**
+     * Num Inference Steps
+     * @description The number of inference steps to perform. More steps generally produce higher quality results.
+     * @default 30
+     */
+    num_inference_steps?: number;
+    /**
+     * Output Format
+     * @description The format of the generated image.
+     * @default png
+     * @enum {string}
+     */
+    output_format?: 'jpeg' | 'png';
+    /**
+     * Prompt
+     * @description The editing instruction describing what changes to make to the image. Supports both English and Chinese instructions.
+     * @example Move the whirling dervishes to this colorful room
+     */
+    prompt: string;
+    /**
+     * Seed
+     * @description The same seed and the same prompt given to the same version of the model
+     *                 will output the same image every time.
+     */
+    seed?: number;
+    /**
+     * Sync Mode
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
+     * @default false
+     */
+    sync_mode?: boolean;
+}
+
+export interface FireredImageEditOutput {
+    /**
+     * Has Nsfw Concepts
+     * @description Whether the generated images contain NSFW concepts.
+     */
+    has_nsfw_concepts: boolean[];
+    /**
+     * Images
+     * @description The edited image files info.
+     * @example [
+     *       {
+     *         "height": 768,
+     *         "content_type": "image/jpeg",
+     *         "url": "https://v3b.fal.media/files/b/0a8ed7fa/pHsp1KWzqkNNYfAcZ_bkY.jpg",
+     *         "width": 1376
+     *       }
+     *     ]
+     */
+    images: Components.Image_1[];
+    /**
+     * Prompt
+     * @description The prompt used for generating the image.
+     */
+    prompt: string;
+    /**
+     * Seed
+     * @description Seed of the generated Image. It will be the same value of the one passed in the
+     *                 input or the randomly generated that was used in case none was passed.
+     */
+    seed: number;
+    /** Timings */
+    timings: {
+        [key: string]: number;
+    };
+}
+
 export interface FinegrainEraserMaskInput {
     /**
      * Image Url
@@ -76059,13 +76477,13 @@ export interface Deepfilternet3Output {
      * Audio File
      * @description The audio file that was enhanced.
      * @example {
-     *       "channels": 1,
+     *       "bitrate": "192k",
      *       "duration": 6.9544375,
      *       "url": "https://v3b.fal.media/files/b/0a8a4024/-2cD9CyGEjYsyVQ5lEERh_9qwIkJjf.mp3",
      *       "file_name": "-2cD9CyGEjYsyVQ5lEERh_9qwIkJjf.mp3",
      *       "sample_rate": 48000,
      *       "content_type": "audio/mpeg",
-     *       "bitrate": "192k"
+     *       "channels": 1
      *     }
      */
     audio_file: Components.AudioFile;
@@ -78886,32 +79304,6 @@ export interface BytedanceSeedanceV15ProImageToVideoOutput {
      *     }
      */
     video: Components.File;
-}
-
-export interface BytedanceSeed3dImageTo3dInput {
-    /**
-     * Image Url
-     * @description URL of the image for the 3D asset generation.
-     * @example https://storage.googleapis.com/falserverless/example_inputs/seed3d_input.png
-     */
-    image_url: string;
-}
-
-export interface BytedanceSeed3dImageTo3dOutput {
-    /**
-     * Model
-     * @description The generated 3D model files
-     * @example {
-     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/seed3d_output.zip"
-     *     }
-     */
-    model: Components.File;
-    /**
-     * Usage Tokens
-     * @description The number of tokens used for the 3D model generation
-     * @example 30000
-     */
-    usage_tokens: number;
 }
 
 export interface BytedanceOmnihumanV15Input {
@@ -82019,7 +82411,7 @@ export interface BriaVideoIncreaseResolutionInput {
         | 'gif';
     /**
      * Video Url
-     * @description Input video to increase resolution. Size should be less than 14142x14142 and duration less than 30s.
+     * @description Input video to increase resolution. Size should be less than 7680,4320 and duration less than 30s.
      * @example https://bria-datasets.s3.us-east-1.amazonaws.com/video_increase_res/3446608-sd_426_240_25fps.mp4
      */
     video_url: string;
@@ -82076,7 +82468,7 @@ export interface BriaVideoBackgroundRemovalInput {
         | 'gif';
     /**
      * Video Url
-     * @description Input video to remove background from. Size should be less than 14142x14142 and duration less than 30s.
+     * @description Input video to remove background from. Size should be less than 4000x4000 and duration less than 30s.
      * @example https://bria-datasets.s3.us-east-1.amazonaws.com/rmbg_tests/videos/5586521-uhd_3840_2160_25fps_original.mp4
      */
     video_url: string;
