@@ -2039,6 +2039,11 @@ declare global {
                 output: falEndpoints.PhotomakerOutput;
             };
 
+            'fal-ai/personaplex/realtime': {
+                input: falEndpoints.PersonaplexRealtimeInput;
+                output: falEndpoints.PersonaplexRealtimeOutput;
+            };
+
             'fal-ai/personaplex': {
                 input: falEndpoints.PersonaplexInput;
                 output: falEndpoints.PersonaplexOutput;
@@ -2910,8 +2915,8 @@ declare global {
             };
 
             'fal-ai/live-portrait/image': {
-                input: { [x in string]: any };
-                output: { [x in string]: any };
+                input: falEndpoints.LivePortraitImageInput;
+                output: falEndpoints.LivePortraitImageOutput;
             };
 
             'fal-ai/live-portrait': {
@@ -5489,6 +5494,11 @@ declare global {
                 output: falEndpoints.BriaBackgroundRemoveOutput;
             };
 
+            'fal-ai/bitdance': {
+                input: falEndpoints.BitdanceInput;
+                output: falEndpoints.BitdanceOutput;
+            };
+
             'fal-ai/birefnet/v2/video': {
                 input: falEndpoints.BirefnetV2VideoInput;
                 output: falEndpoints.BirefnetV2VideoOutput;
@@ -5822,6 +5832,11 @@ declare global {
             'bria/bria_video_eraser/erase/keypoints': {
                 input: falEndpoints.BriaBria_video_eraserEraseKeypointsInput;
                 output: falEndpoints.BriaBria_video_eraserEraseKeypointsOutput;
+            };
+
+            'bria/aesthetics/upscaler': {
+                input: { [x in string]: any };
+                output: { [x in string]: any };
             };
 
             'beatoven/sound-effect-generation': {

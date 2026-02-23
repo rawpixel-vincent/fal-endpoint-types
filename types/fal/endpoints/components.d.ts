@@ -31,9 +31,13 @@ export interface WhisperChunk {
 
 export interface VoiceSetting {
     /**
+     * Custom Voice Id
+     * @description Custom cloned voice ID. If provided, this will override the voice_id field.
+     */
+    custom_voice_id?: string;
+    /**
      * Emotion
      * @description Emotion of the generated speech
-     * @enum {string}
      */
     emotion?: 'happy' | 'sad' | 'angry' | 'fearful' | 'disgusted' | 'surprised' | 'neutral';
     /**
@@ -247,7 +251,7 @@ export interface VideoFile {
     width?: number;
 }
 
-export interface VideoConditioningInput_2 {
+export interface VideoConditioningInput_3 {
     /**
      * Conditioning Type
      * @description Type of conditioning this video provides. This is relevant to ensure in-context LoRA weights are applied correctly, as well as selecting the correct preprocessing pipeline, when enabled.
@@ -313,7 +317,7 @@ export interface VideoConditioningInput_2 {
     video_url: string;
 }
 
-export interface VideoConditioningInput_1 {
+export interface VideoConditioningInput_2 {
     /**
      * Start Frame Num
      * @description Frame number of the video from which the conditioning starts. Must be a multiple of 8.
@@ -326,7 +330,7 @@ export interface VideoConditioningInput_1 {
     video_url: string;
 }
 
-export interface VideoConditioningInput {
+export interface VideoConditioningInput_1 {
     /**
      * Conditioning Type
      * @description Type of conditioning this video provides. This is relevant to ensure in-context LoRA weights are applied correctly, as well as selecting the correct preprocessing pipeline, when enabled.
@@ -383,6 +387,71 @@ export interface VideoConditioningInput {
      * @description Target FPS to resample the video to. Only relevant if `resample_fps` is True.
      * @default 30
      * @example 30
+     */
+    target_fps?: number;
+    /**
+     * Video URL
+     * @description URL of video to use as conditioning
+     */
+    video_url: string;
+}
+
+export interface VideoConditioningInput {
+    /**
+     * Conditioning Type
+     * @description Type of conditioning this video provides. This is relevant to ensure in-context LoRA weights are applied correctly, as well as selecting the correct preprocessing pipeline, when enabled.
+     * @default rgb
+     * @example rgb
+     */
+    conditioning_type?: 'rgb' | 'depth' | 'pose' | 'canny';
+    /**
+     * Limit Number of Frames
+     * @description Whether to limit the number of frames used from the video. If True, the `max_num_frames` parameter will be used to limit the number of frames.
+     * @default false
+     */
+    limit_num_frames?: boolean;
+    /**
+     * Maximum Number of Frames
+     * @description Maximum number of frames to use from the video. If None, all frames will be used.
+     * @default 1441
+     * @example 1441
+     */
+    max_num_frames?: number;
+    /**
+     * Preprocess
+     * @description Whether to preprocess the video. If True, the video will be preprocessed to match the conditioning type. This is a no-op for RGB conditioning.
+     * @default false
+     */
+    preprocess?: boolean;
+    /**
+     * Resample FPS
+     * @description Whether to resample the video to a specific FPS. If True, the `target_fps` parameter will be used to resample the video.
+     * @default false
+     */
+    resample_fps?: boolean;
+    /**
+     * Reverse Video
+     * @description Whether to reverse the video. This is useful for tasks where the video conditioning should be applied in reverse order.
+     * @default false
+     */
+    reverse_video?: boolean;
+    /**
+     * Start Frame Number
+     * @description Frame number of the video from which the conditioning starts. Must be a multiple of 8.
+     * @default 0
+     */
+    start_frame_num?: number;
+    /**
+     * Strength
+     * @description Strength of the conditioning. 0.0 means no conditioning, 1.0 means full conditioning.
+     * @default 1
+     */
+    strength?: number;
+    /**
+     * Target FPS
+     * @description Target FPS to resample the video to. Only relevant if `resample_fps` is True.
+     * @default 24
+     * @example 24
      */
     target_fps?: number;
     /**
@@ -761,22 +830,22 @@ export interface TextureFiles {
      * Base Color
      * @description Base color texture
      */
-    base_color: File_1;
+    base_color: File;
     /**
      * Metallic
      * @description Metallic texture (PBR)
      */
-    metallic?: File_1;
+    metallic?: File;
     /**
      * Normal
      * @description Normal texture (PBR)
      */
-    normal?: File_1;
+    normal?: File;
     /**
      * Roughness
      * @description Roughness texture (PBR)
      */
-    roughness?: File_1;
+    roughness?: File;
 }
 
 export interface TextRender {
@@ -1374,7 +1443,6 @@ export interface PointPromptBase {
     /**
      * Label
      * @description 1 for foreground, 0 for background
-     * @enum {integer}
      */
     label?: 0 | 1;
     /**
@@ -1431,7 +1499,6 @@ export interface PointPrompt {
     /**
      * Label
      * @description 1 for foreground, 0 for background
-     * @enum {integer}
      */
     label?: 0 | 1;
     /**
@@ -1719,22 +1786,22 @@ export interface ModelUrls_2 {
      * Fbx
      * @description FBX format 3D model
      */
-    fbx?: File_1;
+    fbx?: File;
     /**
      * Glb
      * @description GLB format 3D model
      */
-    glb?: File_1;
+    glb?: File;
     /**
      * Obj
      * @description OBJ format 3D model
      */
-    obj?: File_1;
+    obj?: File;
     /**
      * Usdz
      * @description USDZ format 3D model
      */
-    usdz?: File_1;
+    usdz?: File;
 }
 
 export interface ModelUrls_1 {
@@ -1742,32 +1809,32 @@ export interface ModelUrls_1 {
      * Fbx
      * @description FBX format 3D model
      */
-    fbx?: File_1;
+    fbx?: File;
     /**
      * Glb
      * @description GLB format 3D model
      */
-    glb?: File_1;
+    glb?: File;
     /**
      * Mtl
      * @description MTL material file for OBJ model
      */
-    mtl?: File_1;
+    mtl?: File;
     /**
      * Obj
      * @description OBJ format 3D model
      */
-    obj?: File_1;
+    obj?: File;
     /**
      * Texture
      * @description Texture image for the 3D model
      */
-    texture?: File_1;
+    texture?: File;
     /**
      * Usdz
      * @description USDZ format 3D model
      */
-    usdz?: File_1;
+    usdz?: File;
 }
 
 export interface ModelUrls {
@@ -1775,32 +1842,32 @@ export interface ModelUrls {
      * Blend
      * @description Blender format 3D model
      */
-    blend?: File_1;
+    blend?: File;
     /**
      * Fbx
      * @description FBX format 3D model
      */
-    fbx?: File_1;
+    fbx?: File;
     /**
      * Glb
      * @description GLB format 3D model
      */
-    glb?: File_1;
+    glb?: File;
     /**
      * Obj
      * @description OBJ format 3D model
      */
-    obj?: File_1;
+    obj?: File;
     /**
      * Stl
      * @description STL format 3D model
      */
-    stl?: File_1;
+    stl?: File;
     /**
      * Usdz
      * @description USDZ format 3D model
      */
-    usdz?: File_1;
+    usdz?: File;
 }
 
 export interface MaskMetadata {
@@ -2155,8 +2222,6 @@ export interface KlingV3ImageElementInput {
     /**
      * Frontal Image Url
      * @description The frontal image of the element (main view).
-     *
-     *     Max file size: 10.0MB, Min width: 300px, Min height: 300px, Min aspect ratio: 0.40, Max aspect ratio: 2.50, Timeout: 20.0s
      */
     frontal_image_url?: string;
     /**
@@ -2170,8 +2235,6 @@ export interface KlingV3ComboElementInput {
     /**
      * Frontal Image Url
      * @description The frontal image of the element (main view).
-     *
-     *     Max file size: 10.0MB, Min width: 300px, Min height: 300px, Min aspect ratio: 0.40, Max aspect ratio: 2.50, Timeout: 20.0s
      */
     frontal_image_url?: string;
     /**
@@ -2182,8 +2245,6 @@ export interface KlingV3ComboElementInput {
     /**
      * Video Url
      * @description The video URL of the element. A request can only have one element with a video.
-     *
-     *     Max file size: 200.0MB, Min width: 720px, Min height: 720px, Max width: 2160px, Max height: 2160px, Min duration: 3.0s, Max duration: 10.05s, Min FPS: 24.0, Max FPS: 60.0, Timeout: 30.0s
      */
     video_url?: string;
 }
@@ -2756,6 +2817,12 @@ export interface File_1 {
      */
     content_type?: string;
     /**
+     * File Data
+     * Format: binary
+     * @description File data
+     */
+    file_data?: string;
+    /**
      * File Name
      * @description The name of the file. It will be auto-generated if not provided.
      * @example z9RV14K95DvU.png
@@ -2781,12 +2848,6 @@ export interface File {
      * @example image/png
      */
     content_type?: string;
-    /**
-     * File Data
-     * Format: binary
-     * @description File data
-     */
-    file_data?: string;
     /**
      * File Name
      * @description The name of the file. It will be auto-generated if not provided.
@@ -3745,12 +3806,6 @@ export interface AudioFile {
      * @description The duration of the audio
      */
     duration?: number;
-    /**
-     * File Data
-     * Format: binary
-     * @description File data
-     */
-    file_data?: string;
     /**
      * File Name
      * @description The name of the file. It will be auto-generated if not provided.
