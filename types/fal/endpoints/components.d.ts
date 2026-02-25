@@ -26,7 +26,7 @@ export interface WhisperChunk {
      * Timestamp
      * @description Start and end timestamp of the chunk
      */
-    timestamp: { [x: string]: any }[];
+    timestamp: [number, number];
 }
 
 export interface VoiceSetting {
@@ -1067,6 +1067,21 @@ export interface SigmasInput {
     method?: 'default' | 'array';
 }
 
+export interface Shot {
+    /**
+     * Num Frames
+     * @description Number of frames for this shot. Each shot must have between 17 and 100 frames.
+     * @default 65
+     */
+    num_frames?: number;
+    /**
+     * Prompt
+     * @description Caption describing what happens in this shot, including subject actions, camera angles, and scene details.
+     * @example Subject 1 is smiling and gesturing with his right hand while facing the camera. Subject 2 is seen from behind, facing Subject 1. The scene is indoors in a well-decorated room, with a dark door and ornate glass visible in the background. The camera is static, providing a medium close-up shot of Subject 1.
+     */
+    prompt: string;
+}
+
 export interface SemanticImageInput {
     /**
      * Hypothesis
@@ -1701,24 +1716,6 @@ export interface Object {
     y_min: number;
 }
 
-export interface NovaSRTimings {
-    /**
-     * Inference
-     * @description Time taken to run the inference in seconds.
-     */
-    inference: number;
-    /**
-     * Postprocess
-     * @description Time taken to postprocess the audio in seconds.
-     */
-    postprocess: number;
-    /**
-     * Preprocess
-     * @description Time taken to preprocess the audio in seconds.
-     */
-    preprocess: number;
-}
-
 export interface MusicSection {
     /**
      * Duration Ms
@@ -2203,6 +2200,24 @@ export interface Lighting {
     shadows?: string;
 }
 
+export interface LavaSRTimings {
+    /**
+     * Inference
+     * @description Time taken to run the inference in seconds.
+     */
+    inference: number;
+    /**
+     * Postprocess
+     * @description Time taken to postprocess the audio in seconds.
+     */
+    postprocess: number;
+    /**
+     * Preprocess
+     * @description Time taken to preprocess the audio in seconds.
+     */
+    preprocess: number;
+}
+
 export interface KlingV3MultiPromptElement {
     /**
      * Duration
@@ -2222,6 +2237,8 @@ export interface KlingV3ImageElementInput {
     /**
      * Frontal Image Url
      * @description The frontal image of the element (main view).
+     *
+     *     Max file size: 10.0MB, Min width: 300px, Min height: 300px, Min aspect ratio: 0.40, Max aspect ratio: 2.50, Timeout: 20.0s
      */
     frontal_image_url?: string;
     /**
@@ -2235,6 +2252,8 @@ export interface KlingV3ComboElementInput {
     /**
      * Frontal Image Url
      * @description The frontal image of the element (main view).
+     *
+     *     Max file size: 10.0MB, Min width: 300px, Min height: 300px, Min aspect ratio: 0.40, Max aspect ratio: 2.50, Timeout: 20.0s
      */
     frontal_image_url?: string;
     /**
@@ -2245,6 +2264,8 @@ export interface KlingV3ComboElementInput {
     /**
      * Video Url
      * @description The video URL of the element. A request can only have one element with a video.
+     *
+     *     Max file size: 200.0MB, Min width: 720px, Min height: 720px, Max width: 2160px, Max height: 2160px, Min duration: 3.0s, Max duration: 10.05s, Min FPS: 24.0, Max FPS: 60.0, Timeout: 30.0s
      */
     video_url?: string;
 }
@@ -2970,7 +2991,7 @@ export interface EmotionalStrengths {
     surprised?: number;
 }
 
-export interface Embedding_1 {
+export interface Embedding_2 {
     /**
      * Path
      * @description URL or the path to the embedding weights.
@@ -2979,6 +3000,31 @@ export interface Embedding_1 {
     /**
      * Tokens
      * @description The tokens to map the embedding weights to. Use these tokens in your prompts.
+     * @default [
+     *       "<s0>",
+     *       "<s1>"
+     *     ]
+     */
+    tokens?: string[];
+}
+
+export interface Embedding_1 {
+    /**
+     * Force
+     * @description If set to true, the embedding will be forced to be used.
+     * @default false
+     */
+    force?: boolean;
+    /**
+     * Path
+     * @description URL or the path to the embedding weights.
+     * @example https://civitai.com/api/download/models/135931
+     * @example https://filebin.net/3chfqasxpqu21y8n/my-custom-lora-v1.safetensors
+     */
+    path: string;
+    /**
+     * Tokens
+     * @description The list of tokens to use for the embedding.
      * @default [
      *       "<s0>",
      *       "<s1>"
@@ -3086,7 +3132,7 @@ export interface DiarizationSegment {
      * Timestamp
      * @description Start and end timestamp of the segment
      */
-    timestamp: { [x: string]: any }[];
+    timestamp: [number, number];
 }
 
 export interface DialogueBlock {

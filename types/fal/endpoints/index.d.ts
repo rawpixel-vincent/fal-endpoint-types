@@ -624,6 +624,11 @@ declare global {
                 output: { [x in string]: any };
             };
 
+            'fal-ai/wan-motion': {
+                input: falEndpoints.WanMotionInput;
+                output: falEndpoints.WanMotionOutput;
+            };
+
             'fal-ai/wan-i2v-lora': {
                 input: falEndpoints.WanI2vLoraInput;
                 output: falEndpoints.WanI2vLoraOutput;
@@ -702,6 +707,16 @@ declare global {
             'fal-ai/wan-22-vace-fun-a14b/depth': {
                 input: falEndpoints.Wan22VaceFunA14bDepthInput;
                 output: falEndpoints.Wan22VaceFunA14bDepthOutput;
+            };
+
+            'fal-ai/wan-22-trainer/t2v-a14b': {
+                input: falEndpoints.Wan22TrainerT2vA14bInput;
+                output: falEndpoints.Wan22TrainerT2vA14bOutput;
+            };
+
+            'fal-ai/wan-22-trainer/i2v-a14b': {
+                input: falEndpoints.Wan22TrainerI2vA14bInput;
+                output: falEndpoints.Wan22TrainerI2vA14bOutput;
             };
 
             'fal-ai/wan-22-image-trainer': {
@@ -2039,11 +2054,6 @@ declare global {
                 output: falEndpoints.PhotomakerOutput;
             };
 
-            'fal-ai/personaplex/realtime': {
-                input: falEndpoints.PersonaplexRealtimeInput;
-                output: falEndpoints.PersonaplexRealtimeOutput;
-            };
-
             'fal-ai/personaplex': {
                 input: falEndpoints.PersonaplexInput;
                 output: falEndpoints.PersonaplexOutput;
@@ -2172,6 +2182,11 @@ declare global {
             'fal-ai/musetalk': {
                 input: falEndpoints.MusetalkInput;
                 output: falEndpoints.MusetalkOutput;
+            };
+
+            'fal-ai/multishot-master': {
+                input: falEndpoints.MultishotMasterInput;
+                output: falEndpoints.MultishotMasterOutput;
             };
 
             'fal-ai/moondream3-preview/segment': {
@@ -2967,6 +2982,11 @@ declare global {
             'fal-ai/layer-diffusion': {
                 input: falEndpoints.LayerDiffusionInput;
                 output: falEndpoints.LayerDiffusionOutput;
+            };
+
+            'fal-ai/lava-sr': {
+                input: falEndpoints.LavaSrInput;
+                output: falEndpoints.LavaSrOutput;
             };
 
             'fal-ai/latentsync': {
@@ -5249,6 +5269,26 @@ declare global {
                 output: falEndpoints.CreatifyAuroraOutput;
             };
 
+            'fal-ai/cosmos-predict-2.5/video-to-video': {
+                input: falEndpoints.CosmosPredict25VideoToVideoInput;
+                output: falEndpoints.CosmosPredict25VideoToVideoOutput;
+            };
+
+            'fal-ai/cosmos-predict-2.5/text-to-video': {
+                input: falEndpoints.CosmosPredict25TextToVideoInput;
+                output: falEndpoints.CosmosPredict25TextToVideoOutput;
+            };
+
+            'fal-ai/cosmos-predict-2.5/image-to-video': {
+                input: falEndpoints.CosmosPredict25ImageToVideoInput;
+                output: falEndpoints.CosmosPredict25ImageToVideoOutput;
+            };
+
+            'fal-ai/cosmos-predict-2.5/distilled/text-to-video': {
+                input: falEndpoints.CosmosPredict25DistilledTextToVideoInput;
+                output: falEndpoints.CosmosPredict25DistilledTextToVideoOutput;
+            };
+
             'fal-ai/controlnext': {
                 input: falEndpoints.ControlnextInput;
                 output: falEndpoints.ControlnextOutput;
@@ -5347,6 +5387,16 @@ declare global {
             'fal-ai/bytedance/video-stylize': {
                 input: falEndpoints.BytedanceVideoStylizeInput;
                 output: falEndpoints.BytedanceVideoStylizeOutput;
+            };
+
+            'fal-ai/bytedance/seedream/v5/lite/text-to-image': {
+                input: falEndpoints.BytedanceSeedreamV5LiteTextToImageInput;
+                output: falEndpoints.BytedanceSeedreamV5LiteTextToImageOutput;
+            };
+
+            'fal-ai/bytedance/seedream/v5/lite/edit': {
+                input: falEndpoints.BytedanceSeedreamV5LiteEditInput;
+                output: falEndpoints.BytedanceSeedreamV5LiteEditOutput;
             };
 
             'fal-ai/bytedance/seedream/v4/text-to-image': {
@@ -5639,6 +5689,11 @@ declare global {
                 output: falEndpoints.DecartLucyRestyleOutput;
             };
 
+            'decart/lucy-i2v': {
+                input: falEndpoints.DecartLucyI2vInput;
+                output: falEndpoints.DecartLucyI2vOutput;
+            };
+
             'decart/lucy-edit/pro': {
                 input: falEndpoints.DecartLucyEditProInput;
                 output: falEndpoints.DecartLucyEditProOutput;
@@ -5652,11 +5707,6 @@ declare global {
             'decart/lucy-edit/dev': {
                 input: falEndpoints.DecartLucyEditDevInput;
                 output: falEndpoints.DecartLucyEditDevOutput;
-            };
-
-            'decart/lucy-14b/image-to-video': {
-                input: falEndpoints.DecartLucy14bImageToVideoInput;
-                output: falEndpoints.DecartLucy14bImageToVideoOutput;
             };
 
             'clarityai/crystal-video-upscaler': {
@@ -5712,6 +5762,11 @@ declare global {
             'bria/video/background-removal': {
                 input: falEndpoints.BriaVideoBackgroundRemovalInput;
                 output: falEndpoints.BriaVideoBackgroundRemovalOutput;
+            };
+
+            'bria/upscale/creative': {
+                input: falEndpoints.BriaUpscaleCreativeInput;
+                output: falEndpoints.BriaUpscaleCreativeOutput;
             };
 
             'bria/text-to-image/3.2': {
@@ -5832,11 +5887,6 @@ declare global {
             'bria/bria_video_eraser/erase/keypoints': {
                 input: falEndpoints.BriaBria_video_eraserEraseKeypointsInput;
                 output: falEndpoints.BriaBria_video_eraserEraseKeypointsOutput;
-            };
-
-            'bria/aesthetics/upscaler': {
-                input: { [x in string]: any };
-                output: { [x in string]: any };
             };
 
             'beatoven/sound-effect-generation': {
