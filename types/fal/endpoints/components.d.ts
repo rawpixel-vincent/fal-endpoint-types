@@ -31,11 +31,6 @@ export interface WhisperChunk {
 
 export interface VoiceSetting {
     /**
-     * Custom Voice Id
-     * @description Custom cloned voice ID. If provided, this will override the voice_id field.
-     */
-    custom_voice_id?: string;
-    /**
      * Emotion
      * @description Emotion of the generated speech
      */
@@ -156,6 +151,12 @@ export interface VideoFile_1 {
      */
     duration?: number;
     /**
+     * File Data
+     * Format: binary
+     * @description File data
+     */
+    file_data?: string;
+    /**
      * File Name
      * @description The name of the file. It will be auto-generated if not provided.
      * @example z9RV14K95DvU.png
@@ -207,12 +208,6 @@ export interface VideoFile {
      */
     duration?: number;
     /**
-     * File Data
-     * Format: binary
-     * @description File data
-     */
-    file_data?: string;
-    /**
      * File Name
      * @description The name of the file. It will be auto-generated if not provided.
      * @example z9RV14K95DvU.png
@@ -251,73 +246,7 @@ export interface VideoFile {
     width?: number;
 }
 
-export interface VideoConditioningInput_3 {
-    /**
-     * Conditioning Type
-     * @description Type of conditioning this video provides. This is relevant to ensure in-context LoRA weights are applied correctly, as well as selecting the correct preprocessing pipeline, when enabled.
-     * @default rgb
-     * @example rgb
-     * @enum {string}
-     */
-    conditioning_type?: 'rgb' | 'depth' | 'pose' | 'canny';
-    /**
-     * Limit Number of Frames
-     * @description Whether to limit the number of frames used from the video. If True, the `max_num_frames` parameter will be used to limit the number of frames.
-     * @default false
-     */
-    limit_num_frames?: boolean;
-    /**
-     * Maximum Number of Frames
-     * @description Maximum number of frames to use from the video. If None, all frames will be used.
-     * @default 1441
-     * @example 1441
-     */
-    max_num_frames?: number;
-    /**
-     * Preprocess
-     * @description Whether to preprocess the video. If True, the video will be preprocessed to match the conditioning type. This is a no-op for RGB conditioning.
-     * @default false
-     */
-    preprocess?: boolean;
-    /**
-     * Resample FPS
-     * @description Whether to resample the video to a specific FPS. If True, the `target_fps` parameter will be used to resample the video.
-     * @default false
-     */
-    resample_fps?: boolean;
-    /**
-     * Reverse Video
-     * @description Whether to reverse the video. This is useful for tasks where the video conditioning should be applied in reverse order.
-     * @default false
-     */
-    reverse_video?: boolean;
-    /**
-     * Start Frame Number
-     * @description Frame number of the video from which the conditioning starts. Must be a multiple of 8.
-     * @default 0
-     */
-    start_frame_num?: number;
-    /**
-     * Strength
-     * @description Strength of the conditioning. 0.0 means no conditioning, 1.0 means full conditioning.
-     * @default 1
-     */
-    strength?: number;
-    /**
-     * Target FPS
-     * @description Target FPS to resample the video to. Only relevant if `resample_fps` is True.
-     * @default 24
-     * @example 24
-     */
-    target_fps?: number;
-    /**
-     * Video URL
-     * @description URL of video to use as conditioning
-     */
-    video_url: string;
-}
-
-export interface VideoConditioningInput_2 {
+export interface VideoConditioningInput_1 {
     /**
      * Start Frame Num
      * @description Frame number of the video from which the conditioning starts. Must be a multiple of 8.
@@ -326,72 +255,6 @@ export interface VideoConditioningInput_2 {
     /**
      * Video Url
      * @description URL of video to be extended
-     */
-    video_url: string;
-}
-
-export interface VideoConditioningInput_1 {
-    /**
-     * Conditioning Type
-     * @description Type of conditioning this video provides. This is relevant to ensure in-context LoRA weights are applied correctly, as well as selecting the correct preprocessing pipeline, when enabled.
-     * @default rgb
-     * @example rgb
-     * @enum {string}
-     */
-    conditioning_type?: 'rgb' | 'depth' | 'pose' | 'canny';
-    /**
-     * Limit Number of Frames
-     * @description Whether to limit the number of frames used from the video. If True, the `max_num_frames` parameter will be used to limit the number of frames.
-     * @default false
-     */
-    limit_num_frames?: boolean;
-    /**
-     * Maximum Number of Frames
-     * @description Maximum number of frames to use from the video. If None, all frames will be used.
-     * @default 121
-     * @example 121
-     */
-    max_num_frames?: number;
-    /**
-     * Preprocess
-     * @description Whether to preprocess the video. If True, the video will be preprocessed to match the conditioning type. This is a no-op for RGB conditioning.
-     * @default false
-     */
-    preprocess?: boolean;
-    /**
-     * Resample FPS
-     * @description Whether to resample the video to a specific FPS. If True, the `target_fps` parameter will be used to resample the video.
-     * @default false
-     */
-    resample_fps?: boolean;
-    /**
-     * Reverse Video
-     * @description Whether to reverse the video. This is useful for tasks where the video conditioning should be applied in reverse order.
-     * @default false
-     */
-    reverse_video?: boolean;
-    /**
-     * Start Frame Number
-     * @description Frame number of the video from which the conditioning starts. Must be a multiple of 8.
-     * @default 0
-     */
-    start_frame_num?: number;
-    /**
-     * Strength
-     * @description Strength of the conditioning. 0.0 means no conditioning, 1.0 means full conditioning.
-     * @default 1
-     */
-    strength?: number;
-    /**
-     * Target FPS
-     * @description Target FPS to resample the video to. Only relevant if `resample_fps` is True.
-     * @default 30
-     * @example 30
-     */
-    target_fps?: number;
-    /**
-     * Video URL
-     * @description URL of video to use as conditioning
      */
     video_url: string;
 }
@@ -479,6 +342,1318 @@ export interface VideoCondition {
      * @description The URL of the video to use as input.
      */
     video_url: string;
+}
+
+export interface VideoAgentConfig {
+    /**
+     * Avatar
+     * @description Optional avatar name to use
+     * @default Adriana SuitSofa Front
+     * @example Adriana SuitSofa Front
+     * @enum {string}
+     */
+    avatar?:
+        | 'Abigail (Upper Body)'
+        | 'Abigail Office Front'
+        | 'Abigail Office Side'
+        | 'Abigail Sofa Front'
+        | 'Abigail Sofa Side'
+        | 'Aditya in Brown blazer'
+        | 'Aditya in Blue blazer'
+        | 'Aditya in Blue shirt'
+        | 'Aditya in Blue t-shirt'
+        | 'Aditya in Beige blazer'
+        | 'Adrian in Blue Shirt'
+        | 'Adrian in Blue Suit'
+        | 'Adrian in Blue Sweater'
+        | 'Adriana BizTalk Front'
+        | 'Adriana BizTalk Side'
+        | 'Adriana Business Front 2'
+        | 'Adriana Business Front '
+        | 'Adriana Business Side'
+        | 'Adriana Nurse Front 2'
+        | 'Adriana Nurse Front'
+        | 'Adriana Nurse Side 2'
+        | 'Adriana Nurse Side'
+        | 'Adriana Nurse Sitting Side'
+        | 'Adriana SuitSofa Front'
+        | 'Aiko'
+        | 'Albert in Blue Polo shirt'
+        | 'Albert in Blue blazer'
+        | 'Albert in Blue shirt'
+        | 'Albert in Blue suit'
+        | 'Albert in Khaki blazer'
+        | 'Albert in White shirt'
+        | 'Amanda in Blue Shirt (Front)'
+        | 'Amanda in Blue Shirt (Left)'
+        | 'Amanda in Blue Shirt (Right)'
+        | 'Amanda in Grey Shirt (Front)'
+        | 'Amanda in Grey Shirt (Left)'
+        | 'Amanda in Grey Shirt (Right)'
+        | 'Amanda in Maintenance (Front)'
+        | 'Amanda in Maintenance (Left)'
+        | 'Amanda in Maintenance (Right)'
+        | 'Amelia Business Training Front 2'
+        | 'Amelia Business Training Front'
+        | 'Amelia Business Training Side 2'
+        | 'Amelia Business Training Side'
+        | 'Amelia Lounge Front 2'
+        | 'Amelia Lounge Front'
+        | 'Amelia Lounge Side 2'
+        | 'Amelia Lounge Side'
+        | 'Amelia Yoga Front 2'
+        | 'Amelia Yoga Front'
+        | 'Amelia Yoga Side 2'
+        | 'Amelia Yoga Side'
+        | 'Alex in Black Suit'
+        | 'Alex in Jacket'
+        | 'Alex in White Coat'
+        | 'Alex in Yellow Sweater'
+        | 'Anja Office Front'
+        | 'Anja Office Side '
+        | 'Anja Sofa Front'
+        | 'Anja Sofa Side '
+        | 'Ann Business Front'
+        | 'Ann Business Sitting'
+        | 'Ann Casual Front'
+        | 'Ann Casual Lying'
+        | 'Ann Casual Sitting 2'
+        | 'Ann Casual Sitting'
+        | 'Ann Doctor Sitting'
+        | 'Ann Doctor Standing'
+        | 'Ann Sweater Front'
+        | 'Ann Sweater Side'
+        | 'Ann Therapist'
+        | 'Anna in White T-shirt'
+        | 'Anna in Turtleneck T-shirt'
+        | 'Anna in Brown T-shirt'
+        | 'Annelise in Dark blue dress'
+        | 'Annelise in Off white dress'
+        | 'Annelise in Sky blue dress'
+        | 'Annelise in White dress'
+        | 'Annelore in Blue blazer'
+        | 'Annelore in Blue dress'
+        | 'Annelore in Red blazer'
+        | 'Annelore in Red sweater'
+        | 'Annelore in White shirt'
+        | 'Annie in Grey Jacket'
+        | 'Annie in White Shirt'
+        | 'Annie in Tan Jacket'
+        | 'Annie in Blue Casual'
+        | 'Annie in Light Blue'
+        | 'Annie in Brown Shirt'
+        | 'Annie in Black Shirt'
+        | 'Annie in Pink Suit'
+        | 'Annie in Grey Dress'
+        | 'Annie in Blue Vest'
+        | 'Annie in Black V-neck Shirt'
+        | 'Annie in Blue Suit'
+        | 'Annie Bar Sitting Front'
+        | 'Annie Bar Sitting Side'
+        | 'Annie Bar Standing Front 2'
+        | 'Annie Bar Standing Front 3'
+        | 'Annie Bar Standing Front'
+        | 'Annie Bar Standing Side 2'
+        | 'Annie Bar Standing Side 3'
+        | 'Annie Bar Standing Side'
+        | 'Annie Business Casual Standing Front 2'
+        | 'Annie Business Casual Standing Front'
+        | 'Annie Business Casual Standing Side 2'
+        | 'Annie Business Casual Standing Side'
+        | 'Annie Casual Sitting Front 2'
+        | 'Annie Casual Sitting Front'
+        | 'Annie Casual Sitting Side 2'
+        | 'Annie Casual Sitting Side'
+        | 'Annie Casual Standing Front 2'
+        | 'Annie Casual Standing Front'
+        | 'Annie Casual Standing Side 2'
+        | 'Annie Casual Standing Side'
+        | 'Annie Desk Sitting Front 2'
+        | 'Annie Desk Sitting Front'
+        | 'Annie Desk Sitting Side 2'
+        | 'Annie Desk Sitting Side'
+        | 'Annie Lounge Standing Front'
+        | 'Annie Lounge Standing Side'
+        | 'Annie Office Sitting Front 2'
+        | 'Annie Office Sitting Front'
+        | 'Annie Office Sitting Side 2'
+        | 'Annie Office Sitting Side'
+        | 'Annie Office Standing Front'
+        | 'Annie Office Standing Side'
+        | 'Annie Sofa Sitting Front 3'
+        | 'Annie Sofa Sitting Front'
+        | 'Annie Sofa Sitting Side 2'
+        | 'Annie Sofa Sitting Side 3'
+        | 'Annie Sofa Sitting Side'
+        | 'Annie Sofa Sitting Front 2'
+        | 'Annie Studio Pink Sitting Front'
+        | 'Annie Studio Pink Sitting Side'
+        | 'Annie Studio Pink Standing Front'
+        | 'Annie Studio Pink Standing Side'
+        | 'Armando Casual Front'
+        | 'Armando Casual Side'
+        | 'Armando Suit Front'
+        | 'Armando Suit Side'
+        | 'Armando Sweater Front 2'
+        | 'Armando Sweater Front'
+        | 'Armando Sweater Side 2'
+        | 'Armando Sweater Side'
+        | 'Artur Office Front 2'
+        | 'Artur Office Front'
+        | 'Artur Office Side 2'
+        | 'Artur Office Side'
+        | 'Artur Sofa Casual Front 2'
+        | 'Artur Sofa Casual Front'
+        | 'Artur Sofa Casual Side 2'
+        | 'Artur Sofa Causal Side'
+        | 'Aubrey Sofa Side'
+        | 'Aubrey (Upper Body)'
+        | 'Aubrey Night Scene Front'
+        | 'Aubrey Outdoor Sport Front'
+        | 'Aubrey Outdoor Sport Side'
+        | 'Aubrey Sofa Front'
+        | 'August Casual Front 2'
+        | 'August Casual Front'
+        | 'August Cool Sitting'
+        | 'August Cool Style'
+        | 'August Employee Front'
+        | 'August Hoodies Front 2'
+        | 'August Hoodies Front'
+        | 'Bahar (Upper Body)'
+        | 'Bahar Business Front'
+        | 'Bahar Business Side'
+        | 'Bahar Business Sitting Front'
+        | 'Bahar Business Sitting Side'
+        | 'Bahar Casual Sitting Front 2'
+        | 'Bahar Casual Sitting Front'
+        | 'Bahar Casual Sitting Side 2'
+        | 'Bahar Casual Sitting Side'
+        | 'Bahar Denim Casual Front'
+        | 'Bahar Denim Casual Side'
+        | 'Bahar Denim Front'
+        | 'Bahar Denim Side'
+        | 'Bahar Jacket Casual Front'
+        | 'Bahar Jacket Casual Side'
+        | 'Bahar Jacket Front'
+        | 'Bahar Jacket Side'
+        | 'Bahar Suit Front'
+        | 'Bahar Suit Side'
+        | 'Bastien in Blue T-shirt'
+        | 'Bastien in Blue blazer'
+        | 'Bastien in Blue shirt'
+        | 'Bastien in White shirt'
+        | 'Blanka Lounge Front'
+        | 'Blanka Lounge Side'
+        | 'Blanka Outdoor Business Front'
+        | 'Blanka Outdoor Business Side'
+        | 'Blanka Outdoor Reading Front'
+        | 'Blanka Outdoor Reading Side'
+        | 'Blanka Picnic Front'
+        | 'Blanka Picnic Side'
+        | 'Bojan Business Training Front 2'
+        | 'Bojan Business Training Front'
+        | 'Bojan Business Training Side 2'
+        | 'Bojan Business Training Side'
+        | 'Bojan Lounge Front 2'
+        | 'Bojan Lounge Front'
+        | 'Bojan Lounge Side 2'
+        | 'Bojan Lounge Side'
+        | 'Bojan Sport Front 2'
+        | 'Bojan Sport Front'
+        | 'Bojan Sport Side 2'
+        | 'Bojan Sport Side'
+        | 'Bradley in Blue Polo (Front)'
+        | 'Bradley in Blue Polo (Left)'
+        | 'Bradley in Blue Polo (Right)'
+        | 'Bradley in Blue Shirt (Front)'
+        | 'Bradley in Blue Shirt (Left)'
+        | 'Bradley in Blue Shirt (Right)'
+        | 'Bradley in Doctor (Front)'
+        | 'Bradley in Doctor (Left)'
+        | 'Bradley in Doctor (Right)'
+        | 'Brandon in Grey Suit'
+        | 'Brandon in Blue Sweater'
+        | 'Brandon in White Shirt'
+        | 'Brandon Business Sitting Front'
+        | 'Brandon Business Sitting Side'
+        | 'Brandon Business Standing Front'
+        | 'Brandon Business Standing Side'
+        | 'Brandon Casual Sitting Front'
+        | 'Brandon Casual Sitting Side'
+        | 'Brandon Kitchen Standing Front'
+        | 'Brandon Kitchen Standing Side'
+        | 'Brandon Lobby Sitting Front'
+        | 'Brandon Lobby Sitting Side'
+        | 'Brandon Lobby Standing Front'
+        | 'Brandon Lobby Standing Side'
+        | 'Brandon Office Sitting Front'
+        | 'Brandon Office Sitting Side'
+        | 'Brandon Office Standing Front'
+        | 'Brandon Office Standing Side'
+        | 'Brandon Sofa Sitting Front'
+        | 'Brandon Sofa Sitting Side'
+        | 'Brent Office Front 2'
+        | 'Brent Office Front'
+        | 'Brent Office Side 2'
+        | 'Brent Office Side'
+        | 'Brent Sofa Front 2'
+        | 'Brent Sofa Front'
+        | 'Brent Sofa Side 2'
+        | 'Brent Sofa Side'
+        | 'Briana in White shirt'
+        | 'Briana in Striped T-shirt'
+        | 'Briana in Brown suit'
+        | 'Bruce'
+        | 'Bryan Casual Front'
+        | 'Bryan Casual Side'
+        | 'Bryan Fitness Coach'
+        | 'Bryan Tech Expert'
+        | 'Bryan Plaid Shirt Front'
+        | 'Bryan Plaid Shirt Side'
+        | 'Bryan Suit Front'
+        | 'Bryan Suit Side'
+        | 'Bryce in Black t-shirt'
+        | 'Bryce in Blue blazer'
+        | 'Bryce in Blue shirt'
+        | 'Bryce in Grey blazer'
+        | 'Bryce in White shirt'
+        | 'Byron Business Front 2'
+        | 'Byron Business Front'
+        | 'Byron Business Side 2'
+        | 'Byron Business Side'
+        | 'Byron Business Sitting Front'
+        | 'Byron Business Sitting Size'
+        | 'Byron Casual Front 2'
+        | 'Byron Casual Front'
+        | 'Byron Casual Side 2'
+        | 'Byron Casual Side'
+        | 'Byron Casual Sitting Front'
+        | 'Byron Casual Sitting Side'
+        | 'Byron Jacket Front'
+        | 'Byron Jacket Side'
+        | 'Byron Sitting Front'
+        | 'Byron Sitting Side'
+        | 'Byron Suit Front'
+        | 'Byron Suit Side'
+        | 'Candace in Beige Dress (Front)'
+        | 'Candace in Beige Dress (Left)'
+        | 'Candace in Beige Dress (Right)'
+        | 'Candace in Doctor (Front)'
+        | 'Candace in Doctor (Left)'
+        | 'Candace in Doctor (Right)'
+        | 'Candace in Pink Blazer (Front)'
+        | 'Candace in Pink Blazer (Right)'
+        | 'Candace in Pink Blazer  (Left)'
+        | 'Carla in Doctor (Front)'
+        | 'Carla in Doctor (Left)'
+        | 'Carla in Doctor (Right)'
+        | 'Carla in Dress  (Left)'
+        | 'Carla in Shirt (Front)'
+        | 'Carla in Shirt (Left)'
+        | 'Carla in Shirt (Right)'
+        | 'Carlotta BizTalk Front'
+        | 'Carlotta BizTalk Side'
+        | 'Carlotta Business Front'
+        | 'Carlotta Business Side'
+        | 'Carlotta Casual Front'
+        | 'Carlotta Casual Side'
+        | 'Carlotta Casual Sitting Front'
+        | 'Carlotta Casual Sitting Side'
+        | 'Carlotta Half Front'
+        | 'Carlotta Pink Jumpsuit Front 2'
+        | 'Carlotta Pink Jumpsuit Front'
+        | 'Carlotta Pink Jumpsuit Side 2'
+        | 'Carlotta Pink Jumpsuit Side'
+        | 'Carlotta Pink Jumpsuit Sitting Front'
+        | 'Carlotta Pink Jumpsuit Sitting Side'
+        | 'Caroline Business Sitting Front'
+        | 'Caroline Business Sitting Side'
+        | 'Caroline Business Standing Front'
+        | 'Caroline Business Standing Side'
+        | 'Caroline in Blue Suit'
+        | 'Caroline in White Shirt'
+        | 'Caroline in Yellow Casual'
+        | 'Caroline in Yellow Skirt'
+        | 'Caroline Casual Sitting Front'
+        | 'Caroline Casual Sitting Side'
+        | 'Caroline Kitchen Standing Front'
+        | 'Caroline Kitchen Standing Side'
+        | 'Caroline Lobby Sitting Front'
+        | 'Caroline Lobby Sitting Side'
+        | 'Caroline Lobby Standing Front'
+        | 'Caroline Lobby Standing Side'
+        | 'Caroline Office Sitting Front'
+        | 'Caroline Office Sitting Side'
+        | 'Caroline Office Standing Front'
+        | 'Caroline Office Standing Side'
+        | 'Caroline Sofa Sitting Front'
+        | 'Caroline Sofa Sitting Side'
+        | 'Chad in Blue Shirt (Front)'
+        | 'Chad in Blue Shirt (Left)'
+        | 'Chad in Blue Shirt (Right)'
+        | 'Chad in Grey Shirt (Front)'
+        | 'Chad in Grey Shirt (Left)'
+        | 'Chad in Grey Shirt (Right)'
+        | 'Chad in Maintenance (Front)'
+        | 'Chad in Maintenance (Left)'
+        | 'Chad in Maintenance (Right)'
+        | 'Chakir in Headscarf (Front)'
+        | 'Chakir in Headscarf (Left)'
+        | 'Chakir in Headscarf (Right)'
+        | 'Chakir in White Shirt (Front)'
+        | 'Chakir in White Shirt (Right)'
+        | 'Chakir in white Shirt (Left)'
+        | 'Chloe (Upper Body)'
+        | 'Chloe Lounge Front'
+        | 'Chloe Lounge Side'
+        | 'Chloe Outdoor Side'
+        | 'Colin Business Front 2'
+        | 'Colin Business Front'
+        | 'Colin Jacket Front'
+        | 'Colin Sitting Cool Style 2'
+        | 'Colin Sitting Cool Style'
+        | 'Colin Suit Front'
+        | 'Colin Sweater Front'
+        | 'Colin Sweater Sitting Front'
+        | 'Connie Business Front'
+        | 'Connie Business Sitting Front'
+        | 'Connie Casual Sitting Front'
+        | 'Connie Casual Sitting Side'
+        | 'Connie Education Front'
+        | 'Connie Education Side 2'
+        | 'Connie Education Side'
+        | 'Connie Skirt Front'
+        | 'Connie Skirt Side'
+        | 'Connie Skirt Sitting Front'
+        | 'Connie Skirt Sitting Side'
+        | 'Connie Suit Front'
+        | 'Conrad House Front'
+        | 'Conrad House Side'
+        | 'Conrad Sofa Front'
+        | 'Conrad Sofa Side'
+        | 'Crisanto Business Front'
+        | 'Crisanto Business Side'
+        | 'Crisanto Chef Front 2'
+        | 'Crisanto Chef Front'
+        | 'Crisanto Chef Side 2'
+        | 'Crisanto Chef Side'
+        | 'Crisanto Chef Sitting '
+        | 'Crisanto Education Front'
+        | 'Crisanto Education Side'
+        | 'Crisanto Nurse Front 2'
+        | 'Crisanto Nurse Front'
+        | 'Crisanto Nurse Side 2'
+        | 'Crisanto Nurse Side'
+        | 'Crisanto Nurse Sitting Front'
+        | 'Crisanto Nurse Sitting Side'
+        | 'Crisanto Suit Front'
+        | 'Crisanto Suit Side'
+        | 'Daphne in Blue blazer'
+        | 'Daphne in Blue shirt'
+        | 'Daphne in Grey blazer'
+        | 'Daphne in Grey suit'
+        | 'Daphne in Pink hoodie'
+        | 'Daphne in White t-shirt'
+        | 'Darnell in Blue Shirt (Front)'
+        | 'Darnell in Blue Shirt (Left)'
+        | 'Darnell in Blue Shirt (Right)'
+        | 'Darnell in Bordeaux Polo (Front)'
+        | 'Darnell in Bordeaux Polo (Left)'
+        | 'Darnell in Bordeaux Polo (Right)'
+        | 'Darnell in Doctor (Front)'
+        | 'Darnell in Doctor (Left)'
+        | 'Darnell in Doctor (Right)'
+        | 'Derya Indoor Front 2'
+        | 'Derya Indoor Front'
+        | 'Derya Indoor Side 2'
+        | 'Derya Indoor Side'
+        | 'Derya Office Front 2'
+        | 'Derya Office Front'
+        | 'Derya Office Side 2'
+        | 'Derya Office Side'
+        | 'Dexter Casual Front'
+        | 'Dexter Casuat Side'
+        | 'Dexter Doctor Sitting'
+        | 'Dexter Doctor Standing'
+        | 'Dexter Lawyer'
+        | 'Dexter Suit Front'
+        | 'Dexter Suit Side'
+        | 'Dexter Winter Coat Front'
+        | 'Dexter Winter Coat Side'
+        | 'Diana in Black Camisole Top'
+        | 'Diana in Striped Shirt'
+        | 'Diana in White Shirt'
+        | 'Diora in Blue blazer'
+        | 'Diora in Green blazer'
+        | 'Diora in Pink shirt'
+        | 'Diora in White shirt'
+        | 'Diora in White t-shirt'
+        | 'Diran Casual Front'
+        | 'Diran Casual Side'
+        | 'Diran Jacket Front'
+        | 'Diran Jacket Side'
+        | 'Diran Macbook Business Front'
+        | 'Diran Macbook Business Side'
+        | 'Diran Macbook Casual Front'
+        | 'Diran Macbook Casual Side'
+        | 'Diran Macbook Sitting Front 2'
+        | 'Diran Macbook Sitting Front'
+        | 'Diran Macbook Sitting Side 2'
+        | 'Diran Macbook Sitting Side'
+        | 'Diran Suit Front'
+        | 'Diran Suit Side'
+        | 'Diran iPad Front'
+        | 'Diran iPad Side'
+        | 'Diran iPad Sitting Front'
+        | 'Diran iPad Sitting Side'
+        | 'Elenora Casual Front'
+        | 'Elenora Casual Side'
+        | 'Elenora Fitness Coach'
+        | 'Elenora Fitness Coach 2'
+        | 'Elenora Tech Expert'
+        | 'Elenora Suit Front'
+        | 'Elenora Suit Side'
+        | 'Elenora YellowDress Front'
+        | 'Elenora YellowDress Side'
+        | 'Emanuel Office Front'
+        | 'Emanuel Office Side'
+        | 'Emanuel Sofa Front'
+        | 'Emanuel Sofa Side'
+        | 'Emery in Blue blazer'
+        | 'Emery in Blue suit'
+        | 'Emery in Green shirt'
+        | 'Emery in Khaki blazer'
+        | 'Emery in Red blazer'
+        | 'Emery in White t-shirt'
+        | 'Emilia Outdoor Business Front'
+        | 'Emilia Outdoor Business Side'
+        | 'Emilia Outdoor Yoga Front 2'
+        | 'Emilia Outdoor Yoga Front'
+        | 'Emilia Outdoor Yoga Side'
+        | 'Emilia Picnic Front'
+        | 'Emilia Picnic Side'
+        | 'Edward in Black Suit'
+        | 'Edward'
+        | 'Edward in Blue Shirt'
+        | 'Esmond in Black coat'
+        | 'Esmond in Black shirt'
+        | 'Esmond in Blue blazer'
+        | 'Esmond in Blue suit'
+        | 'Esmond in Grey sweater'
+        | 'Fernando Business Indoor Front'
+        | 'Fernando Business Indoor Side'
+        | 'Fernando OutdoorChair Front 2'
+        | 'Fernando Outdoor Chair Front'
+        | 'Fernando Outdoor Chair Side'
+        | 'Fernando Outdoor Front'
+        | 'Fernando Outdoor Side'
+        | 'Fernando Outdoor Table Front'
+        | 'Fernando Outdoor Table Side'
+        | 'Fina Business Sitting Front'
+        | 'Fina Business Sitting Side'
+        | 'Fina Casual Front 2'
+        | 'Fina Casual Front'
+        | 'Fina Casual Side 2'
+        | 'Fina Casual Side'
+        | 'Fina Casual Sitting Front'
+        | 'Fina Casual Sitting Side'
+        | 'Fina Denim Front'
+        | 'Fina Denim Side'
+        | 'Fina Denim Sitting Front'
+        | 'Fina Employee Front'
+        | 'Fina Employee Side'
+        | 'Fina Suit Front'
+        | 'Fina Suit Side'
+        | 'Fina Support Front'
+        | 'Fina Support Side'
+        | 'Florin Business Sitting Front'
+        | 'Florin Business Sitting Side'
+        | 'Florin Maintain Front 2'
+        | 'Florin Maintain Front'
+        | 'Florin Maintain Side 2'
+        | 'Florin Maintain Side'
+        | 'Florin Maintain Siiting Front'
+        | 'Florin Maintain Siiting Side'
+        | 'Florin Suit Front 2'
+        | 'Florin Suit Front'
+        | 'Florin Suit Side 2'
+        | 'Florin Suit Side'
+        | 'Francis in Blazer (Front)'
+        | 'Francis in Blazer (Left)'
+        | 'Francis in Blazer (Right)'
+        | 'Francis in Doctor (Front)'
+        | 'Francis in Doctor (Left)'
+        | 'Francis in Doctor (Right)'
+        | 'Francis in Shirt (Front)'
+        | 'Francis in Shirt (Left)'
+        | 'Francis in Shirt (Right)'
+        | 'Fred in Blue Long Shirt (Front)'
+        | 'Fred in Blue Long Shirt (Left)'
+        | 'Fred in Blue Long Shirt (Right)'
+        | 'Fred in Blue Short Shirt (Front)'
+        | 'Fred in Blue Short Shirt (Left)'
+        | 'Fred in Blue Short Shirt (Right)'
+        | 'Freja in Blue blazer'
+        | 'Freja in Grey blazer'
+        | 'Freja in White blazer'
+        | 'Freja in White polo shirt'
+        | 'Freja in White shirt'
+        | 'Gabriel in Black Sweatshirt'
+        | 'Gabriel in Blue Suit'
+        | 'Gabriel in Gray Shirt'
+        | 'Gala Bedroom Front'
+        | 'Gala Business Sofa Front 2'
+        | 'Gala Business Sofa Front 3'
+        | 'Gala Business Sofa Front'
+        | 'Gala Business Sofa Side 2'
+        | 'Gala Business Sofa Side 3'
+        | 'Gala Business Sofa Side'
+        | 'Gala Casual Sofa with iPad Front'
+        | 'Gala Casual Sofa with iPad Side 2'
+        | 'Gala Casual Sofa with iPad Side'
+        | 'Gala Office Front'
+        | 'Gala Office Side'
+        | 'Gala Sofa Front 2'
+        | 'Gala Sofa Front 3'
+        | 'Gala Sofa Front'
+        | 'Gala Sofa Side 2'
+        | 'Gala Sofa Side 3'
+        | 'Gala Sofa Side'
+        | 'Georgia (Upper Body)'
+        | 'Georgia Casual Front'
+        | 'Georgia Casual Side'
+        | 'Georgia Office Front'
+        | 'Georgia Office Side'
+        | 'Gerardo Sofa Side'
+        | 'Gerardo Indoor Front'
+        | 'Gerardo Indoor Side'
+        | 'Gerardo Night Scene Front 2'
+        | 'Gerardo Night Scene Front'
+        | 'Gerardo Outdoor Sport Front'
+        | 'Gerardo Outdoor Sport Side'
+        | 'Gerardo Sofa Front'
+        | 'Giulia Office Front 2'
+        | 'Giulia Office Front'
+        | 'Giulia Office Side 2'
+        | 'Giulia Office Side'
+        | 'Giulia Sofa Front'
+        | 'Giulia Sofa Side'
+        | 'Giulia Sofa  Front 2'
+        | 'Giulia Sofa  Side 3'
+        | 'Hada Casual Cup Front'
+        | 'Hada Casual Cup Side'
+        | 'Hada Casual Front'
+        | 'Hada Casual Side'
+        | 'Hada Casual Sitting Front 2'
+        | 'Hada Casual Sitting Front'
+        | 'Hada Casual Sitting Side 2'
+        | 'Hada Casual Sitting Side'
+        | 'Hada LivelyGestures Front'
+        | 'Hada LivelyGestures Side'
+        | 'Hada LivelyGestures Sitting Front'
+        | 'Hada LivelyGestures Sitting Side'
+        | 'Hada Suit Front 2'
+        | 'Hada Suit Front'
+        | 'Hada Suit Side 2'
+        | 'Hada Suit Side'
+        | 'Hada Suit Sitting Front 2'
+        | 'Hada Suit Sitting Front'
+        | 'Hada Suit Sitting Side'
+        | 'Harrison in Black Suit'
+        | 'Harrison in Gray Suit'
+        | 'Harrison in White Shirt'
+        | 'Ian in Beige Shirt'
+        | 'Ian in Black Jacket'
+        | 'Ian in Gray Suit'
+        | 'Ida Lounge Front 2'
+        | 'Ida Lounge Front'
+        | 'Ida Lounge Side 2'
+        | 'Ida Lounge Side'
+        | 'Ida Sofa Front 2'
+        | 'Ida Sofa Front'
+        | 'Ida Sofa Side 2'
+        | 'Ida Sofa Side'
+        | 'Iker in Almond sweater'
+        | 'Iker in Black blazer'
+        | 'Iker in Blue shirt'
+        | 'Iker in Grey blazer'
+        | 'Iker in White shirt'
+        | 'Imelda BizTalk Front'
+        | 'Imelda BizTalk Side'
+        | 'Imelda Business Front'
+        | 'Imelda Business Side'
+        | 'Imelda Business Sitting Front 2'
+        | 'Imelda Business Sitting Front'
+        | 'Imelda Business Sitting Side 2'
+        | 'Imelda Business Sitting Side'
+        | 'Imelda Casual Front'
+        | 'Imelda Casual Side'
+        | 'Imelda Coat Front 2'
+        | 'Imelda Coat Front'
+        | 'Imelda Coat Side'
+        | 'Imelda Customer Support Front'
+        | 'Imelda Customer Support Side'
+        | 'Imelda Full Side '
+        | 'Imelda Suit Front'
+        | 'Imelda Suit Side'
+        | 'Ivan in Black Suit'
+        | 'Ivan in Gary Suit'
+        | 'Ivan in Suit'
+        | 'Ivan in Sweater'
+        | 'Jason in Black Jacket'
+        | 'Jason in Blue Suit'
+        | 'Jason in Gray Shirt'
+        | 'Javi Intense Sitting Speaking Front'
+        | 'Javi Intense Sitting Speaking Side'
+        | 'Javi Intense Sitting Speaking '
+        | 'Javi Intense Speaking Front 2'
+        | 'Javi Intense Speaking Front 3'
+        | 'Javi Intense Speaking Front'
+        | 'Javi Intense Speaking Side 3'
+        | 'Javi Intense Speaking Side'
+        | 'Javi in Passionate Gestures 2'
+        | 'Javi in Passionate Gestures 3'
+        | 'Javi in Passionate Gestures'
+        | 'Jin (Upper Body)'
+        | 'Jin Blue Casual Front'
+        | 'Jin Blue Casual Side'
+        | 'Jin Business Café Mode Front'
+        | 'Jin Business Café Mode Side'
+        | 'Jin Business Sitting Front'
+        | 'Jin Business Sitting Side'
+        | 'Jin Casual Café Mode Front'
+        | 'Jin Casual Café Mode Side'
+        | 'Jin Casual Sitting Front'
+        | 'Jin Casual Sitting Side'
+        | 'Jin Suit Front'
+        | 'Jin Suit Side'
+        | 'Jin Vest Front'
+        | 'Jin Vest Side'
+        | 'Jin Vest Sitting Front'
+        | 'Jin Vest Sitting Side'
+        | 'Jin in Education Front'
+        | 'Jin in Education Side'
+        | 'Jinwoo in Black vest'
+        | 'Jinwoo in Blue suit'
+        | 'Jinwoo in White T-shirt'
+        | 'Jinwoo in White shirt'
+        | 'Jinwoo in White suit'
+        | 'Jocelyn Office Front 2'
+        | 'Jocelyn Office Front'
+        | 'Jocelyn Office Side 2'
+        | 'Jocelyn Office Side'
+        | 'Jocelyn Sofa Front 2'
+        | 'Jocelyn Sofa Front'
+        | 'Jocelyn Sofa Side 2'
+        | 'Jocelyn Sofa Side'
+        | 'Joel Couch Front'
+        | 'Joel Couch Side'
+        | 'Joel Gym Front'
+        | 'Joel Gym Side'
+        | 'Joel Mountain Front'
+        | 'Joel Mountain Side'
+        | 'Jonas (Upper Body)'
+        | 'Jonas Gym Front 2'
+        | 'Jonas Gym Front'
+        | 'Jonas Gym Side 2'
+        | 'Jonas Gym Side '
+        | 'June Office Front 2'
+        | 'Juan Office Front'
+        | 'Juan Office Side 2'
+        | 'Juan Office Side'
+        | 'Juan Sofa Front 2'
+        | 'Juan Sofa Front'
+        | 'Juan Sofa Side 2'
+        | 'Juan Sofa Side'
+        | 'Judita (Upper Body)'
+        | 'Judita Yoga Front 2'
+        | 'Judita Yoga Front'
+        | 'Judita Yoga Side 2'
+        | 'Judita Yoga Side'
+        | 'Judith (Upper Body)'
+        | 'Judith Business Front 2'
+        | 'Judith Business Front'
+        | 'Judith Business Sitting Front'
+        | 'Judith Casual Front'
+        | 'Judith Casual Sitting Front'
+        | 'Judith Suit Front'
+        | 'Judy Business Front'
+        | 'Judy Business Side'
+        | 'Judy Business Sitting Front'
+        | 'Judy Casual Front'
+        | 'Judy Casual Side'
+        | 'Judy Casual Sitting'
+        | 'Judy ConfidentSpeaking Front'
+        | 'Judy ConfidentSpeaking Side'
+        | 'Judy Doctor Sitting'
+        | 'Judy Doctor Standing'
+        | 'Judy Lawyer'
+        | 'Judy NurseSitting Front 2'
+        | 'Judy NurseSitting Front'
+        | 'Judy NurseSitting Side 2'
+        | 'Judy NurseSitting Side'
+        | 'Judy Nurse Front 2'
+        | 'Judy Nurse Front'
+        | 'Judy Nurse OnDuty Front'
+        | 'Judy Nurse OnDuty Side'
+        | 'Judy Nurse Side 2'
+        | 'Judy Nurse Side'
+        | 'Judy Suit Front'
+        | 'Judy Suit Side'
+        | 'Judy Teacher Sitting'
+        | 'Judy HR'
+        | 'Judy Teacher Standing'
+        | 'June (Upper Body)'
+        | 'June HR'
+        | 'June Office Front'
+        | 'June Office Side 2'
+        | 'June Office Side'
+        | 'June Sofa Casual Front 2'
+        | 'June Sofa Casual Front'
+        | 'June Sofa Casual Side 2'
+        | 'June Sofa Casual Side'
+        | 'Justin in Black Shirt'
+        | 'Justin in Black Suit'
+        | 'Justin in White Shirt'
+        | 'Justo Business Front 2'
+        | 'Justo Business Front'
+        | 'Justo Business Side 2'
+        | 'Justo Business Side'
+        | 'Justo Casual Sitting'
+        | 'Justo CustomerService Front 2'
+        | 'Justo CustomerService Front'
+        | 'Justo CustomerService Side'
+        | 'Justo CustomerService Sitting Front'
+        | 'Justo CustomerService Sitting Side'
+        | 'Justo EmployeeTraining Front'
+        | 'Justo Suit Casual Front '
+        | 'Justo Suit Casual Side '
+        | 'Karolin in Gray Suit'
+        | 'Karolin in Sweatshirt'
+        | 'Karolin in Black Suit'
+        | 'Kavya Indoor Front'
+        | 'Kavya Indoor Side'
+        | 'Kavya Outdoor Side'
+        | 'Kavya Outdoor Sport Front'
+        | 'Kavya Outdoor Sport Side'
+        | 'Kavya Sofa Front'
+        | 'Kavya Sofa Side'
+        | 'Kelly in Blue Shirt  (Front)'
+        | 'Kelly in Blue Shirt (Left)'
+        | 'Kelly in Blue Shirt (Right)'
+        | 'Kelly in Doctor (Front)'
+        | 'Kelly in Doctor (Left)'
+        | 'Kelly in Doctor (Right)'
+        | 'Kelly in Pink Shirt (Front)'
+        | 'Kelly in Pink Shirt (Left)'
+        | 'Kelly in Pink Shirt (Right)'
+        | 'Klara in Black blazer'
+        | 'Klara in Blue blazer'
+        | 'Klara in Blue dress'
+        | 'Klara in Pink shirt'
+        | 'Klara in White blazer'
+        | 'Klara in White shirt'
+        | 'Kristin in Lace Dress'
+        | 'Kristin in V-neck Shirt'
+        | 'Kristin in Black Suit'
+        | 'Leos Office Front 2'
+        | 'Leos Office Front'
+        | 'Leos Office Side 2'
+        | 'Leos Office Side'
+        | 'Leos Sofa Front 2'
+        | 'Leos Sofa Front'
+        | 'Leos Sofa Side 2'
+        | 'Leos Sofa Side'
+        | 'Leszek Lounge Front'
+        | 'Leszek Lounge Side'
+        | 'Leszek Outdoor Business Front'
+        | 'Leszek Outdoor Business Side'
+        | 'Leszek Outdoor Casual Front'
+        | 'Leszek Outdoor Casual Side'
+        | 'Leszek Sofa Front'
+        | 'Leszek Sofa Side'
+        | 'Leah'
+        | 'Leah in Black Suit'
+        | 'Lina Casual Front 2'
+        | 'Lina Casual Front'
+        | 'Lina Casual Side 2'
+        | 'Lina Casual Side'
+        | 'Lina Casual Sitting Front'
+        | 'Lina Casual Sitting Side'
+        | 'Lina Dress Front'
+        | 'Lina Dress Side 2'
+        | 'Lina Dress Side'
+        | 'Lina Dress Sitting Front'
+        | 'Lina Dress Sitting Side'
+        | 'Lina Sweater Front 2'
+        | 'Lina Sweater Front'
+        | 'Lina Sweater Side 2'
+        | 'Lina Sweater Side'
+        | 'Lina Sweater Sitting Front 2'
+        | 'Lina Sweater Sitting Front'
+        | 'Lina Sweater Sitting Side 2'
+        | 'Lina Sweater Sitting Side'
+        | 'Lisa'
+        | 'Luca'
+        | 'Lucien in Black coat'
+        | 'Lucien in Black polo-shirt'
+        | 'Lucien in Blue blazer'
+        | 'Lucien in Blue shirt'
+        | 'Lucien in Grey blazer'
+        | 'Lucien in White shirt'
+        | 'Luke in Brown Suit'
+        | 'Luke in Yellow Jacket'
+        | 'Luke in Blue Suit'
+        | 'Marcus (Upper Body)'
+        | 'Marcus Café Front 2'
+        | 'Marcus Café Front'
+        | 'Marcus Café Side 2'
+        | 'Marcus Café Side'
+        | 'Marcus Casual Front'
+        | 'Marcus Casual Side'
+        | 'Marcus Casual Sitting Front 2'
+        | 'Marcus Casual Sitting Front'
+        | 'Marcus Casual Sitting Side 2'
+        | 'Marcus Casual Sitting Side'
+        | 'Marcus Denim Jacket Front'
+        | 'Marcus Denim Jacket Side'
+        | 'Marcus Education Front'
+        | 'Marcus Education Side'
+        | 'Marcus Sitting Front'
+        | 'Marcus Sitting Side'
+        | 'Marcus Suit Front'
+        | 'Marcus Suit Side'
+        | 'Maria in Suit'
+        | 'Maria in Sweater'
+        | 'Maria in Black Suit'
+        | 'Martina Office Front 2'
+        | 'Martina Office Front'
+        | 'Martina Office Side 2'
+        | 'Martina Office Side'
+        | 'Martina Sofa Front 2'
+        | 'Martina Sofa Front'
+        | 'Martina Sofa Side 2'
+        | 'Martina Sofa Side'
+        | 'Masha Office Front 2'
+        | 'Masha Office Front'
+        | 'Masha Office Side 2'
+        | 'Masha Office Side'
+        | 'Masha Sofa Casual Front 2'
+        | 'Masha Sofa Casual Front'
+        | 'Masha Sofa Casual Side 2'
+        | 'Masha Sofa Casual Side'
+        | 'Mason in Blue Suit'
+        | 'Mason in White Shirt'
+        | 'Mason in Blue Sweater'
+        | 'Matteo Office Front 2'
+        | 'Matteo Office Front'
+        | 'Matteo Office Side 2'
+        | 'Matteo Office Side'
+        | 'Matteo Sofa Front 2'
+        | 'Matteo Sofa Front'
+        | 'Matteo Sofa Side 2'
+        | 'Matteo Sofa Side'
+        | 'Max (Upper Body)'
+        | 'Max Indoor Front'
+        | 'Max Indoor Side'
+        | 'Max Outdoor Sport Front'
+        | 'Max Outdoor Sport Side'
+        | 'Milena Office Front 2'
+        | 'Milena Office Front'
+        | 'Milena Office Side 2'
+        | 'Milena Office Side'
+        | 'Milena Sofa Front 2'
+        | 'Milena Sofa Front'
+        | 'Milena Sofa Side 2'
+        | 'Milena Sofa Side'
+        | 'Miles (Upper Body)'
+        | 'Miles Outdoor Front'
+        | 'Miles Outdoor Side'
+        | 'Miles Sofa Front 2'
+        | 'Miles Sofa Front'
+        | 'Miles Sofa Side 2'
+        | 'Miles Sofa Side'
+        | 'Minho in Blue blazer'
+        | 'Minho in Blue shirt'
+        | 'Minho in Green polo-shirt'
+        | 'Minho in Khaki jacket'
+        | 'Minho in White shirt'
+        | 'Minho in White t-shirt'
+        | 'Mireia Business Indoor Front'
+        | 'Mireia Business Indoor Side'
+        | 'Mireia Outdoor Chair Front'
+        | 'Mireia Outdoor Front'
+        | 'Mireia Outdoor Side'
+        | 'Mireia Outdoor Table Front'
+        | 'Mireia Outdoor Table Side'
+        | 'Miyu Office Front 2'
+        | 'Miyu Office Front'
+        | 'Miyu Office Side 2'
+        | 'Miyu Office Side'
+        | 'Miyu Sofa Business Front'
+        | 'Miyu Sofa Business Side'
+        | 'Miyu Sofa Casual Front 2'
+        | 'Miyu Sofa Casual Front'
+        | 'Miyu Sofa Casual Side 2 '
+        | 'Miyu Sofa Casual Side'
+        | 'Nadim in Black blazer'
+        | 'Nadim in Blue blazer'
+        | 'Nadim in Blue jacket'
+        | 'Nadim in Puffer vest'
+        | 'Nadim in White shirt'
+        | 'Neil in Black Shirt'
+        | 'Neil in Black Suit '
+        | 'Neil in Yellow Jacket'
+        | 'Nico'
+        | 'Noah Lobby Front 2'
+        | 'Noah Lobby Front'
+        | 'Noah Lobby Side 2'
+        | 'Noah Lobby Side'
+        | 'Noah Office Front 2'
+        | 'Noah Office Front'
+        | 'Noah Office Side 2'
+        | 'Noah Office Side'
+        | 'Noah Sofa Front 2'
+        | 'Noah Sofa Front '
+        | 'Noah Sofa Side 2'
+        | 'Noah Sofa Side'
+        | 'Nour in Black blazer'
+        | 'Nour in Brown dress'
+        | 'Nour in Grey hoodie'
+        | 'Nour in Sporty vest'
+        | 'Nour in White shirt'
+        | 'Odelia in Blue Suit'
+        | 'Odelia in Red Dress '
+        | 'Odelia in Yellow Suit'
+        | 'Onat (Upper Body)'
+        | 'Onat Casual Front'
+        | 'Onat Casual Side'
+        | 'Onat Casual Sitting Front'
+        | 'Onat Casual Sitting Side'
+        | 'Onat Macbook Front 2'
+        | 'Onat Macbook Front'
+        | 'Onat Macbook Side 2'
+        | 'Onat Macbook Side'
+        | 'Onat Suit Front'
+        | 'Onat Suit Side'
+        | 'Onat Suit Sitting Front'
+        | 'Onat Suit Sitting Side'
+        | 'Onat iPad Front'
+        | 'Onat iPad Side'
+        | 'Onat iPad Sitting Front'
+        | 'Onat iPad Sitting Side'
+        | 'Oxana (Upper Body)'
+        | 'Oxana Gym Front 2'
+        | 'Oxana Gym Front'
+        | 'Oxana Gym Side 2'
+        | 'Oxana Gym Side'
+        | 'Oxana Office Front 2'
+        | 'Oxana Office Front'
+        | 'Oxana Office Side 2'
+        | 'Oxana Office Side'
+        | 'Oxana Sofa Front 2'
+        | 'Oxana Sofa Front'
+        | 'Oxana Sofa Side 2'
+        | 'Oxana Sofa Side'
+        | 'Oxana Yoga Front 2'
+        | 'Oxana Yoga Front'
+        | 'Oxana Yoga Side 2'
+        | 'Oxana Yoga Side'
+        | 'Patrizio Business Training Front'
+        | 'Patrizio Business Training Side'
+        | 'Patrizio Office Front'
+        | 'Patrizio Office Side 2'
+        | 'Patrizio Office Side'
+        | 'Patrizio Sofa Front'
+        | 'Patrizio Sofa Side'
+        | 'Piper Business Sofa Front'
+        | 'Piper Business Sofa Side'
+        | 'Piper Education Front'
+        | 'Piper Education Side'
+        | 'Rasmus Lounge Front 2'
+        | 'Rasmus Lounge Front'
+        | 'Rasmus Lounge Side 2'
+        | 'Rasmus Lounge Side'
+        | 'Rasmus Sofa Front 2'
+        | 'Rasmus Sofa Front'
+        | 'Rasmus Sofa Side 2'
+        | 'Rasmus Sofa Side'
+        | 'Raul (Upper Body)'
+        | 'Raul Business Sofa Front 2'
+        | 'Raul Business Sofa Front'
+        | 'Raul Business Sofa Side 2'
+        | 'Raul Business Sofa Side'
+        | 'Raul Casual Sofa Front 2'
+        | 'Raul Casual Sofa Front'
+        | 'Raul Casual Sofa Side 2'
+        | 'Raul Casual Sofa Side'
+        | 'Raul Casual Sofa no iPad Front'
+        | 'Raul Casual Sofa no iPad Side'
+        | 'Raul Casual Sofa with iPad Front'
+        | 'Raul Casual Sofa with iPad Side'
+        | 'Raul Office Front 2'
+        | 'Raul Office Front'
+        | 'Raul Office Side'
+        | 'Raul Sofa Front 2'
+        | 'Raul Sofa Front'
+        | 'Raul Sofa Side 2'
+        | 'Raul Sofa Side'
+        | 'Rebecca'
+        | 'Ren (Upper Body)'
+        | 'Ren Office Front 2'
+        | 'Ren Office Front'
+        | 'Ren Office Side 2'
+        | 'Ren Office Side'
+        | 'Ren Sofa Business Front'
+        | 'Ren Sofa Business Side'
+        | 'Ren Sofa Casual Front 2'
+        | 'Ren Sofa Casual Front'
+        | 'Ren Sofa Casual Side 2 '
+        | 'Ren Sofa Casual Side'
+        | 'Riley (Upper Body)'
+        | 'Riley Casual Front'
+        | 'Riley Casual Side'
+        | 'Riley Office Front'
+        | 'Riley Office Side'
+        | 'Roman Outdoor Sport Front'
+        | 'Roman Outdoor Sport Side'
+        | 'Sabine Office Front 2'
+        | 'Sabine Office Front'
+        | 'Sabine Office Side'
+        | 'Sabine Sofa Side'
+        | 'Salma in headscarf (Front)'
+        | 'Salma in headscarf (Left)'
+        | 'Salma in headscarf (Right)'
+        | 'Santa Avatar Present Standing '
+        | 'Santa Avatar Sitting 2'
+        | 'Santa Avatar Sitting'
+        | 'Santa Avatar Sitting Side'
+        | 'Santa Avatar Standing'
+        | 'Santa Fireplace Front'
+        | 'Santa Fireplace Side'
+        | 'Saskia in Blue blazer'
+        | 'Saskia in Blue shirt'
+        | 'Saskia in Green blazer'
+        | 'Saskia in Grey vest'
+        | 'Saskia in White blazer'
+        | 'Scarlett Couch Front 2'
+        | 'Scarlett Couch Front'
+        | 'Scarlett Couch Side 2'
+        | 'Scarlett Couch Side'
+        | 'Scarlett Fireplace Front'
+        | 'Scarlett Fireplace Side'
+        | 'Scarlett Hall Front'
+        | 'Scarlett Hall Side'
+        | 'Scarlett Yoga Front'
+        | 'Scarlett Yoga Side'
+        | 'Seema Business Front'
+        | 'Seema Business Side'
+        | 'Seema Business Sitting Side'
+        | 'Seema Casual Front'
+        | 'Seema Casual Side'
+        | 'Seema Casual Sitting Front'
+        | 'Seema Casual Sitting Side'
+        | 'Seema Nurse Front 2'
+        | 'Seema Nurse Front'
+        | 'Seema Nurse Side 2'
+        | 'Seema Nurse Side'
+        | 'Shawn Business Front'
+        | 'Shawn Business Side'
+        | 'Shawn Casual Sitting Front'
+        | 'Shawn Casual Sitting Side'
+        | 'Shawn Sitting Front'
+        | 'Shawn Sitting Side'
+        | 'Shawn Suit Front'
+        | 'Shawn Suit Side'
+        | 'Shawn Therapist'
+        | 'Shirley Business Front'
+        | 'Shirley Business Side'
+        | 'Shirley Casual Front 2'
+        | 'Shirley Casual Front'
+        | 'Shirley Casual Side'
+        | 'Shirley Casual Sitting Front 2'
+        | 'Shirley Casual Sitting Front'
+        | 'Shirley Casual Sitting Side 2'
+        | 'Shirley Casual Sitting Side'
+        | 'Shirley Education Front'
+        | 'Shirley Education Side 2'
+        | 'Shirley Education Side'
+        | 'Shirley Sitting Front'
+        | 'Shirley Sitting Side'
+        | 'Shirley Skirt Front'
+        | 'Shirley Skirt Side'
+        | 'Shirley Suit Front'
+        | 'Shirley Suit Side'
+        | 'Silas (Upper Body)'
+        | 'Silas Customer Support'
+        | 'Silas HR'
+        | 'Silas Lounge Front'
+        | 'Silas Lounge Side'
+        | 'Silas Sofa Side 2'
+        | 'Silas Sofa Side'
+        | 'Sloane in Blue dress'
+        | 'Sloane in Grey suit'
+        | 'Sloane in Pink sweater'
+        | 'Sophia in Black Shirt'
+        | 'Sophia in Suit '
+        | 'Sophia in White Suit'
+        | 'Sophie'
+        | 'Stacy in Doctor (Front)'
+        | 'Stacy in Doctor (Left)'
+        | 'Stacy in Doctor (Right)'
+        | 'Stacy in Dress (Front)'
+        | 'Stacy in Dress (Left)'
+        | 'Stacy in Dress (Right)'
+        | 'Stacy in Shirt (Front)'
+        | 'Stacy in Shirt (Left)'
+        | 'Stacy in Shirt (Right)'
+        | 'Susan in Black Shirt'
+        | 'Susan in Black Suit'
+        | 'Susan in Suit'
+        | 'Tahlia in Blue dress'
+        | 'Tahlia in Blue suit'
+        | 'Tahlia in Dark blue suit'
+        | 'Tahlia in Red suit'
+        | 'Tahlia in White shirt'
+        | 'Teodor (Upper Body)'
+        | 'Teodor Office Front 2'
+        | 'Teodor Office Front'
+        | 'Teodor Office Side 2'
+        | 'Teodor Office Side'
+        | 'Teodor Sofa Front 2'
+        | 'Teodor Sofa Front'
+        | 'Teodor Sofa Side 2'
+        | 'Teodor Sofa Side'
+        | 'Timothy (Upper Body)'
+        | 'Timothy Casual Front'
+        | 'Timothy Casual Side'
+        | 'Timothy Office Front'
+        | 'Timothy Office Side'
+        | 'Tito Casual Front 2'
+        | 'Tito Casual Front'
+        | 'Tito Casual Side 2'
+        | 'Tito Casual Side'
+        | 'Tito Casual Sitting Front'
+        | 'Tito Casual Sitting Side'
+        | 'Tito Coat Front 2'
+        | 'Tito Coat Front'
+        | 'Tito Coat Full Side'
+        | 'Tito Coat Side 2'
+        | 'Tito Coat Side'
+        | 'Tito Painter Front'
+        | 'Tito Painter Full Side'
+        | 'Tito Painter Side'
+        | 'Tito Painter Sitting Front'
+        | 'Tito Painter Sitting Side'
+        | 'Travis in Polo Shirt'
+        | 'Travis in Gray Suit'
+        | 'Travis in Black Suit'
+        | 'Trevor  in Plaid Shirt'
+        | 'Trevor in Blue Shirt'
+        | 'Trevor in Blue Suit'
+        | 'Trevor in Suit'
+        | 'Tuba Business Chair Front'
+        | 'Tuba Business Chair Side'
+        | 'Tuba Business Front'
+        | 'Tuba Business Side'
+        | 'Tuba Business Sofa Front'
+        | 'Tuba Business Sofa Side'
+        | 'Tuba Casual Front'
+        | 'Tuba Casual Side'
+        | 'Tuba Casual Sitting Front'
+        | 'Tuba Casual Sitting Side'
+        | 'Tuba Macbook Front'
+        | 'Tuba Macbook Side'
+        | 'Veit Office Front'
+        | 'Veit Office Side'
+        | 'Veit Sofa Front'
+        | 'Veit Sofa Side'
+        | 'Vernon Office Front 2'
+        | 'Vernon Office Front'
+        | 'Vernon Office Side 2'
+        | 'Vernon Office Side'
+        | 'Verena Office Front'
+        | 'Verena Office Side'
+        | 'Verena Sofa Front'
+        | 'Verena Sofa Side'
+        | 'Vernon (Upper Body)'
+        | 'Vernon Lounge Front 2'
+        | 'Vernon Lounge Side 2'
+        | 'Vernon Lounge Side'
+        | 'Vince (Upper Body)'
+        | 'Vince Business Sofa Front'
+        | 'Vince Business Training Front'
+        | 'Vince Business Training Side 2'
+        | 'Vince Business Training Side'
+        | 'Vince Sofa Casual Front 2'
+        | 'Vince Sofa Casual Front'
+        | 'Vince Sofa Casual Side 2'
+        | 'Vince Sofa Casual Side'
+        | 'Violante Brown Suit Front 2'
+        | 'Violante Brown Suit Front '
+        | 'Violante Business Sitting Front'
+        | 'Violante Business Sitting Side'
+        | 'Violante Casual Sitting Front '
+        | 'Violante Casual Sitting Side'
+        | 'Violante Sport Front 2'
+        | 'Violante Sport Front'
+        | 'Violante Sport Side'
+        | 'Violante Sport Sitting Side'
+        | 'Violante Suit Front'
+        | 'Vivianna in Black shirt'
+        | 'Wade in Black Suit'
+        | 'Wade in Black Jacket'
+        | 'Wade in Gray Jacket'
+        | 'Yola Active Speaking Front'
+        | 'Yola Active Speaking Side'
+        | 'Yola Business Front'
+        | 'Yola Business Side'
+        | 'Yola Calm Speaking Front'
+        | 'Yola Calm Speaking Side'
+        | 'Yola Casual Front'
+        | 'Yola Casual Side'
+        | 'Yola Employee Badge Front'
+        | 'Yola Employee Badge Side'
+        | 'Zosia in Blue blazer'
+        | 'Zosia in Green dress'
+        | 'Zosia in Khaki blazer'
+        | 'Zosia in White dress'
+        | 'Zosia in Yellow shirt'
+        | 'Austin in Suit'
+        | 'Austin in Blue Casual Suit'
+        | 'Austin in Black Jacket'
+        | 'Austin in Blue Suit'
+        | 'Candace in Pink Blazer (Upper Body)'
+        | 'Chad in Blue Shirt (Upper Body)'
+        | 'Daisy in Suit'
+        | 'Daisy in Shirt'
+        | 'Daisy in Dress'
+        | 'Daisy in T-shirt'
+        | 'Francis in Blazer (Upper Body)'
+        | 'Matthew'
+        | 'Matthew in Suit'
+        | 'Matthew in Flowery Shirt'
+        | 'Matthew in Grey Sweater'
+        | 'Nik in Black Shirt'
+        | 'Nik in Blue Sweater'
+        | 'Tyler in Casual Suit'
+        | 'Tyler in Shirt'
+        | 'Tyler in Suit';
+    /**
+     * Duration
+     * @description Approximate duration in seconds (minimum 5). Suggested presets: 30, 60, or 90 seconds.
+     * @example 30
+     * @example 60
+     * @example 90
+     */
+    duration?: number;
+    /**
+     * Orientation
+     * @description Video orientation
+     * @default portrait
+     * @enum {string}
+     */
+    orientation?: 'portrait' | 'landscape';
 }
 
 export interface Video_1 {
@@ -697,7 +1872,7 @@ export interface TranscriptionWord {
      * End
      * @description End time in seconds
      */
-    end: number;
+    end?: number;
     /**
      * Speaker Id
      * @description Speaker identifier if diarization was enabled
@@ -707,7 +1882,7 @@ export interface TranscriptionWord {
      * Start
      * @description Start time in seconds
      */
-    start: number;
+    start?: number;
     /**
      * Text
      * @description The transcribed word or audio event
@@ -825,26 +2000,141 @@ export interface TimestepsInput {
     method?: 'default' | 'array';
 }
 
+export interface TextVoice {
+    /**
+     * Prompt
+     * @description The text that the avatar will speak in the video
+     * @example The Tesla Cybertruck is a battery-electric full-size pickup truck manufactured by Tesla, Inc. since 2023. It was first unveiled as a prototype in November 2019, featuring a distinctive angular design composed of flat, unpainted stainless steel body panels, drawing comparisons to low-polygon computer models.
+     */
+    prompt: string;
+    /**
+     * Speed
+     * @description Speed of the speech (0.5 to 2.0)
+     * @default 1
+     * @example 1
+     * @example 1.1
+     * @example 0.9
+     */
+    speed?: number;
+    /**
+     * Voice
+     * @description Name of the voice to use for the avatar
+     * @example Charming Charlie - Excited 🤩
+     * @enum {string}
+     */
+    voice:
+        | 'Warm Pro Narrator'
+        | 'Chill Brian'
+        | 'Ivy'
+        | 'John Doe'
+        | 'Monika Sogam'
+        | 'Hope '
+        | 'Archer '
+        | 'Brittney'
+        | 'Patrick'
+        | 'David Castlemore'
+        | 'Michael C'
+        | 'Adam Stone '
+        | 'Juniper'
+        | 'Cassidy '
+        | 'Jessica Anne Bogart'
+        | 'Arabella'
+        | 'Andrew'
+        | 'Spuds Oxley '
+        | 'Grace Elder'
+        | 'Helen'
+        | 'Canyon Rivers'
+        | 'Derya - Lifelike - Excited 🤩'
+        | 'Mellow Marcus'
+        | 'Jack Sterling - Broadcaster 🎙️'
+        | 'Brenda - UGC - 1.mp4'
+        | 'Reid'
+        | 'Reagan'
+        | 'Terry'
+        | 'Jenny'
+        | 'Radio Rick'
+        | 'Denise'
+        | 'Tim in car - Excited 🤩'
+        | 'Iskander'
+        | 'Thompson'
+        | 'Delicate Daisy - Excited 🤩'
+        | 'Kingston'
+        | 'George UGC 1'
+        | 'Bold Blake'
+        | 'Jane'
+        | 'Expressive Evan'
+        | 'Marianne - IA'
+        | 'Aaron'
+        | 'Modern Recipe Host - Voice 1'
+        | 'Willow'
+        | 'Cute Chloe - Friendly 😊'
+        | 'Rafael'
+        | 'June - Lifelike'
+        | 'Crisp Chloe'
+        | 'Slick Simon'
+        | 'Nassim - Informative'
+        | 'Baritone Ben'
+        | 'Maxwell'
+        | 'Ellie Faye - Excited 🤩'
+        | 'Milani'
+        | 'Feisty Fiona - Excited 🤩'
+        | 'Professor Dean'
+        | 'Rose - UGC - 1.mp4'
+        | 'Shona'
+        | 'Hudson Wilder'
+        | 'Ann - IA'
+        | 'Alastair Kensington'
+        | 'Oxley'
+        | 'Christina'
+        | 'Andrew Rizz '
+        | 'Peyton'
+        | 'Gerardo - Outdoor'
+        | 'Chloe - Lifelike'
+        | 'Stephanie'
+        | 'Anthony - IA'
+        | 'Signal - Voice 1'
+        | 'Luca'
+        | 'Lisa - Voice 1'
+        | 'T.W.Tucker'
+        | 'Jack Sullivan - Serious 😐'
+        | 'Winter'
+        | 'Mireia - Lifelike'
+        | 'Georgia'
+        | 'Stella'
+        | 'Masha - Lifelike'
+        | 'Charming Charles - Friendly 😊'
+        | 'Serenity'
+        | 'Annie - Excited'
+        | 'Ralph'
+        | 'Bethany'
+        | 'Dominic'
+        | 'Mason Finn'
+        | 'Leena'
+        | 'Veteran Victor'
+        | 'Tamara'
+        | 'Nik Public'
+        | 'Calm Chloe'
+        | 'Sevik'
+        | 'Reilly'
+        | 'Raul'
+        | 'Imposing Ian'
+        | 'Relaxed Ray'
+        | 'Dexter - Professional'
+        | 'Relaxed Rick'
+        | 'Edwin'
+        | 'Rupert Blackwood'
+        | 'Ginny'
+        | 'Hope';
+}
+
 export interface TextureFiles {
-    /**
-     * Base Color
-     * @description Base color texture
-     */
+    /** @description Base color texture */
     base_color: File;
-    /**
-     * Metallic
-     * @description Metallic texture (PBR)
-     */
+    /** @description Metallic texture (PBR) */
     metallic?: File;
-    /**
-     * Normal
-     * @description Normal texture (PBR)
-     */
+    /** @description Normal texture (PBR) */
     normal?: File;
-    /**
-     * Roughness
-     * @description Roughness texture (PBR)
-     */
+    /** @description Roughness texture (PBR) */
     roughness?: File;
 }
 
@@ -1337,7 +2627,7 @@ export interface PronunciationDictionaryLocator {
      * Pronunciation Dictionary Id
      * @description The ID of the pronunciation dictionary.
      */
-    pronunciation_dictionary_id: string;
+    pronunciation_dictionary_id?: string;
     /**
      * Version Id
      * @description The ID of the version of the pronunciation dictionary. If not provided, the latest version will be used.
@@ -1779,91 +3069,43 @@ export interface MoondreamInputParam {
 }
 
 export interface ModelUrls_2 {
-    /**
-     * Fbx
-     * @description FBX format 3D model
-     */
+    /** @description FBX format 3D model */
     fbx?: File;
-    /**
-     * Glb
-     * @description GLB format 3D model
-     */
+    /** @description GLB format 3D model */
     glb?: File;
-    /**
-     * Obj
-     * @description OBJ format 3D model
-     */
+    /** @description OBJ format 3D model */
     obj?: File;
-    /**
-     * Usdz
-     * @description USDZ format 3D model
-     */
+    /** @description USDZ format 3D model */
     usdz?: File;
 }
 
 export interface ModelUrls_1 {
-    /**
-     * Fbx
-     * @description FBX format 3D model
-     */
+    /** @description FBX format 3D model */
     fbx?: File;
-    /**
-     * Glb
-     * @description GLB format 3D model
-     */
+    /** @description GLB format 3D model */
     glb?: File;
-    /**
-     * Mtl
-     * @description MTL material file for OBJ model
-     */
+    /** @description MTL material file for OBJ model */
     mtl?: File;
-    /**
-     * Obj
-     * @description OBJ format 3D model
-     */
+    /** @description OBJ format 3D model */
     obj?: File;
-    /**
-     * Texture
-     * @description Texture image for the 3D model
-     */
+    /** @description Texture image for the 3D model */
     texture?: File;
-    /**
-     * Usdz
-     * @description USDZ format 3D model
-     */
+    /** @description USDZ format 3D model */
     usdz?: File;
 }
 
 export interface ModelUrls {
-    /**
-     * Blend
-     * @description Blender format 3D model
-     */
+    /** @description Blender format 3D model */
     blend?: File;
-    /**
-     * Fbx
-     * @description FBX format 3D model
-     */
+    /** @description FBX format 3D model */
     fbx?: File;
-    /**
-     * Glb
-     * @description GLB format 3D model
-     */
+    /** @description GLB format 3D model */
     glb?: File;
-    /**
-     * Obj
-     * @description OBJ format 3D model
-     */
+    /** @description OBJ format 3D model */
     obj?: File;
-    /**
-     * Stl
-     * @description STL format 3D model
-     */
+    /** @description STL format 3D model */
     stl?: File;
-    /**
-     * Usdz
-     * @description USDZ format 3D model
-     */
+    /** @description USDZ format 3D model */
     usdz?: File;
 }
 
@@ -1969,26 +3211,6 @@ export interface LoraWeight_5 {
     /**
      * Path
      * @description URL or the path to the LoRA weights.
-     */
-    path: string;
-    /**
-     * Scale
-     * @description The scale of the LoRA weight. This is used to scale the LoRA weight
-     *                 before merging it with the base model.
-     * @default 1
-     */
-    scale?: number;
-    /**
-     * Weight Name
-     * @description Name of the LoRA weight. Used only if `path` is a Hugging Face repository, and required only if you have more than 1 safetensors file in the repo.
-     */
-    weight_name?: string;
-}
-
-export interface LoraWeight_4 {
-    /**
-     * Path
-     * @description URL or the path to the LoRA weights.
      * @example https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_offset_example-lora_1.0.safetensors
      */
     path: string;
@@ -2001,7 +3223,7 @@ export interface LoraWeight_4 {
     scale?: number;
 }
 
-export interface LoraWeight_3 {
+export interface LoraWeight_4 {
     /**
      * Path
      * @description URL or the path to the LoRA weights. Or HF model name.
@@ -2016,6 +3238,26 @@ export interface LoraWeight_3 {
      * @default 1
      */
     scale?: number;
+}
+
+export interface LoraWeight_3 {
+    /**
+     * Path
+     * @description URL or the path to the LoRA weights.
+     */
+    path: string;
+    /**
+     * Scale
+     * @description The scale of the LoRA weight. This is used to scale the LoRA weight
+     *                 before merging it with the base model.
+     * @default 1
+     */
+    scale?: number;
+    /**
+     * Weight Name
+     * @description Name of the LoRA weight. Used only if `path` is a Hugging Face repository, and required only if you have more than 1 safetensors file in the repo.
+     */
+    weight_name?: string;
 }
 
 export interface LoraWeight_2 {
@@ -2237,8 +3479,6 @@ export interface KlingV3ImageElementInput {
     /**
      * Frontal Image Url
      * @description The frontal image of the element (main view).
-     *
-     *     Max file size: 10.0MB, Min width: 300px, Min height: 300px, Min aspect ratio: 0.40, Max aspect ratio: 2.50, Timeout: 20.0s
      */
     frontal_image_url?: string;
     /**
@@ -2252,8 +3492,6 @@ export interface KlingV3ComboElementInput {
     /**
      * Frontal Image Url
      * @description The frontal image of the element (main view).
-     *
-     *     Max file size: 10.0MB, Min width: 300px, Min height: 300px, Min aspect ratio: 0.40, Max aspect ratio: 2.50, Timeout: 20.0s
      */
     frontal_image_url?: string;
     /**
@@ -2264,8 +3502,6 @@ export interface KlingV3ComboElementInput {
     /**
      * Video Url
      * @description The video URL of the element. A request can only have one element with a video.
-     *
-     *     Max file size: 200.0MB, Min width: 720px, Min height: 720px, Max width: 2160px, Max height: 2160px, Min duration: 3.0s, Max duration: 10.05s, Min FPS: 24.0, Max FPS: 60.0, Timeout: 30.0s
      */
     video_url?: string;
 }
@@ -2513,6 +3749,12 @@ export interface ImageFile_1 {
      */
     content_type?: string;
     /**
+     * File Data
+     * Format: binary
+     * @description File data
+     */
+    file_data?: string;
+    /**
      * File Name
      * @description The name of the file. It will be auto-generated if not provided.
      * @example z9RV14K95DvU.png
@@ -2548,12 +3790,6 @@ export interface ImageFile {
      * @example image/png
      */
     content_type?: string;
-    /**
-     * File Data
-     * Format: binary
-     * @description File data
-     */
-    file_data?: string;
     /**
      * File Name
      * @description The name of the file. It will be auto-generated if not provided.
@@ -2683,6 +3919,12 @@ export interface Image_2 {
      */
     content_type?: string;
     /**
+     * File Data
+     * Format: binary
+     * @description File data
+     */
+    file_data?: string;
+    /**
      * File Name
      * @description The name of the file. It will be auto-generated if not provided.
      * @example z9RV14K95DvU.png
@@ -2734,12 +3976,6 @@ export interface Image {
      * @example image/png
      */
     content_type?: string;
-    /**
-     * File Data
-     * Format: binary
-     * @description File data
-     */
-    file_data?: string;
     /**
      * File Name
      * @description The name of the file. It will be auto-generated if not provided.
@@ -2991,7 +4227,16 @@ export interface EmotionalStrengths {
     surprised?: number;
 }
 
-export interface Embedding_2 {
+export interface EmbedItem {
+    coordinates: Coordinates;
+    /**
+     * Image Source
+     * @description URL of the image.
+     */
+    image_source?: string;
+}
+
+export interface Embedding_1 {
     /**
      * Path
      * @description URL or the path to the embedding weights.
@@ -3000,31 +4245,6 @@ export interface Embedding_2 {
     /**
      * Tokens
      * @description The tokens to map the embedding weights to. Use these tokens in your prompts.
-     * @default [
-     *       "<s0>",
-     *       "<s1>"
-     *     ]
-     */
-    tokens?: string[];
-}
-
-export interface Embedding_1 {
-    /**
-     * Force
-     * @description If set to true, the embedding will be forced to be used.
-     * @default false
-     */
-    force?: boolean;
-    /**
-     * Path
-     * @description URL or the path to the embedding weights.
-     * @example https://civitai.com/api/download/models/135931
-     * @example https://filebin.net/3chfqasxpqu21y8n/my-custom-lora-v1.safetensors
-     */
-    path: string;
-    /**
-     * Tokens
-     * @description The list of tokens to use for the embedding.
      * @default [
      *       "<s0>",
      *       "<s1>"
@@ -3184,6 +4404,33 @@ export interface DeepFilterNetTimings {
      * @description Preprocessing time.
      */
     preprocess: number;
+}
+
+export interface Coordinates {
+    /**
+     * Height
+     * @description Height of the product in the image.
+     * @example 30
+     */
+    height: number;
+    /**
+     * Width
+     * @description Width of the product in the image.
+     * @example 10
+     */
+    width: number;
+    /**
+     * X
+     * @description X coordinate of the product in the image.
+     * @example 100
+     */
+    x: number;
+    /**
+     * Y
+     * @description Y coordinate of the product in the image.
+     * @example 100
+     */
+    y: number;
 }
 
 export interface ControlNetUnionInput {
@@ -3480,6 +4727,1309 @@ export interface ChronoLoraWeight {
     scale?: number;
 }
 
+export interface Character {
+    /**
+     * Avatar
+     * @description ID of the avatar to use in the video
+     * @example Florin Business Sitting Side
+     * @enum {string}
+     */
+    avatar:
+        | 'Abigail (Upper Body)'
+        | 'Abigail Office Front'
+        | 'Abigail Office Side'
+        | 'Abigail Sofa Front'
+        | 'Abigail Sofa Side'
+        | 'Aditya in Brown blazer'
+        | 'Aditya in Blue blazer'
+        | 'Aditya in Blue shirt'
+        | 'Aditya in Blue t-shirt'
+        | 'Aditya in Beige blazer'
+        | 'Adrian in Blue Shirt'
+        | 'Adrian in Blue Suit'
+        | 'Adrian in Blue Sweater'
+        | 'Adriana BizTalk Front'
+        | 'Adriana BizTalk Side'
+        | 'Adriana Business Front 2'
+        | 'Adriana Business Front '
+        | 'Adriana Business Side'
+        | 'Adriana Nurse Front 2'
+        | 'Adriana Nurse Front'
+        | 'Adriana Nurse Side 2'
+        | 'Adriana Nurse Side'
+        | 'Adriana Nurse Sitting Side'
+        | 'Adriana SuitSofa Front'
+        | 'Aiko'
+        | 'Albert in Blue Polo shirt'
+        | 'Albert in Blue blazer'
+        | 'Albert in Blue shirt'
+        | 'Albert in Blue suit'
+        | 'Albert in Khaki blazer'
+        | 'Albert in White shirt'
+        | 'Amanda in Blue Shirt (Front)'
+        | 'Amanda in Blue Shirt (Left)'
+        | 'Amanda in Blue Shirt (Right)'
+        | 'Amanda in Grey Shirt (Front)'
+        | 'Amanda in Grey Shirt (Left)'
+        | 'Amanda in Grey Shirt (Right)'
+        | 'Amanda in Maintenance (Front)'
+        | 'Amanda in Maintenance (Left)'
+        | 'Amanda in Maintenance (Right)'
+        | 'Amelia Business Training Front 2'
+        | 'Amelia Business Training Front'
+        | 'Amelia Business Training Side 2'
+        | 'Amelia Business Training Side'
+        | 'Amelia Lounge Front 2'
+        | 'Amelia Lounge Front'
+        | 'Amelia Lounge Side 2'
+        | 'Amelia Lounge Side'
+        | 'Amelia Yoga Front 2'
+        | 'Amelia Yoga Front'
+        | 'Amelia Yoga Side 2'
+        | 'Amelia Yoga Side'
+        | 'Alex in Black Suit'
+        | 'Alex in Jacket'
+        | 'Alex in White Coat'
+        | 'Alex in Yellow Sweater'
+        | 'Anja Office Front'
+        | 'Anja Office Side '
+        | 'Anja Sofa Front'
+        | 'Anja Sofa Side '
+        | 'Ann Business Front'
+        | 'Ann Business Sitting'
+        | 'Ann Casual Front'
+        | 'Ann Casual Lying'
+        | 'Ann Casual Sitting 2'
+        | 'Ann Casual Sitting'
+        | 'Ann Doctor Sitting'
+        | 'Ann Doctor Standing'
+        | 'Ann Sweater Front'
+        | 'Ann Sweater Side'
+        | 'Ann Therapist'
+        | 'Anna in White T-shirt'
+        | 'Anna in Turtleneck T-shirt'
+        | 'Anna in Brown T-shirt'
+        | 'Annelise in Dark blue dress'
+        | 'Annelise in Off white dress'
+        | 'Annelise in Sky blue dress'
+        | 'Annelise in White dress'
+        | 'Annelore in Blue blazer'
+        | 'Annelore in Blue dress'
+        | 'Annelore in Red blazer'
+        | 'Annelore in Red sweater'
+        | 'Annelore in White shirt'
+        | 'Annie in Grey Jacket'
+        | 'Annie in White Shirt'
+        | 'Annie in Tan Jacket'
+        | 'Annie in Blue Casual'
+        | 'Annie in Light Blue'
+        | 'Annie in Brown Shirt'
+        | 'Annie in Black Shirt'
+        | 'Annie in Pink Suit'
+        | 'Annie in Grey Dress'
+        | 'Annie in Blue Vest'
+        | 'Annie in Black V-neck Shirt'
+        | 'Annie in Blue Suit'
+        | 'Annie Bar Sitting Front'
+        | 'Annie Bar Sitting Side'
+        | 'Annie Bar Standing Front 2'
+        | 'Annie Bar Standing Front 3'
+        | 'Annie Bar Standing Front'
+        | 'Annie Bar Standing Side 2'
+        | 'Annie Bar Standing Side 3'
+        | 'Annie Bar Standing Side'
+        | 'Annie Business Casual Standing Front 2'
+        | 'Annie Business Casual Standing Front'
+        | 'Annie Business Casual Standing Side 2'
+        | 'Annie Business Casual Standing Side'
+        | 'Annie Casual Sitting Front 2'
+        | 'Annie Casual Sitting Front'
+        | 'Annie Casual Sitting Side 2'
+        | 'Annie Casual Sitting Side'
+        | 'Annie Casual Standing Front 2'
+        | 'Annie Casual Standing Front'
+        | 'Annie Casual Standing Side 2'
+        | 'Annie Casual Standing Side'
+        | 'Annie Desk Sitting Front 2'
+        | 'Annie Desk Sitting Front'
+        | 'Annie Desk Sitting Side 2'
+        | 'Annie Desk Sitting Side'
+        | 'Annie Lounge Standing Front'
+        | 'Annie Lounge Standing Side'
+        | 'Annie Office Sitting Front 2'
+        | 'Annie Office Sitting Front'
+        | 'Annie Office Sitting Side 2'
+        | 'Annie Office Sitting Side'
+        | 'Annie Office Standing Front'
+        | 'Annie Office Standing Side'
+        | 'Annie Sofa Sitting Front 3'
+        | 'Annie Sofa Sitting Front'
+        | 'Annie Sofa Sitting Side 2'
+        | 'Annie Sofa Sitting Side 3'
+        | 'Annie Sofa Sitting Side'
+        | 'Annie Sofa Sitting Front 2'
+        | 'Annie Studio Pink Sitting Front'
+        | 'Annie Studio Pink Sitting Side'
+        | 'Annie Studio Pink Standing Front'
+        | 'Annie Studio Pink Standing Side'
+        | 'Armando Casual Front'
+        | 'Armando Casual Side'
+        | 'Armando Suit Front'
+        | 'Armando Suit Side'
+        | 'Armando Sweater Front 2'
+        | 'Armando Sweater Front'
+        | 'Armando Sweater Side 2'
+        | 'Armando Sweater Side'
+        | 'Artur Office Front 2'
+        | 'Artur Office Front'
+        | 'Artur Office Side 2'
+        | 'Artur Office Side'
+        | 'Artur Sofa Casual Front 2'
+        | 'Artur Sofa Casual Front'
+        | 'Artur Sofa Casual Side 2'
+        | 'Artur Sofa Causal Side'
+        | 'Aubrey Sofa Side'
+        | 'Aubrey (Upper Body)'
+        | 'Aubrey Night Scene Front'
+        | 'Aubrey Outdoor Sport Front'
+        | 'Aubrey Outdoor Sport Side'
+        | 'Aubrey Sofa Front'
+        | 'August Casual Front 2'
+        | 'August Casual Front'
+        | 'August Cool Sitting'
+        | 'August Cool Style'
+        | 'August Employee Front'
+        | 'August Hoodies Front 2'
+        | 'August Hoodies Front'
+        | 'Bahar (Upper Body)'
+        | 'Bahar Business Front'
+        | 'Bahar Business Side'
+        | 'Bahar Business Sitting Front'
+        | 'Bahar Business Sitting Side'
+        | 'Bahar Casual Sitting Front 2'
+        | 'Bahar Casual Sitting Front'
+        | 'Bahar Casual Sitting Side 2'
+        | 'Bahar Casual Sitting Side'
+        | 'Bahar Denim Casual Front'
+        | 'Bahar Denim Casual Side'
+        | 'Bahar Denim Front'
+        | 'Bahar Denim Side'
+        | 'Bahar Jacket Casual Front'
+        | 'Bahar Jacket Casual Side'
+        | 'Bahar Jacket Front'
+        | 'Bahar Jacket Side'
+        | 'Bahar Suit Front'
+        | 'Bahar Suit Side'
+        | 'Bastien in Blue T-shirt'
+        | 'Bastien in Blue blazer'
+        | 'Bastien in Blue shirt'
+        | 'Bastien in White shirt'
+        | 'Blanka Lounge Front'
+        | 'Blanka Lounge Side'
+        | 'Blanka Outdoor Business Front'
+        | 'Blanka Outdoor Business Side'
+        | 'Blanka Outdoor Reading Front'
+        | 'Blanka Outdoor Reading Side'
+        | 'Blanka Picnic Front'
+        | 'Blanka Picnic Side'
+        | 'Bojan Business Training Front 2'
+        | 'Bojan Business Training Front'
+        | 'Bojan Business Training Side 2'
+        | 'Bojan Business Training Side'
+        | 'Bojan Lounge Front 2'
+        | 'Bojan Lounge Front'
+        | 'Bojan Lounge Side 2'
+        | 'Bojan Lounge Side'
+        | 'Bojan Sport Front 2'
+        | 'Bojan Sport Front'
+        | 'Bojan Sport Side 2'
+        | 'Bojan Sport Side'
+        | 'Bradley in Blue Polo (Front)'
+        | 'Bradley in Blue Polo (Left)'
+        | 'Bradley in Blue Polo (Right)'
+        | 'Bradley in Blue Shirt (Front)'
+        | 'Bradley in Blue Shirt (Left)'
+        | 'Bradley in Blue Shirt (Right)'
+        | 'Bradley in Doctor (Front)'
+        | 'Bradley in Doctor (Left)'
+        | 'Bradley in Doctor (Right)'
+        | 'Brandon in Grey Suit'
+        | 'Brandon in Blue Sweater'
+        | 'Brandon in White Shirt'
+        | 'Brandon Business Sitting Front'
+        | 'Brandon Business Sitting Side'
+        | 'Brandon Business Standing Front'
+        | 'Brandon Business Standing Side'
+        | 'Brandon Casual Sitting Front'
+        | 'Brandon Casual Sitting Side'
+        | 'Brandon Kitchen Standing Front'
+        | 'Brandon Kitchen Standing Side'
+        | 'Brandon Lobby Sitting Front'
+        | 'Brandon Lobby Sitting Side'
+        | 'Brandon Lobby Standing Front'
+        | 'Brandon Lobby Standing Side'
+        | 'Brandon Office Sitting Front'
+        | 'Brandon Office Sitting Side'
+        | 'Brandon Office Standing Front'
+        | 'Brandon Office Standing Side'
+        | 'Brandon Sofa Sitting Front'
+        | 'Brandon Sofa Sitting Side'
+        | 'Brent Office Front 2'
+        | 'Brent Office Front'
+        | 'Brent Office Side 2'
+        | 'Brent Office Side'
+        | 'Brent Sofa Front 2'
+        | 'Brent Sofa Front'
+        | 'Brent Sofa Side 2'
+        | 'Brent Sofa Side'
+        | 'Briana in White shirt'
+        | 'Briana in Striped T-shirt'
+        | 'Briana in Brown suit'
+        | 'Bruce'
+        | 'Bryan Casual Front'
+        | 'Bryan Casual Side'
+        | 'Bryan Fitness Coach'
+        | 'Bryan Tech Expert'
+        | 'Bryan Plaid Shirt Front'
+        | 'Bryan Plaid Shirt Side'
+        | 'Bryan Suit Front'
+        | 'Bryan Suit Side'
+        | 'Bryce in Black t-shirt'
+        | 'Bryce in Blue blazer'
+        | 'Bryce in Blue shirt'
+        | 'Bryce in Grey blazer'
+        | 'Bryce in White shirt'
+        | 'Byron Business Front 2'
+        | 'Byron Business Front'
+        | 'Byron Business Side 2'
+        | 'Byron Business Side'
+        | 'Byron Business Sitting Front'
+        | 'Byron Business Sitting Size'
+        | 'Byron Casual Front 2'
+        | 'Byron Casual Front'
+        | 'Byron Casual Side 2'
+        | 'Byron Casual Side'
+        | 'Byron Casual Sitting Front'
+        | 'Byron Casual Sitting Side'
+        | 'Byron Jacket Front'
+        | 'Byron Jacket Side'
+        | 'Byron Sitting Front'
+        | 'Byron Sitting Side'
+        | 'Byron Suit Front'
+        | 'Byron Suit Side'
+        | 'Candace in Beige Dress (Front)'
+        | 'Candace in Beige Dress (Left)'
+        | 'Candace in Beige Dress (Right)'
+        | 'Candace in Doctor (Front)'
+        | 'Candace in Doctor (Left)'
+        | 'Candace in Doctor (Right)'
+        | 'Candace in Pink Blazer (Front)'
+        | 'Candace in Pink Blazer (Right)'
+        | 'Candace in Pink Blazer  (Left)'
+        | 'Carla in Doctor (Front)'
+        | 'Carla in Doctor (Left)'
+        | 'Carla in Doctor (Right)'
+        | 'Carla in Dress  (Left)'
+        | 'Carla in Shirt (Front)'
+        | 'Carla in Shirt (Left)'
+        | 'Carla in Shirt (Right)'
+        | 'Carlotta BizTalk Front'
+        | 'Carlotta BizTalk Side'
+        | 'Carlotta Business Front'
+        | 'Carlotta Business Side'
+        | 'Carlotta Casual Front'
+        | 'Carlotta Casual Side'
+        | 'Carlotta Casual Sitting Front'
+        | 'Carlotta Casual Sitting Side'
+        | 'Carlotta Half Front'
+        | 'Carlotta Pink Jumpsuit Front 2'
+        | 'Carlotta Pink Jumpsuit Front'
+        | 'Carlotta Pink Jumpsuit Side 2'
+        | 'Carlotta Pink Jumpsuit Side'
+        | 'Carlotta Pink Jumpsuit Sitting Front'
+        | 'Carlotta Pink Jumpsuit Sitting Side'
+        | 'Caroline Business Sitting Front'
+        | 'Caroline Business Sitting Side'
+        | 'Caroline Business Standing Front'
+        | 'Caroline Business Standing Side'
+        | 'Caroline in Blue Suit'
+        | 'Caroline in White Shirt'
+        | 'Caroline in Yellow Casual'
+        | 'Caroline in Yellow Skirt'
+        | 'Caroline Casual Sitting Front'
+        | 'Caroline Casual Sitting Side'
+        | 'Caroline Kitchen Standing Front'
+        | 'Caroline Kitchen Standing Side'
+        | 'Caroline Lobby Sitting Front'
+        | 'Caroline Lobby Sitting Side'
+        | 'Caroline Lobby Standing Front'
+        | 'Caroline Lobby Standing Side'
+        | 'Caroline Office Sitting Front'
+        | 'Caroline Office Sitting Side'
+        | 'Caroline Office Standing Front'
+        | 'Caroline Office Standing Side'
+        | 'Caroline Sofa Sitting Front'
+        | 'Caroline Sofa Sitting Side'
+        | 'Chad in Blue Shirt (Front)'
+        | 'Chad in Blue Shirt (Left)'
+        | 'Chad in Blue Shirt (Right)'
+        | 'Chad in Grey Shirt (Front)'
+        | 'Chad in Grey Shirt (Left)'
+        | 'Chad in Grey Shirt (Right)'
+        | 'Chad in Maintenance (Front)'
+        | 'Chad in Maintenance (Left)'
+        | 'Chad in Maintenance (Right)'
+        | 'Chakir in Headscarf (Front)'
+        | 'Chakir in Headscarf (Left)'
+        | 'Chakir in Headscarf (Right)'
+        | 'Chakir in White Shirt (Front)'
+        | 'Chakir in White Shirt (Right)'
+        | 'Chakir in white Shirt (Left)'
+        | 'Chloe (Upper Body)'
+        | 'Chloe Lounge Front'
+        | 'Chloe Lounge Side'
+        | 'Chloe Outdoor Side'
+        | 'Colin Business Front 2'
+        | 'Colin Business Front'
+        | 'Colin Jacket Front'
+        | 'Colin Sitting Cool Style 2'
+        | 'Colin Sitting Cool Style'
+        | 'Colin Suit Front'
+        | 'Colin Sweater Front'
+        | 'Colin Sweater Sitting Front'
+        | 'Connie Business Front'
+        | 'Connie Business Sitting Front'
+        | 'Connie Casual Sitting Front'
+        | 'Connie Casual Sitting Side'
+        | 'Connie Education Front'
+        | 'Connie Education Side 2'
+        | 'Connie Education Side'
+        | 'Connie Skirt Front'
+        | 'Connie Skirt Side'
+        | 'Connie Skirt Sitting Front'
+        | 'Connie Skirt Sitting Side'
+        | 'Connie Suit Front'
+        | 'Conrad House Front'
+        | 'Conrad House Side'
+        | 'Conrad Sofa Front'
+        | 'Conrad Sofa Side'
+        | 'Crisanto Business Front'
+        | 'Crisanto Business Side'
+        | 'Crisanto Chef Front 2'
+        | 'Crisanto Chef Front'
+        | 'Crisanto Chef Side 2'
+        | 'Crisanto Chef Side'
+        | 'Crisanto Chef Sitting '
+        | 'Crisanto Education Front'
+        | 'Crisanto Education Side'
+        | 'Crisanto Nurse Front 2'
+        | 'Crisanto Nurse Front'
+        | 'Crisanto Nurse Side 2'
+        | 'Crisanto Nurse Side'
+        | 'Crisanto Nurse Sitting Front'
+        | 'Crisanto Nurse Sitting Side'
+        | 'Crisanto Suit Front'
+        | 'Crisanto Suit Side'
+        | 'Daphne in Blue blazer'
+        | 'Daphne in Blue shirt'
+        | 'Daphne in Grey blazer'
+        | 'Daphne in Grey suit'
+        | 'Daphne in Pink hoodie'
+        | 'Daphne in White t-shirt'
+        | 'Darnell in Blue Shirt (Front)'
+        | 'Darnell in Blue Shirt (Left)'
+        | 'Darnell in Blue Shirt (Right)'
+        | 'Darnell in Bordeaux Polo (Front)'
+        | 'Darnell in Bordeaux Polo (Left)'
+        | 'Darnell in Bordeaux Polo (Right)'
+        | 'Darnell in Doctor (Front)'
+        | 'Darnell in Doctor (Left)'
+        | 'Darnell in Doctor (Right)'
+        | 'Derya Indoor Front 2'
+        | 'Derya Indoor Front'
+        | 'Derya Indoor Side 2'
+        | 'Derya Indoor Side'
+        | 'Derya Office Front 2'
+        | 'Derya Office Front'
+        | 'Derya Office Side 2'
+        | 'Derya Office Side'
+        | 'Dexter Casual Front'
+        | 'Dexter Casuat Side'
+        | 'Dexter Doctor Sitting'
+        | 'Dexter Doctor Standing'
+        | 'Dexter Lawyer'
+        | 'Dexter Suit Front'
+        | 'Dexter Suit Side'
+        | 'Dexter Winter Coat Front'
+        | 'Dexter Winter Coat Side'
+        | 'Diana in Black Camisole Top'
+        | 'Diana in Striped Shirt'
+        | 'Diana in White Shirt'
+        | 'Diora in Blue blazer'
+        | 'Diora in Green blazer'
+        | 'Diora in Pink shirt'
+        | 'Diora in White shirt'
+        | 'Diora in White t-shirt'
+        | 'Diran Casual Front'
+        | 'Diran Casual Side'
+        | 'Diran Jacket Front'
+        | 'Diran Jacket Side'
+        | 'Diran Macbook Business Front'
+        | 'Diran Macbook Business Side'
+        | 'Diran Macbook Casual Front'
+        | 'Diran Macbook Casual Side'
+        | 'Diran Macbook Sitting Front 2'
+        | 'Diran Macbook Sitting Front'
+        | 'Diran Macbook Sitting Side 2'
+        | 'Diran Macbook Sitting Side'
+        | 'Diran Suit Front'
+        | 'Diran Suit Side'
+        | 'Diran iPad Front'
+        | 'Diran iPad Side'
+        | 'Diran iPad Sitting Front'
+        | 'Diran iPad Sitting Side'
+        | 'Elenora Casual Front'
+        | 'Elenora Casual Side'
+        | 'Elenora Fitness Coach'
+        | 'Elenora Fitness Coach 2'
+        | 'Elenora Tech Expert'
+        | 'Elenora Suit Front'
+        | 'Elenora Suit Side'
+        | 'Elenora YellowDress Front'
+        | 'Elenora YellowDress Side'
+        | 'Emanuel Office Front'
+        | 'Emanuel Office Side'
+        | 'Emanuel Sofa Front'
+        | 'Emanuel Sofa Side'
+        | 'Emery in Blue blazer'
+        | 'Emery in Blue suit'
+        | 'Emery in Green shirt'
+        | 'Emery in Khaki blazer'
+        | 'Emery in Red blazer'
+        | 'Emery in White t-shirt'
+        | 'Emilia Outdoor Business Front'
+        | 'Emilia Outdoor Business Side'
+        | 'Emilia Outdoor Yoga Front 2'
+        | 'Emilia Outdoor Yoga Front'
+        | 'Emilia Outdoor Yoga Side'
+        | 'Emilia Picnic Front'
+        | 'Emilia Picnic Side'
+        | 'Edward in Black Suit'
+        | 'Edward'
+        | 'Edward in Blue Shirt'
+        | 'Esmond in Black coat'
+        | 'Esmond in Black shirt'
+        | 'Esmond in Blue blazer'
+        | 'Esmond in Blue suit'
+        | 'Esmond in Grey sweater'
+        | 'Fernando Business Indoor Front'
+        | 'Fernando Business Indoor Side'
+        | 'Fernando OutdoorChair Front 2'
+        | 'Fernando Outdoor Chair Front'
+        | 'Fernando Outdoor Chair Side'
+        | 'Fernando Outdoor Front'
+        | 'Fernando Outdoor Side'
+        | 'Fernando Outdoor Table Front'
+        | 'Fernando Outdoor Table Side'
+        | 'Fina Business Sitting Front'
+        | 'Fina Business Sitting Side'
+        | 'Fina Casual Front 2'
+        | 'Fina Casual Front'
+        | 'Fina Casual Side 2'
+        | 'Fina Casual Side'
+        | 'Fina Casual Sitting Front'
+        | 'Fina Casual Sitting Side'
+        | 'Fina Denim Front'
+        | 'Fina Denim Side'
+        | 'Fina Denim Sitting Front'
+        | 'Fina Employee Front'
+        | 'Fina Employee Side'
+        | 'Fina Suit Front'
+        | 'Fina Suit Side'
+        | 'Fina Support Front'
+        | 'Fina Support Side'
+        | 'Florin Business Sitting Front'
+        | 'Florin Business Sitting Side'
+        | 'Florin Maintain Front 2'
+        | 'Florin Maintain Front'
+        | 'Florin Maintain Side 2'
+        | 'Florin Maintain Side'
+        | 'Florin Maintain Siiting Front'
+        | 'Florin Maintain Siiting Side'
+        | 'Florin Suit Front 2'
+        | 'Florin Suit Front'
+        | 'Florin Suit Side 2'
+        | 'Florin Suit Side'
+        | 'Francis in Blazer (Front)'
+        | 'Francis in Blazer (Left)'
+        | 'Francis in Blazer (Right)'
+        | 'Francis in Doctor (Front)'
+        | 'Francis in Doctor (Left)'
+        | 'Francis in Doctor (Right)'
+        | 'Francis in Shirt (Front)'
+        | 'Francis in Shirt (Left)'
+        | 'Francis in Shirt (Right)'
+        | 'Fred in Blue Long Shirt (Front)'
+        | 'Fred in Blue Long Shirt (Left)'
+        | 'Fred in Blue Long Shirt (Right)'
+        | 'Fred in Blue Short Shirt (Front)'
+        | 'Fred in Blue Short Shirt (Left)'
+        | 'Fred in Blue Short Shirt (Right)'
+        | 'Freja in Blue blazer'
+        | 'Freja in Grey blazer'
+        | 'Freja in White blazer'
+        | 'Freja in White polo shirt'
+        | 'Freja in White shirt'
+        | 'Gabriel in Black Sweatshirt'
+        | 'Gabriel in Blue Suit'
+        | 'Gabriel in Gray Shirt'
+        | 'Gala Bedroom Front'
+        | 'Gala Business Sofa Front 2'
+        | 'Gala Business Sofa Front 3'
+        | 'Gala Business Sofa Front'
+        | 'Gala Business Sofa Side 2'
+        | 'Gala Business Sofa Side 3'
+        | 'Gala Business Sofa Side'
+        | 'Gala Casual Sofa with iPad Front'
+        | 'Gala Casual Sofa with iPad Side 2'
+        | 'Gala Casual Sofa with iPad Side'
+        | 'Gala Office Front'
+        | 'Gala Office Side'
+        | 'Gala Sofa Front 2'
+        | 'Gala Sofa Front 3'
+        | 'Gala Sofa Front'
+        | 'Gala Sofa Side 2'
+        | 'Gala Sofa Side 3'
+        | 'Gala Sofa Side'
+        | 'Georgia (Upper Body)'
+        | 'Georgia Casual Front'
+        | 'Georgia Casual Side'
+        | 'Georgia Office Front'
+        | 'Georgia Office Side'
+        | 'Gerardo Sofa Side'
+        | 'Gerardo Indoor Front'
+        | 'Gerardo Indoor Side'
+        | 'Gerardo Night Scene Front 2'
+        | 'Gerardo Night Scene Front'
+        | 'Gerardo Outdoor Sport Front'
+        | 'Gerardo Outdoor Sport Side'
+        | 'Gerardo Sofa Front'
+        | 'Giulia Office Front 2'
+        | 'Giulia Office Front'
+        | 'Giulia Office Side 2'
+        | 'Giulia Office Side'
+        | 'Giulia Sofa Front'
+        | 'Giulia Sofa Side'
+        | 'Giulia Sofa  Front 2'
+        | 'Giulia Sofa  Side 3'
+        | 'Hada Casual Cup Front'
+        | 'Hada Casual Cup Side'
+        | 'Hada Casual Front'
+        | 'Hada Casual Side'
+        | 'Hada Casual Sitting Front 2'
+        | 'Hada Casual Sitting Front'
+        | 'Hada Casual Sitting Side 2'
+        | 'Hada Casual Sitting Side'
+        | 'Hada LivelyGestures Front'
+        | 'Hada LivelyGestures Side'
+        | 'Hada LivelyGestures Sitting Front'
+        | 'Hada LivelyGestures Sitting Side'
+        | 'Hada Suit Front 2'
+        | 'Hada Suit Front'
+        | 'Hada Suit Side 2'
+        | 'Hada Suit Side'
+        | 'Hada Suit Sitting Front 2'
+        | 'Hada Suit Sitting Front'
+        | 'Hada Suit Sitting Side'
+        | 'Harrison in Black Suit'
+        | 'Harrison in Gray Suit'
+        | 'Harrison in White Shirt'
+        | 'Ian in Beige Shirt'
+        | 'Ian in Black Jacket'
+        | 'Ian in Gray Suit'
+        | 'Ida Lounge Front 2'
+        | 'Ida Lounge Front'
+        | 'Ida Lounge Side 2'
+        | 'Ida Lounge Side'
+        | 'Ida Sofa Front 2'
+        | 'Ida Sofa Front'
+        | 'Ida Sofa Side 2'
+        | 'Ida Sofa Side'
+        | 'Iker in Almond sweater'
+        | 'Iker in Black blazer'
+        | 'Iker in Blue shirt'
+        | 'Iker in Grey blazer'
+        | 'Iker in White shirt'
+        | 'Imelda BizTalk Front'
+        | 'Imelda BizTalk Side'
+        | 'Imelda Business Front'
+        | 'Imelda Business Side'
+        | 'Imelda Business Sitting Front 2'
+        | 'Imelda Business Sitting Front'
+        | 'Imelda Business Sitting Side 2'
+        | 'Imelda Business Sitting Side'
+        | 'Imelda Casual Front'
+        | 'Imelda Casual Side'
+        | 'Imelda Coat Front 2'
+        | 'Imelda Coat Front'
+        | 'Imelda Coat Side'
+        | 'Imelda Customer Support Front'
+        | 'Imelda Customer Support Side'
+        | 'Imelda Full Side '
+        | 'Imelda Suit Front'
+        | 'Imelda Suit Side'
+        | 'Ivan in Black Suit'
+        | 'Ivan in Gary Suit'
+        | 'Ivan in Suit'
+        | 'Ivan in Sweater'
+        | 'Jason in Black Jacket'
+        | 'Jason in Blue Suit'
+        | 'Jason in Gray Shirt'
+        | 'Javi Intense Sitting Speaking Front'
+        | 'Javi Intense Sitting Speaking Side'
+        | 'Javi Intense Sitting Speaking '
+        | 'Javi Intense Speaking Front 2'
+        | 'Javi Intense Speaking Front 3'
+        | 'Javi Intense Speaking Front'
+        | 'Javi Intense Speaking Side 3'
+        | 'Javi Intense Speaking Side'
+        | 'Javi in Passionate Gestures 2'
+        | 'Javi in Passionate Gestures 3'
+        | 'Javi in Passionate Gestures'
+        | 'Jin (Upper Body)'
+        | 'Jin Blue Casual Front'
+        | 'Jin Blue Casual Side'
+        | 'Jin Business Café Mode Front'
+        | 'Jin Business Café Mode Side'
+        | 'Jin Business Sitting Front'
+        | 'Jin Business Sitting Side'
+        | 'Jin Casual Café Mode Front'
+        | 'Jin Casual Café Mode Side'
+        | 'Jin Casual Sitting Front'
+        | 'Jin Casual Sitting Side'
+        | 'Jin Suit Front'
+        | 'Jin Suit Side'
+        | 'Jin Vest Front'
+        | 'Jin Vest Side'
+        | 'Jin Vest Sitting Front'
+        | 'Jin Vest Sitting Side'
+        | 'Jin in Education Front'
+        | 'Jin in Education Side'
+        | 'Jinwoo in Black vest'
+        | 'Jinwoo in Blue suit'
+        | 'Jinwoo in White T-shirt'
+        | 'Jinwoo in White shirt'
+        | 'Jinwoo in White suit'
+        | 'Jocelyn Office Front 2'
+        | 'Jocelyn Office Front'
+        | 'Jocelyn Office Side 2'
+        | 'Jocelyn Office Side'
+        | 'Jocelyn Sofa Front 2'
+        | 'Jocelyn Sofa Front'
+        | 'Jocelyn Sofa Side 2'
+        | 'Jocelyn Sofa Side'
+        | 'Joel Couch Front'
+        | 'Joel Couch Side'
+        | 'Joel Gym Front'
+        | 'Joel Gym Side'
+        | 'Joel Mountain Front'
+        | 'Joel Mountain Side'
+        | 'Jonas (Upper Body)'
+        | 'Jonas Gym Front 2'
+        | 'Jonas Gym Front'
+        | 'Jonas Gym Side 2'
+        | 'Jonas Gym Side '
+        | 'June Office Front 2'
+        | 'Juan Office Front'
+        | 'Juan Office Side 2'
+        | 'Juan Office Side'
+        | 'Juan Sofa Front 2'
+        | 'Juan Sofa Front'
+        | 'Juan Sofa Side 2'
+        | 'Juan Sofa Side'
+        | 'Judita (Upper Body)'
+        | 'Judita Yoga Front 2'
+        | 'Judita Yoga Front'
+        | 'Judita Yoga Side 2'
+        | 'Judita Yoga Side'
+        | 'Judith (Upper Body)'
+        | 'Judith Business Front 2'
+        | 'Judith Business Front'
+        | 'Judith Business Sitting Front'
+        | 'Judith Casual Front'
+        | 'Judith Casual Sitting Front'
+        | 'Judith Suit Front'
+        | 'Judy Business Front'
+        | 'Judy Business Side'
+        | 'Judy Business Sitting Front'
+        | 'Judy Casual Front'
+        | 'Judy Casual Side'
+        | 'Judy Casual Sitting'
+        | 'Judy ConfidentSpeaking Front'
+        | 'Judy ConfidentSpeaking Side'
+        | 'Judy Doctor Sitting'
+        | 'Judy Doctor Standing'
+        | 'Judy Lawyer'
+        | 'Judy NurseSitting Front 2'
+        | 'Judy NurseSitting Front'
+        | 'Judy NurseSitting Side 2'
+        | 'Judy NurseSitting Side'
+        | 'Judy Nurse Front 2'
+        | 'Judy Nurse Front'
+        | 'Judy Nurse OnDuty Front'
+        | 'Judy Nurse OnDuty Side'
+        | 'Judy Nurse Side 2'
+        | 'Judy Nurse Side'
+        | 'Judy Suit Front'
+        | 'Judy Suit Side'
+        | 'Judy Teacher Sitting'
+        | 'Judy HR'
+        | 'Judy Teacher Standing'
+        | 'June (Upper Body)'
+        | 'June HR'
+        | 'June Office Front'
+        | 'June Office Side 2'
+        | 'June Office Side'
+        | 'June Sofa Casual Front 2'
+        | 'June Sofa Casual Front'
+        | 'June Sofa Casual Side 2'
+        | 'June Sofa Casual Side'
+        | 'Justin in Black Shirt'
+        | 'Justin in Black Suit'
+        | 'Justin in White Shirt'
+        | 'Justo Business Front 2'
+        | 'Justo Business Front'
+        | 'Justo Business Side 2'
+        | 'Justo Business Side'
+        | 'Justo Casual Sitting'
+        | 'Justo CustomerService Front 2'
+        | 'Justo CustomerService Front'
+        | 'Justo CustomerService Side'
+        | 'Justo CustomerService Sitting Front'
+        | 'Justo CustomerService Sitting Side'
+        | 'Justo EmployeeTraining Front'
+        | 'Justo Suit Casual Front '
+        | 'Justo Suit Casual Side '
+        | 'Karolin in Gray Suit'
+        | 'Karolin in Sweatshirt'
+        | 'Karolin in Black Suit'
+        | 'Kavya Indoor Front'
+        | 'Kavya Indoor Side'
+        | 'Kavya Outdoor Side'
+        | 'Kavya Outdoor Sport Front'
+        | 'Kavya Outdoor Sport Side'
+        | 'Kavya Sofa Front'
+        | 'Kavya Sofa Side'
+        | 'Kelly in Blue Shirt  (Front)'
+        | 'Kelly in Blue Shirt (Left)'
+        | 'Kelly in Blue Shirt (Right)'
+        | 'Kelly in Doctor (Front)'
+        | 'Kelly in Doctor (Left)'
+        | 'Kelly in Doctor (Right)'
+        | 'Kelly in Pink Shirt (Front)'
+        | 'Kelly in Pink Shirt (Left)'
+        | 'Kelly in Pink Shirt (Right)'
+        | 'Klara in Black blazer'
+        | 'Klara in Blue blazer'
+        | 'Klara in Blue dress'
+        | 'Klara in Pink shirt'
+        | 'Klara in White blazer'
+        | 'Klara in White shirt'
+        | 'Kristin in Lace Dress'
+        | 'Kristin in V-neck Shirt'
+        | 'Kristin in Black Suit'
+        | 'Leos Office Front 2'
+        | 'Leos Office Front'
+        | 'Leos Office Side 2'
+        | 'Leos Office Side'
+        | 'Leos Sofa Front 2'
+        | 'Leos Sofa Front'
+        | 'Leos Sofa Side 2'
+        | 'Leos Sofa Side'
+        | 'Leszek Lounge Front'
+        | 'Leszek Lounge Side'
+        | 'Leszek Outdoor Business Front'
+        | 'Leszek Outdoor Business Side'
+        | 'Leszek Outdoor Casual Front'
+        | 'Leszek Outdoor Casual Side'
+        | 'Leszek Sofa Front'
+        | 'Leszek Sofa Side'
+        | 'Leah'
+        | 'Leah in Black Suit'
+        | 'Lina Casual Front 2'
+        | 'Lina Casual Front'
+        | 'Lina Casual Side 2'
+        | 'Lina Casual Side'
+        | 'Lina Casual Sitting Front'
+        | 'Lina Casual Sitting Side'
+        | 'Lina Dress Front'
+        | 'Lina Dress Side 2'
+        | 'Lina Dress Side'
+        | 'Lina Dress Sitting Front'
+        | 'Lina Dress Sitting Side'
+        | 'Lina Sweater Front 2'
+        | 'Lina Sweater Front'
+        | 'Lina Sweater Side 2'
+        | 'Lina Sweater Side'
+        | 'Lina Sweater Sitting Front 2'
+        | 'Lina Sweater Sitting Front'
+        | 'Lina Sweater Sitting Side 2'
+        | 'Lina Sweater Sitting Side'
+        | 'Lisa'
+        | 'Luca'
+        | 'Lucien in Black coat'
+        | 'Lucien in Black polo-shirt'
+        | 'Lucien in Blue blazer'
+        | 'Lucien in Blue shirt'
+        | 'Lucien in Grey blazer'
+        | 'Lucien in White shirt'
+        | 'Luke in Brown Suit'
+        | 'Luke in Yellow Jacket'
+        | 'Luke in Blue Suit'
+        | 'Marcus (Upper Body)'
+        | 'Marcus Café Front 2'
+        | 'Marcus Café Front'
+        | 'Marcus Café Side 2'
+        | 'Marcus Café Side'
+        | 'Marcus Casual Front'
+        | 'Marcus Casual Side'
+        | 'Marcus Casual Sitting Front 2'
+        | 'Marcus Casual Sitting Front'
+        | 'Marcus Casual Sitting Side 2'
+        | 'Marcus Casual Sitting Side'
+        | 'Marcus Denim Jacket Front'
+        | 'Marcus Denim Jacket Side'
+        | 'Marcus Education Front'
+        | 'Marcus Education Side'
+        | 'Marcus Sitting Front'
+        | 'Marcus Sitting Side'
+        | 'Marcus Suit Front'
+        | 'Marcus Suit Side'
+        | 'Maria in Suit'
+        | 'Maria in Sweater'
+        | 'Maria in Black Suit'
+        | 'Martina Office Front 2'
+        | 'Martina Office Front'
+        | 'Martina Office Side 2'
+        | 'Martina Office Side'
+        | 'Martina Sofa Front 2'
+        | 'Martina Sofa Front'
+        | 'Martina Sofa Side 2'
+        | 'Martina Sofa Side'
+        | 'Masha Office Front 2'
+        | 'Masha Office Front'
+        | 'Masha Office Side 2'
+        | 'Masha Office Side'
+        | 'Masha Sofa Casual Front 2'
+        | 'Masha Sofa Casual Front'
+        | 'Masha Sofa Casual Side 2'
+        | 'Masha Sofa Casual Side'
+        | 'Mason in Blue Suit'
+        | 'Mason in White Shirt'
+        | 'Mason in Blue Sweater'
+        | 'Matteo Office Front 2'
+        | 'Matteo Office Front'
+        | 'Matteo Office Side 2'
+        | 'Matteo Office Side'
+        | 'Matteo Sofa Front 2'
+        | 'Matteo Sofa Front'
+        | 'Matteo Sofa Side 2'
+        | 'Matteo Sofa Side'
+        | 'Max (Upper Body)'
+        | 'Max Indoor Front'
+        | 'Max Indoor Side'
+        | 'Max Outdoor Sport Front'
+        | 'Max Outdoor Sport Side'
+        | 'Milena Office Front 2'
+        | 'Milena Office Front'
+        | 'Milena Office Side 2'
+        | 'Milena Office Side'
+        | 'Milena Sofa Front 2'
+        | 'Milena Sofa Front'
+        | 'Milena Sofa Side 2'
+        | 'Milena Sofa Side'
+        | 'Miles (Upper Body)'
+        | 'Miles Outdoor Front'
+        | 'Miles Outdoor Side'
+        | 'Miles Sofa Front 2'
+        | 'Miles Sofa Front'
+        | 'Miles Sofa Side 2'
+        | 'Miles Sofa Side'
+        | 'Minho in Blue blazer'
+        | 'Minho in Blue shirt'
+        | 'Minho in Green polo-shirt'
+        | 'Minho in Khaki jacket'
+        | 'Minho in White shirt'
+        | 'Minho in White t-shirt'
+        | 'Mireia Business Indoor Front'
+        | 'Mireia Business Indoor Side'
+        | 'Mireia Outdoor Chair Front'
+        | 'Mireia Outdoor Front'
+        | 'Mireia Outdoor Side'
+        | 'Mireia Outdoor Table Front'
+        | 'Mireia Outdoor Table Side'
+        | 'Miyu Office Front 2'
+        | 'Miyu Office Front'
+        | 'Miyu Office Side 2'
+        | 'Miyu Office Side'
+        | 'Miyu Sofa Business Front'
+        | 'Miyu Sofa Business Side'
+        | 'Miyu Sofa Casual Front 2'
+        | 'Miyu Sofa Casual Front'
+        | 'Miyu Sofa Casual Side 2 '
+        | 'Miyu Sofa Casual Side'
+        | 'Nadim in Black blazer'
+        | 'Nadim in Blue blazer'
+        | 'Nadim in Blue jacket'
+        | 'Nadim in Puffer vest'
+        | 'Nadim in White shirt'
+        | 'Neil in Black Shirt'
+        | 'Neil in Black Suit '
+        | 'Neil in Yellow Jacket'
+        | 'Nico'
+        | 'Noah Lobby Front 2'
+        | 'Noah Lobby Front'
+        | 'Noah Lobby Side 2'
+        | 'Noah Lobby Side'
+        | 'Noah Office Front 2'
+        | 'Noah Office Front'
+        | 'Noah Office Side 2'
+        | 'Noah Office Side'
+        | 'Noah Sofa Front 2'
+        | 'Noah Sofa Front '
+        | 'Noah Sofa Side 2'
+        | 'Noah Sofa Side'
+        | 'Nour in Black blazer'
+        | 'Nour in Brown dress'
+        | 'Nour in Grey hoodie'
+        | 'Nour in Sporty vest'
+        | 'Nour in White shirt'
+        | 'Odelia in Blue Suit'
+        | 'Odelia in Red Dress '
+        | 'Odelia in Yellow Suit'
+        | 'Onat (Upper Body)'
+        | 'Onat Casual Front'
+        | 'Onat Casual Side'
+        | 'Onat Casual Sitting Front'
+        | 'Onat Casual Sitting Side'
+        | 'Onat Macbook Front 2'
+        | 'Onat Macbook Front'
+        | 'Onat Macbook Side 2'
+        | 'Onat Macbook Side'
+        | 'Onat Suit Front'
+        | 'Onat Suit Side'
+        | 'Onat Suit Sitting Front'
+        | 'Onat Suit Sitting Side'
+        | 'Onat iPad Front'
+        | 'Onat iPad Side'
+        | 'Onat iPad Sitting Front'
+        | 'Onat iPad Sitting Side'
+        | 'Oxana (Upper Body)'
+        | 'Oxana Gym Front 2'
+        | 'Oxana Gym Front'
+        | 'Oxana Gym Side 2'
+        | 'Oxana Gym Side'
+        | 'Oxana Office Front 2'
+        | 'Oxana Office Front'
+        | 'Oxana Office Side 2'
+        | 'Oxana Office Side'
+        | 'Oxana Sofa Front 2'
+        | 'Oxana Sofa Front'
+        | 'Oxana Sofa Side 2'
+        | 'Oxana Sofa Side'
+        | 'Oxana Yoga Front 2'
+        | 'Oxana Yoga Front'
+        | 'Oxana Yoga Side 2'
+        | 'Oxana Yoga Side'
+        | 'Patrizio Business Training Front'
+        | 'Patrizio Business Training Side'
+        | 'Patrizio Office Front'
+        | 'Patrizio Office Side 2'
+        | 'Patrizio Office Side'
+        | 'Patrizio Sofa Front'
+        | 'Patrizio Sofa Side'
+        | 'Piper Business Sofa Front'
+        | 'Piper Business Sofa Side'
+        | 'Piper Education Front'
+        | 'Piper Education Side'
+        | 'Rasmus Lounge Front 2'
+        | 'Rasmus Lounge Front'
+        | 'Rasmus Lounge Side 2'
+        | 'Rasmus Lounge Side'
+        | 'Rasmus Sofa Front 2'
+        | 'Rasmus Sofa Front'
+        | 'Rasmus Sofa Side 2'
+        | 'Rasmus Sofa Side'
+        | 'Raul (Upper Body)'
+        | 'Raul Business Sofa Front 2'
+        | 'Raul Business Sofa Front'
+        | 'Raul Business Sofa Side 2'
+        | 'Raul Business Sofa Side'
+        | 'Raul Casual Sofa Front 2'
+        | 'Raul Casual Sofa Front'
+        | 'Raul Casual Sofa Side 2'
+        | 'Raul Casual Sofa Side'
+        | 'Raul Casual Sofa no iPad Front'
+        | 'Raul Casual Sofa no iPad Side'
+        | 'Raul Casual Sofa with iPad Front'
+        | 'Raul Casual Sofa with iPad Side'
+        | 'Raul Office Front 2'
+        | 'Raul Office Front'
+        | 'Raul Office Side'
+        | 'Raul Sofa Front 2'
+        | 'Raul Sofa Front'
+        | 'Raul Sofa Side 2'
+        | 'Raul Sofa Side'
+        | 'Rebecca'
+        | 'Ren (Upper Body)'
+        | 'Ren Office Front 2'
+        | 'Ren Office Front'
+        | 'Ren Office Side 2'
+        | 'Ren Office Side'
+        | 'Ren Sofa Business Front'
+        | 'Ren Sofa Business Side'
+        | 'Ren Sofa Casual Front 2'
+        | 'Ren Sofa Casual Front'
+        | 'Ren Sofa Casual Side 2 '
+        | 'Ren Sofa Casual Side'
+        | 'Riley (Upper Body)'
+        | 'Riley Casual Front'
+        | 'Riley Casual Side'
+        | 'Riley Office Front'
+        | 'Riley Office Side'
+        | 'Roman Outdoor Sport Front'
+        | 'Roman Outdoor Sport Side'
+        | 'Sabine Office Front 2'
+        | 'Sabine Office Front'
+        | 'Sabine Office Side'
+        | 'Sabine Sofa Side'
+        | 'Salma in headscarf (Front)'
+        | 'Salma in headscarf (Left)'
+        | 'Salma in headscarf (Right)'
+        | 'Santa Avatar Present Standing '
+        | 'Santa Avatar Sitting 2'
+        | 'Santa Avatar Sitting'
+        | 'Santa Avatar Sitting Side'
+        | 'Santa Avatar Standing'
+        | 'Santa Fireplace Front'
+        | 'Santa Fireplace Side'
+        | 'Saskia in Blue blazer'
+        | 'Saskia in Blue shirt'
+        | 'Saskia in Green blazer'
+        | 'Saskia in Grey vest'
+        | 'Saskia in White blazer'
+        | 'Scarlett Couch Front 2'
+        | 'Scarlett Couch Front'
+        | 'Scarlett Couch Side 2'
+        | 'Scarlett Couch Side'
+        | 'Scarlett Fireplace Front'
+        | 'Scarlett Fireplace Side'
+        | 'Scarlett Hall Front'
+        | 'Scarlett Hall Side'
+        | 'Scarlett Yoga Front'
+        | 'Scarlett Yoga Side'
+        | 'Seema Business Front'
+        | 'Seema Business Side'
+        | 'Seema Business Sitting Side'
+        | 'Seema Casual Front'
+        | 'Seema Casual Side'
+        | 'Seema Casual Sitting Front'
+        | 'Seema Casual Sitting Side'
+        | 'Seema Nurse Front 2'
+        | 'Seema Nurse Front'
+        | 'Seema Nurse Side 2'
+        | 'Seema Nurse Side'
+        | 'Shawn Business Front'
+        | 'Shawn Business Side'
+        | 'Shawn Casual Sitting Front'
+        | 'Shawn Casual Sitting Side'
+        | 'Shawn Sitting Front'
+        | 'Shawn Sitting Side'
+        | 'Shawn Suit Front'
+        | 'Shawn Suit Side'
+        | 'Shawn Therapist'
+        | 'Shirley Business Front'
+        | 'Shirley Business Side'
+        | 'Shirley Casual Front 2'
+        | 'Shirley Casual Front'
+        | 'Shirley Casual Side'
+        | 'Shirley Casual Sitting Front 2'
+        | 'Shirley Casual Sitting Front'
+        | 'Shirley Casual Sitting Side 2'
+        | 'Shirley Casual Sitting Side'
+        | 'Shirley Education Front'
+        | 'Shirley Education Side 2'
+        | 'Shirley Education Side'
+        | 'Shirley Sitting Front'
+        | 'Shirley Sitting Side'
+        | 'Shirley Skirt Front'
+        | 'Shirley Skirt Side'
+        | 'Shirley Suit Front'
+        | 'Shirley Suit Side'
+        | 'Silas (Upper Body)'
+        | 'Silas Customer Support'
+        | 'Silas HR'
+        | 'Silas Lounge Front'
+        | 'Silas Lounge Side'
+        | 'Silas Sofa Side 2'
+        | 'Silas Sofa Side'
+        | 'Sloane in Blue dress'
+        | 'Sloane in Grey suit'
+        | 'Sloane in Pink sweater'
+        | 'Sophia in Black Shirt'
+        | 'Sophia in Suit '
+        | 'Sophia in White Suit'
+        | 'Sophie'
+        | 'Stacy in Doctor (Front)'
+        | 'Stacy in Doctor (Left)'
+        | 'Stacy in Doctor (Right)'
+        | 'Stacy in Dress (Front)'
+        | 'Stacy in Dress (Left)'
+        | 'Stacy in Dress (Right)'
+        | 'Stacy in Shirt (Front)'
+        | 'Stacy in Shirt (Left)'
+        | 'Stacy in Shirt (Right)'
+        | 'Susan in Black Shirt'
+        | 'Susan in Black Suit'
+        | 'Susan in Suit'
+        | 'Tahlia in Blue dress'
+        | 'Tahlia in Blue suit'
+        | 'Tahlia in Dark blue suit'
+        | 'Tahlia in Red suit'
+        | 'Tahlia in White shirt'
+        | 'Teodor (Upper Body)'
+        | 'Teodor Office Front 2'
+        | 'Teodor Office Front'
+        | 'Teodor Office Side 2'
+        | 'Teodor Office Side'
+        | 'Teodor Sofa Front 2'
+        | 'Teodor Sofa Front'
+        | 'Teodor Sofa Side 2'
+        | 'Teodor Sofa Side'
+        | 'Timothy (Upper Body)'
+        | 'Timothy Casual Front'
+        | 'Timothy Casual Side'
+        | 'Timothy Office Front'
+        | 'Timothy Office Side'
+        | 'Tito Casual Front 2'
+        | 'Tito Casual Front'
+        | 'Tito Casual Side 2'
+        | 'Tito Casual Side'
+        | 'Tito Casual Sitting Front'
+        | 'Tito Casual Sitting Side'
+        | 'Tito Coat Front 2'
+        | 'Tito Coat Front'
+        | 'Tito Coat Full Side'
+        | 'Tito Coat Side 2'
+        | 'Tito Coat Side'
+        | 'Tito Painter Front'
+        | 'Tito Painter Full Side'
+        | 'Tito Painter Side'
+        | 'Tito Painter Sitting Front'
+        | 'Tito Painter Sitting Side'
+        | 'Travis in Polo Shirt'
+        | 'Travis in Gray Suit'
+        | 'Travis in Black Suit'
+        | 'Trevor  in Plaid Shirt'
+        | 'Trevor in Blue Shirt'
+        | 'Trevor in Blue Suit'
+        | 'Trevor in Suit'
+        | 'Tuba Business Chair Front'
+        | 'Tuba Business Chair Side'
+        | 'Tuba Business Front'
+        | 'Tuba Business Side'
+        | 'Tuba Business Sofa Front'
+        | 'Tuba Business Sofa Side'
+        | 'Tuba Casual Front'
+        | 'Tuba Casual Side'
+        | 'Tuba Casual Sitting Front'
+        | 'Tuba Casual Sitting Side'
+        | 'Tuba Macbook Front'
+        | 'Tuba Macbook Side'
+        | 'Veit Office Front'
+        | 'Veit Office Side'
+        | 'Veit Sofa Front'
+        | 'Veit Sofa Side'
+        | 'Vernon Office Front 2'
+        | 'Vernon Office Front'
+        | 'Vernon Office Side 2'
+        | 'Vernon Office Side'
+        | 'Verena Office Front'
+        | 'Verena Office Side'
+        | 'Verena Sofa Front'
+        | 'Verena Sofa Side'
+        | 'Vernon (Upper Body)'
+        | 'Vernon Lounge Front 2'
+        | 'Vernon Lounge Side 2'
+        | 'Vernon Lounge Side'
+        | 'Vince (Upper Body)'
+        | 'Vince Business Sofa Front'
+        | 'Vince Business Training Front'
+        | 'Vince Business Training Side 2'
+        | 'Vince Business Training Side'
+        | 'Vince Sofa Casual Front 2'
+        | 'Vince Sofa Casual Front'
+        | 'Vince Sofa Casual Side 2'
+        | 'Vince Sofa Casual Side'
+        | 'Violante Brown Suit Front 2'
+        | 'Violante Brown Suit Front '
+        | 'Violante Business Sitting Front'
+        | 'Violante Business Sitting Side'
+        | 'Violante Casual Sitting Front '
+        | 'Violante Casual Sitting Side'
+        | 'Violante Sport Front 2'
+        | 'Violante Sport Front'
+        | 'Violante Sport Side'
+        | 'Violante Sport Sitting Side'
+        | 'Violante Suit Front'
+        | 'Vivianna in Black shirt'
+        | 'Wade in Black Suit'
+        | 'Wade in Black Jacket'
+        | 'Wade in Gray Jacket'
+        | 'Yola Active Speaking Front'
+        | 'Yola Active Speaking Side'
+        | 'Yola Business Front'
+        | 'Yola Business Side'
+        | 'Yola Calm Speaking Front'
+        | 'Yola Calm Speaking Side'
+        | 'Yola Casual Front'
+        | 'Yola Casual Side'
+        | 'Yola Employee Badge Front'
+        | 'Yola Employee Badge Side'
+        | 'Zosia in Blue blazer'
+        | 'Zosia in Green dress'
+        | 'Zosia in Khaki blazer'
+        | 'Zosia in White dress'
+        | 'Zosia in Yellow shirt'
+        | 'Austin in Suit'
+        | 'Austin in Blue Casual Suit'
+        | 'Austin in Black Jacket'
+        | 'Austin in Blue Suit'
+        | 'Candace in Pink Blazer (Upper Body)'
+        | 'Chad in Blue Shirt (Upper Body)'
+        | 'Daisy in Suit'
+        | 'Daisy in Shirt'
+        | 'Daisy in Dress'
+        | 'Daisy in T-shirt'
+        | 'Francis in Blazer (Upper Body)'
+        | 'Matthew'
+        | 'Matthew in Suit'
+        | 'Matthew in Flowery Shirt'
+        | 'Matthew in Grey Sweater'
+        | 'Nik in Black Shirt'
+        | 'Nik in Blue Sweater'
+        | 'Tyler in Casual Suit'
+        | 'Tyler in Shirt'
+        | 'Tyler in Suit';
+    /**
+     * Avatar Style
+     * @description Style of the avatar display
+     * @default closeUp
+     * @enum {string}
+     */
+    avatar_style?: 'normal' | 'circle' | 'closeUp';
+}
+
 export interface CameraControl {
     /**
      * Movement Type
@@ -3678,6 +6228,22 @@ export interface BBoxPromptBase {
      * @default 0
      */
     y_min?: number;
+}
+
+export interface AvatarIVBackground {
+    /**
+     * Type
+     * @description Type of background
+     * @default color
+     * @enum {string}
+     */
+    type?: 'color' | 'image' | 'video';
+    /**
+     * Value
+     * @description Background value - hex color for 'color' type, URL for 'image' or 'video' type
+     * @default #FFFFFF
+     */
+    value?: string;
 }
 
 export interface AudioTrack {

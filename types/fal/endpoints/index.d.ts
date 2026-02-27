@@ -2164,6 +2164,16 @@ declare global {
                 output: falEndpoints.NanoBananaProOutput;
             };
 
+            'fal-ai/nano-banana-2/edit': {
+                input: falEndpoints.NanoBanana2EditInput;
+                output: falEndpoints.NanoBanana2EditOutput;
+            };
+
+            'fal-ai/nano-banana-2': {
+                input: falEndpoints.NanoBanana2Input;
+                output: falEndpoints.NanoBanana2Output;
+            };
+
             'fal-ai/nano-banana': {
                 input: falEndpoints.NanoBananaInput;
                 output: falEndpoints.NanoBananaOutput;
@@ -4114,6 +4124,36 @@ declare global {
                 output: falEndpoints.HidreamE11Output;
             };
 
+            'fal-ai/heygen/v2/video-agent': {
+                input: falEndpoints.HeygenV2VideoAgentInput;
+                output: falEndpoints.HeygenV2VideoAgentOutput;
+            };
+
+            'fal-ai/heygen/v2/translate/speed': {
+                input: falEndpoints.HeygenV2TranslateSpeedInput;
+                output: falEndpoints.HeygenV2TranslateSpeedOutput;
+            };
+
+            'fal-ai/heygen/v2/translate/precision': {
+                input: falEndpoints.HeygenV2TranslatePrecisionInput;
+                output: falEndpoints.HeygenV2TranslatePrecisionOutput;
+            };
+
+            'fal-ai/heygen/avatar4/image-to-video': {
+                input: falEndpoints.HeygenAvatar4ImageToVideoInput;
+                output: falEndpoints.HeygenAvatar4ImageToVideoOutput;
+            };
+
+            'fal-ai/heygen/avatar4/digital-twin': {
+                input: falEndpoints.HeygenAvatar4DigitalTwinInput;
+                output: falEndpoints.HeygenAvatar4DigitalTwinOutput;
+            };
+
+            'fal-ai/heygen/avatar3/digital-twin': {
+                input: falEndpoints.HeygenAvatar3DigitalTwinInput;
+                output: falEndpoints.HeygenAvatar3DigitalTwinOutput;
+            };
+
             'fal-ai/gpt-image-1/text-to-image': {
                 input: falEndpoints.GptImage1TextToImageInput;
                 output: falEndpoints.GptImage1TextToImageOutput;
@@ -4182,6 +4222,16 @@ declare global {
             'fal-ai/gemini-flash-edit': {
                 input: falEndpoints.GeminiFlashEditInput;
                 output: falEndpoints.GeminiFlashEditOutput;
+            };
+
+            'fal-ai/gemini-3.1-flash-image-preview/edit': {
+                input: falEndpoints.Gemini31FlashImagePreviewEditInput;
+                output: falEndpoints.Gemini31FlashImagePreviewEditOutput;
+            };
+
+            'fal-ai/gemini-3.1-flash-image-preview': {
+                input: falEndpoints.Gemini31FlashImagePreviewInput;
+                output: falEndpoints.Gemini31FlashImagePreviewOutput;
             };
 
             'fal-ai/gemini-3-pro-image-preview/edit': {
@@ -5872,6 +5922,11 @@ declare global {
             'bria/fibo-edit/add_object_by_text': {
                 input: falEndpoints.BriaFiboEditAdd_object_by_textInput;
                 output: falEndpoints.BriaFiboEditAdd_object_by_textOutput;
+            };
+
+            'bria/embed-product': {
+                input: falEndpoints.BriaEmbedProductInput;
+                output: falEndpoints.BriaEmbedProductOutput;
             };
 
             'bria/bria_video_eraser/erase/prompt': {
