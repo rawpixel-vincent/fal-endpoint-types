@@ -138,63 +138,6 @@ export interface VideoFormat {
     video_codec: string;
 }
 
-export interface VideoFile_1 {
-    /**
-     * Content Type
-     * @description The mime type of the file.
-     * @example image/png
-     */
-    content_type?: string;
-    /**
-     * Duration
-     * @description The duration of the video
-     */
-    duration?: number;
-    /**
-     * File Data
-     * Format: binary
-     * @description File data
-     */
-    file_data?: string;
-    /**
-     * File Name
-     * @description The name of the file. It will be auto-generated if not provided.
-     * @example z9RV14K95DvU.png
-     */
-    file_name?: string;
-    /**
-     * File Size
-     * @description The size of the file in bytes.
-     * @example 4404019
-     */
-    file_size?: number;
-    /**
-     * Fps
-     * @description The FPS of the video
-     */
-    fps?: number;
-    /**
-     * Height
-     * @description The height of the video
-     */
-    height?: number;
-    /**
-     * Num Frames
-     * @description The number of frames in the video
-     */
-    num_frames?: number;
-    /**
-     * Url
-     * @description The URL where the file can be downloaded from.
-     */
-    url: string;
-    /**
-     * Width
-     * @description The width of the video
-     */
-    width?: number;
-}
-
 export interface VideoFile {
     /**
      * Content Type
