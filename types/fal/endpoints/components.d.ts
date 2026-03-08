@@ -1600,7 +1600,6 @@ export interface VideoAgentConfig {
 }
 
 export interface Video_1 {
-    /** @description Audio track information if video has audio */
     audio?: AudioTrack;
     /**
      * Bitrate
@@ -1642,7 +1641,6 @@ export interface Video_1 {
      * @description Size of the file in bytes
      */
     file_size: number;
-    /** @description Detailed video format information */
     format: VideoFormat;
     /**
      * Fps
@@ -1661,7 +1659,6 @@ export interface Video_1 {
      * @constant
      */
     media_type?: 'video';
-    /** @description Video resolution information */
     resolution: Resolution;
     /**
      * Start Frame Url
@@ -1790,11 +1787,8 @@ export interface UsageInfo_1 {
 }
 
 export interface UsageInfo {
-    /** Completion Tokens */
     completion_tokens?: number;
-    /** Cost */
     cost: number;
-    /** Prompt Tokens */
     prompt_tokens?: number;
     /**
      * Total Tokens
@@ -1804,9 +1798,7 @@ export interface UsageInfo {
 }
 
 export interface Turn {
-    /** Speaker Id */
     speaker_id: number;
-    /** Text */
     text: string;
 }
 
@@ -1947,9 +1939,9 @@ export interface TextVoice {
     /**
      * Prompt
      * @description The text that the avatar will speak in the video
-     * @example The Tesla Cybertruck is a battery-electric full-size pickup truck manufactured by Tesla, Inc. since 2023. It was first unveiled as a prototype in November 2019, featuring a distinctive angular design composed of flat, unpainted stainless steel body panels, drawing comparisons to low-polygon computer models.
+     * @example The Tesla Cybertruck is a battery-electric full-size pickup truck manufactured by Tesla, Inc. since 2023.
      */
-    prompt: string;
+    prompt?: string;
     /**
      * Speed
      * @description Speed of the speech (0.5 to 2.0)
@@ -1963,9 +1955,9 @@ export interface TextVoice {
      * Voice
      * @description Name of the voice to use for the avatar
      * @example Charming Charlie - Excited 🤩
-     * @enum {string}
+     * @enum {unknown}
      */
-    voice:
+    voice?:
         | 'Warm Pro Narrator'
         | 'Chill Brian'
         | 'Ivy'
@@ -2068,16 +2060,17 @@ export interface TextVoice {
         | 'Rupert Blackwood'
         | 'Ginny'
         | 'Hope';
+    /**
+     * Voice Id
+     * @description Direct voice ID. When provided, this is used instead of looking up the voice by name.
+     */
+    voice_id?: string;
 }
 
 export interface TextureFiles {
-    /** @description Base color texture */
     base_color: File;
-    /** @description Metallic texture (PBR) */
     metallic?: File;
-    /** @description Normal texture (PBR) */
     normal?: File;
-    /** @description Roughness texture (PBR) */
     roughness?: File;
 }
 
@@ -2114,8 +2107,55 @@ export interface TextRender {
     text: string;
 }
 
+export interface StructuredPrompt_2 {
+    aesthetics?: Aesthetics_1;
+    /**
+     * Artistic Style
+     * @description The artistic style of the image to be generated.
+     */
+    artistic_style?: string;
+    /**
+     * Background Setting
+     * @description The background setting of the image to be generated.
+     */
+    background_setting?: string;
+    /**
+     * Color Palette
+     * @description A list of colors that define the overall color palette of the image.
+     */
+    color_palette?: Color[];
+    /**
+     * Context
+     * @description The context of the image to be generated.
+     */
+    context?: string;
+    lighting?: Lighting_1;
+    /**
+     * Objects
+     * @description A list of objects in the image to be generated, along with their attributes and relationships to other objects in the image.
+     * @default []
+     */
+    objects?: PromptObject_1[];
+    photographic_characteristics?: PhotographicCharacteristics_1;
+    /**
+     * Short Description
+     * @description A short description of the image to be generated.
+     */
+    short_description?: string;
+    /**
+     * Style Medium
+     * @description The style medium of the image to be generated.
+     */
+    style_medium?: string;
+    /**
+     * Text Render
+     * @description A list of text to be rendered in the image.
+     * @default []
+     */
+    text_render?: { [x: string]: any }[];
+}
+
 export interface StructuredPrompt_1 {
-    /** @description Details about the image aesthetics. */
     aesthetics: AestheticsDetails;
     /**
      * Artistic Style
@@ -2132,14 +2172,12 @@ export interface StructuredPrompt_1 {
      * @description Provide any additional context that helps understand the image better.
      */
     context: string;
-    /** @description Details about the lighting. */
     lighting: LightingDetails;
     /**
      * Objects
      * @description List of prominent foreground/midground objects.
      */
     objects: ObjectDescription[];
-    /** @description Details about photographic characteristics. */
     photographic_characteristics?: PhotographicCharacteristicsDetails;
     /**
      * Short Description
@@ -2164,8 +2202,7 @@ export interface StructuredPrompt_1 {
 }
 
 export interface StructuredPrompt {
-    /** @description The aesthetics of the image to be generated. */
-    aesthetics?: Aesthetics;
+    aesthetics?: Aesthetics_1;
     /**
      * Artistic Style
      * @description The artistic style of the image to be generated.
@@ -2181,16 +2218,14 @@ export interface StructuredPrompt {
      * @description The context of the image to be generated.
      */
     context?: string;
-    /** @description The lighting of the image to be generated. */
-    lighting?: Lighting;
+    lighting?: Lighting_1;
     /**
      * Objects
      * @description A list of objects in the image to be generated, along with their attributes and relationships to other objects in the image.
      * @default []
      */
-    objects?: PromptObject[];
-    /** @description The photographic characteristics of the image to be generated. */
-    photographic_characteristics?: PhotographicCharacteristics;
+    objects?: PromptObject_1[];
+    photographic_characteristics?: PhotographicCharacteristics_1;
     /**
      * Short Description
      * @description A short description of the image to be generated.
@@ -2210,8 +2245,7 @@ export interface StructuredPrompt {
 }
 
 export interface StructuredInstruction {
-    /** @description The aesthetics of the image to be generated. */
-    aesthetics?: Aesthetics;
+    aesthetics?: Aesthetics_1;
     /**
      * Artistic Style
      * @description The artistic style of the image to be generated.
@@ -2232,16 +2266,14 @@ export interface StructuredInstruction {
      * @description The edit instruction for the image.
      */
     edit_instruction?: string;
-    /** @description The lighting of the image to be generated. */
-    lighting?: Lighting;
+    lighting?: Lighting_1;
     /**
      * Objects
      * @description A list of objects in the image to be generated, along with their attributes and relationships to other objects in the image.
      * @default []
      */
-    objects?: PromptObject[];
-    /** @description The photographic characteristics of the image to be generated. */
-    photographic_characteristics?: PhotographicCharacteristics;
+    objects?: PromptObject_1[];
+    photographic_characteristics?: PhotographicCharacteristics_1;
     /**
      * Short Description
      * @description A short description of the image to be generated.
@@ -2274,11 +2306,8 @@ export interface SpeechTimestamp {
 }
 
 export interface Speaker {
-    /** Audio Url */
     audio_url: string;
-    /** Prompt */
     prompt: string;
-    /** Speaker Id */
     speaker_id: number;
 }
 
@@ -2559,9 +2588,7 @@ export interface RawImage {
      * @default image/jpeg
      */
     content_type?: string;
-    /** Height */
     height: number;
-    /** Width */
     width: number;
 }
 
@@ -2584,6 +2611,100 @@ export interface PronunciationDict {
      * @description List of pronunciation replacements in format ['text/(pronunciation)', ...]. For Chinese, tones are 1-5. Example: ['燕少飞/(yan4)(shao3)(fei1)']
      */
     tone_list?: string[];
+}
+
+export interface PromptObject_1 {
+    /**
+     * Action
+     * @description The action of the object in the image.
+     */
+    action?: string;
+    /**
+     * Appearance Details
+     * @description The appearance details of the object.
+     */
+    appearance_details?: string;
+    /**
+     * Bounding Boxes
+     * @description Bounding boxes defining the location of the object in the image.
+     */
+    bounding_boxes?: BoundingBox_1[];
+    /**
+     * Clothing
+     * @description The clothing of the object in the image.
+     */
+    clothing?: string;
+    /**
+     * Colors
+     * @description A list of colors associated with the object.
+     */
+    colors?: Color[];
+    /**
+     * Description
+     * @description A description of the object to be generated.
+     */
+    description?: string;
+    /**
+     * Expression
+     * @description The expression of the object in the image.
+     */
+    expression?: string;
+    /**
+     * Gender
+     * @description The gender of the object in the image.
+     */
+    gender?: string;
+    /**
+     * Location
+     * @description The location of the object in the image.
+     */
+    location?: string;
+    /**
+     * Number Of Objects
+     * @description The number of objects in the image.
+     */
+    number_of_objects?: number;
+    /**
+     * Orientation
+     * @description The orientation of the object in the image.
+     */
+    orientation?: string;
+    /**
+     * Pose
+     * @description The pose of the object in the image.
+     */
+    pose?: string;
+    /**
+     * Relationship
+     * @description The relationship of the object to other objects in the image.
+     */
+    relationship?: string;
+    /**
+     * Relative Distance
+     * @description The relative distance of the object from the camera or viewer.
+     */
+    relative_distance?: number;
+    /**
+     * Relative Size
+     * @description The relative size of the object in the image.
+     */
+    relative_size?: string;
+    /**
+     * Shape And Color
+     * @description The shape and color of the object.
+     */
+    shape_and_color?: string;
+    skin_color?: Color;
+    /**
+     * Skin Tone And Texture
+     * @description The skin tone and texture of the object in the image.
+     */
+    skin_tone_and_texture?: string;
+    /**
+     * Texture
+     * @description The texture of the object.
+     */
+    texture?: string;
 }
 
 export interface PromptObject {
@@ -2766,7 +2887,7 @@ export interface PointPrompt {
     y?: number;
 }
 
-export interface Point {
+export interface Point_1 {
     /**
      * X
      * @description X coordinate of the point in normalized format (0 to 1)
@@ -2775,6 +2896,19 @@ export interface Point {
     /**
      * Y
      * @description Y coordinate of the point in normalized format (0 to 1)
+     */
+    y: number;
+}
+
+export interface Point {
+    /**
+     * X
+     * @description The x coordinate.
+     */
+    x: number;
+    /**
+     * Y
+     * @description The y coordinate.
      */
     y: number;
 }
@@ -2801,6 +2935,31 @@ export interface PhotographicCharacteristicsDetails {
      */
     lens_focal_length: string;
 }
+
+export type PhotographicCharacteristics_1 = {
+    /**
+     * Camera Angle
+     * @description The angle of the camera in the image to be generated.
+     */
+    camera_angle?: string;
+    /**
+     * Depth Of Field
+     * @description The depth of field in the image to be generated.
+     */
+    depth_of_field?: string;
+    /**
+     * Focus
+     * @description The focus in the image to be generated.
+     */
+    focus?: string;
+    /**
+     * Lens Focal Length
+     * @description The focal length of the lens in the image to be generated.
+     */
+    lens_focal_length?: string;
+} & {
+    [key: string]: { [x: string]: any } | null;
+};
 
 export interface PhotographicCharacteristics {
     /**
@@ -3012,43 +3171,27 @@ export interface MoondreamInputParam {
 }
 
 export interface ModelUrls_2 {
-    /** @description FBX format 3D model */
     fbx?: File;
-    /** @description GLB format 3D model */
     glb?: File;
-    /** @description OBJ format 3D model */
     obj?: File;
-    /** @description USDZ format 3D model */
     usdz?: File;
 }
 
 export interface ModelUrls_1 {
-    /** @description FBX format 3D model */
     fbx?: File;
-    /** @description GLB format 3D model */
     glb?: File;
-    /** @description MTL material file for OBJ model */
     mtl?: File;
-    /** @description OBJ format 3D model */
     obj?: File;
-    /** @description Texture image for the 3D model */
     texture?: File;
-    /** @description USDZ format 3D model */
     usdz?: File;
 }
 
 export interface ModelUrls {
-    /** @description Blender format 3D model */
     blend?: File;
-    /** @description FBX format 3D model */
     fbx?: File;
-    /** @description GLB format 3D model */
     glb?: File;
-    /** @description OBJ format 3D model */
     obj?: File;
-    /** @description STL format 3D model */
     stl?: File;
-    /** @description USDZ format 3D model */
     usdz?: File;
 }
 
@@ -3367,6 +3510,26 @@ export interface LightingDetails {
     shadows?: string;
 }
 
+export type Lighting_1 = {
+    /**
+     * Conditions
+     * @description The conditions of the lighting in the image to be generated.
+     */
+    conditions?: string;
+    /**
+     * Direction
+     * @description The direction of the lighting in the image to be generated.
+     */
+    direction?: string;
+    /**
+     * Shadows
+     * @description The shadows in the image to be generated.
+     */
+    shadows?: string;
+} & {
+    [key: string]: { [x: string]: any } | null;
+};
+
 export interface Lighting {
     /**
      * Conditions
@@ -3627,7 +3790,6 @@ export interface ImageSize {
 }
 
 export interface ImagePrompt {
-    /** Image Url */
     image_url?: string;
     /**
      * Stop At
@@ -3904,11 +4066,8 @@ export interface Image_1 {
      * @default image/jpeg
      */
     content_type?: string;
-    /** Height */
     height: number;
-    /** Url */
     url: string;
-    /** Width */
     width: number;
 }
 
@@ -4639,7 +4798,6 @@ export interface ColorPaletteMember {
      * @default 0.5
      */
     color_weight?: number;
-    /** @description RGB color value for the palette member */
     rgb: RGBColor;
 }
 
@@ -4654,6 +4812,29 @@ export interface ColorPalette {
      * @description A color palette preset value
      */
     name?: 'EMBER' | 'FRESH' | 'JUNGLE' | 'MAGIC' | 'MELON' | 'MOSAIC' | 'PASTEL' | 'ULTRAMARINE';
+}
+
+export interface Color {
+    /**
+     * Blue
+     * @description The blue component of the color (0-255).
+     */
+    blue: number;
+    /**
+     * Green
+     * @description The green component of the color (0-255).
+     */
+    green: number;
+    /**
+     * Name
+     * @description The name of the color.
+     */
+    name?: string;
+    /**
+     * Red
+     * @description The red component of the color (0-255).
+     */
+    red: number;
 }
 
 export interface ChronoLoraWeight {
@@ -6115,7 +6296,12 @@ export interface BoundingBoxes {
      * Bboxes
      * @description List of bounding boxes
      */
-    bboxes: BoundingBox[];
+    bboxes: BoundingBox_1[];
+}
+
+export interface BoundingBox_1 {
+    bottom_right: Point;
+    top_left: Point;
 }
 
 export interface BoundingBox {
@@ -6483,7 +6669,7 @@ export interface AestheticsDetails {
     preference_score: string;
 }
 
-export interface Aesthetics_1 {
+export interface Aesthetics_2 {
     /**
      * Aesthetic Score
      * @description The aesthetic score of the image.
@@ -6510,6 +6696,36 @@ export interface Aesthetics_1 {
      */
     preference_score: string;
 }
+
+export type Aesthetics_1 = {
+    /**
+     * Aesthetic Score
+     * @description The aesthetic score of the image (e.g., 'very high', 'high', 'medium', 'low').
+     */
+    aesthetic_score?: string;
+    /**
+     * Color Scheme
+     * @description The color scheme of the image to be generated.
+     */
+    color_scheme?: string;
+    /**
+     * Composition
+     * @description The composition of the image to be generated.
+     */
+    composition?: string;
+    /**
+     * Mood Atmosphere
+     * @description The mood and atmosphere of the image to be generated.
+     */
+    mood_atmosphere?: string;
+    /**
+     * Preference Score
+     * @description The preference score of the image (e.g., 'very high', 'high', 'medium', 'low').
+     */
+    preference_score?: string;
+} & {
+    [key: string]: { [x: string]: any } | null;
+};
 
 export interface Aesthetics {
     /**
