@@ -358,6 +358,9 @@ const doEndpointComponents = async (endpointId) => {
 
             if (currentComponentName) {
                 if (line.trim().startsWith('/*') || line.trim().startsWith('*')) {
+                    if (line.trim().endsWith('*/') && line.trim().startsWith('/*')) {
+                        continue;
+                    }
                     if (line.trim().startsWith('/*')) {
                         lastCommentSetDefault = false;
                     }
@@ -389,7 +392,7 @@ const doEndpointComponents = async (endpointId) => {
                     );
                     currentComponentName = '';
                 } else {
-                    if (line.trim().endsWith('{')) {
+                    if (line.trim().endsWith('{') && !line.trim().endsWith('} & {')) {
                         currentComponentIndent++;
                     }
                     if (lastCommentSetDefault && line.includes(': ') && !line.includes('?: ')) {
@@ -468,11 +471,13 @@ const doEndpointComponents = async (endpointId) => {
         const safeComponentName = componentName
             .replace(/[^a-zA-Z0-9_]+/g, '')
             .replace(/^[0-9]+/, '');
+        const input = `export ${components.get(componentName).includes('} & {') ? 'type' : 'interface'} ${safeComponentName} ${components.get(componentName).includes('} & {') ? '= ' : ' '}${components.get(componentName)}`;
+
         const formattedDefinition = execFileSync(
             'npx',
             ['-y', 'prettier', '--parser', 'typescript'],
             {
-                input: `export interface ${safeComponentName} ${components.get(componentName)}`,
+                input,
             }
         ).toString();
         // console.log('formattedDefinition', formattedDefinition);
@@ -741,6 +746,8 @@ for (const entry of generatedComponents.uniqueComponentNames.entries()) {
         uniqueComponentName,
         content.trim() === '[];' ?
             `\n\nexport type ${uniqueComponentName} = {[x:string]:any}[];\n\n`
+        : content.trim().includes('} & {') ?
+            `\n\nexport type ${uniqueComponentName} = ${content.replaceAll('Components.', '')}\n\n`
         :   `\n\nexport interface ${uniqueComponentName} ${content.replaceAll('Components.', '')}\n\n`,
     ]);
 }
