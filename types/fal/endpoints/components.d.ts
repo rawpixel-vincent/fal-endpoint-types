@@ -6359,6 +6359,15 @@ export interface BBoxPromptBase {
     y_min?: number;
 }
 
+export interface BasicAnimations {
+    running_armature_glb?: File;
+    running_fbx?: File;
+    running_glb?: File;
+    walking_armature_glb?: File;
+    walking_fbx?: File;
+    walking_glb?: File;
+}
+
 export interface AvatarIVBackground {
     /**
      * Type

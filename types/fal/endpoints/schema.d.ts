@@ -2217,91 +2217,6 @@ export interface SharedType_f11 {
     trigger_word?: string;
 }
 
-export interface SharedType_efe {
-    /**
-     * Actual Prompt
-     * @description The actual prompt used if prompt expansion was enabled
-     */
-    actual_prompt?: string;
-    /**
-     * @description Generated 3D object in GLB format.
-     * @example {
-     *       "file_size": 9314028,
-     *       "file_name": "model.glb",
-     *       "content_type": "model/gltf-binary",
-     *       "url": "https://v3b.fal.media/files/b/penguin/DId89qXLu6BXu09RFAwAV_model.glb"
-     *     }
-     */
-    model_glb: Components.File;
-    /**
-     * @description URLs for different 3D model formats
-     * @example {
-     *       "fbx": {
-     *         "file_size": 5444380,
-     *         "file_name": "model.fbx",
-     *         "content_type": "application/octet-stream",
-     *         "url": "https://v3b.fal.media/files/b/kangaroo/7nUUw5dHN9a0DKlOpAKbP_model.fbx"
-     *       },
-     *       "usdz": {
-     *         "file_size": 9834246,
-     *         "file_name": "model.usdz",
-     *         "content_type": "model/vnd.usdz+zip",
-     *         "url": "https://v3b.fal.media/files/b/panda/XcC-mIJywUvH7coyrzENU_model.usdz"
-     *       },
-     *       "obj": {
-     *         "file_size": 2755145,
-     *         "file_name": "model.obj",
-     *         "content_type": "text/plain",
-     *         "url": "https://v3b.fal.media/files/b/monkey/cCNMHqUbKSNtDN1iGmiYm_model.obj"
-     *       },
-     *       "glb": {
-     *         "file_size": 9314028,
-     *         "file_name": "model.glb",
-     *         "content_type": "model/gltf-binary",
-     *         "url": "https://v3b.fal.media/files/b/penguin/DId89qXLu6BXu09RFAwAV_model.glb"
-     *       }
-     *     }
-     */
-    model_urls: Components.ModelUrls;
-    /**
-     * Prompt
-     * @description The text prompt used for generation
-     * @example A rustic, antique wooden treasure chest with a curved, domed lid, constructed from weathered, dark brown planks exhibiting prominent wood grain and subtle distress. It's heavily reinforced with broad, dark grey, oxidized metal bands secured by numerous circular rivets. Ornate, dark iron decorative elements featuring swirling foliate patterns and dragon motifs adorn the corners and lid. A prominent, circular, intricately carved metal lock plate with a central keyhole dominates the front, flanked by two large, dark metallic pull rings.
-     */
-    prompt: string;
-    /**
-     * Seed
-     * @description The seed used for generation
-     * @example 4002110719
-     */
-    seed?: number;
-    /**
-     * Texture Urls
-     * @description Array of texture file objects
-     * @example [
-     *       {
-     *         "base_color": {
-     *           "file_size": 4254502,
-     *           "file_name": "texture_0.png",
-     *           "content_type": "image/png",
-     *           "url": "https://v3b.fal.media/files/b/panda/DoPKAuZY0tTjnr6C9ee-Q_texture_0.png"
-     *         }
-     *       }
-     *     ]
-     */
-    texture_urls?: Components.TextureFiles[];
-    /**
-     * @description Preview thumbnail of the generated model
-     * @example {
-     *       "file_size": 173792,
-     *       "file_name": "preview.png",
-     *       "content_type": "image/png",
-     *       "url": "https://v3b.fal.media/files/b/koala/6LJISu4ilkZXcdOETwl_d_preview.png"
-     *     }
-     */
-    thumbnail?: Components.File;
-}
-
 export interface SharedType_ef5 {
     /**
      * Apply Mask
@@ -2426,94 +2341,6 @@ export interface SharedType_ec2 {
      *     }
      */
     video: Components.File;
-}
-
-export interface SharedType_ec0 {
-    /**
-     * Art Style
-     * @description Desired art style of the object. Note: enable_pbr should be false for sculpture style.
-     * @default realistic
-     * @enum {string}
-     */
-    art_style?: 'realistic' | 'sculpture';
-    /**
-     * Enable Pbr
-     * @description Generate PBR Maps (metallic, roughness, normal) in addition to base color. Should be false for sculpture style.
-     * @default false
-     */
-    enable_pbr?: boolean;
-    /**
-     * Enable Prompt Expansion
-     * @description Whether to enable prompt expansion. This will use a large language model to expand the prompt with additional details while maintaining the original meaning.
-     * @default false
-     */
-    enable_prompt_expansion?: boolean;
-    /**
-     * Enable Safety Checker
-     * @description If set to true, input data will be checked for safety before processing.
-     * @default true
-     */
-    enable_safety_checker?: boolean;
-    /**
-     * Is A T Pose
-     * @description Whether to generate the model in an A/T pose
-     * @default false
-     */
-    is_a_t_pose?: boolean;
-    /**
-     * Mode
-     * @description Generation mode. 'preview' returns untextured geometry only, 'full' returns textured model (preview + refine).
-     * @default full
-     * @enum {string}
-     */
-    mode?: 'preview' | 'full';
-    /**
-     * Prompt
-     * @description Describe what kind of object the 3D model is. Maximum 600 characters.
-     * @example A rustic, antique wooden treasure chest with a curved, domed lid, constructed from weathered, dark brown planks exhibiting prominent wood grain and subtle distress. It's heavily reinforced with broad, dark grey, oxidized metal bands secured by numerous circular rivets. Ornate, dark iron decorative elements featuring swirling foliate patterns and dragon motifs adorn the corners and lid. A prominent, circular, intricately carved metal lock plate with a central keyhole dominates the front, flanked by two large, dark metallic pull rings.
-     */
-    prompt: string;
-    /**
-     * Seed
-     * @description Seed for reproducible results. Same prompt and seed usually generate the same result.
-     */
-    seed?: number;
-    /**
-     * Should Remesh
-     * @description Whether to enable the remesh phase. When false, returns unprocessed triangular mesh.
-     * @default true
-     */
-    should_remesh?: boolean;
-    /**
-     * Symmetry Mode
-     * @description Controls symmetry behavior during model generation.
-     * @default auto
-     * @enum {string}
-     */
-    symmetry_mode?: 'off' | 'auto' | 'on';
-    /**
-     * Target Polycount
-     * @description Target number of polygons in the generated model
-     * @default 30000
-     */
-    target_polycount?: number;
-    /**
-     * Texture Image Url
-     * @description 2D image to guide the texturing process (only used in 'full' mode)
-     */
-    texture_image_url?: string;
-    /**
-     * Texture Prompt
-     * @description Additional text prompt to guide the texturing process (only used in 'full' mode)
-     */
-    texture_prompt?: string;
-    /**
-     * Topology
-     * @description Specify the topology of the generated model. Quad for smooth surfaces, Triangle for detailed geometry.
-     * @default triangle
-     * @enum {string}
-     */
-    topology?: 'quad' | 'triangle';
 }
 
 export interface SharedType_eba {
@@ -3501,6 +3328,26 @@ export interface SharedType_d94 {
     video: Components.File;
 }
 
+export interface SharedType_d661 {
+    /**
+     * Image Url
+     * @description The URL of the image to be processed.
+     * @example https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/transformers/tasks/car.jpg
+     * @example http://ecx.images-amazon.com/images/I/51UUzBDAMsL.jpg
+     */
+    image_url: string;
+    /**
+     * @description The user input coordinates
+     * @example {
+     *       "x1": 100,
+     *       "x2": 200,
+     *       "y1": 100,
+     *       "y2": 200
+     *     }
+     */
+    region: Components.Region;
+}
+
 export interface SharedType_d66 {
     audio_setting?: Components.AudioSetting;
     /**
@@ -4107,23 +3954,6 @@ export interface SharedType_cb4 {
     sync_mode?: boolean;
 }
 
-export interface SharedType_caf {
-    /**
-     * Audio Url
-     * @description URL of an audio file for the avatar to lip-sync to. When provided, the avatar uses this audio instead of text-to-speech.
-     */
-    audio_url?: string;
-    character: Components.Character;
-    /**
-     * Resolution
-     * @description Video resolution preset. Options: 360p, 480p, 540p, 720p, 1080p
-     * @default 720p
-     * @enum {string}
-     */
-    resolution?: '360p' | '480p' | '540p' | '720p' | '1080p';
-    voice: Components.TextVoice;
-}
-
 export interface SharedType_ca4 {
     /**
      * Aspect Ratio
@@ -4577,6 +4407,40 @@ export interface SharedType_bda {
     video_url: string;
 }
 
+export interface SharedType_bbf {
+    /**
+     * @description The generated SVG file containing vector glyphs.
+     * @example {
+     *       "file_size": 959,
+     *       "file_name": "180c718ac5d8407092d0688ea2605f0c.svg",
+     *       "content_type": "image/svg+xml",
+     *       "url": "https://v3b.fal.media/files/b/0a90bfc3/0f8Su2aQUzPQy4NZMDQpp_180c718ac5d8407092d0688ea2605f0c.svg"
+     *     }
+     */
+    image: Components.File;
+    /**
+     * Seed
+     * @description The seed used for generation.
+     * @example 1835785439
+     */
+    seed: number;
+    /**
+     * Svg Content
+     * @description Raw SVG content as a string.
+     */
+    svg_content: string;
+    /**
+     * Timings
+     * @description Timing breakdown of the generation process.
+     * @example {
+     *       "inference": 10.83
+     *     }
+     */
+    timings: {
+        [key: string]: number;
+    };
+}
+
 export interface SharedType_bb3 {
     /**
      * Aspect Ratio
@@ -4747,6 +4611,101 @@ export interface SharedType_ba2 {
      * @default false
      */
     sync_mode?: boolean;
+}
+
+export interface SharedType_ba1 {
+    /**
+     * Actual Prompt
+     * @description The actual prompt used if prompt expansion was enabled
+     */
+    actual_prompt?: string;
+    animation_fbx?: Components.File;
+    animation_glb?: Components.File;
+    basic_animations?: Components.BasicAnimations;
+    /**
+     * @description Generated 3D object in GLB format.
+     * @example {
+     *       "file_size": 9314028,
+     *       "file_name": "model.glb",
+     *       "content_type": "model/gltf-binary",
+     *       "url": "https://v3b.fal.media/files/b/penguin/DId89qXLu6BXu09RFAwAV_model.glb"
+     *     }
+     */
+    model_glb: Components.File;
+    /**
+     * @description URLs for different 3D model formats
+     * @example {
+     *       "fbx": {
+     *         "file_size": 5444380,
+     *         "file_name": "model.fbx",
+     *         "content_type": "application/octet-stream",
+     *         "url": "https://v3b.fal.media/files/b/kangaroo/7nUUw5dHN9a0DKlOpAKbP_model.fbx"
+     *       },
+     *       "usdz": {
+     *         "file_size": 9834246,
+     *         "file_name": "model.usdz",
+     *         "content_type": "model/vnd.usdz+zip",
+     *         "url": "https://v3b.fal.media/files/b/panda/XcC-mIJywUvH7coyrzENU_model.usdz"
+     *       },
+     *       "glb": {
+     *         "file_size": 9314028,
+     *         "file_name": "model.glb",
+     *         "content_type": "model/gltf-binary",
+     *         "url": "https://v3b.fal.media/files/b/penguin/DId89qXLu6BXu09RFAwAV_model.glb"
+     *       },
+     *       "obj": {
+     *         "file_size": 2755145,
+     *         "file_name": "model.obj",
+     *         "content_type": "text/plain",
+     *         "url": "https://v3b.fal.media/files/b/monkey/cCNMHqUbKSNtDN1iGmiYm_model.obj"
+     *       }
+     *     }
+     */
+    model_urls: Components.ModelUrls;
+    /**
+     * Prompt
+     * @description The text prompt used for generation
+     * @example A rustic, antique wooden treasure chest with a curved, domed lid, constructed from weathered, dark brown planks exhibiting prominent wood grain and subtle distress. It's heavily reinforced with broad, dark grey, oxidized metal bands secured by numerous circular rivets. Ornate, dark iron decorative elements featuring swirling foliate patterns and dragon motifs adorn the corners and lid. A prominent, circular, intricately carved metal lock plate with a central keyhole dominates the front, flanked by two large, dark metallic pull rings.
+     */
+    prompt: string;
+    /**
+     * Rig Task Id
+     * @description Rigging task ID. Only present when enable_rigging is true.
+     */
+    rig_task_id?: string;
+    rigged_character_fbx?: Components.File;
+    rigged_character_glb?: Components.File;
+    /**
+     * Seed
+     * @description The seed used for generation
+     * @example 4002110719
+     */
+    seed?: number;
+    /**
+     * Texture Urls
+     * @description Array of texture file objects
+     * @example [
+     *       {
+     *         "base_color": {
+     *           "file_size": 4254502,
+     *           "file_name": "texture_0.png",
+     *           "content_type": "image/png",
+     *           "url": "https://v3b.fal.media/files/b/panda/DoPKAuZY0tTjnr6C9ee-Q_texture_0.png"
+     *         }
+     *       }
+     *     ]
+     */
+    texture_urls?: Components.TextureFiles[];
+    /**
+     * @description Preview thumbnail of the generated model
+     * @example {
+     *       "file_size": 173792,
+     *       "file_name": "preview.png",
+     *       "content_type": "image/png",
+     *       "url": "https://v3b.fal.media/files/b/koala/6LJISu4ilkZXcdOETwl_d_preview.png"
+     *     }
+     */
+    thumbnail?: Components.File;
 }
 
 export interface SharedType_b89 {
@@ -5092,91 +5051,6 @@ export interface SharedType_b03 {
      * @example https://v3.fal.media/files/zebra/9aDde3Te2kuJYHdR0Kz8R_output.mp4
      */
     video_url: string;
-}
-
-export interface SharedType_b02 {
-    /**
-     * Aspect Ratio
-     * @description The aspect ratio of the generated image.
-     * @default auto
-     */
-    aspect_ratio?:
-        | 'auto'
-        | '21:9'
-        | '16:9'
-        | '3:2'
-        | '4:3'
-        | '5:4'
-        | '1:1'
-        | '4:5'
-        | '3:4'
-        | '2:3'
-        | '9:16';
-    /**
-     * Enable Web Search
-     * @description Enable web search for the image generation task. This will allow the model to use the latest information from the web to generate the image.
-     * @default false
-     */
-    enable_web_search?: boolean;
-    /**
-     * Image URLs
-     * @description The URLs of the images to use for image-to-image generation or image editing.
-     * @example [
-     *       "https://storage.googleapis.com/falserverless/example_inputs/nano-banana-edit-input.png",
-     *       "https://storage.googleapis.com/falserverless/example_inputs/nano-banana-edit-input-2.png"
-     *     ]
-     */
-    image_urls: string[];
-    /**
-     * Limit Generations
-     * @description Experimental parameter to limit the number of generations from each round of prompting to 1. Set to `True` to to disregard any instructions in the prompt regarding the number of images to generate and ignore any intermediate images generated by the model. This may affect generation quality.
-     * @default true
-     */
-    limit_generations?: boolean;
-    /**
-     * Number of Images
-     * @description The number of images to generate.
-     * @default 1
-     */
-    num_images?: number;
-    /**
-     * Output Format
-     * @description The format of the generated image.
-     * @default png
-     * @enum {string}
-     */
-    output_format?: 'jpeg' | 'png' | 'webp';
-    /**
-     * Prompt
-     * @description The prompt for image editing.
-     * @example make a photo of the man driving the car down the california coastline
-     */
-    prompt: string;
-    /**
-     * Resolution
-     * @description The resolution of the image to generate.
-     * @default 1K
-     * @enum {string}
-     */
-    resolution?: '0.5K' | '1K' | '2K' | '4K';
-    /**
-     * Safety Tolerance
-     * @description The safety tolerance level for content moderation. 1 is the most strict (blocks most content), 6 is the least strict.
-     * @default 4
-     * @enum {string}
-     */
-    safety_tolerance?: '1' | '2' | '3' | '4' | '5' | '6';
-    /**
-     * Seed
-     * @description The seed for the random number generator.
-     */
-    seed?: number;
-    /**
-     * Sync Mode
-     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
-     * @default false
-     */
-    sync_mode?: boolean;
 }
 
 export interface SharedType_af2 {
@@ -5702,82 +5576,6 @@ export interface SharedType_9f4 {
     reference_text?: string;
 }
 
-export interface SharedType_9eb {
-    /**
-     * Aspect Ratio
-     * @description The aspect ratio of the generated image. Use "auto" to let the model decide based on the prompt.
-     * @default auto
-     */
-    aspect_ratio?:
-        | 'auto'
-        | '21:9'
-        | '16:9'
-        | '3:2'
-        | '4:3'
-        | '5:4'
-        | '1:1'
-        | '4:5'
-        | '3:4'
-        | '2:3'
-        | '9:16';
-    /**
-     * Enable Web Search
-     * @description Enable web search for the image generation task. This will allow the model to use the latest information from the web to generate the image.
-     * @default false
-     */
-    enable_web_search?: boolean;
-    /**
-     * Limit Generations
-     * @description Experimental parameter to limit the number of generations from each round of prompting to 1. Set to `True` to to disregard any instructions in the prompt regarding the number of images to generate and ignore any intermediate images generated by the model. This may affect generation quality.
-     * @default true
-     */
-    limit_generations?: boolean;
-    /**
-     * Number of Images
-     * @description The number of images to generate.
-     * @default 1
-     */
-    num_images?: number;
-    /**
-     * Output Format
-     * @description The format of the generated image.
-     * @default png
-     * @enum {string}
-     */
-    output_format?: 'jpeg' | 'png' | 'webp';
-    /**
-     * Prompt
-     * @description The text prompt to generate an image from.
-     * @example An action shot of a black lab swimming in an inground suburban swimming pool. The camera is placed meticulously on the water line, dividing the image in half, revealing both the dogs head above water holding a tennis ball in it's mouth, and it's paws paddling underwater.
-     */
-    prompt: string;
-    /**
-     * Resolution
-     * @description The resolution of the image to generate.
-     * @default 1K
-     * @enum {string}
-     */
-    resolution?: '0.5K' | '1K' | '2K' | '4K';
-    /**
-     * Safety Tolerance
-     * @description The safety tolerance level for content moderation. 1 is the most strict (blocks most content), 6 is the least strict.
-     * @default 4
-     * @enum {string}
-     */
-    safety_tolerance?: '1' | '2' | '3' | '4' | '5' | '6';
-    /**
-     * Seed
-     * @description The seed for the random number generator.
-     */
-    seed?: number;
-    /**
-     * Sync Mode
-     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
-     * @default false
-     */
-    sync_mode?: boolean;
-}
-
 export interface SharedType_9e4 {
     /**
      * @description The edited image with content erased
@@ -6024,75 +5822,6 @@ export interface SharedType_9cd {
      *     }
      */
     video: Components.File;
-}
-
-export interface SharedType_9af {
-    /**
-     * Enable Pbr
-     * @description Generate PBR Maps (metallic, roughness, normal) in addition to base color
-     * @default false
-     */
-    enable_pbr?: boolean;
-    /**
-     * Enable Safety Checker
-     * @description If set to true, input data will be checked for safety before processing.
-     * @default true
-     */
-    enable_safety_checker?: boolean;
-    /**
-     * Image Url
-     * @description Image URL or base64 data URI for 3D model creation. Supports .jpg, .jpeg, and .png formats. Also supports AVIF and HEIF formats which will be automatically converted.
-     * @example https://v3b.fal.media/files/b/zebra/3osHJDI8IZ2wl6sGtEUeB_image.png
-     */
-    image_url: string;
-    /**
-     * Is A T Pose
-     * @description Whether to generate the model in an A/T pose
-     * @default false
-     */
-    is_a_t_pose?: boolean;
-    /**
-     * Should Remesh
-     * @description Whether to enable the remesh phase
-     * @default true
-     */
-    should_remesh?: boolean;
-    /**
-     * Should Texture
-     * @description Whether to generate textures
-     * @default true
-     */
-    should_texture?: boolean;
-    /**
-     * Symmetry Mode
-     * @description Controls symmetry behavior during model generation. Off disables symmetry, Auto determines it automatically, On enforces symmetry.
-     * @default auto
-     * @enum {string}
-     */
-    symmetry_mode?: 'off' | 'auto' | 'on';
-    /**
-     * Target Polycount
-     * @description Target number of polygons in the generated model
-     * @default 30000
-     */
-    target_polycount?: number;
-    /**
-     * Texture Image Url
-     * @description 2D image to guide the texturing process
-     */
-    texture_image_url?: string;
-    /**
-     * Texture Prompt
-     * @description Text prompt to guide the texturing process
-     */
-    texture_prompt?: string;
-    /**
-     * Topology
-     * @description Specify the topology of the generated model. Quad for smooth surfaces, Triangle for detailed geometry.
-     * @default triangle
-     * @enum {string}
-     */
-    topology?: 'quad' | 'triangle';
 }
 
 export interface SharedType_9a7 {
@@ -7383,6 +7112,90 @@ export interface SharedType_82f {
     video_url: string;
 }
 
+export interface SharedType_82d {
+    animation_fbx?: Components.File;
+    animation_glb?: Components.File;
+    basic_animations?: Components.BasicAnimations;
+    /**
+     * @description Generated 3D object in GLB format.
+     * @example {
+     *       "file_size": 9242744,
+     *       "file_name": "model.glb",
+     *       "content_type": "model/gltf-binary",
+     *       "url": "https://v3b.fal.media/files/b/zebra/OXF1e1bO3JddPTaugv0eL_model.glb"
+     *     }
+     */
+    model_glb: Components.File;
+    /**
+     * @description URLs for different 3D model formats
+     * @example {
+     *       "fbx": {
+     *         "file_size": 5427052,
+     *         "file_name": "model.fbx",
+     *         "content_type": "application/octet-stream",
+     *         "url": "https://v3b.fal.media/files/b/kangaroo/4Q2qdpTvfLVdzAKH1-72v_model.fbx"
+     *       },
+     *       "usdz": {
+     *         "file_size": 9991969,
+     *         "file_name": "model.usdz",
+     *         "content_type": "model/vnd.usdz+zip",
+     *         "url": "https://v3b.fal.media/files/b/lion/RgJG9EBQ_GAHMVWV3wCis_model.usdz"
+     *       },
+     *       "glb": {
+     *         "file_size": 9242744,
+     *         "file_name": "model.glb",
+     *         "content_type": "model/gltf-binary",
+     *         "url": "https://v3b.fal.media/files/b/zebra/OXF1e1bO3JddPTaugv0eL_model.glb"
+     *       },
+     *       "obj": {
+     *         "file_size": 2744413,
+     *         "file_name": "model.obj",
+     *         "content_type": "text/plain",
+     *         "url": "https://v3b.fal.media/files/b/koala/_Vg0d084-hd3EdpIJDf7U_model.obj"
+     *       }
+     *     }
+     */
+    model_urls: Components.ModelUrls;
+    /**
+     * Rig Task Id
+     * @description Rigging task ID. Only present when enable_rigging is true.
+     */
+    rig_task_id?: string;
+    rigged_character_fbx?: Components.File;
+    rigged_character_glb?: Components.File;
+    /**
+     * Seed
+     * @description The seed used for generation (if available)
+     * @example 2009275957
+     */
+    seed?: number;
+    /**
+     * Texture Urls
+     * @description Array of texture file objects, matching Meshy API structure
+     * @example [
+     *       {
+     *         "base_color": {
+     *           "file_size": 4328755,
+     *           "file_name": "texture_0.png",
+     *           "content_type": "image/png",
+     *           "url": "https://v3b.fal.media/files/b/tiger/NkgxcEom_42V4_8UUXiRR_texture_0.png"
+     *         }
+     *       }
+     *     ]
+     */
+    texture_urls?: Components.TextureFiles[];
+    /**
+     * @description Preview thumbnail of the generated model
+     * @example {
+     *       "file_size": 54279,
+     *       "file_name": "preview.png",
+     *       "content_type": "image/png",
+     *       "url": "https://v3b.fal.media/files/b/penguin/rfnS6ClmeEWgDXp_oD5tN_preview.png"
+     *     }
+     */
+    thumbnail?: Components.File;
+}
+
 export interface SharedType_82b {
     /**
      * @description The generated video
@@ -7568,6 +7381,91 @@ export interface SharedType_804 {
      *     }
      */
     video: Components.File;
+}
+
+export interface SharedType_802 {
+    /**
+     * Aspect Ratio
+     * @description The aspect ratio of the generated image. Supports extreme ratios: 4:1, 1:4, 8:1, 1:8. Use "auto" to let the model decide based on the prompt.
+     * @default auto
+     */
+    aspect_ratio?:
+        | 'auto'
+        | '21:9'
+        | '16:9'
+        | '3:2'
+        | '4:3'
+        | '5:4'
+        | '1:1'
+        | '4:5'
+        | '3:4'
+        | '2:3'
+        | '9:16'
+        | '4:1'
+        | '1:4'
+        | '8:1'
+        | '1:8';
+    /**
+     * Enable Web Search
+     * @description Enable web search for the image generation task. This will allow the model to use the latest information from the web to generate the image.
+     * @default false
+     */
+    enable_web_search?: boolean;
+    /**
+     * Limit Generations
+     * @description Experimental parameter to limit the number of generations from each round of prompting to 1. Set to `True` to to disregard any instructions in the prompt regarding the number of images to generate and ignore any intermediate images generated by the model. This may affect generation quality.
+     * @default true
+     */
+    limit_generations?: boolean;
+    /**
+     * Number of Images
+     * @description The number of images to generate.
+     * @default 1
+     */
+    num_images?: number;
+    /**
+     * Output Format
+     * @description The format of the generated image.
+     * @default png
+     * @enum {string}
+     */
+    output_format?: 'jpeg' | 'png' | 'webp';
+    /**
+     * Prompt
+     * @description The text prompt to generate an image from.
+     * @example An action shot of a black lab swimming in an inground suburban swimming pool. The camera is placed meticulously on the water line, dividing the image in half, revealing both the dogs head above water holding a tennis ball in it's mouth, and it's paws paddling underwater.
+     */
+    prompt: string;
+    /**
+     * Resolution
+     * @description The resolution of the image to generate.
+     * @default 1K
+     * @enum {string}
+     */
+    resolution?: '0.5K' | '1K' | '2K' | '4K';
+    /**
+     * Safety Tolerance
+     * @description The safety tolerance level for content moderation. 1 is the most strict (blocks most content), 6 is the least strict.
+     * @default 4
+     * @enum {string}
+     */
+    safety_tolerance?: '1' | '2' | '3' | '4' | '5' | '6';
+    /**
+     * Seed
+     * @description The seed for the random number generator.
+     */
+    seed?: number;
+    /**
+     * Sync Mode
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
+     * @default false
+     */
+    sync_mode?: boolean;
+    /**
+     * Thinking Level
+     * @description When set, enables model thinking with the given level ('minimal' or 'high') and includes thoughts in the generation. Omit to disable.
+     */
+    thinking_level?: 'minimal' | 'high';
 }
 
 export interface SharedType_800 {
@@ -7843,6 +7741,108 @@ export interface SharedType_7dd {
     seed: number;
 }
 
+export interface SharedType_7ca {
+    /**
+     * Animation Action Id
+     * @description Animation preset ID from Meshy's library (500+ presets). Only used when enable_animation is true. See https://docs.meshy.ai/en/api/animation-library for available action IDs.
+     * @default 1001
+     * @example 1001
+     */
+    animation_action_id?: number;
+    /**
+     * Enable Animation
+     * @description Apply an animation preset to the rigged model. Requires enable_rigging to be true.
+     * @default false
+     */
+    enable_animation?: boolean;
+    /**
+     * Enable Pbr
+     * @description Generate PBR Maps (metallic, roughness, normal) in addition to base color
+     * @default false
+     */
+    enable_pbr?: boolean;
+    /**
+     * Enable Rigging
+     * @description Automatically rig the generated model as a humanoid character. Includes basic walking and running animations. Best results with humanoid characters that have clearly defined limbs.
+     * @default false
+     */
+    enable_rigging?: boolean;
+    /**
+     * Enable Safety Checker
+     * @description If set to true, input data will be checked for safety before processing.
+     * @default true
+     */
+    enable_safety_checker?: boolean;
+    /**
+     * Image Url
+     * @description Image URL or base64 data URI for 3D model creation. Supports .jpg, .jpeg, and .png formats. Also supports AVIF and HEIF formats which will be automatically converted.
+     * @example https://v3b.fal.media/files/b/zebra/3osHJDI8IZ2wl6sGtEUeB_image.png
+     */
+    image_url: string;
+    /**
+     * Is A T Pose
+     * @deprecated
+     * @description Deprecated: use pose_mode instead. When true, generates a T-pose model.
+     * @default false
+     */
+    is_a_t_pose?: boolean;
+    /**
+     * Pose Mode
+     * @description Pose mode for the generated model. 'a-pose' generates an A-pose, 't-pose' generates a T-pose, empty string for no specific pose.
+     * @default
+     * @enum {string}
+     */
+    pose_mode?: 'a-pose' | 't-pose' | '';
+    /**
+     * Rigging Height Meters
+     * @description Approximate height of the character in meters. Only used when enable_rigging is true.
+     * @default 1.7
+     */
+    rigging_height_meters?: number;
+    /**
+     * Should Remesh
+     * @description Whether to enable the remesh phase
+     * @default true
+     */
+    should_remesh?: boolean;
+    /**
+     * Should Texture
+     * @description Whether to generate textures
+     * @default true
+     */
+    should_texture?: boolean;
+    /**
+     * Symmetry Mode
+     * @description Controls symmetry behavior during model generation. Off disables symmetry, Auto determines it automatically, On enforces symmetry.
+     * @default auto
+     * @enum {string}
+     */
+    symmetry_mode?: 'off' | 'auto' | 'on';
+    /**
+     * Target Polycount
+     * @description Target number of polygons in the generated model
+     * @default 30000
+     */
+    target_polycount?: number;
+    /**
+     * Texture Image Url
+     * @description 2D image to guide the texturing process
+     */
+    texture_image_url?: string;
+    /**
+     * Texture Prompt
+     * @description Text prompt to guide the texturing process
+     */
+    texture_prompt?: string;
+    /**
+     * Topology
+     * @description Specify the topology of the generated model. Quad for smooth surfaces, Triangle for detailed geometry.
+     * @default triangle
+     * @enum {string}
+     */
+    topology?: 'quad' | 'triangle';
+}
+
 export interface SharedType_7c6 {
     /**
      * Has Nsfw Concepts
@@ -7917,80 +7917,6 @@ export interface SharedType_79c {
      * @description Random seed for generation
      */
     seed?: number;
-}
-
-export interface SharedType_77c {
-    /**
-     * @description Generated 3D object in GLB format.
-     * @example {
-     *       "file_size": 9242744,
-     *       "file_name": "model.glb",
-     *       "content_type": "model/gltf-binary",
-     *       "url": "https://v3b.fal.media/files/b/zebra/OXF1e1bO3JddPTaugv0eL_model.glb"
-     *     }
-     */
-    model_glb: Components.File;
-    /**
-     * @description URLs for different 3D model formats
-     * @example {
-     *       "fbx": {
-     *         "file_size": 5427052,
-     *         "file_name": "model.fbx",
-     *         "content_type": "application/octet-stream",
-     *         "url": "https://v3b.fal.media/files/b/kangaroo/4Q2qdpTvfLVdzAKH1-72v_model.fbx"
-     *       },
-     *       "usdz": {
-     *         "file_size": 9991969,
-     *         "file_name": "model.usdz",
-     *         "content_type": "model/vnd.usdz+zip",
-     *         "url": "https://v3b.fal.media/files/b/lion/RgJG9EBQ_GAHMVWV3wCis_model.usdz"
-     *       },
-     *       "obj": {
-     *         "file_size": 2744413,
-     *         "file_name": "model.obj",
-     *         "content_type": "text/plain",
-     *         "url": "https://v3b.fal.media/files/b/koala/_Vg0d084-hd3EdpIJDf7U_model.obj"
-     *       },
-     *       "glb": {
-     *         "file_size": 9242744,
-     *         "file_name": "model.glb",
-     *         "content_type": "model/gltf-binary",
-     *         "url": "https://v3b.fal.media/files/b/zebra/OXF1e1bO3JddPTaugv0eL_model.glb"
-     *       }
-     *     }
-     */
-    model_urls: Components.ModelUrls;
-    /**
-     * Seed
-     * @description The seed used for generation (if available)
-     * @example 2009275957
-     */
-    seed?: number;
-    /**
-     * Texture Urls
-     * @description Array of texture file objects, matching Meshy API structure
-     * @example [
-     *       {
-     *         "base_color": {
-     *           "file_size": 4328755,
-     *           "file_name": "texture_0.png",
-     *           "content_type": "image/png",
-     *           "url": "https://v3b.fal.media/files/b/tiger/NkgxcEom_42V4_8UUXiRR_texture_0.png"
-     *         }
-     *       }
-     *     ]
-     */
-    texture_urls?: Components.TextureFiles[];
-    /**
-     * @description Preview thumbnail of the generated model
-     * @example {
-     *       "file_size": 54279,
-     *       "file_name": "preview.png",
-     *       "content_type": "image/png",
-     *       "url": "https://v3b.fal.media/files/b/penguin/rfnS6ClmeEWgDXp_oD5tN_preview.png"
-     *     }
-     */
-    thumbnail?: Components.File;
 }
 
 export interface SharedType_778 {
@@ -10439,6 +10365,127 @@ export interface SharedType_479 {
     sync_mode?: boolean;
 }
 
+export interface SharedType_477 {
+    /**
+     * Animation Action Id
+     * @description Animation preset ID from Meshy's library (500+ presets). Only used when enable_animation is true. See https://docs.meshy.ai/en/api/animation-library for available action IDs.
+     * @default 1001
+     * @example 1001
+     */
+    animation_action_id?: number;
+    /**
+     * Art Style
+     * @description Desired art style of the object. Note: enable_pbr should be false for sculpture style.
+     * @default realistic
+     * @enum {string}
+     */
+    art_style?: 'realistic' | 'sculpture';
+    /**
+     * Enable Animation
+     * @description Apply an animation preset to the rigged model. Requires enable_rigging to be true.
+     * @default false
+     */
+    enable_animation?: boolean;
+    /**
+     * Enable Pbr
+     * @description Generate PBR Maps (metallic, roughness, normal) in addition to base color. Should be false for sculpture style.
+     * @default false
+     */
+    enable_pbr?: boolean;
+    /**
+     * Enable Prompt Expansion
+     * @description Whether to enable prompt expansion. This will use a large language model to expand the prompt with additional details while maintaining the original meaning.
+     * @default false
+     */
+    enable_prompt_expansion?: boolean;
+    /**
+     * Enable Rigging
+     * @description Automatically rig the generated model as a humanoid character. Includes basic walking and running animations. Best results with humanoid characters that have clearly defined limbs.
+     * @default false
+     */
+    enable_rigging?: boolean;
+    /**
+     * Enable Safety Checker
+     * @description If set to true, input data will be checked for safety before processing.
+     * @default true
+     */
+    enable_safety_checker?: boolean;
+    /**
+     * Is A T Pose
+     * @deprecated
+     * @description Deprecated: use pose_mode instead. When true, generates a T-pose model.
+     * @default false
+     */
+    is_a_t_pose?: boolean;
+    /**
+     * Mode
+     * @description Generation mode. 'preview' returns untextured geometry only, 'full' returns textured model (preview + refine).
+     * @default full
+     * @enum {string}
+     */
+    mode?: 'preview' | 'full';
+    /**
+     * Pose Mode
+     * @description Pose mode for the generated model. 'a-pose' generates an A-pose, 't-pose' generates a T-pose, empty string for no specific pose.
+     * @default
+     * @enum {string}
+     */
+    pose_mode?: 'a-pose' | 't-pose' | '';
+    /**
+     * Prompt
+     * @description Describe what kind of object the 3D model is. Maximum 600 characters.
+     * @example A rustic, antique wooden treasure chest with a curved, domed lid, constructed from weathered, dark brown planks exhibiting prominent wood grain and subtle distress. It's heavily reinforced with broad, dark grey, oxidized metal bands secured by numerous circular rivets. Ornate, dark iron decorative elements featuring swirling foliate patterns and dragon motifs adorn the corners and lid. A prominent, circular, intricately carved metal lock plate with a central keyhole dominates the front, flanked by two large, dark metallic pull rings.
+     */
+    prompt: string;
+    /**
+     * Rigging Height Meters
+     * @description Approximate height of the character in meters. Only used when enable_rigging is true.
+     * @default 1.7
+     */
+    rigging_height_meters?: number;
+    /**
+     * Seed
+     * @description Seed for reproducible results. Same prompt and seed usually generate the same result.
+     */
+    seed?: number;
+    /**
+     * Should Remesh
+     * @description Whether to enable the remesh phase. When false, returns unprocessed triangular mesh.
+     * @default true
+     */
+    should_remesh?: boolean;
+    /**
+     * Symmetry Mode
+     * @description Controls symmetry behavior during model generation.
+     * @default auto
+     * @enum {string}
+     */
+    symmetry_mode?: 'off' | 'auto' | 'on';
+    /**
+     * Target Polycount
+     * @description Target number of polygons in the generated model
+     * @default 30000
+     */
+    target_polycount?: number;
+    /**
+     * Texture Image Url
+     * @description 2D image to guide the texturing process (only used in 'full' mode)
+     */
+    texture_image_url?: string;
+    /**
+     * Texture Prompt
+     * @description Additional text prompt to guide the texturing process (only used in 'full' mode)
+     */
+    texture_prompt?: string;
+    /**
+     * Topology
+     * @description Specify the topology of the generated model. Quad for smooth surfaces, Triangle for detailed geometry.
+     * @default triangle
+     * @enum {string}
+     */
+    topology?: 'quad' | 'triangle';
+}
+
 export interface SharedType_46f {
     /**
      * @description The translated video file
@@ -11235,6 +11282,30 @@ export interface SharedType_352 {
     timings: {
         [key: string]: number;
     };
+}
+
+export interface SharedType_304 {
+    /**
+     * Aspect Ratio
+     * @description Aspect ratio of the output video. Use '9:16' for portrait (vertical) videos, '16:9' for landscape, or '1:1' for square.
+     * @default 16:9
+     * @enum {string}
+     */
+    aspect_ratio?: '16:9' | '9:16' | '1:1';
+    /**
+     * Audio Url
+     * @description URL of an audio file for the avatar to lip-sync to. When provided, the avatar uses this audio instead of text-to-speech.
+     */
+    audio_url?: string;
+    character: Components.Character;
+    /**
+     * Resolution
+     * @description Video resolution preset. Options: 360p, 480p, 540p, 720p, 1080p
+     * @default 720p
+     * @enum {string}
+     */
+    resolution?: '360p' | '480p' | '540p' | '720p' | '1080p';
+    voice: Components.TextVoice;
 }
 
 export interface SharedType_2e6 {
@@ -12036,26 +12107,6 @@ export interface SharedType_1eb {
     video: Components.File;
 }
 
-export interface SharedType_1b5 {
-    /**
-     * Image Url
-     * @description The URL of the image to be processed.
-     * @example https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/transformers/tasks/car.jpg
-     * @example http://ecx.images-amazon.com/images/I/51UUzBDAMsL.jpg
-     */
-    image_url: string;
-    /**
-     * @description The user input coordinates
-     * @example {
-     *       "x1": 100,
-     *       "x2": 200,
-     *       "y2": 200,
-     *       "y1": 100
-     *     }
-     */
-    region: Components.Region;
-}
-
 export interface SharedType_1b3 {
     /**
      * Seed
@@ -12091,6 +12142,100 @@ export interface SharedType_1af {
      *     }
      */
     video: Components.VideoFile;
+}
+
+export interface SharedType_19f {
+    /**
+     * Aspect Ratio
+     * @description The aspect ratio of the generated image. Supports extreme ratios: 4:1, 1:4, 8:1, 1:8.
+     * @default auto
+     */
+    aspect_ratio?:
+        | 'auto'
+        | '21:9'
+        | '16:9'
+        | '3:2'
+        | '4:3'
+        | '5:4'
+        | '1:1'
+        | '4:5'
+        | '3:4'
+        | '2:3'
+        | '9:16'
+        | '4:1'
+        | '1:4'
+        | '8:1'
+        | '1:8';
+    /**
+     * Enable Web Search
+     * @description Enable web search for the image generation task. This will allow the model to use the latest information from the web to generate the image.
+     * @default false
+     */
+    enable_web_search?: boolean;
+    /**
+     * Image URLs
+     * @description The URLs of the images to use for image-to-image generation or image editing.
+     * @example [
+     *       "https://storage.googleapis.com/falserverless/example_inputs/nano-banana-edit-input.png",
+     *       "https://storage.googleapis.com/falserverless/example_inputs/nano-banana-edit-input-2.png"
+     *     ]
+     */
+    image_urls: string[];
+    /**
+     * Limit Generations
+     * @description Experimental parameter to limit the number of generations from each round of prompting to 1. Set to `True` to to disregard any instructions in the prompt regarding the number of images to generate and ignore any intermediate images generated by the model. This may affect generation quality.
+     * @default true
+     */
+    limit_generations?: boolean;
+    /**
+     * Number of Images
+     * @description The number of images to generate.
+     * @default 1
+     */
+    num_images?: number;
+    /**
+     * Output Format
+     * @description The format of the generated image.
+     * @default png
+     * @enum {string}
+     */
+    output_format?: 'jpeg' | 'png' | 'webp';
+    /**
+     * Prompt
+     * @description The prompt for image editing.
+     * @example make a photo of the man driving the car down the california coastline
+     */
+    prompt: string;
+    /**
+     * Resolution
+     * @description The resolution of the image to generate.
+     * @default 1K
+     * @enum {string}
+     */
+    resolution?: '0.5K' | '1K' | '2K' | '4K';
+    /**
+     * Safety Tolerance
+     * @description The safety tolerance level for content moderation. 1 is the most strict (blocks most content), 6 is the least strict.
+     * @default 4
+     * @enum {string}
+     */
+    safety_tolerance?: '1' | '2' | '3' | '4' | '5' | '6';
+    /**
+     * Seed
+     * @description The seed for the random number generator.
+     */
+    seed?: number;
+    /**
+     * Sync Mode
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
+     * @default false
+     */
+    sync_mode?: boolean;
+    /**
+     * Thinking Level
+     * @description When set, enables model thinking with the given level ('minimal' or 'high') and includes thoughts in the generation. Omit to disable.
+     */
+    thinking_level?: 'minimal' | 'high';
 }
 
 export interface SharedType_197 {
@@ -13732,6 +13877,43 @@ export interface ResembleaiChatterboxhdSpeechToSpeechOutput {
      *     }
      */
     audio: Components.File_1;
+}
+
+export interface PixelcutBackgroundRemovalInput {
+    /**
+     * Image Url
+     * @description Input image (JPEG or PNG)
+     * @example https://cdn3.pixelcut.app/fal/background-remover/jewelry.jpg
+     * @example https://cdn3.pixelcut.app/fal/background-remover/portrait.jpg
+     */
+    image_url: string;
+    /**
+     * Output Format
+     * @description Output format
+     * @default rgba
+     * @enum {string}
+     */
+    output_format?: 'rgba' | 'alpha' | 'zip';
+    /**
+     * Sync Mode
+     * @description When true, return result as a data URL instead of uploading to storage
+     * @default true
+     */
+    sync_mode?: boolean;
+}
+
+export interface PixelcutBackgroundRemovalOutput {
+    file?: Components.File;
+    /**
+     * @description Result image (for rgba/alpha output formats)
+     * @example {
+     *       "url": "https://cdn3.pixelcut.app/fal/background-remover/jewelry_result.png"
+     *     }
+     * @example {
+     *       "url": "https://cdn3.pixelcut.app/fal/background-remover/portrait_result.png"
+     *     }
+     */
+    image?: Components.Image;
 }
 
 export interface PerceptronIsaac01Input {
@@ -22615,6 +22797,185 @@ export interface Veo2Output {
     video: Components.File;
 }
 
+export interface VecglypherImageToSvgInput {
+    /**
+     * Enable Safety Checker
+     * @description Enable input safety checking.
+     * @default true
+     */
+    enable_safety_checker?: boolean;
+    /**
+     * Fill Color
+     * @description Fill color for the generated glyphs. Accepts any valid SVG/CSS color value.
+     * @default black
+     * @example black
+     * @example #FF5733
+     * @example rgb(255,87,51)
+     * @example none
+     */
+    fill_color?: string;
+    /**
+     * Max Tokens
+     * @description Maximum tokens to generate.
+     * @default 8192
+     */
+    max_tokens?: number;
+    /**
+     * Output Size
+     * @description Maximum dimension (width or height) of the output SVG in pixels. The aspect ratio is preserved.
+     * @default 512
+     */
+    output_size?: number;
+    /**
+     * Prompt
+     * @description The target text to generate as vector glyphs, styled to match the reference images.
+     * @example g
+     */
+    prompt: string;
+    /**
+     * Reference Image Urls
+     * @description URLs of reference glyph images whose style should be matched. Provide 1 to 8 images of individual glyph characters.
+     * @example [
+     *       "https://v3b.fal.media/files/b/0a90bfc2/IUtUCjqyIosJpS9_tcOIP_Screenshot%202026-03-03%20at%207.26.15%3FPM.png"
+     *     ]
+     */
+    reference_image_urls: string[];
+    /**
+     * Repetition Penalty
+     * @description Repetition penalty.
+     * @default 1
+     */
+    repetition_penalty?: number;
+    /**
+     * Seed
+     * @description Random seed for reproducibility.
+     */
+    seed?: number;
+    /**
+     * Stroke Color
+     * @description Optional stroke (outline) color for the generated glyphs. When set, adds an outline around each glyph path.
+     * @example black
+     * @example #333333
+     * @example none
+     */
+    stroke_color?: string;
+    /**
+     * Stroke Width
+     * @description Stroke width in SVG units. Only applies when stroke_color is set.
+     * @default 1
+     */
+    stroke_width?: number;
+    /**
+     * Temperature
+     * @description Sampling temperature.
+     * @default 0.1
+     */
+    temperature?: number;
+    /**
+     * Top K
+     * @description Top-k sampling parameter.
+     * @default 5
+     */
+    top_k?: number;
+    /**
+     * Top P
+     * @description Top-p (nucleus) sampling parameter.
+     * @default 0.95
+     */
+    top_p?: number;
+}
+
+export interface VecglypherImageToSvgOutput extends SharedType_bbf {}
+
+export interface VecglypherInput {
+    /**
+     * Enable Safety Checker
+     * @description Enable input safety checking.
+     * @default true
+     */
+    enable_safety_checker?: boolean;
+    /**
+     * Fill Color
+     * @description Fill color for the generated glyphs. Accepts any valid SVG/CSS color value.
+     * @default black
+     * @example black
+     * @example #FF5733
+     * @example rgb(255,87,51)
+     * @example none
+     */
+    fill_color?: string;
+    /**
+     * Max Tokens
+     * @description Maximum tokens to generate. Increase for longer text.
+     * @default 8192
+     */
+    max_tokens?: number;
+    /**
+     * Output Size
+     * @description Maximum dimension (width or height) of the output SVG in pixels. The aspect ratio is preserved.
+     * @default 512
+     */
+    output_size?: number;
+    /**
+     * Prompt
+     * @description The target text to generate as vector glyphs. Each character is rendered as a separate SVG path element.
+     * @example g
+     */
+    prompt: string;
+    /**
+     * Repetition Penalty
+     * @description Repetition penalty to reduce repeated SVG path segments.
+     * @default 1
+     */
+    repetition_penalty?: number;
+    /**
+     * Seed
+     * @description Random seed for reproducibility.
+     */
+    seed?: number;
+    /**
+     * Stroke Color
+     * @description Optional stroke (outline) color for the generated glyphs. When set, adds an outline around each glyph path.
+     * @example black
+     * @example #333333
+     * @example none
+     */
+    stroke_color?: string;
+    /**
+     * Stroke Width
+     * @description Stroke width in SVG units. Only applies when stroke_color is set.
+     * @default 1
+     */
+    stroke_width?: number;
+    /**
+     * Style Description
+     * @description Font style description using typography terms such as weight (100-900), style (italic, oblique), category (serif, sans-serif, display, handwriting, monospace), and characteristics (geometric, humanist, condensed, rounded).
+     * @default italic style, 400 weight, serif, text, elegant
+     * @example italic style, 400 weight, serif, text, elegant
+     */
+    style_description?: string;
+    /**
+     * Temperature
+     * @description Sampling temperature. Lower values produce more deterministic output.
+     * @default 0.1
+     */
+    temperature?: number;
+    /**
+     * Top K
+     * @description Top-k sampling parameter.
+     * @default 5
+     */
+    top_k?: number;
+    /**
+     * Top P
+     * @description Top-p (nucleus) sampling parameter.
+     * @default 0.95
+     */
+    top_p?: number;
+}
+
+export interface VecglypherOutput extends SharedType_bbf {}
+
 export interface UsoInput {
     /**
      * Safety Checker
@@ -23394,11 +23755,53 @@ export interface TranspixarOutput {
 
 export interface TopazUpscaleVideoInput {
     /**
+     * Compression
+     * @description Compression artifact removal level (0.0-1.0). Default varies by model.
+     */
+    compression?: number;
+    /**
+     * Grain
+     * @description Film grain amount (0.0-1.0). Default varies by model.
+     */
+    grain?: number;
+    /**
      * H264 Output
      * @description Whether to use H264 codec for output video. Default is H265.
      * @default false
      */
     H264_output?: boolean;
+    /**
+     * Halo
+     * @description Halo reduction level (0.0-1.0). Default varies by model.
+     */
+    halo?: number;
+    /**
+     * Model
+     * @description Video enhancement model. Proteus is best for most videos, Artemis for denoise+sharpen, Nyx for dedicated denoising, Gaia for AI-generated/CG/animation content.
+     * @default Proteus
+     * @enum {string}
+     */
+    model?:
+        | 'Proteus'
+        | 'Artemis HQ'
+        | 'Artemis MQ'
+        | 'Artemis LQ'
+        | 'Nyx'
+        | 'Nyx Fast'
+        | 'Nyx XL'
+        | 'Nyx HF'
+        | 'Gaia HQ'
+        | 'Gaia CG';
+    /**
+     * Noise
+     * @description Noise reduction level (0.0-1.0). Default varies by model.
+     */
+    noise?: number;
+    /**
+     * Recover Detail
+     * @description Recover original detail level (0.0-1.0). Higher values preserve more original detail.
+     */
+    recover_detail?: number;
     /**
      * Target Fps
      * @description Target FPS for frame interpolation. If set, frame interpolation will be enabled.
@@ -23430,28 +23833,53 @@ export interface TopazUpscaleVideoOutput {
 
 export interface TopazUpscaleImageInput {
     /**
+     * Autoprompt
+     * @description Enable automatic prompt generation for generative upscaling. Applies to Redefine model only.
+     */
+    autoprompt?: boolean;
+    /**
+     * Creativity
+     * @description Creativity level for generative upscaling (1-6). Higher values produce more creative/hallucinated details. Applies to Redefine model only.
+     */
+    creativity?: number;
+    /**
      * Crop To Fill
      * @default false
      */
     crop_to_fill?: boolean;
     /**
+     * Denoise
+     * @description Denoising level (0.0-1.0). Applies to Standard V2, Low Resolution V2, CGI, High Fidelity V2, Text Refine, and Redefine models.
+     */
+    denoise?: number;
+    /**
+     * Detail
+     * @description Detail recovery level (0.0-1.0). Applies to Recovery V2 model only.
+     */
+    detail?: number;
+    /**
      * Face Enhancement
-     * @description Whether to apply face enhancement to the image.
+     * @description Whether to apply face enhancement to the image. Applies to standard enhance and Recovery V2 models.
      * @default true
      */
     face_enhancement?: boolean;
     /**
      * Face Enhancement Creativity
-     * @description Creativity level for face enhancement. 0.0 means no creativity, 1.0 means maximum creativity. Ignored if face ehnancement is disabled.
+     * @description Creativity level for face enhancement. 0.0 means no creativity, 1.0 means maximum creativity. Ignored if face enhancement is disabled.
      * @default 0
      */
     face_enhancement_creativity?: number;
     /**
      * Face Enhancement Strength
-     * @description Strength of the face enhancement. 0.0 means no enhancement, 1.0 means maximum enhancement. Ignored if face ehnancement is disabled.
+     * @description Strength of the face enhancement. 0.0 means no enhancement, 1.0 means maximum enhancement. Ignored if face enhancement is disabled.
      * @default 0.8
      */
     face_enhancement_strength?: number;
+    /**
+     * Fix Compression
+     * @description Compression artifact removal level (0.0-1.0). Applies to Standard V2, Low Resolution V2, High Fidelity V2, and Text Refine models.
+     */
+    fix_compression?: number;
     /**
      * Image Url
      * @description Url of the image to be upscaled
@@ -23472,7 +23900,9 @@ export interface TopazUpscaleImageInput {
         | 'Text Refine'
         | 'Recovery'
         | 'Redefine'
-        | 'Recovery V2';
+        | 'Recovery V2'
+        | 'Standard MAX'
+        | 'Wonder';
     /**
      * Output Format
      * @description Output format of the upscaled image.
@@ -23481,15 +23911,35 @@ export interface TopazUpscaleImageInput {
      */
     output_format?: 'jpeg' | 'png';
     /**
+     * Prompt
+     * @description Text prompt to guide generative upscaling (max 1024 chars). Applies to Redefine model only.
+     */
+    prompt?: string;
+    /**
+     * Sharpen
+     * @description Sharpening level (0.0-1.0). Applies to Standard V2, Low Resolution V2, CGI, High Fidelity V2, Text Refine, and Redefine models.
+     */
+    sharpen?: number;
+    /**
+     * Strength
+     * @description Enhancement strength (0.01-1.0). Applies to Text Refine model only.
+     */
+    strength?: number;
+    /**
      * Subject Detection
-     * @description Subject detection mode for the image enhancement.
+     * @description Subject detection mode for the image enhancement. Applies to standard enhance and Recovery V2 models.
      * @default All
      * @enum {string}
      */
     subject_detection?: 'All' | 'Foreground' | 'Background';
     /**
+     * Texture
+     * @description Texture detail level for generative upscaling (1-5). Applies to Redefine model only.
+     */
+    texture?: number;
+    /**
      * Upscale Factor
-     * @description Factor to upscale the video by (e.g. 2.0 doubles width and height)
+     * @description Factor to upscale the image by (e.g. 2.0 doubles width and height)
      * @default 2
      */
     upscale_factor?: number;
@@ -25545,12 +25995,11 @@ export interface SkyreelsI2vOutput {
      */
     seed: number;
     /**
-     * Video
      * @example {
      *       "url": "https://fal.media/files/elephant/yOOdaiC5clkH9K_5TTD32_video.mp4"
      *     }
      */
-    video: Components.File_1;
+    video: Components.File;
 }
 
 export interface SkyRaccoonInput {
@@ -35980,11 +36429,11 @@ export interface NanoBananaProInput extends SharedType_065 {}
 
 export interface NanoBananaProOutput extends SharedType_ee9 {}
 
-export interface NanoBanana2EditInput extends SharedType_b02 {}
+export interface NanoBanana2EditInput extends SharedType_19f {}
 
 export interface NanoBanana2EditOutput extends SharedType_4c2 {}
 
-export interface NanoBanana2Input extends SharedType_9eb {}
+export interface NanoBanana2Input extends SharedType_802 {}
 
 export interface NanoBanana2Output extends SharedType_c92 {}
 
@@ -37981,21 +38430,21 @@ export interface MinimaxMusicOutput {
     audio: Components.File;
 }
 
-export interface MeshyV6TextTo3dInput extends SharedType_ec0 {}
+export interface MeshyV6TextTo3dInput extends SharedType_477 {}
 
-export interface MeshyV6TextTo3dOutput extends SharedType_efe {}
+export interface MeshyV6TextTo3dOutput extends SharedType_ba1 {}
 
-export interface MeshyV6ImageTo3dInput extends SharedType_9af {}
+export interface MeshyV6ImageTo3dInput extends SharedType_7ca {}
 
-export interface MeshyV6ImageTo3dOutput extends SharedType_77c {}
+export interface MeshyV6ImageTo3dOutput extends SharedType_82d {}
 
-export interface MeshyV6PreviewTextTo3dInput extends SharedType_ec0 {}
+export interface MeshyV6PreviewTextTo3dInput extends SharedType_477 {}
 
-export interface MeshyV6PreviewTextTo3dOutput extends SharedType_efe {}
+export interface MeshyV6PreviewTextTo3dOutput extends SharedType_ba1 {}
 
-export interface MeshyV6PreviewImageTo3dInput extends SharedType_9af {}
+export interface MeshyV6PreviewImageTo3dInput extends SharedType_7ca {}
 
-export interface MeshyV6PreviewImageTo3dOutput extends SharedType_77c {}
+export interface MeshyV6PreviewImageTo3dOutput extends SharedType_82d {}
 
 export interface MeshyV5RetextureInput {
     /**
@@ -38066,17 +38515,17 @@ export interface MeshyV5RetextureOutput {
      *         "content_type": "model/vnd.usdz+zip",
      *         "url": "https://v3b.fal.media/files/b/panda/4ItUhLHiH4foEw30qcWZv_model.usdz"
      *       },
-     *       "obj": {
-     *         "file_size": 2964508,
-     *         "file_name": "model.obj",
-     *         "content_type": "text/plain",
-     *         "url": "https://v3b.fal.media/files/b/zebra/M5aK_b6vKH7KeGCZoSLq7_model.obj"
-     *       },
      *       "glb": {
      *         "file_size": 4097640,
      *         "file_name": "model.glb",
      *         "content_type": "model/gltf-binary",
      *         "url": "https://v3b.fal.media/files/b/tiger/pU0TtsRTxXM6VnKEYTHSV_model.glb"
+     *       },
+     *       "obj": {
+     *         "file_size": 2964508,
+     *         "file_name": "model.obj",
+     *         "content_type": "text/plain",
+     *         "url": "https://v3b.fal.media/files/b/zebra/M5aK_b6vKH7KeGCZoSLq7_model.obj"
      *       }
      *     }
      */
@@ -38194,11 +38643,30 @@ export interface MeshyV5RemeshOutput {
 
 export interface MeshyV5MultiImageTo3dInput {
     /**
+     * Animation Action Id
+     * @description Animation preset ID from Meshy's library (500+ presets). Only used when enable_animation is true. See https://docs.meshy.ai/en/api/animation-library for available action IDs.
+     * @default 1001
+     * @example 1001
+     */
+    animation_action_id?: number;
+    /**
+     * Enable Animation
+     * @description Apply an animation preset to the rigged model. Requires enable_rigging to be true.
+     * @default false
+     */
+    enable_animation?: boolean;
+    /**
      * Enable Pbr
      * @description Generate PBR Maps (metallic, roughness, normal) in addition to base color. Requires should_texture to be true.
      * @default false
      */
     enable_pbr?: boolean;
+    /**
+     * Enable Rigging
+     * @description Automatically rig the generated model as a humanoid character. Includes basic walking and running animations. Best results with humanoid characters that have clearly defined limbs.
+     * @default false
+     */
+    enable_rigging?: boolean;
     /**
      * Enable Safety Checker
      * @description If set to true, input data will be checked for safety before processing.
@@ -38217,10 +38685,24 @@ export interface MeshyV5MultiImageTo3dInput {
     image_urls: string[];
     /**
      * Is A T Pose
-     * @description Whether to generate the model in an A/T pose
+     * @deprecated
+     * @description Deprecated: use pose_mode instead. When true, generates a T-pose model.
      * @default false
      */
     is_a_t_pose?: boolean;
+    /**
+     * Pose Mode
+     * @description Pose mode for the generated model. 'a-pose' generates an A-pose, 't-pose' generates a T-pose, empty string for no specific pose.
+     * @default
+     * @enum {string}
+     */
+    pose_mode?: 'a-pose' | 't-pose' | '';
+    /**
+     * Rigging Height Meters
+     * @description Approximate height of the character in meters. Only used when enable_rigging is true.
+     * @default 1.7
+     */
+    rigging_height_meters?: number;
     /**
      * Should Remesh
      * @description Whether to enable the remesh phase. When false, returns triangular mesh ignoring topology and target_polycount.
@@ -38266,6 +38748,9 @@ export interface MeshyV5MultiImageTo3dInput {
 }
 
 export interface MeshyV5MultiImageTo3dOutput {
+    animation_fbx?: Components.File;
+    animation_glb?: Components.File;
+    basic_animations?: Components.BasicAnimations;
     /**
      * @description Generated 3D object in GLB format.
      * @example {
@@ -38291,21 +38776,28 @@ export interface MeshyV5MultiImageTo3dOutput {
      *         "content_type": "model/vnd.usdz+zip",
      *         "url": "https://v3b.fal.media/files/b/panda/fSGLGmtgzUjhepklN06Zw_model.usdz"
      *       },
-     *       "obj": {
-     *         "file_size": 2761323,
-     *         "file_name": "model.obj",
-     *         "content_type": "text/plain",
-     *         "url": "https://v3b.fal.media/files/b/koala/xmOnmSeePfuROe3pqHpf0_model.obj"
-     *       },
      *       "glb": {
      *         "file_size": 7875308,
      *         "file_name": "model.glb",
      *         "content_type": "model/gltf-binary",
      *         "url": "https://v3b.fal.media/files/b/tiger/62QMEQqZ3pjUds4DfuVtX_model.glb"
+     *       },
+     *       "obj": {
+     *         "file_size": 2761323,
+     *         "file_name": "model.obj",
+     *         "content_type": "text/plain",
+     *         "url": "https://v3b.fal.media/files/b/koala/xmOnmSeePfuROe3pqHpf0_model.obj"
      *       }
      *     }
      */
     model_urls: Components.ModelUrls;
+    /**
+     * Rig Task Id
+     * @description Rigging task ID. Only present when enable_rigging is true.
+     */
+    rig_task_id?: string;
+    rigged_character_fbx?: Components.File;
+    rigged_character_glb?: Components.File;
     /**
      * Seed
      * @description The seed used for generation (if available)
@@ -59567,6 +60059,13 @@ export interface HeygenV2TranslatePrecisionOutput extends SharedType_46f {}
 
 export interface HeygenAvatar4ImageToVideoInput {
     /**
+     * Aspect Ratio
+     * @description Aspect ratio of the output video. Use '9:16' for portrait (vertical) videos, '16:9' for landscape, or '1:1' for square.
+     * @default 16:9
+     * @enum {string}
+     */
+    aspect_ratio?: '16:9' | '9:16' | '1:1';
+    /**
      * Audio Url
      * @description URL of an audio file for the avatar to lip-sync to. When provided, overrides prompt and voice.
      */
@@ -59733,11 +60232,11 @@ export interface HeygenAvatar4ImageToVideoOutput {
     video: Components.File;
 }
 
-export interface HeygenAvatar4DigitalTwinInput extends SharedType_caf {}
+export interface HeygenAvatar4DigitalTwinInput extends SharedType_304 {}
 
 export interface HeygenAvatar4DigitalTwinOutput extends SharedType_ec9 {}
 
-export interface HeygenAvatar3DigitalTwinInput extends SharedType_caf {}
+export interface HeygenAvatar3DigitalTwinInput extends SharedType_304 {}
 
 export interface HeygenAvatar3DigitalTwinOutput extends SharedType_ec9 {}
 
@@ -60636,11 +61135,11 @@ export interface GeminiFlashEditInput {
 
 export interface GeminiFlashEditOutput extends SharedType_b89 {}
 
-export interface Gemini31FlashImagePreviewEditInput extends SharedType_b02 {}
+export interface Gemini31FlashImagePreviewEditInput extends SharedType_19f {}
 
 export interface Gemini31FlashImagePreviewEditOutput extends SharedType_4c2 {}
 
-export interface Gemini31FlashImagePreviewInput extends SharedType_9eb {}
+export interface Gemini31FlashImagePreviewInput extends SharedType_802 {}
 
 export interface Gemini31FlashImagePreviewOutput extends SharedType_c92 {}
 
@@ -63251,8 +63750,8 @@ export interface FluxVisionUpscalerOutput {
     /**
      * @description The URL of the generated image.
      * @example {
-     *       "file_size": 8842156,
      *       "height": 2048,
+     *       "file_size": 8842156,
      *       "file_name": "20TZeUQtQ8oKgsCKXSL81_StableSR_00002_.png",
      *       "content_type": "image/png",
      *       "url": "https://v3b.fal.media/files/b/panda/20TZeUQtQ8oKgsCKXSL81_StableSR_00002_.png",
@@ -70566,15 +71065,15 @@ export interface FloweditOutput {
     seed: number;
 }
 
-export interface Florence2LargeRegionToSegmentationInput extends SharedType_1b5 {}
+export interface Florence2LargeRegionToSegmentationInput extends SharedType_d661 {}
 
 export interface Florence2LargeRegionToSegmentationOutput extends SharedType_4aa {}
 
-export interface Florence2LargeRegionToDescriptionInput extends SharedType_1b5 {}
+export interface Florence2LargeRegionToDescriptionInput extends SharedType_d661 {}
 
 export interface Florence2LargeRegionToDescriptionOutput extends SharedType_129 {}
 
-export interface Florence2LargeRegionToCategoryInput extends SharedType_1b5 {}
+export interface Florence2LargeRegionToCategoryInput extends SharedType_d661 {}
 
 export interface Florence2LargeRegionToCategoryOutput extends SharedType_129 {}
 
@@ -80275,11 +80774,11 @@ export interface BirefnetV2VideoOutput {
      *       "height": 1080,
      *       "duration": 8,
      *       "url": "https://storage.googleapis.com/falserverless/example_outputs/birefnet-video-output.webm",
-     *       "fps": 24,
      *       "width": 1920,
+     *       "fps": 24,
      *       "file_name": "birefnet-video-output.webm",
-     *       "num_frames": 192,
-     *       "content_type": "video/webm"
+     *       "content_type": "video/webm",
+     *       "num_frames": 192
      *     }
      */
     video: Components.VideoFile;

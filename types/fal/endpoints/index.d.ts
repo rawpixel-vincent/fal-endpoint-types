@@ -189,6 +189,11 @@ declare global {
                 output: falEndpoints.ResembleaiChatterboxhdSpeechToSpeechOutput;
             };
 
+            'pixelcut/background-removal': {
+                input: falEndpoints.PixelcutBackgroundRemovalInput;
+                output: falEndpoints.PixelcutBackgroundRemovalOutput;
+            };
+
             'perceptron/isaac-01/openai/v1/chat/completions': {
                 input: { [x in string]: any };
                 output: { [x in string]: any };
@@ -932,6 +937,16 @@ declare global {
             'fal-ai/veo2': {
                 input: falEndpoints.Veo2Input;
                 output: falEndpoints.Veo2Output;
+            };
+
+            'fal-ai/vecglypher/image-to-svg': {
+                input: falEndpoints.VecglypherImageToSvgInput;
+                output: falEndpoints.VecglypherImageToSvgOutput;
+            };
+
+            'fal-ai/vecglypher': {
+                input: falEndpoints.VecglypherInput;
+                output: falEndpoints.VecglypherOutput;
             };
 
             'fal-ai/uso': {
