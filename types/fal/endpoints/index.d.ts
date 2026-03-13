@@ -1024,6 +1024,16 @@ declare global {
                 output: falEndpoints.TheraOutput;
             };
 
+            'fal-ai/tada/3b/text-to-speech': {
+                input: falEndpoints.Tada3bTextToSpeechInput;
+                output: falEndpoints.Tada3bTextToSpeechOutput;
+            };
+
+            'fal-ai/tada/1b/text-to-speech': {
+                input: falEndpoints.Tada1bTextToSpeechInput;
+                output: falEndpoints.Tada1bTextToSpeechOutput;
+            };
+
             'fal-ai/t2v-turbo': {
                 input: falEndpoints.T2vTurboInput;
                 output: falEndpoints.T2vTurboOutput;
@@ -2064,6 +2074,11 @@ declare global {
                 output: falEndpoints.PiflowOutput;
             };
 
+            'fal-ai/physic-edit': {
+                input: falEndpoints.PhysicEditInput;
+                output: falEndpoints.PhysicEditOutput;
+            };
+
             'fal-ai/photomaker': {
                 input: falEndpoints.PhotomakerInput;
                 output: falEndpoints.PhotomakerOutput;
@@ -2557,6 +2572,11 @@ declare global {
             'fal-ai/lyria2': {
                 input: falEndpoints.Lyria2Input;
                 output: falEndpoints.Lyria2Output;
+            };
+
+            'fal-ai/lux-tts': {
+                input: falEndpoints.LuxTtsInput;
+                output: falEndpoints.LuxTtsOutput;
             };
 
             'fal-ai/lumina-image/v2': {
