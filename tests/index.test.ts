@@ -44,7 +44,7 @@ const FalInputs = {
     }),
 } as {
     [K in fal.Endpoint]: (userInputs: Record<string, any>) => fal.EndpointInput<K>;
-};
+} & { [K in string]: (userInputs: Record<string, any>) => object };
 
 const endpointIdString = String('fal-ai/flux-kontext/dev');
 // any | undefined
@@ -75,8 +75,8 @@ if (!isFalInput) {
 
 // const canExtend: fal.EndpointInput<'fal-ai/post-processing/color-correction'> =
 //     {} as unknown as fal.EndpointInput<'fal-ai/post-processing/color-correction'>;
-// const canExtendV2: fal.EndpointInput<'fal-ai/post-processing/color-correction-v2'> =
-//     {} as unknown as fal.EndpointInput<'fal-ai/post-processing/color-correction-v2'>;
+// const canExtendV2: fal.EndpointInput<'fal-ai/image-editing/color-correction'> =
+//     {} as unknown as fal.EndpointInput<'fal-ai/image-editing/color-correction'>;
 // const hasExtended: Expect<typeof canExtend extends typeof canExtendV2 ? true : false> = true;
 // if (!hasExtended) {
 //     console.error('canExtend is not of type canExtendV2', canExtend, canExtendV2);
