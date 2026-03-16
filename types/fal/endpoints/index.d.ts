@@ -1204,6 +1204,11 @@ declare global {
                 output: falEndpoints.Sora2ImageToVideoOutput;
             };
 
+            'fal-ai/sora-2/characters': {
+                input: falEndpoints.Sora2CharactersInput;
+                output: falEndpoints.Sora2CharactersOutput;
+            };
+
             'fal-ai/smart-turn': {
                 input: falEndpoints.SmartTurnInput;
                 output: falEndpoints.SmartTurnOutput;

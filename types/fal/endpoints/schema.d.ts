@@ -1831,100 +1831,6 @@ export interface SharedType_faf {
     sync_mode?: boolean;
 }
 
-export interface SharedType_fa0 {
-    /**
-     * Control Lora Image Url
-     * @description The image to use for control lora. This is used to control the style of the generated image.
-     * @example https://v3.fal.media/files/kangaroo/Cb7BeM7G4DauK_lWjzY3N_Celeb6.jpg
-     */
-    control_lora_image_url: string;
-    /**
-     * Control Lora Strength
-     * @description The strength of the control lora.
-     * @default 1
-     */
-    control_lora_strength?: number;
-    /**
-     * Enable Safety Checker
-     * @description If set to true, the safety checker will be enabled.
-     * @default true
-     */
-    enable_safety_checker?: boolean;
-    /**
-     * Guidance scale (CFG)
-     * @description The CFG (Classifier Free Guidance) scale is a measure of how close you want
-     *                 the model to stick to your prompt when looking for a related image to show you.
-     * @default 3.5
-     */
-    guidance_scale?: number;
-    /**
-     * Image Size
-     * @description The size of the generated image.
-     * @default landscape_4_3
-     */
-    image_size?:
-        | Components.ImageSize
-        | (
-              | 'square_hd'
-              | 'square'
-              | 'portrait_4_3'
-              | 'portrait_16_9'
-              | 'landscape_4_3'
-              | 'landscape_16_9'
-          );
-    /**
-     * Loras
-     * @description The LoRAs to use for the image generation. You can use any number of LoRAs
-     *                 and they will be merged together to generate the final image.
-     * @default []
-     */
-    loras?: Components.LoraWeight[];
-    /**
-     * Num Images
-     * @description The number of images to generate.
-     * @default 1
-     */
-    num_images?: number;
-    /**
-     * Num Inference Steps
-     * @description The number of inference steps to perform.
-     * @default 28
-     */
-    num_inference_steps?: number;
-    /**
-     * Output Format
-     * @description The format of the generated image.
-     * @default jpeg
-     * @enum {string}
-     */
-    output_format?: 'jpeg' | 'png';
-    /**
-     * Preprocess Depth
-     * @description If set to true, the input image will be preprocessed to extract depth information.
-     *                 This is useful for generating depth maps from images.
-     * @default true
-     */
-    preprocess_depth?: boolean;
-    /**
-     * Prompt
-     * @description The prompt to generate an image from.
-     * @example Extreme close-up of a single tiger eye, direct frontal view. Detailed iris and pupil. Sharp focus on eye texture and color. Natural lighting to capture authentic eye shine and depth. The word "FLUX" is painted over it in big, white brush strokes with visible texture.
-     */
-    prompt: string;
-    /**
-     * Seed
-     * @description The same seed and the same prompt given to the same version of the model
-     *                 will output the same image every time.
-     */
-    seed?: number;
-    /**
-     * Sync Mode
-     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
-     * @default false
-     */
-    sync_mode?: boolean;
-}
-
 export interface SharedType_f7a {
     config_file: Components.File;
     debug_dataset?: Components.File;
@@ -6368,6 +6274,105 @@ export interface SharedType_913 {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
+export interface SharedType_90c {
+    /**
+     * Acceleration
+     * @description Acceleration level for image generation. 'regular' balances speed and quality.
+     * @default none
+     * @enum {string}
+     */
+    acceleration?: 'none' | 'regular';
+    /**
+     * Enable Safety Checker
+     * @description If set to true, the safety checker will be enabled.
+     * @default true
+     */
+    enable_safety_checker?: boolean;
+    /**
+     * Guidance scale (CFG)
+     * @description The CFG (Classifier Free Guidance) scale is a measure of how close you want
+     *                 the model to stick to your prompt when looking for a related image to show you.
+     * @default 3.5
+     */
+    guidance_scale?: number;
+    /**
+     * Image Size
+     * @description The size of the generated image.
+     */
+    image_size?:
+        | Components.ImageSize
+        | (
+              | 'square_hd'
+              | 'square'
+              | 'portrait_4_3'
+              | 'portrait_16_9'
+              | 'landscape_4_3'
+              | 'landscape_16_9'
+          );
+    /**
+     * Image Url
+     * @description URL of image to use for inpainting. or img2img
+     * @example https://storage.googleapis.com/falserverless/example_inputs/dog.png
+     */
+    image_url: string;
+    /**
+     * Loras
+     * @description The LoRAs to use for the image generation. You can use any number of LoRAs
+     *                 and they will be merged together to generate the final image.
+     * @default []
+     */
+    loras?: Components.LoraWeight[];
+    /**
+     * Mask Url
+     * @description The mask to area to Inpaint in.
+     * @example https://storage.googleapis.com/falserverless/example_inputs/dog_mask.png
+     */
+    mask_url: string;
+    /**
+     * Num Images
+     * @description The number of images to generate. This is always set to 1 for streaming output.
+     * @default 1
+     */
+    num_images?: number;
+    /**
+     * Num Inference Steps
+     * @description The number of inference steps to perform.
+     * @default 28
+     */
+    num_inference_steps?: number;
+    /**
+     * Output Format
+     * @description The format of the generated image.
+     * @default jpeg
+     * @enum {string}
+     */
+    output_format?: 'jpeg' | 'png';
+    /**
+     * Prompt
+     * @description The prompt to generate an image from.
+     * @example A photo of a lion sitting on a stone bench
+     */
+    prompt: string;
+    /**
+     * Seed
+     * @description The same seed and the same prompt given to the same version of the model
+     *                 will output the same image every time.
+     */
+    seed?: number;
+    /**
+     * Strength
+     * @description The strength to use for inpainting/image-to-image. Only used if the image_url is provided. 1.0 is completely remakes the image while 0.0 preserves the original.
+     * @default 0.85
+     */
+    strength?: number;
+    /**
+     * Sync Mode
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
+     * @default false
+     */
+    sync_mode?: boolean;
+}
+
 export interface SharedType_905 {
     /**
      * Aspect Ratio
@@ -10090,6 +10095,105 @@ export interface SharedType_4d6 {
     };
 }
 
+export interface SharedType_4c9 {
+    /**
+     * Control Lora Image Url
+     * @description The image to use for control lora. This is used to control the style of the generated image.
+     * @example https://v3.fal.media/files/kangaroo/Cb7BeM7G4DauK_lWjzY3N_Celeb6.jpg
+     */
+    control_lora_image_url: string;
+    /**
+     * Control Lora Strength
+     * @description The strength of the control lora.
+     * @default 1
+     */
+    control_lora_strength?: number;
+    /**
+     * Enable Safety Checker
+     * @description If set to true, the safety checker will be enabled.
+     * @default true
+     */
+    enable_safety_checker?: boolean;
+    /**
+     * Guidance scale (CFG)
+     * @description The CFG (Classifier Free Guidance) scale is a measure of how close you want
+     *                 the model to stick to your prompt when looking for a related image to show you.
+     * @default 3.5
+     */
+    guidance_scale?: number;
+    /**
+     * Image Size
+     * @description The size of the generated image.
+     * @default landscape_4_3
+     */
+    image_size?:
+        | Components.ImageSize
+        | (
+              | 'square_hd'
+              | 'square'
+              | 'portrait_4_3'
+              | 'portrait_16_9'
+              | 'landscape_4_3'
+              | 'landscape_16_9'
+          );
+    /**
+     * Image Url
+     * @description URL of image to use for image-to-image generation.
+     */
+    image_url?: string;
+    /**
+     * Loras
+     * @description The LoRAs to use for the image generation. You can use any number of LoRAs
+     *                 and they will be merged together to generate the final image.
+     * @default []
+     */
+    loras?: Components.LoraWeight[];
+    /**
+     * Num Images
+     * @description The number of images to generate.
+     * @default 1
+     */
+    num_images?: number;
+    /**
+     * Num Inference Steps
+     * @description The number of inference steps to perform.
+     * @default 28
+     */
+    num_inference_steps?: number;
+    /**
+     * Output Format
+     * @description The format of the generated image.
+     * @default jpeg
+     * @enum {string}
+     */
+    output_format?: 'jpeg' | 'png';
+    /**
+     * Preprocess Depth
+     * @description If set to true, the input image will be preprocessed to extract depth information.
+     *                 This is useful for generating depth maps from images.
+     * @default true
+     */
+    preprocess_depth?: boolean;
+    /**
+     * Prompt
+     * @description The prompt to generate an image from.
+     * @example Extreme close-up of a single tiger eye, direct frontal view. Detailed iris and pupil. Sharp focus on eye texture and color. Natural lighting to capture authentic eye shine and depth. The word "FLUX" is painted over it in big, white brush strokes with visible texture.
+     */
+    prompt: string;
+    /**
+     * Seed
+     * @description The same seed and the same prompt given to the same version of the model
+     *                 will output the same image every time.
+     */
+    seed?: number;
+    /**
+     * Sync Mode
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
+     * @default false
+     */
+    sync_mode?: boolean;
+}
+
 export interface SharedType_4c2 {
     /**
      * Description
@@ -10318,6 +10422,99 @@ export interface SharedType_4a0 {
      * @example https://storage.googleapis.com/falserverless/model_tests/recraft/recraft-upscaler-1.jpeg
      */
     image_url: string;
+    /**
+     * Sync Mode
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
+     * @default false
+     */
+    sync_mode?: boolean;
+}
+
+export interface SharedType_49b {
+    /**
+     * Acceleration
+     * @description Acceleration level for image generation. 'regular' balances speed and quality.
+     * @default none
+     * @enum {string}
+     */
+    acceleration?: 'none' | 'regular';
+    /**
+     * Enable Safety Checker
+     * @description If set to true, the safety checker will be enabled.
+     * @default true
+     */
+    enable_safety_checker?: boolean;
+    /**
+     * Guidance scale (CFG)
+     * @description The CFG (Classifier Free Guidance) scale is a measure of how close you want
+     *                 the model to stick to your prompt when looking for a related image to show you.
+     * @default 3.5
+     */
+    guidance_scale?: number;
+    /**
+     * Image Size
+     * @description The size of the generated image.
+     */
+    image_size?:
+        | Components.ImageSize
+        | (
+              | 'square_hd'
+              | 'square'
+              | 'portrait_4_3'
+              | 'portrait_16_9'
+              | 'landscape_4_3'
+              | 'landscape_16_9'
+          );
+    /**
+     * Image Url
+     * @description URL of image to use for inpainting. or img2img
+     * @example https://storage.googleapis.com/falserverless/example_inputs/dog.png
+     */
+    image_url: string;
+    /**
+     * Loras
+     * @description The LoRAs to use for the image generation. You can use any number of LoRAs
+     *                 and they will be merged together to generate the final image.
+     * @default []
+     */
+    loras?: Components.LoraWeight[];
+    /**
+     * Num Images
+     * @description The number of images to generate. This is always set to 1 for streaming output.
+     * @default 1
+     */
+    num_images?: number;
+    /**
+     * Num Inference Steps
+     * @description The number of inference steps to perform.
+     * @default 28
+     */
+    num_inference_steps?: number;
+    /**
+     * Output Format
+     * @description The format of the generated image.
+     * @default jpeg
+     * @enum {string}
+     */
+    output_format?: 'jpeg' | 'png';
+    /**
+     * Prompt
+     * @description The prompt to generate an image from.
+     * @example A photo of a lion sitting on a stone bench
+     */
+    prompt: string;
+    /**
+     * Seed
+     * @description The same seed and the same prompt given to the same version of the model
+     *                 will output the same image every time.
+     */
+    seed?: number;
+    /**
+     * Strength
+     * @description The strength to use for inpainting/image-to-image. Only used if the image_url is provided. 1.0 is completely remakes the image while 0.0 preserves the original.
+     * @default 0.85
+     */
+    strength?: number;
     /**
      * Sync Mode
      * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
@@ -12101,81 +12298,6 @@ export interface SharedType_20d {
      * @description The seed used for generation
      */
     seed: number;
-}
-
-export interface SharedType_207 {
-    /**
-     * Enable Safety Checker
-     * @description If set to true, the safety checker will be enabled.
-     * @default true
-     */
-    enable_safety_checker?: boolean;
-    /**
-     * Guidance scale (CFG)
-     * @description The CFG (Classifier Free Guidance) scale is a measure of how close you want
-     *                 the model to stick to your prompt when looking for a related image to show you.
-     * @default 3.5
-     */
-    guidance_scale?: number;
-    /**
-     * Image Size
-     * @description The size of the generated image.
-     * @default landscape_4_3
-     */
-    image_size?:
-        | Components.ImageSize
-        | (
-              | 'square_hd'
-              | 'square'
-              | 'portrait_4_3'
-              | 'portrait_16_9'
-              | 'landscape_4_3'
-              | 'landscape_16_9'
-          );
-    /**
-     * Loras
-     * @description The LoRAs to use for the image generation. You can use any number of LoRAs
-     *                 and they will be merged together to generate the final image.
-     * @default []
-     */
-    loras?: Components.LoraWeight[];
-    /**
-     * Num Images
-     * @description The number of images to generate. This is always set to 1 for streaming output.
-     * @default 1
-     */
-    num_images?: number;
-    /**
-     * Num Inference Steps
-     * @description The number of inference steps to perform.
-     * @default 28
-     */
-    num_inference_steps?: number;
-    /**
-     * Output Format
-     * @description The format of the generated image.
-     * @default jpeg
-     * @enum {string}
-     */
-    output_format?: 'jpeg' | 'png';
-    /**
-     * Prompt
-     * @description The prompt to generate an image from.
-     * @example Extreme close-up of a single tiger eye, direct frontal view. Detailed iris and pupil. Sharp focus on eye texture and color. Natural lighting to capture authentic eye shine and depth. The word "FLUX" is painted over it in big, white brush strokes with visible texture.
-     */
-    prompt: string;
-    /**
-     * Seed
-     * @description The same seed and the same prompt given to the same version of the model
-     *                 will output the same image every time.
-     */
-    seed?: number;
-    /**
-     * Sync Mode
-     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
-     * @default false
-     */
-    sync_mode?: boolean;
 }
 
 export interface SharedType_1eb {
@@ -16448,9 +16570,7 @@ export interface WorkflowUtilitiesAutoSubtitleOutput {
      * Transcription Metadata
      * @description Additional transcription metadata from ElevenLabs (language, segments, etc.)
      */
-    transcription_metadata?: {
-        [key: string]: { [x: string]: any } | null;
-    };
+    transcription_metadata?: Record<string, number>;
     /**
      * @description The video with automatic subtitles
      * @example {
@@ -16465,9 +16585,7 @@ export interface WorkflowUtilitiesAutoSubtitleOutput {
      * Words
      * @description Word-level timing information from transcription service
      */
-    words?: {
-        [key: string]: { [x: string]: any } | null;
-    }[];
+    words?: Record<string, never>[];
 }
 
 export interface WorkflowUtilitiesAudioCompressorInput {
@@ -26044,6 +26162,33 @@ export interface Sora2ImageToVideoOutput {
     video_id: string;
 }
 
+export interface Sora2CharactersInput {
+    /**
+     * Name
+     * @description Name for the character (1–80 characters). Refer to this name in prompts when using the character.
+     */
+    name: string;
+    /**
+     * Video URL
+     * @description URL of an MP4 video (minimum 720p, max ~2.67:1 aspect ratio) to define the character. Videos exceeding 1080p are automatically scaled down. Non-standard aspect ratios are automatically padded to 16:9 (landscape) or 9:16 (portrait). Videos longer than 4 seconds are trimmed to the first 4 seconds.
+     */
+    video_url: string;
+}
+
+export interface Sora2CharactersOutput {
+    /**
+     * Character ID
+     * @description API character ID (format char_...). Use this in character_ids when generating video.
+     * @example char_123
+     */
+    id: string;
+    /**
+     * Name
+     * @description The character name
+     */
+    name: string;
+}
+
 export interface SmartTurnInput {
     /**
      * Audio Url
@@ -32002,7 +32147,6 @@ export interface PshumanInput {
 
 export interface PshumanOutput {
     /**
-     * Model Obj
      * @description The generated 3D model in OBJ format.
      * @example {
      *       "file_name": "VGSdkXIgccoKhHs_JtXTa_result_clr_scale4_image.obj",
@@ -32010,9 +32154,8 @@ export interface PshumanOutput {
      *       "url": "https://storage.googleapis.com/falserverless/model_tests/video_models/VGSdkXIgccoKhHs_JtXTa_result_clr_scale4_image.obj"
      *     }
      */
-    model_obj: Components.File_1;
+    model_obj: Components.File;
     /**
-     * Preview Image
      * @description A preview image showing the input and the generated multi-view outputs.
      * @example {
      *       "file_name": "WCN_SkT2-RwsGHlxCVHyn_image_preview.png",
@@ -32020,7 +32163,7 @@ export interface PshumanOutput {
      *       "url": "https://storage.googleapis.com/falserverless/model_tests/video_models/WCN_SkT2-RwsGHlxCVHyn_image_preview.png"
      *     }
      */
-    preview_image: Components.File_1;
+    preview_image: Components.File;
 }
 
 export interface PostProcessingVignetteInput {
@@ -36564,13 +36707,13 @@ export interface NovaSrOutput {
     /**
      * @description The enhanced audio file.
      * @example {
-     *       "channels": 1,
+     *       "bitrate": "192k",
      *       "duration": 12.283291666666667,
      *       "url": "https://v3b.fal.media/files/b/0a8a3f1a/lTKExJu-R6ZJdnFlpzEeq_TxmNTNhl.mp3",
      *       "file_name": "lTKExJu-R6ZJdnFlpzEeq_TxmNTNhl.mp3",
      *       "sample_rate": 48000,
      *       "content_type": "audio/mpeg",
-     *       "bitrate": "192k"
+     *       "channels": 1
      *     }
      */
     audio: Components.AudioFile;
@@ -42091,7 +42234,7 @@ export interface Ltx2ImageToVideoOutput extends SharedType_62e {}
 export interface Ltx2ExtendVideoInput {
     /**
      * Context
-     * @description Number of seconds from the input video to use as context for the extension (maximum 20 seconds). If not provided, defaults to maximize available context within the 505 frame limit.
+     * @description Number of seconds from the input video to use as context for the extension (minimum 1 second, maximum 20 seconds). If not provided, defaults to maximize available context within the 505 frame limit.
      */
     context?: number;
     /**
@@ -42462,7 +42605,7 @@ export interface Ltx23ImageToVideoOutput {
 export interface Ltx23ExtendVideoInput {
     /**
      * Context
-     * @description Number of seconds from the input video to use as context for the extension (maximum 20 seconds). If not provided, defaults to maximize available context within the 505 frame limit.
+     * @description Number of seconds from the input video to use as context for the extension (minimum 1 second, maximum 20 seconds). If not provided, defaults to maximize available context within the 505 frame limit.
      */
     context?: number;
     /**
@@ -50254,13 +50397,6 @@ export interface KlingVideoV3StandardMotionControlOutput {
 
 export interface KlingVideoV3StandardImageToVideoInput {
     /**
-     * Aspect Ratio
-     * @description The aspect ratio of the generated video frame
-     * @default 16:9
-     * @enum {string}
-     */
-    aspect_ratio?: '16:9' | '9:16' | '1:1';
-    /**
      * Cfg Scale
      * @description The CFG (Classifier Free Guidance) scale is a measure of how close you want
      *                 the model to stick to your prompt.
@@ -50474,13 +50610,6 @@ export interface KlingVideoV3ProMotionControlOutput {
 }
 
 export interface KlingVideoV3ProImageToVideoInput {
-    /**
-     * Aspect Ratio
-     * @description The aspect ratio of the generated video frame
-     * @default 16:9
-     * @enum {string}
-     */
-    aspect_ratio?: '16:9' | '9:16' | '1:1';
     /**
      * Cfg Scale
      * @description The CFG (Classifier Free Guidance) scale is a measure of how close you want
@@ -59812,8 +59941,8 @@ export interface Hunyuan_worldOutput {
     /**
      * @description The generated panorama image.
      * @example {
-     *       "file_size": 2738127,
      *       "height": 960,
+     *       "file_size": 2738127,
      *       "file_name": "5db7925423b44f2a98098cd8f7cad7ec.png",
      *       "content_type": "image/png",
      *       "url": "https://v3.fal.media/files/kangaroo/P2AmXuLlyDIsivqjV_rAr_5db7925423b44f2a98098cd8f7cad7ec.png",
@@ -64196,9 +64325,7 @@ export interface FluxPulidInput {
     start_step?: number;
     /**
      * Sync Mode
-     * @description If set to true, the function will wait for the image to be generated and uploaded
-     *                 before returning the response. This will increase the latency of the function but
-     *                 it allows you to get the image directly in the response without going through the CDN.
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
      * @default false
      */
     sync_mode?: boolean;
@@ -64756,199 +64883,11 @@ export interface FluxLoraStreamInput extends SharedType_c5e {}
 
 export interface FluxLoraStreamOutput extends SharedType_7c6 {}
 
-export interface FluxLoraInpaintingInput {
-    /**
-     * Acceleration
-     * @description Acceleration level for image generation. 'regular' balances speed and quality.
-     * @default none
-     * @enum {string}
-     */
-    acceleration?: 'none' | 'regular';
-    /**
-     * Enable Safety Checker
-     * @description If set to true, the safety checker will be enabled.
-     * @default true
-     */
-    enable_safety_checker?: boolean;
-    /**
-     * Guidance scale (CFG)
-     * @description The CFG (Classifier Free Guidance) scale is a measure of how close you want
-     *                 the model to stick to your prompt when looking for a related image to show you.
-     * @default 3.5
-     */
-    guidance_scale?: number;
-    /**
-     * Image Size
-     * @description The size of the generated image.
-     */
-    image_size?:
-        | Components.ImageSize
-        | (
-              | 'square_hd'
-              | 'square'
-              | 'portrait_4_3'
-              | 'portrait_16_9'
-              | 'landscape_4_3'
-              | 'landscape_16_9'
-          );
-    /**
-     * Image Url
-     * @description URL of image to use for inpainting. or img2img
-     * @example https://storage.googleapis.com/falserverless/example_inputs/dog.png
-     */
-    image_url: string;
-    /**
-     * Loras
-     * @description The LoRAs to use for the image generation. You can use any number of LoRAs
-     *                 and they will be merged together to generate the final image.
-     * @default []
-     */
-    loras?: Components.LoraWeight[];
-    /**
-     * Mask Url
-     * @description The mask to area to Inpaint in.
-     * @example https://storage.googleapis.com/falserverless/example_inputs/dog_mask.png
-     */
-    mask_url: string;
-    /**
-     * Num Images
-     * @description The number of images to generate. This is always set to 1 for streaming output.
-     * @default 1
-     */
-    num_images?: number;
-    /**
-     * Num Inference Steps
-     * @description The number of inference steps to perform.
-     * @default 28
-     */
-    num_inference_steps?: number;
-    /**
-     * Output Format
-     * @description The format of the generated image.
-     * @default jpeg
-     * @enum {string}
-     */
-    output_format?: 'jpeg' | 'png';
-    /**
-     * Prompt
-     * @description The prompt to generate an image from.
-     * @example A photo of a lion sitting on a stone bench
-     */
-    prompt: string;
-    /**
-     * Seed
-     * @description The same seed and the same prompt given to the same version of the model
-     *                 will output the same image every time.
-     */
-    seed?: number;
-    /**
-     * Strength
-     * @description The strength to use for inpainting/image-to-image. Only used if the image_url is provided. 1.0 is completely remakes the image while 0.0 preserves the original.
-     * @default 0.85
-     */
-    strength?: number;
-    /**
-     * Sync Mode
-     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
-     * @default false
-     */
-    sync_mode?: boolean;
-}
+export interface FluxLoraInpaintingInput extends SharedType_90c {}
 
 export interface FluxLoraInpaintingOutput extends SharedType_7c6 {}
 
-export interface FluxLoraImageToImageInput {
-    /**
-     * Acceleration
-     * @description Acceleration level for image generation. 'regular' balances speed and quality.
-     * @default none
-     * @enum {string}
-     */
-    acceleration?: 'none' | 'regular';
-    /**
-     * Enable Safety Checker
-     * @description If set to true, the safety checker will be enabled.
-     * @default true
-     */
-    enable_safety_checker?: boolean;
-    /**
-     * Guidance scale (CFG)
-     * @description The CFG (Classifier Free Guidance) scale is a measure of how close you want
-     *                 the model to stick to your prompt when looking for a related image to show you.
-     * @default 3.5
-     */
-    guidance_scale?: number;
-    /**
-     * Image Size
-     * @description The size of the generated image.
-     */
-    image_size?:
-        | Components.ImageSize
-        | (
-              | 'square_hd'
-              | 'square'
-              | 'portrait_4_3'
-              | 'portrait_16_9'
-              | 'landscape_4_3'
-              | 'landscape_16_9'
-          );
-    /**
-     * Image Url
-     * @description URL of image to use for inpainting. or img2img
-     * @example https://storage.googleapis.com/falserverless/example_inputs/dog.png
-     */
-    image_url: string;
-    /**
-     * Loras
-     * @description The LoRAs to use for the image generation. You can use any number of LoRAs
-     *                 and they will be merged together to generate the final image.
-     * @default []
-     */
-    loras?: Components.LoraWeight[];
-    /**
-     * Num Images
-     * @description The number of images to generate. This is always set to 1 for streaming output.
-     * @default 1
-     */
-    num_images?: number;
-    /**
-     * Num Inference Steps
-     * @description The number of inference steps to perform.
-     * @default 28
-     */
-    num_inference_steps?: number;
-    /**
-     * Output Format
-     * @description The format of the generated image.
-     * @default jpeg
-     * @enum {string}
-     */
-    output_format?: 'jpeg' | 'png';
-    /**
-     * Prompt
-     * @description The prompt to generate an image from.
-     * @example A photo of a lion sitting on a stone bench
-     */
-    prompt: string;
-    /**
-     * Seed
-     * @description The same seed and the same prompt given to the same version of the model
-     *                 will output the same image every time.
-     */
-    seed?: number;
-    /**
-     * Strength
-     * @description The strength to use for inpainting/image-to-image. Only used if the image_url is provided. 1.0 is completely remakes the image while 0.0 preserves the original.
-     * @default 0.85
-     */
-    strength?: number;
-    /**
-     * Sync Mode
-     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
-     * @default false
-     */
-    sync_mode?: boolean;
-}
+export interface FluxLoraImageToImageInput extends SharedType_49b {}
 
 export interface FluxLoraImageToImageOutput extends SharedType_7c6 {}
 
@@ -65312,193 +65251,19 @@ export interface FluxKreaTrainerInput extends SharedType_f11 {}
 
 export interface FluxKreaTrainerOutput extends SharedType_baf1 {}
 
-export interface FluxKreaLoraStreamInput extends SharedType_207 {}
+export interface FluxKreaLoraStreamInput extends SharedType_c5e {}
 
 export interface FluxKreaLoraStreamOutput extends SharedType_7c6 {}
 
-export interface FluxKreaLoraInpaintingInput {
-    /**
-     * Enable Safety Checker
-     * @description If set to true, the safety checker will be enabled.
-     * @default true
-     */
-    enable_safety_checker?: boolean;
-    /**
-     * Guidance scale (CFG)
-     * @description The CFG (Classifier Free Guidance) scale is a measure of how close you want
-     *                 the model to stick to your prompt when looking for a related image to show you.
-     * @default 3.5
-     */
-    guidance_scale?: number;
-    /**
-     * Image Size
-     * @description The size of the generated image.
-     */
-    image_size?:
-        | Components.ImageSize
-        | (
-              | 'square_hd'
-              | 'square'
-              | 'portrait_4_3'
-              | 'portrait_16_9'
-              | 'landscape_4_3'
-              | 'landscape_16_9'
-          );
-    /**
-     * Image Url
-     * @description URL of image to use for inpainting. or img2img
-     * @example https://storage.googleapis.com/falserverless/example_inputs/dog.png
-     */
-    image_url: string;
-    /**
-     * Loras
-     * @description The LoRAs to use for the image generation. You can use any number of LoRAs
-     *                 and they will be merged together to generate the final image.
-     * @default []
-     */
-    loras?: Components.LoraWeight[];
-    /**
-     * Mask Url
-     * @description The mask to area to Inpaint in.
-     * @example https://storage.googleapis.com/falserverless/example_inputs/dog_mask.png
-     */
-    mask_url: string;
-    /**
-     * Num Images
-     * @description The number of images to generate. This is always set to 1 for streaming output.
-     * @default 1
-     */
-    num_images?: number;
-    /**
-     * Num Inference Steps
-     * @description The number of inference steps to perform.
-     * @default 28
-     */
-    num_inference_steps?: number;
-    /**
-     * Output Format
-     * @description The format of the generated image.
-     * @default jpeg
-     * @enum {string}
-     */
-    output_format?: 'jpeg' | 'png';
-    /**
-     * Prompt
-     * @description The prompt to generate an image from.
-     * @example A photo of a lion sitting on a stone bench
-     */
-    prompt: string;
-    /**
-     * Seed
-     * @description The same seed and the same prompt given to the same version of the model
-     *                 will output the same image every time.
-     */
-    seed?: number;
-    /**
-     * Strength
-     * @description The strength to use for inpainting/image-to-image. Only used if the image_url is provided. 1.0 is completely remakes the image while 0.0 preserves the original.
-     * @default 0.85
-     */
-    strength?: number;
-    /**
-     * Sync Mode
-     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
-     * @default false
-     */
-    sync_mode?: boolean;
-}
+export interface FluxKreaLoraInpaintingInput extends SharedType_90c {}
 
 export interface FluxKreaLoraInpaintingOutput extends SharedType_7c6 {}
 
-export interface FluxKreaLoraImageToImageInput {
-    /**
-     * Enable Safety Checker
-     * @description If set to true, the safety checker will be enabled.
-     * @default true
-     */
-    enable_safety_checker?: boolean;
-    /**
-     * Guidance scale (CFG)
-     * @description The CFG (Classifier Free Guidance) scale is a measure of how close you want
-     *                 the model to stick to your prompt when looking for a related image to show you.
-     * @default 3.5
-     */
-    guidance_scale?: number;
-    /**
-     * Image Size
-     * @description The size of the generated image.
-     */
-    image_size?:
-        | Components.ImageSize
-        | (
-              | 'square_hd'
-              | 'square'
-              | 'portrait_4_3'
-              | 'portrait_16_9'
-              | 'landscape_4_3'
-              | 'landscape_16_9'
-          );
-    /**
-     * Image Url
-     * @description URL of image to use for inpainting. or img2img
-     * @example https://storage.googleapis.com/falserverless/example_inputs/dog.png
-     */
-    image_url: string;
-    /**
-     * Loras
-     * @description The LoRAs to use for the image generation. You can use any number of LoRAs
-     *                 and they will be merged together to generate the final image.
-     * @default []
-     */
-    loras?: Components.LoraWeight[];
-    /**
-     * Num Images
-     * @description The number of images to generate. This is always set to 1 for streaming output.
-     * @default 1
-     */
-    num_images?: number;
-    /**
-     * Num Inference Steps
-     * @description The number of inference steps to perform.
-     * @default 28
-     */
-    num_inference_steps?: number;
-    /**
-     * Output Format
-     * @description The format of the generated image.
-     * @default jpeg
-     * @enum {string}
-     */
-    output_format?: 'jpeg' | 'png';
-    /**
-     * Prompt
-     * @description The prompt to generate an image from.
-     * @example A photo of a lion sitting on a stone bench
-     */
-    prompt: string;
-    /**
-     * Seed
-     * @description The same seed and the same prompt given to the same version of the model
-     *                 will output the same image every time.
-     */
-    seed?: number;
-    /**
-     * Strength
-     * @description The strength to use for inpainting/image-to-image. Only used if the image_url is provided. 1.0 is completely remakes the image while 0.0 preserves the original.
-     * @default 0.85
-     */
-    strength?: number;
-    /**
-     * Sync Mode
-     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
-     * @default false
-     */
-    sync_mode?: boolean;
-}
+export interface FluxKreaLoraImageToImageInput extends SharedType_49b {}
 
 export interface FluxKreaLoraImageToImageOutput extends SharedType_7c6 {}
 
-export interface FluxKreaLoraInput extends SharedType_207 {}
+export interface FluxKreaLoraInput extends SharedType_c5e {}
 
 export interface FluxKreaLoraOutput extends SharedType_7c6 {}
 
@@ -67237,7 +67002,7 @@ export interface FluxControlLoraDepthImageToImageInput extends SharedType_dce {}
 
 export interface FluxControlLoraDepthImageToImageOutput extends SharedType_7c6 {}
 
-export interface FluxControlLoraDepthInput extends SharedType_fa0 {}
+export interface FluxControlLoraDepthInput extends SharedType_4c9 {}
 
 export interface FluxControlLoraDepthOutput extends SharedType_7c6 {}
 
@@ -67245,7 +67010,7 @@ export interface FluxControlLoraCannyImageToImageInput extends SharedType_dce {}
 
 export interface FluxControlLoraCannyImageToImageOutput extends SharedType_7c6 {}
 
-export interface FluxControlLoraCannyInput extends SharedType_fa0 {}
+export interface FluxControlLoraCannyInput extends SharedType_4c9 {}
 
 export interface FluxControlLoraCannyOutput extends SharedType_7c6 {}
 
@@ -77911,8 +77676,8 @@ export interface CodeformerOutput {
     /**
      * @description The generated image file info.
      * @example {
-     *       "file_size": 423052,
      *       "height": 512,
+     *       "file_size": 423052,
      *       "file_name": "36d3ca4791a647678b2ff01a35c87f5a.png",
      *       "content_type": "image/png",
      *       "url": "https://storage.googleapis.com/falserverless/model_tests/codeformer/codeformer_restored_1.jpeg",
@@ -81366,8 +81131,8 @@ export interface BagelEditOutput {
      * @description The edited images.
      * @example [
      *       {
-     *         "file_size": 423052,
      *         "height": 1024,
+     *         "file_size": 423052,
      *         "file_name": "hQnndOMvGSt2UsYAiV3vs.jpeg",
      *         "content_type": "image/jpeg",
      *         "url": "https://storage.googleapis.com/falserverless/bagel/hQnndOMvGSt2UsYAiV3vs.jpeg",
@@ -81429,8 +81194,8 @@ export interface BagelOutput {
      * @description The generated images.
      * @example [
      *       {
-     *         "file_size": 423052,
      *         "height": 1024,
+     *         "file_size": 423052,
      *         "file_name": "wRhCPSyiKTiLnnWvUpGIl.jpeg",
      *         "content_type": "image/jpeg",
      *         "url": "https://storage.googleapis.com/falserverless/bagel/wRhCPSyiKTiLnnWvUpGIl.jpeg",
@@ -81500,7 +81265,7 @@ export interface AutoCaptionInput {
     txt_font?: string;
     /**
      * Video Url
-     * @description URL to the .mp4 video with audio. Only videos of size <100MB are allowed.
+     * @description URL to the .mp4 video with audio. Only videos of size <400MB are allowed.
      */
     video_url: string;
 }
@@ -83069,8 +82834,8 @@ export interface ClarityaiCrystalVideoUpscalerOutput {
      *       "height": 2160,
      *       "duration": 13.056527,
      *       "url": "https://storage.googleapis.com/falserverless/example_outputs/crystal_upscaler/video_upscaling/video_out.mp4",
-     *       "width": 4096,
      *       "fps": 23.130193905817176,
+     *       "width": 4096,
      *       "file_name": "w0VQQvPdwvV2GSCtRTMzh_hDH8SPrB.mp4",
      *       "num_frames": 302,
      *       "content_type": "video/mp4"
@@ -84039,6 +83804,7 @@ export interface BriaFiboEditEditInput {
      * @default
      */
     negative_prompt?: string;
+    original_vgl?: Components.StructuredInstruction;
     /**
      * Seed
      * @description Random seed for reproducibility.
