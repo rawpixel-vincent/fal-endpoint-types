@@ -4,6 +4,11 @@ declare global {
     export namespace fal {}
     export namespace fal.endpoints {
         export interface Endpoints {
+            'xai/tts/v1': {
+                input: falEndpoints.XaiTtsV1Input;
+                output: falEndpoints.XaiTtsV1Output;
+            };
+
             'xai/grok-imagine-video/text-to-video': {
                 input: falEndpoints.XaiGrokImagineVideoTextToVideoInput;
                 output: falEndpoints.XaiGrokImagineVideoTextToVideoOutput;
@@ -297,6 +302,16 @@ declare global {
             'fal-ai/zonos': {
                 input: falEndpoints.ZonosInput;
                 output: falEndpoints.ZonosOutput;
+            };
+
+            'fal-ai/z-image/turbo/tiling/lora': {
+                input: falEndpoints.ZImageTurboTilingLoraInput;
+                output: falEndpoints.ZImageTurboTilingLoraOutput;
+            };
+
+            'fal-ai/z-image/turbo/tiling': {
+                input: falEndpoints.ZImageTurboTilingInput;
+                output: falEndpoints.ZImageTurboTilingOutput;
             };
 
             'fal-ai/z-image/turbo/lora': {
@@ -1219,11 +1234,6 @@ declare global {
                 output: falEndpoints.SkyreelsI2vOutput;
             };
 
-            'fal-ai/sky-raccoon': {
-                input: falEndpoints.SkyRaccoonInput;
-                output: falEndpoints.SkyRaccoonOutput;
-            };
-
             'fal-ai/silero-vad': {
                 input: falEndpoints.SileroVadInput;
                 output: falEndpoints.SileroVadOutput;
@@ -2090,8 +2100,8 @@ declare global {
             };
 
             'fal-ai/personaplex/realtime': {
-                input: falEndpoints.PersonaplexRealtimeInput;
-                output: falEndpoints.PersonaplexRealtimeOutput;
+                input: { [x in string]: any };
+                output: { [x in string]: any };
             };
 
             'fal-ai/personaplex': {
@@ -2142,6 +2152,21 @@ declare global {
             'fal-ai/omnipart': {
                 input: falEndpoints.OmnipartInput;
                 output: falEndpoints.OmnipartOutput;
+            };
+
+            'fal-ai/omnilottie/video-to-lottie': {
+                input: falEndpoints.OmnilottieVideoToLottieInput;
+                output: falEndpoints.OmnilottieVideoToLottieOutput;
+            };
+
+            'fal-ai/omnilottie/image-to-lottie': {
+                input: falEndpoints.OmnilottieImageToLottieInput;
+                output: falEndpoints.OmnilottieImageToLottieOutput;
+            };
+
+            'fal-ai/omnilottie': {
+                input: falEndpoints.OmnilottieInput;
+                output: falEndpoints.OmnilottieOutput;
             };
 
             'fal-ai/omnigen-v2': {
@@ -4294,6 +4319,11 @@ declare global {
                 output: falEndpoints.GotOcrV2Output;
             };
 
+            'fal-ai/goal-force': {
+                input: falEndpoints.GoalForceInput;
+                output: falEndpoints.GoalForceOutput;
+            };
+
             'fal-ai/glm-image/image-to-image': {
                 input: falEndpoints.GlmImageImageToImageInput;
                 output: falEndpoints.GlmImageImageToImageOutput;
@@ -4690,8 +4720,18 @@ declare global {
             };
 
             'fal-ai/flux-2/klein/realtime': {
-                input: falEndpoints.Flux2KleinRealtimeInput;
-                output: falEndpoints.Flux2KleinRealtimeOutput;
+                input: { [x in string]: any };
+                output: { [x in string]: any };
+            };
+
+            'fal-ai/flux-2/klein/9b/lora': {
+                input: falEndpoints.Flux2Klein9bLoraInput;
+                output: falEndpoints.Flux2Klein9bLoraOutput;
+            };
+
+            'fal-ai/flux-2/klein/9b/edit/lora': {
+                input: falEndpoints.Flux2Klein9bEditLoraInput;
+                output: falEndpoints.Flux2Klein9bEditLoraOutput;
             };
 
             'fal-ai/flux-2/klein/9b/edit': {
@@ -4722,6 +4762,16 @@ declare global {
             'fal-ai/flux-2/klein/9b': {
                 input: falEndpoints.Flux2Klein9bInput;
                 output: falEndpoints.Flux2Klein9bOutput;
+            };
+
+            'fal-ai/flux-2/klein/4b/lora': {
+                input: falEndpoints.Flux2Klein4bLoraInput;
+                output: falEndpoints.Flux2Klein4bLoraOutput;
+            };
+
+            'fal-ai/flux-2/klein/4b/edit/lora': {
+                input: falEndpoints.Flux2Klein4bEditLoraInput;
+                output: falEndpoints.Flux2Klein4bEditLoraOutput;
             };
 
             'fal-ai/flux-2/klein/4b/edit': {

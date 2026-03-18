@@ -2577,21 +2577,6 @@ export interface ReferenceFace {
     image_url: string;
 }
 
-export interface RawImage {
-    /**
-     * Content
-     * Format: binary
-     */
-    content: string;
-    /**
-     * Content Type
-     * @default image/jpeg
-     */
-    content_type?: string;
-    height: number;
-    width: number;
-}
-
 export interface PronunciationDictionaryLocator {
     /**
      * Pronunciation Dictionary Id
@@ -2984,6 +2969,28 @@ export interface PhotographicCharacteristics {
     lens_focal_length?: string;
 }
 
+export interface OutputFormat {
+    /**
+     * Bit Rate
+     * @description Bit rate in bps. Only applicable for MP3 codec. Defaults to 128000 for MP3.
+     */
+    bit_rate?: 32000 | 64000 | 96000 | 128000 | 192000;
+    /**
+     * Codec
+     * @description Audio codec. Supported: mp3, wav, pcm, mulaw, alaw.
+     * @default mp3
+     * @enum {string}
+     */
+    codec?: 'mp3' | 'wav' | 'pcm' | 'mulaw' | 'alaw';
+    /**
+     * Sample Rate
+     * @description Sample rate in Hz.
+     * @default 24000
+     * @enum {integer}
+     */
+    sample_rate?: 8000 | 16000 | 22050 | 24000 | 44100 | 48000;
+}
+
 export interface OmniVideoElementInput {
     /**
      * Frontal Image Url
@@ -3297,39 +3304,6 @@ export interface LoraWeight_5 {
     /**
      * Path
      * @description URL or the path to the LoRA weights.
-     * @example https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_offset_example-lora_1.0.safetensors
-     */
-    path: string;
-    /**
-     * Scale
-     * @description The scale of the LoRA weight. This is used to scale the LoRA weight
-     *                 before merging it with the base model.
-     * @default 0.1
-     */
-    scale?: number;
-}
-
-export interface LoraWeight_4 {
-    /**
-     * Path
-     * @description URL or the path to the LoRA weights. Or HF model name.
-     * @example https://civitai.com/api/download/models/135931
-     * @example https://filebin.net/3chfqasxpqu21y8n/my-custom-lora-v1.safetensors
-     */
-    path: string;
-    /**
-     * Scale
-     * @description The scale of the LoRA weight. This is used to scale the LoRA weight
-     *                 before merging it with the base model.
-     * @default 1
-     */
-    scale?: number;
-}
-
-export interface LoraWeight_3 {
-    /**
-     * Path
-     * @description URL or the path to the LoRA weights.
      */
     path: string;
     /**
@@ -3344,6 +3318,39 @@ export interface LoraWeight_3 {
      * @description Name of the LoRA weight. Used only if `path` is a Hugging Face repository, and required only if you have more than 1 safetensors file in the repo.
      */
     weight_name?: string;
+}
+
+export interface LoraWeight_4 {
+    /**
+     * Path
+     * @description URL or the path to the LoRA weights.
+     * @example https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_offset_example-lora_1.0.safetensors
+     */
+    path: string;
+    /**
+     * Scale
+     * @description The scale of the LoRA weight. This is used to scale the LoRA weight
+     *                 before merging it with the base model.
+     * @default 0.1
+     */
+    scale?: number;
+}
+
+export interface LoraWeight_3 {
+    /**
+     * Path
+     * @description URL or the path to the LoRA weights. Or HF model name.
+     * @example https://civitai.com/api/download/models/135931
+     * @example https://filebin.net/3chfqasxpqu21y8n/my-custom-lora-v1.safetensors
+     */
+    path: string;
+    /**
+     * Scale
+     * @description The scale of the LoRA weight. This is used to scale the LoRA weight
+     *                 before merging it with the base model.
+     * @default 1
+     */
+    scale?: number;
 }
 
 export interface LoraWeight_2 {
@@ -3462,20 +3469,6 @@ export interface LoRAInput_2 {
 export interface LoRAInput_1 {
     /**
      * Path
-     * @description URL, HuggingFace repo ID (owner/repo), or local path to LoRA weights.
-     */
-    path: string;
-    /**
-     * Scale
-     * @description Scale factor for LoRA application (0.0 to 4.0).
-     * @default 1
-     */
-    scale?: number;
-}
-
-export interface LoRAInput {
-    /**
-     * Path
      * @description URL, HuggingFace repo ID (owner/repo) to lora weights.
      */
     path: string;
@@ -3490,6 +3483,20 @@ export interface LoRAInput {
      * @description Name of the LoRA weight. Only used if `path` is a HuggingFace repository, and is only required when the repository contains multiple LoRA weights.
      */
     weight_name?: string;
+}
+
+export interface LoRAInput {
+    /**
+     * Path
+     * @description URL, HuggingFace repo ID (owner/repo), or local path to LoRA weights.
+     */
+    path: string;
+    /**
+     * Scale
+     * @description Scale factor for LoRA application (0.0 to 4.0).
+     * @default 1
+     */
+    scale?: number;
 }
 
 export interface LightingDetails {
@@ -4139,6 +4146,39 @@ export interface Frame {
      * @description URL of the frame
      */
     url: string;
+}
+
+export interface ForceParams {
+    /**
+     * Angle
+     * @description Direction of force in degrees. 0 = right, 90 = up, 180 = left, 270 = down.
+     * @example 0
+     */
+    angle: number;
+    /**
+     * Magnitude
+     * @description Strength of the force (30 = gentle push, 400 = strong impact).
+     * @example 350
+     */
+    magnitude: number;
+    /**
+     * Mass
+     * @description Mass of the object (1.0 to 4.0). Use -1 to let the model infer mass automatically.
+     * @default -1
+     */
+    mass?: number;
+    /**
+     * X
+     * @description Normalized x position of the force application point (0 = left, 1 = right).
+     * @example 0.22
+     */
+    x: number;
+    /**
+     * Y
+     * @description Normalized y position of the force application point (0 = top, 1 = bottom).
+     * @example 0.18
+     */
+    y: number;
 }
 
 export interface File_2 {
