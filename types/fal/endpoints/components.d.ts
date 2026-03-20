@@ -2357,6 +2357,20 @@ export interface SemanticImageInput {
     reference: string;
 }
 
+export interface Seed2MiniMessage {
+    /**
+     * Content
+     * @description The content of the message. Can be a string for text-only messages, or a list of content parts for multimodal messages (e.g. with images).
+     */
+    content: string | Record<string, never>[];
+    /**
+     * Role
+     * @description The role of the message author.
+     * @enum {string}
+     */
+    role: 'system' | 'user' | 'assistant';
+}
+
 export interface SAM3DObjectMetadata {
     /**
      * Camera Pose
@@ -2575,6 +2589,21 @@ export interface ReferenceFace {
      * @description URL of the reference face image
      */
     image_url: string;
+}
+
+export interface RawImage {
+    /**
+     * Content
+     * Format: binary
+     */
+    content: string;
+    /**
+     * Content Type
+     * @default image/jpeg
+     */
+    content_type?: string;
+    height: number;
+    width: number;
 }
 
 export interface PronunciationDictionaryLocator {

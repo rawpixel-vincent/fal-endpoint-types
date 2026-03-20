@@ -2100,8 +2100,8 @@ declare global {
             };
 
             'fal-ai/personaplex/realtime': {
-                input: { [x in string]: any };
-                output: { [x in string]: any };
+                input: falEndpoints.PersonaplexRealtimeInput;
+                output: falEndpoints.PersonaplexRealtimeOutput;
             };
 
             'fal-ai/personaplex': {
@@ -4720,8 +4720,8 @@ declare global {
             };
 
             'fal-ai/flux-2/klein/realtime': {
-                input: { [x in string]: any };
-                output: { [x in string]: any };
+                input: falEndpoints.Flux2KleinRealtimeInput;
+                output: falEndpoints.Flux2KleinRealtimeOutput;
             };
 
             'fal-ai/flux-2/klein/9b/lora': {
@@ -5682,6 +5682,11 @@ declare global {
             'fal-ai/bytedance/seedance/v1.5/pro/image-to-video': {
                 input: falEndpoints.BytedanceSeedanceV15ProImageToVideoInput;
                 output: falEndpoints.BytedanceSeedanceV15ProImageToVideoOutput;
+            };
+
+            'fal-ai/bytedance/seed/v2/mini': {
+                input: falEndpoints.BytedanceSeedV2MiniInput;
+                output: falEndpoints.BytedanceSeedV2MiniOutput;
             };
 
             'fal-ai/bytedance/omnihuman/v1.5': {
