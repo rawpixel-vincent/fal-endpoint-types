@@ -2715,8 +2715,8 @@ declare global {
             };
 
             'fal-ai/ltx2-v2v-trainer': {
-                input: falEndpoints.Ltx2V2vTrainerInput;
-                output: falEndpoints.Ltx2V2vTrainerOutput;
+                input: { [x in string]: any };
+                output: { [x in string]: any };
             };
 
             'fal-ai/ltx-video/image-to-video': {
@@ -5460,8 +5460,8 @@ declare global {
             };
 
             'fal-ai/decart/lucy-5b/image-to-video': {
-                input: falEndpoints.DecartLucy5bImageToVideoInput;
-                output: falEndpoints.DecartLucy5bImageToVideoOutput;
+                input: { [x in string]: any };
+                output: { [x in string]: any };
             };
 
             'fal-ai/ddcolor': {
@@ -5595,8 +5595,8 @@ declare global {
             };
 
             'fal-ai/calligrapher': {
-                input: falEndpoints.CalligrapherInput;
-                output: falEndpoints.CalligrapherOutput;
+                input: { [x in string]: any };
+                output: { [x in string]: any };
             };
 
             'fal-ai/bytedance/video-stylize': {

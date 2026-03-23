@@ -1745,19 +1745,6 @@ export interface Validation {
     prompt: string;
 }
 
-export interface V2VValidation {
-    /**
-     * Prompt
-     * @description The prompt to use for validation.
-     */
-    prompt: string;
-    /**
-     * Reference Video Url
-     * @description URL to reference video for IC-LoRA validation. This is the input video that will be transformed.
-     */
-    reference_video_url: string;
-}
-
 export interface UsageInfo_1 {
     /**
      * Decode Time Ms
