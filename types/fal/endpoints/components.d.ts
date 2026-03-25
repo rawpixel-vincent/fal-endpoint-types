@@ -2292,6 +2292,53 @@ export interface SpeechTimestamp {
     start: number;
 }
 
+export interface SpeakerConfig {
+    /**
+     * Speaker Id
+     * @description Alias used to identify this speaker in the prompt. Use this alias as a prefix in the prompt field, e.g. 'Alice: Hello! Bob: Hi there!'. Must be alphanumeric with no whitespace.
+     * @example Speaker1
+     * @example Alice
+     * @example Narrator
+     */
+    speaker_id: string;
+    /**
+     * Voice
+     * @description Voice preset for this speaker.
+     * @enum {string}
+     */
+    voice:
+        | 'Achernar'
+        | 'Achird'
+        | 'Algenib'
+        | 'Algieba'
+        | 'Alnilam'
+        | 'Aoede'
+        | 'Autonoe'
+        | 'Callirrhoe'
+        | 'Charon'
+        | 'Despina'
+        | 'Enceladus'
+        | 'Erinome'
+        | 'Fenrir'
+        | 'Gacrux'
+        | 'Iapetus'
+        | 'Kore'
+        | 'Laomedeia'
+        | 'Leda'
+        | 'Orus'
+        | 'Pulcherrima'
+        | 'Puck'
+        | 'Rasalgethi'
+        | 'Sadachbia'
+        | 'Sadaltager'
+        | 'Schedar'
+        | 'Sulafat'
+        | 'Umbriel'
+        | 'Vindemiatrix'
+        | 'Zephyr'
+        | 'Zubenelgenubi';
+}
+
 export interface Speaker {
     audio_url: string;
     prompt: string;
@@ -3596,7 +3643,22 @@ export interface KlingV3MultiPromptElement {
      * @default 5
      * @enum {string}
      */
-    duration?: '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' | '13' | '14' | '15';
+    duration?:
+        | '1'
+        | '2'
+        | '3'
+        | '4'
+        | '5'
+        | '6'
+        | '7'
+        | '8'
+        | '9'
+        | '10'
+        | '11'
+        | '12'
+        | '13'
+        | '14'
+        | '15';
     /**
      * Prompt
      * @description The prompt for this shot.
@@ -3633,6 +3695,11 @@ export interface KlingV3ComboElementInput {
      * @description The video URL of the element. A request can only have one element with a video.
      */
     video_url?: string;
+    /**
+     * Voice Id
+     * @description The voice ID for this element. The voice will be binded to the element and references to this element will use the binded voice. Voice binding is only supported for video elements, and cannot be used with image elements. Get voice IDs from the following endpoint: https://fal.ai/models/fal-ai/kling-video/create-voice
+     */
+    voice_id?: string;
 }
 
 export interface KeyframeTransition {

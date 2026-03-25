@@ -94,8 +94,62 @@ export interface XaiGrokImagineVideoTextToVideoOutput {
      *       "fps": 24,
      *       "width": 1280,
      *       "file_name": "RUAbFYlssdqnbjNLmE8qP_IX7BNYGP.mp4",
-     *       "num_frames": 145,
-     *       "content_type": "video/mp4"
+     *       "content_type": "video/mp4",
+     *       "num_frames": 145
+     *     }
+     */
+    video: Components.VideoFile;
+}
+
+export interface XaiGrokImagineVideoReferenceToVideoInput {
+    /**
+     * Aspect Ratio
+     * @description Aspect ratio of the generated video.
+     * @default 16:9
+     * @enum {string}
+     */
+    aspect_ratio?: '16:9' | '4:3' | '3:2' | '1:1' | '2:3' | '3:4' | '9:16';
+    /**
+     * Duration
+     * @description Video duration in seconds.
+     * @default 8
+     */
+    duration?: number;
+    /**
+     * Prompt
+     * @description Text prompt describing the video to generate. Use @Image1, @Image2, etc. to reference specific images from reference_image_urls in order.
+     * @example A @Image1 running through a sunlit meadow, cinematic slow motion
+     */
+    prompt: string;
+    /**
+     * Reference Image URLs
+     * @description One or more reference image URLs to guide the video generation as style and content references. Reference in prompt as @Image1, @Image2, etc. Maximum 7 images.
+     * @example [
+     *       "https://v3b.fal.media/files/b/0a8b90e0/BFLE9VDlZqsryU-UA3BoD_image_004.png"
+     *     ]
+     */
+    reference_image_urls: string[];
+    /**
+     * Resolution
+     * @description Resolution of the output video.
+     * @default 480p
+     * @enum {string}
+     */
+    resolution?: '480p' | '720p';
+}
+
+export interface XaiGrokImagineVideoReferenceToVideoOutput {
+    /**
+     * @description The generated video.
+     * @example {
+     *       "height": 720,
+     *       "duration": 8,
+     *       "url": "https://v3b.fal.media/files/b/0a8b90e4/r2v_output.mp4",
+     *       "fps": 24,
+     *       "width": 1280,
+     *       "file_name": "r2v_output.mp4",
+     *       "content_type": "video/mp4",
+     *       "num_frames": 192
      *     }
      */
     video: Components.VideoFile;
@@ -145,8 +199,46 @@ export interface XaiGrokImagineVideoImageToVideoOutput {
      *       "fps": 24,
      *       "width": 1280,
      *       "file_name": "0Ci1dviuSnEyUZzBUq-_5_nu7MrAAa.mp4",
-     *       "num_frames": 145,
-     *       "content_type": "video/mp4"
+     *       "content_type": "video/mp4",
+     *       "num_frames": 145
+     *     }
+     */
+    video: Components.VideoFile;
+}
+
+export interface XaiGrokImagineVideoExtendVideoInput {
+    /**
+     * Duration
+     * @description Length of the extension in seconds.
+     * @default 6
+     */
+    duration?: number;
+    /**
+     * Prompt
+     * @description Text description of what should happen next in the video.
+     * @example The camera slowly zooms out to reveal the city skyline at sunset
+     */
+    prompt: string;
+    /**
+     * Video URL
+     * @description URL of the source video to extend. Must be MP4 format (H.264, H.265, or AV1 codec), 2-15 seconds long.
+     * @example https://v3b.fal.media/files/b/0a8b9112/V5Z_NIPE3ppMDWivNo6_q_video_019.mp4
+     */
+    video_url: string;
+}
+
+export interface XaiGrokImagineVideoExtendVideoOutput {
+    /**
+     * @description The extended video (original + extension stitched together).
+     * @example {
+     *       "height": 720,
+     *       "duration": 16,
+     *       "url": "https://v3b.fal.media/files/b/0a8b9113/extended_video.mp4",
+     *       "fps": 24,
+     *       "width": 1280,
+     *       "file_name": "extended_video.mp4",
+     *       "content_type": "video/mp4",
+     *       "num_frames": 384
      *     }
      */
     video: Components.VideoFile;
@@ -184,8 +276,8 @@ export interface XaiGrokImagineVideoEditVideoOutput {
      *       "fps": 24,
      *       "width": 1280,
      *       "file_name": "EuDrZuQTW9m1phBXOsauz_EpJH3s8X.mp4",
-     *       "num_frames": 121,
-     *       "content_type": "video/mp4"
+     *       "content_type": "video/mp4",
+     *       "num_frames": 121
      *     }
      */
     video: Components.VideoFile;
@@ -6232,6 +6324,22 @@ export interface SharedType_92a {
     video: Components.File;
 }
 
+export interface SharedType_920 {
+    /**
+     * @description Upscaled image file after processing
+     * @example {
+     *       "content_type": "image/png",
+     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/seedvr2/image_out.png"
+     *     }
+     */
+    image: Components.ImageFile;
+    /**
+     * Seed
+     * @description The random seed used for the generation process.
+     */
+    seed: number;
+}
+
 export interface SharedType_91c {
     /**
      * Image Url
@@ -6847,53 +6955,6 @@ export interface SharedType_8a3 {
      *     }
      */
     video: Components.File;
-}
-
-export interface SharedType_89f {
-    /**
-     * Aspect Ratio
-     * @description Aspect ratio of the generated video.
-     * @default 16:9
-     * @enum {string}
-     */
-    aspect_ratio?: '16:9' | '9:16' | '1:1';
-    /**
-     * Duration
-     * @description Video duration in seconds (3-15s).
-     * @default 5
-     * @enum {string}
-     */
-    duration?: '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' | '13' | '14' | '15';
-    /**
-     * Generate Audio
-     * @description Whether to generate native audio for the video.
-     * @default false
-     */
-    generate_audio?: boolean;
-    /**
-     * Multi Prompt
-     * @description List of prompts for multi-shot video generation.
-     * @example null
-     */
-    multi_prompt?: Components.KlingV3MultiPromptElement[];
-    /**
-     * Prompt
-     * @description Text prompt for video generation. Required unless multi_prompt is provided.
-     * @example A mecha lands on the ground to save the city, and says "I'm here", in anime style
-     */
-    prompt?: string;
-    /**
-     * Shot Type
-     * @description The type of multi-shot video generation.
-     * @default customize
-     * @constant
-     */
-    shot_type?: 'customize';
-    /**
-     * Voice Ids
-     * @description Optional Voice IDs for video generation. Reference voices in your prompt with <<<voice_1>>> and <<<voice_2>>> (maximum 2 voices per task). Get voice IDs from the kling video create-voice endpoint: https://fal.ai/models/fal-ai/kling-video/create-voice
-     */
-    voice_ids?: string[];
 }
 
 export interface SharedType_896 {
@@ -12231,6 +12292,48 @@ export interface SharedType_266 {
      *     }
      */
     video: Components.File;
+}
+
+export interface SharedType_25d {
+    /**
+     * Aspect Ratio
+     * @description Aspect ratio of the generated video.
+     * @default 16:9
+     * @enum {string}
+     */
+    aspect_ratio?: '16:9' | '9:16' | '1:1';
+    /**
+     * Duration
+     * @description Video duration in seconds (3-15s).
+     * @default 5
+     * @enum {string}
+     */
+    duration?: '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' | '13' | '14' | '15';
+    /**
+     * Generate Audio
+     * @description Whether to generate native audio for the video.
+     * @default false
+     */
+    generate_audio?: boolean;
+    /**
+     * Multi Prompt
+     * @description List of prompts for multi-shot video generation.
+     * @example null
+     */
+    multi_prompt?: Components.KlingV3MultiPromptElement[];
+    /**
+     * Prompt
+     * @description Text prompt for video generation. Required unless multi_prompt is provided.
+     * @example A mecha lands on the ground to save the city, and says "I'm here", in anime style
+     */
+    prompt?: string;
+    /**
+     * Shot Type
+     * @description The type of multi-shot video generation.
+     * @default customize
+     * @constant
+     */
+    shot_type?: 'customize';
 }
 
 export interface SharedType_23c {
@@ -27052,6 +27155,67 @@ export interface SeedvrUpscaleVideoOutput {
     video: Components.File;
 }
 
+export interface SeedvrUpscaleImageSeamlessInput {
+    /**
+     * Enable Safety Checker
+     * @description If set to true, the safety checker will be enabled.
+     * @default true
+     */
+    enable_safety_checker?: boolean;
+    /**
+     * Image Url
+     * @description The input image to be processed
+     * @example https://storage.googleapis.com/falserverless/example_inputs/seedvr2/image_in.png
+     */
+    image_url: string;
+    /**
+     * Noise Scale
+     * @description The noise scale to use for the generation process.
+     * @default 0.1
+     */
+    noise_scale?: number;
+    /**
+     * Output Format
+     * @description The format of the output image.
+     * @default png
+     * @enum {string}
+     */
+    output_format?: 'png' | 'jpeg' | 'webp';
+    /**
+     * Seed
+     * @description The random seed used for the generation process.
+     */
+    seed?: number;
+    /**
+     * Sync Mode
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
+     * @default false
+     */
+    sync_mode?: boolean;
+    /**
+     * Target Resolution
+     * @description The target resolution to upscale to when `upscale_mode` is `target`.
+     * @default 1080p
+     * @enum {string}
+     */
+    target_resolution?: '720p' | '1080p' | '1440p' | '2160p';
+    /**
+     * Upscale Factor
+     * @description Upscaling factor to be used. Will multiply the dimensions with this factor when `upscale_mode` is `factor`.
+     * @default 2
+     */
+    upscale_factor?: number;
+    /**
+     * Upscale Mode
+     * @description The mode to use for the upscale. If 'target', the upscale factor will be calculated based on the target resolution. If 'factor', the upscale factor will be used directly.
+     * @default factor
+     * @enum {string}
+     */
+    upscale_mode?: 'target' | 'factor';
+}
+
+export interface SeedvrUpscaleImageSeamlessOutput extends SharedType_920 {}
+
 export interface SeedvrUpscaleImageInput {
     /**
      * Image Url
@@ -27105,21 +27269,7 @@ export interface SeedvrUpscaleImageInput {
     upscale_mode?: 'target' | 'factor';
 }
 
-export interface SeedvrUpscaleImageOutput {
-    /**
-     * @description Upscaled image file after processing
-     * @example {
-     *       "content_type": "image/png",
-     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/seedvr2/image_out.png"
-     *     }
-     */
-    image: Components.ImageFile;
-    /**
-     * Seed
-     * @description The random seed used for the generation process.
-     */
-    seed: number;
-}
+export interface SeedvrUpscaleImageOutput extends SharedType_920 {}
 
 export interface SdxlControlnetUnionInpaintingInput {
     /**
@@ -50618,11 +50768,6 @@ export interface KlingVideoV3StandardTextToVideoInput {
      * @enum {string}
      */
     shot_type?: 'customize' | 'intelligent';
-    /**
-     * Voice Ids
-     * @description Optional Voice IDs for video generation. Reference voices in your prompt with <<<voice_1>>> and <<<voice_2>>> (maximum 2 voices per task). Get voice IDs from the kling video create-voice endpoint: https://fal.ai/models/fal-ai/kling-video/create-voice
-     */
-    voice_ids?: string[];
 }
 
 export interface KlingVideoV3StandardTextToVideoOutput {
@@ -50760,11 +50905,6 @@ export interface KlingVideoV3StandardImageToVideoInput {
      * @example https://storage.googleapis.com/falserverless/example_inputs/kling-v3/standard-i2v/start_image.png
      */
     start_image_url: string;
-    /**
-     * Voice Ids
-     * @description Optional Voice IDs for video generation. Reference voices in your prompt with <<<voice_1>>> and <<<voice_2>>> (maximum 2 voices per task). Get voice IDs from the kling video create-voice endpoint: https://fal.ai/models/fal-ai/kling-video/create-voice
-     */
-    voice_ids?: string[];
 }
 
 export interface KlingVideoV3StandardImageToVideoOutput {
@@ -50832,11 +50972,6 @@ export interface KlingVideoV3ProTextToVideoInput {
      * @enum {string}
      */
     shot_type?: 'customize' | 'intelligent';
-    /**
-     * Voice Ids
-     * @description Optional Voice IDs for video generation. Reference voices in your prompt with <<<voice_1>>> and <<<voice_2>>> (maximum 2 voices per task). Get voice IDs from the kling video create-voice endpoint: https://fal.ai/models/fal-ai/kling-video/create-voice
-     */
-    voice_ids?: string[];
 }
 
 export interface KlingVideoV3ProTextToVideoOutput {
@@ -50974,11 +51109,6 @@ export interface KlingVideoV3ProImageToVideoInput {
      * @example https://storage.googleapis.com/falserverless/example_inputs/kling-v3/pro-i2v/start_image.png
      */
     start_image_url: string;
-    /**
-     * Voice Ids
-     * @description Optional Voice IDs for video generation. Reference voices in your prompt with <<<voice_1>>> and <<<voice_2>>> (maximum 2 voices per task). Get voice IDs from the kling video create-voice endpoint: https://fal.ai/models/fal-ai/kling-video/create-voice
-     */
-    voice_ids?: string[];
 }
 
 export interface KlingVideoV3ProImageToVideoOutput {
@@ -52004,7 +52134,7 @@ export interface KlingVideoO3StandardVideoToVideoEditOutput {
     video: Components.File;
 }
 
-export interface KlingVideoO3StandardTextToVideoInput extends SharedType_89f {}
+export interface KlingVideoO3StandardTextToVideoInput extends SharedType_25d {}
 
 export interface KlingVideoO3StandardTextToVideoOutput extends SharedType_723 {}
 
@@ -52246,7 +52376,7 @@ export interface KlingVideoO3ProVideoToVideoEditOutput {
     video: Components.File;
 }
 
-export interface KlingVideoO3ProTextToVideoInput extends SharedType_89f {}
+export interface KlingVideoO3ProTextToVideoInput extends SharedType_25d {}
 
 export interface KlingVideoO3ProTextToVideoOutput extends SharedType_723 {}
 
@@ -53243,6 +53373,152 @@ export interface IpAdapterFaceIdInput {
 }
 
 export interface IpAdapterFaceIdOutput extends SharedType_678 {}
+
+export interface InworldTtsInput {
+    /**
+     * Sample Rate Hertz
+     * @description The sample rate in Hz for the output audio.
+     * @default 48000
+     * @enum {integer}
+     */
+    sample_rate_hertz?: 8000 | 16000 | 24000 | 32000 | 40000 | 48000;
+    /**
+     * Text
+     * @description The text to synthesize into speech.
+     * @example Hello! This is a demo of Inworld's TTS.
+     */
+    text: string;
+    /**
+     * Voice
+     * @description The voice to use for synthesis.
+     * @default Craig (en)
+     * @enum {string}
+     */
+    voice?:
+        | 'Loretta (en)'
+        | 'Darlene (en)'
+        | 'Marlene (en)'
+        | 'Hank (en)'
+        | 'Evelyn (en)'
+        | 'Celeste (en)'
+        | 'Pippa (en)'
+        | 'Tessa (en)'
+        | 'Liam (en)'
+        | 'Callum (en)'
+        | 'Hamish (en)'
+        | 'Abby (en)'
+        | 'Graham (en)'
+        | 'Rupert (en)'
+        | 'Mortimer (en)'
+        | 'Snik (en)'
+        | 'Anjali (en)'
+        | 'Saanvi (en)'
+        | 'Arjun (en)'
+        | 'Claire (en)'
+        | 'Oliver (en)'
+        | 'Simon (en)'
+        | 'Elliot (en)'
+        | 'James (en)'
+        | 'Serena (en)'
+        | 'Gareth (en)'
+        | 'Vinny (en)'
+        | 'Lauren (en)'
+        | 'Jessica (en)'
+        | 'Ethan (en)'
+        | 'Tyler (en)'
+        | 'Jason (en)'
+        | 'Chloe (en)'
+        | 'Veronica (en)'
+        | 'Victoria (en)'
+        | 'Miranda (en)'
+        | 'Sebastian (en)'
+        | 'Victor (en)'
+        | 'Malcolm (en)'
+        | 'Kayla (en)'
+        | 'Nate (en)'
+        | 'Jake (en)'
+        | 'Brian (en)'
+        | 'Amina (en)'
+        | 'Kelsey (en)'
+        | 'Derek (en)'
+        | 'Grant (en)'
+        | 'Evan (en)'
+        | 'Alex (en)'
+        | 'Ashley (en)'
+        | 'Craig (en)'
+        | 'Deborah (en)'
+        | 'Dennis (en)'
+        | 'Edward (en)'
+        | 'Elizabeth (en)'
+        | 'Hades (en)'
+        | 'Julia (en)'
+        | 'Pixie (en)'
+        | 'Mark (en)'
+        | 'Olivia (en)'
+        | 'Priya (en)'
+        | 'Ronald (en)'
+        | 'Sarah (en)'
+        | 'Shaun (en)'
+        | 'Theodore (en)'
+        | 'Timothy (en)'
+        | 'Wendy (en)'
+        | 'Dominus (en)'
+        | 'Hana (en)'
+        | 'Clive (en)'
+        | 'Carter (en)'
+        | 'Blake (en)'
+        | 'Luna (en)'
+        | 'Yichen (zh)'
+        | 'Xiaoyin (zh)'
+        | 'Xinyi (zh)'
+        | 'Jing (zh)'
+        | 'Erik (nl)'
+        | 'Katrien (nl)'
+        | 'Lennart (nl)'
+        | 'Lore (nl)'
+        | 'Alain (fr)'
+        | 'Hélène (fr)'
+        | 'Mathieu (fr)'
+        | 'Étienne (fr)'
+        | 'Johanna (de)'
+        | 'Josef (de)'
+        | 'Gianni (it)'
+        | 'Orietta (it)'
+        | 'Asuka (ja)'
+        | 'Satoshi (ja)'
+        | 'Hyunwoo (ko)'
+        | 'Minji (ko)'
+        | 'Seojun (ko)'
+        | 'Yoona (ko)'
+        | 'Szymon (pl)'
+        | 'Wojciech (pl)'
+        | 'Heitor (pt)'
+        | 'Maitê (pt)'
+        | 'Diego (es)'
+        | 'Lupita (es)'
+        | 'Miguel (es)'
+        | 'Rafael (es)'
+        | 'Svetlana (ru)'
+        | 'Elena (ru)'
+        | 'Dmitry (ru)'
+        | 'Nikolai (ru)'
+        | 'Riya (hi)'
+        | 'Manoj (hi)'
+        | 'Yael (he)'
+        | 'Oren (he)'
+        | 'Nour (ar)'
+        | 'Omar (ar)';
+}
+
+export interface InworldTtsOutput {
+    /**
+     * @description Generated audio file.
+     * @example {
+     *       "url": "https://v3b.fal.media/files/b/0a920730/38aud4s6sF7bOWFoQHaJk_tmpvv2htrpc.wav"
+     *     }
+     */
+    audio: Components.File;
+}
 
 export interface InvisibleWatermarkInput {
     /**
@@ -61850,6 +62126,204 @@ export interface GenfocusInput {
 }
 
 export interface GenfocusOutput extends SharedType_951 {}
+
+export interface GeminiTtsInput {
+    /**
+     * Language Code
+     * @description Language for multilingual synthesis. When set, steers the model to speak in the specified language. Supports 24 GA languages and 60+ Preview languages. If not set, the model auto-detects the language from the text.
+     * @example English (US)
+     * @example French (France)
+     * @example Japanese (Japan)
+     */
+    language_code?:
+        | 'Arabic (Egypt)'
+        | 'Bangla (Bangladesh)'
+        | 'Dutch (Netherlands)'
+        | 'English (India)'
+        | 'English (US)'
+        | 'French (France)'
+        | 'German (Germany)'
+        | 'Hindi (India)'
+        | 'Indonesian (Indonesia)'
+        | 'Italian (Italy)'
+        | 'Japanese (Japan)'
+        | 'Korean (South Korea)'
+        | 'Marathi (India)'
+        | 'Polish (Poland)'
+        | 'Portuguese (Brazil)'
+        | 'Romanian (Romania)'
+        | 'Russian (Russia)'
+        | 'Spanish (Spain)'
+        | 'Tamil (India)'
+        | 'Telugu (India)'
+        | 'Thai (Thailand)'
+        | 'Turkish (Turkey)'
+        | 'Ukrainian (Ukraine)'
+        | 'Vietnamese (Vietnam)'
+        | 'Afrikaans (South Africa)'
+        | 'Albanian (Albania)'
+        | 'Amharic (Ethiopia)'
+        | 'Arabic (World)'
+        | 'Armenian (Armenia)'
+        | 'Azerbaijani (Azerbaijan)'
+        | 'Basque (Spain)'
+        | 'Belarusian (Belarus)'
+        | 'Bulgarian (Bulgaria)'
+        | 'Burmese (Myanmar)'
+        | 'Catalan (Spain)'
+        | 'Cebuano (Philippines)'
+        | 'Chinese Mandarin (China)'
+        | 'Chinese Mandarin (Taiwan)'
+        | 'Croatian (Croatia)'
+        | 'Czech (Czech Republic)'
+        | 'Danish (Denmark)'
+        | 'English (Australia)'
+        | 'English (UK)'
+        | 'Estonian (Estonia)'
+        | 'Filipino (Philippines)'
+        | 'Finnish (Finland)'
+        | 'French (Canada)'
+        | 'Galician (Spain)'
+        | 'Georgian (Georgia)'
+        | 'Greek (Greece)'
+        | 'Gujarati (India)'
+        | 'Haitian Creole (Haiti)'
+        | 'Hebrew (Israel)'
+        | 'Hungarian (Hungary)'
+        | 'Icelandic (Iceland)'
+        | 'Javanese (Java)'
+        | 'Kannada (India)'
+        | 'Konkani (India)'
+        | 'Lao (Laos)'
+        | 'Latin (Vatican City)'
+        | 'Latvian (Latvia)'
+        | 'Lithuanian (Lithuania)'
+        | 'Luxembourgish (Luxembourg)'
+        | 'Macedonian (North Macedonia)'
+        | 'Maithili (India)'
+        | 'Malagasy (Madagascar)'
+        | 'Malay (Malaysia)'
+        | 'Malayalam (India)'
+        | 'Mongolian (Mongolia)'
+        | 'Nepali (Nepal)'
+        | 'Norwegian Bokmal (Norway)'
+        | 'Norwegian Nynorsk (Norway)'
+        | 'Odia (India)'
+        | 'Pashto (Afghanistan)'
+        | 'Persian (Iran)'
+        | 'Portuguese (Portugal)'
+        | 'Punjabi (India)'
+        | 'Serbian (Serbia)'
+        | 'Sindhi (India)'
+        | 'Sinhala (Sri Lanka)'
+        | 'Slovak (Slovakia)'
+        | 'Slovenian (Slovenia)'
+        | 'Spanish (Latin America)'
+        | 'Spanish (Mexico)'
+        | 'Swahili (Kenya)'
+        | 'Swedish (Sweden)'
+        | 'Urdu (Pakistan)';
+    /**
+     * Model
+     * @description Which Gemini TTS model to use. gemini-2.5-flash-tts: low latency, cost-efficient for everyday applications (recommended). gemini-2.5-pro-tts: highest quality, best for structured workflows like podcasts, audiobooks, and customer support.
+     * @default gemini-2.5-flash-tts
+     * @enum {string}
+     */
+    model?: 'gemini-2.5-flash-tts' | 'gemini-2.5-pro-tts';
+    /**
+     * Output Format
+     * @description Audio output format. mp3: compressed, small file size (recommended). wav: uncompressed PCM wrapped in WAV (24 kHz, 16-bit mono). ogg_opus: Ogg container with Opus codec, good quality-to-size ratio.
+     * @default mp3
+     * @enum {string}
+     */
+    output_format?: 'wav' | 'mp3' | 'ogg_opus';
+    /**
+     * Prompt
+     * @description The text to convert to speech. Gemini TTS supports natural-language prompting for style, pace, accent, and emotional expression — include delivery instructions inline with the text (e.g. 'Say cheerfully: Have a wonderful day!'). For multi-speaker synthesis, prefix lines with speaker aliases defined in the speakers field (e.g. 'Alice: Hello!\nBob: Hi!'). Supports inline pace/style markers like [slowly], [whispering], [excited], [extremely fast].
+     * @example Host: Welcome back to AI Frontiers, the podcast where we explore the latest breakthroughs in artificial intelligence. Today we have a very special guest. Doctor Chen, thank you for joining us!
+     *     DrChen: Thanks for having me! I'm excited to be here.
+     *     Host: So, let's dive right in. Your recent paper on neural architecture search has been making waves. Can you tell our listeners what inspired this research?
+     *     DrChen: Absolutely. It all started when we noticed that most existing approaches were optimizing for the wrong metrics. We asked ourselves, what if we could let the model design itself?
+     */
+    prompt: string;
+    /**
+     * Speakers
+     * @description Multi-speaker voice configuration. When set, enables multi-speaker synthesis where different parts of the text are spoken by different voices. Each speaker needs a voice and a speaker_id (alias) that matches prefixes in the prompt. Requires gemini-2.5-pro-tts or gemini-2.5-flash-tts model. Not supported with gemini-2.5-flash-lite-preview-tts.
+     * @example [
+     *       {
+     *         "voice": "Charon",
+     *         "speaker_id": "Host"
+     *       },
+     *       {
+     *         "voice": "Kore",
+     *         "speaker_id": "DrChen"
+     *       }
+     *     ]
+     */
+    speakers?: Components.SpeakerConfig[];
+    /**
+     * Style Instructions
+     * @description Optional style and delivery instructions prepended to the prompt. Controls expressiveness, accent, pace, tone, and emotional expression using natural language. Use this to separate style control from the text content. Examples: 'Speak warmly and slowly', 'Read this as a dramatic newscast', 'Use a British accent with a cheerful tone', 'Whisper mysteriously'.
+     * @example Say the following in a warm, conversational tone
+     * @example Read this as a dramatic newscast with gravitas
+     * @example Speak with a British accent, cheerfully and energetically
+     * @example This is a podcast conversation. The host is enthusiastic and curious, the guest is knowledgeable and articulate
+     */
+    style_instructions?: string;
+    /**
+     * Temperature
+     * @description Controls the randomness of the speech output. Higher values produce more creative and varied delivery, while lower values make the output more predictable and focused.
+     * @default 1
+     */
+    temperature?: number;
+    /**
+     * Voice
+     * @description Voice preset for single-speaker synthesis. 30 distinct voices are available. Ignored when speakers is set. Popular choices: Kore (strong, firm female), Puck (upbeat, lively male), Charon (calm, professional male), Zephyr (bright, clear female), Aoede (warm, melodic female).
+     * @default Kore
+     * @enum {string}
+     */
+    voice?:
+        | 'Achernar'
+        | 'Achird'
+        | 'Algenib'
+        | 'Algieba'
+        | 'Alnilam'
+        | 'Aoede'
+        | 'Autonoe'
+        | 'Callirrhoe'
+        | 'Charon'
+        | 'Despina'
+        | 'Enceladus'
+        | 'Erinome'
+        | 'Fenrir'
+        | 'Gacrux'
+        | 'Iapetus'
+        | 'Kore'
+        | 'Laomedeia'
+        | 'Leda'
+        | 'Orus'
+        | 'Pulcherrima'
+        | 'Puck'
+        | 'Rasalgethi'
+        | 'Sadachbia'
+        | 'Sadaltager'
+        | 'Schedar'
+        | 'Sulafat'
+        | 'Umbriel'
+        | 'Vindemiatrix'
+        | 'Zephyr'
+        | 'Zubenelgenubi';
+}
+
+export interface GeminiTtsOutput {
+    /**
+     * @description The generated audio file.
+     * @example {
+     *       "url": "https://v3b.fal.media/files/b/0a935d4f/Ez4NpcnFTuGsu2FHDaJTR_gemini_tts_output.mp3"
+     *     }
+     */
+    audio: Components.File;
+}
 
 export interface GeminiFlashEditMultiInput {
     /**
@@ -75552,220 +76026,220 @@ export interface ElevenlabsSpeechToTextScribeV2Output {
      * Words
      * @description Word-level transcription details
      * @example {
-     *       "end": 0.539,
+     *       "text": "Hey,",
      *       "start": 0.079,
      *       "type": "word",
-     *       "text": "Hey,",
+     *       "end": 0.539,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 0.599,
+     *       "text": " ",
      *       "start": 0.539,
      *       "type": "spacing",
-     *       "text": " ",
+     *       "end": 0.599,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 0.679,
+     *       "text": "this",
      *       "start": 0.599,
      *       "type": "word",
-     *       "text": "this",
+     *       "end": 0.679,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 0.739,
+     *       "text": " ",
      *       "start": 0.679,
      *       "type": "spacing",
-     *       "text": " ",
+     *       "end": 0.739,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 0.799,
+     *       "text": "is",
      *       "start": 0.739,
      *       "type": "word",
-     *       "text": "is",
+     *       "end": 0.799,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 0.939,
+     *       "text": " ",
      *       "start": 0.799,
      *       "type": "spacing",
-     *       "text": " ",
+     *       "end": 0.939,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 0.939,
+     *       "text": "a",
      *       "start": 0.939,
      *       "type": "word",
-     *       "text": "a",
+     *       "end": 0.939,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 0.959,
+     *       "text": " ",
      *       "start": 0.939,
      *       "type": "spacing",
-     *       "text": " ",
+     *       "end": 0.959,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 1.179,
+     *       "text": "test",
      *       "start": 0.959,
      *       "type": "word",
-     *       "text": "test",
+     *       "end": 1.179,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 1.219,
+     *       "text": " ",
      *       "start": 1.179,
      *       "type": "spacing",
-     *       "text": " ",
+     *       "end": 1.219,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 1.719,
+     *       "text": "recording",
      *       "start": 1.22,
      *       "type": "word",
-     *       "text": "recording",
+     *       "end": 1.719,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 1.719,
+     *       "text": " ",
      *       "start": 1.719,
      *       "type": "spacing",
-     *       "text": " ",
+     *       "end": 1.719,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 1.86,
+     *       "text": "for",
      *       "start": 1.719,
      *       "type": "word",
-     *       "text": "for",
+     *       "end": 1.86,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 1.879,
+     *       "text": " ",
      *       "start": 1.86,
      *       "type": "spacing",
-     *       "text": " ",
+     *       "end": 1.879,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 2.24,
+     *       "text": "Scribe",
      *       "start": 1.879,
      *       "type": "word",
-     *       "text": "Scribe",
+     *       "end": 2.24,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 2.319,
+     *       "text": " ",
      *       "start": 2.24,
      *       "type": "spacing",
-     *       "text": " ",
+     *       "end": 2.319,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 2.759,
+     *       "text": "version",
      *       "start": 2.319,
      *       "type": "word",
-     *       "text": "version",
+     *       "end": 2.759,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 2.779,
+     *       "text": " ",
      *       "start": 2.759,
      *       "type": "spacing",
-     *       "text": " ",
+     *       "end": 2.779,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 3.379,
+     *       "text": "two,",
      *       "start": 2.779,
      *       "type": "word",
-     *       "text": "two,",
+     *       "end": 3.379,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 3.399,
+     *       "text": " ",
      *       "start": 3.379,
      *       "type": "spacing",
-     *       "text": " ",
+     *       "end": 3.399,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 3.519,
+     *       "text": "which",
      *       "start": 3.399,
      *       "type": "word",
-     *       "text": "which",
+     *       "end": 3.519,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 3.539,
+     *       "text": " ",
      *       "start": 3.519,
      *       "type": "spacing",
-     *       "text": " ",
+     *       "end": 3.539,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 3.659,
+     *       "text": "is",
      *       "start": 3.539,
      *       "type": "word",
-     *       "text": "is",
+     *       "end": 3.659,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 3.699,
+     *       "text": " ",
      *       "start": 3.659,
      *       "type": "spacing",
-     *       "text": " ",
+     *       "end": 3.699,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 3.839,
+     *       "text": "now",
      *       "start": 3.699,
      *       "type": "word",
-     *       "text": "now",
+     *       "end": 3.839,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 3.839,
+     *       "text": " ",
      *       "start": 3.839,
      *       "type": "spacing",
-     *       "text": " ",
+     *       "end": 3.839,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 4.319,
+     *       "text": "available",
      *       "start": 3.839,
      *       "type": "word",
-     *       "text": "available",
+     *       "end": 4.319,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 4.339,
+     *       "text": " ",
      *       "start": 4.319,
      *       "type": "spacing",
-     *       "text": " ",
+     *       "end": 4.339,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 4.579,
+     *       "text": "on",
      *       "start": 4.339,
      *       "type": "word",
-     *       "text": "on",
+     *       "end": 4.579,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 4.599,
+     *       "text": " ",
      *       "start": 4.579,
      *       "type": "spacing",
-     *       "text": " ",
+     *       "end": 4.599,
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "end": 5.699,
+     *       "text": "fal.ai.",
      *       "start": 4.599,
      *       "type": "word",
-     *       "text": "fal.ai.",
+     *       "end": 5.699,
      *       "speaker_id": "speaker_0"
      *     }
      */
@@ -80410,6 +80884,32 @@ export interface BytedanceDreamactorV2Output {
 
 export interface BytedanceUpscalerUpscaleVideoInput {
     /**
+     * Enhancement Preset
+     * @description The enhancement preset optimized for specific video scenarios. 'general' is a general-purpose template, 'ugc' targets user-generated short videos, 'short_series' is for short dramas, 'aigc' is for AI-generated content, and 'old_film' is for classic film restoration.
+     * @default general
+     * @enum {string}
+     */
+    enhancement_preset?: 'general' | 'ugc' | 'short_series' | 'aigc' | 'old_film';
+    /**
+     * Enhancement Tier
+     * @description The enhancement quality tier. 'fast' provides essential upscaling with good speed, 'standard' uses adaptive algorithms for better visual texture, 'pro' uses large-model restoration for cinematic quality (longer processing time), and 10 times the cost of `standard` and `fast`.
+     * @default standard
+     * @enum {string}
+     */
+    enhancement_tier?: 'fast' | 'standard' | 'pro';
+    /**
+     * Fidelity
+     * @description The enhancement intensity. 'high' applies mild enhancement while keeping visual texture close to the source video. 'medium' provides a balanced image quality enhancement.
+     * @default high
+     * @enum {string}
+     */
+    fidelity?: 'high' | 'medium';
+    /**
+     * Scale Ratio
+     * @description The scaling ratio for the output video resolution. When set, overrides target_resolution and scales the input resolution by this factor (e.g., 2.0 doubles the resolution). Range: 1.1 to 10.0. Please note that this is valid only up to 4k resolution, and trying to scale beyond 4k will result in an error. (4k is defined as having atotal pixel count of 3840x2160).
+     */
+    scale_ratio?: number;
+    /**
      * Target Fps
      * @description The target FPS of the video to upscale.
      * @default 30fps
@@ -81343,6 +81843,13 @@ export interface BenV2VideoInput {
      */
     background_color?: [number, number, number];
     /**
+     * Output Format
+     * @description Output video format. Use "webm" for true transparency support (VP9 codec with alpha channel). MP4 format does not support transparency and will render transparent areas as black.
+     * @default mp4
+     * @enum {string}
+     */
+    output_format?: 'mp4' | 'webm';
+    /**
      * Seed
      * @description Random seed for reproducible generation.
      */
@@ -81390,8 +81897,8 @@ export interface BenV2ImageOutput {
     /**
      * @description The output image after background removal.
      * @example {
-     *       "height": 512,
      *       "file_size": 423052,
+     *       "height": 512,
      *       "file_name": "zrZNETpI_ul2jonraqpxN_a57c3f3825d9418f8b3d39cde87c3310.png",
      *       "content_type": "image/png",
      *       "url": "https://storage.googleapis.com/falserverless/gallery/Ben2/zrZNETpI_ul2jonraqpxN_a57c3f3825d9418f8b3d39cde87c3310.png",
@@ -84319,18 +84826,18 @@ export interface BriaEmbedProductInput {
      *       {
      *         "coordinates": {
      *           "y": 317,
+     *           "width": 100,
      *           "height": 300,
-     *           "x": 300,
-     *           "width": 100
+     *           "x": 300
      *         },
      *         "image_source": "https://bria-datasets.s3.us-east-1.amazonaws.com/embed-product/a_standing_lamp_over_white_background_0.png"
      *       },
      *       {
      *         "coordinates": {
      *           "y": 287,
+     *           "width": 120,
      *           "height": 156,
-     *           "x": 646,
-     *           "width": 120
+     *           "x": 646
      *         },
      *         "image_source": "https://bria-datasets.s3.us-east-1.amazonaws.com/embed-product/a_wall_picture_on_white_background_0.png"
      *       }

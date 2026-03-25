@@ -14,9 +14,19 @@ declare global {
                 output: falEndpoints.XaiGrokImagineVideoTextToVideoOutput;
             };
 
+            'xai/grok-imagine-video/reference-to-video': {
+                input: falEndpoints.XaiGrokImagineVideoReferenceToVideoInput;
+                output: falEndpoints.XaiGrokImagineVideoReferenceToVideoOutput;
+            };
+
             'xai/grok-imagine-video/image-to-video': {
                 input: falEndpoints.XaiGrokImagineVideoImageToVideoInput;
                 output: falEndpoints.XaiGrokImagineVideoImageToVideoOutput;
+            };
+
+            'xai/grok-imagine-video/extend-video': {
+                input: falEndpoints.XaiGrokImagineVideoExtendVideoInput;
+                output: falEndpoints.XaiGrokImagineVideoExtendVideoOutput;
             };
 
             'xai/grok-imagine-video/edit-video': {
@@ -1242,6 +1252,11 @@ declare global {
             'fal-ai/seedvr/upscale/video': {
                 input: falEndpoints.SeedvrUpscaleVideoInput;
                 output: falEndpoints.SeedvrUpscaleVideoOutput;
+            };
+
+            'fal-ai/seedvr/upscale/image/seamless': {
+                input: falEndpoints.SeedvrUpscaleImageSeamlessInput;
+                output: falEndpoints.SeedvrUpscaleImageSeamlessOutput;
             };
 
             'fal-ai/seedvr/upscale/image': {
@@ -3559,6 +3574,11 @@ declare global {
                 output: falEndpoints.IpAdapterFaceIdOutput;
             };
 
+            'fal-ai/inworld-tts': {
+                input: falEndpoints.InworldTtsInput;
+                output: falEndpoints.InworldTtsOutput;
+            };
+
             'fal-ai/invisible-watermark': {
                 input: falEndpoints.InvisibleWatermarkInput;
                 output: falEndpoints.InvisibleWatermarkOutput;
@@ -4347,6 +4367,11 @@ declare global {
             'fal-ai/genfocus': {
                 input: falEndpoints.GenfocusInput;
                 output: falEndpoints.GenfocusOutput;
+            };
+
+            'fal-ai/gemini-tts': {
+                input: falEndpoints.GeminiTtsInput;
+                output: falEndpoints.GeminiTtsOutput;
             };
 
             'fal-ai/gemini-flash-edit/multi': {
