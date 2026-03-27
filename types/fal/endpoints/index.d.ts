@@ -2114,6 +2114,26 @@ declare global {
                 output: falEndpoints.PhotomakerOutput;
             };
 
+            'fal-ai/phota/enhance': {
+                input: falEndpoints.PhotaEnhanceInput;
+                output: falEndpoints.PhotaEnhanceOutput;
+            };
+
+            'fal-ai/phota/edit': {
+                input: falEndpoints.PhotaEditInput;
+                output: falEndpoints.PhotaEditOutput;
+            };
+
+            'fal-ai/phota/create-profile': {
+                input: falEndpoints.PhotaCreateProfileInput;
+                output: falEndpoints.PhotaCreateProfileOutput;
+            };
+
+            'fal-ai/phota': {
+                input: falEndpoints.PhotaInput;
+                output: falEndpoints.PhotaOutput;
+            };
+
             'fal-ai/personaplex/realtime': {
                 input: falEndpoints.PersonaplexRealtimeInput;
                 output: falEndpoints.PersonaplexRealtimeOutput;
@@ -4057,6 +4077,11 @@ declare global {
             'fal-ai/hyper-sdxl': {
                 input: { [x in string]: any };
                 output: { [x in string]: any };
+            };
+
+            'fal-ai/hy-wu-edit': {
+                input: falEndpoints.HyWuEditInput;
+                output: falEndpoints.HyWuEditOutput;
             };
 
             'fal-ai/hunyuan3d/v2/turbo': {

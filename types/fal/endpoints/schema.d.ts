@@ -2768,29 +2768,6 @@ export interface SharedType_e33 {
     };
 }
 
-export interface SharedType_e19 {
-    /**
-     * Images
-     * @description The generated images
-     * @example [
-     *       {
-     *         "height": 1536,
-     *         "file_size": 3731290,
-     *         "file_name": "257cf8e7bd3a47c2959396343d5b38cf.png",
-     *         "content_type": "image/png",
-     *         "url": "https://v3.fal.media/files/tiger/48e63e0K6C9XQYBuomoU-_257cf8e7bd3a47c2959396343d5b38cf.png",
-     *         "width": 1536
-     *       }
-     *     ]
-     */
-    images: Components.Image[];
-    /**
-     * Seed
-     * @description Seed value used for generation.
-     */
-    seed: number;
-}
-
 export interface SharedType_e18 {
     /**
      * Default Caption
@@ -3724,24 +3701,6 @@ export interface SharedType_cfd {
      * @default false
      */
     sync_mode?: boolean;
-}
-
-export interface SharedType_cf1 {
-    /**
-     * Images
-     * @description The generated images with objects removed.
-     * @example [
-     *       {
-     *         "file_size": 730703,
-     *         "height": 768,
-     *         "file_name": "85a2309b2c954c85a75120e664adbe17.png",
-     *         "content_type": "image/png",
-     *         "url": "https://v3.fal.media/files/lion/arYSoJeqWjhbcA8o4budv_85a2309b2c954c85a75120e664adbe17.png",
-     *         "width": 1024
-     *       }
-     *     ]
-     */
-    images: Components.Image_2[];
 }
 
 export interface SharedType_cde {
@@ -5351,6 +5310,29 @@ export interface SharedType_a9b {
      * @description The seed for the random number generator.
      */
     seed?: number;
+}
+
+export interface SharedType_a97 {
+    /**
+     * Images
+     * @description The generated images
+     * @example [
+     *       {
+     *         "file_size": 3731290,
+     *         "height": 1536,
+     *         "file_name": "257cf8e7bd3a47c2959396343d5b38cf.png",
+     *         "content_type": "image/png",
+     *         "url": "https://v3.fal.media/files/tiger/48e63e0K6C9XQYBuomoU-_257cf8e7bd3a47c2959396343d5b38cf.png",
+     *         "width": 1536
+     *       }
+     *     ]
+     */
+    images: Components.Image[];
+    /**
+     * Seed
+     * @description Seed value used for generation.
+     */
+    seed: number;
 }
 
 export interface SharedType_a8f {
@@ -11536,6 +11518,24 @@ export interface SharedType_38d {
     image_url: string;
 }
 
+export interface SharedType_386 {
+    /**
+     * Images
+     * @description The generated images with objects removed.
+     * @example [
+     *       {
+     *         "file_size": 730703,
+     *         "height": 768,
+     *         "file_name": "85a2309b2c954c85a75120e664adbe17.png",
+     *         "content_type": "image/png",
+     *         "url": "https://v3.fal.media/files/lion/arYSoJeqWjhbcA8o4budv_85a2309b2c954c85a75120e664adbe17.png",
+     *         "width": 1024
+     *       }
+     *     ]
+     */
+    images: Components.Image[];
+}
+
 export interface SharedType_384 {
     /**
      * Images
@@ -14796,6 +14796,7 @@ export interface OpenrouterRouterVideoEnterpriseInput {
      * @example google/gemini-2.0-flash-lite-001
      * @example google/gemini-3-flash-preview
      * @example google/gemini-3-pro-preview
+     * @example google/gemini-3.1-pro-preview
      */
     model: string;
     /**
@@ -14848,6 +14849,7 @@ export interface OpenrouterRouterVideoInput {
      * @example google/gemini-2.5-pro
      * @example google/gemini-3-flash-preview
      * @example google/gemini-3-pro-preview
+     * @example google/gemini-3.1-pro-preview
      */
     model: string;
     /**
@@ -14905,6 +14907,7 @@ export interface OpenrouterRouterAudioInput {
      * @example google/gemini-3-flash-preview
      * @example google/gemini-2.5-flash
      * @example google/gemini-3-pro-preview
+     * @example google/gemini-3.1-pro-preview
      */
     model: string;
     /**
@@ -24323,16 +24326,8 @@ export interface TriposrInput {
 }
 
 export interface TriposrOutput {
-    /**
-     * Model Mesh
-     * @description Generated 3D object file.
-     */
-    model_mesh: Components.File_1;
-    /**
-     * Remeshing Dir
-     * @description Directory containing textures for the remeshed model.
-     */
-    remeshing_dir?: Components.File_1;
+    model_mesh: Components.File;
+    remeshing_dir?: Components.File;
     /**
      * Timings
      * @description Inference timings.
@@ -28288,15 +28283,15 @@ export interface Sam2VideoInput {
      * @example [
      *       {
      *         "y": 350,
-     *         "label": 1,
+     *         "x": 210,
      *         "frame_index": 0,
-     *         "x": 210
+     *         "label": 1
      *       },
      *       {
      *         "y": 220,
-     *         "label": 1,
+     *         "x": 250,
      *         "frame_index": 0,
-     *         "x": 250
+     *         "label": 1
      *       }
      *     ]
      */
@@ -28355,8 +28350,8 @@ export interface Sam2ImageInput {
      * @example [
      *       {
      *         "y": 375,
-     *         "label": 1,
-     *         "x": 500
+     *         "x": 500,
+     *         "label": 1
      *       }
      *     ]
      */
@@ -35251,7 +35246,7 @@ export interface PixverseExtendFastInput {
      * @default v4.5
      * @enum {string}
      */
-    model?: 'v3.5' | 'v4' | 'v4.5' | 'v5' | 'v5.5' | 'v5.6';
+    model?: 'v3.5' | 'v4' | 'v4.5' | 'v5' | 'v5.5' | 'v5.6' | 'v6';
     /**
      * Negative Prompt
      * @description Negative prompt to be used for the generation
@@ -35305,7 +35300,7 @@ export interface PixverseExtendInput {
      * @default v4.5
      * @enum {string}
      */
-    model?: 'v3.5' | 'v4' | 'v4.5' | 'v5' | 'v5.5' | 'v5.6';
+    model?: 'v3.5' | 'v4' | 'v4.5' | 'v5' | 'v5.5' | 'v5.6' | 'v6';
     /**
      * Negative Prompt
      * @description Negative prompt to be used for the generation
@@ -36286,6 +36281,196 @@ export interface PhotomakerOutput {
      */
     images: Components.Image[];
     seed: number;
+}
+
+export interface PhotaEnhanceInput {
+    /**
+     * Image URL
+     * @description URL/Base64 data URI of the image to enhance.
+     * @example https://v3b.fal.media/files/b/0a8b911d/Abk8vStrvmSPlzUqI_NN3_image_043.png
+     */
+    image_url: string;
+    /**
+     * Number of Images
+     * @description Number of images to generate.
+     * @default 1
+     */
+    num_images?: number;
+    /**
+     * Output Format
+     * @description The format of the generated image.
+     * @default jpeg
+     * @enum {string}
+     */
+    output_format?: 'jpeg' | 'png' | 'webp';
+    /**
+     * Profile Ids
+     * @description List of profile IDs to use for the image enhancement. The profiles sent over will be used as candidates for identity preservation.
+     */
+    profile_ids?: string[];
+    /**
+     * Sync Mode
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
+     * @default false
+     */
+    sync_mode?: boolean;
+}
+
+export interface PhotaEnhanceOutput {
+    /**
+     * Images
+     * @description The URL of the enhanced image.
+     * @example [
+     *       {
+     *         "url": "https://v3b.fal.media/files/b/0a8b911d/XMqiVoO2ECXUZEUYmPl2l.jpg"
+     *       }
+     *     ]
+     */
+    images: Components.ImageFile[];
+}
+
+export interface PhotaEditInput {
+    /**
+     * Aspect Ratio
+     * @description Aspect ratio of the generated image.
+     * @default auto
+     * @enum {string}
+     */
+    aspect_ratio?: 'auto' | '1:1' | '16:9' | '4:3' | '3:4' | '9:16';
+    /**
+     * Image URLs
+     * @description List of URLs/ Base64 data URIs of the images to edit. A maximum of 10 images are supported, additional images will be ignored.
+     * @example [
+     *       "https://v3b.fal.media/files/b/0a8b911d/Abk8vStrvmSPlzUqI_NN3_image_043.png"
+     *     ]
+     */
+    image_urls?: string[];
+    /**
+     * Number of Images
+     * @description Number of images to generate.
+     * @default 1
+     */
+    num_images?: number;
+    /**
+     * Output Format
+     * @description The format of the generated image.
+     * @default jpeg
+     * @enum {string}
+     */
+    output_format?: 'jpeg' | 'png' | 'webp';
+    /**
+     * Profile Ids
+     * @description List of profile IDs to use for the image generation. Profiles may be tagged in the prompt as @Profile1, @Profile2, etc.
+     */
+    profile_ids?: string[];
+    /**
+     * Prompt
+     * @description Text description of the desired image. To refer to specific profiles, use @Profile1, @Profile2, etc. Profiles will not be applied if not referenced in the prompt.
+     * @example Make this scene more realistic but still keep the game vibes
+     */
+    prompt: string;
+    /**
+     * Resolution
+     * @description Resolution of the generated image.
+     * @default 1K
+     * @enum {string}
+     */
+    resolution?: '1K' | '4K';
+    /**
+     * Sync Mode
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
+     * @default false
+     */
+    sync_mode?: boolean;
+}
+
+export interface PhotaEditOutput {
+    /**
+     * Images
+     * @description The URL of the edited image.
+     * @example [
+     *       {
+     *         "url": "https://v3b.fal.media/files/b/0a8b911d/XMqiVoO2ECXUZEUYmPl2l.jpg"
+     *       }
+     *     ]
+     */
+    images: Components.ImageFile[];
+}
+
+export interface PhotaCreateProfileInput {
+    /**
+     * Image ZIP URL
+     * @description URL to a ZIP archive containing the profile images.
+     */
+    image_data_url: string;
+}
+
+export interface PhotaCreateProfileOutput {
+    /**
+     * Profile Id
+     * @description The Photalabs profile ID.
+     */
+    profile_id: string;
+}
+
+export interface PhotaInput {
+    /**
+     * Aspect Ratio
+     * @description Aspect ratio of the generated image.
+     * @default auto
+     * @enum {string}
+     */
+    aspect_ratio?: 'auto' | '1:1' | '16:9' | '4:3' | '3:4' | '9:16';
+    /**
+     * Number of Images
+     * @description Number of images to generate.
+     * @default 1
+     */
+    num_images?: number;
+    /**
+     * Output Format
+     * @description The format of the generated image.
+     * @default jpeg
+     * @enum {string}
+     */
+    output_format?: 'jpeg' | 'png' | 'webp';
+    /**
+     * Profile Ids
+     * @description List of profile IDs to use for the image generation. Profiles may be tagged in the prompt as @Profile1, @Profile2, etc.
+     */
+    profile_ids?: string[];
+    /**
+     * Prompt
+     * @description Text description of the desired image. In case you wish to use specific profiles, refer to them as @Profile1, @Profile2, etc. Profiles will not be applied if not referenced in the prompt.
+     * @example Middle Eastern man in traditional clothing sitting in a cool tent in the desert with a laptop
+     */
+    prompt: string;
+    /**
+     * Resolution
+     * @description Resolution of the generated image.
+     * @default 1K
+     * @enum {string}
+     */
+    resolution?: '1K' | '4K';
+    /**
+     * Sync Mode
+     * @description If `True`, the media will be returned as a data URI and the output data won't be available in the request history.
+     * @default false
+     */
+    sync_mode?: boolean;
+}
+
+export interface PhotaOutput {
+    /**
+     * Images
+     * @description The URL of the generated image.
+     * @example [
+     *       {
+     *         "url": "https://v3b.fal.media/files/b/0a8b90b7/9avg_nKJmcVinjQHJR_Ja.jpg"
+     *       }
+     *     ]
+     */
+    images: Components.ImageFile[];
 }
 
 export interface PersonaplexRealtimeInput {
@@ -37465,7 +37650,7 @@ export interface ObjectRemovalMaskInput {
     model?: 'low_quality' | 'medium_quality' | 'high_quality' | 'best_quality';
 }
 
-export interface ObjectRemovalMaskOutput extends SharedType_cf1 {}
+export interface ObjectRemovalMaskOutput extends SharedType_386 {}
 
 export interface ObjectRemovalBboxInput {
     /**
@@ -37502,7 +37687,7 @@ export interface ObjectRemovalBboxInput {
     model?: 'low_quality' | 'medium_quality' | 'high_quality' | 'best_quality';
 }
 
-export interface ObjectRemovalBboxOutput extends SharedType_cf1 {}
+export interface ObjectRemovalBboxOutput extends SharedType_386 {}
 
 export interface ObjectRemovalInput {
     /**
@@ -37531,7 +37716,7 @@ export interface ObjectRemovalInput {
     prompt: string;
 }
 
-export interface ObjectRemovalOutput extends SharedType_cf1 {}
+export interface ObjectRemovalOutput extends SharedType_386 {}
 
 export interface NovaSrInput {
     /**
@@ -49186,9 +49371,9 @@ export interface LightxRelightInput {
     /**
      * @description Relighting parameters (required for relight_condition_type='ic'). Not used for 'bg' (which expects a background image URL instead).
      * @example {
-     *       "relight_prompt": "Sunlight",
-     *       "bg_source": "Right",
      *       "use_sky_mask": false,
+     *       "bg_source": "Right",
+     *       "relight_prompt": "Sunlight",
      *       "cfg": 2
      *     }
      */
@@ -58461,6 +58646,103 @@ export interface Hyper3dRodinOutput {
      * @description Generated textures for the 3D object.
      */
     textures: Components.Image[];
+}
+
+export interface HyWuEditInput {
+    /**
+     * Enable Safety Checker
+     * @description If set to true, the safety checker will be enabled.
+     * @default true
+     */
+    enable_safety_checker?: boolean;
+    /**
+     * Enable Thinking
+     * @description Enable thinking mode. The model reasons about the edit before generating, producing higher quality results at the cost of longer inference time. Disable for faster results on straightforward edits.
+     * @default true
+     */
+    enable_thinking?: boolean;
+    /**
+     * Image Size
+     * @description The desired size of the generated image. If auto, image size will be determined by the model.
+     * @default auto
+     */
+    image_size?:
+        | Components.ImageSize
+        | (
+              | 'auto'
+              | 'square_hd'
+              | 'square'
+              | 'portrait_4_3'
+              | 'portrait_16_9'
+              | 'landscape_4_3'
+              | 'landscape_16_9'
+          );
+    /**
+     * Image Urls
+     * @description URLs of input images for editing. Typically 2 images: the base image and the reference image. Supports up to 3 images.
+     * @example [
+     *       "https://v3b.fal.media/files/b/0a933dff/BE-FgBximAbCJzZSgDNNw_input_1_1.png",
+     *       "https://v3b.fal.media/files/b/0a933dff/fNUqzO_Lxwvr-_-4BLeCV_input_1_2.png"
+     *     ]
+     */
+    image_urls: string[];
+    /**
+     * Num Images
+     * @description The number of images to generate.
+     * @default 1
+     */
+    num_images?: number;
+    /**
+     * Num Inference Steps
+     * @description Number of diffusion denoising steps.
+     * @default 30
+     */
+    num_inference_steps?: number;
+    /**
+     * Output Format
+     * @description The format of the generated image.
+     * @default png
+     * @enum {string}
+     */
+    output_format?: 'jpeg' | 'png';
+    /**
+     * Prompt
+     * @description The text prompt describing the desired edit. Supports both English and Chinese. Use specific instructions like 'Replace the clothing on figure 1 with the outfit from figure 2'.
+     * @example Using image 1 as the base image, replace the outfit with the clothing from image 2 while keeping the subject, pose, and background unchanged.
+     */
+    prompt: string;
+    /**
+     * Seed
+     * @description Random seed for reproducible results. If None, a random seed is used.
+     */
+    seed?: number;
+    /**
+     * Sync Mode
+     * @description If True, the media will be returned as a data URI.
+     * @default false
+     */
+    sync_mode?: boolean;
+}
+
+export interface HyWuEditOutput {
+    /**
+     * Images
+     * @description A list of the generated/edited images.
+     */
+    images: Components.Image[];
+    /**
+     * Seed
+     * @description The seed used for generation.
+     */
+    seed: number;
+    /**
+     * Timings
+     * @description Performance timing breakdown.
+     * @default {}
+     */
+    timings?: {
+        [key: string]: number;
+    };
 }
 
 export interface Hunyuan3dV2TurboInput extends SharedType_df1 {}
@@ -80948,7 +81230,7 @@ export interface BytedanceUpscalerUpscaleVideoOutput {
 
 export interface BriaTextToImageHdInput extends SharedType_411 {}
 
-export interface BriaTextToImageHdOutput extends SharedType_e19 {}
+export interface BriaTextToImageHdOutput extends SharedType_a97 {}
 
 export interface BriaTextToImageFastInput {
     /**
@@ -81021,11 +81303,11 @@ export interface BriaTextToImageFastInput {
     sync_mode?: boolean;
 }
 
-export interface BriaTextToImageFastOutput extends SharedType_e19 {}
+export interface BriaTextToImageFastOutput extends SharedType_a97 {}
 
 export interface BriaTextToImageBaseInput extends SharedType_411 {}
 
-export interface BriaTextToImageBaseOutput extends SharedType_e19 {}
+export interface BriaTextToImageBaseOutput extends SharedType_a97 {}
 
 export interface BriaReimagineInput {
     /**
@@ -81254,8 +81536,8 @@ export interface BriaGenfillOutput {
      * @description Generated Images
      * @example [
      *       {
-     *         "height": 768,
      *         "file_size": 1064550,
+     *         "height": 768,
      *         "file_name": "a0d138e6820c4ad58f1fd3c758f16047.png",
      *         "content_type": "image/png",
      *         "url": "https://storage.googleapis.com/falserverless/bria/bria_genfill_res.png",
@@ -81339,8 +81621,8 @@ export interface BriaExpandOutput {
     /**
      * @description The generated image
      * @example {
-     *       "height": 674,
      *       "file_size": 1471342,
+     *       "height": 674,
      *       "file_name": "afa402a35ea742cdb5c3e219b2b19bfb.png",
      *       "content_type": "image/png",
      *       "url": "https://v3.fal.media/files/koala/8np-spgxxG-I1r3cjthRV_afa402a35ea742cdb5c3e219b2b19bfb.png",
@@ -81496,8 +81778,8 @@ export interface BriaBackgroundRemoveOutput {
     /**
      * @description The generated image
      * @example {
-     *       "height": 1024,
      *       "file_size": 1076276,
+     *       "height": 1024,
      *       "file_name": "070c731993e949d993c10ef6283d335d.png",
      *       "content_type": "image/png",
      *       "url": "https://v3.fal.media/files/tiger/GQEMNjRyxSoza7N8LPPqb_070c731993e949d993c10ef6283d335d.png",
