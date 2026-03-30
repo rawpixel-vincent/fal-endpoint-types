@@ -4264,33 +4264,6 @@ export interface ForceParams {
     y: number;
 }
 
-export interface File_2 {
-    /**
-     * Content Type
-     * @description The mime type of the file.
-     * @example image/png
-     */
-    content_type: string;
-    /**
-     * File Name
-     * @description The name of the file. It will be auto-generated if not provided.
-     * @example z9RV14K95DvU.png
-     */
-    file_name: string;
-    /**
-     * File Size
-     * @description The size of the file in bytes.
-     * @example 4404019
-     */
-    file_size: number;
-    /**
-     * Url
-     * @description The URL where the file can be downloaded from.
-     * @example https://url.to/generated/file/z9RV14K95DvU.png
-     */
-    url: string;
-}
-
 export interface File_1 {
     /**
      * Content Type

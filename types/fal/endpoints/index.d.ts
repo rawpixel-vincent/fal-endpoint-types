@@ -6174,11 +6174,6 @@ declare global {
                 output: falEndpoints.BeatovenSoundEffectGenerationOutput;
             };
 
-            'beatoven/music-generation': {
-                input: falEndpoints.BeatovenMusicGenerationInput;
-                output: falEndpoints.BeatovenMusicGenerationOutput;
-            };
-
             'argil/avatars/text-to-video': {
                 input: falEndpoints.ArgilAvatarsTextToVideoInput;
                 output: falEndpoints.ArgilAvatarsTextToVideoOutput;

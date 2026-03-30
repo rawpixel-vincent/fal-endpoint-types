@@ -94,8 +94,8 @@ export interface XaiGrokImagineVideoTextToVideoOutput {
      *       "fps": 24,
      *       "width": 1280,
      *       "file_name": "RUAbFYlssdqnbjNLmE8qP_IX7BNYGP.mp4",
-     *       "content_type": "video/mp4",
-     *       "num_frames": 145
+     *       "num_frames": 145,
+     *       "content_type": "video/mp4"
      *     }
      */
     video: Components.VideoFile;
@@ -148,8 +148,8 @@ export interface XaiGrokImagineVideoReferenceToVideoOutput {
      *       "fps": 24,
      *       "width": 1280,
      *       "file_name": "r2v_output.mp4",
-     *       "content_type": "video/mp4",
-     *       "num_frames": 192
+     *       "num_frames": 192,
+     *       "content_type": "video/mp4"
      *     }
      */
     video: Components.VideoFile;
@@ -199,8 +199,8 @@ export interface XaiGrokImagineVideoImageToVideoOutput {
      *       "fps": 24,
      *       "width": 1280,
      *       "file_name": "0Ci1dviuSnEyUZzBUq-_5_nu7MrAAa.mp4",
-     *       "content_type": "video/mp4",
-     *       "num_frames": 145
+     *       "num_frames": 145,
+     *       "content_type": "video/mp4"
      *     }
      */
     video: Components.VideoFile;
@@ -237,8 +237,8 @@ export interface XaiGrokImagineVideoExtendVideoOutput {
      *       "fps": 24,
      *       "width": 1280,
      *       "file_name": "extended_video.mp4",
-     *       "content_type": "video/mp4",
-     *       "num_frames": 384
+     *       "num_frames": 384,
+     *       "content_type": "video/mp4"
      *     }
      */
     video: Components.VideoFile;
@@ -276,8 +276,8 @@ export interface XaiGrokImagineVideoEditVideoOutput {
      *       "fps": 24,
      *       "width": 1280,
      *       "file_name": "EuDrZuQTW9m1phBXOsauz_EpJH3s8X.mp4",
-     *       "content_type": "video/mp4",
-     *       "num_frames": 121
+     *       "num_frames": 121,
+     *       "content_type": "video/mp4"
      *     }
      */
     video: Components.VideoFile;
@@ -27160,7 +27160,7 @@ export interface SeedvrUpscaleImageSeamlessInput {
     /**
      * Image Url
      * @description The input image to be processed
-     * @example https://storage.googleapis.com/falserverless/example_inputs/seedvr2/image_in.png
+     * @example https://v3b.fal.media/files/b/0a93eb33/dQ_ZwLyeu8P2UJYsa8RDW_seamless_image_in.png
      */
     image_url: string;
     /**
@@ -35241,6 +35241,12 @@ export interface PixverseLipsyncOutput {
 
 export interface PixverseExtendFastInput {
     /**
+     * Generate Audio Switch
+     * @description Enable audio generation (BGM, SFX, dialogue). Supported in v5.6+ models.
+     * @default false
+     */
+    generate_audio_switch?: boolean;
+    /**
      * Model
      * @description The model version to use for generation
      * @default v4.5
@@ -35294,6 +35300,12 @@ export interface PixverseExtendInput {
      * @enum {string}
      */
     duration?: '5' | '8';
+    /**
+     * Generate Audio Switch
+     * @description Enable audio generation (BGM, SFX, dialogue). Supported in v5.6+ models.
+     * @default false
+     */
+    generate_audio_switch?: boolean;
     /**
      * Model
      * @description The model version to use for generation
@@ -36365,7 +36377,7 @@ export interface PhotaEditInput {
     profile_ids?: string[];
     /**
      * Prompt
-     * @description Text description of the desired image. To refer to specific profiles, use @Profile1, @Profile2, etc. Profiles will not be applied if not referenced in the prompt.
+     * @description Text description of the desired image. To refer to specific profiles, use [[profile_id_1]], [[profile_id_2]], etc.
      * @example Make this scene more realistic but still keep the game vibes
      */
     prompt: string;
@@ -36435,13 +36447,8 @@ export interface PhotaInput {
      */
     output_format?: 'jpeg' | 'png' | 'webp';
     /**
-     * Profile Ids
-     * @description List of profile IDs to use for the image generation. Profiles may be tagged in the prompt as @Profile1, @Profile2, etc.
-     */
-    profile_ids?: string[];
-    /**
      * Prompt
-     * @description Text description of the desired image. In case you wish to use specific profiles, refer to them as @Profile1, @Profile2, etc. Profiles will not be applied if not referenced in the prompt.
+     * @description Text description of the desired image. In case you wish to use specific profiles, refer to them as [[profile_id_1]], [[profile_id_2]], etc.
      * @example Middle Eastern man in traditional clothing sitting in a cool tent in the desert with a laptop
      */
     prompt: string;
@@ -52918,6 +52925,8 @@ export interface KlingImageV3ImageToImageInput {
     /**
      * Image Url
      * @description Reference image for image-to-image generation.
+     *
+     *     Max file size: 10.0MB, Min width: 300px, Min height: 300px, Min aspect ratio: 0.40, Max aspect ratio: 2.50, Timeout: 20.0s
      * @example https://v3b.fal.media/files/b/0a8d06b9/3zxm2qoj2xYWSNwEe5Vd9_a74d767fc42e47a0bf657117fbcf8b90.png
      */
     image_url: string;
@@ -65251,15 +65260,15 @@ export interface FluxVisionUpscalerInput {
 export interface FluxVisionUpscalerOutput {
     /**
      * Caption
-     * @description The VLM-generated caption describing the upscaled image.
-     * @example A highly detailed upscaled photograph featuring sharp edges and enhanced textures. The image shows improved clarity in fine details with natural color preservation and minimal artifacts, demonstrating the AI-enhanced resolution increase.
+     * @description The VLM-generated caption used for upscaling.
+     * @example A highly detailed upscaled photograph featuring sharp edges and enhanced textures. The image shows improved clarity in fine details with natural color preservation and minimal artifacts.
      */
     caption: string;
     /**
      * @description The URL of the generated image.
      * @example {
-     *       "height": 2048,
      *       "file_size": 8842156,
+     *       "height": 2048,
      *       "file_name": "20TZeUQtQ8oKgsCKXSL81_StableSR_00002_.png",
      *       "content_type": "image/png",
      *       "url": "https://v3b.fal.media/files/b/panda/20TZeUQtQ8oKgsCKXSL81_StableSR_00002_.png",
@@ -75651,7 +75660,7 @@ export interface FaceToStickerOutput {
 export interface F5TtsInput {
     /**
      * Text to be converted to speech
-     * @description The text to be converted to speech.
+     * @description The text to be converted to speech. Maximum 5000 characters.
      * @example I don't really care what you call me. I've been a silent spectator, watching species evolve, empires rise and fall. But always remember, I am mighty and enduring. Respect me and I'll nurture you; ignore me and you shall face the consequences.
      */
     gen_text: string;
@@ -76308,220 +76317,220 @@ export interface ElevenlabsSpeechToTextScribeV2Output {
      * Words
      * @description Word-level transcription details
      * @example {
-     *       "text": "Hey,",
+     *       "end": 0.539,
      *       "start": 0.079,
      *       "type": "word",
-     *       "end": 0.539,
+     *       "text": "Hey,",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": " ",
+     *       "end": 0.599,
      *       "start": 0.539,
      *       "type": "spacing",
-     *       "end": 0.599,
+     *       "text": " ",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": "this",
+     *       "end": 0.679,
      *       "start": 0.599,
      *       "type": "word",
-     *       "end": 0.679,
+     *       "text": "this",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": " ",
+     *       "end": 0.739,
      *       "start": 0.679,
      *       "type": "spacing",
-     *       "end": 0.739,
+     *       "text": " ",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": "is",
+     *       "end": 0.799,
      *       "start": 0.739,
      *       "type": "word",
-     *       "end": 0.799,
+     *       "text": "is",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": " ",
+     *       "end": 0.939,
      *       "start": 0.799,
      *       "type": "spacing",
-     *       "end": 0.939,
+     *       "text": " ",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": "a",
+     *       "end": 0.939,
      *       "start": 0.939,
      *       "type": "word",
-     *       "end": 0.939,
+     *       "text": "a",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": " ",
+     *       "end": 0.959,
      *       "start": 0.939,
      *       "type": "spacing",
-     *       "end": 0.959,
+     *       "text": " ",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": "test",
+     *       "end": 1.179,
      *       "start": 0.959,
      *       "type": "word",
-     *       "end": 1.179,
+     *       "text": "test",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": " ",
+     *       "end": 1.219,
      *       "start": 1.179,
      *       "type": "spacing",
-     *       "end": 1.219,
+     *       "text": " ",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": "recording",
+     *       "end": 1.719,
      *       "start": 1.22,
      *       "type": "word",
-     *       "end": 1.719,
+     *       "text": "recording",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": " ",
+     *       "end": 1.719,
      *       "start": 1.719,
      *       "type": "spacing",
-     *       "end": 1.719,
+     *       "text": " ",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": "for",
+     *       "end": 1.86,
      *       "start": 1.719,
      *       "type": "word",
-     *       "end": 1.86,
+     *       "text": "for",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": " ",
+     *       "end": 1.879,
      *       "start": 1.86,
      *       "type": "spacing",
-     *       "end": 1.879,
+     *       "text": " ",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": "Scribe",
+     *       "end": 2.24,
      *       "start": 1.879,
      *       "type": "word",
-     *       "end": 2.24,
+     *       "text": "Scribe",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": " ",
+     *       "end": 2.319,
      *       "start": 2.24,
      *       "type": "spacing",
-     *       "end": 2.319,
+     *       "text": " ",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": "version",
+     *       "end": 2.759,
      *       "start": 2.319,
      *       "type": "word",
-     *       "end": 2.759,
+     *       "text": "version",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": " ",
+     *       "end": 2.779,
      *       "start": 2.759,
      *       "type": "spacing",
-     *       "end": 2.779,
+     *       "text": " ",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": "two,",
+     *       "end": 3.379,
      *       "start": 2.779,
      *       "type": "word",
-     *       "end": 3.379,
+     *       "text": "two,",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": " ",
+     *       "end": 3.399,
      *       "start": 3.379,
      *       "type": "spacing",
-     *       "end": 3.399,
+     *       "text": " ",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": "which",
+     *       "end": 3.519,
      *       "start": 3.399,
      *       "type": "word",
-     *       "end": 3.519,
+     *       "text": "which",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": " ",
+     *       "end": 3.539,
      *       "start": 3.519,
      *       "type": "spacing",
-     *       "end": 3.539,
+     *       "text": " ",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": "is",
+     *       "end": 3.659,
      *       "start": 3.539,
      *       "type": "word",
-     *       "end": 3.659,
+     *       "text": "is",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": " ",
+     *       "end": 3.699,
      *       "start": 3.659,
      *       "type": "spacing",
-     *       "end": 3.699,
+     *       "text": " ",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": "now",
+     *       "end": 3.839,
      *       "start": 3.699,
      *       "type": "word",
-     *       "end": 3.839,
+     *       "text": "now",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": " ",
+     *       "end": 3.839,
      *       "start": 3.839,
      *       "type": "spacing",
-     *       "end": 3.839,
+     *       "text": " ",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": "available",
+     *       "end": 4.319,
      *       "start": 3.839,
      *       "type": "word",
-     *       "end": 4.319,
+     *       "text": "available",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": " ",
+     *       "end": 4.339,
      *       "start": 4.319,
      *       "type": "spacing",
-     *       "end": 4.339,
+     *       "text": " ",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": "on",
+     *       "end": 4.579,
      *       "start": 4.339,
      *       "type": "word",
-     *       "end": 4.579,
+     *       "text": "on",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": " ",
+     *       "end": 4.599,
      *       "start": 4.579,
      *       "type": "spacing",
-     *       "end": 4.599,
+     *       "text": " ",
      *       "speaker_id": "speaker_0"
      *     }
      * @example {
-     *       "text": "fal.ai.",
+     *       "end": 5.699,
      *       "start": 4.599,
      *       "type": "word",
-     *       "end": 5.699,
+     *       "text": "fal.ai.",
      *       "speaker_id": "speaker_0"
      *     }
      */
@@ -82702,11 +82711,7 @@ export interface AnimatediffSparsectrlLcmOutput {
      * @description The seed used to generate the video.
      */
     seed: number;
-    /**
-     * Video
-     * @description Generated video file.
-     */
-    video: Components.File_2;
+    video: Components.File;
 }
 
 export interface AmtInterpolationFrameInterpolationInput {
@@ -85224,82 +85229,6 @@ export interface BeatovenSoundEffectGenerationOutput {
      * @description Generated audio file in WAV format
      * @example {
      *       "url": "https://v3b.fal.media/files/b/lion/9Uo4MoD-efg4sjcDyI6Nl_sfx_QHCg3z.wav"
-     *     }
-     */
-    audio: Components.File;
-    /**
-     * Metadata
-     * @description Generation metadata including duration, sample rate, and parameters
-     */
-    metadata: {
-        [key: string]: { [x: string]: any } | null;
-    };
-    /**
-     * Prompt
-     * @description The processed prompt used for generation
-     */
-    prompt: string;
-}
-
-export interface BeatovenMusicGenerationInput {
-    /**
-     * Creativity
-     * @description Creativity level - higher values allow more creative interpretation of the prompt
-     * @default 16
-     * @example 16
-     * @example 14
-     * @example 11
-     */
-    creativity?: number;
-    /**
-     * Duration
-     * @description Length of the generated music in seconds
-     * @default 90
-     * @example 90
-     * @example 47
-     * @example 150
-     */
-    duration?: number;
-    /**
-     * Negative Prompt
-     * @description Describe what you want to avoid in the music (instruments, styles, moods). Leave blank for none.
-     * @default
-     * @example noise
-     * @example distortion
-     * @example heavy drums
-     * @example high-hats
-     */
-    negative_prompt?: string;
-    /**
-     * Prompt
-     * @description Describe the music you want to generate
-     * @example Jazz music for a late-night restaurant setting
-     * @example A lush, ambient soundscape featuring serene sounds, and a gentle, melancholic piano melody
-     * @example Hip-hop music, mellow keys and vinyl crackle
-     * @example House music with synthesizers, driving bass and a steady 4/4 beat
-     * @example Classical piano melody with emotional depth and gentle strings
-     */
-    prompt: string;
-    /**
-     * Refinement
-     * @description Refinement level - higher values may improve quality but take longer
-     * @default 100
-     * @example 100
-     * @example 200
-     */
-    refinement?: number;
-    /**
-     * Seed
-     * @description Random seed for reproducible results - leave empty for random generation
-     */
-    seed?: number;
-}
-
-export interface BeatovenMusicGenerationOutput {
-    /**
-     * @description Generated audio file in WAV format
-     * @example {
-     *       "url": "https://v3b.fal.media/files/b/rabbit/DBesSNPP6NwfhwMftene-_music_ZfniDF.wav"
      *     }
      */
     audio: Components.File;
