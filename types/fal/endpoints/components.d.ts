@@ -1899,7 +1899,7 @@ export interface Track {
     keyframes: Keyframe[];
     /**
      * Type
-     * @description Type of track ('video' or 'audio')
+     * @description Type of track ('video', 'audio', or 'image')
      */
     type: string;
 }
@@ -3934,48 +3934,6 @@ export interface ImageFillInput {
      * @default []
      */
     fill_image_url?: string | string[];
-}
-
-export interface ImageFile_1 {
-    /**
-     * Content Type
-     * @description The mime type of the file.
-     * @example image/png
-     */
-    content_type?: string;
-    /**
-     * File Data
-     * Format: binary
-     * @description File data
-     */
-    file_data?: string;
-    /**
-     * File Name
-     * @description The name of the file. It will be auto-generated if not provided.
-     * @example z9RV14K95DvU.png
-     */
-    file_name?: string;
-    /**
-     * File Size
-     * @description The size of the file in bytes.
-     * @example 4404019
-     */
-    file_size?: number;
-    /**
-     * Height
-     * @description The height of the image
-     */
-    height?: number;
-    /**
-     * Url
-     * @description The URL where the file can be downloaded from.
-     */
-    url: string;
-    /**
-     * Width
-     * @description The width of the image
-     */
-    width?: number;
 }
 
 export interface ImageFile {

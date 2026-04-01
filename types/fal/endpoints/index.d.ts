@@ -909,6 +909,21 @@ declare global {
                 output: falEndpoints.Veo31ReferenceToVideoOutput;
             };
 
+            'fal-ai/veo3.1/lite/image-to-video': {
+                input: falEndpoints.Veo31LiteImageToVideoInput;
+                output: falEndpoints.Veo31LiteImageToVideoOutput;
+            };
+
+            'fal-ai/veo3.1/lite/first-last-frame-to-video': {
+                input: falEndpoints.Veo31LiteFirstLastFrameToVideoInput;
+                output: falEndpoints.Veo31LiteFirstLastFrameToVideoOutput;
+            };
+
+            'fal-ai/veo3.1/lite': {
+                input: falEndpoints.Veo31LiteInput;
+                output: falEndpoints.Veo31LiteOutput;
+            };
+
             'fal-ai/veo3.1/image-to-video': {
                 input: falEndpoints.Veo31ImageToVideoInput;
                 output: falEndpoints.Veo31ImageToVideoOutput;
@@ -1382,6 +1397,26 @@ declare global {
             'fal-ai/sam-3/3d-align': {
                 input: falEndpoints.Sam33dAlignInput;
                 output: falEndpoints.Sam33dAlignOutput;
+            };
+
+            'fal-ai/sam-3-1/video-rle': {
+                input: falEndpoints.Sam31VideoRleInput;
+                output: falEndpoints.Sam31VideoRleOutput;
+            };
+
+            'fal-ai/sam-3-1/video': {
+                input: falEndpoints.Sam31VideoInput;
+                output: falEndpoints.Sam31VideoOutput;
+            };
+
+            'fal-ai/sam-3-1/image-rle': {
+                input: falEndpoints.Sam31ImageRleInput;
+                output: falEndpoints.Sam31ImageRleOutput;
+            };
+
+            'fal-ai/sam-3-1/image': {
+                input: falEndpoints.Sam31ImageInput;
+                output: falEndpoints.Sam31ImageOutput;
             };
 
             'fal-ai/sadtalker/reference': {
@@ -1877,6 +1912,26 @@ declare global {
             'fal-ai/playground-v25': {
                 input: falEndpoints.PlaygroundV25Input;
                 output: falEndpoints.PlaygroundV25Output;
+            };
+
+            'fal-ai/pixverse/v6/transition': {
+                input: falEndpoints.PixverseV6TransitionInput;
+                output: falEndpoints.PixverseV6TransitionOutput;
+            };
+
+            'fal-ai/pixverse/v6/text-to-video': {
+                input: falEndpoints.PixverseV6TextToVideoInput;
+                output: falEndpoints.PixverseV6TextToVideoOutput;
+            };
+
+            'fal-ai/pixverse/v6/image-to-video': {
+                input: falEndpoints.PixverseV6ImageToVideoInput;
+                output: falEndpoints.PixverseV6ImageToVideoOutput;
+            };
+
+            'fal-ai/pixverse/v6/extend': {
+                input: falEndpoints.PixverseV6ExtendInput;
+                output: falEndpoints.PixverseV6ExtendOutput;
             };
 
             'fal-ai/pixverse/v5/transition': {
@@ -6167,11 +6222,6 @@ declare global {
             'bria/bria_video_eraser/erase/keypoints': {
                 input: falEndpoints.BriaBria_video_eraserEraseKeypointsInput;
                 output: falEndpoints.BriaBria_video_eraserEraseKeypointsOutput;
-            };
-
-            'beatoven/sound-effect-generation': {
-                input: falEndpoints.BeatovenSoundEffectGenerationInput;
-                output: falEndpoints.BeatovenSoundEffectGenerationOutput;
             };
 
             'argil/avatars/text-to-video': {
