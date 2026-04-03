@@ -454,6 +454,26 @@ declare global {
                 output: falEndpoints.WhisperOutput;
             };
 
+            'fal-ai/wan/v2.7/text-to-image': {
+                input: falEndpoints.WanV27TextToImageInput;
+                output: falEndpoints.WanV27TextToImageOutput;
+            };
+
+            'fal-ai/wan/v2.7/pro/text-to-image': {
+                input: falEndpoints.WanV27ProTextToImageInput;
+                output: falEndpoints.WanV27ProTextToImageOutput;
+            };
+
+            'fal-ai/wan/v2.7/pro/edit': {
+                input: falEndpoints.WanV27ProEditInput;
+                output: falEndpoints.WanV27ProEditOutput;
+            };
+
+            'fal-ai/wan/v2.7/edit': {
+                input: falEndpoints.WanV27EditInput;
+                output: falEndpoints.WanV27EditOutput;
+            };
+
             'fal-ai/wan/v2.2-a14b/video-to-video': {
                 input: falEndpoints.WanV22A14bVideoToVideoInput;
                 output: falEndpoints.WanV22A14bVideoToVideoOutput;
@@ -5574,6 +5594,11 @@ declare global {
                 output: falEndpoints.DdcolorOutput;
             };
 
+            'fal-ai/davinci-magihuman': {
+                input: falEndpoints.DavinciMagihumanInput;
+                output: falEndpoints.DavinciMagihumanOutput;
+            };
+
             'fal-ai/csm-1b': {
                 input: falEndpoints.Csm1bInput;
                 output: falEndpoints.Csm1bOutput;
@@ -6057,6 +6082,36 @@ declare global {
             'cassetteai/music-generator': {
                 input: falEndpoints.CassetteaiMusicGeneratorInput;
                 output: falEndpoints.CassetteaiMusicGeneratorOutput;
+            };
+
+            'bytedance/seedance-2.0/text-to-video': {
+                input: falEndpoints.BytedanceSeedance20TextToVideoInput;
+                output: falEndpoints.BytedanceSeedance20TextToVideoOutput;
+            };
+
+            'bytedance/seedance-2.0/reference-to-video': {
+                input: falEndpoints.BytedanceSeedance20ReferenceToVideoInput;
+                output: falEndpoints.BytedanceSeedance20ReferenceToVideoOutput;
+            };
+
+            'bytedance/seedance-2.0/image-to-video': {
+                input: falEndpoints.BytedanceSeedance20ImageToVideoInput;
+                output: falEndpoints.BytedanceSeedance20ImageToVideoOutput;
+            };
+
+            'bytedance/seedance-2.0/fast/text-to-video': {
+                input: falEndpoints.BytedanceSeedance20FastTextToVideoInput;
+                output: falEndpoints.BytedanceSeedance20FastTextToVideoOutput;
+            };
+
+            'bytedance/seedance-2.0/fast/reference-to-video': {
+                input: falEndpoints.BytedanceSeedance20FastReferenceToVideoInput;
+                output: falEndpoints.BytedanceSeedance20FastReferenceToVideoOutput;
+            };
+
+            'bytedance/seedance-2.0/fast/image-to-video': {
+                input: falEndpoints.BytedanceSeedance20FastImageToVideoInput;
+                output: falEndpoints.BytedanceSeedance20FastImageToVideoOutput;
             };
 
             'bytedance/lynx': {
