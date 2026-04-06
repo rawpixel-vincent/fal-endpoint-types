@@ -4486,12 +4486,12 @@ export interface DynamicMask {
      * @description List of trajectories
      * @example [
      *       {
-     *         "y": 219,
-     *         "x": 279
+     *         "x": 279,
+     *         "y": 219
      *       },
      *       {
-     *         "y": 65,
-     *         "x": 417
+     *         "x": 417,
+     *         "y": 65
      *       }
      *     ]
      */

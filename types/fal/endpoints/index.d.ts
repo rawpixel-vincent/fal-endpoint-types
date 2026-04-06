@@ -454,9 +454,19 @@ declare global {
                 output: falEndpoints.WhisperOutput;
             };
 
+            'fal-ai/wan/v2.7/text-to-video': {
+                input: falEndpoints.WanV27TextToVideoInput;
+                output: falEndpoints.WanV27TextToVideoOutput;
+            };
+
             'fal-ai/wan/v2.7/text-to-image': {
                 input: falEndpoints.WanV27TextToImageInput;
                 output: falEndpoints.WanV27TextToImageOutput;
+            };
+
+            'fal-ai/wan/v2.7/reference-to-video': {
+                input: falEndpoints.WanV27ReferenceToVideoInput;
+                output: falEndpoints.WanV27ReferenceToVideoOutput;
             };
 
             'fal-ai/wan/v2.7/pro/text-to-image': {
@@ -467,6 +477,16 @@ declare global {
             'fal-ai/wan/v2.7/pro/edit': {
                 input: falEndpoints.WanV27ProEditInput;
                 output: falEndpoints.WanV27ProEditOutput;
+            };
+
+            'fal-ai/wan/v2.7/image-to-video': {
+                input: falEndpoints.WanV27ImageToVideoInput;
+                output: falEndpoints.WanV27ImageToVideoOutput;
+            };
+
+            'fal-ai/wan/v2.7/edit-video': {
+                input: falEndpoints.WanV27EditVideoInput;
+                output: falEndpoints.WanV27EditVideoOutput;
             };
 
             'fal-ai/wan/v2.7/edit': {
