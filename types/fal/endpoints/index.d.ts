@@ -1119,6 +1119,11 @@ declare global {
                 output: falEndpoints.T2vTurboOutput;
             };
 
+            'fal-ai/sync-lipsync/v3': {
+                input: falEndpoints.SyncLipsyncV3Input;
+                output: falEndpoints.SyncLipsyncV3Output;
+            };
+
             'fal-ai/sync-lipsync/v2/pro': {
                 input: falEndpoints.SyncLipsyncV2ProInput;
                 output: falEndpoints.SyncLipsyncV2ProOutput;
@@ -1557,6 +1562,11 @@ declare global {
             'fal-ai/recraft-20b': {
                 input: falEndpoints.Recraft20bInput;
                 output: falEndpoints.Recraft20bOutput;
+            };
+
+            'fal-ai/reconviagen-0.5': {
+                input: falEndpoints.Reconviagen05Input;
+                output: falEndpoints.Reconviagen05Output;
             };
 
             'fal-ai/realistic-vision': {
@@ -3679,6 +3689,11 @@ declare global {
                 output: falEndpoints.Kandinsky5ProImageToVideoOutput;
             };
 
+            'fal-ai/joyai-image-edit': {
+                input: falEndpoints.JoyaiImageEditInput;
+                output: falEndpoints.JoyaiImageEditOutput;
+            };
+
             'fal-ai/janus': {
                 input: falEndpoints.JanusInput;
                 output: falEndpoints.JanusOutput;
@@ -4064,6 +4079,16 @@ declare global {
                 output: falEndpoints.IdeogramV3ReframeOutput;
             };
 
+            'fal-ai/ideogram/v3/layerize-text': {
+                input: falEndpoints.IdeogramV3LayerizeTextInput;
+                output: falEndpoints.IdeogramV3LayerizeTextOutput;
+            };
+
+            'fal-ai/ideogram/v3/generate-transparent': {
+                input: falEndpoints.IdeogramV3GenerateTransparentInput;
+                output: falEndpoints.IdeogramV3GenerateTransparentOutput;
+            };
+
             'fal-ai/ideogram/v3/edit': {
                 input: falEndpoints.IdeogramV3EditInput;
                 output: falEndpoints.IdeogramV3EditOutput;
@@ -4222,11 +4247,6 @@ declare global {
             'fal-ai/hunyuan3d-v3/image-to-3d': {
                 input: falEndpoints.Hunyuan3dV3ImageTo3dInput;
                 output: falEndpoints.Hunyuan3dV3ImageTo3dOutput;
-            };
-
-            'fal-ai/hunyuan3d-v21': {
-                input: falEndpoints.Hunyuan3dV21Input;
-                output: falEndpoints.Hunyuan3dV21Output;
             };
 
             'fal-ai/hunyuan-video/video-to-video': {
@@ -6170,8 +6190,8 @@ declare global {
             };
 
             'bria/text-to-image/3.2': {
-                input: falEndpoints.BriaTextToImage32Input;
-                output: falEndpoints.BriaTextToImage32Output;
+                input: { [x in string]: any };
+                output: { [x in string]: any };
             };
 
             'bria/replace-background': {
