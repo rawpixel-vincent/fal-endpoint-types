@@ -824,6 +824,11 @@ declare global {
                 output: falEndpoints.ViduQ3TextToVideoOutput;
             };
 
+            'fal-ai/vidu/q3/reference-to-video/mix': {
+                input: falEndpoints.ViduQ3ReferenceToVideoMixInput;
+                output: falEndpoints.ViduQ3ReferenceToVideoMixOutput;
+            };
+
             'fal-ai/vidu/q3/image-to-video/turbo': {
                 input: falEndpoints.ViduQ3ImageToVideoTurboInput;
                 output: falEndpoints.ViduQ3ImageToVideoTurboOutput;

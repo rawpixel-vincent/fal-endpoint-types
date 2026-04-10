@@ -3363,6 +3363,29 @@ export interface LoudnessNormalizationSetting {
     target_range?: number;
 }
 
+export interface LoraWeight_6 {
+    /**
+     * Force
+     * @description If set to true, the embedding will be forced to be used.
+     * @default false
+     */
+    force?: boolean;
+    /**
+     * Path
+     * @description URL or path to a LoRA safetensors file. Or HF model name that resolves to safetensors weights.
+     * @example https://civitai.com/api/download/models/135931
+     * @example https://filebin.net/3chfqasxpqu21y8n/my-custom-lora-v1.safetensors
+     */
+    path: string;
+    /**
+     * Scale
+     * @description The scale of the LoRA weight. This is used to scale the LoRA weight
+     *                 before merging it with the base model.
+     * @default 1
+     */
+    scale?: number;
+}
+
 export interface LoraWeight_5 {
     /**
      * Path
