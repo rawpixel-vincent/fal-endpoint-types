@@ -2154,6 +2154,26 @@ declare global {
                 output: falEndpoints.PixverseExtendOutput;
             };
 
+            'fal-ai/pixverse/c1/transition': {
+                input: falEndpoints.PixverseC1TransitionInput;
+                output: falEndpoints.PixverseC1TransitionOutput;
+            };
+
+            'fal-ai/pixverse/c1/text-to-video': {
+                input: falEndpoints.PixverseC1TextToVideoInput;
+                output: falEndpoints.PixverseC1TextToVideoOutput;
+            };
+
+            'fal-ai/pixverse/c1/reference-to-video': {
+                input: falEndpoints.PixverseC1ReferenceToVideoInput;
+                output: falEndpoints.PixverseC1ReferenceToVideoOutput;
+            };
+
+            'fal-ai/pixverse/c1/image-to-video': {
+                input: falEndpoints.PixverseC1ImageToVideoInput;
+                output: falEndpoints.PixverseC1ImageToVideoOutput;
+            };
+
             'fal-ai/pixart-sigma': {
                 input: falEndpoints.PixartSigmaInput;
                 output: falEndpoints.PixartSigmaOutput;
@@ -2252,6 +2272,21 @@ declare global {
             'fal-ai/personaplex': {
                 input: falEndpoints.PersonaplexInput;
                 output: falEndpoints.PersonaplexOutput;
+            };
+
+            'fal-ai/patina/material/extract': {
+                input: { [x in string]: any };
+                output: { [x in string]: any };
+            };
+
+            'fal-ai/patina/material': {
+                input: { [x in string]: any };
+                output: { [x in string]: any };
+            };
+
+            'fal-ai/patina': {
+                input: falEndpoints.PatinaInput;
+                output: falEndpoints.PatinaOutput;
             };
 
             'fal-ai/pasd': {
@@ -2647,6 +2682,16 @@ declare global {
             'fal-ai/minimax/hailuo-02-fast/image-to-video': {
                 input: falEndpoints.MinimaxHailuo02FastImageToVideoInput;
                 output: falEndpoints.MinimaxHailuo02FastImageToVideoOutput;
+            };
+
+            'fal-ai/minimax-music/v2.6': {
+                input: falEndpoints.MinimaxMusicV26Input;
+                output: falEndpoints.MinimaxMusicV26Output;
+            };
+
+            'fal-ai/minimax-music/v2.5': {
+                input: falEndpoints.MinimaxMusicV25Input;
+                output: falEndpoints.MinimaxMusicV25Output;
             };
 
             'fal-ai/minimax-music/v2': {

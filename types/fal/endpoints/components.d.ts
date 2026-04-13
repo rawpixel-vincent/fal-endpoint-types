@@ -1777,6 +1777,7 @@ export interface UsageInfo {
     completion_tokens?: number;
     cost: number;
     prompt_tokens?: number;
+    prompt_tokens_details?: PromptTokensDetails;
     /**
      * Total Tokens
      * @default 0
@@ -2661,6 +2662,19 @@ export interface PronunciationDict {
     tone_list?: string[];
 }
 
+export interface PromptTokensDetails {
+    /**
+     * Cache Write Tokens
+     * @default 0
+     */
+    cache_write_tokens?: number;
+    /**
+     * Cached Tokens
+     * @default 0
+     */
+    cached_tokens?: number;
+}
+
 export interface PromptObject_1 {
     /**
      * Action
@@ -3283,6 +3297,48 @@ export interface MaskMetadata {
     score?: number;
 }
 
+export interface MapImageFile {
+    /**
+     * Content Type
+     * @description The mime type of the file.
+     * @example image/png
+     */
+    content_type?: string;
+    /**
+     * File Name
+     * @description The name of the file. It will be auto-generated if not provided.
+     * @example z9RV14K95DvU.png
+     */
+    file_name?: string;
+    /**
+     * File Size
+     * @description The size of the file in bytes.
+     * @example 4404019
+     */
+    file_size?: number;
+    /**
+     * Height
+     * @description The height of the image
+     */
+    height?: number;
+    /**
+     * Map Type
+     * @description Which PBR map this image represents.
+     * @enum {string}
+     */
+    map_type: 'basecolor' | 'normal' | 'roughness' | 'metalness' | 'height';
+    /**
+     * Url
+     * @description The URL where the file can be downloaded from.
+     */
+    url: string;
+    /**
+     * Width
+     * @description The width of the image
+     */
+    width?: number;
+}
+
 export interface LoudnormSummary {
     /**
      * Input Integrated
@@ -3900,6 +3956,30 @@ export interface ImageSize {
      * @default 512
      */
     width?: number;
+}
+
+export interface ImageReference {
+    /**
+     * Image Url
+     * @description URL of the reference image
+     * @example https://v3.fal.media/files/zebra/qL93Je8ezvzQgDOEzTjKF_KhGKZTEebZcDw6T5rwQPK_output.png
+     */
+    image_url: string;
+    /**
+     * Ref Name
+     * @description A short name for this reference. Use @ref_name in the prompt to refer to this image.
+     * @example character
+     * @example dog
+     * @example room
+     */
+    ref_name: string;
+    /**
+     * Type
+     * @description Type of reference: 'subject' for character/object references, 'background' for scene/environment references
+     * @default subject
+     * @enum {string}
+     */
+    type?: 'subject' | 'background';
 }
 
 export interface ImagePrompt {
@@ -6505,6 +6585,30 @@ export interface AudioTimeSpan {
      * @example 2
      */
     start: number;
+}
+
+export interface AudioSetting25 {
+    /**
+     * Bitrate
+     * @description Bitrate of generated audio
+     * @default 256000
+     * @enum {integer}
+     */
+    bitrate?: 32000 | 64000 | 128000 | 256000;
+    /**
+     * Format
+     * @description Audio format
+     * @default mp3
+     * @enum {string}
+     */
+    format?: 'mp3' | 'wav' | 'pcm';
+    /**
+     * Sample Rate
+     * @description Sample rate of generated audio
+     * @default 44100
+     * @enum {integer}
+     */
+    sample_rate?: 16000 | 24000 | 32000 | 44100;
 }
 
 export interface AudioSetting_1 {
