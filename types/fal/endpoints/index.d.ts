@@ -2899,6 +2899,16 @@ declare global {
                 output: falEndpoints.Ltxv13b098DistilledOutput;
             };
 
+            'fal-ai/ltx23-video-trainer': {
+                input: falEndpoints.Ltx23VideoTrainerInput;
+                output: falEndpoints.Ltx23VideoTrainerOutput;
+            };
+
+            'fal-ai/ltx23-v2v-trainer': {
+                input: falEndpoints.Ltx23V2vTrainerInput;
+                output: falEndpoints.Ltx23V2vTrainerOutput;
+            };
+
             'fal-ai/ltx2-video-trainer': {
                 input: falEndpoints.Ltx2VideoTrainerInput;
                 output: falEndpoints.Ltx2VideoTrainerOutput;
@@ -3057,6 +3067,116 @@ declare global {
             'fal-ai/ltx-2.3/audio-to-video': {
                 input: falEndpoints.Ltx23AudioToVideoInput;
                 output: falEndpoints.Ltx23AudioToVideoOutput;
+            };
+
+            'fal-ai/ltx-2.3-22b/video-to-video/lora': {
+                input: falEndpoints.Ltx2322bVideoToVideoLoraInput;
+                output: falEndpoints.Ltx2322bVideoToVideoLoraOutput;
+            };
+
+            'fal-ai/ltx-2.3-22b/video-to-video': {
+                input: falEndpoints.Ltx2322bVideoToVideoInput;
+                output: falEndpoints.Ltx2322bVideoToVideoOutput;
+            };
+
+            'fal-ai/ltx-2.3-22b/text-to-video/lora': {
+                input: falEndpoints.Ltx2322bTextToVideoLoraInput;
+                output: falEndpoints.Ltx2322bTextToVideoLoraOutput;
+            };
+
+            'fal-ai/ltx-2.3-22b/text-to-video': {
+                input: falEndpoints.Ltx2322bTextToVideoInput;
+                output: falEndpoints.Ltx2322bTextToVideoOutput;
+            };
+
+            'fal-ai/ltx-2.3-22b/reference-video-to-video/lora': {
+                input: falEndpoints.Ltx2322bReferenceVideoToVideoLoraInput;
+                output: falEndpoints.Ltx2322bReferenceVideoToVideoLoraOutput;
+            };
+
+            'fal-ai/ltx-2.3-22b/reference-video-to-video': {
+                input: falEndpoints.Ltx2322bReferenceVideoToVideoInput;
+                output: falEndpoints.Ltx2322bReferenceVideoToVideoOutput;
+            };
+
+            'fal-ai/ltx-2.3-22b/image-to-video/lora': {
+                input: falEndpoints.Ltx2322bImageToVideoLoraInput;
+                output: falEndpoints.Ltx2322bImageToVideoLoraOutput;
+            };
+
+            'fal-ai/ltx-2.3-22b/image-to-video': {
+                input: falEndpoints.Ltx2322bImageToVideoInput;
+                output: falEndpoints.Ltx2322bImageToVideoOutput;
+            };
+
+            'fal-ai/ltx-2.3-22b/extend-video/lora': {
+                input: falEndpoints.Ltx2322bExtendVideoLoraInput;
+                output: falEndpoints.Ltx2322bExtendVideoLoraOutput;
+            };
+
+            'fal-ai/ltx-2.3-22b/extend-video': {
+                input: falEndpoints.Ltx2322bExtendVideoInput;
+                output: falEndpoints.Ltx2322bExtendVideoOutput;
+            };
+
+            'fal-ai/ltx-2.3-22b/distilled/video-to-video/lora': {
+                input: falEndpoints.Ltx2322bDistilledVideoToVideoLoraInput;
+                output: falEndpoints.Ltx2322bDistilledVideoToVideoLoraOutput;
+            };
+
+            'fal-ai/ltx-2.3-22b/distilled/video-to-video': {
+                input: falEndpoints.Ltx2322bDistilledVideoToVideoInput;
+                output: falEndpoints.Ltx2322bDistilledVideoToVideoOutput;
+            };
+
+            'fal-ai/ltx-2.3-22b/distilled/text-to-video/lora': {
+                input: falEndpoints.Ltx2322bDistilledTextToVideoLoraInput;
+                output: falEndpoints.Ltx2322bDistilledTextToVideoLoraOutput;
+            };
+
+            'fal-ai/ltx-2.3-22b/distilled/text-to-video': {
+                input: falEndpoints.Ltx2322bDistilledTextToVideoInput;
+                output: falEndpoints.Ltx2322bDistilledTextToVideoOutput;
+            };
+
+            'fal-ai/ltx-2.3-22b/distilled/reference-video-to-video/lora': {
+                input: falEndpoints.Ltx2322bDistilledReferenceVideoToVideoLoraInput;
+                output: falEndpoints.Ltx2322bDistilledReferenceVideoToVideoLoraOutput;
+            };
+
+            'fal-ai/ltx-2.3-22b/distilled/reference-video-to-video': {
+                input: falEndpoints.Ltx2322bDistilledReferenceVideoToVideoInput;
+                output: falEndpoints.Ltx2322bDistilledReferenceVideoToVideoOutput;
+            };
+
+            'fal-ai/ltx-2.3-22b/distilled/image-to-video/lora': {
+                input: falEndpoints.Ltx2322bDistilledImageToVideoLoraInput;
+                output: falEndpoints.Ltx2322bDistilledImageToVideoLoraOutput;
+            };
+
+            'fal-ai/ltx-2.3-22b/distilled/image-to-video': {
+                input: falEndpoints.Ltx2322bDistilledImageToVideoInput;
+                output: falEndpoints.Ltx2322bDistilledImageToVideoOutput;
+            };
+
+            'fal-ai/ltx-2.3-22b/distilled/audio-to-video/lora': {
+                input: falEndpoints.Ltx2322bDistilledAudioToVideoLoraInput;
+                output: falEndpoints.Ltx2322bDistilledAudioToVideoLoraOutput;
+            };
+
+            'fal-ai/ltx-2.3-22b/distilled/audio-to-video': {
+                input: falEndpoints.Ltx2322bDistilledAudioToVideoInput;
+                output: falEndpoints.Ltx2322bDistilledAudioToVideoOutput;
+            };
+
+            'fal-ai/ltx-2.3-22b/audio-to-video/lora': {
+                input: falEndpoints.Ltx2322bAudioToVideoLoraInput;
+                output: falEndpoints.Ltx2322bAudioToVideoLoraOutput;
+            };
+
+            'fal-ai/ltx-2.3-22b/audio-to-video': {
+                input: falEndpoints.Ltx2322bAudioToVideoInput;
+                output: falEndpoints.Ltx2322bAudioToVideoOutput;
             };
 
             'fal-ai/ltx-2-19b/video-to-video/lora': {
@@ -5514,6 +5634,16 @@ declare global {
                 output: falEndpoints.EsrganOutput;
             };
 
+            'fal-ai/ernie-image/turbo': {
+                input: falEndpoints.ErnieImageTurboInput;
+                output: falEndpoints.ErnieImageTurboOutput;
+            };
+
+            'fal-ai/ernie-image': {
+                input: falEndpoints.ErnieImageInput;
+                output: falEndpoints.ErnieImageOutput;
+            };
+
             'fal-ai/era-3d': {
                 input: falEndpoints.Era3dInput;
                 output: falEndpoints.Era3dOutput;
@@ -6137,16 +6267,6 @@ declare global {
             'decart/lucy-edit/pro': {
                 input: falEndpoints.DecartLucyEditProInput;
                 output: falEndpoints.DecartLucyEditProOutput;
-            };
-
-            'decart/lucy-edit/fast': {
-                input: falEndpoints.DecartLucyEditFastInput;
-                output: falEndpoints.DecartLucyEditFastOutput;
-            };
-
-            'decart/lucy-edit/dev': {
-                input: falEndpoints.DecartLucyEditDevInput;
-                output: falEndpoints.DecartLucyEditDevOutput;
             };
 
             'clarityai/crystal-video-upscaler': {

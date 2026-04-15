@@ -1745,6 +1745,19 @@ export interface Validation {
     prompt: string;
 }
 
+export interface V2VValidation {
+    /**
+     * Prompt
+     * @description The prompt to use for validation.
+     */
+    prompt: string;
+    /**
+     * Reference Video Url
+     * @description URL to reference video for IC-LoRA validation. This is the input video that will be transformed.
+     */
+    reference_video_url: string;
+}
+
 export interface UsageInfo_1 {
     /**
      * Decode Time Ms
@@ -3611,6 +3624,20 @@ export interface LoRAInput_2 {
 export interface LoRAInput_1 {
     /**
      * Path
+     * @description URL, HuggingFace repo ID (owner/repo), or local path to LoRA weights.
+     */
+    path: string;
+    /**
+     * Scale
+     * @description Scale factor for LoRA application (0.0 to 4.0).
+     * @default 1
+     */
+    scale?: number;
+}
+
+export interface LoRAInput {
+    /**
+     * Path
      * @description URL, HuggingFace repo ID (owner/repo) to lora weights.
      */
     path: string;
@@ -3625,20 +3652,6 @@ export interface LoRAInput_1 {
      * @description Name of the LoRA weight. Only used if `path` is a HuggingFace repository, and is only required when the repository contains multiple LoRA weights.
      */
     weight_name?: string;
-}
-
-export interface LoRAInput {
-    /**
-     * Path
-     * @description URL, HuggingFace repo ID (owner/repo), or local path to LoRA weights.
-     */
-    path: string;
-    /**
-     * Scale
-     * @description Scale factor for LoRA application (0.0 to 4.0).
-     * @default 1
-     */
-    scale?: number;
 }
 
 export interface LightingDetails {
