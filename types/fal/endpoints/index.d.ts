@@ -134,6 +134,31 @@ declare global {
                 output: falEndpoints.Tripo3dTripoV25ImageTo3dOutput;
             };
 
+            'tripo3d/p1/text-to-3d': {
+                input: falEndpoints.Tripo3dP1TextTo3dInput;
+                output: falEndpoints.Tripo3dP1TextTo3dOutput;
+            };
+
+            'tripo3d/p1/image-to-3d': {
+                input: falEndpoints.Tripo3dP1ImageTo3dInput;
+                output: falEndpoints.Tripo3dP1ImageTo3dOutput;
+            };
+
+            'tripo3d/h3.1/text-to-3d': {
+                input: falEndpoints.Tripo3dH31TextTo3dInput;
+                output: falEndpoints.Tripo3dH31TextTo3dOutput;
+            };
+
+            'tripo3d/h3.1/multiview-to-3d': {
+                input: falEndpoints.Tripo3dH31MultiviewTo3dInput;
+                output: falEndpoints.Tripo3dH31MultiviewTo3dOutput;
+            };
+
+            'tripo3d/h3.1/image-to-3d': {
+                input: falEndpoints.Tripo3dH31ImageTo3dInput;
+                output: falEndpoints.Tripo3dH31ImageTo3dOutput;
+            };
+
             'sonauto/v2/text-to-music': {
                 input: falEndpoints.SonautoV2TextToMusicInput;
                 output: falEndpoints.SonautoV2TextToMusicOutput;
@@ -297,6 +322,11 @@ declare global {
             'mirelo-ai/sfx-v1.5/video-to-audio': {
                 input: falEndpoints.MireloaiSfxV15VideoToAudioInput;
                 output: falEndpoints.MireloaiSfxV15VideoToAudioOutput;
+            };
+
+            'imagineart/imagineart-2.0-preview/text-to-image': {
+                input: falEndpoints.ImagineartImagineart20PreviewTextToImageInput;
+                output: falEndpoints.ImagineartImagineart20PreviewTextToImageOutput;
             };
 
             'imagineart/imagineart-1.5-pro-preview/text-to-image': {
@@ -792,6 +822,11 @@ declare global {
             'fal-ai/wan-22-image-trainer': {
                 input: falEndpoints.Wan22ImageTrainerInput;
                 output: falEndpoints.Wan22ImageTrainerOutput;
+            };
+
+            'fal-ai/void-video-inpainting': {
+                input: falEndpoints.VoidVideoInpaintingInput;
+                output: falEndpoints.VoidVideoInpaintingOutput;
             };
 
             'fal-ai/vidu/template-to-video': {
@@ -2377,6 +2412,11 @@ declare global {
             'fal-ai/object-removal': {
                 input: falEndpoints.ObjectRemovalInput;
                 output: falEndpoints.ObjectRemovalOutput;
+            };
+
+            'fal-ai/nucleus-image': {
+                input: falEndpoints.NucleusImageInput;
+                output: falEndpoints.NucleusImageOutput;
             };
 
             'fal-ai/nova-sr': {
@@ -4584,6 +4624,21 @@ declare global {
                 output: falEndpoints.HidreamE11Output;
             };
 
+            'fal-ai/heygen/v3/video-agent': {
+                input: falEndpoints.HeygenV3VideoAgentInput;
+                output: falEndpoints.HeygenV3VideoAgentOutput;
+            };
+
+            'fal-ai/heygen/v3/lipsync/speed': {
+                input: falEndpoints.HeygenV3LipsyncSpeedInput;
+                output: falEndpoints.HeygenV3LipsyncSpeedOutput;
+            };
+
+            'fal-ai/heygen/v3/lipsync/precision': {
+                input: falEndpoints.HeygenV3LipsyncPrecisionInput;
+                output: falEndpoints.HeygenV3LipsyncPrecisionOutput;
+            };
+
             'fal-ai/heygen/v2/video-agent': {
                 input: falEndpoints.HeygenV2VideoAgentInput;
                 output: falEndpoints.HeygenV2VideoAgentOutput;
@@ -4692,6 +4747,11 @@ declare global {
             'fal-ai/gemini-flash-edit': {
                 input: falEndpoints.GeminiFlashEditInput;
                 output: falEndpoints.GeminiFlashEditOutput;
+            };
+
+            'fal-ai/gemini-3.1-flash-tts': {
+                input: falEndpoints.Gemini31FlashTtsInput;
+                output: falEndpoints.Gemini31FlashTtsOutput;
             };
 
             'fal-ai/gemini-3.1-flash-image-preview/edit': {
@@ -5637,6 +5697,21 @@ declare global {
             'fal-ai/ernie-image/turbo': {
                 input: falEndpoints.ErnieImageTurboInput;
                 output: falEndpoints.ErnieImageTurboOutput;
+            };
+
+            'fal-ai/ernie-image/lora/turbo': {
+                input: falEndpoints.ErnieImageLoraTurboInput;
+                output: falEndpoints.ErnieImageLoraTurboOutput;
+            };
+
+            'fal-ai/ernie-image/lora': {
+                input: falEndpoints.ErnieImageLoraInput;
+                output: falEndpoints.ErnieImageLoraOutput;
+            };
+
+            'fal-ai/ernie-image-trainer': {
+                input: falEndpoints.ErnieImageTrainerInput;
+                output: falEndpoints.ErnieImageTrainerOutput;
             };
 
             'fal-ai/ernie-image': {

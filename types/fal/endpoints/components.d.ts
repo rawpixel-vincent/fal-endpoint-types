@@ -3267,11 +3267,17 @@ export interface MoondreamInputParam {
     prompt?: string;
 }
 
-export interface ModelUrls_2 {
+export interface ModelUrls_3 {
     fbx?: File;
     glb?: File;
     obj?: File;
     usdz?: File;
+}
+
+export interface ModelUrls_2 {
+    base_model?: File;
+    glb?: File;
+    pbr_model?: File;
 }
 
 export interface ModelUrls_1 {
