@@ -3669,16 +3669,6 @@ declare global {
                 output: falEndpoints.KlingVideoV1StandardAiAvatarOutput;
             };
 
-            'fal-ai/kling-video/v1/pro/text-to-video': {
-                input: { [x in string]: any };
-                output: { [x in string]: any };
-            };
-
-            'fal-ai/kling-video/v1/pro/image-to-video': {
-                input: { [x in string]: any };
-                output: { [x in string]: any };
-            };
-
             'fal-ai/kling-video/v1/pro/ai-avatar': {
                 input: falEndpoints.KlingVideoV1ProAiAvatarInput;
                 output: falEndpoints.KlingVideoV1ProAiAvatarOutput;

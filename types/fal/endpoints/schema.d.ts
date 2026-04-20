@@ -2765,35 +2765,6 @@ export interface SharedType_eb2 {
     video: Components.File;
 }
 
-export interface SharedType_ea7 {
-    /**
-     * Prompt
-     * @description The prompt used for the generation.
-     * @example black-and-white video, a cowboy walks through a dusty town, film grain
-     */
-    prompt: string;
-    /**
-     * Seed
-     * @description The seed used for the random number generator.
-     * @example 1490631192028410600
-     */
-    seed: number;
-    /**
-     * @description The generated video.
-     * @example {
-     *       "duration": 6.44,
-     *       "width": 1248,
-     *       "file_name": "GHF1uJnBb0iuYWQDuZrzG_WAtgthsP.mp4",
-     *       "fps": 25,
-     *       "url": "https://v3b.fal.media/files/b/0a922b2c/GHF1uJnBb0iuYWQDuZrzG_WAtgthsP.mp4",
-     *       "height": 704,
-     *       "content_type": "video/mp4",
-     *       "num_frames": 161
-     *     }
-     */
-    video: Components.VideoFile;
-}
-
 export interface SharedType_ea1 {
     /**
      * @description The generated video.
@@ -5685,6 +5656,35 @@ export interface SharedType_acc {
     seed: number;
 }
 
+export interface SharedType_ac9 {
+    /**
+     * Prompt
+     * @description The prompt used for the generation.
+     * @example black-and-white video, a cowboy walks through a dusty town, film grain
+     */
+    prompt: string;
+    /**
+     * Seed
+     * @description The seed used for the random number generator.
+     * @example 1490631192028410600
+     */
+    seed: number;
+    /**
+     * @description The generated video.
+     * @example {
+     *       "height": 1056,
+     *       "content_type": "video/mp4",
+     *       "duration": 6.44,
+     *       "url": "https://v3b.fal.media/files/b/0a9640bb/vqhmP1B5juujIXfBPTotm_5MBoh7yS.mp4",
+     *       "width": 1888,
+     *       "fps": 25,
+     *       "num_frames": 161,
+     *       "file_name": "vqhmP1B5juujIXfBPTotm_5MBoh7yS.mp4"
+     *     }
+     */
+    video: Components.VideoFile;
+}
+
 export interface SharedType_ab0 {
     /**
      * Aspect Ratio
@@ -6122,35 +6122,6 @@ export interface SharedType_9f4 {
     reference_text?: string;
 }
 
-export interface SharedType_9ec {
-    /**
-     * Prompt
-     * @description The prompt used for the generation.
-     * @example A woman stands still amid a busy neon-lit street at night. The camera slowly dollies in toward her face as people blur past, their motion emphasizing her calm presence. City lights flicker and reflections shift across her denim jacket.
-     */
-    prompt: string;
-    /**
-     * Seed
-     * @description The seed used for the random number generator.
-     * @example 2078003885
-     */
-    seed: number;
-    /**
-     * @description The generated video.
-     * @example {
-     *       "duration": 6.44,
-     *       "width": 1248,
-     *       "file_name": "CJcQGDrxOSRg2YFl5GNDt_glXPMoji.mp4",
-     *       "fps": 25,
-     *       "url": "https://v3b.fal.media/files/b/0a894013/N9lnMTq7W3uMC0lOQg845_BknRPV8I.mp4",
-     *       "height": 704,
-     *       "content_type": "video/mp4",
-     *       "num_frames": 161
-     *     }
-     */
-    video: Components.VideoFile;
-}
-
 export interface SharedType_9e4 {
     /**
      * @description The edited image with content erased
@@ -6164,35 +6135,6 @@ export interface SharedType_9e4 {
      * @description Seed used for generation
      */
     used_seed: number;
-}
-
-export interface SharedType_9dd {
-    /**
-     * Prompt
-     * @description The prompt used for the generation.
-     * @example black-and-white video, a cowboy walks through a dusty town, film grain
-     */
-    prompt: string;
-    /**
-     * Seed
-     * @description The seed used for the random number generator.
-     * @example 1490631192028410600
-     */
-    seed: number;
-    /**
-     * @description The generated video.
-     * @example {
-     *       "duration": 6.44,
-     *       "width": 1888,
-     *       "file_name": "vqhmP1B5juujIXfBPTotm_5MBoh7yS.mp4",
-     *       "fps": 25,
-     *       "url": "https://v3b.fal.media/files/b/0a9640bb/vqhmP1B5juujIXfBPTotm_5MBoh7yS.mp4",
-     *       "height": 1056,
-     *       "content_type": "video/mp4",
-     *       "num_frames": 161
-     *     }
-     */
-    video: Components.VideoFile;
 }
 
 export interface SharedType_9db {
@@ -8863,41 +8805,6 @@ export interface SharedType_709 {
     video_url: string;
 }
 
-export interface SharedType_6f3 {
-    /**
-     * Has Nsfw Concepts
-     * @description Whether the generated images contain NSFW concepts.
-     */
-    has_nsfw_concepts: boolean[];
-    /**
-     * Images
-     * @description The generated images.
-     * @example [
-     *       {
-     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/flux_krea_t2i_output_1.jpg",
-     *         "content_type": "image/jpeg",
-     *         "height": 768,
-     *         "width": 1024
-     *       }
-     *     ]
-     */
-    images: Components.Image_1[];
-    /**
-     * Prompt
-     * @description The prompt used for generating the image.
-     */
-    prompt: string;
-    /**
-     * Seed
-     * @description Seed of the generated Image. It will be the same value of the one passed in the
-     *                 input or the randomly generated that was used in case none was passed.
-     */
-    seed: number;
-    timings: {
-        [key: string]: number;
-    };
-}
-
 export interface SharedType_6d0 {
     /**
      * @description The generated video.
@@ -9536,35 +9443,6 @@ export interface SharedType_63f {
     video_url: string;
 }
 
-export interface SharedType_63a {
-    /**
-     * Prompt
-     * @description The prompt used for the generation.
-     * @example Continue the scene naturally, maintaining the same style and motion.
-     */
-    prompt: string;
-    /**
-     * Seed
-     * @description The seed used for the random number generator.
-     * @example 866232447
-     */
-    seed: number;
-    /**
-     * @description The generated video.
-     * @example {
-     *       "duration": 10.28,
-     *       "width": 1248,
-     *       "file_name": "CJcQGDrxOSRg2YFl5GNDt_glXPMoji.mp4",
-     *       "fps": 25,
-     *       "url": "https://v3b.fal.media/files/b/0a88289e/CJcQGDrxOSRg2YFl5GNDt_glXPMoji.mp4",
-     *       "height": 704,
-     *       "content_type": "video/mp4",
-     *       "num_frames": 257
-     *     }
-     */
-    video: Components.VideoFile;
-}
-
 export interface SharedType_636 {
     /**
      * Description
@@ -9596,6 +9474,35 @@ export interface SharedType_618 {
      * @description Generated video
      */
     video: Components.File;
+}
+
+export interface SharedType_617 {
+    /**
+     * Prompt
+     * @description The prompt used for the generation.
+     * @example Continue the scene naturally, maintaining the same style and motion.
+     */
+    prompt: string;
+    /**
+     * Seed
+     * @description The seed used for the random number generator.
+     * @example 866232447
+     */
+    seed: number;
+    /**
+     * @description The generated video.
+     * @example {
+     *       "height": 704,
+     *       "content_type": "video/mp4",
+     *       "duration": 10.28,
+     *       "url": "https://v3b.fal.media/files/b/0a88289e/CJcQGDrxOSRg2YFl5GNDt_glXPMoji.mp4",
+     *       "width": 1248,
+     *       "fps": 25,
+     *       "num_frames": 257,
+     *       "file_name": "CJcQGDrxOSRg2YFl5GNDt_glXPMoji.mp4"
+     *     }
+     */
+    video: Components.VideoFile;
 }
 
 export interface SharedType_5f3 {
@@ -10848,6 +10755,35 @@ export interface SharedType_4fd {
      * @example Take @Image1 as the start frame. Start with a high-angle satellite view of the ancient greenhouse ruin surrounded by nature. The camera swoops down and flies inside the building, revealing the character from @Element1 standing in the sun-drenched center. The camera then seamlessly transitions into a smooth 180-degree orbit around the character, moving to the back view. As the open backpack comes into focus, the camera continues to push forward, zooming deep inside the bag to reveal the glowing stone from @Element2 nestled inside. Cinematic lighting, hopeful atmosphere, 35mm lens. Make sure to keep it as the style of @Image2.
      */
     prompt: string;
+}
+
+export interface SharedType_4f1 {
+    /**
+     * Prompt
+     * @description The prompt used for the generation.
+     * @example A cowboy walking through a dusty town at high noon, camera following from behind, cinematic depth, realistic lighting, western mood, 4K film grain.
+     */
+    prompt: string;
+    /**
+     * Seed
+     * @description The seed used for the random number generator.
+     * @example 149063119
+     */
+    seed: number;
+    /**
+     * @description The generated video.
+     * @example {
+     *       "height": 704,
+     *       "content_type": "video/mp4",
+     *       "duration": 6.44,
+     *       "url": "https://v3b.fal.media/files/b/0a8824b1/sdm0KfmenrlywesfzY1Y1_if6euPp1.mp4",
+     *       "width": 1248,
+     *       "fps": 25,
+     *       "num_frames": 161,
+     *       "file_name": "sdm0KfmenrlywesfzY1Y1_if6euPp1.mp4"
+     *     }
+     */
+    video: Components.VideoFile;
 }
 
 export interface SharedType_4ed {
@@ -12708,6 +12644,41 @@ export interface SharedType_27e {
     seed: number;
 }
 
+export interface SharedType_26e {
+    /**
+     * Has Nsfw Concepts
+     * @description Whether the generated images contain NSFW concepts.
+     */
+    has_nsfw_concepts: boolean[];
+    /**
+     * Images
+     * @description The generated images.
+     * @example [
+     *       {
+     *         "content_type": "image/jpeg",
+     *         "height": 768,
+     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/flux_krea_t2i_output_1.jpg",
+     *         "width": 1024
+     *       }
+     *     ]
+     */
+    images: Components.Image_1[];
+    /**
+     * Prompt
+     * @description The prompt used for generating the image.
+     */
+    prompt: string;
+    /**
+     * Seed
+     * @description Seed of the generated Image. It will be the same value of the one passed in the
+     *                 input or the randomly generated that was used in case none was passed.
+     */
+    seed: number;
+    timings: {
+        [key: string]: number;
+    };
+}
+
 export interface SharedType_266 {
     /**
      * Prompt
@@ -13731,35 +13702,6 @@ export interface SharedType_158 {
     };
 }
 
-export interface SharedType_152 {
-    /**
-     * Prompt
-     * @description The prompt used for the generation.
-     * @example A cowboy walking through a dusty town at high noon, camera following from behind, cinematic depth, realistic lighting, western mood, 4K film grain.
-     */
-    prompt: string;
-    /**
-     * Seed
-     * @description The seed used for the random number generator.
-     * @example 149063119
-     */
-    seed: number;
-    /**
-     * @description The generated video.
-     * @example {
-     *       "duration": 6.44,
-     *       "width": 1248,
-     *       "file_name": "sdm0KfmenrlywesfzY1Y1_if6euPp1.mp4",
-     *       "fps": 25,
-     *       "url": "https://v3b.fal.media/files/b/0a8824b1/sdm0KfmenrlywesfzY1Y1_if6euPp1.mp4",
-     *       "height": 704,
-     *       "content_type": "video/mp4",
-     *       "num_frames": 161
-     *     }
-     */
-    video: Components.VideoFile;
-}
-
 export interface SharedType_151 {
     /**
      * Images
@@ -13874,6 +13816,35 @@ export interface SharedType_0ff {
     speaker_embedding: Components.File;
 }
 
+export interface SharedType_0ef {
+    /**
+     * Prompt
+     * @description The prompt used for the generation.
+     * @example black-and-white video, a cowboy walks through a dusty town, film grain
+     */
+    prompt: string;
+    /**
+     * Seed
+     * @description The seed used for the random number generator.
+     * @example 1490631192028410600
+     */
+    seed: number;
+    /**
+     * @description The generated video.
+     * @example {
+     *       "height": 704,
+     *       "content_type": "video/mp4",
+     *       "duration": 6.44,
+     *       "url": "https://v3b.fal.media/files/b/0a922b2c/GHF1uJnBb0iuYWQDuZrzG_WAtgthsP.mp4",
+     *       "width": 1248,
+     *       "fps": 25,
+     *       "num_frames": 161,
+     *       "file_name": "GHF1uJnBb0iuYWQDuZrzG_WAtgthsP.mp4"
+     *     }
+     */
+    video: Components.VideoFile;
+}
+
 export interface SharedType_0dd {
     boundingbox_frames_zip?: Components.File;
     /**
@@ -13977,6 +13948,35 @@ export interface SharedType_0d8 {
      * @default false
      */
     sync_mode?: boolean;
+}
+
+export interface SharedType_0d4 {
+    /**
+     * Prompt
+     * @description The prompt used for the generation.
+     * @example A woman stands still amid a busy neon-lit street at night. The camera slowly dollies in toward her face as people blur past, their motion emphasizing her calm presence. City lights flicker and reflections shift across her denim jacket.
+     */
+    prompt: string;
+    /**
+     * Seed
+     * @description The seed used for the random number generator.
+     * @example 2078003885
+     */
+    seed: number;
+    /**
+     * @description The generated video.
+     * @example {
+     *       "height": 704,
+     *       "content_type": "video/mp4",
+     *       "duration": 6.44,
+     *       "url": "https://v3b.fal.media/files/b/0a894013/N9lnMTq7W3uMC0lOQg845_BknRPV8I.mp4",
+     *       "width": 1248,
+     *       "fps": 25,
+     *       "num_frames": 161,
+     *       "file_name": "CJcQGDrxOSRg2YFl5GNDt_glXPMoji.mp4"
+     *     }
+     */
+    video: Components.VideoFile;
 }
 
 export interface SharedType_0cd {
@@ -21245,8 +21245,8 @@ export interface WanVisionEnhancerOutput {
      * Timings
      * @description The timings of the different steps in the workflow.
      * @example {
-     *       "inference": 125.4,
-     *       "video_processing": 15.2
+     *       "video_processing": 15.2,
+     *       "inference": 125.4
      *     }
      */
     timings: {
@@ -38521,7 +38521,7 @@ export interface PhotaEnhanceInput {
      * @default jpeg
      * @enum {string}
      */
-    output_format?: 'jpeg' | 'png' | 'webp';
+    output_format?: 'jpeg' | 'png';
     /**
      * Profile Ids
      * @description List of profile IDs to use for the image enhancement. The profiles sent over will be used as candidates for identity preservation.
@@ -38558,12 +38558,12 @@ export interface PhotaEditInput {
     aspect_ratio?: 'auto' | '1:1' | '16:9' | '4:3' | '3:4' | '9:16';
     /**
      * Image URLs
-     * @description List of URLs/ Base64 data URIs of the images to edit. A maximum of 10 images are supported, additional images will be ignored.
+     * @description List of URLs/ Base64 data URIs of the images to edit. At least one image is required; for pure text-to-image generation use the `/` endpoint instead. A maximum of 10 images are supported, additional images will be ignored.
      * @example [
      *       "https://v3b.fal.media/files/b/0a8b911d/Abk8vStrvmSPlzUqI_NN3_image_043.png"
      *     ]
      */
-    image_urls?: string[];
+    image_urls: string[];
     /**
      * Number of Images
      * @description Number of images to generate.
@@ -38576,7 +38576,7 @@ export interface PhotaEditInput {
      * @default jpeg
      * @enum {string}
      */
-    output_format?: 'jpeg' | 'png' | 'webp';
+    output_format?: 'jpeg' | 'png';
     /**
      * Profile Ids
      * @description List of profile IDs to use for the image generation. Profiles may be tagged in the prompt as @Profile1, @Profile2, etc.
@@ -38652,7 +38652,7 @@ export interface PhotaInput {
      * @default jpeg
      * @enum {string}
      */
-    output_format?: 'jpeg' | 'png' | 'webp';
+    output_format?: 'jpeg' | 'png';
     /**
      * Prompt
      * @description Text description of the desired image. In case you wish to use specific profiles, refer to them as [[profile_id_1]], [[profile_id_2]], etc.
@@ -43021,7 +43021,7 @@ export interface MagiImageToVideoInput {
     /**
      * Prompt
      * @description The text prompt to guide video generation.
-     * @example A crisp, wintery mountain landscape unfolds as a snowboarder, equipped with a selfie pole, gracefully navigates a snow-covered slope, the camera perspective offering an exhilarating attached-third-person view of the descent;  the vibrant, snowy scenery sweeps past, punctuated by moments of controlled spins and effortless glides, creating a dynamic visual rhythm that complements the exhilarating pace of the ride;  as the snowboarder carves through pristine powder, the camera captures fleeting moments of breathtaking views—towering pines dusted with snow, sunlit peaks piercing a cerulean sky—a symphony of nature’s grandeur displayed for the viewer to share;  a sense of freedom and exhilaration permeates the scene, punctuated by the subtle whoosh of wind and the satisfying crunch of snow, culminating in a breathtaking panorama as the snowboarder reaches the bottom, leaving the viewer with a lingering sense of wonder and the desire to experience the thrill firsthand.
+     * @example A crisp, wintery mountain landscape unfolds as a snowboarder, equipped with a selfie pole, gracefully navigates a snow-covered slope, the camera perspective offering an exhilarating attached-third-person view of the descent;  the vibrant, snowy scenery sweeps past, punctuated by moments of controlled spins and effortless glides, creating a dynamic visual rhythm that complements the exhilarating pace of the ride;  as the snowboarder carves through pristine powder, the camera captures fleeting moments of breathtaking views—towering pines dusted with snow, sunlit peaks piercing a cerulean sky—a symphony of nature's grandeur displayed for the viewer to share;  a sense of freedom and exhilaration permeates the scene, punctuated by the subtle whoosh of wind and the satisfying crunch of snow, culminating in a breathtaking panorama as the snowboarder reaches the bottom, leaving the viewer with a lingering sense of wonder and the desire to experience the thrill firsthand.
      */
     prompt: string;
     /**
@@ -43780,14 +43780,14 @@ export interface Ltxv13b098DistilledMulticonditioningInput {
      * @default []
      * @example [
      *       {
-     *         "strength": 1,
      *         "start_frame_num": 0,
-     *         "image_url": "https://storage.googleapis.com/falserverless/model_tests/ltx/NswO1P8sCLzrh1WefqQFK_9a6bdbfa54b944c9a770338159a113fd.jpg"
+     *         "image_url": "https://storage.googleapis.com/falserverless/model_tests/ltx/NswO1P8sCLzrh1WefqQFK_9a6bdbfa54b944c9a770338159a113fd.jpg",
+     *         "strength": 1
      *       },
      *       {
-     *         "strength": 1,
      *         "start_frame_num": 120,
-     *         "image_url": "https://storage.googleapis.com/falserverless/model_tests/ltx/YAPOGvmS2tM_Krdp7q6-d_267c97e017c34f679844a4477dfcec38.jpg"
+     *         "image_url": "https://storage.googleapis.com/falserverless/model_tests/ltx/YAPOGvmS2tM_Krdp7q6-d_267c97e017c34f679844a4477dfcec38.jpg",
+     *         "strength": 1
      *       }
      *     ]
      */
@@ -44006,16 +44006,16 @@ export interface Ltxv13b098DistilledExtendInput {
     /**
      * @description Video to be extended.
      * @example {
-     *       "strength": 1,
-     *       "video_url": "https://storage.googleapis.com/falserverless/web-examples/wan/t2v.mp4",
-     *       "resample_fps": false,
      *       "preprocess": false,
      *       "conditioning_type": "rgb",
-     *       "target_fps": 24,
-     *       "limit_num_frames": false,
-     *       "start_frame_num": 0,
      *       "max_num_frames": 1441,
-     *       "reverse_video": false
+     *       "target_fps": 24,
+     *       "video_url": "https://storage.googleapis.com/falserverless/web-examples/wan/t2v.mp4",
+     *       "reverse_video": false,
+     *       "resample_fps": false,
+     *       "start_frame_num": 0,
+     *       "limit_num_frames": false,
+     *       "strength": 1
      *     }
      */
     video: Components.ExtendVideoConditioningInput;
@@ -46389,8 +46389,8 @@ export interface Ltx2322bVideoToVideoLoraInput {
     /**
      * Acceleration
      * @description The acceleration level to use.
-     * @default none
-     * @example none
+     * @default regular
+     * @example regular
      * @enum {string}
      */
     acceleration?: 'none' | 'regular' | 'high' | 'full';
@@ -46485,7 +46485,7 @@ export interface Ltx2322bVideoToVideoLoraInput {
     /**
      * Gradient Estimation Gamma
      * @description The gamma of gradient estimation during denoising. Set to 0 to disable.
-     * @default 0
+     * @default 2
      */
     gradient_estimation_gamma?: number;
     /**
@@ -46520,7 +46520,7 @@ export interface Ltx2322bVideoToVideoLoraInput {
     /**
      * Number of Inference Steps
      * @description The number of inference steps to use.
-     * @default 15
+     * @default 40
      */
     num_inference_steps?: number;
     /**
@@ -46532,8 +46532,8 @@ export interface Ltx2322bVideoToVideoLoraInput {
     /**
      * Scheduler
      * @description The scheduler to use.
-     * @default beta
-     * @example beta
+     * @default ltx2
+     * @example ltx2
      * @enum {string}
      */
     scheduler?: 'ltx2' | 'linear_quadratic' | 'beta';
@@ -46557,7 +46557,7 @@ export interface Ltx2322bVideoToVideoLoraInput {
     /**
      * Use Restart Sampling
      * @description Whether to use restart sampling. This will inject a small amount of noise during each denoising step, which can help improve the quality of the generated video.
-     * @default true
+     * @default false
      */
     use_restart_sampling?: boolean;
     /**
@@ -46589,7 +46589,7 @@ export interface Ltx2322bVideoToVideoLoraInput {
     /**
      * Video Rescaling Scale
      * @description The rescaling scale for the video. Controls the ratio between classifier-free guidance and spatiotemporal guidance.
-     * @default 0.85
+     * @default 0.7
      */
     video_rescaling_scale?: number;
     /**
@@ -46611,7 +46611,7 @@ export interface Ltx2322bVideoToVideoLoraInput {
     /**
      * Video STG Scale
      * @description The Spatiotemporal Guidance (STG) scale for the video. Higher values result in more consistent and focused video content.
-     * @default 1
+     * @default 0
      */
     video_stg_scale?: number;
     /**
@@ -46635,14 +46635,14 @@ export interface Ltx2322bVideoToVideoLoraInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx2322bVideoToVideoLoraOutput extends SharedType_ea7 {}
+export interface Ltx2322bVideoToVideoLoraOutput extends SharedType_0ef {}
 
 export interface Ltx2322bVideoToVideoInput {
     /**
      * Acceleration
      * @description The acceleration level to use.
-     * @default none
-     * @example none
+     * @default regular
+     * @example regular
      * @enum {string}
      */
     acceleration?: 'none' | 'regular' | 'high' | 'full';
@@ -46737,7 +46737,7 @@ export interface Ltx2322bVideoToVideoInput {
     /**
      * Gradient Estimation Gamma
      * @description The gamma of gradient estimation during denoising. Set to 0 to disable.
-     * @default 0
+     * @default 2
      */
     gradient_estimation_gamma?: number;
     /**
@@ -46767,7 +46767,7 @@ export interface Ltx2322bVideoToVideoInput {
     /**
      * Number of Inference Steps
      * @description The number of inference steps to use.
-     * @default 15
+     * @default 40
      */
     num_inference_steps?: number;
     /**
@@ -46779,8 +46779,8 @@ export interface Ltx2322bVideoToVideoInput {
     /**
      * Scheduler
      * @description The scheduler to use.
-     * @default beta
-     * @example beta
+     * @default ltx2
+     * @example ltx2
      * @enum {string}
      */
     scheduler?: 'ltx2' | 'linear_quadratic' | 'beta';
@@ -46804,7 +46804,7 @@ export interface Ltx2322bVideoToVideoInput {
     /**
      * Use Restart Sampling
      * @description Whether to use restart sampling. This will inject a small amount of noise during each denoising step, which can help improve the quality of the generated video.
-     * @default true
+     * @default false
      */
     use_restart_sampling?: boolean;
     /**
@@ -46836,7 +46836,7 @@ export interface Ltx2322bVideoToVideoInput {
     /**
      * Video Rescaling Scale
      * @description The rescaling scale for the video. Controls the ratio between classifier-free guidance and spatiotemporal guidance.
-     * @default 0.85
+     * @default 0.7
      */
     video_rescaling_scale?: number;
     /**
@@ -46858,7 +46858,7 @@ export interface Ltx2322bVideoToVideoInput {
     /**
      * Video STG Scale
      * @description The Spatiotemporal Guidance (STG) scale for the video. Higher values result in more consistent and focused video content.
-     * @default 1
+     * @default 0
      */
     video_stg_scale?: number;
     /**
@@ -46882,14 +46882,14 @@ export interface Ltx2322bVideoToVideoInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx2322bVideoToVideoOutput extends SharedType_ea7 {}
+export interface Ltx2322bVideoToVideoOutput extends SharedType_0ef {}
 
 export interface Ltx2322bTextToVideoLoraInput {
     /**
      * Acceleration
      * @description The acceleration level to use.
-     * @default none
-     * @example none
+     * @default regular
+     * @example regular
      * @enum {string}
      */
     acceleration?: 'none' | 'regular' | 'high' | 'full';
@@ -46978,7 +46978,7 @@ export interface Ltx2322bTextToVideoLoraInput {
     /**
      * Gradient Estimation Gamma
      * @description The gamma of gradient estimation during denoising. Set to 0 to disable.
-     * @default 0
+     * @default 2
      */
     gradient_estimation_gamma?: number;
     /**
@@ -47001,7 +47001,7 @@ export interface Ltx2322bTextToVideoLoraInput {
     /**
      * Number of Inference Steps
      * @description The number of inference steps to use.
-     * @default 15
+     * @default 40
      */
     num_inference_steps?: number;
     /**
@@ -47013,8 +47013,8 @@ export interface Ltx2322bTextToVideoLoraInput {
     /**
      * Scheduler
      * @description The scheduler to use.
-     * @default beta
-     * @example beta
+     * @default ltx2
+     * @example ltx2
      * @enum {string}
      */
     scheduler?: 'ltx2' | 'linear_quadratic' | 'beta';
@@ -47038,7 +47038,7 @@ export interface Ltx2322bTextToVideoLoraInput {
     /**
      * Use Restart Sampling
      * @description Whether to use restart sampling. This will inject a small amount of noise during each denoising step, which can help improve the quality of the generated video.
-     * @default true
+     * @default false
      */
     use_restart_sampling?: boolean;
     /**
@@ -47070,7 +47070,7 @@ export interface Ltx2322bTextToVideoLoraInput {
     /**
      * Video Rescaling Scale
      * @description The rescaling scale for the video. Controls the ratio between classifier-free guidance and spatiotemporal guidance.
-     * @default 0.85
+     * @default 0.7
      */
     video_rescaling_scale?: number;
     /**
@@ -47091,7 +47091,7 @@ export interface Ltx2322bTextToVideoLoraInput {
     /**
      * Video STG Scale
      * @description The Spatiotemporal Guidance (STG) scale for the video. Higher values result in more consistent and focused video content.
-     * @default 1
+     * @default 0
      */
     video_stg_scale?: number;
     /**
@@ -47103,14 +47103,14 @@ export interface Ltx2322bTextToVideoLoraInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx2322bTextToVideoLoraOutput extends SharedType_152 {}
+export interface Ltx2322bTextToVideoLoraOutput extends SharedType_4f1 {}
 
 export interface Ltx2322bTextToVideoInput {
     /**
      * Acceleration
      * @description The acceleration level to use.
-     * @default none
-     * @example none
+     * @default regular
+     * @example regular
      * @enum {string}
      */
     acceleration?: 'none' | 'regular' | 'high' | 'full';
@@ -47199,7 +47199,7 @@ export interface Ltx2322bTextToVideoInput {
     /**
      * Gradient Estimation Gamma
      * @description The gamma of gradient estimation during denoising. Set to 0 to disable.
-     * @default 0
+     * @default 2
      */
     gradient_estimation_gamma?: number;
     /**
@@ -47217,7 +47217,7 @@ export interface Ltx2322bTextToVideoInput {
     /**
      * Number of Inference Steps
      * @description The number of inference steps to use.
-     * @default 15
+     * @default 40
      */
     num_inference_steps?: number;
     /**
@@ -47229,8 +47229,8 @@ export interface Ltx2322bTextToVideoInput {
     /**
      * Scheduler
      * @description The scheduler to use.
-     * @default beta
-     * @example beta
+     * @default ltx2
+     * @example ltx2
      * @enum {string}
      */
     scheduler?: 'ltx2' | 'linear_quadratic' | 'beta';
@@ -47254,7 +47254,7 @@ export interface Ltx2322bTextToVideoInput {
     /**
      * Use Restart Sampling
      * @description Whether to use restart sampling. This will inject a small amount of noise during each denoising step, which can help improve the quality of the generated video.
-     * @default true
+     * @default false
      */
     use_restart_sampling?: boolean;
     /**
@@ -47286,7 +47286,7 @@ export interface Ltx2322bTextToVideoInput {
     /**
      * Video Rescaling Scale
      * @description The rescaling scale for the video. Controls the ratio between classifier-free guidance and spatiotemporal guidance.
-     * @default 0.85
+     * @default 0.7
      */
     video_rescaling_scale?: number;
     /**
@@ -47307,7 +47307,7 @@ export interface Ltx2322bTextToVideoInput {
     /**
      * Video STG Scale
      * @description The Spatiotemporal Guidance (STG) scale for the video. Higher values result in more consistent and focused video content.
-     * @default 1
+     * @default 0
      */
     video_stg_scale?: number;
     /**
@@ -47319,14 +47319,14 @@ export interface Ltx2322bTextToVideoInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx2322bTextToVideoOutput extends SharedType_152 {}
+export interface Ltx2322bTextToVideoOutput extends SharedType_4f1 {}
 
 export interface Ltx2322bReferenceVideoToVideoLoraInput {
     /**
      * Acceleration
      * @description The acceleration level to use.
-     * @default none
-     * @example none
+     * @default regular
+     * @example regular
      * @enum {string}
      */
     acceleration?: 'none' | 'regular' | 'high' | 'full';
@@ -47431,7 +47431,7 @@ export interface Ltx2322bReferenceVideoToVideoLoraInput {
     /**
      * Gradient Estimation Gamma
      * @description The gamma of gradient estimation during denoising. Set to 0 to disable.
-     * @default 0
+     * @default 2
      */
     gradient_estimation_gamma?: number;
     /**
@@ -47479,7 +47479,7 @@ export interface Ltx2322bReferenceVideoToVideoLoraInput {
     /**
      * Number of Inference Steps
      * @description The number of inference steps to use.
-     * @default 15
+     * @default 40
      */
     num_inference_steps?: number;
     /**
@@ -47498,8 +47498,8 @@ export interface Ltx2322bReferenceVideoToVideoLoraInput {
     /**
      * Scheduler
      * @description The scheduler to use.
-     * @default beta
-     * @example beta
+     * @default ltx2
+     * @example ltx2
      * @enum {string}
      */
     scheduler?: 'ltx2' | 'linear_quadratic' | 'beta';
@@ -47523,7 +47523,7 @@ export interface Ltx2322bReferenceVideoToVideoLoraInput {
     /**
      * Use Restart Sampling
      * @description Whether to use restart sampling. This will inject a small amount of noise during each denoising step, which can help improve the quality of the generated video.
-     * @default true
+     * @default false
      */
     use_restart_sampling?: boolean;
     /**
@@ -47555,7 +47555,7 @@ export interface Ltx2322bReferenceVideoToVideoLoraInput {
     /**
      * Video Rescaling Scale
      * @description The rescaling scale for the video. Controls the ratio between classifier-free guidance and spatiotemporal guidance.
-     * @default 0.85
+     * @default 0.7
      */
     video_rescaling_scale?: number;
     /**
@@ -47577,7 +47577,7 @@ export interface Ltx2322bReferenceVideoToVideoLoraInput {
     /**
      * Video STG Scale
      * @description The Spatiotemporal Guidance (STG) scale for the video. Higher values result in more consistent and focused video content.
-     * @default 1
+     * @default 0
      */
     video_stg_scale?: number;
     /**
@@ -47601,14 +47601,14 @@ export interface Ltx2322bReferenceVideoToVideoLoraInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx2322bReferenceVideoToVideoLoraOutput extends SharedType_9dd {}
+export interface Ltx2322bReferenceVideoToVideoLoraOutput extends SharedType_ac9 {}
 
 export interface Ltx2322bReferenceVideoToVideoInput {
     /**
      * Acceleration
      * @description The acceleration level to use.
-     * @default none
-     * @example none
+     * @default regular
+     * @example regular
      * @enum {string}
      */
     acceleration?: 'none' | 'regular' | 'high' | 'full';
@@ -47713,7 +47713,7 @@ export interface Ltx2322bReferenceVideoToVideoInput {
     /**
      * Gradient Estimation Gamma
      * @description The gamma of gradient estimation during denoising. Set to 0 to disable.
-     * @default 0
+     * @default 2
      */
     gradient_estimation_gamma?: number;
     /**
@@ -47756,7 +47756,7 @@ export interface Ltx2322bReferenceVideoToVideoInput {
     /**
      * Number of Inference Steps
      * @description The number of inference steps to use.
-     * @default 15
+     * @default 40
      */
     num_inference_steps?: number;
     /**
@@ -47775,8 +47775,8 @@ export interface Ltx2322bReferenceVideoToVideoInput {
     /**
      * Scheduler
      * @description The scheduler to use.
-     * @default beta
-     * @example beta
+     * @default ltx2
+     * @example ltx2
      * @enum {string}
      */
     scheduler?: 'ltx2' | 'linear_quadratic' | 'beta';
@@ -47800,7 +47800,7 @@ export interface Ltx2322bReferenceVideoToVideoInput {
     /**
      * Use Restart Sampling
      * @description Whether to use restart sampling. This will inject a small amount of noise during each denoising step, which can help improve the quality of the generated video.
-     * @default true
+     * @default false
      */
     use_restart_sampling?: boolean;
     /**
@@ -47832,7 +47832,7 @@ export interface Ltx2322bReferenceVideoToVideoInput {
     /**
      * Video Rescaling Scale
      * @description The rescaling scale for the video. Controls the ratio between classifier-free guidance and spatiotemporal guidance.
-     * @default 0.85
+     * @default 0.7
      */
     video_rescaling_scale?: number;
     /**
@@ -47854,7 +47854,7 @@ export interface Ltx2322bReferenceVideoToVideoInput {
     /**
      * Video STG Scale
      * @description The Spatiotemporal Guidance (STG) scale for the video. Higher values result in more consistent and focused video content.
-     * @default 1
+     * @default 0
      */
     video_stg_scale?: number;
     /**
@@ -47878,14 +47878,14 @@ export interface Ltx2322bReferenceVideoToVideoInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx2322bReferenceVideoToVideoOutput extends SharedType_9dd {}
+export interface Ltx2322bReferenceVideoToVideoOutput extends SharedType_ac9 {}
 
 export interface Ltx2322bImageToVideoLoraInput {
     /**
      * Acceleration
      * @description The acceleration level to use.
-     * @default none
-     * @example none
+     * @default regular
+     * @example regular
      * @enum {string}
      */
     acceleration?: 'none' | 'regular' | 'high' | 'full';
@@ -47985,7 +47985,7 @@ export interface Ltx2322bImageToVideoLoraInput {
     /**
      * Gradient Estimation Gamma
      * @description The gamma of gradient estimation during denoising. Set to 0 to disable.
-     * @default 0
+     * @default 2
      */
     gradient_estimation_gamma?: number;
     /**
@@ -48027,7 +48027,7 @@ export interface Ltx2322bImageToVideoLoraInput {
     /**
      * Number of Inference Steps
      * @description The number of inference steps to use.
-     * @default 15
+     * @default 40
      */
     num_inference_steps?: number;
     /**
@@ -48039,8 +48039,8 @@ export interface Ltx2322bImageToVideoLoraInput {
     /**
      * Scheduler
      * @description The scheduler to use.
-     * @default beta
-     * @example beta
+     * @default ltx2
+     * @example ltx2
      * @enum {string}
      */
     scheduler?: 'ltx2' | 'linear_quadratic' | 'beta';
@@ -48064,7 +48064,7 @@ export interface Ltx2322bImageToVideoLoraInput {
     /**
      * Use Restart Sampling
      * @description Whether to use restart sampling. This will inject a small amount of noise during each denoising step, which can help improve the quality of the generated video.
-     * @default true
+     * @default false
      */
     use_restart_sampling?: boolean;
     /**
@@ -48096,7 +48096,7 @@ export interface Ltx2322bImageToVideoLoraInput {
     /**
      * Video Rescaling Scale
      * @description The rescaling scale for the video. Controls the ratio between classifier-free guidance and spatiotemporal guidance.
-     * @default 0.85
+     * @default 0.7
      */
     video_rescaling_scale?: number;
     /**
@@ -48118,7 +48118,7 @@ export interface Ltx2322bImageToVideoLoraInput {
     /**
      * Video STG Scale
      * @description The Spatiotemporal Guidance (STG) scale for the video. Higher values result in more consistent and focused video content.
-     * @default 1
+     * @default 0
      */
     video_stg_scale?: number;
     /**
@@ -48130,14 +48130,14 @@ export interface Ltx2322bImageToVideoLoraInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx2322bImageToVideoLoraOutput extends SharedType_63a {}
+export interface Ltx2322bImageToVideoLoraOutput extends SharedType_617 {}
 
 export interface Ltx2322bImageToVideoInput {
     /**
      * Acceleration
      * @description The acceleration level to use.
-     * @default none
-     * @example none
+     * @default regular
+     * @example regular
      * @enum {string}
      */
     acceleration?: 'none' | 'regular' | 'high' | 'full';
@@ -48237,7 +48237,7 @@ export interface Ltx2322bImageToVideoInput {
     /**
      * Gradient Estimation Gamma
      * @description The gamma of gradient estimation during denoising. Set to 0 to disable.
-     * @default 0
+     * @default 2
      */
     gradient_estimation_gamma?: number;
     /**
@@ -48274,7 +48274,7 @@ export interface Ltx2322bImageToVideoInput {
     /**
      * Number of Inference Steps
      * @description The number of inference steps to use.
-     * @default 15
+     * @default 40
      */
     num_inference_steps?: number;
     /**
@@ -48286,8 +48286,8 @@ export interface Ltx2322bImageToVideoInput {
     /**
      * Scheduler
      * @description The scheduler to use.
-     * @default beta
-     * @example beta
+     * @default ltx2
+     * @example ltx2
      * @enum {string}
      */
     scheduler?: 'ltx2' | 'linear_quadratic' | 'beta';
@@ -48311,7 +48311,7 @@ export interface Ltx2322bImageToVideoInput {
     /**
      * Use Restart Sampling
      * @description Whether to use restart sampling. This will inject a small amount of noise during each denoising step, which can help improve the quality of the generated video.
-     * @default true
+     * @default false
      */
     use_restart_sampling?: boolean;
     /**
@@ -48343,7 +48343,7 @@ export interface Ltx2322bImageToVideoInput {
     /**
      * Video Rescaling Scale
      * @description The rescaling scale for the video. Controls the ratio between classifier-free guidance and spatiotemporal guidance.
-     * @default 0.85
+     * @default 0.7
      */
     video_rescaling_scale?: number;
     /**
@@ -48365,7 +48365,7 @@ export interface Ltx2322bImageToVideoInput {
     /**
      * Video STG Scale
      * @description The Spatiotemporal Guidance (STG) scale for the video. Higher values result in more consistent and focused video content.
-     * @default 1
+     * @default 0
      */
     video_stg_scale?: number;
     /**
@@ -48377,14 +48377,14 @@ export interface Ltx2322bImageToVideoInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx2322bImageToVideoOutput extends SharedType_63a {}
+export interface Ltx2322bImageToVideoOutput extends SharedType_617 {}
 
 export interface Ltx2322bExtendVideoLoraInput {
     /**
      * Acceleration
      * @description The acceleration level to use.
-     * @default none
-     * @example none
+     * @default regular
+     * @example regular
      * @enum {string}
      */
     acceleration?: 'none' | 'regular' | 'high' | 'full';
@@ -48497,7 +48497,7 @@ export interface Ltx2322bExtendVideoLoraInput {
     /**
      * Gradient Estimation Gamma
      * @description The gamma of gradient estimation during denoising. Set to 0 to disable.
-     * @default 0
+     * @default 2
      */
     gradient_estimation_gamma?: number;
     /**
@@ -48532,7 +48532,7 @@ export interface Ltx2322bExtendVideoLoraInput {
     /**
      * Number of Inference Steps
      * @description The number of inference steps to use.
-     * @default 15
+     * @default 40
      */
     num_inference_steps?: number;
     /**
@@ -48544,8 +48544,8 @@ export interface Ltx2322bExtendVideoLoraInput {
     /**
      * Scheduler
      * @description The scheduler to use.
-     * @default beta
-     * @example beta
+     * @default ltx2
+     * @example ltx2
      * @enum {string}
      */
     scheduler?: 'ltx2' | 'linear_quadratic' | 'beta';
@@ -48569,7 +48569,7 @@ export interface Ltx2322bExtendVideoLoraInput {
     /**
      * Use Restart Sampling
      * @description Whether to use restart sampling. This will inject a small amount of noise during each denoising step, which can help improve the quality of the generated video.
-     * @default true
+     * @default false
      */
     use_restart_sampling?: boolean;
     /**
@@ -48601,7 +48601,7 @@ export interface Ltx2322bExtendVideoLoraInput {
     /**
      * Video Rescaling Scale
      * @description The rescaling scale for the video. Controls the ratio between classifier-free guidance and spatiotemporal guidance.
-     * @default 0.85
+     * @default 0.7
      */
     video_rescaling_scale?: number;
     /**
@@ -48623,7 +48623,7 @@ export interface Ltx2322bExtendVideoLoraInput {
     /**
      * Video STG Scale
      * @description The Spatiotemporal Guidance (STG) scale for the video. Higher values result in more consistent and focused video content.
-     * @default 1
+     * @default 0
      */
     video_stg_scale?: number;
     /**
@@ -48647,14 +48647,14 @@ export interface Ltx2322bExtendVideoLoraInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx2322bExtendVideoLoraOutput extends SharedType_9ec {}
+export interface Ltx2322bExtendVideoLoraOutput extends SharedType_0d4 {}
 
 export interface Ltx2322bExtendVideoInput {
     /**
      * Acceleration
      * @description The acceleration level to use.
-     * @default none
-     * @example none
+     * @default regular
+     * @example regular
      * @enum {string}
      */
     acceleration?: 'none' | 'regular' | 'high' | 'full';
@@ -48767,7 +48767,7 @@ export interface Ltx2322bExtendVideoInput {
     /**
      * Gradient Estimation Gamma
      * @description The gamma of gradient estimation during denoising. Set to 0 to disable.
-     * @default 0
+     * @default 2
      */
     gradient_estimation_gamma?: number;
     /**
@@ -48797,7 +48797,7 @@ export interface Ltx2322bExtendVideoInput {
     /**
      * Number of Inference Steps
      * @description The number of inference steps to use.
-     * @default 15
+     * @default 40
      */
     num_inference_steps?: number;
     /**
@@ -48809,8 +48809,8 @@ export interface Ltx2322bExtendVideoInput {
     /**
      * Scheduler
      * @description The scheduler to use.
-     * @default beta
-     * @example beta
+     * @default ltx2
+     * @example ltx2
      * @enum {string}
      */
     scheduler?: 'ltx2' | 'linear_quadratic' | 'beta';
@@ -48834,7 +48834,7 @@ export interface Ltx2322bExtendVideoInput {
     /**
      * Use Restart Sampling
      * @description Whether to use restart sampling. This will inject a small amount of noise during each denoising step, which can help improve the quality of the generated video.
-     * @default true
+     * @default false
      */
     use_restart_sampling?: boolean;
     /**
@@ -48866,7 +48866,7 @@ export interface Ltx2322bExtendVideoInput {
     /**
      * Video Rescaling Scale
      * @description The rescaling scale for the video. Controls the ratio between classifier-free guidance and spatiotemporal guidance.
-     * @default 0.85
+     * @default 0.7
      */
     video_rescaling_scale?: number;
     /**
@@ -48888,7 +48888,7 @@ export interface Ltx2322bExtendVideoInput {
     /**
      * Video STG Scale
      * @description The Spatiotemporal Guidance (STG) scale for the video. Higher values result in more consistent and focused video content.
-     * @default 1
+     * @default 0
      */
     video_stg_scale?: number;
     /**
@@ -48912,7 +48912,7 @@ export interface Ltx2322bExtendVideoInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx2322bExtendVideoOutput extends SharedType_9ec {}
+export interface Ltx2322bExtendVideoOutput extends SharedType_0d4 {}
 
 export interface Ltx2322bDistilledVideoToVideoLoraInput {
     /**
@@ -49019,8 +49019,8 @@ export interface Ltx2322bDistilledVideoToVideoLoraInput {
     /**
      * Scheduler
      * @description The scheduler to use.
-     * @default beta
-     * @example beta
+     * @default ltx2
+     * @example ltx2
      * @enum {string}
      */
     scheduler?: 'ltx2' | 'linear_quadratic' | 'beta';
@@ -49092,7 +49092,7 @@ export interface Ltx2322bDistilledVideoToVideoLoraInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx2322bDistilledVideoToVideoLoraOutput extends SharedType_ea7 {}
+export interface Ltx2322bDistilledVideoToVideoLoraOutput extends SharedType_0ef {}
 
 export interface Ltx2322bDistilledVideoToVideoInput {
     /**
@@ -49194,8 +49194,8 @@ export interface Ltx2322bDistilledVideoToVideoInput {
     /**
      * Scheduler
      * @description The scheduler to use.
-     * @default beta
-     * @example beta
+     * @default ltx2
+     * @example ltx2
      * @enum {string}
      */
     scheduler?: 'ltx2' | 'linear_quadratic' | 'beta';
@@ -49267,7 +49267,7 @@ export interface Ltx2322bDistilledVideoToVideoInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx2322bDistilledVideoToVideoOutput extends SharedType_ea7 {}
+export interface Ltx2322bDistilledVideoToVideoOutput extends SharedType_0ef {}
 
 export interface Ltx2322bDistilledTextToVideoLoraInput {
     /**
@@ -49356,8 +49356,8 @@ export interface Ltx2322bDistilledTextToVideoLoraInput {
     /**
      * Scheduler
      * @description The scheduler to use.
-     * @default beta
-     * @example beta
+     * @default ltx2
+     * @example ltx2
      * @enum {string}
      */
     scheduler?: 'ltx2' | 'linear_quadratic' | 'beta';
@@ -49416,7 +49416,7 @@ export interface Ltx2322bDistilledTextToVideoLoraInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx2322bDistilledTextToVideoLoraOutput extends SharedType_152 {}
+export interface Ltx2322bDistilledTextToVideoLoraOutput extends SharedType_4f1 {}
 
 export interface Ltx2322bDistilledTextToVideoInput {
     /**
@@ -49500,8 +49500,8 @@ export interface Ltx2322bDistilledTextToVideoInput {
     /**
      * Scheduler
      * @description The scheduler to use.
-     * @default beta
-     * @example beta
+     * @default ltx2
+     * @example ltx2
      * @enum {string}
      */
     scheduler?: 'ltx2' | 'linear_quadratic' | 'beta';
@@ -49560,7 +49560,7 @@ export interface Ltx2322bDistilledTextToVideoInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx2322bDistilledTextToVideoOutput extends SharedType_152 {}
+export interface Ltx2322bDistilledTextToVideoOutput extends SharedType_4f1 {}
 
 export interface Ltx2322bDistilledReferenceVideoToVideoLoraInput {
     /**
@@ -49697,8 +49697,8 @@ export interface Ltx2322bDistilledReferenceVideoToVideoLoraInput {
     /**
      * Scheduler
      * @description The scheduler to use.
-     * @default beta
-     * @example beta
+     * @default ltx2
+     * @example ltx2
      * @enum {string}
      */
     scheduler?: 'ltx2' | 'linear_quadratic' | 'beta';
@@ -49770,7 +49770,7 @@ export interface Ltx2322bDistilledReferenceVideoToVideoLoraInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx2322bDistilledReferenceVideoToVideoLoraOutput extends SharedType_9dd {}
+export interface Ltx2322bDistilledReferenceVideoToVideoLoraOutput extends SharedType_ac9 {}
 
 export interface Ltx2322bDistilledReferenceVideoToVideoInput {
     /**
@@ -49902,8 +49902,8 @@ export interface Ltx2322bDistilledReferenceVideoToVideoInput {
     /**
      * Scheduler
      * @description The scheduler to use.
-     * @default beta
-     * @example beta
+     * @default ltx2
+     * @example ltx2
      * @enum {string}
      */
     scheduler?: 'ltx2' | 'linear_quadratic' | 'beta';
@@ -49975,7 +49975,7 @@ export interface Ltx2322bDistilledReferenceVideoToVideoInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx2322bDistilledReferenceVideoToVideoOutput extends SharedType_9dd {}
+export interface Ltx2322bDistilledReferenceVideoToVideoOutput extends SharedType_ac9 {}
 
 export interface Ltx2322bDistilledImageToVideoLoraInput {
     /**
@@ -50094,8 +50094,8 @@ export interface Ltx2322bDistilledImageToVideoLoraInput {
     /**
      * Scheduler
      * @description The scheduler to use.
-     * @default beta
-     * @example beta
+     * @default ltx2
+     * @example ltx2
      * @enum {string}
      */
     scheduler?: 'ltx2' | 'linear_quadratic' | 'beta';
@@ -50155,7 +50155,7 @@ export interface Ltx2322bDistilledImageToVideoLoraInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx2322bDistilledImageToVideoLoraOutput extends SharedType_63a {}
+export interface Ltx2322bDistilledImageToVideoLoraOutput extends SharedType_617 {}
 
 export interface Ltx2322bDistilledImageToVideoInput {
     /**
@@ -50269,8 +50269,8 @@ export interface Ltx2322bDistilledImageToVideoInput {
     /**
      * Scheduler
      * @description The scheduler to use.
-     * @default beta
-     * @example beta
+     * @default ltx2
+     * @example ltx2
      * @enum {string}
      */
     scheduler?: 'ltx2' | 'linear_quadratic' | 'beta';
@@ -50330,7 +50330,7 @@ export interface Ltx2322bDistilledImageToVideoInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx2322bDistilledImageToVideoOutput extends SharedType_63a {}
+export interface Ltx2322bDistilledImageToVideoOutput extends SharedType_617 {}
 
 export interface Ltx2322bDistilledAudioToVideoLoraInput {
     /**
@@ -50460,8 +50460,8 @@ export interface Ltx2322bDistilledAudioToVideoLoraInput {
     /**
      * Scheduler
      * @description The scheduler to use.
-     * @default beta
-     * @example beta
+     * @default ltx2
+     * @example ltx2
      * @enum {string}
      */
     scheduler?: 'ltx2' | 'linear_quadratic' | 'beta';
@@ -50646,8 +50646,8 @@ export interface Ltx2322bDistilledAudioToVideoInput {
     /**
      * Scheduler
      * @description The scheduler to use.
-     * @default beta
-     * @example beta
+     * @default ltx2
+     * @example ltx2
      * @enum {string}
      */
     scheduler?: 'ltx2' | 'linear_quadratic' | 'beta';
@@ -50713,8 +50713,8 @@ export interface Ltx2322bAudioToVideoLoraInput {
     /**
      * Acceleration
      * @description The acceleration level to use.
-     * @default none
-     * @example none
+     * @default regular
+     * @example regular
      * @enum {string}
      */
     acceleration?: 'none' | 'regular' | 'high' | 'full';
@@ -50820,7 +50820,7 @@ export interface Ltx2322bAudioToVideoLoraInput {
     /**
      * Gradient Estimation Gamma
      * @description The gamma of gradient estimation during denoising. Set to 0 to disable.
-     * @default 0
+     * @default 2
      */
     gradient_estimation_gamma?: number;
     /**
@@ -50861,7 +50861,7 @@ export interface Ltx2322bAudioToVideoLoraInput {
     /**
      * Number of Inference Steps
      * @description The number of inference steps to use.
-     * @default 15
+     * @default 40
      */
     num_inference_steps?: number;
     /**
@@ -50879,8 +50879,8 @@ export interface Ltx2322bAudioToVideoLoraInput {
     /**
      * Scheduler
      * @description The scheduler to use.
-     * @default beta
-     * @example beta
+     * @default ltx2
+     * @example ltx2
      * @enum {string}
      */
     scheduler?: 'ltx2' | 'linear_quadratic' | 'beta';
@@ -50904,7 +50904,7 @@ export interface Ltx2322bAudioToVideoLoraInput {
     /**
      * Use Restart Sampling
      * @description Whether to use restart sampling. This will inject a small amount of noise during each denoising step, which can help improve the quality of the generated video.
-     * @default true
+     * @default false
      */
     use_restart_sampling?: boolean;
     /**
@@ -50936,7 +50936,7 @@ export interface Ltx2322bAudioToVideoLoraInput {
     /**
      * Video Rescaling Scale
      * @description The rescaling scale for the video. Controls the ratio between classifier-free guidance and spatiotemporal guidance.
-     * @default 0.85
+     * @default 0.7
      */
     video_rescaling_scale?: number;
     /**
@@ -50958,7 +50958,7 @@ export interface Ltx2322bAudioToVideoLoraInput {
     /**
      * Video STG Scale
      * @description The Spatiotemporal Guidance (STG) scale for the video. Higher values result in more consistent and focused video content.
-     * @default 1
+     * @default 0
      */
     video_stg_scale?: number;
     /**
@@ -50976,8 +50976,8 @@ export interface Ltx2322bAudioToVideoInput {
     /**
      * Acceleration
      * @description The acceleration level to use.
-     * @default none
-     * @example none
+     * @default regular
+     * @example regular
      * @enum {string}
      */
     acceleration?: 'none' | 'regular' | 'high' | 'full';
@@ -51083,7 +51083,7 @@ export interface Ltx2322bAudioToVideoInput {
     /**
      * Gradient Estimation Gamma
      * @description The gamma of gradient estimation during denoising. Set to 0 to disable.
-     * @default 0
+     * @default 2
      */
     gradient_estimation_gamma?: number;
     /**
@@ -51119,7 +51119,7 @@ export interface Ltx2322bAudioToVideoInput {
     /**
      * Number of Inference Steps
      * @description The number of inference steps to use.
-     * @default 15
+     * @default 40
      */
     num_inference_steps?: number;
     /**
@@ -51137,8 +51137,8 @@ export interface Ltx2322bAudioToVideoInput {
     /**
      * Scheduler
      * @description The scheduler to use.
-     * @default beta
-     * @example beta
+     * @default ltx2
+     * @example ltx2
      * @enum {string}
      */
     scheduler?: 'ltx2' | 'linear_quadratic' | 'beta';
@@ -51162,7 +51162,7 @@ export interface Ltx2322bAudioToVideoInput {
     /**
      * Use Restart Sampling
      * @description Whether to use restart sampling. This will inject a small amount of noise during each denoising step, which can help improve the quality of the generated video.
-     * @default true
+     * @default false
      */
     use_restart_sampling?: boolean;
     /**
@@ -51194,7 +51194,7 @@ export interface Ltx2322bAudioToVideoInput {
     /**
      * Video Rescaling Scale
      * @description The rescaling scale for the video. Controls the ratio between classifier-free guidance and spatiotemporal guidance.
-     * @default 0.85
+     * @default 0.7
      */
     video_rescaling_scale?: number;
     /**
@@ -51216,7 +51216,7 @@ export interface Ltx2322bAudioToVideoInput {
     /**
      * Video STG Scale
      * @description The Spatiotemporal Guidance (STG) scale for the video. Higher values result in more consistent and focused video content.
-     * @default 1
+     * @default 0
      */
     video_stg_scale?: number;
     /**
@@ -75240,12 +75240,12 @@ export interface FluxVisionUpscalerOutput {
     /**
      * @description The URL of the generated image.
      * @example {
-     *       "file_name": "20TZeUQtQ8oKgsCKXSL81_StableSR_00002_.png",
      *       "height": 2048,
-     *       "content_type": "image/png",
-     *       "width": 2048,
      *       "file_size": 8842156,
-     *       "url": "https://v3b.fal.media/files/b/panda/20TZeUQtQ8oKgsCKXSL81_StableSR_00002_.png"
+     *       "content_type": "image/png",
+     *       "url": "https://v3b.fal.media/files/b/panda/20TZeUQtQ8oKgsCKXSL81_StableSR_00002_.png",
+     *       "width": 2048,
+     *       "file_name": "20TZeUQtQ8oKgsCKXSL81_StableSR_00002_.png"
      *     }
      */
     image: Components.Image;
@@ -78416,8 +78416,8 @@ export interface Flux2LoraEditInput {
      * Image Size
      * @description The size of the image to generate. The width and height must be between 512 and 2048 pixels.
      * @example {
-     *       "height": 1152,
-     *       "width": 2016
+     *       "width": 2016,
+     *       "height": 1152
      *     }
      */
     image_size?:
@@ -79689,8 +79689,8 @@ export interface Flux2EditInput {
      * Image Size
      * @description The size of the image to generate. The width and height must be between 512 and 2048 pixels.
      * @example {
-     *       "height": 1152,
-     *       "width": 2016
+     *       "width": 2016,
+     *       "height": 1152
      *     }
      */
     image_size?:
@@ -81699,9 +81699,9 @@ export interface Flux1SrpoOutput {
      * @description The generated images.
      * @example [
      *       {
-     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/flux-srpo-output.jpeg",
      *         "content_type": "image/jpeg",
      *         "height": 768,
+     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/flux-srpo-output.jpeg",
      *         "width": 1024
      *       }
      *     ]
@@ -81956,9 +81956,9 @@ export interface Flux1KreaReduxOutput {
      * @description The generated images.
      * @example [
      *       {
-     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/flux_krea_redux_output_1.jpg",
      *         "content_type": "image/jpeg",
      *         "height": 768,
+     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/flux_krea_redux_output_1.jpg",
      *         "width": 1024
      *       }
      *     ]
@@ -81982,7 +81982,7 @@ export interface Flux1KreaReduxOutput {
 
 export interface Flux1KreaImageToImageInput extends SharedType_ba2 {}
 
-export interface Flux1KreaImageToImageOutput extends SharedType_6f3 {}
+export interface Flux1KreaImageToImageOutput extends SharedType_26e {}
 
 export interface Flux1KreaInput {
     /**
@@ -82059,7 +82059,7 @@ export interface Flux1KreaInput {
     sync_mode?: boolean;
 }
 
-export interface Flux1KreaOutput extends SharedType_6f3 {}
+export interface Flux1KreaOutput extends SharedType_26e {}
 
 export interface Flux1DevReduxInput {
     /**
@@ -88126,7 +88126,7 @@ export interface DepthAnythingVideoInput {
     include_raw_depths?: boolean;
     /**
      * Max Frames
-     * @description Max frames to process. None = all frames.
+     * @description Max frames to process (max 1800). None = up to 1800.
      */
     max_frames?: number;
     /**
@@ -90458,12 +90458,12 @@ export interface BytedanceSeedreamV4TextToImageInput {
      * Image Size
      * @description The size of the generated image. Total pixels must be between 960x960 and 4096x4096.
      * @default {
-     *       "height": 2048,
-     *       "width": 2048
+     *       "width": 2048,
+     *       "height": 2048
      *     }
      * @example {
-     *       "height": 4096,
-     *       "width": 4096
+     *       "width": 4096,
+     *       "height": 4096
      *     }
      */
     image_size?:
@@ -90548,12 +90548,12 @@ export interface BytedanceSeedreamV4EditInput {
      * Image Size
      * @description The size of the generated image. The minimum total image area is 921600 pixels. Failing this, the image size will be adjusted to by scaling it up, while maintaining the aspect ratio.
      * @default {
-     *       "height": 2048,
-     *       "width": 2048
+     *       "width": 2048,
+     *       "height": 2048
      *     }
      * @example {
-     *       "height": 2160,
-     *       "width": 3840
+     *       "width": 3840,
+     *       "height": 2160
      *     }
      */
     image_size?:
@@ -90642,8 +90642,8 @@ export interface BytedanceSeedreamV45TextToImageInput {
      * Image Size
      * @description The size of the generated image. Width and height must be between 1920 and 4096, or total number of pixels must be between 2560*1440 and 4096*4096.
      * @default {
-     *       "height": 2048,
-     *       "width": 2048
+     *       "width": 2048,
+     *       "height": 2048
      *     }
      * @example auto_2K
      */
@@ -90721,8 +90721,8 @@ export interface BytedanceSeedreamV45EditInput {
      * Image Size
      * @description The size of the generated image. Width and height must be between 1920 and 4096, or total number of pixels must be between 2560*1440 and 4096*4096.
      * @default {
-     *       "height": 2048,
-     *       "width": 2048
+     *       "width": 2048,
+     *       "height": 2048
      *     }
      * @example auto_4K
      */
@@ -91599,6 +91599,11 @@ export interface BytedanceOmnihumanV15Input {
      */
     image_url: string;
     /**
+     * Mask Url
+     * @description The URL of the mask image to apply to the image. Only the person in the white area of the mask will speak.
+     */
+    mask_url?: string;
+    /**
      * Prompt
      * @description The text prompt used to guide the video generation.
      */
@@ -91674,8 +91679,8 @@ export interface BytedanceDreaminaV31TextToImageInput {
      * Image Size
      * @description The size of the generated image. Width and height must be between 512 and 2048.
      * @default {
-     *       "height": 1536,
-     *       "width": 2048
+     *       "width": 2048,
+     *       "height": 1536
      *     }
      */
     image_size?:
@@ -94803,6 +94808,12 @@ export interface BriaVideoIncreaseResolutionInput {
         | 'mkv_vp9'
         | 'gif';
     /**
+     * Preserve Audio
+     * @description If true, audio will be preserved in the output video.
+     * @default true
+     */
+    preserve_audio?: boolean;
+    /**
      * Video Url
      * @description Input video to increase resolution. Size should be less than 7680,4320 and duration less than 30s.
      * @example https://bria-datasets.s3.us-east-1.amazonaws.com/video_increase_res/3446608-sd_426_240_25fps.mp4
@@ -94859,6 +94870,12 @@ export interface BriaVideoBackgroundRemovalInput {
         | 'mkv_h264'
         | 'mkv_vp9'
         | 'gif';
+    /**
+     * Preserve Audio
+     * @description If true, audio will be preserved in the output video.
+     * @default true
+     */
+    preserve_audio?: boolean;
     /**
      * Video Url
      * @description Input video to remove background from. Size should be less than 4000x4000 and duration less than 30s.
