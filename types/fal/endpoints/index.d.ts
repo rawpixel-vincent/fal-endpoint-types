@@ -284,6 +284,16 @@ declare global {
                 output: falEndpoints.OpenrouterRouterOutput;
             };
 
+            'openai/gpt-image-2/edit': {
+                input: falEndpoints.OpenaiGptImage2EditInput;
+                output: falEndpoints.OpenaiGptImage2EditOutput;
+            };
+
+            'openai/gpt-image-2': {
+                input: falEndpoints.OpenaiGptImage2Input;
+                output: falEndpoints.OpenaiGptImage2Output;
+            };
+
             'moonvalley/marey/t2v': {
                 input: falEndpoints.MoonvalleyMareyT2vInput;
                 output: falEndpoints.MoonvalleyMareyT2vOutput;
@@ -787,11 +797,6 @@ declare global {
             'fal-ai/wan-22-vace-fun-a14b/reframe': {
                 input: falEndpoints.Wan22VaceFunA14bReframeInput;
                 output: falEndpoints.Wan22VaceFunA14bReframeOutput;
-            };
-
-            'fal-ai/wan-22-vace-fun-a14b/pose': {
-                input: falEndpoints.Wan22VaceFunA14bPoseInput;
-                output: falEndpoints.Wan22VaceFunA14bPoseOutput;
             };
 
             'fal-ai/wan-22-vace-fun-a14b/outpainting': {
@@ -2832,6 +2837,11 @@ declare global {
             'fal-ai/lyria2': {
                 input: falEndpoints.Lyria2Input;
                 output: falEndpoints.Lyria2Output;
+            };
+
+            'fal-ai/lyra-2/zoom': {
+                input: falEndpoints.Lyra2ZoomInput;
+                output: falEndpoints.Lyra2ZoomOutput;
             };
 
             'fal-ai/lux-tts': {
