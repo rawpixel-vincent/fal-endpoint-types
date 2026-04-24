@@ -2759,6 +2759,11 @@ declare global {
                 output: falEndpoints.MeshyV6TextTo3dOutput;
             };
 
+            'fal-ai/meshy/v6/multi-image-to-3d': {
+                input: falEndpoints.MeshyV6MultiImageTo3dInput;
+                output: falEndpoints.MeshyV6MultiImageTo3dOutput;
+            };
+
             'fal-ai/meshy/v6/image-to-3d': {
                 input: falEndpoints.MeshyV6ImageTo3dInput;
                 output: falEndpoints.MeshyV6ImageTo3dOutput;
@@ -3589,6 +3594,16 @@ declare global {
                 output: falEndpoints.KlingVideoV3ProImageToVideoOutput;
             };
 
+            'fal-ai/kling-video/v3/4k/text-to-video': {
+                input: falEndpoints.KlingVideoV34kTextToVideoInput;
+                output: falEndpoints.KlingVideoV34kTextToVideoOutput;
+            };
+
+            'fal-ai/kling-video/v3/4k/image-to-video': {
+                input: falEndpoints.KlingVideoV34kImageToVideoInput;
+                output: falEndpoints.KlingVideoV34kImageToVideoOutput;
+            };
+
             'fal-ai/kling-video/v2/master/text-to-video': {
                 input: falEndpoints.KlingVideoV2MasterTextToVideoInput;
                 output: falEndpoints.KlingVideoV2MasterTextToVideoOutput;
@@ -3787,6 +3802,21 @@ declare global {
             'fal-ai/kling-video/o3/pro/image-to-video': {
                 input: falEndpoints.KlingVideoO3ProImageToVideoInput;
                 output: falEndpoints.KlingVideoO3ProImageToVideoOutput;
+            };
+
+            'fal-ai/kling-video/o3/4k/text-to-video': {
+                input: falEndpoints.KlingVideoO34kTextToVideoInput;
+                output: falEndpoints.KlingVideoO34kTextToVideoOutput;
+            };
+
+            'fal-ai/kling-video/o3/4k/reference-to-video': {
+                input: falEndpoints.KlingVideoO34kReferenceToVideoInput;
+                output: falEndpoints.KlingVideoO34kReferenceToVideoOutput;
+            };
+
+            'fal-ai/kling-video/o3/4k/image-to-video': {
+                input: falEndpoints.KlingVideoO34kImageToVideoInput;
+                output: falEndpoints.KlingVideoO34kImageToVideoOutput;
             };
 
             'fal-ai/kling-video/o1/video-to-video/reference': {
@@ -4362,6 +4392,16 @@ declare global {
             'fal-ai/ideogram/upscale': {
                 input: falEndpoints.IdeogramUpscaleInput;
                 output: falEndpoints.IdeogramUpscaleOutput;
+            };
+
+            'fal-ai/ideogram/custom-models/generate': {
+                input: falEndpoints.IdeogramCustomModelsGenerateInput;
+                output: falEndpoints.IdeogramCustomModelsGenerateOutput;
+            };
+
+            'fal-ai/ideogram/custom-models': {
+                input: falEndpoints.IdeogramCustomModelsInput;
+                output: falEndpoints.IdeogramCustomModelsOutput;
             };
 
             'fal-ai/ideogram/character/remix': {
@@ -5932,6 +5972,11 @@ declare global {
             'fal-ai/controlnext': {
                 input: falEndpoints.ControlnextInput;
                 output: falEndpoints.ControlnextOutput;
+            };
+
+            'fal-ai/cohere-transcribe': {
+                input: falEndpoints.CohereTranscribeInput;
+                output: falEndpoints.CohereTranscribeOutput;
             };
 
             'fal-ai/cogview4': {
