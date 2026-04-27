@@ -2454,20 +2454,45 @@ export interface SAM3DBodyPersonMetadata {
      */
     bbox: number[];
     /**
+     * Body Pose Params
+     * @description Per-joint body pose parameters (axis-angle form) from the MHR model.
+     */
+    body_pose_params?: number[][];
+    /**
+     * Expr Params
+     * @description MHR facial-expression parameters.
+     */
+    expr_params?: number[];
+    /**
      * Focal Length
      * @description Estimated focal length
      */
     focal_length: number;
     /**
+     * Global Rot
+     * @description Global root rotation produced by MHR. Shape matches the upstream tensor (axis-angle [3] or rotation matrix [3, 3]).
+     */
+    global_rot?: { [x: string]: any }[];
+    /**
+     * Hand Pose Params
+     * @description Per-joint hand pose parameters (axis-angle form) from the MHR model.
+     */
+    hand_pose_params?: number[][];
+    /**
      * Keypoints 2D
-     * @description 2D keypoints [[x, y], ...] - 70 body keypoints
+     * @description 2D keypoints [[x, y], ...] - 70 MHR body keypoints in image coordinates. See `SAM3DBodyMetadata.keypoint_names` for the ordered name of each index.
      */
     keypoints_2d: number[][];
     /**
      * Keypoints 3D
-     * @description 3D keypoints [[x, y, z], ...] - 70 body keypoints in camera space
+     * @description 3D keypoints [[x, y, z], ...] - 70 MHR body keypoints in camera space. Ordering matches `keypoints_2d` / `SAM3DBodyMetadata.keypoint_names`.
      */
     keypoints_3d?: number[][];
+    /**
+     * Mhr Model Params
+     * @description Packed MHR parameter vector (concatenated shape/pose/expression/scale). Shape is forwarded as-is from the upstream model.
+     */
+    mhr_model_params?: { [x: string]: any }[];
     /**
      * Person Id
      * @description Index of the person in the scene
@@ -2478,9 +2503,39 @@ export interface SAM3DBodyPersonMetadata {
      * @description Predicted camera translation [tx, ty, tz]
      */
     pred_cam_t: number[];
+    /**
+     * Pred Global Rots
+     * @description Per-joint global rotations (world-space), typically [N_joints, 3, 3] rotation matrices. Needed for inverse linear-blend skinning / un-posing clients.
+     */
+    pred_global_rots?: { [x: string]: any }[];
+    /**
+     * Pred Joint Coords
+     * @description Skeleton joint positions in world space [[x, y, z], ...]. One row per MHR joint.
+     */
+    pred_joint_coords?: number[][];
+    /**
+     * Pred Pose Raw
+     * @description Raw pose transforms produced by the MHR decoder (pre-FK), forwarded as-is from the upstream model.
+     */
+    pred_pose_raw?: { [x: string]: any }[];
+    /**
+     * Scale Params
+     * @description MHR scale parameters (isotropic or per-axis).
+     */
+    scale_params?: number[];
+    /**
+     * Shape Params
+     * @description MHR identity (β) shape parameters. Enables local canonical-pose mesh reconstruction when combined with the MHR model.
+     */
+    shape_params?: number[];
 }
 
 export interface SAM3DBodyMetadata {
+    /**
+     * Keypoint Names
+     * @description Ordered names of the 70 MHR keypoints returned by this endpoint. Index `i` in this list corresponds to index `i` in every person's `keypoints_2d` and `keypoints_3d` arrays. Sourced from facebookresearch/sam-3d-body `mhr70.py`.
+     */
+    keypoint_names?: string[];
     /**
      * Num People
      * @description Number of people detected
