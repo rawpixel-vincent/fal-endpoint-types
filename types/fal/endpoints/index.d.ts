@@ -294,6 +294,26 @@ declare global {
                 output: falEndpoints.OpenaiGptImage2Output;
             };
 
+            'nvidia/nemotron-3-nano-omni/vision': {
+                input: falEndpoints.NvidiaNemotron3NanoOmniVisionInput;
+                output: falEndpoints.NvidiaNemotron3NanoOmniVisionOutput;
+            };
+
+            'nvidia/nemotron-3-nano-omni/video': {
+                input: falEndpoints.NvidiaNemotron3NanoOmniVideoInput;
+                output: falEndpoints.NvidiaNemotron3NanoOmniVideoOutput;
+            };
+
+            'nvidia/nemotron-3-nano-omni/audio': {
+                input: falEndpoints.NvidiaNemotron3NanoOmniAudioInput;
+                output: falEndpoints.NvidiaNemotron3NanoOmniAudioOutput;
+            };
+
+            'nvidia/nemotron-3-nano-omni': {
+                input: falEndpoints.NvidiaNemotron3NanoOmniInput;
+                output: falEndpoints.NvidiaNemotron3NanoOmniOutput;
+            };
+
             'moonvalley/marey/t2v': {
                 input: falEndpoints.MoonvalleyMareyT2vInput;
                 output: falEndpoints.MoonvalleyMareyT2vOutput;
@@ -6617,6 +6637,26 @@ declare global {
             'argil/avatars/audio-to-video': {
                 input: falEndpoints.ArgilAvatarsAudioToVideoInput;
                 output: falEndpoints.ArgilAvatarsAudioToVideoOutput;
+            };
+
+            'alibaba/happy-horse/video-edit': {
+                input: falEndpoints.AlibabaHappyHorseVideoEditInput;
+                output: falEndpoints.AlibabaHappyHorseVideoEditOutput;
+            };
+
+            'alibaba/happy-horse/text-to-video': {
+                input: falEndpoints.AlibabaHappyHorseTextToVideoInput;
+                output: falEndpoints.AlibabaHappyHorseTextToVideoOutput;
+            };
+
+            'alibaba/happy-horse/reference-to-video': {
+                input: falEndpoints.AlibabaHappyHorseReferenceToVideoInput;
+                output: falEndpoints.AlibabaHappyHorseReferenceToVideoOutput;
+            };
+
+            'alibaba/happy-horse/image-to-video': {
+                input: falEndpoints.AlibabaHappyHorseImageToVideoInput;
+                output: falEndpoints.AlibabaHappyHorseImageToVideoOutput;
             };
         }
     }

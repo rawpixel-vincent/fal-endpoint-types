@@ -1758,6 +1758,19 @@ export interface V2VValidation {
     reference_video_url: string;
 }
 
+export interface UsageInfo_2 {
+    /**
+     * Input Tokens
+     * @description Number of input tokens processed.
+     */
+    input_tokens: number;
+    /**
+     * Output Tokens
+     * @description Number of output tokens generated.
+     */
+    output_tokens: number;
+}
+
 export interface UsageInfo_1 {
     /**
      * Decode Time Ms
@@ -4663,12 +4676,12 @@ export interface DynamicMask {
      * @description List of trajectories
      * @example [
      *       {
-     *         "x": 279,
-     *         "y": 219
+     *         "y": 219,
+     *         "x": 279
      *       },
      *       {
-     *         "x": 417,
-     *         "y": 65
+     *         "y": 65,
+     *         "x": 417
      *       }
      *     ]
      */
