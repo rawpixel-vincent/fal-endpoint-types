@@ -15,6 +15,8 @@ const schemaFileParts = [];
 /** @type {Array<[string & {_b?:'uniqueComponentName'}, string & {_b?:'content'}]>} */
 const componentsFileParts = [];
 
+const brokenEndpoints = new Set('decart/lucy2-vton/realtime');
+
 /**
  * @typedef {string & {_b?:'hash'}} Hash Hash of the component definition
  * @typedef {string & {_b?:'endpointId'}} EndpointId Endpoint ID
@@ -294,7 +296,8 @@ const doEndpointComponents = async (endpointId) => {
                 cachedComponents !== null &&
                 cachedComponents.inputComponent &&
                 cachedComponents.components &&
-                Array.isArray(cachedComponents.components)
+                Array.isArray(cachedComponents.components) &&
+                !brokenEndpoints.has(endpointId)
             ) {
                 return {
                     inputComponent: cachedComponents.inputComponent,
@@ -305,6 +308,17 @@ const doEndpointComponents = async (endpointId) => {
         } catch (err) {
             //
         }
+    }
+    if (brokenEndpoints.has(endpointId)) {
+        console.log(`- Skipping ${endpointId} components because it is broken`);
+        return {
+            // @ts-ignore
+            inputComponent: [],
+            // @ts-ignore
+            outputComponent: [],
+            // @ts-ignore
+            components: [],
+        };
     }
     const {
         inputTypeName = '',
@@ -891,6 +905,7 @@ for (const [endpointId, { inputComponent, outputComponent }] of Object.entries(
                                     cp.outputComponent[1],
                                     formattedOutputContent
                                         .replace(`export interface ${cp.outputComponent[1]}`, '')
+                                        .replace(`export type ${cp.outputComponent[1]}`, '')
                                         .trim(),
                                 ],
                             ])
@@ -948,7 +963,7 @@ if (withDuplicates.length > 0) {
         schemaFileParts.push([
             uniqueComponentName,
             `
-            \n\nexport interface ${uniqueComponentName} ${values[0][3]}\n\n
+            \n\nexport ${values[0][3].includes('} & {') ? 'type' : 'interface'} ${uniqueComponentName}${values[0][3].includes('} & {') ? ' = ' : ''} ${values[0][3]}\n\n
             `,
         ]);
 

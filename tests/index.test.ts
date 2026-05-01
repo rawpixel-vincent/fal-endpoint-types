@@ -73,12 +73,17 @@ if (!isFalInput) {
     throw new Error('Fal input is not of type fal.EndpointInput<typeof test>');
 }
 
-// const canExtend: fal.EndpointInput<'fal-ai/post-processing/color-correction'> =
-//     {} as unknown as fal.EndpointInput<'fal-ai/post-processing/color-correction'>;
-// const canExtendV2: fal.EndpointInput<'fal-ai/image-editing/color-correction'> =
-//     {} as unknown as fal.EndpointInput<'fal-ai/image-editing/color-correction'>;
-// const hasExtended: Expect<typeof canExtend extends typeof canExtendV2 ? true : false> = true;
-// if (!hasExtended) {
-//     console.error('canExtend is not of type canExtendV2', canExtend, canExtendV2);
-//     throw new Error('canExtend is not of type canExtendV2');
-// }
+const canExtend: fal.EndpointInput<'fal-ai/post-processing/color-correction'> =
+    {} as unknown as fal.EndpointInput<'fal-ai/post-processing/color-correction'>;
+const canExtendV2: fal.EndpointInput<'fal-ai/image-editing/color-correction'> =
+    {} as unknown as fal.EndpointInput<'fal-ai/image-editing/color-correction'>;
+const hasExtended: Expect<typeof canExtend extends typeof canExtendV2 ? true : false> = true;
+if (!hasExtended) {
+    console.error('canExtend is not of type canExtendV2', canExtend, canExtendV2);
+    throw new Error('canExtend is not of type canExtendV2');
+}
+
+const colorCorrectionInput: fal.EndpointInput<'bytedance/seedance-2.0/fast/reference-to-video'> = {
+    prompt: 'Hello, world!',
+    image_urls: ['https://example.com/image.jpg'],
+} as unknown as fal.EndpointInput<'bytedance/seedance-2.0/fast/reference-to-video'>;
