@@ -8,7 +8,7 @@ type Expect<T> = T extends true ? true : false;
 //
 
 //
-const test = 'fal-ai/veo3/fast';
+const test = 'fal-ai/nano-banana-2';
 
 //
 
@@ -21,9 +21,12 @@ if (!isInput) {
     throw new Error('Input is not of type fal.EndpointInput<typeof test>');
 }
 const output: fal.EndpointOutput<typeof test> = {
-    video: {
-        url: 'https://example.com/video.mp4',
-    },
+    description: '',
+    images: [
+        {
+            url: 'https://example.com/video.mp4',
+        },
+    ],
 };
 const isOutput: Expect<typeof output extends fal.EndpointOutput<typeof test> ? true : false> = true;
 if (!isOutput) {
