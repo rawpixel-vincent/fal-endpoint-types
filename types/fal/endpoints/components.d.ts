@@ -1,4 +1,4 @@
-export interface WhisperChunk_1 {
+export interface WhisperChunk {
     /**
      * Text
      * @description Transcription of the chunk
@@ -11,22 +11,137 @@ export interface WhisperChunk_1 {
     timestamp: [number, number];
 }
 
-export interface WhisperChunk {
+export interface WeightInput {
     /**
-     * Speaker
-     * @description Speaker ID of the chunk. Only present if diarization is enabled.
+     * Label
+     * @default Weight
+     * @enum {string}
      */
-    speaker?: string;
+    label?: 'Weight' | 'Net Weight';
     /**
-     * Text
-     * @description Transcription of the chunk
+     * Unit
+     * @enum {string}
      */
-    text: string;
+    unit: 'lb' | 'oz' | 'g' | 'kg';
+    value: number;
+}
+
+export interface WebSearchUserLocation {
     /**
-     * Timestamp
-     * @description Start and end timestamp of the chunk
+     * City
+     * @description City name, e.g. 'San Francisco'.
      */
-    timestamp: [number, number];
+    city?: string;
+    /**
+     * Country
+     * @description Two-letter country code, e.g. 'US'.
+     */
+    country?: string;
+    /**
+     * Region
+     * @description Region or state, e.g. 'California'.
+     */
+    region?: string;
+    /**
+     * Timezone
+     * @description IANA timezone, e.g. 'America/Los_Angeles'.
+     */
+    timezone?: string;
+    /**
+     * Type
+     * @description Location type. Only 'approximate' is supported.
+     * @default approximate
+     * @constant
+     */
+    type?: 'approximate';
+}
+
+export interface WebSearchOptions {
+    /**
+     * Allowed Domains
+     * @description Limit results to these domains. Supported by Exa and most native providers (not Google native search).
+     */
+    allowed_domains?: string[];
+    /**
+     * Engine
+     * @description Search engine to use. 'auto' uses native provider search when available and falls back to Exa. 'native' prefers the provider's built-in web search (OpenAI, Anthropic, Google, xAI, Perplexity), falling back to Exa for models without native support. 'exa' always uses Exa's search API.
+     * @default auto
+     * @enum {string}
+     */
+    engine?: 'auto' | 'native' | 'exa';
+    /**
+     * Excluded Domains
+     * @description Exclude results from these domains. Supported by Exa and some native providers (not OpenAI or Google native search).
+     */
+    excluded_domains?: string[];
+    /**
+     * Max Characters
+     * @description Exact maximum characters of content per result (1-100,000). Applies to the Exa engine; ignored with native provider search. Takes precedence over search_context_size when both are set.
+     */
+    max_characters?: number;
+    /**
+     * Max Results
+     * @description Maximum results per search call (1-25). Applies to the Exa engine; ignored with native provider search. Defaults to 5.
+     */
+    max_results?: number;
+    /**
+     * Max Total Results
+     * @description Maximum total results across all search calls in a single request. Useful for controlling cost and context size in agentic loops.
+     */
+    max_total_results?: number;
+    /**
+     * Max Uses
+     * @description Maximum number of searches the model may perform in a single request. Once reached, further search calls return an error result instead of executing. With native provider search, forwarded only to Anthropic; other native providers ignore it.
+     */
+    max_uses?: number;
+    /**
+     * Search Context Size
+     * @description How much content to retrieve per result. For Exa: low=5K, medium=15K, high=30K characters per result; when omitted, Exa picks adaptively (~2-4K per result). Ignored with native provider search. Overridden by max_characters when both are set.
+     */
+    search_context_size?: 'low' | 'medium' | 'high';
+    user_location?: WebSearchUserLocation;
+}
+
+export interface Watermark {
+    /**
+     * Image Url
+     * @description Logo/watermark image URL. If empty, no watermark is added.
+     */
+    image_url?: string;
+    /**
+     * Margin
+     * @description Inset from the edge. '%' (0–49%) of the canvas, or 'px'.
+     * @default 3%
+     * @example 3%
+     */
+    margin?: string;
+    /**
+     * Opacity
+     * @description Watermark opacity (0–1).
+     * @default 1
+     */
+    opacity?: number;
+    /**
+     * Position
+     * @description Where to place the watermark.
+     * @default bottom_right
+     * @example bottom_right
+     * @enum {string}
+     */
+    position?: 'top_left' | 'top_right' | 'bottom_left' | 'bottom_right' | 'center';
+    /**
+     * Remove Background
+     * @description Remove the watermark image's own background (via background removal) before overlaying it.
+     * @default false
+     */
+    remove_background?: boolean;
+    /**
+     * Scale
+     * @description Watermark width as a fraction of the canvas width.
+     * @default 0.1
+     * @example 0.1
+     */
+    scale?: number;
 }
 
 export interface VoiceSetting {
@@ -103,6 +218,135 @@ export interface VoiceModify {
      * @default 0
      */
     timbre?: number;
+}
+
+export interface Voice {
+    /**
+     * Name
+     * @description Predefined voice, chosen by name. Ignored when `id` is set.
+     * @default Jennie
+     * @enum {string}
+     */
+    name?:
+        | 'Jennie'
+        | 'Stella'
+        | 'Max'
+        | 'Hayes'
+        | 'Elara'
+        | 'Cleo'
+        | 'Fisher'
+        | 'Corin'
+        | 'Thaddeus'
+        | 'Lucina'
+        | 'Acadia'
+        | 'Huxley'
+        | 'Winslet'
+        | 'Jethro'
+        | 'Elio'
+        | 'Rupert'
+        | 'Eira'
+        | 'Nyra'
+        | 'Arian'
+        | 'Lily'
+        | 'Pierce'
+        | 'Kaela'
+        | 'Elowen'
+        | 'Freya'
+        | 'Lenny'
+        | 'Alessa'
+        | 'Pandora'
+        | 'Fia'
+        | 'Abbott'
+        | 'Kael'
+        | 'Orla'
+        | 'Sable'
+        | 'Marnie'
+        | 'Sera'
+        | 'Virel'
+        | 'Liora'
+        | 'Riven'
+        | 'Elys'
+        | 'Dreena'
+        | 'Rhea'
+        | 'Vela'
+        | 'Nymera'
+        | 'Isolde'
+        | 'Lirien'
+        | 'Zella'
+        | 'Avenna'
+        | 'Mirelle'
+        | 'Calia'
+        | 'Lunea'
+        | 'Lucan'
+        | 'Tarian'
+        | 'Arlo'
+        | 'Jovan'
+        | 'Neron'
+        | 'Ziven'
+        | 'Dax'
+        | 'Orien'
+        | 'Lior'
+        | 'Eryx'
+        | 'Tyren'
+        | 'Nox'
+        | 'Elric'
+        | 'Varian'
+        | 'Zoran'
+        | 'Miro'
+        | 'Dalen'
+        | 'Ronix'
+        | 'Jarek'
+        | 'Nyxie'
+        | 'Soren'
+        | 'Viona'
+        | 'Selene'
+        | 'Rachiel'
+        | 'Corbin'
+        | 'Abigail'
+        | 'Faith'
+        | 'Kimberly'
+        | 'Dave'
+        | 'Grace'
+        | 'Alden'
+        | 'Renly'
+        | 'Violet'
+        | 'Joel'
+        | 'Xavier'
+        | 'Esmeralda'
+        | 'Robert'
+        | 'Lila'
+        | 'Brooks'
+        | 'Lennox'
+        | 'Vanessa'
+        | 'Simon'
+        | 'Nyomi'
+        | 'Jack'
+        | 'Penelope'
+        | 'Brayden'
+        | 'Abel'
+        | 'Nellie'
+        | 'Connie'
+        | 'Andrew'
+        | 'Lincoln';
+}
+
+export interface VocabularyEntry {
+    /**
+     * Replaces
+     * @description Misspellings that should be replaced with `word`. Matched whole-word and case-insensitively — list each misspelling once; you don't need to enumerate casings (e.g. `['vid']` already covers `Vid`, `VID`).
+     * @example [
+     *       "vid",
+     *       "feed"
+     *     ]
+     */
+    replaces: string[];
+    /**
+     * Word
+     * @description The correctly-spelled term. Brand names, product names, and domain jargon work best.
+     * @example VEED
+     * @example TikTok
+     */
+    word: string;
 }
 
 export interface VideoFormat {
@@ -263,26 +507,6 @@ export interface VideoConditioningInput {
     /**
      * Video URL
      * @description URL of video to use as conditioning
-     */
-    video_url: string;
-}
-
-export interface VideoCondition {
-    /**
-     * Start Frame Number
-     * @description The frame number to start the condition on.
-     * @default 0
-     */
-    start_frame_number?: number;
-    /**
-     * Strength
-     * @description The strength of the condition.
-     * @default 1
-     */
-    strength?: number;
-    /**
-     * Video Url
-     * @description The URL of the video to use as input.
      */
     video_url: string;
 }
@@ -1732,6 +1956,54 @@ export interface VibeVoiceSpeaker {
         | 'Xinran [ZH]';
 }
 
+export interface Vgl {
+    aesthetics?: Aesthetics_1;
+    /**
+     * Artistic Style
+     * @description The artistic style of the image to be generated.
+     */
+    artistic_style?: string;
+    /**
+     * Background Setting
+     * @description The background setting of the image to be generated.
+     */
+    background_setting?: string;
+    /**
+     * Context
+     * @description The context of the image to be generated.
+     */
+    context?: string;
+    /**
+     * Edit Instruction
+     * @description The edit instruction for the image.
+     */
+    edit_instruction?: string;
+    lighting?: Lighting_1;
+    /**
+     * Objects
+     * @description A list of objects in the image to be generated, along with their attributes and relationships to other objects in the image.
+     * @default []
+     */
+    objects?: PromptObject_1[];
+    photographic_characteristics?: PhotographicCharacteristics_1;
+    /**
+     * Short Description
+     * @description A short description of the image to be generated.
+     */
+    short_description?: string;
+    /**
+     * Style Medium
+     * @description The style medium of the image to be generated.
+     */
+    style_medium?: string;
+    /**
+     * Text Render
+     * @description A list of text to be rendered in the image.
+     * @default []
+     */
+    text_render?: { [x: string]: any }[];
+}
+
 export interface Validation {
     /**
      * Image Url
@@ -1758,20 +2030,43 @@ export interface V2VValidation {
     reference_video_url: string;
 }
 
-export interface UsageInfo_2 {
+export interface V2VMaskedValidation {
     /**
-     * Input Tokens
-     * @description Number of input tokens processed.
+     * Mask Url
+     * @description URL to the mask (image or video). Standard convention: WHITE marks the region to regenerate/edit, BLACK is kept unchanged.
      */
-    input_tokens: number;
+    mask_url: string;
     /**
-     * Output Tokens
-     * @description Number of output tokens generated.
+     * Prompt
+     * @description The prompt to use for validation.
      */
-    output_tokens: number;
+    prompt: string;
+    /**
+     * Reference Video Url
+     * @description URL to the reference (control) video that guides the regenerated region.
+     */
+    reference_video_url: string;
+    /**
+     * Video Url
+     * @description URL to the source video. Its UNMASKED region is kept pixel-faithful and the masked region is regenerated.
+     */
+    video_url: string;
 }
 
-export interface UsageInfo_1 {
+export interface V2AValidation {
+    /**
+     * Prompt
+     * @description The prompt to use for validation.
+     */
+    prompt: string;
+    /**
+     * Video Url
+     * @description URL to the silent video the model should generate audio for.
+     */
+    video_url: string;
+}
+
+export interface UsageInfo_2 {
     /**
      * Decode Time Ms
      * @description Time taken for decoding in milliseconds
@@ -1799,7 +2094,7 @@ export interface UsageInfo_1 {
     ttft_ms: number;
 }
 
-export interface UsageInfo {
+export interface UsageInfo_1 {
     completion_tokens?: number;
     cost: number;
     prompt_tokens?: number;
@@ -1809,6 +2104,19 @@ export interface UsageInfo {
      * @default 0
      */
     total_tokens?: number;
+}
+
+export interface UsageInfo {
+    /**
+     * Input Tokens
+     * @description Number of input tokens processed.
+     */
+    input_tokens: number;
+    /**
+     * Output Tokens
+     * @description Number of output tokens generated.
+     */
+    output_tokens: number;
 }
 
 export interface Turn {
@@ -1898,21 +2206,6 @@ export interface TrajectoryParameters {
     theta: number[];
 }
 
-export interface Trajectory {
-    /**
-     * X
-     * @description X coordinate of the motion trajectory
-     * @example 279
-     */
-    x: number;
-    /**
-     * Y
-     * @description Y coordinate of the motion trajectory
-     * @example 219
-     */
-    y: number;
-}
-
 export interface Track {
     /**
      * Id
@@ -1923,7 +2216,7 @@ export interface Track {
      * Keyframes
      * @description List of keyframes that make up this track
      */
-    keyframes: Keyframe[];
+    keyframes: Keyframe_1[];
     /**
      * Type
      * @description Type of track ('video', 'audio', or 'image')
@@ -2121,7 +2414,223 @@ export interface TextRender {
     text: string;
 }
 
+export interface TextCustomizations {
+    /**
+     * Baseline (all words)
+     * @description Baseline styling applied to every word in the transcript. This is what a reader sees by default, before any per-word emphasis is applied.
+     */
+    baseline?: TextCustomization;
+    /**
+     * Highlighted (mid-rank)
+     * @description Mid-rank words (automatically marked as noteworthy: key nouns, action verbs, salient adjectives). Presets typically bump size or weight on these.
+     */
+    highlighted?: TextCustomization;
+}
+
+export interface TextCustomization {
+    /**
+     * Color
+     * @description Override the text color for this tier.
+     */
+    color?: string;
+    /**
+     * Font
+     * @description Override the font used for this text tier. Must be a supported Google Font — see https://www.veed.io/api/v1/subtitle-renders/fonts for the canonical list. Unrecognized fonts are rejected with a 400.
+     */
+    font?: string;
+    /**
+     * Weight
+     * @description Font weight 100-900. Values >= 700 render as bold
+     */
+    weight?: number;
+}
+
+export interface TailoredStructuredPrompt {
+    action_description?: string;
+    actor_prefix?: string;
+    aesthetics?: Aesthetics_1;
+    art_direction?: string;
+    /**
+     * Artistic Style
+     * @description The artistic style of the image to be generated.
+     */
+    artistic_style?: string;
+    /**
+     * Background Setting
+     * @description The background setting of the image to be generated.
+     */
+    background_setting?: string;
+    /**
+     * Context
+     * @description The context of the image to be generated.
+     */
+    context?: string;
+    lighting?: Lighting_1;
+    /**
+     * Objects
+     * @description A list of objects in the image to be generated, along with their attributes and relationships to other objects in the image.
+     * @default []
+     */
+    objects?: PromptObject_1[];
+    photographic_characteristics?: PhotographicCharacteristics_1;
+    /**
+     * Short Description
+     * @description A short description of the image to be generated.
+     */
+    short_description?: string;
+    /**
+     * Style Medium
+     * @description The style medium of the image to be generated.
+     */
+    style_medium?: string;
+    sub_trigger_word?: string;
+    /**
+     * Text Render
+     * @description A list of text to be rendered in the image.
+     * @default []
+     */
+    text_render?: { [x: string]: any }[];
+    trigger_word?: string;
+}
+
+export interface T2AValidation {
+    /**
+     * Prompt
+     * @description The prompt to use for validation.
+     */
+    prompt: string;
+}
+
+export interface Sync3GenerationOptions {
+    active_speaker_detection?: Sync3ActiveSpeakerDetection;
+    /**
+     * Model Mode
+     * @description Edit region for the model. This is a Sync.so option primarily used by react-1.
+     */
+    model_mode?: 'lips' | 'face' | 'head' | 'lipsync' | 'emotion' | 'talking_head';
+    /**
+     * Occlusion Detection Enabled
+     * @description Whether to detect occlusion during generation. Sync.so handles this automatically for sync-3, so this option is ignored by sync-3.
+     */
+    occlusion_detection_enabled?: boolean;
+    /**
+     * Prompt
+     * @description Emotion prompt for generation. This is a Sync.so option primarily used by react-1.
+     */
+    prompt?: 'happy' | 'sad' | 'angry' | 'disgusted' | 'surprised' | 'neutral';
+    /**
+     * Sync Mode
+     * @description Defines how to handle duration mismatches between video and audio inputs. Overrides the top-level sync_mode when provided.
+     */
+    sync_mode?: 'cut_off' | 'loop' | 'bounce' | 'silence' | 'remap';
+    /**
+     * Temperature
+     * @description Controls how expressive lipsync can be; 0 is least expressive, 1 is most expressive. Sync.so handles this natively for sync-3, so this option is ignored by sync-3.
+     */
+    temperature?: number;
+}
+
+export interface Sync3ActiveSpeakerDetection {
+    /**
+     * Auto Detect
+     * @description Whether to automatically detect and apply generation to the active speaker.
+     */
+    auto_detect?: boolean;
+    /**
+     * Bounding Boxes
+     * @description Per-frame bounding boxes [x1, y1, x2, y2] for the detected face.
+     */
+    bounding_boxes?: number[][];
+    /**
+     * Bounding Boxes Url
+     * @description URL to a JSON file containing per-frame bounding boxes.
+     */
+    bounding_boxes_url?: string;
+    /**
+     * Coordinates
+     * @description Reference point [x, y] on the speaker's face in frame_number.
+     */
+    coordinates?: number[];
+    /**
+     * Face Image
+     * @description Base64 encoded face image for manual speaker selection.
+     */
+    face_image?: string;
+    /**
+     * Frame Number
+     * @description Frame index for manual speaker selection coordinates.
+     */
+    frame_number?: number;
+    /**
+     * Use V2
+     * @description Deprecated Sync.so option for active speaker detection v2.
+     */
+    use_v2?: boolean;
+    /**
+     * V3
+     * @description Whether to use Sync.so's active speaker detection v3.
+     */
+    v3?: boolean;
+}
+
+export interface Style {
+    /**
+     * Id
+     * @description Krea style identifier (a LoRA-based preset style) returned by the Krea styles catalog.
+     */
+    id: string;
+    /**
+     * Strength
+     * @description How strongly the style influences the generated image. Negative values push away from the style.
+     * @default 1
+     */
+    strength?: number;
+}
+
 export interface StructuredPrompt_2 {
+    aesthetics?: Aesthetics_1;
+    /**
+     * Artistic Style
+     * @description The artistic style of the image to be generated.
+     */
+    artistic_style?: string;
+    /**
+     * Background Setting
+     * @description The background setting of the image to be generated.
+     */
+    background_setting?: string;
+    /**
+     * Context
+     * @description The context of the image to be generated.
+     */
+    context?: string;
+    lighting?: Lighting_1;
+    /**
+     * Objects
+     * @description A list of objects in the image to be generated, along with their attributes and relationships to other objects in the image.
+     * @default []
+     */
+    objects?: PromptObject_1[];
+    photographic_characteristics?: PhotographicCharacteristics_1;
+    /**
+     * Short Description
+     * @description A short description of the image to be generated.
+     */
+    short_description?: string;
+    /**
+     * Style Medium
+     * @description The style medium of the image to be generated.
+     */
+    style_medium?: string;
+    /**
+     * Text Render
+     * @description A list of text to be rendered in the image.
+     * @default []
+     */
+    text_render?: { [x: string]: any }[];
+}
+
+export interface StructuredPrompt_1 {
     aesthetics?: Aesthetics_1;
     /**
      * Artistic Style
@@ -2169,7 +2678,7 @@ export interface StructuredPrompt_2 {
     text_render?: { [x: string]: any }[];
 }
 
-export interface StructuredPrompt_1 {
+export interface StructuredPrompt {
     aesthetics: AestheticsDetails;
     /**
      * Artistic Style
@@ -2213,49 +2722,6 @@ export interface StructuredPrompt_1 {
      * @description List of text renders in the image.
      */
     text_render?: TextRender[];
-}
-
-export interface StructuredPrompt {
-    aesthetics?: Aesthetics_1;
-    /**
-     * Artistic Style
-     * @description The artistic style of the image to be generated.
-     */
-    artistic_style?: string;
-    /**
-     * Background Setting
-     * @description The background setting of the image to be generated.
-     */
-    background_setting?: string;
-    /**
-     * Context
-     * @description The context of the image to be generated.
-     */
-    context?: string;
-    lighting?: Lighting_1;
-    /**
-     * Objects
-     * @description A list of objects in the image to be generated, along with their attributes and relationships to other objects in the image.
-     * @default []
-     */
-    objects?: PromptObject_1[];
-    photographic_characteristics?: PhotographicCharacteristics_1;
-    /**
-     * Short Description
-     * @description A short description of the image to be generated.
-     */
-    short_description?: string;
-    /**
-     * Style Medium
-     * @description The style medium of the image to be generated.
-     */
-    style_medium?: string;
-    /**
-     * Text Render
-     * @description A list of text to be rendered in the image.
-     * @default []
-     */
-    text_render?: { [x: string]: any }[];
 }
 
 export interface StructuredInstruction {
@@ -2304,6 +2770,38 @@ export interface StructuredInstruction {
      * @default []
      */
     text_render?: { [x: string]: any }[];
+    [key: string]: any;
+}
+
+export interface SpeechTurn {
+    /**
+     * Speaker ID
+     * @description Alias of a configured speaker.
+     */
+    speaker_id: string;
+    /**
+     * Style Instructions
+     * @description Optional delivery style for this turn.
+     */
+    style_instructions?: string;
+    /**
+     * Text
+     * @description Verbatim transcript for this turn.
+     */
+    text: string;
+}
+
+export interface SpeechToTextWord {
+    end?: number;
+    speaker_id?: string;
+    start?: number;
+    text: string;
+    /**
+     * Type
+     * @default word
+     * @enum {string}
+     */
+    type?: 'word' | 'spacing' | 'audio_event';
 }
 
 export interface SpeechTimestamp {
@@ -2317,6 +2815,50 @@ export interface SpeechTimestamp {
      * @description The start time of the speech in seconds.
      */
     start: number;
+}
+
+export interface SpeakerConfig_1 {
+    /**
+     * Speaker ID
+     * @description Speaker alias used in each turn.
+     */
+    speaker_id: string;
+    /**
+     * Voice
+     * @description Prebuilt voice for this speaker.
+     * @enum {string}
+     */
+    voice:
+        | 'Achernar'
+        | 'Achird'
+        | 'Algenib'
+        | 'Algieba'
+        | 'Alnilam'
+        | 'Aoede'
+        | 'Autonoe'
+        | 'Callirrhoe'
+        | 'Charon'
+        | 'Despina'
+        | 'Enceladus'
+        | 'Erinome'
+        | 'Fenrir'
+        | 'Gacrux'
+        | 'Iapetus'
+        | 'Kore'
+        | 'Laomedeia'
+        | 'Leda'
+        | 'Orus'
+        | 'Pulcherrima'
+        | 'Puck'
+        | 'Rasalgethi'
+        | 'Sadachbia'
+        | 'Sadaltager'
+        | 'Schedar'
+        | 'Sulafat'
+        | 'Umbriel'
+        | 'Vindemiatrix'
+        | 'Zephyr'
+        | 'Zubenelgenubi';
 }
 
 export interface SpeakerConfig {
@@ -2372,6 +2914,39 @@ export interface Speaker {
     speaker_id: number;
 }
 
+export interface SmartResizeResult {
+    /**
+     * Aspect Ratio
+     * @description The nano-banana-pro aspect ratio that was used internally for this target size.
+     */
+    aspect_ratio: string;
+    /**
+     * Description
+     * @description The description of the generated images.
+     */
+    description: string;
+    /**
+     * Height
+     * @description The requested target height in pixels.
+     */
+    height: number;
+    /**
+     * Images
+     * @description The generated images.
+     */
+    images: ImageFile[];
+    /**
+     * Resolution
+     * @description The nano-banana-pro resolution tier that was used internally for this target size.
+     */
+    resolution: string;
+    /**
+     * Width
+     * @description The requested target width in pixels.
+     */
+    width: number;
+}
+
 export interface SigmasInput {
     /**
      * Array
@@ -2390,32 +2965,153 @@ export interface SigmasInput {
     method?: 'default' | 'array';
 }
 
-export interface Shot {
+export interface ShadowLightSourcePosition {
     /**
-     * Num Frames
-     * @description Number of frames for this shot. Each shot must have between 17 and 100 frames.
-     * @default 65
+     * X
+     * @description Horizontal light position, normalized to image center (-1 to 1). Leave unset to auto-estimate the light from the image.
      */
-    num_frames?: number;
+    x?: number;
     /**
-     * Prompt
-     * @description Caption describing what happens in this shot, including subject actions, camera angles, and scene details.
-     * @example Subject 1 is smiling and gesturing with his right hand while facing the camera. Subject 2 is seen from behind, facing Subject 1. The scene is indoors in a well-decorated room, with a dark door and ornate glass visible in the background. The camera is static, providing a medium close-up shot of Subject 1.
+     * Y
+     * @description Vertical light position, normalized to image center (-1 to 1). Leave unset to auto-estimate the light from the image.
      */
-    prompt: string;
+    y?: number;
+    /**
+     * Z
+     * @description Height above subject (0 to 2). Leave unset to auto-estimate the light from the image.
+     */
+    z?: number;
 }
 
-export interface SemanticImageInput {
+export interface ShadowLightSource {
+    position?: ShadowLightSourcePosition;
     /**
-     * Hypothesis
-     * @description The hypothesis image to use for the measurement.
+     * Size
+     * @description Apparent emitter size/softness. Higher = softer penumbra. Leave unset to auto-estimate the light from the image.
      */
-    hypothesis: string;
+    size?: number;
+}
+
+export interface Shadow {
+    drop?: DropShadow;
+    generative?: GenerativeShadow;
     /**
-     * Reference
-     * @description The text reference to use for the measurement.
+     * Type
+     * @description Shadow style: 'Generative' (generative AI shadow) or 'Drop' (deterministic drop shadow). Leave unset for no shadow.
      */
-    reference: string;
+    type?: 'Generative' | 'Drop';
+}
+
+export interface SfxSegmentMeta {
+    /**
+     * Skip Reason
+     * @description Why the segment was left silent, when it was.
+     */
+    skip_reason?: string;
+    /**
+     * Skipped
+     * @description Whether this segment was left silent. Always false on sfx-v1.0, which generates every segment.
+     * @default false
+     */
+    skipped?: boolean;
+    /**
+     * Tags
+     * @description Short display labels for the sounds in this segment; may be empty.
+     */
+    tags?: string[];
+}
+
+export interface SfxSegment {
+    /**
+     * End
+     * @description Segment end time in seconds. Must equal the next segment's start (contiguous; no gaps/overlaps); the last segment's end must be <= the video duration.
+     * @default 0
+     */
+    end?: number;
+    /**
+     * Prompt
+     * @description SFX / foley description for this segment.
+     * @default
+     */
+    prompt?: string;
+    /**
+     * Start
+     * @description Segment start time in seconds (from video start). The FIRST segment's start must be 0.
+     * @default 0
+     */
+    start?: number;
+}
+
+export interface SfxOutputSegment {
+    /**
+     * End
+     * @description End in seconds on the source video timeline.
+     */
+    end: number;
+    /**
+     * Index
+     * @description Position of the segment, in source video order.
+     */
+    index: number;
+    meta: SfxSegmentMeta;
+    /**
+     * Start
+     * @description Start in seconds on the source video timeline.
+     */
+    start: number;
+}
+
+export interface SegmentSamplingSettings {
+    /**
+     * Max Tokens
+     * @description Maximum number of tokens to generate.
+     */
+    max_tokens?: number;
+    /**
+     * Temperature
+     * @description Sampling temperature to use. Higher values will make the output more random, while lower values will make it more focused and deterministic.
+     * @default 1
+     */
+    temperature?: number;
+    /**
+     * Top P
+     * @description Nucleus sampling probability mass to use, between 0 and 1.
+     * @default 1
+     */
+    top_p?: number;
+}
+
+export interface SeedDream50ProLayerBoundingBox {
+    /**
+     * Absolute
+     * @description Layer bounds as [left, top, right, bottom] pixel coordinates in the output base image coordinate system.
+     */
+    absolute: number[];
+    /**
+     * Normalized
+     * @description Layer bounds as [left, top, right, bottom] coordinates normalized to the integer range [0, 1000].
+     */
+    normalized: number[];
+}
+
+export interface SeedDream50ProLayer {
+    bounding_box?: SeedDream50ProLayerBoundingBox;
+    /**
+     * Description
+     * @description Detailed model-generated description of the layer. Omitted for the base image.
+     */
+    description?: string;
+    image: Image;
+    /**
+     * Name
+     * @description Model-generated label for the layer. Omitted for the base image.
+     */
+    name?: string;
+    /**
+     * Z Index
+     * @description Stacking order from bottom to top. The base image always has z_index 0.
+     */
+    z_index: number;
 }
 
 export interface Seed2MiniMessage {
@@ -2594,6 +3290,60 @@ export interface SAM3DBodyAlignmentInfo {
     translation: number[];
 }
 
+export interface RodinGen25BbboxField {
+    /**
+     * Height
+     * @description Height (y axis) dimension for the bounding box constraint.
+     * @default 0
+     */
+    height?: number;
+    /**
+     * Length
+     * @description Length (z axis) dimension for the bounding box constraint.
+     * @default 0
+     */
+    length?: number;
+    /**
+     * Width
+     * @description Width (x axis) dimension for the bounding box constraint.
+     * @default 0
+     */
+    width?: number;
+}
+
+export interface RodinGen25Addons {
+    /**
+     * High Pack
+     * @description Selecting HighPack generates 4K resolution texture instead of the default 2K. In Quad mode, the number of faces becomes ~16× the count set in the quality parameter.
+     * @default false
+     */
+    high_pack?: boolean;
+}
+
+export interface RGBColor_2 {
+    /**
+     * B
+     * @default 0
+     */
+    b?: number;
+    /**
+     * G
+     * @default 0
+     */
+    g?: number;
+    /**
+     * R
+     * @default 0
+     */
+    r?: number;
+}
+
+export interface RGBColor_1 {
+    b: number;
+    g: number;
+    r: number;
+}
+
 export interface RGBColor {
     /**
      * B
@@ -2686,25 +3436,122 @@ export interface Region {
     y2: number;
 }
 
-export interface ReferenceImageInput {
-    /**
-     * Hypothesis
-     * @description The hypothesis image to use for the measurement.
-     */
-    hypothesis: string;
-    /**
-     * Reference
-     * @description The image to use for the measurement.
-     */
-    reference: string;
-}
-
 export interface ReferenceFace {
     /**
      * Image Url
      * @description URL of the reference face image
      */
     image_url: string;
+}
+
+export interface ReferenceCondition {
+    /**
+     * Type
+     * @description Reference modality. Cross-modality list order is semantic.
+     * @enum {string}
+     */
+    type: 'image' | 'video' | 'audio';
+    /**
+     * Url
+     * @description URL of the reference media.
+     */
+    url: string;
+}
+
+export interface RayReframeSourcePosition {
+    /**
+     * H Norm
+     * @description Height of the source rectangle as a fraction of output height.
+     */
+    h_norm: number;
+    /**
+     * W Norm
+     * @description Width of the source rectangle as a fraction of output width.
+     */
+    w_norm: number;
+    /**
+     * X Norm
+     * @description Left edge of the source rectangle as a fraction of output width.
+     */
+    x_norm: number;
+    /**
+     * Y Norm
+     * @description Top edge of the source rectangle as a fraction of output height.
+     */
+    y_norm: number;
+}
+
+export interface RayEditTrajectoryControl {
+    /**
+     * Enabled
+     * @description Enable motion-trajectory conditioning for the edit.
+     * @default true
+     */
+    enabled?: boolean;
+    /**
+     * Sparsity
+     * @description Motion-trajectory sparsity. Higher values use fewer motion anchors. Leave unset for the default.
+     */
+    sparsity?: number;
+}
+
+export interface RayEditPoseControl {
+    /**
+     * Enabled
+     * @description Enable pose / skeleton conditioning for the edit.
+     * @default true
+     */
+    enabled?: boolean;
+    /**
+     * Strength
+     * @description Pose conditioning precision. 'precise' follows the source pose tightly; 'coarse' allows more freedom. Leave unset for the default.
+     */
+    strength?: 'precise' | 'coarse';
+}
+
+export interface RayEditNormalsControl {
+    /**
+     * Augmentation
+     * @description Surface-normals augmentation. Higher values allow more reinterpretation of surface geometry. Leave unset for the default.
+     */
+    augmentation?: number;
+    /**
+     * Enabled
+     * @description Enable surface-normals conditioning for the edit.
+     * @default true
+     */
+    enabled?: boolean;
+}
+
+export interface RayEditFaceControl {
+    /**
+     * Enabled
+     * @description Enable face-identity conditioning for the edit.
+     * @default true
+     */
+    enabled?: boolean;
+}
+
+export interface RayEditDepthControl {
+    /**
+     * Blur
+     * @description Depth blur. Higher values allow more geometric freedom. Leave unset for the default.
+     */
+    blur?: number;
+    /**
+     * Enabled
+     * @description Enable depth / scene-geometry conditioning for the edit.
+     * @default true
+     */
+    enabled?: boolean;
+}
+
+export interface RayEditControls {
+    depth?: RayEditDepthControl;
+    face?: RayEditFaceControl;
+    normals?: RayEditNormalsControl;
+    pose?: RayEditPoseControl;
+    trajectory?: RayEditTrajectoryControl;
 }
 
 export interface RawImage {
@@ -2928,6 +3775,24 @@ export interface PromptObject {
     texture?: string;
 }
 
+export interface PresetCustomization {
+    /**
+     * Position
+     * @description Vertical placement of static subtitles on screen.
+     */
+    position?: 'top' | 'center' | 'bottom';
+    /**
+     * Shadow
+     * @description Improves readability over bright or busy backgrounds.
+     */
+    shadow?: 'none' | 'min' | 'mid' | 'max';
+    /**
+     * Text customizations
+     * @description Per-tier text styling for baseline and highlighted words.
+     */
+    text_customizations?: TextCustomizations;
+}
+
 export interface PolygonOutput {
     /**
      * Polygons
@@ -2959,7 +3824,7 @@ export interface PointPromptBase {
     label?: 0 | 1;
     /**
      * Object Id
-     * @description Optional object identifier. Prompts sharing an object id refine the same object.
+     * @description Optional object identifier. Prompts sharing an object id refine the same object. When a text prompt is also given, the id selects which detected object the points refine.
      */
     object_id?: number;
     /**
@@ -3015,7 +3880,7 @@ export interface PointPrompt {
     label?: 0 | 1;
     /**
      * Object Id
-     * @description Optional object identifier. Prompts sharing an object id refine the same object.
+     * @description Optional object identifier. Prompts sharing an object id refine the same object. When a text prompt is also given, the id selects which detected object the points refine.
      */
     object_id?: number;
     /**
@@ -3033,6 +3898,19 @@ export interface PointPrompt {
 export interface Point_1 {
     /**
      * X
+     * @description The x coordinate.
+     */
+    x: number;
+    /**
+     * Y
+     * @description The y coordinate.
+     */
+    y: number;
+}
+
+export interface Point {
+    /**
+     * X
      * @description X coordinate of the point in normalized format (0 to 1)
      */
     x: number;
@@ -3043,17 +3921,18 @@ export interface Point_1 {
     y: number;
 }
 
-export interface Point {
+export interface PodcastConversation {
     /**
-     * X
-     * @description The x coordinate.
+     * Text
+     * @description Text spoken in this conversation turn, up to 400 characters.
      */
-    x: number;
+    text: string;
     /**
-     * Y
-     * @description The y coordinate.
+     * Voice
+     * @description Built-in voice used for this conversation turn.
+     * @enum {string}
      */
-    y: number;
+    voice: 'Ethan' | 'Victoria' | 'Jake' | 'Luna' | 'Emma';
 }
 
 export interface PhotographicCharacteristicsDetails {
@@ -3079,7 +3958,7 @@ export interface PhotographicCharacteristicsDetails {
     lens_focal_length: string;
 }
 
-export type PhotographicCharacteristics_1 = {
+export interface PhotographicCharacteristics_1 {
     /**
      * Camera Angle
      * @description The angle of the camera in the image to be generated.
@@ -3100,9 +3979,8 @@ export type PhotographicCharacteristics_1 = {
      * @description The focal length of the lens in the image to be generated.
      */
     lens_focal_length?: string;
-} & {
-    [key: string]: { [x: string]: any } | null;
-};
+    [key: string]: any;
+}
 
 export interface PhotographicCharacteristics {
     /**
@@ -3127,7 +4005,7 @@ export interface PhotographicCharacteristics {
     lens_focal_length?: string;
 }
 
-export interface OutputFormat {
+export interface OutputFormat_1 {
     /**
      * Bit Rate
      * @description Bit rate in bps. Only applicable for MP3 codec. Defaults to 128000 for MP3.
@@ -3149,12 +4027,51 @@ export interface OutputFormat {
     sample_rate?: 8000 | 16000 | 22050 | 24000 | 44100 | 48000;
 }
 
+export interface OutputFormat {
+    /**
+     * Bit Rate
+     * @description Output bit rate. Only used when container is 'mp3'.
+     */
+    bit_rate?: number;
+    /**
+     * Container
+     * @description Output audio container format.
+     * @default mp3
+     * @enum {string}
+     */
+    container?: 'mp3' | 'raw';
+    /**
+     * Encoding
+     * @description PCM encoding. Only used when container is 'raw'.
+     */
+    encoding?: 'pcm_s16le' | 'pcm_f32le' | 'pcm_mulaw';
+    /**
+     * Sample Rate
+     * @description Output sample rate in Hz.
+     * @default 44100
+     */
+    sample_rate?: number;
+}
+
+export interface OutpaintValidation {
+    /**
+     * Prompt
+     * @description The prompt to use for validation.
+     */
+    prompt: string;
+    /**
+     * Video Url
+     * @description URL to the full-canvas video whose surround should be outpainted.
+     */
+    video_url: string;
+}
+
 export interface OmniVideoElementInput {
     /**
      * Frontal Image Url
      * @description The frontal image of the element (main view).
      *
-     *     Max file size: 10.0MB, Min width: 300px, Min height: 300px, Min aspect ratio: 0.40, Max aspect ratio: 2.50, Timeout: 20.0s
+     *     Max file size: 50.0MB, Min width: 300px, Min height: 300px, Min aspect ratio: 0.40, Max aspect ratio: 2.50, Timeout: 20.0s
      */
     frontal_image_url: string;
     /**
@@ -3273,6 +4190,65 @@ export interface Object {
     y_min: number;
 }
 
+export interface NemotronDiffusionVLMUsage {
+    /**
+     * Completion Tokens
+     * @description Number of generated completion tokens.
+     */
+    completion_tokens: number;
+    /**
+     * Num Function Evals
+     * @description Number of model function evaluations used for generation.
+     */
+    num_function_evals: number;
+    /**
+     * Prompt Tokens
+     * @description Number of prompt tokens sent to the model.
+     */
+    prompt_tokens: number;
+}
+
+export interface NemotronDiffusionVLMTimings {
+    /**
+     * Decode Time
+     * @description Time spent decoding output token IDs to text.
+     */
+    decode_time: number;
+    /**
+     * Generation Time
+     * @description Time spent inside model generation.
+     */
+    generation_time: number;
+    /**
+     * GPU Transfer Time
+     * @description Time spent moving tensors to the GPU.
+     */
+    gpu_transfer_time: number;
+    /**
+     * Image Validation Time
+     * @description Time spent validating and loading the input image.
+     */
+    image_validation_time: number;
+    /**
+     * Preprocessing Time
+     * @description Time spent expanding the chat template and preprocessing tensors.
+     */
+    preprocessing_time: number;
+    /**
+     * Total Time
+     * @description Total request time in seconds.
+     */
+    total_time: number;
+}
+
+export interface MusicV2CompositionPlan {
+    /**
+     * Chunks
+     * @description The chunks that make up the generation, in order. At most 30 chunks, totalling between 3000ms and 600000ms.
+     */
+    chunks: MusicGenerationChunk[];
+}
+
 export interface MusicSection {
     /**
      * Duration Ms
@@ -3301,6 +4277,43 @@ export interface MusicSection {
     section_name: string;
 }
 
+export interface MusicGenerationChunk {
+    audio_reference?: MusicAudioReference;
+    /**
+     * Context Adherence
+     * @description How closely this chunk follows the context of its surrounding chunks. Low adherence lets the model deviate and be more creative, high adherence keeps it consistent with the surrounding context.
+     */
+    context_adherence?: 'low' | 'medium' | 'high';
+    /**
+     * Duration Ms
+     * @description The duration of the chunk in milliseconds. Must be between 3000ms and 120000ms.
+     */
+    duration_ms: number;
+    /**
+     * Negative Styles
+     * @description The styles and musical directions that should not be present in this chunk. Leaving this empty is a good default; only set it to explicitly avoid a particular style or direction.
+     */
+    negative_styles?: string[];
+    /**
+     * Positive Styles
+     * @description The styles and musical directions that should be present in this chunk. Use English for best results. The styles of the first chunk matter most as they set the overall tone and genre; later chunks can add nuance, progression or change direction.
+     * @example [
+     *       "synthwave",
+     *       "analog drum machine",
+     *       "great production quality"
+     *     ]
+     */
+    positive_styles: string[];
+    /**
+     * Text
+     * @description The text to generate for this chunk. Can start with an optional section name in square brackets, e.g. [Verse 1], followed by lyric lines, plus inline directions in curly braces, e.g. {scratching}. Section names must be between 1 and 100 characters. At most 30 lines are allowed, each at most 200 characters.
+     * @example [Verse 1]
+     *     Neon rain on empty streets
+     *     I keep walking to the beat
+     */
+    text: string;
+}
+
 export interface MusicCompositionPlan {
     /**
      * Negative Global Styles
@@ -3319,6 +4332,31 @@ export interface MusicCompositionPlan {
     sections: MusicSection[];
 }
 
+export interface MusicAudioReference {
+    /**
+     * Audio Url
+     * @description URL of the audio clip to use as the style reference.
+     * @example https://storage.googleapis.com/falserverless/example_outputs/elevenlabs/music_generated.mp3
+     */
+    audio_url: string;
+    /**
+     * End Ms
+     * @description Offset into the clip where the referenced window ends, in milliseconds. Defaults to 30000ms after start_ms, or the end of the clip if it is shorter. The window must be at most 30000ms long.
+     */
+    end_ms?: number;
+    /**
+     * Start Ms
+     * @description Offset into the clip where the referenced window starts, in milliseconds.
+     * @default 0
+     */
+    start_ms?: number;
+    /**
+     * Strength
+     * @description How strongly the model follows the reference. Low lets it deviate and be more creative, high keeps it close to the reference.
+     */
+    strength?: 'low' | 'medium' | 'high' | 'xhigh';
+}
+
 export interface MoondreamInputParam {
     /**
      * Image URL
@@ -3335,6 +4373,20 @@ export interface MoondreamInputParam {
     prompt?: string;
 }
 
+export interface Moodboard {
+    /**
+     * Id
+     * @description Krea moodboard identifier (UUID).
+     */
+    id: string;
+    /**
+     * Strength
+     * @description How strongly the moodboard influences the generated image.
+     * @default 0.23
+     */
+    strength?: number;
+}
+
 export interface ModelUrls_3 {
     fbx?: File;
     glb?: File;
@@ -3343,18 +4395,31 @@ export interface ModelUrls_3 {
 }
 
 export interface ModelUrls_2 {
-    base_model?: File;
-    glb?: File;
-    pbr_model?: File;
-}
-
-export interface ModelUrls_1 {
     fbx?: File;
     glb?: File;
     mtl?: File;
     obj?: File;
     texture?: File;
     usdz?: File;
+}
+
+export interface ModelUrls_1 {
+    base_model?: File;
+    /**
+     * FBX
+     * @description FBX format 3D model
+     */
+    fbx?: File;
+    /**
+     * GLB
+     * @description GLB format 3D model
+     */
+    glb?: File;
+    /**
+     * PBR Model
+     * @description PBR-textured model
+     */
+    pbr_model?: File;
 }
 
 export interface ModelUrls {
@@ -3382,6 +4447,36 @@ export interface MaskMetadata {
      * @description Score for this mask.
      */
     score?: number;
+}
+
+export interface Margin {
+    /**
+     * All
+     * @description Margin applied to all sides. '%' (0–49%) of the canvas dimension, or 'px' (>=0px).
+     * @default 20%
+     * @example 20%
+     */
+    all?: string;
+    /**
+     * Bottom
+     * @description Bottom-side override of `all`. '%' (0–49%) or 'px' (>=0px).
+     */
+    bottom?: string;
+    /**
+     * Left
+     * @description Left-side override of `all`. '%' (0–49%) or 'px' (>=0px).
+     */
+    left?: string;
+    /**
+     * Right
+     * @description Right-side override of `all`. '%' (0–49%) or 'px' (>=0px).
+     */
+    right?: string;
+    /**
+     * Top
+     * @description Top-side override of `all`. '%' (0–49%) or 'px' (>=0px).
+     */
+    top?: string;
 }
 
 export interface MapImageFile {
@@ -3424,6 +4519,26 @@ export interface MapImageFile {
      * @description The width of the image
      */
     width?: number;
+}
+
+export interface LyricsWord {
+    end?: number;
+    start?: number;
+    text?: string;
+}
+
+export interface LyricsSection {
+    end?: number;
+    lines?: LyricsLine[];
+    section_type?: 'intro' | 'verse' | 'pre-chorus' | 'chorus' | 'bridge' | 'break' | 'outro';
+    start?: number;
+}
+
+export interface LyricsLine {
+    end?: number;
+    start?: number;
+    text?: string;
+    words?: LyricsWord[];
 }
 
 export interface LoudnormSummary {
@@ -3506,49 +4621,6 @@ export interface LoudnessNormalizationSetting {
     target_range?: number;
 }
 
-export interface LoraWeight_6 {
-    /**
-     * Force
-     * @description If set to true, the embedding will be forced to be used.
-     * @default false
-     */
-    force?: boolean;
-    /**
-     * Path
-     * @description URL or path to a LoRA safetensors file. Or HF model name that resolves to safetensors weights.
-     * @example https://civitai.com/api/download/models/135931
-     * @example https://filebin.net/3chfqasxpqu21y8n/my-custom-lora-v1.safetensors
-     */
-    path: string;
-    /**
-     * Scale
-     * @description The scale of the LoRA weight. This is used to scale the LoRA weight
-     *                 before merging it with the base model.
-     * @default 1
-     */
-    scale?: number;
-}
-
-export interface LoraWeight_5 {
-    /**
-     * Path
-     * @description URL or the path to the LoRA weights.
-     */
-    path: string;
-    /**
-     * Scale
-     * @description The scale of the LoRA weight. This is used to scale the LoRA weight
-     *                 before merging it with the base model.
-     * @default 1
-     */
-    scale?: number;
-    /**
-     * Weight Name
-     * @description Name of the LoRA weight. Used only if `path` is a Hugging Face repository, and required only if you have more than 1 safetensors file in the repo.
-     */
-    weight_name?: string;
-}
-
 export interface LoraWeight_4 {
     /**
      * Path
@@ -3568,9 +4640,7 @@ export interface LoraWeight_4 {
 export interface LoraWeight_3 {
     /**
      * Path
-     * @description URL or the path to the LoRA weights. Or HF model name.
-     * @example https://civitai.com/api/download/models/135931
-     * @example https://filebin.net/3chfqasxpqu21y8n/my-custom-lora-v1.safetensors
+     * @description URL or the path to the LoRA weights.
      */
     path: string;
     /**
@@ -3580,6 +4650,11 @@ export interface LoraWeight_3 {
      * @default 1
      */
     scale?: number;
+    /**
+     * Weight Name
+     * @description Name of the LoRA weight. Used only if `path` is a Hugging Face repository, and required only if you have more than 1 safetensors file in the repo.
+     */
+    weight_name?: string;
 }
 
 export interface LoraWeight_2 {
@@ -3594,7 +4669,11 @@ export interface LoraWeight_2 {
      *                 before merging it with the base model. Providing a dictionary as {"layer_name":layer_scale} allows per-layer lora scale settings. Layers with no scale provided will have scale 1.0.
      * @default 1
      */
-    scale?: Record<string, number> | number;
+    scale?:
+        | {
+              [key: string]: number;
+          }
+        | number;
 }
 
 export interface LoRAWeight_1 {
@@ -3633,7 +4712,7 @@ export interface LoraWeight_1 {
     force?: boolean;
     /**
      * Path
-     * @description URL or the path to the LoRA weights. Or HF model name.
+     * @description URL or path to a LoRA safetensors file. Or HF model name that resolves to safetensors weights.
      * @example https://civitai.com/api/download/models/135931
      * @example https://filebin.net/3chfqasxpqu21y8n/my-custom-lora-v1.safetensors
      */
@@ -3681,7 +4760,55 @@ export interface LoraWeight {
     scale?: number;
 }
 
-export interface LoRAInput_2 {
+export interface LoraTrainingFailure {
+    /**
+     * Denoiser
+     * @description TRELLIS.2 denoiser whose training did not complete.
+     * @enum {string}
+     */
+    denoiser: 'sparse_structure' | 'geometry' | 'texture';
+    /**
+     * Error
+     * @description Reason the training did not complete.
+     */
+    error: string;
+}
+
+export interface LoRAInput_5 {
+    /**
+     * Path
+     * @description URL or HuggingFace repo id (owner/repo) of the LoRA weights.
+     * @example https://huggingface.co/owner/repo/resolve/main/lora.safetensors
+     */
+    path: string;
+    /**
+     * Scale
+     * @description Strength of the LoRA (0.0 to 4.0).
+     * @default 1
+     */
+    scale?: number;
+    /**
+     * Weight Name
+     * @description Name of the LoRA weight file. Only used when `path` is a HuggingFace repo and it holds more than one LoRA.
+     */
+    weight_name?: string;
+}
+
+export interface LoRAInput_4 {
+    /**
+     * Path
+     * @description URL to an Ideogram V4 LoRA weights file (.safetensors).
+     */
+    path: string;
+    /**
+     * Scale
+     * @description Scale factor for the LoRA weights.
+     * @default 1
+     */
+    scale?: number;
+}
+
+export interface LoRAInput_3 {
     /**
      * Path
      * @description URL, HuggingFace repo ID (owner/repo) to lora weights.
@@ -3695,21 +4822,29 @@ export interface LoRAInput_2 {
     scale?: number;
 }
 
-export interface LoRAInput_1 {
+export interface LoRAInput_2 {
     /**
      * Path
-     * @description URL, HuggingFace repo ID (owner/repo), or local path to LoRA weights.
+     * @description Direct HTTP(S) download URL of the LoRA file (.safetensors). The file is downloaded through an SSRF-safe downloader before it is loaded. Max size: 3 GB.
+     * @example https://example.com/path/to/lora.safetensors
      */
     path: string;
     /**
      * Scale
-     * @description Scale factor for LoRA application (0.0 to 4.0).
+     * @description Strength of the LoRA application (0.0 to 2.0). Higher values = stronger effect on the generated video.
      * @default 1
      */
     scale?: number;
+    /**
+     * Transformer
+     * @description Forward-compatibility flag for multi-transformer architectures. LTX-2.3 has a single transformer, so 'both' is the right choice for almost all users.
+     * @default both
+     * @enum {string}
+     */
+    transformer?: 'high' | 'low' | 'both';
 }
 
-export interface LoRAInput {
+export interface LoRAInput_1 {
     /**
      * Path
      * @description URL, HuggingFace repo ID (owner/repo) to lora weights.
@@ -3726,6 +4861,52 @@ export interface LoRAInput {
      * @description Name of the LoRA weight. Only used if `path` is a HuggingFace repository, and is only required when the repository contains multiple LoRA weights.
      */
     weight_name?: string;
+}
+
+export interface LoRAInput {
+    /**
+     * Path
+     * @description URL, HuggingFace repo ID (owner/repo), or local path to LoRA weights.
+     */
+    path: string;
+    /**
+     * Scale
+     * @description Scale factor for LoRA application (0.0 to 4.0).
+     * @default 1
+     */
+    scale?: number;
+}
+
+export interface LoraAdapterResult {
+    /**
+     * Denoiser
+     * @description TRELLIS.2 denoiser this LoRA adapter was trained for: sparse_structure, geometry, or texture.
+     * @enum {string}
+     */
+    denoiser: 'sparse_structure' | 'geometry' | 'texture';
+    /**
+     * Learning Rate
+     * @description Learning rate used for LoRA optimization.
+     */
+    learning_rate: number;
+    lora_file: File;
+    /**
+     * Rank
+     * @description LoRA rank used for training.
+     * @enum {integer}
+     */
+    rank: 16 | 32 | 64;
+    /**
+     * Resolution
+     * @description Resolution this LoRA adapter was trained at. Use the same resolution in trellis-2-lora inference.
+     * @enum {integer}
+     */
+    resolution: 512 | 1024;
+    /**
+     * Training Steps
+     * @description Number of training steps run.
+     */
+    training_steps: number;
 }
 
 export interface LightingDetails {
@@ -3746,7 +4927,7 @@ export interface LightingDetails {
     shadows?: string;
 }
 
-export type Lighting_1 = {
+export interface Lighting_1 {
     /**
      * Conditions
      * @description The conditions of the lighting in the image to be generated.
@@ -3762,9 +4943,8 @@ export type Lighting_1 = {
      * @description The shadows in the image to be generated.
      */
     shadows?: string;
-} & {
-    [key: string]: { [x: string]: any } | null;
-};
+    [key: string]: any;
+}
 
 export interface Lighting {
     /**
@@ -3782,24 +4962,6 @@ export interface Lighting {
      * @description The shadows in the image to be generated.
      */
     shadows?: string;
-}
-
-export interface LavaSRTimings {
-    /**
-     * Inference
-     * @description Time taken to run the inference in seconds.
-     */
-    inference: number;
-    /**
-     * Postprocess
-     * @description Time taken to postprocess the audio in seconds.
-     */
-    postprocess: number;
-    /**
-     * Preprocess
-     * @description Time taken to preprocess the audio in seconds.
-     */
-    preprocess: number;
 }
 
 export interface KlingV3MultiPromptElement {
@@ -3863,7 +5025,7 @@ export interface KlingV3ComboElementInput {
     video_url?: string;
     /**
      * Voice Id
-     * @description The voice ID for this element. The voice will be binded to the element and references to this element will use the binded voice. Voice binding is only supported for video elements, and cannot be used with image elements. Get voice IDs from the following endpoint: https://fal.ai/models/fal-ai/kling-video/create-voice
+     * @description The voice ID for this element. The voice will be binded to the element and references to this element will use the binded voice. Get voice IDs from the following endpoint: https://fal.ai/models/fal-ai/kling-video/create-voice
      */
     voice_id?: string;
 }
@@ -3883,7 +5045,7 @@ export interface KeyframeTransition {
     prompt?: string;
 }
 
-export interface Keyframe {
+export interface Keyframe_1 {
     /**
      * Duration
      * @description The duration in milliseconds of this keyframe
@@ -3899,6 +5061,21 @@ export interface Keyframe {
      * @description The URL where this keyframe's media file can be accessed
      */
     url: string;
+}
+
+export interface Keyframe {
+    /**
+     * Frame Index
+     * @description 0-based output frame index for this keyframe. Must be >= 1 (frame 0 is the restyled first frame from `image_url`) and less than the output frame count.
+     * @example 80
+     */
+    frame_index: number;
+    /**
+     * Image Url
+     * @description URL of a restyled keyframe image. It is pinned verbatim at `frame_index` to anchor identity over long videos. Its aspect ratio must match the output aspect ratio within 0.1.
+     * @example https://storage.googleapis.com/falserverless/example_inputs/ltxv-image-input.jpg
+     */
+    image_url: string;
 }
 
 export interface IPAdapter_1 {
@@ -4015,19 +5192,59 @@ export interface IPAdapter {
     weight_name?: string;
 }
 
-export interface InpaintSection {
+export interface InterpolateValidation {
     /**
-     * End
-     * @description End time in seconds of the section to inpaint.
-     * @example 9.45
+     * End Image Url
+     * @description URL to the last-frame keyframe image.
      */
-    end: number;
+    end_image_url: string;
     /**
-     * Start
-     * @description Start time in seconds of the section to inpaint.
-     * @example 0
+     * Middle Image Url
+     * @description Optional URL to a middle keyframe image; required when the run sets include_middle_keyframe=true (first+middle+last interpolation).
      */
-    start: number;
+    middle_image_url?: string;
+    /**
+     * Prompt
+     * @description The prompt to use for validation.
+     */
+    prompt: string;
+    /**
+     * Start Image Url
+     * @description URL to the first-frame keyframe image.
+     */
+    start_image_url: string;
+}
+
+export interface InpaintValidation {
+    /**
+     * Mask Url
+     * @description URL to the inpainting mask (image or video). Standard convention: WHITE marks the region to regenerate/edit, BLACK is kept unchanged. Resolution need not match the video; it is resized automatically.
+     */
+    mask_url: string;
+    /**
+     * Prompt
+     * @description The prompt to use for validation.
+     */
+    prompt: string;
+    /**
+     * Video Url
+     * @description URL to the source video to inpaint.
+     */
+    video_url: string;
+}
+
+export interface ImageStyleReference {
+    /**
+     * Image Url
+     * @description Publicly accessible URL of a reference image.
+     */
+    image_url: string;
+    /**
+     * Strength
+     * @description How strongly the reference influences the generated image. Negative values push away from the reference.
+     * @default 1
+     */
+    strength?: number;
 }
 
 export interface ImageSize {
@@ -4089,12 +5306,18 @@ export interface ImagePrompt {
     weight?: number;
 }
 
-export interface ImageInput {
+export interface ImageFrame {
     /**
-     * Hypothesis
-     * @description The image to use for the measurement.
+     * Frames
+     * @description Number of frames this image is held for in the output video. The on-screen duration is `frames / fps` seconds.
      */
-    hypothesis: string;
+    frames: number;
+    /**
+     * Url
+     * @description URL where the image file can be accessed
+     * @example https://v3.fal.media/files/koala/oei_-iPIYFnhdB8SxojND_qwen-edit-res.png
+     */
+    url: string;
 }
 
 export interface ImageFillInput_1 {
@@ -4195,93 +5418,38 @@ export interface ImageConditioningInput {
     strength?: number;
 }
 
-export interface ImageCondition {
-    /**
-     * Image Url
-     * @description The URL of the image to use as input.
-     */
-    image_url: string;
-    /**
-     * Start Frame Number
-     * @description The frame number to start the condition on.
-     * @default 0
-     */
-    start_frame_number?: number;
-    /**
-     * Strength
-     * @description The strength of the condition.
-     * @default 1
-     */
-    strength?: number;
-}
-
-export interface Image_3 {
-    /**
-     * Content Type
-     * @description The mime type of the file.
-     * @example image/png
-     */
-    content_type: string;
-    /**
-     * File Name
-     * @description The name of the file. It will be auto-generated if not provided.
-     * @example z9RV14K95DvU.png
-     */
-    file_name: string;
-    /**
-     * File Size
-     * @description The size of the file in bytes.
-     * @example 4404019
-     */
-    file_size: number;
-    /**
-     * Height
-     * @description The height of the image in pixels.
-     * @example 1024
-     */
-    height?: number;
-    /**
-     * Url
-     * @description The URL where the file can be downloaded from.
-     * @example https://url.to/generated/file/z9RV14K95DvU.png
-     */
-    url: string;
-    /**
-     * Width
-     * @description The width of the image in pixels.
-     * @example 1024
-     */
-    width?: number;
-}
-
 export interface Image_2 {
     /**
      * Content Type
      * @description The mime type of the file.
+     * @default null
      * @example image/png
      */
     content_type?: string;
     /**
      * File Data
-     * Format: binary
      * @description File data
+     * @default null
      */
     file_data?: string;
     /**
      * File Name
      * @description The name of the file. It will be auto-generated if not provided.
+     * @default null
      * @example z9RV14K95DvU.png
      */
     file_name?: string;
     /**
      * File Size
      * @description The size of the file in bytes.
+     * @default null
      * @example 4404019
      */
     file_size?: number;
     /**
      * Height
      * @description The height of the image in pixels.
+     * @default null
      * @example 1024
      */
     height?: number;
@@ -4293,6 +5461,7 @@ export interface Image_2 {
     /**
      * Width
      * @description The width of the image in pixels.
+     * @default null
      * @example 1024
      */
     width?: number;
@@ -4347,6 +5516,76 @@ export interface Image {
     width?: number;
 }
 
+export interface IceServersOutput {
+    iceservers: {
+        [key: string]: { [x: string]: any } | null;
+    }[];
+    /**
+     * @description discriminator enum property added by openapi-typescript
+     * @enum {string}
+     */
+    type: 'iceservers';
+}
+
+export interface IceCandidateOutput {
+    candidate: IceCandidate;
+    /**
+     * @description discriminator enum property added by openapi-typescript
+     * @enum {string}
+     */
+    type: 'icecandidate';
+}
+
+export interface IceCandidate {
+    candidate: string;
+    /**
+     * Sdpmid
+     * @default null
+     */
+    sdpMid?: string;
+    /**
+     * Sdpmlineindex
+     * @default null
+     */
+    sdpMLineIndex?: number;
+}
+
+export interface I2VValidation {
+    /**
+     * Image Url
+     * @description An image to use as the first frame for image-to-video validation.
+     */
+    image_url: string;
+    /**
+     * Prompt
+     * @description The prompt to use for validation.
+     */
+    prompt: string;
+}
+
+export interface H3MaxCameraKeyframe {
+    /**
+     * Azimuth
+     * @description Horizontal camera angle around the subject, in degrees.
+     */
+    azimuth: number;
+    /**
+     * Distance
+     * @description Camera distance from the subject in normalized scene units.
+     */
+    distance: number;
+    /**
+     * Elevation
+     * @description Vertical camera angle around the subject, in degrees.
+     */
+    elevation: number;
+    /**
+     * Time
+     * @description Normalized video time, from 0 at the start to 1 at the end.
+     */
+    time: number;
+}
+
 export interface GuidanceInput {
     /**
      * Image Url
@@ -4371,6 +5610,225 @@ export interface GuidanceInput {
     scale?: number;
 }
 
+export interface GrokXSearchTool {
+    /**
+     * Allowed X Handles
+     * @description Restrict results to posts from at most 20 X handles.
+     * @default null
+     */
+    allowed_x_handles?: string[];
+    /**
+     * Enable Image Understanding
+     * @description Allow the agent to inspect images found on X.
+     * @default null
+     */
+    enable_image_understanding?: boolean;
+    /**
+     * Enable Video Understanding
+     * @description Allow the agent to inspect videos found on X.
+     * @default null
+     */
+    enable_video_understanding?: boolean;
+    /**
+     * Enabled
+     * @description Whether to include x_search in session.tools. Disabled by default; set true to let the agent search X posts.
+     * @default false
+     */
+    enabled?: boolean;
+    /**
+     * Excluded X Handles
+     * @description Exclude posts from at most 20 X handles.
+     * @default null
+     */
+    excluded_x_handles?: string[];
+    /**
+     * From Date
+     * @description Earliest post date, as ISO YYYY-MM-DD.
+     * @default null
+     */
+    from_date?: string;
+    /**
+     * To Date
+     * @description Latest post date, as ISO YYYY-MM-DD.
+     * @default null
+     */
+    to_date?: string;
+}
+
+export interface GrokWebSearchTool {
+    /**
+     * Allowed Domains
+     * @description Restrict results to at most five domains, without protocol or path.
+     * @default null
+     */
+    allowed_domains?: string[];
+    /**
+     * Enable Image Understanding
+     * @description Allow the agent to inspect images found during web search.
+     * @default null
+     */
+    enable_image_understanding?: boolean;
+    /**
+     * Enabled
+     * @description Whether to include web_search in session.tools. Disabled by default; set true to let the agent search the web.
+     * @default false
+     */
+    enabled?: boolean;
+    /**
+     * Excluded Domains
+     * @description Exclude results from at most five domains, without protocol or path.
+     * @default null
+     */
+    excluded_domains?: string[];
+    /**
+     * @description Optional location used to localize search results.
+     * @default null
+     */
+    location?: GrokSearchLocation;
+}
+
+export interface GrokTurnDetectionConfiguration {
+    /**
+     * Idle Timeout (ms)
+     * @description Idle time after an assistant response before xAI starts a proactive turn, in milliseconds.
+     * @default null
+     */
+    idle_timeout_ms?: number;
+    /**
+     * Prefix Padding (ms)
+     * @description Audio retained before detected speech, in milliseconds.
+     * @default null
+     */
+    prefix_padding_ms?: number;
+    /**
+     * Silence Duration (ms)
+     * @description Silence duration that ends a detected turn, in milliseconds.
+     * @default null
+     */
+    silence_duration_ms?: number;
+    /**
+     * Threshold
+     * @description VAD activation threshold; higher values require louder audio.
+     * @default null
+     */
+    threshold?: number;
+}
+
+export interface GrokToolsConfiguration {
+    /**
+     * MCP Servers
+     * @description Remote MCP servers that xAI connects to and executes.
+     */
+    mcp_servers?: GrokRemoteMCPTool[];
+    /**
+     * @description xAI-managed web search; off unless enabled is set true.
+     * @default {
+     *       "enabled": false,
+     *       "excluded_domains": null,
+     *       "enable_image_understanding": null,
+     *       "allowed_domains": null,
+     *       "location": null
+     *     }
+     */
+    web_search?: GrokWebSearchTool;
+    /**
+     * @description xAI-managed X search; off unless enabled is set true.
+     * @default {
+     *       "enabled": false,
+     *       "enable_video_understanding": null,
+     *       "from_date": null,
+     *       "enable_image_understanding": null,
+     *       "to_date": null,
+     *       "excluded_x_handles": null,
+     *       "allowed_x_handles": null
+     *     }
+     */
+    x_search?: GrokXSearchTool;
+}
+
+export interface GrokSearchLocation {
+    /**
+     * City
+     * @description City used to localize web-search results.
+     * @default null
+     */
+    city?: string;
+    /**
+     * Country
+     * @description Country used to localize web-search results.
+     * @default null
+     */
+    country?: string;
+    /**
+     * Region
+     * @description Region used to localize web-search results.
+     * @default null
+     */
+    region?: string;
+    /**
+     * Timezone
+     * @description IANA timezone name, for example America/New_York.
+     * @default null
+     */
+    timezone?: string;
+}
+
+export interface GrokRemoteMCPTool {
+    /**
+     * Allowed Tools
+     * @description Optional allow-list of tool names exposed from this server.
+     * @default null
+     */
+    allowed_tools?: string[];
+    /**
+     * Authorization
+     * @description Sensitive authorization value forwarded only to xAI.
+     * @default null
+     */
+    authorization?: string;
+    /**
+     * Enabled
+     * @description False omits this server.
+     * @default true
+     */
+    enabled?: boolean;
+    /**
+     * Headers
+     * @description Sensitive MCP request headers forwarded only to xAI.
+     * @default null
+     */
+    headers?: {
+        [key: string]: string;
+    };
+    /**
+     * Server Description
+     * @description Description of the capabilities exposed by this server.
+     * @default null
+     */
+    server_description?: string;
+    /**
+     * Server Label
+     * @description Label xAI uses to identify and prefix this server's tools.
+     */
+    server_label: string;
+    /**
+     * Server Url
+     * Format: uri
+     * @description Caller-selected HTTP(S) MCP endpoint. xAI makes the remote connection and supports Streaming HTTP/SSE transports. Use at your own risk; fal does not connect to or SSRF-fetch this URL.
+     */
+    server_url: string;
+}
+
+export interface GenerativeShadow {
+    light_source?: ShadowLightSource;
+    /**
+     * Opacity
+     * @description Final composited shadow opacity (0–1).
+     * @default 0.2
+     */
+    opacity?: number;
+}
+
 export interface Frame {
     /**
      * URL
@@ -4379,61 +5837,85 @@ export interface Frame {
     url: string;
 }
 
-export interface ForceParams {
+export interface ForcedAlignmentWord {
     /**
-     * Angle
-     * @description Direction of force in degrees. 0 = right, 90 = up, 180 = left, 270 = down.
-     * @example 0
+     * End
+     * @description End time in seconds
      */
-    angle: number;
+    end: number;
     /**
-     * Magnitude
-     * @description Strength of the force (30 = gentle push, 400 = strong impact).
-     * @example 350
+     * Loss
+     * @description Average alignment loss for the word
      */
-    magnitude: number;
+    loss: number;
     /**
-     * Mass
-     * @description Mass of the object (1.0 to 4.0). Use -1 to let the model infer mass automatically.
-     * @default -1
+     * Start
+     * @description Start time in seconds
      */
-    mass?: number;
+    start: number;
     /**
-     * X
-     * @description Normalized x position of the force application point (0 = left, 1 = right).
-     * @example 0.22
+     * Text
+     * @description The aligned character
      */
-    x: number;
+    text: string;
+}
+
+export interface ForcedAlignmentCharacter {
     /**
-     * Y
-     * @description Normalized y position of the force application point (0 = top, 1 = bottom).
-     * @example 0.18
+     * End
+     * @description End time in seconds
      */
-    y: number;
+    end: number;
+    /**
+     * Start
+     * @description Start time in seconds
+     */
+    start: number;
+    /**
+     * Text
+     * @description The aligned character
+     */
+    text: string;
+}
+
+export interface Flux3Keyframe {
+    /**
+     * Frame Index
+     * @description Frame position of this keyframe in the generated 24 fps video. Must be unique and at most `duration * 24`.
+     */
+    frame_index: number;
+    /**
+     * Image URL
+     * @description URL of the keyframe image (PNG, JPEG, or WebP).
+     */
+    image_url: string;
 }
 
 export interface File_1 {
     /**
      * Content Type
      * @description The mime type of the file.
+     * @default null
      * @example image/png
      */
     content_type?: string;
     /**
      * File Data
-     * Format: binary
      * @description File data
+     * @default null
      */
     file_data?: string;
     /**
      * File Name
      * @description The name of the file. It will be auto-generated if not provided.
+     * @default null
      * @example z9RV14K95DvU.png
      */
     file_name?: string;
     /**
      * File Size
      * @description The size of the file in bytes.
+     * @default null
      * @example 4404019
      */
     file_size?: number;
@@ -4522,6 +6004,63 @@ export interface ExtendVideoConditioningInput {
     video_url: string;
 }
 
+export interface ExtendValidation {
+    /**
+     * Prompt
+     * @description The prompt to use for validation.
+     */
+    prompt: string;
+    /**
+     * Video Url
+     * @description URL to the video the model should temporally extend.
+     */
+    video_url: string;
+}
+
+export interface EventSegment_1 {
+    /**
+     * End
+     * @description End time in seconds.
+     * @example 12.5
+     */
+    end: number;
+    /**
+     * Start
+     * @description Start time in seconds.
+     * @example 10.4
+     */
+    start: number;
+}
+
+export interface EventSegment {
+    /**
+     * End
+     * @description End time in seconds.
+     * @example 12.5
+     */
+    end: number;
+    /**
+     * Start
+     * @description Start time in seconds.
+     * @example 10.4
+     */
+    start: number;
+    /**
+     * Text
+     * @description Short description of the event (caption mode only).
+     */
+    text?: string;
+}
+
+export interface ErrorOutput {
+    error: string;
+    /**
+     * @description discriminator enum property added by openapi-typescript
+     * @enum {string}
+     */
+    type: 'error';
+}
+
 export interface EmotionalStrengths {
     /**
      * Afraid
@@ -4579,7 +6118,7 @@ export interface EmbedItem {
      * Image Source
      * @description URL of the image.
      */
-    image_source?: string;
+    image_source: string;
 }
 
 export interface Embedding_1 {
@@ -4590,11 +6129,9 @@ export interface Embedding_1 {
     path: string;
     /**
      * Tokens
-     * @description The tokens to map the embedding weights to. Use these tokens in your prompts.
-     * @default [
-     *       "<s0>",
-     *       "<s1>"
-     *     ]
+     * @description The tokens to map the embedding weights to. Use these tokens in your
+     *                 prompts. When omitted, tokens are generated as <s0>, <s1>, ... to
+     *                 match the number of vectors in the embedding file.
      */
     tokens?: string[];
 }
@@ -4609,11 +6146,10 @@ export interface Embedding {
     path: string;
     /**
      * Tokens
-     * @description The list of tokens to use for the embedding.
-     * @default [
-     *       "<s0>",
-     *       "<s1>"
-     *     ]
+     * @description The list of tokens to use for the embedding. When omitted, tokens
+     *                 are generated as <s0>, <s1>, ... to match the number of vectors in
+     *                 the embedding file.
+     * @default null
      */
     tokens?: string[];
 }
@@ -4629,6 +6165,29 @@ export interface ElementInput {
      * @description Additional reference images from different angles. 0-3 images supported. Optional.
      */
     reference_image_urls?: string[];
+}
+
+export interface EditBoundingBox {
+    box?: Box;
+    /**
+     * Description
+     * @description What to draw in this box: the object and its look.
+     * @example a large fluffy knitted dragon in terracotta and mustard yarn
+     */
+    description: string;
+    /**
+     * Label
+     * @description Short name for the object in this box, e.g. `dragon`. Write `<dragon>` in the prompt to tie the box to those words; a box the prompt doesn't name is added to the scene. Defaults to `obj_<n>`.
+     * @example dragon
+     */
+    label?: string;
+    source_box?: Box;
+    /**
+     * Source Image Index
+     * @description 0-based index into `image_urls` of the reference the object comes from. Leave unset for a new object.
+     */
+    source_image_index?: number;
+    target_box?: Box;
 }
 
 export interface EasyControlWeight {
@@ -4664,41 +6223,65 @@ export interface EasyControlWeight {
     scale?: number;
 }
 
-export interface DynamicMask {
+export interface DropShadow {
     /**
-     * Mask Url
-     * @description URL of the image for Dynamic Brush Application Area (Mask image created by users using the motion brush)
-     * @example https://storage.googleapis.com/falserverless/kling/new_dynamic_mask.png
+     * Blur
+     * @description Shadow blur strength (0 to 100). 0 is a hard-edged shadow; 100 is the softest, a radius of 5% of the smaller canvas dimension.
+     * @default 24
      */
-    mask_url: string;
+    blur?: number;
     /**
-     * Trajectories
-     * @description List of trajectories
-     * @example [
-     *       {
-     *         "y": 219,
-     *         "x": 279
-     *       },
-     *       {
-     *         "y": 65,
-     *         "x": 417
-     *       }
-     *     ]
+     * @description Shadow color (R/G/B). Defaults to black.
+     * @default {
+     *       "g": 0,
+     *       "r": 0,
+     *       "b": 0
+     *     }
      */
-    trajectories?: Trajectory[];
+    color?: RGBColor;
+    /**
+     * Horizontal
+     * @description Horizontal shadow offset strength (-100 to 100). Positive moves the shadow right, negative moves it left. 100 is the maximum offset, 10% of the canvas width.
+     * @default 50
+     */
+    horizontal?: number;
+    /**
+     * Opacity
+     * @description Shadow opacity (0–1).
+     * @default 0.25
+     */
+    opacity?: number;
+    /**
+     * Vertical
+     * @description Vertical shadow offset strength (-100 to 100). Positive moves the shadow down, negative moves it up. 100 is the maximum offset, 10% of the canvas height.
+     * @default 8
+     */
+    vertical?: number;
 }
 
-export interface DiarizationSegment {
+export interface DimensionEntry {
     /**
-     * Speaker
-     * @description Speaker ID of the segment
+     * Name
+     * @description Dimension to render. length/depth are intentionally disabled.
+     * @enum {string}
      */
-    speaker: string;
+    name: 'height' | 'width_bottom' | 'width_top';
     /**
-     * Timestamp
-     * @description Start and end timestamp of the segment
+     * Position
+     * @description Callout side; defaults by dimension name when omitted.
      */
-    timestamp: [number, number];
+    position?: 'top' | 'bottom' | 'left' | 'right';
+    /**
+     * Unit
+     * @description Physical measurement unit.
+     * @enum {string}
+     */
+    unit: 'mm' | 'cm' | 'm' | 'in' | '"' | 'ft' | "'";
+    /**
+     * Value
+     * @description Physical measurement value.
+     */
+    value: number;
 }
 
 export interface DialogueBlock {
@@ -4750,6 +6333,120 @@ export interface DeepFilterNetTimings {
      * @description Preprocessing time.
      */
     preprocess: number;
+}
+
+export interface DecisionsUsage {
+    cost?: number;
+    input_tokens: number;
+    output_tokens: number;
+    total_tokens?: number;
+}
+
+export interface DecisionsScoreQuestion {
+    /**
+     * Criteria
+     * @description Ordered level descriptions, from the low end to the high end.
+     */
+    criteria: (string | Record<string, never> | unknown[])[];
+    /**
+     * Instructions
+     * @description The property to score, as text or structured multimodal content.
+     */
+    instructions: string | Record<string, never> | { [x: string]: any }[];
+    /**
+     * @description discriminator enum property added by openapi-typescript
+     * @enum {string}
+     */
+    type: 'score';
+}
+
+export interface DecisionsScoreAnswer {
+    confidence?: number;
+    legend?: {
+        [key: string]: string | Record<string, never> | { [x: string]: any }[];
+    };
+    probabilities?: {
+        [key: string]: number;
+    };
+    score: number;
+    /**
+     * @description discriminator enum property added by openapi-typescript
+     * @enum {string}
+     */
+    type: 'score';
+}
+
+export interface DecisionsNoulQuestion {
+    criteria?: DecisionsNoulCriteria;
+    /**
+     * Instructions
+     * @description The yes/no question, as text or structured multimodal content.
+     */
+    instructions: string | Record<string, never> | { [x: string]: any }[];
+    /**
+     * @description discriminator enum property added by openapi-typescript
+     * @enum {string}
+     */
+    type: 'noul';
+}
+
+export interface DecisionsNoulCriteria {
+    /**
+     * False
+     * @description What should count as a no/false outcome.
+     */
+    false: string | Record<string, never> | { [x: string]: any }[];
+    /**
+     * True
+     * @description What should count as a yes/true outcome.
+     */
+    true: string | Record<string, never> | { [x: string]: any }[];
+}
+
+export interface DecisionsNoulAnswer {
+    /**
+     * Noul
+     * @description Probability from 0 to 1 that the answer is yes.
+     */
+    noul: number;
+    /**
+     * @description discriminator enum property added by openapi-typescript
+     * @enum {string}
+     */
+    type: 'noul';
+}
+
+export interface DecisionsChoiceQuestion {
+    /**
+     * Criteria
+     * @description Answer options mapped to descriptions of each option.
+     */
+    criteria: {
+        [key: string]: string | Record<string, never> | { [x: string]: any }[];
+    };
+    /**
+     * Instructions
+     * @description The question, as text or structured multimodal content.
+     */
+    instructions: string | Record<string, never> | { [x: string]: any }[];
+    /**
+     * @description discriminator enum property added by openapi-typescript
+     * @enum {string}
+     */
+    type: 'choice';
+}
+
+export interface DecisionsChoiceAnswer {
+    choice: string;
+    confidence?: number;
+    probabilities?: {
+        [key: string]: number;
+    };
+    /**
+     * @description discriminator enum property added by openapi-typescript
+     * @enum {string}
+     */
+    type: 'choice';
 }
 
 export interface Coordinates {
@@ -5014,7 +6711,11 @@ export interface ControlLoraWeight {
      *                 before merging it with the base model. Providing a dictionary as {"layer_name":layer_scale} allows per-layer lora scale settings. Layers with no scale provided will have scale 1.0.
      * @default 1
      */
-    scale?: Record<string, number> | number;
+    scale?:
+        | {
+              [key: string]: number;
+          }
+        | number;
 }
 
 export interface CompletionUsage {
@@ -6398,20 +8099,13 @@ export interface Character {
     avatar_style?: 'normal' | 'circle' | 'closeUp';
 }
 
-export interface CameraControl {
+export interface CapacityInput {
     /**
-     * Movement Type
-     * @description The type of camera movement
-     * @example horizontal
+     * Unit
      * @enum {string}
      */
-    movement_type: 'horizontal' | 'vertical' | 'pan' | 'tilt' | 'roll' | 'zoom';
-    /**
-     * Movement Value
-     * @description The value of the camera movement
-     * @example 10
-     */
-    movement_value: number;
+    unit: 'fl_oz' | 'ml' | 'l' | 'qt' | 'gal' | 'cups';
+    value: number;
 }
 
 export interface BoxPromptBase_1 {
@@ -6535,6 +8229,33 @@ export interface BoxPrompt {
     y_min?: number;
 }
 
+export interface Box {
+    /**
+     * X Max
+     * @description Right edge as a fraction of the image width (0-1).
+     * @example 0.7
+     */
+    x_max: number;
+    /**
+     * X Min
+     * @description Left edge as a fraction of the image width (0-1).
+     * @example 0.3
+     */
+    x_min: number;
+    /**
+     * Y Max
+     * @description Bottom edge as a fraction of the image height (0-1).
+     * @example 0.9
+     */
+    y_max: number;
+    /**
+     * Y Min
+     * @description Top edge as a fraction of the image height (0-1).
+     * @example 0.4
+     */
+    y_min: number;
+}
+
 export interface BoundingBoxes {
     /**
      * Bboxes
@@ -6543,9 +8264,25 @@ export interface BoundingBoxes {
     bboxes: BoundingBox_1[];
 }
 
+export interface BoundingBox_2 {
+    bottom_right: Point_1;
+    top_left: Point_1;
+}
+
 export interface BoundingBox_1 {
-    bottom_right: Point;
-    top_left: Point;
+    box: Box;
+    /**
+     * Description
+     * @description What to draw in this box: the object and its look.
+     * @example a red fox with thick orange fur and a white-tipped tail
+     */
+    description: string;
+    /**
+     * Label
+     * @description Short name for the object in this box, e.g. `fox`. Write `<fox>` in the prompt to tie the box to those words; a box the prompt doesn't name is added to the scene. Defaults to `obj_<n>`.
+     * @example fox
+     */
+    label?: string;
 }
 
 export interface BoundingBox {
@@ -6612,6 +8349,79 @@ export interface BasicAnimations {
     walking_glb?: File;
 }
 
+export interface Background {
+    /**
+     * @description Solid background color (R/G/B, 0–255). Applies when mode is 'Color'. Defaults to white.
+     * @default {
+     *       "g": 255,
+     *       "r": 255,
+     *       "b": 255
+     *     }
+     */
+    color?: RGBColor;
+    /**
+     * Image Fit
+     * @description How the background image fills the canvas: 'Cover' fills and crops, 'Contain' fits and letterboxes onto `color`, 'Stretch' distorts to fit.
+     * @default Cover
+     * @example Cover
+     * @enum {string}
+     */
+    image_fit?: 'Cover' | 'Contain' | 'Stretch';
+    /**
+     * Image Url
+     * @description Background image URL. Required when mode is 'Image'.
+     */
+    image_url?: string;
+    /**
+     * Mode
+     * @description 'Color' fills with `color` (white by default); 'Transparent' leaves it transparent (always PNG); 'Image' composites onto `image_url`.
+     * @default Color
+     * @enum {string}
+     */
+    mode?: 'Transparent' | 'Color' | 'Image';
+}
+
+export interface AvatarVWatermark {
+    /**
+     * Image Url
+     * @description HTTP(S) URL of the watermark image to overlay on the video.
+     */
+    image_url: string;
+    /**
+     * Opacity
+     * @description Watermark opacity (0.0 = transparent, 1.0 = opaque).
+     */
+    opacity?: number;
+    /**
+     * Placement
+     * @description Where to place the watermark on the video.
+     */
+    placement?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
+    /**
+     * Scale
+     * @description Watermark scale relative to the video (0.0 exclusive–2.0).
+     */
+    scale?: number;
+}
+
+export interface AvatarVBackground {
+    /**
+     * Type
+     * @description Type of background. 'color' for a solid hex color, 'image' for an image URL.
+     * @default color
+     * @enum {string}
+     */
+    type?: 'color' | 'image';
+    /**
+     * Value
+     * @description Background value — hex color for 'color' type, or HTTP(S) URL for 'image' type.
+     * @default #FFFFFF
+     * @example #FFFFFF
+     * @example https://example.com/background.jpg
+     */
+    value?: string;
+}
+
 export interface AvatarIVBackground {
     /**
      * Type
@@ -6626,6 +8436,52 @@ export interface AvatarIVBackground {
      * @default #FFFFFF
      */
     value?: string;
+}
+
+export interface AV2AVValidation {
+    /**
+     * Prompt
+     * @description The prompt to use for validation.
+     */
+    prompt: string;
+    /**
+     * Reference Audio Url
+     * @description Optional URL to a separate reference audio. If omitted, the audio is taken from reference_video_url's own track.
+     */
+    reference_audio_url?: string;
+    /**
+     * Reference Video Url
+     * @description URL to the reference video (its audio track is also used as the audio reference) that conditions the generated audio+video.
+     */
+    reference_video_url: string;
+}
+
+export interface AV2AVMaskedValidation {
+    /**
+     * Mask Url
+     * @description URL to the mask (image or video). WHITE marks the region to regenerate, BLACK is kept unchanged.
+     */
+    mask_url: string;
+    /**
+     * Prompt
+     * @description The prompt to use for validation.
+     */
+    prompt: string;
+    /**
+     * Reference Audio Url
+     * @description Optional URL to a separate reference audio. If omitted, the audio is taken from reference_video_url's own track.
+     */
+    reference_audio_url?: string;
+    /**
+     * Reference Video Url
+     * @description URL to the reference video (its audio track is also used as the audio reference) guiding the regenerated audio+video.
+     */
+    reference_video_url: string;
+    /**
+     * Video Url
+     * @description URL to the source video. Its UNMASKED region is kept pixel-faithful and the masked region is regenerated.
+     */
+    video_url: string;
 }
 
 export interface AudioTrack {
@@ -6753,6 +8609,30 @@ export interface AudioSetting {
     sample_rate?: 8000 | 16000 | 22050 | 24000 | 32000 | 44100;
 }
 
+export interface AudioInpaintValidation {
+    /**
+     * Audio Url
+     * @description URL to the audio clip to inpaint.
+     */
+    audio_url: string;
+    /**
+     * Prompt
+     * @description The prompt to use for validation.
+     */
+    prompt: string;
+    /**
+     * Time Ranges
+     * @description Time ranges (in seconds, [start, end]) to REGENERATE/inpaint; the rest of the audio is kept. e.g. [[1.0, 2.0]].
+     * @example [
+     *       [
+     *         1,
+     *         2
+     *       ]
+     *     ]
+     */
+    time_ranges: [number, number][];
+}
+
 export interface AudioFile_2 {
     /**
      * Content Type
@@ -6848,7 +8728,20 @@ export interface AudioFile {
     url: string;
 }
 
-export interface Audio {
+export interface AudioExtendValidation {
+    /**
+     * Audio Url
+     * @description URL to the audio clip the model should temporally extend.
+     */
+    audio_url: string;
+    /**
+     * Prompt
+     * @description The prompt to use for validation.
+     */
+    prompt: string;
+}
+
+export interface Audio_1 {
     /**
      * Bitrate
      * @description Overall bitrate of the media in bits per second
@@ -6908,6 +8801,38 @@ export interface Audio {
     url: string;
 }
 
+export interface Audio {
+    /**
+     * Content Type
+     * @description The mime type of the file.
+     * @example image/png
+     */
+    content_type?: string;
+    /**
+     * File Data
+     * Format: binary
+     * @description File data
+     */
+    file_data?: string;
+    /**
+     * File Name
+     * @description The name of the file. It will be auto-generated if not provided.
+     * @example z9RV14K95DvU.png
+     */
+    file_name?: string;
+    /**
+     * File Size
+     * @description The size of the file in bytes.
+     * @example 4404019
+     */
+    file_size?: number;
+    /**
+     * Url
+     * @description The URL where the file can be downloaded from.
+     */
+    url: string;
+}
+
 export interface AspectRatio {
     /**
      * Ratio
@@ -6916,6 +8841,25 @@ export interface AspectRatio {
      * @enum {string}
      */
     ratio?: '1:1' | '16:9' | '9:16' | '4:3' | '3:4';
+}
+
+export interface AnswerOutput {
+    sdp: string;
+    /**
+     * @description discriminator enum property added by openapi-typescript
+     * @enum {string}
+     */
+    type: 'answer';
+}
+
+export interface AnimationClip {
+    /**
+     * Action Id
+     * @description The Meshy animation preset action ID applied to this clip.
+     */
+    action_id: number;
+    animation_fbx?: File;
+    animation_glb?: File;
 }
 
 export interface AestheticsDetails {
@@ -6946,35 +8890,7 @@ export interface AestheticsDetails {
     preference_score: string;
 }
 
-export interface Aesthetics_2 {
-    /**
-     * Aesthetic Score
-     * @description The aesthetic score of the image.
-     */
-    aesthetic_score: string;
-    /**
-     * Color Scheme
-     * @description The color scheme of the image to be generated.
-     */
-    color_scheme?: string;
-    /**
-     * Composition
-     * @description The composition of the image to be generated.
-     */
-    composition?: string;
-    /**
-     * Mood Atmosphere
-     * @description The mood and atmosphere of the image to be generated.
-     */
-    mood_atmosphere?: string;
-    /**
-     * Preference Score
-     * @description The preference score of the image.
-     */
-    preference_score: string;
-}
-
-export type Aesthetics_1 = {
+export interface Aesthetics_1 {
     /**
      * Aesthetic Score
      * @description The aesthetic score of the image (e.g., 'very high', 'high', 'medium', 'low').
@@ -7000,11 +8916,15 @@ export type Aesthetics_1 = {
      * @description The preference score of the image (e.g., 'very high', 'high', 'medium', 'low').
      */
     preference_score?: string;
-} & {
-    [key: string]: { [x: string]: any } | null;
-};
+    [key: string]: any;
+}
 
 export interface Aesthetics {
+    /**
+     * Aesthetic Score
+     * @description The aesthetic score of the image to be generated.
+     */
+    aesthetic_score?: string;
     /**
      * Color Scheme
      * @description The color scheme of the image to be generated.
@@ -7020,6 +8940,42 @@ export interface Aesthetics {
      * @description The mood and atmosphere of the image to be generated.
      */
     mood_atmosphere?: string;
+    /**
+     * Preference Score
+     * @description The preference score of the image to be generated.
+     */
+    preference_score?: string;
+}
+
+export interface A2VValidation {
+    /**
+     * Audio Url
+     * @description URL to the conditioning audio track that drives the generated video.
+     */
+    audio_url: string;
+    /**
+     * Image Url
+     * @description URL to the start image used as the first frame (a2v is image+audio -> video, so the model conditions on this frame and the audio rather than generating the first frame).
+     */
+    image_url: string;
+    /**
+     * Prompt
+     * @description The prompt to use for validation.
+     */
+    prompt: string;
+}
+
+export interface A2AValidation {
+    /**
+     * Prompt
+     * @description The prompt to use for validation.
+     */
+    prompt: string;
+    /**
+     * Reference Audio Url
+     * @description URL to the reference audio that conditions the generated audio.
+     */
+    reference_audio_url: string;
 }
 
 export {};
