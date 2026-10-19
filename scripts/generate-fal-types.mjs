@@ -17,11 +17,13 @@ const componentsFileParts = [];
 
 const brokenEndpoints = new Set([
     'decart/lucy2-vton/realtime',
+    'decart/lucy-2-5/realtime',
     'fal-ai/flux-general',
     'fal-ai/flux-general/differential-diffusion',
     'fal-ai/flux-general/image-to-image',
     'fal-ai/flux-general/inpainting',
     'fal-ai/flux-general/rf-inversion',
+    'bria/video/background-removal/realtime',
 ]);
 
 /**
@@ -757,6 +759,9 @@ for (const [componentHash, componentInfos] of generatedComponents.components.ent
             //     `- Replaced ${componentName} with ${generatedComponents.uniqueComponentNames.get(componentHash)} in input component`
             // );
         }
+        if (!outputComponent[2]) {
+            console.log(endpointId, componentName);
+        }
         if (outputComponent[2].includes(`components["schemas"]["${componentName}"]`)) {
             generatedComponents.mainComponents[endpointId].outputComponent[2] =
                 outputComponent[2].replaceAll(
@@ -809,10 +814,16 @@ for (const [endpointId, { inputComponent, outputComponent }] of Object.entries(
                             ['-y', 'prettier', '--parser', 'typescript'],
                             (error, stdout, stderr) => {
                                 if (error) {
+                                    console.error(
+                                        `- Error formatting input component for ${endpointId}`
+                                    );
                                     console.error(error);
                                     reject(error);
                                 }
                                 if (stderr) {
+                                    console.error(
+                                        `- Error formatting input component for ${endpointId}`
+                                    );
                                     console.error(stderr);
                                     reject(new Error(stderr));
                                 }
