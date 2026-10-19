@@ -26,6 +26,7 @@ const brokenEndpoints = new Set([
     'bria/video/background-removal/realtime',
     'openrouter/router/openai/v1/chat/completions',
     'openrouter/router/openai/v1/responses',
+    'xai/grok-voice/realtime',
 ]);
 
 /**
