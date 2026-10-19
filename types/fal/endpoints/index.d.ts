@@ -7094,6 +7094,10 @@ declare global {
                 output: falEndpoints.BytedanceSeedance25UsImageToVideoOutput;
             };
 
+            'bytedance/seedance-2.5/text-to-video': Endpoints['bytedance/seedance-2.5/us/text-to-video'];
+            'bytedance/seedance-2.5/reference-to-video': Endpoints['bytedance/seedance-2.5/us/reference-to-video'];
+            'bytedance/seedance-2.5/image-to-video': Endpoints['bytedance/seedance-2.5/us/image-to-video'];
+
             'bytedance/seedance-2.5/draft/complete': {
                 input: falEndpoints.BytedanceSeedance25DraftCompleteInput;
                 output: falEndpoints.BytedanceSeedance25DraftCompleteOutput;
@@ -7114,6 +7118,9 @@ declare global {
                 output: falEndpoints.BytedanceSeedance20UsImageToVideoOutput;
             };
 
+            'bytedance/seedance-2.0/text-to-video': Endpoints['bytedance/seedance-2.0/us/text-to-video'];
+            'bytedance/seedance-2.0/reference-to-video': Endpoints['bytedance/seedance-2.0/us/reference-to-video'];
+
             'bytedance/seedance-2.0/mini/text-to-video': {
                 input: falEndpoints.BytedanceSeedance20MiniTextToVideoInput;
                 output: falEndpoints.BytedanceSeedance20MiniTextToVideoOutput;
@@ -7128,6 +7135,8 @@ declare global {
                 input: falEndpoints.BytedanceSeedance20MiniImageToVideoInput;
                 output: falEndpoints.BytedanceSeedance20MiniImageToVideoOutput;
             };
+
+            'bytedance/seedance-2.0/image-to-video': Endpoints['bytedance/seedance-2.0/us/image-to-video'];
 
             'bytedance/seedance-2.0/fast/text-to-video': {
                 input: falEndpoints.BytedanceSeedance20FastTextToVideoInput;
