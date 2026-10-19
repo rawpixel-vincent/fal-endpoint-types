@@ -30,6 +30,16 @@ const componentsFileParts = [];
 /** @type {Set<string>} */
 const brokenEndpoints = new Set([]);
 
+/** Endpoints missing from the fal models list, typed like their listed `us` counterpart. */
+const endpointAliases = new Map([
+    ['bytedance/seedance-2.0/image-to-video', 'bytedance/seedance-2.0/us/image-to-video'],
+    ['bytedance/seedance-2.0/reference-to-video', 'bytedance/seedance-2.0/us/reference-to-video'],
+    ['bytedance/seedance-2.0/text-to-video', 'bytedance/seedance-2.0/us/text-to-video'],
+    ['bytedance/seedance-2.5/image-to-video', 'bytedance/seedance-2.5/us/image-to-video'],
+    ['bytedance/seedance-2.5/reference-to-video', 'bytedance/seedance-2.5/us/reference-to-video'],
+    ['bytedance/seedance-2.5/text-to-video', 'bytedance/seedance-2.5/us/text-to-video'],
+]);
+
 const OnlyBrokenEndpoints = process.env['TEST_BROKEN_ENDPOINTS'] === 'true';
 if (OnlyBrokenEndpoints) {
     console.log('Testing only broken endpoints');
@@ -1038,6 +1048,20 @@ for (const [endpointId, { inputComponent, outputComponent }] of Object.entries(
             ]);
         }
     }
+}
+
+for (const [aliasId, endpointId] of endpointAliases) {
+    if (generatedComponents.mainComponents[aliasId]) {
+        console.log(`- ${aliasId} is listed now, skipping its alias to ${endpointId}`);
+        continue;
+    }
+    if (!generatedComponents.mainComponents[endpointId]) {
+        if (OnlyBrokenEndpoints) {
+            continue;
+        }
+        throw new Error(`No types for ${endpointId} to alias as ${aliasId}`);
+    }
+    indexFileParts.push([aliasId, `'${aliasId}': Endpoints['${endpointId}'];`]);
 }
 
 writeFileSync(
