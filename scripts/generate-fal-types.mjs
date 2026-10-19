@@ -1,9 +1,21 @@
 #!/usr/bin/env node
 
 import { createHash } from 'node:crypto';
-import { execFile, execFileSync, execSync } from 'node:child_process';
+import { execSync } from 'node:child_process';
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { readFile } from 'node:fs/promises';
+import { pathToFileURL } from 'node:url';
+import { createConfig } from '@redocly/openapi-core';
+import openapiTS, { astToString } from 'openapi-typescript';
+import * as prettier from 'prettier';
+
+/** What `prettier --parser typescript` applies to stdin: the config found from cwd. */
+const prettierOptions = {
+    ...(await prettier.resolveConfig(`${process.cwd()}/stdin.ts`)),
+    parser: 'typescript',
+};
+/** What the openapi-typescript CLI passes when there is no redocly.yaml. */
+const redocly = await createConfig({}, { extends: ['minimal'] });
 
 /** @type {Set<string & {_b?:'name'}>} */
 let names = new Set();
@@ -243,16 +255,16 @@ const getEndpointInputOutput = async (endpointId) => {
     try {
         output = await withRetries(
             async () =>
-                new Promise((resolve, reject) => {
-                    try {
-                        const r = execSync(
-                            `npx -y openapi-typescript "${localPath}" --root-types --root-types-no-schema-prefix --path-params-as-types --alphabetize `
-                        );
-                        resolve(r);
-                    } catch (err) {
-                        reject(err);
-                    }
-                }),
+                astToString(
+                    await openapiTS(pathToFileURL(localPath), {
+                        alphabetize: true,
+                        pathParamsAsTypes: true,
+                        redocly,
+                        rootTypes: true,
+                        rootTypesNoSchemaPrefix: true,
+                        silent: true,
+                    })
+                ),
             10,
             (err) => !err?.message?.includes?.('resolve $ref'),
             3000
@@ -511,13 +523,7 @@ const doEndpointComponents = async (endpointId) => {
             .replace(/^[0-9]+/, '');
         const input = `export ${components.get(componentName).includes('} & {') ? 'type' : 'interface'} ${safeComponentName} ${components.get(componentName).includes('} & {') ? '= ' : ' '}${components.get(componentName)}`;
 
-        const formattedDefinition = execFileSync(
-            'npx',
-            ['-y', 'prettier', '--parser', 'typescript'],
-            {
-                input,
-            }
-        ).toString();
+        const formattedDefinition = await prettier.format(input, prettierOptions);
         // console.log('formattedDefinition', formattedDefinition);
         /** @type {Hash} */
         const hash = createHash('sha256')
@@ -835,44 +841,15 @@ for (const [endpointId, { inputComponent, outputComponent }] of Object.entries(
                 hashedCount++;
                 if (cp.inputComponent[1]) {
                     const declaration = declarationOf(cp.inputComponent[1], cp.inputComponent[2]);
-                    // const formattedInputContent = execFileSync(
-                    //     'npx',
-                    //     ['-y', 'prettier', '--parser', 'typescript'],
-                    //     {
-                    //         input: `export interface ${inputComponent[1]} ${inputComponent[2] || '{ [x in string]: any }'}`,
-                    //     }
-                    // ).toString();
-                    const result = await new Promise((resolve, reject) => {
-                        const process = execFile(
-                            'npx',
-                            ['-y', 'prettier', '--parser', 'typescript'],
-                            (error, stdout, stderr) => {
-                                if (error) {
-                                    console.error(
-                                        `- Error formatting input component for ${endpointId}`
-                                    );
-                                    console.error(error);
-                                    reject(error);
-                                }
-                                if (stderr) {
-                                    console.error(
-                                        `- Error formatting input component for ${endpointId}`
-                                    );
-                                    console.error(stderr);
-                                    reject(new Error(stderr));
-                                }
-                                resolve(stdout);
-                            }
-                        );
-                        if (!process.stdin) {
-                            throw new Error('stdin is not available');
-                        }
-                        process.stdin.write(
-                            `${declaration} ${cp.inputComponent[2] || '{ [x in string]: any }'}`
-                        );
-                        process.stdin.end();
-                    });
-                    const formattedInputContent = result.toString();
+                    const formattedInputContent = await prettier
+                        .format(
+                            `${declaration} ${cp.inputComponent[2] || '{ [x in string]: any }'}`,
+                            prettierOptions
+                        )
+                        .catch((error) => {
+                            console.error(`- Error formatting input component for ${endpointId}`);
+                            throw error;
+                        });
 
                     const inputHash = createHash('sha256')
                         .update(formattedInputContent.replace(declaration, '').trim())
@@ -906,32 +883,15 @@ for (const [endpointId, { inputComponent, outputComponent }] of Object.entries(
                 hashedCount++;
                 if (cp.outputComponent[1]) {
                     const declaration = declarationOf(cp.outputComponent[1], cp.outputComponent[2]);
-                    const result = await new Promise((resolve, reject) => {
-                        const process = execFile(
-                            'npx',
-                            ['-y', 'prettier', '--parser', 'typescript'],
-
-                            (error, stdout, stderr) => {
-                                if (error) {
-                                    console.error(error);
-                                    reject(error);
-                                }
-                                if (stderr) {
-                                    console.error(stderr);
-                                    reject(new Error(stderr));
-                                }
-                                resolve(stdout);
-                            }
-                        );
-                        if (!process.stdin) {
-                            throw new Error('stdin is not available');
-                        }
-                        process.stdin.write(
-                            `${declaration} ${cp.outputComponent[2] || '{ [x in string]: any }'}`
-                        );
-                        process.stdin.end();
-                    });
-                    const formattedOutputContent = result.toString();
+                    const formattedOutputContent = await prettier
+                        .format(
+                            `${declaration} ${cp.outputComponent[2] || '{ [x in string]: any }'}`,
+                            prettierOptions
+                        )
+                        .catch((error) => {
+                            console.error(`- Error formatting output component for ${endpointId}`);
+                            throw error;
+                        });
                     const outputHash = createHash('sha256')
                         .update(formattedOutputContent.replace(declaration, '').trim())
                         .digest('hex');
