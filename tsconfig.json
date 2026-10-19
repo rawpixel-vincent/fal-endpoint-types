@@ -35,10 +35,10 @@
         "declaration": false,
         "strict": true,
         "useUnknownInCatchVariables": false,
-        "downlevelIteration": false,
         "resolvePackageJsonExports": true,
         "resolvePackageJsonImports": true,
-        "isolatedModules": true
+        "isolatedModules": true,
+        "types": ["node"]
     },
     "include": ["./**/*.js", "./**/*.ts", "./**/*.d.ts", "./**/*.mjs"],
     "exclude": ["node_modules", "save"]

@@ -15,7 +15,14 @@ const schemaFileParts = [];
 /** @type {Array<[string & {_b?:'uniqueComponentName'}, string & {_b?:'content'}]>} */
 const componentsFileParts = [];
 
-const brokenEndpoints = new Set('decart/lucy2-vton/realtime');
+const brokenEndpoints = new Set([
+    'decart/lucy2-vton/realtime',
+    'fal-ai/flux-general',
+    'fal-ai/flux-general/differential-diffusion',
+    'fal-ai/flux-general/image-to-image',
+    'fal-ai/flux-general/inpainting',
+    'fal-ai/flux-general/rf-inversion',
+]);
 
 /**
  * @typedef {string & {_b?:'hash'}} Hash Hash of the component definition
@@ -562,7 +569,9 @@ const getEndpoints = async () => {
         page++;
     }
     console.log(`${endpoints.size} endpoints found`);
-    const sortedEndpoints = Array.from(endpoints).sort((a, b) => a.localeCompare(b));
+    const sortedEndpoints = Array.from(endpoints)
+        .sort((a, b) => a.localeCompare(b))
+        .filter((endpoint) => !brokenEndpoints.has(endpoint));
     if (process.env['CACHE_ENDPOINTS']) {
         writeFileSync('build-cache/endpoints.json', JSON.stringify(sortedEndpoints, null, 2));
     }
@@ -572,7 +581,10 @@ const getEndpoints = async () => {
 const generateComponents = async () => {
     await mkdirSync('build-cache/endpoints-components', { recursive: true });
     const endpoints = await getEndpoints();
-    const slices = arrayChunks(endpoints, 250);
+    const slices = arrayChunks(
+        endpoints.filter((endpoint) => !brokenEndpoints.has(endpoint)),
+        250
+    );
     let i = 0;
     const results = await Promise.all(
         slices.map(async (endpointsSlice, sliceIndex) => {
@@ -593,10 +605,15 @@ const generateComponents = async () => {
                 console.log(`- Generating components for ${endpoint} (${i}/${endpoints.length})`);
                 i++;
                 promises.push(
-                    doEndpointComponents(endpoint).then((result) => ({
-                        endpointId: endpoint,
-                        ...result,
-                    }))
+                    doEndpointComponents(endpoint)
+                        .then((result) => ({
+                            endpointId: endpoint,
+                            ...result,
+                        }))
+                        .catch((err) => {
+                            console.error(`- Error generating components for ${endpoint}`);
+                            throw err;
+                        })
                 );
                 if (promises.length >= sliceIndex + 1) {
                     const localResults = await Promise.all(promises);
@@ -980,6 +997,9 @@ if (withDuplicates.length > 0) {
 for (const [endpointId, { inputComponent, outputComponent }] of Object.entries(
     generatedComponents.mainComponents
 )) {
+    if (inputComponent[2]?.includes('} & {') || outputComponent[2]?.includes('} & {')) {
+        console.log(endpointId, inputComponent[2], outputComponent[2]);
+    }
     indexFileParts.push([
         endpointId,
         `
@@ -992,6 +1012,9 @@ for (const [endpointId, { inputComponent, outputComponent }] of Object.entries(
 
     if (inputComponent[1]) {
         if (inputComponent[2] || sharedInputComponents.has(endpointId)) {
+            if (inputComponent[2]?.includes('} & {')) {
+                console.log(endpointId, inputComponent[2]);
+            }
             schemaFileParts.push([
                 endpointId,
                 `
@@ -1004,6 +1027,9 @@ for (const [endpointId, { inputComponent, outputComponent }] of Object.entries(
 
     if (outputComponent[1]) {
         if (outputComponent[2] || sharedOutputComponents.has(endpointId)) {
+            if (outputComponent[2]?.includes('} & {')) {
+                console.log(endpointId, outputComponent[2]);
+            }
             schemaFileParts.push([
                 endpointId,
                 `
