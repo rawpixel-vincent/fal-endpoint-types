@@ -25,6 +25,7 @@ const brokenEndpoints = new Set([
     'fal-ai/flux-general/rf-inversion',
     'bria/video/background-removal/realtime',
     'openrouter/router/openai/v1/chat/completions',
+    'openrouter/router/openai/v1/responses',
 ]);
 
 /**
