@@ -27,7 +27,13 @@ const brokenEndpoints = new Set([
     'openrouter/router/openai/v1/chat/completions',
     'openrouter/router/openai/v1/responses',
     'xai/grok-voice/realtime',
+    'fal-ai/sam-3/image',
 ]);
+
+const OnlyBrokenEndpoints = process.env['TEST_BROKEN_ENDPOINTS'] === 'true';
+if (OnlyBrokenEndpoints) {
+    console.log('Testing only broken endpoints');
+}
 
 /**
  * @typedef {string & {_b?:'hash'}} Hash Hash of the component definition
@@ -309,7 +315,8 @@ const doEndpointComponents = async (endpointId) => {
                 cachedComponents.inputComponent &&
                 cachedComponents.components &&
                 Array.isArray(cachedComponents.components) &&
-                !brokenEndpoints.has(endpointId)
+                ((!OnlyBrokenEndpoints && !brokenEndpoints.has(endpointId)) ||
+                    (OnlyBrokenEndpoints && brokenEndpoints.has(endpointId)))
             ) {
                 return {
                     inputComponent: cachedComponents.inputComponent,
@@ -321,7 +328,10 @@ const doEndpointComponents = async (endpointId) => {
             //
         }
     }
-    if (brokenEndpoints.has(endpointId)) {
+    if (
+        (!OnlyBrokenEndpoints && brokenEndpoints.has(endpointId)) ||
+        (OnlyBrokenEndpoints && !brokenEndpoints.has(endpointId))
+    ) {
         console.log(`- Skipping ${endpointId} components because it is broken`);
         return {
             // @ts-ignore
@@ -576,7 +586,11 @@ const getEndpoints = async () => {
     console.log(`${endpoints.size} endpoints found`);
     const sortedEndpoints = Array.from(endpoints)
         .sort((a, b) => a.localeCompare(b))
-        .filter((endpoint) => !brokenEndpoints.has(endpoint));
+        .filter(
+            (endpoint) =>
+                (!OnlyBrokenEndpoints && !brokenEndpoints.has(endpoint)) ||
+                (OnlyBrokenEndpoints && brokenEndpoints.has(endpoint))
+        );
     if (process.env['CACHE_ENDPOINTS']) {
         writeFileSync('build-cache/endpoints.json', JSON.stringify(sortedEndpoints, null, 2));
     }
@@ -587,7 +601,11 @@ const generateComponents = async () => {
     await mkdirSync('build-cache/endpoints-components', { recursive: true });
     const endpoints = await getEndpoints();
     const slices = arrayChunks(
-        endpoints.filter((endpoint) => !brokenEndpoints.has(endpoint)),
+        endpoints.filter(
+            (endpoint) =>
+                (!OnlyBrokenEndpoints && !brokenEndpoints.has(endpoint)) ||
+                (OnlyBrokenEndpoints && brokenEndpoints.has(endpoint))
+        ),
         250
     );
     let i = 0;

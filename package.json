@@ -48,6 +48,8 @@
     "scripts": {
         "generate": "node scripts/generate-fal-types.mjs",
         "generate:cache": "cross-env CACHE_ENDPOINTS=true node scripts/generate-fal-types.mjs",
+        "generate:broken": "cross-env TEST_BROKEN_ENDPOINTS=true node scripts/generate-fal-types.mjs",
+        "generate:cache:broken": "cross-env CACHE_ENDPOINTS=true TEST_BROKEN_ENDPOINTS=true node scripts/generate-fal-types.mjs",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "devDependencies": {
