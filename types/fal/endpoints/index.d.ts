@@ -779,6 +779,11 @@ declare global {
                 output: falEndpoints.MinimaxH3MaxRelightOutput;
             };
 
+            'minimax/h3-max/reframe-video': {
+                input: falEndpoints.MinimaxH3MaxReframeVideoInput;
+                output: falEndpoints.MinimaxH3MaxReframeVideoOutput;
+            };
+
             'minimax/h3-max/reference-to-video': {
                 input: falEndpoints.MinimaxH3MaxReferenceToVideoInput;
                 output: falEndpoints.MinimaxH3MaxReferenceToVideoOutput;
@@ -7351,6 +7356,16 @@ declare global {
             'bria/fibo-bbq-preview/generate': {
                 input: falEndpoints.BriaFiboBbqPreviewGenerateInput;
                 output: falEndpoints.BriaFiboBbqPreviewGenerateOutput;
+            };
+
+            'bria/fibo-2/generate': {
+                input: falEndpoints.BriaFibo2GenerateInput;
+                output: falEndpoints.BriaFibo2GenerateOutput;
+            };
+
+            'bria/fibo-2/edit': {
+                input: falEndpoints.BriaFibo2EditInput;
+                output: falEndpoints.BriaFibo2EditOutput;
             };
 
             'bria/extract-object': {

@@ -1956,7 +1956,7 @@ export interface VibeVoiceSpeaker {
         | 'Xinran [ZH]';
 }
 
-export interface Vgl {
+export interface VglEdit {
     aesthetics?: Aesthetics_1;
     /**
      * Artistic Style
@@ -1978,14 +1978,63 @@ export interface Vgl {
      * @description The edit instruction for the image.
      */
     edit_instruction?: string;
-    lighting?: Lighting_1;
+    lighting?: Lighting;
     /**
      * Objects
      * @description A list of objects in the image to be generated, along with their attributes and relationships to other objects in the image.
      * @default []
      */
-    objects?: PromptObject_1[];
-    photographic_characteristics?: PhotographicCharacteristics_1;
+    objects?: PromptObject[];
+    photographic_characteristics?: PhotographicCharacteristics;
+    /**
+     * Short Description
+     * @description A short description of the image to be generated.
+     */
+    short_description?: string;
+    /**
+     * Style Medium
+     * @description The style medium of the image to be generated.
+     */
+    style_medium?: string;
+    /**
+     * Text Render
+     * @description A list of text to be rendered in the image.
+     * @default []
+     */
+    text_render?: TextRender[];
+    [key: string]: any;
+}
+
+export interface Vgl_1 {
+    aesthetics?: Aesthetics_1;
+    /**
+     * Artistic Style
+     * @description The artistic style of the image to be generated.
+     */
+    artistic_style?: string;
+    /**
+     * Background Setting
+     * @description The background setting of the image to be generated.
+     */
+    background_setting?: string;
+    /**
+     * Context
+     * @description The context of the image to be generated.
+     */
+    context?: string;
+    /**
+     * Edit Instruction
+     * @description The edit instruction for the image.
+     */
+    edit_instruction?: string;
+    lighting?: Lighting;
+    /**
+     * Objects
+     * @description A list of objects in the image to be generated, along with their attributes and relationships to other objects in the image.
+     * @default []
+     */
+    objects?: PromptObject[];
+    photographic_characteristics?: PhotographicCharacteristics;
     /**
      * Short Description
      * @description A short description of the image to be generated.
@@ -2002,6 +2051,49 @@ export interface Vgl {
      * @default []
      */
     text_render?: { [x: string]: any }[];
+}
+
+export interface Vgl {
+    aesthetics?: Aesthetics_1;
+    /**
+     * Artistic Style
+     * @description The artistic style of the image to be generated.
+     */
+    artistic_style?: string;
+    /**
+     * Background Setting
+     * @description The background setting of the image to be generated.
+     */
+    background_setting?: string;
+    /**
+     * Context
+     * @description The context of the image to be generated.
+     */
+    context?: string;
+    lighting?: Lighting;
+    /**
+     * Objects
+     * @description A list of objects in the image to be generated, along with their attributes and relationships to other objects in the image.
+     * @default []
+     */
+    objects?: PromptObject[];
+    photographic_characteristics?: PhotographicCharacteristics;
+    /**
+     * Short Description
+     * @description A short description of the image to be generated.
+     */
+    short_description?: string;
+    /**
+     * Style Medium
+     * @description The style medium of the image to be generated.
+     */
+    style_medium?: string;
+    /**
+     * Text Render
+     * @description A list of text to be rendered in the image.
+     * @default []
+     */
+    text_render?: TextRender[];
 }
 
 export interface Validation {
@@ -2381,7 +2473,7 @@ export interface TextureFiles {
     roughness?: File;
 }
 
-export interface TextRender {
+export interface TextRender_1 {
     /**
      * Appearance Details
      * @description Any other notable visual details.
@@ -2410,6 +2502,39 @@ export interface TextRender {
     /**
      * Text
      * @description The text content.
+     */
+    text: string;
+}
+
+export interface TextRender {
+    /**
+     * Appearance Details
+     * @description Any other notable visual details of the text.
+     */
+    appearance_details?: string;
+    /**
+     * Color
+     * @description The color of the text.
+     */
+    color?: string;
+    /**
+     * Font
+     * @description The style of the font.
+     */
+    font?: string;
+    /**
+     * Location
+     * @description Where the text sits in the image.
+     */
+    location?: string;
+    /**
+     * Size
+     * @description The size of the text in the image.
+     */
+    size?: string;
+    /**
+     * Text
+     * @description The text to render. fibo-2 is also shown an image of it, so it renders as written.
      */
     text: string;
 }
@@ -2465,14 +2590,14 @@ export interface TailoredStructuredPrompt {
      * @description The context of the image to be generated.
      */
     context?: string;
-    lighting?: Lighting_1;
+    lighting?: Lighting;
     /**
      * Objects
      * @description A list of objects in the image to be generated, along with their attributes and relationships to other objects in the image.
      * @default []
      */
-    objects?: PromptObject_1[];
-    photographic_characteristics?: PhotographicCharacteristics_1;
+    objects?: PromptObject[];
+    photographic_characteristics?: PhotographicCharacteristics;
     /**
      * Short Description
      * @description A short description of the image to be generated.
@@ -2604,14 +2729,14 @@ export interface StructuredPrompt_2 {
      * @description The context of the image to be generated.
      */
     context?: string;
-    lighting?: Lighting_1;
+    lighting?: Lighting;
     /**
      * Objects
      * @description A list of objects in the image to be generated, along with their attributes and relationships to other objects in the image.
      * @default []
      */
-    objects?: PromptObject_1[];
-    photographic_characteristics?: PhotographicCharacteristics_1;
+    objects?: PromptObject[];
+    photographic_characteristics?: PhotographicCharacteristics;
     /**
      * Short Description
      * @description A short description of the image to be generated.
@@ -2652,14 +2777,14 @@ export interface StructuredPrompt_1 {
      * @description The context of the image to be generated.
      */
     context?: string;
-    lighting?: Lighting_1;
+    lighting?: Lighting;
     /**
      * Objects
      * @description A list of objects in the image to be generated, along with their attributes and relationships to other objects in the image.
      * @default []
      */
-    objects?: PromptObject_1[];
-    photographic_characteristics?: PhotographicCharacteristics_1;
+    objects?: PromptObject[];
+    photographic_characteristics?: PhotographicCharacteristics;
     /**
      * Short Description
      * @description A short description of the image to be generated.
@@ -2746,14 +2871,14 @@ export interface StructuredInstruction {
      * @description The edit instruction for the image.
      */
     edit_instruction?: string;
-    lighting?: Lighting_1;
+    lighting?: Lighting;
     /**
      * Objects
      * @description A list of objects in the image to be generated, along with their attributes and relationships to other objects in the image.
      * @default []
      */
-    objects?: PromptObject_1[];
-    photographic_characteristics?: PhotographicCharacteristics_1;
+    objects?: PromptObject[];
+    photographic_characteristics?: PhotographicCharacteristics;
     /**
      * Short Description
      * @description A short description of the image to be generated.
@@ -5723,24 +5848,24 @@ export interface GrokToolsConfiguration {
     /**
      * @description xAI-managed web search; off unless enabled is set true.
      * @default {
+     *       "location": null,
+     *       "allowed_domains": null,
      *       "enabled": false,
      *       "excluded_domains": null,
-     *       "enable_image_understanding": null,
-     *       "allowed_domains": null,
-     *       "location": null
+     *       "enable_image_understanding": null
      *     }
      */
     web_search?: GrokWebSearchTool;
     /**
      * @description xAI-managed X search; off unless enabled is set true.
      * @default {
-     *       "enabled": false,
-     *       "enable_video_understanding": null,
-     *       "from_date": null,
      *       "enable_image_understanding": null,
+     *       "enable_video_understanding": null,
      *       "to_date": null,
      *       "excluded_x_handles": null,
-     *       "allowed_x_handles": null
+     *       "allowed_x_handles": null,
+     *       "enabled": false,
+     *       "from_date": null
      *     }
      */
     x_search?: GrokXSearchTool;
@@ -8890,7 +9015,7 @@ export interface AestheticsDetails {
     preference_score: string;
 }
 
-export interface Aesthetics_1 {
+export interface Aesthetics_2 {
     /**
      * Aesthetic Score
      * @description The aesthetic score of the image (e.g., 'very high', 'high', 'medium', 'low').
@@ -8917,6 +9042,24 @@ export interface Aesthetics_1 {
      */
     preference_score?: string;
     [key: string]: any;
+}
+
+export interface Aesthetics_1 {
+    /**
+     * Color Scheme
+     * @description The color scheme of the image to be generated.
+     */
+    color_scheme?: string;
+    /**
+     * Composition
+     * @description The composition of the image to be generated.
+     */
+    composition?: string;
+    /**
+     * Mood Atmosphere
+     * @description The mood and atmosphere of the image to be generated.
+     */
+    mood_atmosphere?: string;
 }
 
 export interface Aesthetics {
