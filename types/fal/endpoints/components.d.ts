@@ -3490,6 +3490,31 @@ export interface RGBColor {
     r?: number;
 }
 
+export interface ReturnedSpeech {
+    audio?: File;
+    /**
+     * Outcome
+     * @description speech when audio holds the file, no_speech when no window of the input has speech (or it has no audio), failed when separating a window or building the file failed. The soundtracks come back either way.
+     * @enum {string}
+     */
+    outcome: 'speech' | 'no_speech' | 'failed';
+    /**
+     * Windows
+     * @description Windows the input was separated in
+     */
+    windows: number;
+    /**
+     * Windows Failed
+     * @description Windows whose separation failed, or whose stem could not be read
+     */
+    windows_failed: number;
+    /**
+     * Windows With Speech
+     * @description Windows that held speech
+     */
+    windows_with_speech: number;
+}
+
 export interface Resolution {
     /**
      * Aspect Ratio
@@ -4212,6 +4237,24 @@ export interface OCRBoundingBox {
      * @description List of quadrilateral boxes
      */
     quad_boxes: BoundingBox[];
+}
+
+export interface ObjectRLE {
+    /**
+     * Box
+     * @description Bounding box of this object's mask in normalized cxcywh coordinates.
+     */
+    box?: number[];
+    /**
+     * Object Id
+     * @description The object's id, the same in every frame the object appears in.
+     */
+    object_id: number;
+    /**
+     * Rle
+     * @description Run Length Encoding of this object's mask.
+     */
+    rle: string;
 }
 
 export interface ObjectDescription {
@@ -5089,6 +5132,58 @@ export interface Lighting {
     shadows?: string;
 }
 
+export interface KlingV4Shot {
+    /**
+     * Duration
+     * @description Shot duration in seconds.
+     * @default 5
+     */
+    duration?: number;
+    /**
+     * Prompt
+     * @description The prompt for this shot.
+     */
+    prompt: string;
+}
+
+export interface KlingV4ImageElement {
+    /**
+     * Frontal Image Url
+     * @description The frontal image of the element (main view).
+     *
+     *     Max file size: 30.0MB, Min width: 300px, Min height: 300px, Min aspect ratio: 0.40, Max aspect ratio: 2.50, Timeout: 20.0s
+     */
+    frontal_image_url: string;
+    /**
+     * Reference Image Urls
+     * @description Additional views of the element from different angles (1-3).
+     */
+    reference_image_urls: string[];
+}
+
+export interface KlingV4Element {
+    /**
+     * Frontal Image Url
+     * @description The frontal image of the element (main view).
+     */
+    frontal_image_url?: string;
+    /**
+     * Reference Image Urls
+     * @description Additional views of the element from different angles (1-3).
+     */
+    reference_image_urls?: string[];
+    /**
+     * Video Url
+     * @description A video of the element, used instead of images (3-30s).
+     */
+    video_url?: string;
+    /**
+     * Voice Id
+     * @description Voice bound to this element. Create one with https://fal.ai/models/fal-ai/kling-video/create-voice
+     */
+    voice_id?: string;
+}
+
 export interface KlingV3MultiPromptElement {
     /**
      * Duration
@@ -5153,21 +5248,6 @@ export interface KlingV3ComboElementInput {
      * @description The voice ID for this element. The voice will be binded to the element and references to this element will use the binded voice. Get voice IDs from the following endpoint: https://fal.ai/models/fal-ai/kling-video/create-voice
      */
     voice_id?: string;
-}
-
-export interface KeyframeTransition {
-    /**
-     * Duration
-     * @description Duration of this transition in seconds
-     * @default 5
-     */
-    duration?: number;
-    /**
-     * Prompt
-     * @description Specific prompt for this transition. Overrides the global prompt if provided.
-     * @example null
-     */
-    prompt?: string;
 }
 
 export interface Keyframe_1 {
@@ -5848,24 +5928,24 @@ export interface GrokToolsConfiguration {
     /**
      * @description xAI-managed web search; off unless enabled is set true.
      * @default {
-     *       "location": null,
+     *       "enable_image_understanding": null,
      *       "allowed_domains": null,
-     *       "enabled": false,
      *       "excluded_domains": null,
-     *       "enable_image_understanding": null
+     *       "location": null,
+     *       "enabled": false
      *     }
      */
     web_search?: GrokWebSearchTool;
     /**
      * @description xAI-managed X search; off unless enabled is set true.
      * @default {
+     *       "from_date": null,
      *       "enable_image_understanding": null,
-     *       "enable_video_understanding": null,
+     *       "allowed_x_handles": null,
      *       "to_date": null,
      *       "excluded_x_handles": null,
-     *       "allowed_x_handles": null,
      *       "enabled": false,
-     *       "from_date": null
+     *       "enable_video_understanding": null
      *     }
      */
     x_search?: GrokXSearchTool;
