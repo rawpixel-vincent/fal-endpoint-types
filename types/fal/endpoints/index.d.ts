@@ -194,6 +194,26 @@ declare global {
                 output: falEndpoints.VeedAvatarsAudioToVideoOutput;
             };
 
+            'vast/eden-live-5b-video': {
+                input: falEndpoints.VastEdenLive5bVideoInput;
+                output: falEndpoints.VastEdenLive5bVideoOutput;
+            };
+
+            'vast/eden-live-5b-game': {
+                input: falEndpoints.VastEdenLive5bGameInput;
+                output: falEndpoints.VastEdenLive5bGameOutput;
+            };
+
+            'vast/eden-live-14b-video': {
+                input: falEndpoints.VastEdenLive14bVideoInput;
+                output: falEndpoints.VastEdenLive14bVideoOutput;
+            };
+
+            'vast/eden-live-14b-game': {
+                input: falEndpoints.VastEdenLive14bGameInput;
+                output: falEndpoints.VastEdenLive14bGameOutput;
+            };
+
             'tripo3d/triposplat': {
                 input: falEndpoints.Tripo3dTriposplatInput;
                 output: falEndpoints.Tripo3dTriposplatOutput;

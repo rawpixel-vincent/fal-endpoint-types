@@ -5928,10 +5928,10 @@ export interface GrokToolsConfiguration {
     /**
      * @description xAI-managed web search; off unless enabled is set true.
      * @default {
-     *       "enable_image_understanding": null,
-     *       "allowed_domains": null,
      *       "excluded_domains": null,
      *       "location": null,
+     *       "enable_image_understanding": null,
+     *       "allowed_domains": null,
      *       "enabled": false
      *     }
      */
@@ -5939,13 +5939,13 @@ export interface GrokToolsConfiguration {
     /**
      * @description xAI-managed X search; off unless enabled is set true.
      * @default {
-     *       "from_date": null,
+     *       "enable_video_understanding": null,
      *       "enable_image_understanding": null,
-     *       "allowed_x_handles": null,
+     *       "from_date": null,
      *       "to_date": null,
-     *       "excluded_x_handles": null,
+     *       "allowed_x_handles": null,
      *       "enabled": false,
-     *       "enable_video_understanding": null
+     *       "excluded_x_handles": null
      *     }
      */
     x_search?: GrokXSearchTool;
@@ -6032,6 +6032,188 @@ export interface GenerativeShadow {
      * @default 0.2
      */
     opacity?: number;
+}
+
+export interface GeminiVideoPart {
+    /**
+     * Thought
+     * @description Provider thought marker, preserved when replaying a returned conversation.
+     */
+    thought?: boolean;
+    /**
+     * Thought Signature
+     * @description Opaque provider-issued thought signature. Replay it unchanged on its original part.
+     */
+    thought_signature?: string;
+    /**
+     * @description The video part discriminator. (enum property replaced by openapi-typescript)
+     * @enum {string}
+     */
+    type: 'video';
+    /**
+     * Video Url
+     * @description Video URL or data URI (up to 15 MB and 120 seconds), or a YouTube URL. Supported by Flash Image only.
+     */
+    video_url: string;
+}
+
+export interface GeminiVideoMessage {
+    /**
+     * Parts
+     * @description Ordered text, image, document, video, audio, and signature parts.
+     */
+    parts: (
+        | GeminiTextPart
+        | GeminiImagePart
+        | GeminiDocumentPart
+        | GeminiVideoPart
+        | GeminiSignaturePart
+        | GeminiAudioPart
+    )[];
+    /**
+     * Role
+     * @description Native Gemini conversation role.
+     * @enum {string}
+     */
+    role: 'user' | 'model';
+}
+
+export interface GeminiTextPart {
+    /**
+     * Text
+     * @description Text at this position in the conversation.
+     */
+    text: string;
+    /**
+     * Thought
+     * @description Provider thought marker, preserved when replaying a returned conversation.
+     */
+    thought?: boolean;
+    /**
+     * Thought Signature
+     * @description Opaque provider-issued thought signature. Replay it unchanged on its original part.
+     */
+    thought_signature?: string;
+    /**
+     * @description The text part discriminator. (enum property replaced by openapi-typescript)
+     * @enum {string}
+     */
+    type: 'text';
+}
+
+export interface GeminiSignaturePart {
+    /**
+     * Thought
+     * @description Provider thought marker, preserved when replaying a returned conversation.
+     */
+    thought?: boolean;
+    /**
+     * Thought Signature
+     * @description Provider-issued signature-only part, replayed unchanged.
+     */
+    thought_signature: string;
+    /**
+     * @description The signature part discriminator. (enum property replaced by openapi-typescript)
+     * @enum {string}
+     */
+    type: 'signature';
+}
+
+export interface GeminiMessage {
+    /**
+     * Parts
+     * @description Ordered text, image, document, and signature parts.
+     */
+    parts: (GeminiTextPart | GeminiImagePart | GeminiDocumentPart | GeminiSignaturePart)[];
+    /**
+     * Role
+     * @description Native Gemini conversation role.
+     * @enum {string}
+     */
+    role: 'user' | 'model';
+}
+
+export interface GeminiImagePart {
+    /**
+     * Image Url
+     * @description Original image URL or data URI. Replayed without resizing or re-encoding.
+     */
+    image_url: string;
+    /**
+     * Thought
+     * @description Provider thought marker, preserved when replaying a returned conversation.
+     */
+    thought?: boolean;
+    /**
+     * Thought Signature
+     * @description Opaque provider-issued thought signature. Replay it unchanged on its original part.
+     */
+    thought_signature?: string;
+    /**
+     * @description The image part discriminator. (enum property replaced by openapi-typescript)
+     * @enum {string}
+     */
+    type: 'image';
+}
+
+export interface GeminiDocumentPart {
+    /**
+     * File Url
+     * @description PDF or UTF-8 plain-text document URL or data URI (up to 15 MB).
+     */
+    file_url: string;
+    /**
+     * Mime Type
+     * @description The document's media type.
+     * @enum {string}
+     */
+    mime_type: 'application/pdf' | 'text/plain';
+    /**
+     * Thought
+     * @description Provider thought marker, preserved when replaying a returned conversation.
+     */
+    thought?: boolean;
+    /**
+     * Thought Signature
+     * @description Opaque provider-issued thought signature. Replay it unchanged on its original part.
+     */
+    thought_signature?: string;
+    /**
+     * @description The document part discriminator. (enum property replaced by openapi-typescript)
+     * @enum {string}
+     */
+    type: 'document';
+}
+
+export interface GeminiConversation {
+    /**
+     * Messages
+     * @description One complete provider conversation. Pass messages as history in the next request, retaining every signature and part.
+     */
+    messages: GeminiVideoMessage[];
+}
+
+export interface GeminiAudioPart {
+    /**
+     * Audio Url
+     * @description Original audio URL or data URI from a previous Flash Image request (up to 15 MB).
+     */
+    audio_url: string;
+    /**
+     * Thought
+     * @description Provider thought marker, preserved when replaying a returned conversation.
+     */
+    thought?: boolean;
+    /**
+     * Thought Signature
+     * @description Opaque provider-issued thought signature. Replay it unchanged on its original part.
+     */
+    thought_signature?: string;
+    /**
+     * @description The audio part discriminator. (enum property replaced by openapi-typescript)
+     * @enum {string}
+     */
+    type: 'audio';
 }
 
 export interface Frame {
