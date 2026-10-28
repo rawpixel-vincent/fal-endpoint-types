@@ -433,19 +433,6 @@ export interface VideoFile {
     width?: number;
 }
 
-export interface VideoConditioningInput_1 {
-    /**
-     * Start Frame Num
-     * @description Frame number of the video from which the conditioning starts. Must be a multiple of 8.
-     */
-    start_frame_num: number;
-    /**
-     * Video Url
-     * @description URL of video to be extended
-     */
-    video_url: string;
-}
-
 export interface VideoConditioningInput {
     /**
      * Conditioning Type
@@ -2725,49 +2712,6 @@ export interface StructuredPrompt_2 {
      */
     background_setting?: string;
     /**
-     * Context
-     * @description The context of the image to be generated.
-     */
-    context?: string;
-    lighting?: Lighting;
-    /**
-     * Objects
-     * @description A list of objects in the image to be generated, along with their attributes and relationships to other objects in the image.
-     * @default []
-     */
-    objects?: PromptObject[];
-    photographic_characteristics?: PhotographicCharacteristics;
-    /**
-     * Short Description
-     * @description A short description of the image to be generated.
-     */
-    short_description?: string;
-    /**
-     * Style Medium
-     * @description The style medium of the image to be generated.
-     */
-    style_medium?: string;
-    /**
-     * Text Render
-     * @description A list of text to be rendered in the image.
-     * @default []
-     */
-    text_render?: { [x: string]: any }[];
-}
-
-export interface StructuredPrompt_1 {
-    aesthetics?: Aesthetics_1;
-    /**
-     * Artistic Style
-     * @description The artistic style of the image to be generated.
-     */
-    artistic_style?: string;
-    /**
-     * Background Setting
-     * @description The background setting of the image to be generated.
-     */
-    background_setting?: string;
-    /**
      * Color Palette
      * @description A list of colors that define the overall color palette of the image.
      */
@@ -2803,7 +2747,7 @@ export interface StructuredPrompt_1 {
     text_render?: { [x: string]: any }[];
 }
 
-export interface StructuredPrompt {
+export interface StructuredPrompt_1 {
     aesthetics: AestheticsDetails;
     /**
      * Artistic Style
@@ -2847,6 +2791,49 @@ export interface StructuredPrompt {
      * @description List of text renders in the image.
      */
     text_render?: TextRender[];
+}
+
+export interface StructuredPrompt {
+    aesthetics?: Aesthetics_1;
+    /**
+     * Artistic Style
+     * @description The artistic style of the image to be generated.
+     */
+    artistic_style?: string;
+    /**
+     * Background Setting
+     * @description The background setting of the image to be generated.
+     */
+    background_setting?: string;
+    /**
+     * Context
+     * @description The context of the image to be generated.
+     */
+    context?: string;
+    lighting?: Lighting;
+    /**
+     * Objects
+     * @description A list of objects in the image to be generated, along with their attributes and relationships to other objects in the image.
+     * @default []
+     */
+    objects?: PromptObject[];
+    photographic_characteristics?: PhotographicCharacteristics;
+    /**
+     * Short Description
+     * @description A short description of the image to be generated.
+     */
+    short_description?: string;
+    /**
+     * Style Medium
+     * @description The style medium of the image to be generated.
+     */
+    style_medium?: string;
+    /**
+     * Text Render
+     * @description A list of text to be rendered in the image.
+     * @default []
+     */
+    text_render?: { [x: string]: any }[];
 }
 
 export interface StructuredInstruction {
@@ -3415,6 +3402,25 @@ export interface SAM3DBodyAlignmentInfo {
     translation: number[];
 }
 
+export interface SAM2VideoOutput {
+    boundingbox_frames_zip?: File;
+    video: File;
+}
+
+export interface SAM2RLEOutput {
+    boundingbox_frames_zip?: File;
+    /**
+     * Rle
+     * @description Run Length Encoding of the mask.
+     */
+    rle: string | string[];
+}
+
+export interface SAM2RLEFileOutput {
+    boundingbox_frames_zip?: File;
+    rle: File;
+}
+
 export interface RodinGen25BbboxField {
     /**
      * Height
@@ -3584,14 +3590,6 @@ export interface Region {
      * @description Y-coordinate of the bottom-right corner
      */
     y2: number;
-}
-
-export interface ReferenceFace {
-    /**
-     * Image Url
-     * @description URL of the reference face image
-     */
-    image_url: string;
 }
 
 export interface ReferenceCondition {
@@ -4358,57 +4356,6 @@ export interface Object {
     y_min: number;
 }
 
-export interface NemotronDiffusionVLMUsage {
-    /**
-     * Completion Tokens
-     * @description Number of generated completion tokens.
-     */
-    completion_tokens: number;
-    /**
-     * Num Function Evals
-     * @description Number of model function evaluations used for generation.
-     */
-    num_function_evals: number;
-    /**
-     * Prompt Tokens
-     * @description Number of prompt tokens sent to the model.
-     */
-    prompt_tokens: number;
-}
-
-export interface NemotronDiffusionVLMTimings {
-    /**
-     * Decode Time
-     * @description Time spent decoding output token IDs to text.
-     */
-    decode_time: number;
-    /**
-     * Generation Time
-     * @description Time spent inside model generation.
-     */
-    generation_time: number;
-    /**
-     * GPU Transfer Time
-     * @description Time spent moving tensors to the GPU.
-     */
-    gpu_transfer_time: number;
-    /**
-     * Image Validation Time
-     * @description Time spent validating and loading the input image.
-     */
-    image_validation_time: number;
-    /**
-     * Preprocessing Time
-     * @description Time spent expanding the chat template and preprocessing tensors.
-     */
-    preprocessing_time: number;
-    /**
-     * Total Time
-     * @description Total request time in seconds.
-     */
-    total_time: number;
-}
-
 export interface MusicV2CompositionPlan {
     /**
      * Chunks
@@ -4523,22 +4470,6 @@ export interface MusicAudioReference {
      * @description How strongly the model follows the reference. Low lets it deviate and be more creative, high keeps it close to the reference.
      */
     strength?: 'low' | 'medium' | 'high' | 'xhigh';
-}
-
-export interface MoondreamInputParam {
-    /**
-     * Image URL
-     * @description URL of the image to be processed
-     * @example https://llava-vl.github.io/static/images/monalisa.jpg
-     */
-    image_url: string;
-    /**
-     * Prompt
-     * @description Prompt to be used for the image
-     * @default Describe this image.
-     * @example Do you know who drew this painting?
-     */
-    prompt?: string;
 }
 
 export interface Moodboard {
@@ -4881,7 +4812,7 @@ export interface LoraWeight_1 {
     /**
      * Path
      * @description URL or path to a LoRA safetensors file. Or HF model name that resolves to safetensors weights.
-     * @example https://civitai.com/api/download/models/135931
+     * @example https://huggingface.co/nerijs/pixel-art-xl/resolve/8bf4a4d9ea283e00a51fafda8e0539f8248ea037/pixel-art-xl.safetensors
      * @example https://filebin.net/3chfqasxpqu21y8n/my-custom-lora-v1.safetensors
      */
     path: string;
@@ -4942,7 +4873,7 @@ export interface LoraTrainingFailure {
     error: string;
 }
 
-export interface LoRAInput_5 {
+export interface LoRAInput_6 {
     /**
      * Path
      * @description URL or HuggingFace repo id (owner/repo) of the LoRA weights.
@@ -4962,7 +4893,7 @@ export interface LoRAInput_5 {
     weight_name?: string;
 }
 
-export interface LoRAInput_4 {
+export interface LoRAInput_5 {
     /**
      * Path
      * @description URL to an Ideogram V4 LoRA weights file (.safetensors).
@@ -4971,6 +4902,20 @@ export interface LoRAInput_4 {
     /**
      * Scale
      * @description Scale factor for the LoRA weights.
+     * @default 1
+     */
+    scale?: number;
+}
+
+export interface LoRAInput_4 {
+    /**
+     * Path
+     * @description URL to a FLUX 3 Klein LoRA (.safetensors), e.g. from flux-3-image-klein-trainer.
+     */
+    path: string;
+    /**
+     * Scale
+     * @description Scale factor for LoRA application (0.0 to 4.0).
      * @default 1
      */
     scale?: number;
@@ -5146,21 +5091,6 @@ export interface KlingV4Shot {
     prompt: string;
 }
 
-export interface KlingV4ImageElement {
-    /**
-     * Frontal Image Url
-     * @description The frontal image of the element (main view).
-     *
-     *     Max file size: 30.0MB, Min width: 300px, Min height: 300px, Min aspect ratio: 0.40, Max aspect ratio: 2.50, Timeout: 20.0s
-     */
-    frontal_image_url: string;
-    /**
-     * Reference Image Urls
-     * @description Additional views of the element from different angles (1-3).
-     */
-    reference_image_urls: string[];
-}
-
 export interface KlingV4Element {
     /**
      * Frontal Image Url
@@ -5174,7 +5104,7 @@ export interface KlingV4Element {
     reference_image_urls?: string[];
     /**
      * Video Url
-     * @description A video of the element, used instead of images (3-30s).
+     * @description A video of the element, used instead of images (3-8s).
      */
     video_url?: string;
     /**
@@ -5590,19 +5520,6 @@ export interface ImageFile {
     width?: number;
 }
 
-export interface ImageConditioningInput_1 {
-    /**
-     * Image Url
-     * @description URL of image to use as conditioning
-     */
-    image_url: string;
-    /**
-     * Start Frame Num
-     * @description Frame number of the image from which the conditioning starts. Must be a multiple of 8.
-     */
-    start_frame_num: number;
-}
-
 export interface ImageConditioningInput {
     /**
      * Image URL
@@ -5930,9 +5847,9 @@ export interface GrokToolsConfiguration {
      * @default {
      *       "excluded_domains": null,
      *       "location": null,
-     *       "enable_image_understanding": null,
      *       "allowed_domains": null,
-     *       "enabled": false
+     *       "enabled": false,
+     *       "enable_image_understanding": null
      *     }
      */
     web_search?: GrokWebSearchTool;
@@ -5940,12 +5857,12 @@ export interface GrokToolsConfiguration {
      * @description xAI-managed X search; off unless enabled is set true.
      * @default {
      *       "enable_video_understanding": null,
-     *       "enable_image_understanding": null,
-     *       "from_date": null,
-     *       "to_date": null,
+     *       "excluded_x_handles": null,
      *       "allowed_x_handles": null,
+     *       "to_date": null,
+     *       "from_date": null,
      *       "enabled": false,
-     *       "excluded_x_handles": null
+     *       "enable_image_understanding": null
      *     }
      */
     x_search?: GrokXSearchTool;
@@ -6216,14 +6133,6 @@ export interface GeminiAudioPart {
     type: 'audio';
 }
 
-export interface Frame {
-    /**
-     * URL
-     * @description URL of the frame
-     */
-    url: string;
-}
-
 export interface ForcedAlignmentWord {
     /**
      * End
@@ -6404,21 +6313,6 @@ export interface ExtendValidation {
     video_url: string;
 }
 
-export interface EventSegment_1 {
-    /**
-     * End
-     * @description End time in seconds.
-     * @example 12.5
-     */
-    end: number;
-    /**
-     * Start
-     * @description Start time in seconds.
-     * @example 10.4
-     */
-    start: number;
-}
-
 export interface EventSegment {
     /**
      * End
@@ -6527,7 +6421,7 @@ export interface Embedding {
     /**
      * Path
      * @description URL or the path to the embedding weights.
-     * @example https://civitai.com/api/download/models/135931
+     * @example https://huggingface.co/RyuusouI/Negativexld/resolve/20515981675c6e76d5b91e2343b958d27c5ad0ab/negativeXL_D.safetensors
      * @example https://filebin.net/3chfqasxpqu21y8n/my-custom-lora-v1.safetensors
      */
     path: string;
@@ -6552,6 +6446,45 @@ export interface ElementInput {
      * @description Additional reference images from different angles. 0-3 images supported. Optional.
      */
     reference_image_urls?: string[];
+}
+
+export interface EditRegion {
+    /**
+     * Height
+     * @description Height as a fraction of image height.
+     */
+    height: number;
+    /**
+     * Image Idx
+     * @description Zero-based index into image_urls.
+     */
+    image_idx: number;
+    /**
+     * Label
+     * @description Refer to this region as @label. Defaults to its one-based position.
+     */
+    label?: string;
+    /**
+     * Note
+     * @description Edit instruction for this region; may reference other @labels.
+     * @default
+     */
+    note?: string;
+    /**
+     * Width
+     * @description Width as a fraction of image width.
+     */
+    width: number;
+    /**
+     * X
+     * @description Left edge as a fraction of image width.
+     */
+    x: number;
+    /**
+     * Y
+     * @description Top edge as a fraction of image height.
+     */
+    y: number;
 }
 
 export interface EditBoundingBox {
@@ -7167,20 +7100,6 @@ export interface Color {
      * @description The red component of the color (0-255).
      */
     red: number;
-}
-
-export interface ChronoLoraWeight {
-    /**
-     * Path
-     * @description URL or path to the LoRA weights (Safetensors).
-     */
-    path: string;
-    /**
-     * Scale
-     * @description Scale factor controlling LoRA strength.
-     * @default 1
-     */
-    scale?: number;
 }
 
 export interface Character {

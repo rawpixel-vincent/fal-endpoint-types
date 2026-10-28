@@ -414,16 +414,6 @@ declare global {
                 output: falEndpoints.RundiffusionfalJuggernautFluxBaseOutput;
             };
 
-            'rundiffusion-fal/juggernaut-flux-lora/inpainting': {
-                input: falEndpoints.RundiffusionfalJuggernautFluxLoraInpaintingInput;
-                output: falEndpoints.RundiffusionfalJuggernautFluxLoraInpaintingOutput;
-            };
-
-            'rundiffusion-fal/juggernaut-flux-lora': {
-                input: falEndpoints.RundiffusionfalJuggernautFluxLoraInput;
-                output: falEndpoints.RundiffusionfalJuggernautFluxLoraOutput;
-            };
-
             'robbyant/lingbot-world-2': {
                 input: falEndpoints.RobbyantLingbotWorld2Input;
                 output: falEndpoints.RobbyantLingbotWorld2Output;
@@ -697,16 +687,6 @@ declare global {
             'mirelo-ai/sfx2.0/text-to-audio': {
                 input: falEndpoints.MireloaiSfx20TextToAudioInput;
                 output: falEndpoints.MireloaiSfx20TextToAudioOutput;
-            };
-
-            'mirage-api/avatar-x/text-to-video': {
-                input: falEndpoints.MirageapiAvatarXTextToVideoInput;
-                output: falEndpoints.MirageapiAvatarXTextToVideoOutput;
-            };
-
-            'mirage-api/avatar-x/reference-to-video': {
-                input: falEndpoints.MirageapiAvatarXReferenceToVideoInput;
-                output: falEndpoints.MirageapiAvatarXReferenceToVideoOutput;
             };
 
             'minimax/music-3': {
@@ -1889,11 +1869,6 @@ declare global {
                 output: falEndpoints.UsoOutput;
             };
 
-            'fal-ai/uno': {
-                input: falEndpoints.UnoInput;
-                output: falEndpoints.UnoOutput;
-            };
-
             'fal-ai/turbo-flux-trainer': {
                 input: falEndpoints.TurboFluxTrainerInput;
                 output: falEndpoints.TurboFluxTrainerOutput;
@@ -1917,11 +1892,6 @@ declare global {
             'fal-ai/trellis-2-lora-trainer': {
                 input: falEndpoints.Trellis2LoraTrainerInput;
                 output: falEndpoints.Trellis2LoraTrainerOutput;
-            };
-
-            'fal-ai/trellis-2-lora': {
-                input: falEndpoints.Trellis2LoraInput;
-                output: falEndpoints.Trellis2LoraOutput;
             };
 
             'fal-ai/trellis-2': {
@@ -1959,11 +1929,6 @@ declare global {
                 output: falEndpoints.Tada1bTextToSpeechOutput;
             };
 
-            'fal-ai/t2v-turbo': {
-                input: falEndpoints.T2vTurboInput;
-                output: falEndpoints.T2vTurboOutput;
-            };
-
             'fal-ai/sync-lipsync/v3/image-to-video': {
                 input: falEndpoints.SyncLipsyncV3ImageToVideoInput;
                 output: falEndpoints.SyncLipsyncV3ImageToVideoOutput;
@@ -1997,11 +1962,6 @@ declare global {
             'fal-ai/stepx-edit2': {
                 input: falEndpoints.StepxEdit2Input;
                 output: falEndpoints.StepxEdit2Output;
-            };
-
-            'fal-ai/stable-video': {
-                input: falEndpoints.StableVideoInput;
-                output: falEndpoints.StableVideoOutput;
             };
 
             'fal-ai/stable-diffusion-v35-medium': {
@@ -2204,11 +2164,6 @@ declare global {
                 output: falEndpoints.SpeechToTextOutput;
             };
 
-            'fal-ai/smart-turn': {
-                input: falEndpoints.SmartTurnInput;
-                output: falEndpoints.SmartTurnOutput;
-            };
-
             'fal-ai/smart-resize': {
                 input: falEndpoints.SmartResizeInput;
                 output: falEndpoints.SmartResizeOutput;
@@ -2217,11 +2172,6 @@ declare global {
             'fal-ai/silero-vad': {
                 input: falEndpoints.SileroVadInput;
                 output: falEndpoints.SileroVadOutput;
-            };
-
-            'fal-ai/sensenova-u1-infographic': {
-                input: falEndpoints.SensenovaU1InfographicInput;
-                output: falEndpoints.SensenovaU1InfographicOutput;
             };
 
             'fal-ai/seedvr/upscale/video': {
@@ -2252,11 +2202,6 @@ declare global {
             'fal-ai/sdxl-controlnet-union': {
                 input: falEndpoints.SdxlControlnetUnionInput;
                 output: falEndpoints.SdxlControlnetUnionOutput;
-            };
-
-            'fal-ai/scene-finder': {
-                input: falEndpoints.SceneFinderInput;
-                output: falEndpoints.SceneFinderOutput;
             };
 
             'fal-ai/scail-2': {
@@ -2509,24 +2454,9 @@ declare global {
                 output: falEndpoints.Reconviagen05Output;
             };
 
-            'fal-ai/realistic-vision': {
-                input: falEndpoints.RealisticVisionInput;
-                output: falEndpoints.RealisticVisionOutput;
-            };
-
             'fal-ai/qwen-image/image-to-image': {
                 input: falEndpoints.QwenImageImageToImageInput;
                 output: falEndpoints.QwenImageImageToImageOutput;
-            };
-
-            'fal-ai/qwen-image-max/text-to-image': {
-                input: falEndpoints.QwenImageMaxTextToImageInput;
-                output: falEndpoints.QwenImageMaxTextToImageOutput;
-            };
-
-            'fal-ai/qwen-image-max/edit': {
-                input: falEndpoints.QwenImageMaxEditInput;
-                output: falEndpoints.QwenImageMaxEditOutput;
             };
 
             'fal-ai/qwen-image-layered/lora': {
@@ -2744,11 +2674,6 @@ declare global {
                 output: falEndpoints.Qwen3TtsCloneVoice06bOutput;
             };
 
-            'fal-ai/pulid': {
-                input: falEndpoints.PulidInput;
-                output: falEndpoints.PulidOutput;
-            };
-
             'fal-ai/post-processing/vignette': {
                 input: falEndpoints.PostProcessingVignetteInput;
                 output: falEndpoints.PostProcessingVignetteOutput;
@@ -2812,26 +2737,6 @@ declare global {
             'fal-ai/post-processing': {
                 input: falEndpoints.PostProcessingInput;
                 output: falEndpoints.PostProcessingOutput;
-            };
-
-            'fal-ai/pony-v7': {
-                input: falEndpoints.PonyV7Input;
-                output: falEndpoints.PonyV7Output;
-            };
-
-            'fal-ai/playground-v25/inpainting': {
-                input: falEndpoints.PlaygroundV25InpaintingInput;
-                output: falEndpoints.PlaygroundV25InpaintingOutput;
-            };
-
-            'fal-ai/playground-v25/image-to-image': {
-                input: falEndpoints.PlaygroundV25ImageToImageInput;
-                output: falEndpoints.PlaygroundV25ImageToImageOutput;
-            };
-
-            'fal-ai/playground-v25': {
-                input: falEndpoints.PlaygroundV25Input;
-                output: falEndpoints.PlaygroundV25Output;
             };
 
             'fal-ai/pixverse/v6/transition': {
@@ -3049,11 +2954,6 @@ declare global {
                 output: falEndpoints.Pixal3dOutput;
             };
 
-            'fal-ai/photomaker': {
-                input: falEndpoints.PhotomakerInput;
-                output: falEndpoints.PhotomakerOutput;
-            };
-
             'fal-ai/phota/enhance': {
                 input: falEndpoints.PhotaEnhanceInput;
                 output: falEndpoints.PhotaEnhanceOutput;
@@ -3074,16 +2974,6 @@ declare global {
                 output: falEndpoints.PhotaOutput;
             };
 
-            'fal-ai/personaplex/realtime': {
-                input: falEndpoints.PersonaplexRealtimeInput;
-                output: falEndpoints.PersonaplexRealtimeOutput;
-            };
-
-            'fal-ai/personaplex': {
-                input: falEndpoints.PersonaplexInput;
-                output: falEndpoints.PersonaplexOutput;
-            };
-
             'fal-ai/patina/material/extract': {
                 input: falEndpoints.PatinaMaterialExtractInput;
                 output: falEndpoints.PatinaMaterialExtractOutput;
@@ -3097,16 +2987,6 @@ declare global {
             'fal-ai/patina': {
                 input: falEndpoints.PatinaInput;
                 output: falEndpoints.PatinaOutput;
-            };
-
-            'fal-ai/pasd': {
-                input: falEndpoints.PasdInput;
-                output: falEndpoints.PasdOutput;
-            };
-
-            'fal-ai/ovis-image': {
-                input: falEndpoints.OvisImageInput;
-                output: falEndpoints.OvisImageOutput;
             };
 
             'fal-ai/ovi/image-to-video': {
@@ -3134,34 +3014,9 @@ declare global {
                 output: falEndpoints.OneToAllAnimation13bOutput;
             };
 
-            'fal-ai/omnilottie/video-to-lottie': {
-                input: falEndpoints.OmnilottieVideoToLottieInput;
-                output: falEndpoints.OmnilottieVideoToLottieOutput;
-            };
-
-            'fal-ai/omnilottie/image-to-lottie': {
-                input: falEndpoints.OmnilottieImageToLottieInput;
-                output: falEndpoints.OmnilottieImageToLottieOutput;
-            };
-
-            'fal-ai/omnilottie': {
-                input: falEndpoints.OmnilottieInput;
-                output: falEndpoints.OmnilottieOutput;
-            };
-
             'fal-ai/omnigen-v2': {
                 input: falEndpoints.OmnigenV2Input;
                 output: falEndpoints.OmnigenV2Output;
-            };
-
-            'fal-ai/omnigen-v1': {
-                input: falEndpoints.OmnigenV1Input;
-                output: falEndpoints.OmnigenV1Output;
-            };
-
-            'fal-ai/omni-zero': {
-                input: falEndpoints.OmniZeroInput;
-                output: falEndpoints.OmniZeroOutput;
             };
 
             'fal-ai/object-removal/mask': {
@@ -3182,11 +3037,6 @@ declare global {
             'fal-ai/nucleus-image': {
                 input: falEndpoints.NucleusImageInput;
                 output: falEndpoints.NucleusImageOutput;
-            };
-
-            'fal-ai/nemotron-diffusion-vlm': {
-                input: falEndpoints.NemotronDiffusionVlmInput;
-                output: falEndpoints.NemotronDiffusionVlmOutput;
             };
 
             'fal-ai/nano-banana/edit': {
@@ -3282,11 +3132,6 @@ declare global {
             'fal-ai/moondream2': {
                 input: falEndpoints.Moondream2Input;
                 output: falEndpoints.Moondream2Output;
-            };
-
-            'fal-ai/moondream/batched': {
-                input: falEndpoints.MoondreamBatchedInput;
-                output: falEndpoints.MoondreamBatchedOutput;
             };
 
             'fal-ai/moondream-next/detection': {
@@ -3762,21 +3607,6 @@ declare global {
             'fal-ai/ltx-video/image-to-video': {
                 input: falEndpoints.LtxVideoImageToVideoInput;
                 output: falEndpoints.LtxVideoImageToVideoOutput;
-            };
-
-            'fal-ai/ltx-video-v095/multiconditioning': {
-                input: falEndpoints.LtxVideoV095MulticonditioningInput;
-                output: falEndpoints.LtxVideoV095MulticonditioningOutput;
-            };
-
-            'fal-ai/ltx-video-v095/extend': {
-                input: falEndpoints.LtxVideoV095ExtendInput;
-                output: falEndpoints.LtxVideoV095ExtendOutput;
-            };
-
-            'fal-ai/ltx-video-v095': {
-                input: falEndpoints.LtxVideoV095Input;
-                output: falEndpoints.LtxVideoV095Output;
             };
 
             'fal-ai/ltx-video-13b-distilled/multiconditioning': {
@@ -4649,16 +4479,6 @@ declare global {
                 output: falEndpoints.Kandinsky5ProImageToVideoOutput;
             };
 
-            'fal-ai/joyai-image-edit': {
-                input: falEndpoints.JoyaiImageEditInput;
-                output: falEndpoints.JoyaiImageEditOutput;
-            };
-
-            'fal-ai/janus': {
-                input: falEndpoints.JanusInput;
-                output: falEndpoints.JanusOutput;
-            };
-
             'fal-ai/ip-adapter-face-id': {
                 input: falEndpoints.IpAdapterFaceIdInput;
                 output: falEndpoints.IpAdapterFaceIdOutput;
@@ -4669,19 +4489,9 @@ declare global {
                 output: falEndpoints.InworldTtsOutput;
             };
 
-            'fal-ai/invisible-watermark': {
-                input: { [x in string]: any };
-                output: { [x in string]: any };
-            };
-
             'fal-ai/instant-character': {
                 input: falEndpoints.InstantCharacterInput;
                 output: falEndpoints.InstantCharacterOutput;
-            };
-
-            'fal-ai/inpaint': {
-                input: falEndpoints.InpaintInput;
-                output: falEndpoints.InpaintOutput;
             };
 
             'fal-ai/infinity-star/text-to-video': {
@@ -5099,16 +4909,6 @@ declare global {
                 output: falEndpoints.IdeogramObjectRemovalOutput;
             };
 
-            'fal-ai/ideogram/custom-models/generate': {
-                input: falEndpoints.IdeogramCustomModelsGenerateInput;
-                output: falEndpoints.IdeogramCustomModelsGenerateOutput;
-            };
-
-            'fal-ai/ideogram/custom-models': {
-                input: falEndpoints.IdeogramCustomModelsInput;
-                output: falEndpoints.IdeogramCustomModelsOutput;
-            };
-
             'fal-ai/ideogram/character/remix': {
                 input: falEndpoints.IdeogramCharacterRemixInput;
                 output: falEndpoints.IdeogramCharacterRemixOutput;
@@ -5209,11 +5009,6 @@ declare global {
                 output: falEndpoints.Hunyuan3dV3TextTo3dOutput;
             };
 
-            'fal-ai/hunyuan3d-v3/sketch-to-3d': {
-                input: falEndpoints.Hunyuan3dV3SketchTo3dInput;
-                output: falEndpoints.Hunyuan3dV3SketchTo3dOutput;
-            };
-
             'fal-ai/hunyuan3d-v3/image-to-3d': {
                 input: falEndpoints.Hunyuan3dV3ImageTo3dInput;
                 output: falEndpoints.Hunyuan3dV3ImageTo3dOutput;
@@ -5232,11 +5027,6 @@ declare global {
             'fal-ai/hunyuan-video-v1.5/image-to-video': {
                 input: falEndpoints.HunyuanVideoV15ImageToVideoInput;
                 output: falEndpoints.HunyuanVideoV15ImageToVideoOutput;
-            };
-
-            'fal-ai/hunyuan-video-img2vid-lora': {
-                input: { [x in string]: any };
-                output: { [x in string]: any };
             };
 
             'fal-ai/hunyuan-video-image-to-video': {
@@ -5359,11 +5149,6 @@ declare global {
                 output: falEndpoints.HidreamI1FastOutput;
             };
 
-            'fal-ai/hidream-i1-dev': {
-                input: falEndpoints.HidreamI1DevInput;
-                output: falEndpoints.HidreamI1DevOutput;
-            };
-
             'fal-ai/heygen/v3/video-agent': {
                 input: falEndpoints.HeygenV3VideoAgentInput;
                 output: falEndpoints.HeygenV3VideoAgentOutput;
@@ -5449,11 +5234,6 @@ declare global {
                 output: falEndpoints.GptImage1MiniOutput;
             };
 
-            'fal-ai/got-ocr/v2': {
-                input: falEndpoints.GotOcrV2Input;
-                output: falEndpoints.GotOcrV2Output;
-            };
-
             'fal-ai/glm-image/image-to-image': {
                 input: falEndpoints.GlmImageImageToImageInput;
                 output: falEndpoints.GlmImageImageToImageOutput;
@@ -5462,11 +5242,6 @@ declare global {
             'fal-ai/glm-image': {
                 input: falEndpoints.GlmImageInput;
                 output: falEndpoints.GlmImageOutput;
-            };
-
-            'fal-ai/ghiblify': {
-                input: falEndpoints.GhiblifyInput;
-                output: falEndpoints.GhiblifyOutput;
             };
 
             'fal-ai/gemini-tts': {
@@ -5597,11 +5372,6 @@ declare global {
             'fal-ai/flux-vision-upscaler': {
                 input: falEndpoints.FluxVisionUpscalerInput;
                 output: falEndpoints.FluxVisionUpscalerOutput;
-            };
-
-            'fal-ai/flux-subject': {
-                input: falEndpoints.FluxSubjectInput;
-                output: falEndpoints.FluxSubjectOutput;
             };
 
             'fal-ai/flux-pulid': {
@@ -5807,16 +5577,6 @@ declare global {
             'fal-ai/flux-control-lora-depth': {
                 input: falEndpoints.FluxControlLoraDepthInput;
                 output: falEndpoints.FluxControlLoraDepthOutput;
-            };
-
-            'fal-ai/flux-control-lora-canny/image-to-image': {
-                input: falEndpoints.FluxControlLoraCannyImageToImageInput;
-                output: falEndpoints.FluxControlLoraCannyImageToImageOutput;
-            };
-
-            'fal-ai/flux-control-lora-canny': {
-                input: falEndpoints.FluxControlLoraCannyInput;
-                output: falEndpoints.FluxControlLoraCannyOutput;
             };
 
             'fal-ai/flux-3-action/so101': {
@@ -6119,11 +5879,6 @@ declare global {
                 output: falEndpoints.Flux1DevOutput;
             };
 
-            'fal-ai/flowedit': {
-                input: falEndpoints.FloweditInput;
-                output: falEndpoints.FloweditOutput;
-            };
-
             'fal-ai/florence-2-large/region-to-segmentation': {
                 input: falEndpoints.Florence2LargeRegionToSegmentationInput;
                 output: falEndpoints.Florence2LargeRegionToSegmentationOutput;
@@ -6214,11 +5969,6 @@ declare global {
                 output: falEndpoints.FireredImageEditV11Output;
             };
 
-            'fal-ai/firered-image-edit': {
-                input: falEndpoints.FireredImageEditInput;
-                output: falEndpoints.FireredImageEditOutput;
-            };
-
             'fal-ai/finegrain-eraser/mask': {
                 input: falEndpoints.FinegrainEraserMaskInput;
                 output: falEndpoints.FinegrainEraserMaskOutput;
@@ -6294,21 +6044,6 @@ declare global {
                 output: falEndpoints.FeynobgOutput;
             };
 
-            'fal-ai/fast-svd/text-to-video': {
-                input: falEndpoints.FastSvdTextToVideoInput;
-                output: falEndpoints.FastSvdTextToVideoOutput;
-            };
-
-            'fal-ai/fast-svd-lcm/text-to-video': {
-                input: falEndpoints.FastSvdLcmTextToVideoInput;
-                output: falEndpoints.FastSvdLcmTextToVideoOutput;
-            };
-
-            'fal-ai/fast-svd-lcm': {
-                input: falEndpoints.FastSvdLcmInput;
-                output: falEndpoints.FastSvdLcmOutput;
-            };
-
             'fal-ai/fast-sdxl/inpainting': {
                 input: falEndpoints.FastSdxlInpaintingInput;
                 output: falEndpoints.FastSdxlInpaintingOutput;
@@ -6317,21 +6052,6 @@ declare global {
             'fal-ai/fast-sdxl/image-to-image': {
                 input: falEndpoints.FastSdxlImageToImageInput;
                 output: falEndpoints.FastSdxlImageToImageOutput;
-            };
-
-            'fal-ai/fast-sdxl-controlnet-canny/inpainting': {
-                input: falEndpoints.FastSdxlControlnetCannyInpaintingInput;
-                output: falEndpoints.FastSdxlControlnetCannyInpaintingOutput;
-            };
-
-            'fal-ai/fast-sdxl-controlnet-canny/image-to-image': {
-                input: falEndpoints.FastSdxlControlnetCannyImageToImageInput;
-                output: falEndpoints.FastSdxlControlnetCannyImageToImageOutput;
-            };
-
-            'fal-ai/fast-sdxl-controlnet-canny': {
-                input: falEndpoints.FastSdxlControlnetCannyInput;
-                output: falEndpoints.FastSdxlControlnetCannyOutput;
             };
 
             'fal-ai/fast-sdxl': {
@@ -6372,26 +6092,6 @@ declare global {
             'fal-ai/fast-fooocus-sdxl/image-to-image': {
                 input: { [x in string]: any };
                 output: { [x in string]: any };
-            };
-
-            'fal-ai/fast-animatediff/video-to-video': {
-                input: falEndpoints.FastAnimatediffVideoToVideoInput;
-                output: falEndpoints.FastAnimatediffVideoToVideoOutput;
-            };
-
-            'fal-ai/fast-animatediff/turbo/video-to-video': {
-                input: falEndpoints.FastAnimatediffTurboVideoToVideoInput;
-                output: falEndpoints.FastAnimatediffTurboVideoToVideoOutput;
-            };
-
-            'fal-ai/fast-animatediff/turbo/text-to-video': {
-                input: falEndpoints.FastAnimatediffTurboTextToVideoInput;
-                output: falEndpoints.FastAnimatediffTurboTextToVideoOutput;
-            };
-
-            'fal-ai/fast-animatediff/text-to-video': {
-                input: falEndpoints.FastAnimatediffTextToVideoInput;
-                output: falEndpoints.FastAnimatediffTextToVideoOutput;
             };
 
             'fal-ai/fashn/tryon/v1.6': {
@@ -6514,11 +6214,6 @@ declare global {
                 output: falEndpoints.ElevenlabsAudioIsolationOutput;
             };
 
-            'fal-ai/editto': {
-                input: falEndpoints.EdittoInput;
-                output: falEndpoints.EdittoOutput;
-            };
-
             'fal-ai/echomimic-v3': {
                 input: falEndpoints.EchomimicV3Input;
                 output: falEndpoints.EchomimicV3Output;
@@ -6534,29 +6229,9 @@ declare global {
                 output: falEndpoints.DwposeOutput;
             };
 
-            'fal-ai/dreamshaper': {
-                input: falEndpoints.DreamshaperInput;
-                output: falEndpoints.DreamshaperOutput;
-            };
-
-            'fal-ai/dreamomni2/edit': {
-                input: falEndpoints.Dreamomni2EditInput;
-                output: falEndpoints.Dreamomni2EditOutput;
-            };
-
             'fal-ai/drct-super-resolution': {
                 input: falEndpoints.DrctSuperResolutionInput;
                 output: falEndpoints.DrctSuperResolutionOutput;
-            };
-
-            'fal-ai/docres/dewarp': {
-                input: falEndpoints.DocresDewarpInput;
-                output: falEndpoints.DocresDewarpOutput;
-            };
-
-            'fal-ai/docres': {
-                input: falEndpoints.DocresInput;
-                output: falEndpoints.DocresOutput;
             };
 
             'fal-ai/diffrhythm': {
@@ -6619,31 +6294,6 @@ declare global {
                 output: falEndpoints.CreatifyAuroraOutput;
             };
 
-            'fal-ai/cosmos-predict-2.5/video-to-video': {
-                input: falEndpoints.CosmosPredict25VideoToVideoInput;
-                output: falEndpoints.CosmosPredict25VideoToVideoOutput;
-            };
-
-            'fal-ai/cosmos-predict-2.5/text-to-video': {
-                input: falEndpoints.CosmosPredict25TextToVideoInput;
-                output: falEndpoints.CosmosPredict25TextToVideoOutput;
-            };
-
-            'fal-ai/cosmos-predict-2.5/image-to-video': {
-                input: falEndpoints.CosmosPredict25ImageToVideoInput;
-                output: falEndpoints.CosmosPredict25ImageToVideoOutput;
-            };
-
-            'fal-ai/cosmos-predict-2.5/distilled/text-to-video': {
-                input: falEndpoints.CosmosPredict25DistilledTextToVideoInput;
-                output: falEndpoints.CosmosPredict25DistilledTextToVideoOutput;
-            };
-
-            'fal-ai/controlfoley': {
-                input: { [x in string]: any };
-                output: { [x in string]: any };
-            };
-
             'fal-ai/control-light': {
                 input: falEndpoints.ControlLightInput;
                 output: falEndpoints.ControlLightOutput;
@@ -6654,26 +6304,6 @@ declare global {
                 output: falEndpoints.CohereTranscribeOutput;
             };
 
-            'fal-ai/cogview4': {
-                input: falEndpoints.Cogview4Input;
-                output: falEndpoints.Cogview4Output;
-            };
-
-            'fal-ai/cogvideox-5b/video-to-video': {
-                input: falEndpoints.Cogvideox5bVideoToVideoInput;
-                output: falEndpoints.Cogvideox5bVideoToVideoOutput;
-            };
-
-            'fal-ai/cogvideox-5b/image-to-video': {
-                input: falEndpoints.Cogvideox5bImageToVideoInput;
-                output: falEndpoints.Cogvideox5bImageToVideoOutput;
-            };
-
-            'fal-ai/cogvideox-5b': {
-                input: falEndpoints.Cogvideox5bInput;
-                output: falEndpoints.Cogvideox5bOutput;
-            };
-
             'fal-ai/codeformer': {
                 input: falEndpoints.CodeformerInput;
                 output: falEndpoints.CodeformerOutput;
@@ -6682,26 +6312,6 @@ declare global {
             'fal-ai/clarity-upscaler': {
                 input: falEndpoints.ClarityUpscalerInput;
                 output: falEndpoints.ClarityUpscalerOutput;
-            };
-
-            'fal-ai/chrono-edit-lora-gallery/upscaler': {
-                input: falEndpoints.ChronoEditLoraGalleryUpscalerInput;
-                output: falEndpoints.ChronoEditLoraGalleryUpscalerOutput;
-            };
-
-            'fal-ai/chrono-edit-lora-gallery/paintbrush': {
-                input: falEndpoints.ChronoEditLoraGalleryPaintbrushInput;
-                output: falEndpoints.ChronoEditLoraGalleryPaintbrushOutput;
-            };
-
-            'fal-ai/chrono-edit-lora': {
-                input: falEndpoints.ChronoEditLoraInput;
-                output: falEndpoints.ChronoEditLoraOutput;
-            };
-
-            'fal-ai/chrono-edit': {
-                input: falEndpoints.ChronoEditInput;
-                output: falEndpoints.ChronoEditOutput;
             };
 
             'fal-ai/chatterbox/text-to-speech/multilingual': {
@@ -6722,11 +6332,6 @@ declare global {
             'fal-ai/cat-vton': {
                 input: falEndpoints.CatVtonInput;
                 output: falEndpoints.CatVtonOutput;
-            };
-
-            'fal-ai/cartoonify': {
-                input: falEndpoints.CartoonifyInput;
-                output: falEndpoints.CartoonifyOutput;
             };
 
             'fal-ai/bytedance/seedream/v4/text-to-image': {
@@ -6869,11 +6474,6 @@ declare global {
                 output: falEndpoints.BooguImageOutput;
             };
 
-            'fal-ai/bitdance': {
-                input: falEndpoints.BitdanceInput;
-                output: falEndpoints.BitdanceOutput;
-            };
-
             'fal-ai/birefnet/v2/video': {
                 input: falEndpoints.BirefnetV2VideoInput;
                 output: falEndpoints.BirefnetV2VideoOutput;
@@ -6949,24 +6549,9 @@ declare global {
                 output: falEndpoints.AuraSrOutput;
             };
 
-            'fal-ai/aura-flow': {
-                input: falEndpoints.AuraFlowInput;
-                output: falEndpoints.AuraFlowOutput;
-            };
-
             'fal-ai/audio-understanding': {
                 input: falEndpoints.AudioUnderstandingInput;
                 output: falEndpoints.AudioUnderstandingOutput;
-            };
-
-            'fal-ai/amt-interpolation/frame-interpolation': {
-                input: falEndpoints.AmtInterpolationFrameInterpolationInput;
-                output: falEndpoints.AmtInterpolationFrameInterpolationOutput;
-            };
-
-            'fal-ai/amt-interpolation': {
-                input: falEndpoints.AmtInterpolationInput;
-                output: falEndpoints.AmtInterpolationOutput;
             };
 
             'fal-ai/ai-avatar/single-text': {
@@ -7196,11 +6781,6 @@ declare global {
             'bytedance/omnihuman/v2': {
                 input: falEndpoints.BytedanceOmnihumanV2Input;
                 output: falEndpoints.BytedanceOmnihumanV2Output;
-            };
-
-            'bytedance/lynx': {
-                input: falEndpoints.BytedanceLynxInput;
-                output: falEndpoints.BytedanceLynxOutput;
             };
 
             'bria/video/increase-resolution': {
@@ -7448,14 +7028,44 @@ declare global {
                 output: falEndpoints.BlackforestlabsFlux3TextToImageOutput;
             };
 
+            'blackforestlabs/flux-3/klein/text-to-image/lora': {
+                input: falEndpoints.BlackforestlabsFlux3KleinTextToImageLoraInput;
+                output: falEndpoints.BlackforestlabsFlux3KleinTextToImageLoraOutput;
+            };
+
             'blackforestlabs/flux-3/klein/text-to-image': {
                 input: falEndpoints.BlackforestlabsFlux3KleinTextToImageInput;
                 output: falEndpoints.BlackforestlabsFlux3KleinTextToImageOutput;
             };
 
+            'blackforestlabs/flux-3/klein/edit-image/lora': {
+                input: falEndpoints.BlackforestlabsFlux3KleinEditImageLoraInput;
+                output: falEndpoints.BlackforestlabsFlux3KleinEditImageLoraOutput;
+            };
+
             'blackforestlabs/flux-3/klein/edit-image': {
                 input: falEndpoints.BlackforestlabsFlux3KleinEditImageInput;
                 output: falEndpoints.BlackforestlabsFlux3KleinEditImageOutput;
+            };
+
+            'blackforestlabs/flux-3/klein/base/trainer/edit': {
+                input: falEndpoints.BlackforestlabsFlux3KleinBaseTrainerEditInput;
+                output: falEndpoints.BlackforestlabsFlux3KleinBaseTrainerEditOutput;
+            };
+
+            'blackforestlabs/flux-3/klein/base/trainer': {
+                input: falEndpoints.BlackforestlabsFlux3KleinBaseTrainerInput;
+                output: falEndpoints.BlackforestlabsFlux3KleinBaseTrainerOutput;
+            };
+
+            'blackforestlabs/flux-3/klein/base/text-to-image/lora': {
+                input: falEndpoints.BlackforestlabsFlux3KleinBaseTextToImageLoraInput;
+                output: falEndpoints.BlackforestlabsFlux3KleinBaseTextToImageLoraOutput;
+            };
+
+            'blackforestlabs/flux-3/klein/base/edit-image/lora': {
+                input: falEndpoints.BlackforestlabsFlux3KleinBaseEditImageLoraInput;
+                output: falEndpoints.BlackforestlabsFlux3KleinBaseEditImageLoraOutput;
             };
 
             'blackforestlabs/flux-3/keyframes-to-video/draft': {
