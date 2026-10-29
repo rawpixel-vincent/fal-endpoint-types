@@ -3702,21 +3702,6 @@ export interface RayEditControls {
     trajectory?: RayEditTrajectoryControl;
 }
 
-export interface RawImage {
-    /**
-     * Content
-     * Format: binary
-     */
-    content: string;
-    /**
-     * Content Type
-     * @default image/jpeg
-     */
-    content_type?: string;
-    height: number;
-    width: number;
-}
-
 export interface PronunciationDictionaryLocator {
     /**
      * Pronunciation Dictionary Id
@@ -5540,55 +5525,6 @@ export interface ImageConditioningInput {
     strength?: number;
 }
 
-export interface Image_2 {
-    /**
-     * Content Type
-     * @description The mime type of the file.
-     * @default null
-     * @example image/png
-     */
-    content_type?: string;
-    /**
-     * File Data
-     * @description File data
-     * @default null
-     */
-    file_data?: string;
-    /**
-     * File Name
-     * @description The name of the file. It will be auto-generated if not provided.
-     * @default null
-     * @example z9RV14K95DvU.png
-     */
-    file_name?: string;
-    /**
-     * File Size
-     * @description The size of the file in bytes.
-     * @default null
-     * @example 4404019
-     */
-    file_size?: number;
-    /**
-     * Height
-     * @description The height of the image in pixels.
-     * @default null
-     * @example 1024
-     */
-    height?: number;
-    /**
-     * Url
-     * @description The URL where the file can be downloaded from.
-     */
-    url: string;
-    /**
-     * Width
-     * @description The width of the image in pixels.
-     * @default null
-     * @example 1024
-     */
-    width?: number;
-}
-
 export interface Image_1 {
     /**
      * Content Type
@@ -5636,40 +5572,6 @@ export interface Image {
      * @example 1024
      */
     width?: number;
-}
-
-export interface IceServersOutput {
-    iceservers: {
-        [key: string]: { [x: string]: any } | null;
-    }[];
-    /**
-     * @description discriminator enum property added by openapi-typescript
-     * @enum {string}
-     */
-    type: 'iceservers';
-}
-
-export interface IceCandidateOutput {
-    candidate: IceCandidate;
-    /**
-     * @description discriminator enum property added by openapi-typescript
-     * @enum {string}
-     */
-    type: 'icecandidate';
-}
-
-export interface IceCandidate {
-    candidate: string;
-    /**
-     * Sdpmid
-     * @default null
-     */
-    sdpMid?: string;
-    /**
-     * Sdpmlineindex
-     * @default null
-     */
-    sdpMLineIndex?: number;
 }
 
 export interface I2VValidation {
@@ -5809,33 +5711,6 @@ export interface GrokWebSearchTool {
     location?: GrokSearchLocation;
 }
 
-export interface GrokTurnDetectionConfiguration {
-    /**
-     * Idle Timeout (ms)
-     * @description Idle time after an assistant response before xAI starts a proactive turn, in milliseconds.
-     * @default null
-     */
-    idle_timeout_ms?: number;
-    /**
-     * Prefix Padding (ms)
-     * @description Audio retained before detected speech, in milliseconds.
-     * @default null
-     */
-    prefix_padding_ms?: number;
-    /**
-     * Silence Duration (ms)
-     * @description Silence duration that ends a detected turn, in milliseconds.
-     * @default null
-     */
-    silence_duration_ms?: number;
-    /**
-     * Threshold
-     * @description VAD activation threshold; higher values require louder audio.
-     * @default null
-     */
-    threshold?: number;
-}
-
 export interface GrokToolsConfiguration {
     /**
      * MCP Servers
@@ -5845,11 +5720,11 @@ export interface GrokToolsConfiguration {
     /**
      * @description xAI-managed web search; off unless enabled is set true.
      * @default {
-     *       "excluded_domains": null,
-     *       "location": null,
-     *       "allowed_domains": null,
+     *       "enable_image_understanding": null,
      *       "enabled": false,
-     *       "enable_image_understanding": null
+     *       "allowed_domains": null,
+     *       "location": null,
+     *       "excluded_domains": null
      *     }
      */
     web_search?: GrokWebSearchTool;
@@ -5857,12 +5732,12 @@ export interface GrokToolsConfiguration {
      * @description xAI-managed X search; off unless enabled is set true.
      * @default {
      *       "enable_video_understanding": null,
+     *       "enable_image_understanding": null,
      *       "excluded_x_handles": null,
-     *       "allowed_x_handles": null,
-     *       "to_date": null,
-     *       "from_date": null,
      *       "enabled": false,
-     *       "enable_image_understanding": null
+     *       "from_date": null,
+     *       "allowed_x_handles": null,
+     *       "to_date": null
      *     }
      */
     x_search?: GrokXSearchTool;
@@ -6331,15 +6206,6 @@ export interface EventSegment {
      * @description Short description of the event (caption mode only).
      */
     text?: string;
-}
-
-export interface ErrorOutput {
-    error: string;
-    /**
-     * @description discriminator enum property added by openapi-typescript
-     * @enum {string}
-     */
-    type: 'error';
 }
 
 export interface EmotionalStrengths {
@@ -7036,6 +6902,29 @@ export interface ControlLoraWeight {
               [key: string]: number;
           }
         | number;
+}
+
+export interface ContextWindowBox {
+    /**
+     * X Max
+     * @description Right edge in source pixels (exclusive).
+     */
+    x_max: number;
+    /**
+     * X Min
+     * @description Left edge in source pixels (inclusive).
+     */
+    x_min: number;
+    /**
+     * Y Max
+     * @description Bottom edge in source pixels (exclusive).
+     */
+    y_max: number;
+    /**
+     * Y Min
+     * @description Top edge in source pixels (inclusive).
+     */
+    y_min: number;
 }
 
 export interface CompletionUsage {
@@ -9147,15 +9036,6 @@ export interface AspectRatio {
      * @enum {string}
      */
     ratio?: '1:1' | '16:9' | '9:16' | '4:3' | '3:4';
-}
-
-export interface AnswerOutput {
-    sdp: string;
-    /**
-     * @description discriminator enum property added by openapi-typescript
-     * @enum {string}
-     */
-    type: 'answer';
 }
 
 export interface AnimationClip {

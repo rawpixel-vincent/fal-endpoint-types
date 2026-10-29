@@ -10,8 +10,8 @@ declare global {
             };
 
             'xai/grok-voice/realtime': {
-                input: falEndpoints.XaiGrokVoiceRealtimeInput;
-                output: falEndpoints.XaiGrokVoiceRealtimeOutput;
+                input: { [x in string]: any };
+                output: { [x in string]: any };
             };
 
             'xai/grok-voice': {
@@ -177,6 +177,16 @@ declare global {
             'veed/fabric-1.0': {
                 input: falEndpoints.VeedFabric10Input;
                 output: falEndpoints.VeedFabric10Output;
+            };
+
+            'veed/dubbing/pro': {
+                input: falEndpoints.VeedDubbingProInput;
+                output: falEndpoints.VeedDubbingProOutput;
+            };
+
+            'veed/dubbing': {
+                input: falEndpoints.VeedDubbingInput;
+                output: falEndpoints.VeedDubbingOutput;
             };
 
             'veed/clean-audio': {
@@ -1000,8 +1010,8 @@ declare global {
             };
 
             'krea/v3/realtime': {
-                input: falEndpoints.KreaV3RealtimeInput;
-                output: falEndpoints.KreaV3RealtimeOutput;
+                input: { [x in string]: any };
+                output: { [x in string]: any };
             };
 
             'krea/v3/edit': {
@@ -3082,6 +3092,16 @@ declare global {
             'fal-ai/musetalk': {
                 input: falEndpoints.MusetalkInput;
                 output: falEndpoints.MusetalkOutput;
+            };
+
+            'fal-ai/motion-to-code/gsap': {
+                input: falEndpoints.MotionToCodeGsapInput;
+                output: falEndpoints.MotionToCodeGsapOutput;
+            };
+
+            'fal-ai/motion-to-code/glsl': {
+                input: falEndpoints.MotionToCodeGlslInput;
+                output: falEndpoints.MotionToCodeGlslOutput;
             };
 
             'fal-ai/moss-image': {
@@ -5204,16 +5224,6 @@ declare global {
                 output: falEndpoints.HeygenAvatar3DigitalTwinOutput;
             };
 
-            'fal-ai/gpt-image-1/text-to-image': {
-                input: falEndpoints.GptImage1TextToImageInput;
-                output: falEndpoints.GptImage1TextToImageOutput;
-            };
-
-            'fal-ai/gpt-image-1/edit-image': {
-                input: falEndpoints.GptImage1EditImageInput;
-                output: falEndpoints.GptImage1EditImageOutput;
-            };
-
             'fal-ai/gpt-image-1.5/edit': {
                 input: falEndpoints.GptImage15EditInput;
                 output: falEndpoints.GptImage15EditOutput;
@@ -5605,8 +5615,8 @@ declare global {
             };
 
             'fal-ai/flux-2/klein/realtime': {
-                input: falEndpoints.Flux2KleinRealtimeInput;
-                output: falEndpoints.Flux2KleinRealtimeOutput;
+                input: { [x in string]: any };
+                output: { [x in string]: any };
             };
 
             'fal-ai/flux-2/klein/9b/lora': {
@@ -6615,8 +6625,8 @@ declare global {
             };
 
             'decart/lucy2-vton/realtime': {
-                input: falEndpoints.DecartLucy2VtonRealtimeInput;
-                output: falEndpoints.DecartLucy2VtonRealtimeOutput;
+                input: { [x in string]: any };
+                output: { [x in string]: any };
             };
 
             'decart/lucy-restyle': {
@@ -6625,8 +6635,8 @@ declare global {
             };
 
             'decart/lucy-2-5/realtime': {
-                input: falEndpoints.DecartLucy25RealtimeInput;
-                output: falEndpoints.DecartLucy25RealtimeOutput;
+                input: { [x in string]: any };
+                output: { [x in string]: any };
             };
 
             'creatify/boreal': {
@@ -6809,8 +6819,8 @@ declare global {
             };
 
             'bria/video/background-removal/realtime': {
-                input: falEndpoints.BriaVideoBackgroundRemovalRealtimeInput;
-                output: falEndpoints.BriaVideoBackgroundRemovalRealtimeOutput;
+                input: { [x in string]: any };
+                output: { [x in string]: any };
             };
 
             'bria/video/background-removal/green-screen-despill': {
