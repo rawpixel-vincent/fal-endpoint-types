@@ -111,10 +111,10 @@ export interface XaiGrokVoiceInput {
     /**
      * @description Server-side tools available to the agent. Web, X, and remote MCP tools are supported; every tool is disabled by default. file_search/collections are unsupported by the typed configuration due to ZDR.
      * @default {
-     *       "mcp_servers": [],
      *       "x_search": {
      *         "enabled": false
      *       },
+     *       "mcp_servers": [],
      *       "web_search": {
      *         "enabled": false
      *       }
@@ -174,7 +174,7 @@ export interface XaiGrokVoiceOutput {
 
 export interface XaiGrokImagineVideoV15TextToVideoInput extends SharedType_269 {}
 
-export interface XaiGrokImagineVideoV15TextToVideoOutput extends SharedType_0ff {}
+export interface XaiGrokImagineVideoV15TextToVideoOutput extends SharedType_398 {}
 
 export interface XaiGrokImagineVideoV15ReferenceToVideoInput {
     /**
@@ -219,19 +219,19 @@ export interface XaiGrokImagineVideoV15ReferenceToVideoInput {
     resolution?: '480p' | '720p';
 }
 
-export interface XaiGrokImagineVideoV15ReferenceToVideoOutput extends SharedType_303 {}
+export interface XaiGrokImagineVideoV15ReferenceToVideoOutput extends SharedType_b19 {}
 
 export interface XaiGrokImagineVideoV15LiteTextToVideoInput extends SharedType_269 {}
 
-export interface XaiGrokImagineVideoV15LiteTextToVideoOutput extends SharedType_0ff {}
+export interface XaiGrokImagineVideoV15LiteTextToVideoOutput extends SharedType_398 {}
 
 export interface XaiGrokImagineVideoV15LiteImageToVideoInput extends SharedType_382 {}
 
-export interface XaiGrokImagineVideoV15LiteImageToVideoOutput extends SharedType_559 {}
+export interface XaiGrokImagineVideoV15LiteImageToVideoOutput extends SharedType_176 {}
 
 export interface XaiGrokImagineVideoV15ImageToVideoInput extends SharedType_382 {}
 
-export interface XaiGrokImagineVideoV15ImageToVideoOutput extends SharedType_559 {}
+export interface XaiGrokImagineVideoV15ImageToVideoOutput extends SharedType_176 {}
 
 export interface XaiGrokImagineVideoTextToVideoInput {
     /**
@@ -268,7 +268,7 @@ export interface XaiGrokImagineVideoTextToVideoInput {
     resolution?: '480p' | '720p';
 }
 
-export interface XaiGrokImagineVideoTextToVideoOutput extends SharedType_0ff {}
+export interface XaiGrokImagineVideoTextToVideoOutput extends SharedType_398 {}
 
 export interface XaiGrokImagineVideoReferenceToVideoInput {
     /**
@@ -313,7 +313,7 @@ export interface XaiGrokImagineVideoReferenceToVideoInput {
     resolution?: '480p' | '720p';
 }
 
-export interface XaiGrokImagineVideoReferenceToVideoOutput extends SharedType_303 {}
+export interface XaiGrokImagineVideoReferenceToVideoOutput extends SharedType_b19 {}
 
 export interface XaiGrokImagineVideoImageToVideoInput {
     /**
@@ -355,7 +355,7 @@ export interface XaiGrokImagineVideoImageToVideoInput {
     resolution?: '480p' | '720p';
 }
 
-export interface XaiGrokImagineVideoImageToVideoOutput extends SharedType_559 {}
+export interface XaiGrokImagineVideoImageToVideoOutput extends SharedType_176 {}
 
 export interface XaiGrokImagineVideoExtendVideoInput {
     /**
@@ -388,14 +388,14 @@ export interface XaiGrokImagineVideoExtendVideoOutput {
     /**
      * @description The extended video (original + extension stitched together).
      * @example {
-     *       "file_name": "extended_video.mp4",
-     *       "url": "https://v3b.fal.media/files/b/0a8b9113/extended_video.mp4",
-     *       "num_frames": 384,
-     *       "width": 1280,
-     *       "fps": 24,
-     *       "content_type": "video/mp4",
      *       "height": 720,
-     *       "duration": 16
+     *       "file_name": "extended_video.mp4",
+     *       "fps": 24,
+     *       "width": 1280,
+     *       "content_type": "video/mp4",
+     *       "num_frames": 384,
+     *       "duration": 16,
+     *       "url": "https://v3b.fal.media/files/b/0a8b9113/extended_video.mp4"
      *     }
      */
     video: Components.VideoFile;
@@ -433,14 +433,14 @@ export interface XaiGrokImagineVideoEditVideoOutput {
     /**
      * @description The generated video.
      * @example {
-     *       "file_name": "EuDrZuQTW9m1phBXOsauz_EpJH3s8X.mp4",
-     *       "url": "https://v3b.fal.media/files/b/0a8b9113/EuDrZuQTW9m1phBXOsauz_EpJH3s8X.mp4",
-     *       "num_frames": 121,
-     *       "width": 1280,
-     *       "fps": 24,
-     *       "content_type": "video/mp4",
      *       "height": 720,
-     *       "duration": 5.041667
+     *       "file_name": "EuDrZuQTW9m1phBXOsauz_EpJH3s8X.mp4",
+     *       "fps": 24,
+     *       "width": 1280,
+     *       "content_type": "video/mp4",
+     *       "num_frames": 121,
+     *       "duration": 5.041667,
+     *       "url": "https://v3b.fal.media/files/b/0a8b9113/EuDrZuQTW9m1phBXOsauz_EpJH3s8X.mp4"
      *     }
      */
     video: Components.VideoFile;
@@ -838,8 +838,8 @@ export interface WanV26TextToVideoOutput {
     /**
      * @description The generated video file
      * @example {
-     *       "url": "https://v3b.fal.media/files/b/0a867564/PsHtrg623uJuI7DdRqXvb_etx4d0Un.mp4",
-     *       "content_type": "video/mp4"
+     *       "content_type": "video/mp4",
+     *       "url": "https://v3b.fal.media/files/b/0a867564/PsHtrg623uJuI7DdRqXvb_etx4d0Un.mp4"
      *     }
      */
     video: Components.VideoFile;
@@ -910,9 +910,9 @@ export interface WanV26TextToImageOutput {
      * @description Generated images in PNG format
      * @example [
      *       {
-     *         "url": "https://v3b.fal.media/files/b/0a86d6b0/cBXGSUEl3DkTcBnf9IEM0_output_1.png",
+     *         "content_type": "image/png",
      *         "file_name": "output_1.png",
-     *         "content_type": "image/png"
+     *         "url": "https://v3b.fal.media/files/b/0a86d6b0/cBXGSUEl3DkTcBnf9IEM0_output_1.png"
      *       }
      *     ]
      */
@@ -1173,7 +1173,7 @@ export interface WanV26ImageToVideoFlashInput {
     seed?: number;
 }
 
-export interface WanV26ImageToVideoFlashOutput extends SharedType_fa1 {}
+export interface WanV26ImageToVideoFlashOutput extends SharedType_cde {}
 
 export interface WanV26ImageToVideoInput {
     /**
@@ -1256,7 +1256,7 @@ export interface WanV26ImageToVideoInput {
     seed?: number;
 }
 
-export interface WanV26ImageToVideoOutput extends SharedType_fa1 {}
+export interface WanV26ImageToVideoOutput extends SharedType_cde {}
 
 export interface WanV26ImageToImageInput {
     /**
@@ -1331,9 +1331,9 @@ export interface WanV26ImageToImageOutput {
      * @description Generated images in PNG format
      * @example [
      *       {
-     *         "url": "https://v3b.fal.media/files/b/0a86d6bb/iSEuXzi3kDy1jnlMCwYuH_output_3.png",
+     *         "content_type": "image/png",
      *         "file_name": "output_1.png",
-     *         "content_type": "image/png"
+     *         "url": "https://v3b.fal.media/files/b/0a86d6bb/iSEuXzi3kDy1jnlMCwYuH_output_3.png"
      *       }
      *     ]
      */
@@ -3635,7 +3635,7 @@ export interface TopazUpscaleImageTransparentInput {
     enable_safety_checker?: boolean;
     /**
      * Image Url
-     * @description Url of the image to process
+     * @description Url of the image to process. The fixed 4x upscale supports inputs up to 8000 pixels per side.
      * @example https://storage.googleapis.com/falserverless/model_tests/codeformer/codeformer_poor_1.jpeg
      */
     image_url: string;
@@ -3783,7 +3783,7 @@ export interface TopazUpscaleImageGenerativeInput {
     enhancement_strength?: 'low' | 'medium' | 'high';
     /**
      * Face Enhancement
-     * @description Whether to apply face enhancement to the image.
+     * @description Whether to apply face enhancement to the image. Ignored by Wonder 4, which handles face recovery automatically.
      * @default true
      */
     face_enhancement?: boolean;
@@ -3801,17 +3801,18 @@ export interface TopazUpscaleImageGenerativeInput {
     face_enhancement_strength?: number;
     /**
      * Image Url
-     * @description Url of the image to be upscaled
+     * @description Url of the image to be upscaled. Wonder 4 supports up to 256 MP input and output. The complete upload request must fit within 500 MB.
      * @example https://storage.googleapis.com/falserverless/model_tests/codeformer/codeformer_poor_1.jpeg
      */
     image_url: string;
     /**
      * Model
-     * @description Generative upscaling model. Wonder 3.5 is the latest Wonder with finer detail and fewer repetitive patterns; Wonder 3 is Topaz's most advanced generative realism model (Wonder 2/Wonder are earlier generations); Recover 3 rebuilds natural detail; Standard MAX is high-quality precision-leaning upscaling; Redefine adds prompt-guided creative detail; Recovery and Recovery V2 rebuild extreme low-resolution images.
+     * @description Generative upscaling model. Wonder 4 automatically enhances and upscales images with no model-specific controls. Wonder 3.5 offers finer detail and fewer repetitive patterns; Wonder 3 is Topaz's most advanced generative realism model (Wonder 2/Wonder are earlier generations); Recover 3 rebuilds natural detail; Standard MAX is high-quality precision-leaning upscaling; Redefine adds prompt-guided creative detail; Recovery and Recovery V2 rebuild extreme low-resolution images.
      * @default Wonder 3
      * @enum {string}
      */
     model?:
+        | 'Wonder 4'
         | 'Wonder 3.5'
         | 'Wonder 3'
         | 'Wonder 2'
@@ -4418,6 +4419,31 @@ export interface SmoretalkaiRembgEnhanceInput {
 
 export interface SmoretalkaiRembgEnhanceOutput extends SharedType_d09 {}
 
+export interface SharedType_ffb {
+    /**
+     * Expanded Prompt
+     * @description The prompt after expansion, as sent to the model. Null when prompt expansion was disabled, left the prompt unchanged, or was performed internally by MiniMax's hosted API.
+     */
+    expanded_prompt?: string;
+    /**
+     * Timings
+     * @description Timing breakdown in seconds. 'inference' is the DiT denoising time on the GPU backend. Null on routes that do not report backend timings.
+     */
+    timings?: {
+        [key: string]: number;
+    };
+    /**
+     * @description The generated video
+     * @example {
+     *       "content_type": "video/mp4",
+     *       "file_name": "--prs89fkHtWW406fmEs__NRhTqNku.mp4",
+     *       "url": "https://v3b.fal.media/files/b/0aa46818/--prs89fkHtWW406fmEs__NRhTqNku.mp4",
+     *       "file_size": 6463396
+     *     }
+     */
+    video: Components.File;
+}
+
 export interface SharedType_fed {
     /**
      * Aspect Ratio
@@ -4472,22 +4498,22 @@ export interface SharedType_fed {
     seed?: number;
 }
 
-export interface SharedType_fe4 {
-    image_urls?: string[];
-    [key: string]: any;
-}
-
-export interface SharedType_fd6 {
+export interface SharedType_feb {
     /**
      * @description The generated video.
      * @example {
-     *       "url": "https://v3b.fal.media/files/b/0a8d1c8a/ZxdKrvPb3CQEmeuS-u_kU_output.mp4",
-     *       "file_size": 18468404,
+     *       "file_size": 4322769,
+     *       "content_type": "video/mp4",
      *       "file_name": "output.mp4",
-     *       "content_type": "video/mp4"
+     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/kling-o3/pro-v2v-edit/output.mp4"
      *     }
      */
     video: Components.File;
+}
+
+export interface SharedType_fe4 {
+    image_urls?: string[];
+    [key: string]: any;
 }
 
 export interface SharedType_fc6 {
@@ -4790,27 +4816,17 @@ export interface SharedType_faf {
     resolution?: '360p' | '540p' | '720p' | '1080p';
 }
 
-export interface SharedType_fa1 {
+export interface SharedType_fa9 {
     /**
-     * Actual Prompt
-     * @description The actual prompt used if prompt rewriting was enabled
-     * @example A comedic cinematic scene where the creator interacts with AI-generated reality transformations.
-     */
-    actual_prompt?: string;
-    /**
-     * Seed
-     * @description The seed used for generation
-     * @example 175932751
-     */
-    seed: number;
-    /**
-     * @description The generated video file
+     * @description The generated video.
      * @example {
-     *       "url": "https://v3b.fal.media/files/b/0a8675cf/bCu9FiFXSjsSnIwOmjUOY_BVs2IFR3.mp4",
-     *       "content_type": "video/mp4"
+     *       "file_size": 27588984,
+     *       "content_type": "video/mp4",
+     *       "file_name": "output.mp4",
+     *       "url": "https://v3b.fal.media/files/b/koala/knryyyGF3ZVyMMrGr77CL_output.mp4"
      *     }
      */
-    video: Components.VideoFile;
+    video: Components.File;
 }
 
 export interface SharedType_f99 {
@@ -4831,6 +4847,19 @@ export interface SharedType_f7a {
     debug_dataset?: Components.File;
     lora_file: Components.File;
     video?: Components.File;
+}
+
+export interface SharedType_f72 {
+    /**
+     * @description The generated video
+     * @example {
+     *       "file_size": 3890360,
+     *       "file_name": "output.mp4",
+     *       "url": "https://fal.media/files/panda/5KmKS-mh1vO-htbqE5oex_output.mp4",
+     *       "content_type": "video/mp4"
+     *     }
+     */
+    video: Components.File;
 }
 
 export interface SharedType_f67 {
@@ -5011,98 +5040,6 @@ export interface SharedType_f4c {
     sync_mode?: boolean;
 }
 
-export interface SharedType_f48 {
-    /**
-     * @description The generated video.
-     * @example {
-     *       "url": "https://v3b.fal.media/files/b/0a8d0278/pgIO9yOXTFCTetKBsqDwX_output.mp4",
-     *       "file_size": 12037975,
-     *       "file_name": "output.mp4",
-     *       "content_type": "video/mp4"
-     *     }
-     */
-    video: Components.File;
-}
-
-export interface SharedType_f47 {
-    /**
-     * Image Style Url
-     * @description The image URL used for texturing (if provided)
-     */
-    image_style_url?: string;
-    /**
-     * @description Retextured 3D object in GLB format.
-     * @example {
-     *       "content_type": "model/gltf-binary",
-     *       "file_name": "model.glb",
-     *       "file_size": 4097640,
-     *       "url": "https://v3b.fal.media/files/b/tiger/pU0TtsRTxXM6VnKEYTHSV_model.glb"
-     *     }
-     */
-    model_glb: Components.File;
-    /**
-     * @description URLs for different 3D model formats
-     * @example {
-     *       "fbx": {
-     *         "content_type": "application/octet-stream",
-     *         "file_name": "model.fbx",
-     *         "file_size": 4713692,
-     *         "url": "https://v3b.fal.media/files/b/rabbit/agzKf8N8zeVnteg72NiF4_model.fbx"
-     *       },
-     *       "glb": {
-     *         "content_type": "model/gltf-binary",
-     *         "file_name": "model.glb",
-     *         "file_size": 4097640,
-     *         "url": "https://v3b.fal.media/files/b/tiger/pU0TtsRTxXM6VnKEYTHSV_model.glb"
-     *       },
-     *       "usdz": {
-     *         "content_type": "model/vnd.usdz+zip",
-     *         "file_name": "model.usdz",
-     *         "file_size": 3886518,
-     *         "url": "https://v3b.fal.media/files/b/panda/4ItUhLHiH4foEw30qcWZv_model.usdz"
-     *       },
-     *       "obj": {
-     *         "content_type": "model/obj",
-     *         "file_name": "model.obj",
-     *         "file_size": 2964508,
-     *         "url": "https://v3b.fal.media/files/b/zebra/M5aK_b6vKH7KeGCZoSLq7_model.obj"
-     *       }
-     *     }
-     */
-    model_urls: Components.ModelUrls;
-    /**
-     * Text Style Prompt
-     * @description The text prompt used for texturing (if provided)
-     * @example red and black chest
-     */
-    text_style_prompt?: string;
-    /**
-     * Texture Urls
-     * @description Array of texture file objects
-     * @example [
-     *       {
-     *         "base_color": {
-     *           "content_type": "image/png",
-     *           "file_name": "texture_0.png",
-     *           "file_size": 3455709,
-     *           "url": "https://v3b.fal.media/files/b/zebra/opBcVy7AK-GOlCTUz-_GZ_texture_0.png"
-     *         }
-     *       }
-     *     ]
-     */
-    texture_urls?: Components.TextureFiles[];
-    /**
-     * @description Preview thumbnail of the retextured model
-     * @example {
-     *       "content_type": "image/png",
-     *       "file_name": "preview.png",
-     *       "file_size": 124859,
-     *       "url": "https://v3b.fal.media/files/b/lion/jFrzgIJMbaPQi_4HCEa8u_preview.png"
-     *     }
-     */
-    thumbnail?: Components.File;
-}
-
 export interface SharedType_f45 {
     /**
      * Aspect Ratio
@@ -5159,33 +5096,29 @@ export interface SharedType_f45 {
     sync_mode?: boolean;
 }
 
-export interface SharedType_f43 {
+export interface SharedType_f39 {
     /**
-     * Prompt
-     * @description The prompt used for the generation.
-     * @example A cowboy walking through a dusty town at high noon, camera following from behind, cinematic depth, realistic lighting, western mood, 4K film grain.
+     * Finish Reason
+     * @description Reason generation stopped.
+     * @default stop
+     * @example stop
+     * @example length
      */
-    prompt: string;
+    finish_reason?: string;
     /**
-     * Seed
-     * @description The seed used for the random number generator.
-     * @example 149063119
+     * Output
+     * @description Generated text response.
+     * @example The image shows a golden retriever puppy sitting on a wooden floor.
      */
-    seed: number;
+    output: string;
     /**
-     * @description The generated video.
+     * @description Token usage for the request.
      * @example {
-     *       "height": 704,
-     *       "duration": 6.44,
-     *       "file_name": "sdm0KfmenrlywesfzY1Y1_if6euPp1.mp4",
-     *       "content_type": "video/mp4",
-     *       "fps": 25,
-     *       "width": 1248,
-     *       "url": "https://v3b.fal.media/files/b/0a8824b1/sdm0KfmenrlywesfzY1Y1_if6euPp1.mp4",
-     *       "num_frames": 161
+     *       "output_tokens": 87,
+     *       "input_tokens": 412
      *     }
      */
-    video: Components.VideoFile;
+    usage: Components.UsageInfo;
 }
 
 export interface SharedType_f2a {
@@ -5258,6 +5191,177 @@ export interface SharedType_f2a {
     sync_mode?: boolean;
 }
 
+export interface SharedType_f1a {
+    /**
+     * Aspect Ratio
+     * @description The aspect ratio of the video.
+     * @default auto
+     * @example auto
+     * @enum {string}
+     */
+    aspect_ratio?: '9:16' | '1:1' | '16:9' | 'auto';
+    /**
+     * Constant Rate Factor
+     * @description The constant rate factor (CRF) to compress input media with. Compressed input media more closely matches the model's training data, which can improve motion quality.
+     * @default 29
+     * @example 29
+     */
+    constant_rate_factor?: number;
+    /**
+     * Enable Detail Pass
+     * @description Whether to use a detail pass. If True, the model will perform a second pass to refine the video and enhance details. This incurs a 2.0x cost multiplier on the base price.
+     * @default false
+     * @example false
+     */
+    enable_detail_pass?: boolean;
+    /**
+     * Enable Prompt Expansion
+     * @description Whether to expand the prompt using a language model.
+     * @default false
+     * @example false
+     */
+    enable_prompt_expansion?: boolean;
+    /**
+     * Enable Safety Checker
+     * @description Whether to enable the safety checker. Disabling it requires account authorization; unauthorized requests are always checked.
+     * @default true
+     * @example true
+     */
+    enable_safety_checker?: boolean;
+    /**
+     * Number of Inference Steps
+     * @description Number of inference steps during the first pass.
+     * @default 8
+     * @example 8
+     */
+    first_pass_num_inference_steps?: number;
+    /**
+     * Frame Rate
+     * @description The frame rate of the video.
+     * @default 24
+     * @example 24
+     */
+    frame_rate?: number;
+    /**
+     * Images
+     * @description URL of images to use as conditioning
+     * @default []
+     * @example [
+     *       {
+     *         "strength": 1,
+     *         "start_frame_num": 0,
+     *         "image_url": "https://storage.googleapis.com/falserverless/model_tests/ltx/NswO1P8sCLzrh1WefqQFK_9a6bdbfa54b944c9a770338159a113fd.jpg"
+     *       },
+     *       {
+     *         "strength": 1,
+     *         "start_frame_num": 120,
+     *         "image_url": "https://storage.googleapis.com/falserverless/model_tests/ltx/YAPOGvmS2tM_Krdp7q6-d_267c97e017c34f679844a4477dfcec38.jpg"
+     *       }
+     *     ]
+     */
+    images?: Components.ImageConditioningInput[];
+    /**
+     * Loras
+     * @description LoRA weights to use for generation
+     * @default []
+     */
+    loras?: Components.LoRAWeight[];
+    /**
+     * Negative Prompt
+     * @description Negative prompt for generation
+     * @default worst quality, inconsistent motion, blurry, jittery, distorted
+     */
+    negative_prompt?: string;
+    /**
+     * Number of Frames
+     * @description The number of frames in the video.
+     * @default 121
+     * @example 121
+     */
+    num_frames?: number;
+    /**
+     * Prompt
+     * @description Text prompt to guide generation
+     * @example A vibrant, abstract composition featuring a person with outstretched arms, rendered in a kaleidoscope of colors against a deep, dark background. The figure is composed of intricate, swirling patterns reminiscent of a mosaic, with hues of orange, yellow, blue, and green that evoke the style of artists such as Wassily Kandinsky or Bridget Riley. The camera zooms into the face striking portrait of a man, reimagined through the lens of old-school video-game graphics. The subject's face is rendered in a kaleidoscope of colors, with bold blues and reds set against a vibrant yellow backdrop. His dark hair is pulled back, framing his profile in a dramatic pose.
+     */
+    prompt: string;
+    /**
+     * Resolution
+     * @description Resolution of the generated video.
+     * @default 720p
+     * @example 720p
+     * @enum {string}
+     */
+    resolution?: '480p' | '720p';
+    /**
+     * Reverse Video
+     * @description Whether to reverse the video.
+     * @default false
+     * @example false
+     */
+    reverse_video?: boolean;
+    /**
+     * Second Pass Number of Inference Steps
+     * @description Number of inference steps during the second pass.
+     * @default 8
+     * @example 8
+     */
+    second_pass_num_inference_steps?: number;
+    /**
+     * Second Pass Skip Initial Steps
+     * @description The number of inference steps to skip in the initial steps of the second pass. By skipping some steps at the beginning, the second pass can focus on smaller details instead of larger changes.
+     * @default 5
+     * @example 5
+     */
+    second_pass_skip_initial_steps?: number;
+    /**
+     * Seed
+     * @description Random seed for generation
+     */
+    seed?: number;
+    /**
+     * Temporal AdaIN Factor
+     * @description The factor for adaptive instance normalization (AdaIN) applied to generated video chunks after the first. This can help deal with a gradual increase in saturation/contrast in the generated video by normalizing the color distribution across the video. A high value will ensure the color distribution is more consistent across the video, while a low value will allow for more variation in color distribution.
+     * @default 0.5
+     * @example 0.5
+     */
+    temporal_adain_factor?: number;
+    /**
+     * Tone Map Compression Ratio
+     * @description The compression ratio for tone mapping. This is used to compress the dynamic range of the video to improve visual quality. A value of 0.0 means no compression, while a value of 1.0 means maximum compression.
+     * @default 0
+     * @example 0
+     */
+    tone_map_compression_ratio?: number;
+    /**
+     * Videos
+     * @description Videos to use as conditioning
+     * @default []
+     */
+    videos?: Components.VideoConditioningInput[];
+}
+
+export interface SharedType_f141 {
+    /**
+     * Draft Id
+     * @description The draft ID, or null when draft mode is disabled. Complete this draft within 14 days using the same account.
+     */
+    draft_id?: string;
+    /**
+     * Seed
+     * @description The seed used for generation.
+     * @example 42
+     */
+    seed: number;
+    /**
+     * @description The generated video file.
+     * @example {
+     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/bytedance/seedance_2/output.mp4"
+     *     }
+     */
+    video: Components.File;
+}
+
 export interface SharedType_f14 {
     /**
      * CFG Scale
@@ -5296,19 +5400,6 @@ export interface SharedType_f14 {
      *     ]
      */
     speakers: Components.VibeVoiceSpeaker[];
-}
-
-export interface SharedType_f13 {
-    /**
-     * @description The generated video.
-     * @example {
-     *       "url": "https://v3b.fal.media/files/b/0a86603b/YAlbB2535l07BTy1wpDeI_output.mp4",
-     *       "file_size": 7533071,
-     *       "file_name": "output.mp4",
-     *       "content_type": "video/mp4"
-     *     }
-     */
-    video: Components.File;
 }
 
 export interface SharedType_ef5 {
@@ -5411,6 +5502,85 @@ export interface SharedType_eef {
     scores?: number[];
 }
 
+export interface SharedType_eec {
+    /**
+     * Image Style Url
+     * @description The image URL used for texturing (if provided)
+     */
+    image_style_url?: string;
+    /**
+     * @description Retextured 3D object in GLB format.
+     * @example {
+     *       "file_size": 4097640,
+     *       "content_type": "model/gltf-binary",
+     *       "file_name": "model.glb",
+     *       "url": "https://v3b.fal.media/files/b/tiger/pU0TtsRTxXM6VnKEYTHSV_model.glb"
+     *     }
+     */
+    model_glb: Components.File;
+    /**
+     * @description URLs for different 3D model formats
+     * @example {
+     *       "fbx": {
+     *         "file_size": 4713692,
+     *         "content_type": "application/octet-stream",
+     *         "file_name": "model.fbx",
+     *         "url": "https://v3b.fal.media/files/b/rabbit/agzKf8N8zeVnteg72NiF4_model.fbx"
+     *       },
+     *       "usdz": {
+     *         "file_size": 3886518,
+     *         "content_type": "model/vnd.usdz+zip",
+     *         "file_name": "model.usdz",
+     *         "url": "https://v3b.fal.media/files/b/panda/4ItUhLHiH4foEw30qcWZv_model.usdz"
+     *       },
+     *       "obj": {
+     *         "file_size": 2964508,
+     *         "content_type": "model/obj",
+     *         "file_name": "model.obj",
+     *         "url": "https://v3b.fal.media/files/b/zebra/M5aK_b6vKH7KeGCZoSLq7_model.obj"
+     *       },
+     *       "glb": {
+     *         "file_size": 4097640,
+     *         "content_type": "model/gltf-binary",
+     *         "file_name": "model.glb",
+     *         "url": "https://v3b.fal.media/files/b/tiger/pU0TtsRTxXM6VnKEYTHSV_model.glb"
+     *       }
+     *     }
+     */
+    model_urls: Components.ModelUrls;
+    /**
+     * Text Style Prompt
+     * @description The text prompt used for texturing (if provided)
+     * @example red and black chest
+     */
+    text_style_prompt?: string;
+    /**
+     * Texture Urls
+     * @description Array of texture file objects
+     * @example [
+     *       {
+     *         "base_color": {
+     *           "file_size": 3455709,
+     *           "content_type": "image/png",
+     *           "file_name": "texture_0.png",
+     *           "url": "https://v3b.fal.media/files/b/zebra/opBcVy7AK-GOlCTUz-_GZ_texture_0.png"
+     *         }
+     *       }
+     *     ]
+     */
+    texture_urls?: Components.TextureFiles[];
+    /**
+     * @description Preview thumbnail of the retextured model
+     * @example {
+     *       "file_size": 124859,
+     *       "content_type": "image/png",
+     *       "file_name": "preview.png",
+     *       "url": "https://v3b.fal.media/files/b/lion/jFrzgIJMbaPQi_4HCEa8u_preview.png"
+     *     }
+     */
+    thumbnail?: Components.File;
+}
+
 export interface SharedType_ee7 {
     /**
      * Has Nsfw Concepts
@@ -5467,6 +5637,19 @@ export interface SharedType_ee4 {
      * @example {
      *       "url": "https://storage.googleapis.com/falserverless/example_outputs/seedvr-output.mp4",
      *       "content_type": "video/mp4"
+     *     }
+     */
+    video: Components.File;
+}
+
+export interface SharedType_ed9 {
+    /**
+     * @description The generated video.
+     * @example {
+     *       "file_size": 12037975,
+     *       "content_type": "video/mp4",
+     *       "file_name": "output.mp4",
+     *       "url": "https://v3b.fal.media/files/b/0a8d0278/pgIO9yOXTFCTetKBsqDwX_output.mp4"
      *     }
      */
     video: Components.File;
@@ -5624,6 +5807,92 @@ export interface SharedType_ec6 {
     target_audio_url?: string;
 }
 
+export interface SharedType_eb8 {
+    /**
+     * Elements
+     * @description Elements (characters/objects) to include. Reference in prompt as @Element1, @Element2, etc. Maximum 4 total (elements + reference images) when using video.
+     * @example [
+     *       {
+     *         "frontal_image_url": "https://v3b.fal.media/files/b/panda/MQp-ghIqshvMZROKh9lW3.png",
+     *         "reference_image_urls": [
+     *           "https://v3b.fal.media/files/b/kangaroo/YMpmQkYt9xugpOTQyZW0O.png",
+     *           "https://v3b.fal.media/files/b/zebra/d6ywajNyJ6bnpa_xBue-K.png"
+     *         ]
+     *       }
+     *     ]
+     */
+    elements?: Components.OmniVideoElementInput[];
+    /**
+     * Enable Safety Checker
+     * @description Disabling safety checks requires account authorization; unauthorized requests are always checked.
+     * @default true
+     */
+    enable_safety_checker?: boolean;
+    /**
+     * Image Urls
+     * @description Reference images for style/appearance. Reference in prompt as @Image1, @Image2, etc. Maximum 4 total (elements + reference images) when using video.
+     * @example [
+     *       "https://v3b.fal.media/files/b/lion/MKvhFko5_wYnfORYacNII_AgPt8v25Wt4oyKhjnhVK5.png"
+     *     ]
+     */
+    image_urls?: string[];
+    /**
+     * Keep Audio
+     * @description Whether to keep the original audio from the video.
+     * @default false
+     */
+    keep_audio?: boolean;
+    /**
+     * Prompt
+     * @description Use @Element1, @Element2 to reference elements and @Image1, @Image2 to reference images in order.
+     * @example Replace the character in the video with @Element1, maintaining the same movements and camera angles. Transform the landscape into @Image1
+     */
+    prompt: string;
+    /**
+     * Video Url
+     * @description Reference video URL. Only .mp4/.mov formats supported, 3-10 seconds duration, 720-2160px resolution, max 200MB.
+     *
+     *     Max file size: 200.0MB, Min width: 720px, Min height: 720px, Max width: 2160px, Max height: 2160px, Min duration: 3.0s, Max duration: 10.05s, Min FPS: 24.0, Max FPS: 60.0, Timeout: 30.0s
+     * @example https://v3b.fal.media/files/b/rabbit/ku8_Wdpf-oTbGRq4lB5DU_output.mp4
+     */
+    video_url: string;
+}
+
+export interface SharedType_eb7 {
+    /**
+     * Has Nsfw Concepts
+     * @description Whether the generated images contain NSFW concepts.
+     */
+    has_nsfw_concepts: boolean[];
+    /**
+     * Images
+     * @description The generated images.
+     * @example [
+     *       {
+     *         "height": 768,
+     *         "content_type": "image/jpeg",
+     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/flux_krea_t2i_output_1.jpg",
+     *         "width": 1024
+     *       }
+     *     ]
+     */
+    images: Components.Image_1[];
+    /**
+     * Prompt
+     * @description The prompt used for generating the image.
+     */
+    prompt: string;
+    /**
+     * Seed
+     * @description Seed of the generated Image. It will be the same value of the one passed in the
+     *                 input or the randomly generated that was used in case none was passed.
+     */
+    seed: number;
+    timings: {
+        [key: string]: number;
+    };
+}
+
 export interface SharedType_eb2 {
     /**
      * @description The generated video file.
@@ -5685,41 +5954,6 @@ export interface SharedType_ea4 {
      * @default false
      */
     sync_mode?: boolean;
-}
-
-export interface SharedType_ea3 {
-    /**
-     * Has Nsfw Concepts
-     * @description Whether the generated images contain NSFW concepts.
-     */
-    has_nsfw_concepts: boolean[];
-    /**
-     * Images
-     * @description The generated image files info.
-     * @example [
-     *       {
-     *         "content_type": "image/png",
-     *         "url": "https://v3b.fal.media/files/b/0a887d5a/r3LfL0WY1re7dT5Qb85U_.png",
-     *         "height": 768,
-     *         "width": 1024
-     *       }
-     *     ]
-     */
-    images: Components.Image_1[];
-    /**
-     * Prompt
-     * @description The prompt used for generating the image.
-     */
-    prompt: string;
-    /**
-     * Seed
-     * @description Seed of the generated Image. It will be the same value of the one passed in the
-     *                 input or the randomly generated that was used in case none was passed.
-     */
-    seed: number;
-    timings: {
-        [key: string]: number;
-    };
 }
 
 export interface SharedType_ea0 {
@@ -6016,6 +6250,24 @@ export interface SharedType_e8e {
     seed: number;
 }
 
+export interface SharedType_e84 {
+    /**
+     * @description Generated 3D object file.
+     * @example {
+     *       "url": "https://v3.fal.media/files/lion/WqIhtKPaSoeBtC30qzIGG_white_mesh.glb",
+     *       "file_size": 720696,
+     *       "file_name": "white_mesh.glb",
+     *       "content_type": "model/gltf-binary"
+     *     }
+     */
+    model_mesh: Components.File;
+    /**
+     * Seed
+     * @description Seed value used for generation.
+     */
+    seed: number;
+}
+
 export interface SharedType_e7a {
     /**
      * Images
@@ -6033,29 +6285,6 @@ export interface SharedType_e7a {
      * @example 12345
      */
     seed: number;
-}
-
-export interface SharedType_e73 {
-    /**
-     * Actual Prompt
-     * @description The actual prompt used if prompt rewriting was enabled
-     * @example The white dragon warrior stands still in a grand cathedral-like structure, its glowing golden eyes fixed forward. The camera slowly moves closer, focusing on the warrior's armored chest and face. It then begins to circle around the warrior, capturing the intricate details of the white scale armor with gold accents. The warrior maintains a strong, determined posture. Ambient sounds and soft choral tones fill the background, enhancing the majestic atmosphere. The camera continues its slow circular motion, emphasizing the warrior's heroic presence before ending with a close-up of the face.
-     */
-    actual_prompt?: string;
-    /**
-     * Seed
-     * @description The seed used for generation
-     * @example 175932751
-     */
-    seed: number;
-    /**
-     * @description The generated video file
-     * @example {
-     *       "content_type": "video/mp4",
-     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/wan-25-i2v-output.mp4"
-     *     }
-     */
-    video: Components.VideoFile;
 }
 
 export interface SharedType_e71 {
@@ -6147,19 +6376,59 @@ export interface SharedType_e70 {
     video: Components.File;
 }
 
-export interface SharedType_e64 {
+export interface SharedType_e67 {
     /**
-     * Images
+     * Elements
+     * @description Elements (characters/objects) to include. Reference in prompt as @Element1, @Element2.
      * @example [
      *       {
-     *         "file_size": 272628,
-     *         "content_type": "image/webp",
-     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/recraft-v4/standard-output.webp",
-     *         "file_name": "image.webp"
+     *         "frontal_image_url": "https://storage.googleapis.com/falserverless/example_inputs/kling-o3/pro-v2v-edit/element1_front.png",
+     *         "reference_image_urls": [
+     *           "https://storage.googleapis.com/falserverless/example_inputs/kling-o3/pro-v2v-edit/element1_reference1.png"
+     *         ]
      *       }
      *     ]
      */
-    images: Components.File[];
+    elements?: Components.KlingV3ImageElementInput[];
+    /**
+     * Enable Safety Checker
+     * @description Disabling safety checks requires account authorization; unauthorized requests are always checked.
+     * @default true
+     */
+    enable_safety_checker?: boolean;
+    /**
+     * Image Urls
+     * @description Reference images for style/appearance. Reference in prompt as @Image1, @Image2, etc. Maximum 4 total (elements + reference images) when using video.
+     * @example [
+     *       "https://storage.googleapis.com/falserverless/example_inputs/kling-o3/pro-v2v-edit/image_url1.jpg"
+     *     ]
+     */
+    image_urls?: string[];
+    /**
+     * Keep Audio
+     * @description Whether to keep the original audio from the reference video.
+     * @default true
+     */
+    keep_audio?: boolean;
+    /**
+     * Prompt
+     * @description Text prompt for video generation. Reference video as @Video1.
+     * @example Change environment to be fully snow as @Image1. Replace animal with @Element1
+     */
+    prompt: string;
+    /**
+     * Shot Type
+     * @description The type of multi-shot video generation.
+     * @default customize
+     * @constant
+     */
+    shot_type?: 'customize';
+    /**
+     * Video Url
+     * @description Reference video URL. Only .mp4/.mov formats, 3-15s duration, 720-3840px resolution, max 200MB.
+     * @example https://storage.googleapis.com/falserverless/example_inputs/kling-o3/pro-v2v-edit/video_reference.mp4
+     */
+    video_url: string;
 }
 
 export interface SharedType_e60 {
@@ -6168,6 +6437,26 @@ export interface SharedType_e60 {
      * @description The generated image
      */
     images: Components.File[];
+}
+
+export interface SharedType_e5f {
+    /**
+     * Image Url
+     * @description The URL of the image to be processed.
+     * @example https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/transformers/tasks/car.jpg
+     * @example http://ecx.images-amazon.com/images/I/51UUzBDAMsL.jpg
+     */
+    image_url: string;
+    /**
+     * @description The user input coordinates
+     * @example {
+     *       "x2": 200,
+     *       "x1": 100,
+     *       "y2": 200,
+     *       "y1": 100
+     *     }
+     */
+    region: Components.Region;
 }
 
 export interface SharedType_e5e {
@@ -6489,177 +6778,6 @@ export interface SharedType_e3a {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface SharedType_e22 {
-    /**
-     * Enable Safety Checker
-     * @description If set to true, the safety checker will be enabled. Disabling it requires account authorization; unauthorized requests are always checked, and images flagged as unsafe are returned as black images.
-     * @default true
-     */
-    enable_safety_checker?: boolean;
-    /**
-     * Image Size
-     * @description The size of the generated image. If not provided, uses the input image size.
-     * @example {
-     *       "width": 2016,
-     *       "height": 1152
-     *     }
-     */
-    image_size?:
-        | Components.ImageSize
-        | (
-              | 'square_hd'
-              | 'square'
-              | 'portrait_4_3'
-              | 'portrait_16_9'
-              | 'landscape_4_3'
-              | 'landscape_16_9'
-          );
-    /**
-     * Image URLs
-     * @description The URLs of the images for editing. A maximum of 4 images are allowed.
-     * @example [
-     *       "https://v3b.fal.media/files/b/0a8a69d5/kkXxFfj1QeVtw35kxy5Py_1a7e3511-bd2c-46be-923a-8e6be2496f12.png"
-     *     ]
-     */
-    image_urls: string[];
-    /**
-     * Loras
-     * @description List of LoRA weights to apply (maximum 3).
-     * @default []
-     */
-    loras?: Components.LoRAInput[];
-    /**
-     * Number of Images
-     * @description The number of images to generate.
-     * @default 1
-     */
-    num_images?: number;
-    /**
-     * Number of Inference Steps
-     * @description The number of inference steps to perform.
-     * @default 4
-     */
-    num_inference_steps?: number;
-    /**
-     * Output Format
-     * @description The format of the generated image.
-     * @default png
-     * @enum {string}
-     */
-    output_format?: 'jpeg' | 'png' | 'webp';
-    /**
-     * Prompt
-     * @description The prompt to edit the image.
-     * @example Turn this into a realistic image
-     */
-    prompt: string;
-    /**
-     * Seed
-     * @description The seed to use for the generation. If not provided, a random seed will be used.
-     */
-    seed?: number;
-    /**
-     * Sync Mode
-     * @description If `True`, the media will be returned as a data URI. Output is not stored when this is True.
-     * @default false
-     */
-    sync_mode?: boolean;
-}
-
-export interface SharedType_e1d {
-    /**
-     * Images
-     * @description The generated images
-     * @example [
-     *       {
-     *         "content_type": "image/png",
-     *         "width": 1536,
-     *         "url": "https://v3.fal.media/files/tiger/48e63e0K6C9XQYBuomoU-_257cf8e7bd3a47c2959396343d5b38cf.png",
-     *         "file_size": 3731290,
-     *         "height": 1536,
-     *         "file_name": "257cf8e7bd3a47c2959396343d5b38cf.png"
-     *       }
-     *     ]
-     */
-    images: Components.Image[];
-    /**
-     * Seed
-     * @description Seed value used for generation.
-     */
-    seed: number;
-}
-
-export interface SharedType_e19 {
-    /**
-     * Aspect Ratio
-     * @description Aspect ratio.
-     * @default auto
-     * @example auto
-     * @enum {string}
-     */
-    aspect_ratio?: 'auto' | '16:9' | '9:16' | '1:1';
-    /**
-     * Duration
-     * @description Video duration in seconds (3-15s for reference video).
-     * @example 5
-     */
-    duration?: '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' | '13' | '14' | '15';
-    /**
-     * Elements
-     * @description Elements (characters/objects) to include. Reference in prompt as @Element1, @Element2.
-     * @example [
-     *       {
-     *         "reference_image_urls": [
-     *           "https://storage.googleapis.com/falserverless/example_inputs/kling-o3/pro-v2v-reference/element1_reference1.png"
-     *         ],
-     *         "frontal_image_url": "https://storage.googleapis.com/falserverless/example_inputs/kling-o3/pro-v2v-reference/element1_front.png"
-     *       }
-     *     ]
-     */
-    elements?: Components.KlingV3ImageElementInput[];
-    /**
-     * Enable Safety Checker
-     * @description Disabling safety checks requires account authorization; unauthorized requests are always checked.
-     * @default true
-     */
-    enable_safety_checker?: boolean;
-    /**
-     * Image Urls
-     * @description Reference images for style/appearance. Reference in prompt as @Image1, @Image2, etc. Maximum 4 total (elements + reference images) when using video.
-     * @example [
-     *       "https://storage.googleapis.com/falserverless/example_inputs/kling-o3/pro-v2v-reference/image_url1.jpg",
-     *       "https://storage.googleapis.com/falserverless/example_inputs/kling-o3/pro-v2v-reference/image_url2.jpg"
-     *     ]
-     */
-    image_urls?: string[];
-    /**
-     * Keep Audio
-     * @description Whether to keep the original audio from the reference video.
-     * @default true
-     * @example false
-     */
-    keep_audio?: boolean;
-    /**
-     * Prompt
-     * @description Text prompt for video generation. Reference video as @Video1.
-     * @example Integrate @Element1 in the scene. Style video should be following watercolor style of @Image1
-     */
-    prompt: string;
-    /**
-     * Shot Type
-     * @description The type of multi-shot video generation.
-     * @default customize
-     * @constant
-     */
-    shot_type?: 'customize';
-    /**
-     * Video Url
-     * @description Reference video URL. Only .mp4/.mov formats, 3-15s duration, 720-3840px resolution, max 200MB.
-     * @example https://storage.googleapis.com/falserverless/example_inputs/kling-o3/pro-v2v-reference/video_reference.mp4
-     */
-    video_url: string;
-}
-
 export interface SharedType_e18 {
     /**
      * Default Caption
@@ -6785,6 +6903,19 @@ export interface SharedType_e15 {
     target_audio_url?: string;
 }
 
+export interface SharedType_e0f {
+    /**
+     * @description The generated video
+     * @example {
+     *       "file_size": 6420765,
+     *       "file_name": "output.mp4",
+     *       "url": "https://fal.media/files/koala/HEWK7BBwqWrz7F5nAZzp7_output.mp4",
+     *       "content_type": "video/mp4"
+     *     }
+     */
+    video: Components.File;
+}
+
 export interface SharedType_e06 {
     /**
      * Seed
@@ -6798,6 +6929,51 @@ export interface SharedType_e06 {
      *     }
      */
     video: Components.File;
+}
+
+export interface SharedType_df81 {
+    /**
+     * Images
+     * @description The generated images.
+     * @example [
+     *       {
+     *         "height": 1024,
+     *         "url": "https://v3b.fal.media/files/b/0a869129/EnWrO3XWjPE0nxBDpaQrj.png",
+     *         "width": 1024,
+     *         "file_name": "EnWrO3XWjPE0nxBDpaQrj.png",
+     *         "content_type": "image/png"
+     *       }
+     *     ]
+     */
+    images: Components.ImageFile[];
+}
+
+export interface SharedType_df8 {
+    /**
+     * Masks
+     * @description Dictionary of label: mask video
+     * @example [
+     *       {
+     *         "file_size": 3259012,
+     *         "content_type": "application/octet-stream",
+     *         "file_name": "output_0.mp4",
+     *         "url": "https://v3.fal.media/files/kangaroo/KSuUWm24leGew4jTouuTM_output_0.mp4"
+     *       },
+     *       {
+     *         "file_size": 1241471,
+     *         "content_type": "application/octet-stream",
+     *         "file_name": "output_1.mp4",
+     *         "url": "https://v3.fal.media/files/monkey/0jHCYm2lZM6FjDmtXw1Kt_output_1.mp4"
+     *       }
+     *     ]
+     */
+    masks: Components.File[];
+    /**
+     * Output
+     * @description Generated output
+     * @example <p>  Two children  </p>   [SEG]  are jumping on  <p>  a bed  </p>   [SEG]  .<|im_end|>
+     */
+    output: string;
 }
 
 export interface SharedType_df3 {
@@ -6963,6 +7139,18 @@ export interface SharedType_df3 {
     video_url?: string;
 }
 
+export interface SharedType_df11 {
+    /**
+     * @description The generated video
+     * @example {
+     *       "content_type": "video/mp4",
+     *       "file_name": "output.mp4",
+     *       "url": "https://storage.googleapis.com/falserverless/kling/kling_ex.mp4.mp4"
+     *     }
+     */
+    video: Components.File;
+}
+
 export interface SharedType_df1 {
     /**
      * Guidance Scale
@@ -7092,19 +7280,7 @@ export interface SharedType_dec {
     sync_mode?: boolean;
 }
 
-export interface SharedType_dea2 {
-    /**
-     * @description The generated video
-     * @example {
-     *       "url": "https://storage.googleapis.com/falserverless/kling/kling_ex.mp4.mp4",
-     *       "file_name": "output.mp4",
-     *       "content_type": "video/mp4"
-     *     }
-     */
-    video: Components.File;
-}
-
-export interface SharedType_dea1 {
+export interface SharedType_dea {
     /**
      * Aspect Ratio
      * @description Aspect ratio of the generated video.
@@ -7150,41 +7326,6 @@ export interface SharedType_dea1 {
      * @enum {string}
      */
     shot_type?: 'customize' | 'intelligent';
-}
-
-export interface SharedType_dea {
-    /**
-     * Has Nsfw Concepts
-     * @description Whether the generated images contain NSFW concepts.
-     */
-    has_nsfw_concepts: boolean[];
-    /**
-     * Images
-     * @description The generated image files info.
-     * @example [
-     *       {
-     *         "height": 768,
-     *         "url": "https://v3.fal.media/files/zebra/mMW8_S5PeGuDXLTfIKCpG.png",
-     *         "content_type": "image/jpeg",
-     *         "width": 1024
-     *       }
-     *     ]
-     */
-    images: Components.Image_1[];
-    /**
-     * Prompt
-     * @description The prompt used for generating the image.
-     */
-    prompt: string;
-    /**
-     * Seed
-     * @description Seed of the generated Image. It will be the same value of the one passed in the
-     *                 input or the randomly generated that was used in case none was passed.
-     */
-    seed: number;
-    timings: {
-        [key: string]: number;
-    };
 }
 
 export interface SharedType_de6 {
@@ -7339,41 +7480,6 @@ export interface SharedType_da2 {
     sync_mode?: boolean;
 }
 
-export interface SharedType_d9c {
-    /**
-     * Has Nsfw Concepts
-     * @description Whether the generated images contain NSFW concepts.
-     */
-    has_nsfw_concepts: boolean[];
-    /**
-     * Images
-     * @description The generated image files info.
-     * @example [
-     *       {
-     *         "url": "https://v3b.fal.media/files/b/0a877afe/InJJA0Q1gtQnyK1N3wdg5.png",
-     *         "width": 1376,
-     *         "content_type": "image/png",
-     *         "height": 768
-     *       }
-     *     ]
-     */
-    images: Components.Image_1[];
-    /**
-     * Prompt
-     * @description The prompt used for generating the image.
-     */
-    prompt: string;
-    /**
-     * Seed
-     * @description Seed of the generated Image. It will be the same value of the one passed in the
-     *                 input or the randomly generated that was used in case none was passed.
-     */
-    seed: number;
-    timings: {
-        [key: string]: number;
-    };
-}
-
 export interface SharedType_d99 {
     /**
      * Aspect Ratio
@@ -7454,57 +7560,6 @@ export interface SharedType_d94 {
      *     }
      */
     video: Components.File;
-}
-
-export interface SharedType_d8c {
-    /**
-     * Elements
-     * @description Elements (characters/objects) to include. Reference in prompt as @Element1, @Element2, etc. Maximum 4 total (elements + reference images) when using video.
-     * @example [
-     *       {
-     *         "reference_image_urls": [
-     *           "https://v3b.fal.media/files/b/kangaroo/YMpmQkYt9xugpOTQyZW0O.png",
-     *           "https://v3b.fal.media/files/b/zebra/d6ywajNyJ6bnpa_xBue-K.png"
-     *         ],
-     *         "frontal_image_url": "https://v3b.fal.media/files/b/panda/MQp-ghIqshvMZROKh9lW3.png"
-     *       }
-     *     ]
-     */
-    elements?: Components.OmniVideoElementInput[];
-    /**
-     * Enable Safety Checker
-     * @description Disabling safety checks requires account authorization; unauthorized requests are always checked.
-     * @default true
-     */
-    enable_safety_checker?: boolean;
-    /**
-     * Image Urls
-     * @description Reference images for style/appearance. Reference in prompt as @Image1, @Image2, etc. Maximum 4 total (elements + reference images) when using video.
-     * @example [
-     *       "https://v3b.fal.media/files/b/lion/MKvhFko5_wYnfORYacNII_AgPt8v25Wt4oyKhjnhVK5.png"
-     *     ]
-     */
-    image_urls?: string[];
-    /**
-     * Keep Audio
-     * @description Whether to keep the original audio from the video.
-     * @default false
-     */
-    keep_audio?: boolean;
-    /**
-     * Prompt
-     * @description Use @Element1, @Element2 to reference elements and @Image1, @Image2 to reference images in order.
-     * @example Replace the character in the video with @Element1, maintaining the same movements and camera angles. Transform the landscape into @Image1
-     */
-    prompt: string;
-    /**
-     * Video Url
-     * @description Reference video URL. Only .mp4/.mov formats supported, 3-10 seconds duration, 720-2160px resolution, max 200MB.
-     *
-     *     Max file size: 200.0MB, Min width: 720px, Min height: 720px, Max width: 2160px, Max height: 2160px, Min duration: 3.0s, Max duration: 10.05s, Min FPS: 24.0, Max FPS: 60.0, Timeout: 30.0s
-     * @example https://v3b.fal.media/files/b/rabbit/ku8_Wdpf-oTbGRq4lB5DU_output.mp4
-     */
-    video_url: string;
 }
 
 export interface SharedType_d7f {
@@ -7610,6 +7665,44 @@ export interface SharedType_d79 {
      * @description Random seed for generation
      */
     seed?: number;
+}
+
+export interface SharedType_d78 {
+    /**
+     * Has Nsfw Concepts
+     * @description Whether the generated images contain NSFW concepts.
+     */
+    has_nsfw_concepts: boolean[];
+    /**
+     * Images
+     * @description The generated image files info.
+     * @example [
+     *       {
+     *         "height": 1728,
+     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/z-image-turbo-i2i-output.png",
+     *         "width": 992,
+     *         "content_type": "image/png"
+     *       }
+     *     ]
+     */
+    images: Components.ImageFile[];
+    /**
+     * Prompt
+     * @description The prompt used for generating the image.
+     */
+    prompt: string;
+    /**
+     * Seed
+     * @description Seed of the generated Image. It will be the same value of the one passed in the input or the randomly generated that was used in case none was passed.
+     */
+    seed: number;
+    /**
+     * Timings
+     * @description The timings of the generation process.
+     */
+    timings: {
+        [key: string]: number;
+    };
 }
 
 export interface SharedType_d72 {
@@ -7812,19 +7905,6 @@ export interface SharedType_d2a {
     audio: Components.File;
 }
 
-export interface SharedType_d28 {
-    /**
-     * @description The generated video.
-     * @example {
-     *       "url": "https://v3b.fal.media/files/b/koala/knryyyGF3ZVyMMrGr77CL_output.mp4",
-     *       "file_size": 27588984,
-     *       "file_name": "output.mp4",
-     *       "content_type": "video/mp4"
-     *     }
-     */
-    video: Components.File;
-}
-
 export interface SharedType_d12 {
     /**
      * Prompt
@@ -7875,6 +7955,41 @@ export interface SharedType_d00 {
      * @example https://drive.google.com/uc?id=1iOFYbNITYwrebBBp9kaEGhBndFSRLz8k
      */
     video_url: string;
+}
+
+export interface SharedType_cf9 {
+    /**
+     * Has Nsfw Concepts
+     * @description Whether the generated images contain NSFW concepts.
+     */
+    has_nsfw_concepts: boolean[];
+    /**
+     * Images
+     * @description The generated image files info.
+     * @example [
+     *       {
+     *         "content_type": "image/jpeg",
+     *         "width": 1024,
+     *         "height": 768,
+     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/kontext_example_output.jpeg"
+     *       }
+     *     ]
+     */
+    images: Components.Image_1[];
+    /**
+     * Prompt
+     * @description The prompt used for generating the image.
+     */
+    prompt: string;
+    /**
+     * Seed
+     * @description Seed of the generated Image. It will be the same value of the one passed in the
+     *                 input or the randomly generated that was used in case none was passed.
+     */
+    seed: number;
+    timings: {
+        [key: string]: number;
+    };
 }
 
 export interface SharedType_cf4 {
@@ -8090,27 +8205,25 @@ export interface SharedType_cf4 {
 
 export interface SharedType_cde {
     /**
-     * Finish Reason
-     * @description Reason generation stopped.
-     * @default stop
-     * @example stop
-     * @example length
+     * Actual Prompt
+     * @description The actual prompt used if prompt rewriting was enabled
+     * @example A comedic cinematic scene where the creator interacts with AI-generated reality transformations.
      */
-    finish_reason?: string;
+    actual_prompt?: string;
     /**
-     * Output
-     * @description Generated text response.
-     * @example The image shows a golden retriever puppy sitting on a wooden floor.
+     * Seed
+     * @description The seed used for generation
+     * @example 175932751
      */
-    output: string;
+    seed: number;
     /**
-     * @description Token usage for the request.
+     * @description The generated video file
      * @example {
-     *       "input_tokens": 412,
-     *       "output_tokens": 87
+     *       "content_type": "video/mp4",
+     *       "url": "https://v3b.fal.media/files/b/0a8675cf/bCu9FiFXSjsSnIwOmjUOY_BVs2IFR3.mp4"
      *     }
      */
-    usage: Components.UsageInfo;
+    video: Components.VideoFile;
 }
 
 export interface SharedType_cca {
@@ -8610,82 +8723,21 @@ export interface SharedType_c8e {
     seed: number;
 }
 
-export interface SharedType_c88 {
-    audio_setting?: Components.AudioSetting;
+export interface SharedType_c7d {
     /**
-     * Enable Safety Checker
-     * @description Authorized callers may set false to request relaxed screening.
-     * @default true
+     * Images
+     * @description The generated images.
+     * @example [
+     *       {
+     *         "height": 1024,
+     *         "url": "https://v3b.fal.media/files/b/0a8691b0/yUt7tifLSbg1WzWWgfj2o.png",
+     *         "width": 1024,
+     *         "file_name": "yUt7tifLSbg1WzWWgfj2o.png",
+     *         "content_type": "image/png"
+     *       }
+     *     ]
      */
-    enable_safety_checker?: boolean;
-    /**
-     * Language Boost
-     * @description Enhance recognition of specified languages and dialects
-     */
-    language_boost?:
-        | 'Chinese'
-        | 'Chinese,Yue'
-        | 'English'
-        | 'Arabic'
-        | 'Russian'
-        | 'Spanish'
-        | 'French'
-        | 'Portuguese'
-        | 'German'
-        | 'Turkish'
-        | 'Dutch'
-        | 'Ukrainian'
-        | 'Vietnamese'
-        | 'Indonesian'
-        | 'Japanese'
-        | 'Italian'
-        | 'Korean'
-        | 'Thai'
-        | 'Polish'
-        | 'Romanian'
-        | 'Greek'
-        | 'Czech'
-        | 'Finnish'
-        | 'Hindi'
-        | 'Bulgarian'
-        | 'Danish'
-        | 'Hebrew'
-        | 'Malay'
-        | 'Slovak'
-        | 'Swedish'
-        | 'Croatian'
-        | 'Hungarian'
-        | 'Norwegian'
-        | 'Slovenian'
-        | 'Catalan'
-        | 'Nynorsk'
-        | 'Afrikaans'
-        | 'auto';
-    /**
-     * Output Format
-     * @description Format of the output content (non-streaming only)
-     * @default hex
-     * @enum {string}
-     */
-    output_format?: 'url' | 'hex';
-    pronunciation_dict?: Components.PronunciationDict;
-    /**
-     * Text
-     * @description Text to convert to speech (max 5000 characters, minimum 1 non-whitespace character)
-     * @example Hello world! This is a test of the text-to-speech system.
-     */
-    text: string;
-    /**
-     * @description Voice configuration settings
-     * @default {
-     *       "vol": 1,
-     *       "english_normalization": false,
-     *       "pitch": 0,
-     *       "voice_id": "Wise_Woman",
-     *       "speed": 1
-     *     }
-     */
-    voice_setting?: Components.VoiceSetting;
+    images: Components.ImageFile[];
 }
 
 export interface SharedType_c7c {
@@ -8706,14 +8758,19 @@ export interface SharedType_c7c {
     revised_prompt?: string;
 }
 
-export interface SharedType_c6b {
+export interface SharedType_c5c1 {
+    /**
+     * Expanded Prompt
+     * @description The prompt after expansion, as sent to the model. Null when prompt expansion was disabled, left the prompt unchanged, or was performed internally by MiniMax's hosted API.
+     */
+    expanded_prompt?: string;
     /**
      * @description The generated video
      * @example {
-     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/kling-v3/pro-i2v/out.mp4",
-     *       "file_size": 8431922,
-     *       "file_name": "out.mp4",
-     *       "content_type": "video/mp4"
+     *       "content_type": "video/mp4",
+     *       "file_name": "--prs89fkHtWW406fmEs__NRhTqNku.mp4",
+     *       "file_size": 6463396,
+     *       "url": "https://v3b.fal.media/files/b/0aa46818/--prs89fkHtWW406fmEs__NRhTqNku.mp4"
      *     }
      */
     video: Components.File;
@@ -8753,17 +8810,125 @@ export interface SharedType_c50 {
     video: Components.VideoFile;
 }
 
-export interface SharedType_c48 {
+export interface SharedType_c4c {
     /**
-     * @description The generated video.
+     * Has Nsfw Concepts
+     * @description Whether the generated images contain NSFW concepts.
+     */
+    has_nsfw_concepts: boolean[];
+    /**
+     * Images
+     * @description The generated image files info.
+     * @example [
+     *       {
+     *         "height": 888,
+     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/z-image-inpaint-output.png",
+     *         "width": 512,
+     *         "content_type": "image/png"
+     *       }
+     *     ]
+     */
+    images: Components.ImageFile[];
+    /**
+     * Prompt
+     * @description The prompt used for generating the image.
+     */
+    prompt: string;
+    /**
+     * Seed
+     * @description Seed of the generated Image. It will be the same value of the one passed in the input or the randomly generated that was used in case none was passed.
+     */
+    seed: number;
+    /**
+     * Timings
+     * @description The timings of the generation process.
+     */
+    timings: {
+        [key: string]: number;
+    };
+}
+
+export interface SharedType_c47 {
+    /**
+     * Aspect Ratio
+     * @description Aspect ratio.
+     * @default auto
+     * @example auto
+     * @enum {string}
+     */
+    aspect_ratio?: 'auto' | '16:9' | '9:16' | '1:1';
+    /**
+     * Duration
+     * @description Video duration in seconds (3-15s for reference video).
+     * @example 5
+     */
+    duration?: '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' | '13' | '14' | '15';
+    /**
+     * Elements
+     * @description Elements (characters/objects) to include. Reference in prompt as @Element1, @Element2.
+     * @example [
+     *       {
+     *         "frontal_image_url": "https://storage.googleapis.com/falserverless/example_inputs/kling-o3/pro-v2v-reference/element1_front.png",
+     *         "reference_image_urls": [
+     *           "https://storage.googleapis.com/falserverless/example_inputs/kling-o3/pro-v2v-reference/element1_reference1.png"
+     *         ]
+     *       }
+     *     ]
+     */
+    elements?: Components.KlingV3ImageElementInput[];
+    /**
+     * Enable Safety Checker
+     * @description Disabling safety checks requires account authorization; unauthorized requests are always checked.
+     * @default true
+     */
+    enable_safety_checker?: boolean;
+    /**
+     * Image Urls
+     * @description Reference images for style/appearance. Reference in prompt as @Image1, @Image2, etc. Maximum 4 total (elements + reference images) when using video.
+     * @example [
+     *       "https://storage.googleapis.com/falserverless/example_inputs/kling-o3/pro-v2v-reference/image_url1.jpg",
+     *       "https://storage.googleapis.com/falserverless/example_inputs/kling-o3/pro-v2v-reference/image_url2.jpg"
+     *     ]
+     */
+    image_urls?: string[];
+    /**
+     * Keep Audio
+     * @description Whether to keep the original audio from the reference video.
+     * @default true
+     * @example false
+     */
+    keep_audio?: boolean;
+    /**
+     * Prompt
+     * @description Text prompt for video generation. Reference video as @Video1.
+     * @example Integrate @Element1 in the scene. Style video should be following watercolor style of @Image1
+     */
+    prompt: string;
+    /**
+     * Shot Type
+     * @description The type of multi-shot video generation.
+     * @default customize
+     * @constant
+     */
+    shot_type?: 'customize';
+    /**
+     * Video Url
+     * @description Reference video URL. Only .mp4/.mov formats, 3-15s duration, 720-3840px resolution, max 200MB.
+     * @example https://storage.googleapis.com/falserverless/example_inputs/kling-o3/pro-v2v-reference/video_reference.mp4
+     */
+    video_url: string;
+}
+
+export interface SharedType_c46 {
+    /**
+     * @description The generated video file
      * @example {
-     *       "url": "https://v3b.fal.media/files/b/0a8d04e2/idOb9V-Q9ujlggPSKqsfS_output.mp4",
-     *       "file_size": 13096952,
-     *       "file_name": "output.mp4",
+     *       "url": "https://v3b.fal.media/files/b/0a90dde7/7ufClzCcdMD-up1rau1jF_6xx4WLgg.mp4",
+     *       "file_name": "7ufClzCcdMD-up1rau1jF_6xx4WLgg.mp4",
      *       "content_type": "video/mp4"
      *     }
      */
-    video: Components.File;
+    video: Components.VideoFile;
 }
 
 export interface SharedType_c45 {
@@ -8805,86 +8970,6 @@ export interface SharedType_c36 {
      *     ]
      */
     images: Components.ImageFile[];
-}
-
-export interface SharedType_c24 {
-    /**
-     * Has Nsfw Concepts
-     * @description Whether the generated images contain NSFW concepts.
-     */
-    has_nsfw_concepts: boolean[];
-    /**
-     * Images
-     * @description The generated image files info.
-     * @example [
-     *       {
-     *         "url": "https://v3b.fal.media/files/b/0a9276c3/6KxxMb0bPmfNLH3DqcuSf_qRUe8cIL.png",
-     *         "width": 2048,
-     *         "height": 2048,
-     *         "content_type": "image/png"
-     *       }
-     *     ]
-     */
-    images: Components.ImageFile[];
-    /**
-     * Prompt
-     * @description The prompt used for generating the image.
-     */
-    prompt: string;
-    /**
-     * Seed
-     * @description Seed of the generated Image. It will be the same value of the one passed in the input or the randomly generated that was used in case none was passed.
-     */
-    seed: number;
-    /**
-     * Timings
-     * @description The timings of the generation process.
-     */
-    timings: {
-        [key: string]: number;
-    };
-}
-
-export interface SharedType_c22 {
-    /**
-     * @description The generated video file.
-     * @example {
-     *       "file_size": 225893,
-     *       "content_type": "application/octet-stream",
-     *       "file_name": "output.mp4",
-     *       "url": "https://v3b.fal.media/files/b/0a85e79d/KOuXylETzdzUzMFFWLa4h_output.mp4"
-     *     }
-     */
-    video: Components.File;
-}
-
-export interface SharedType_c19 {
-    /**
-     * Prompt
-     * @description The prompt used for the generation.
-     * @example Continue the scene naturally, maintaining the same style and motion.
-     */
-    prompt: string;
-    /**
-     * Seed
-     * @description The seed used for the random number generator.
-     * @example 866232447
-     */
-    seed: number;
-    /**
-     * @description The generated video.
-     * @example {
-     *       "height": 704,
-     *       "duration": 10.28,
-     *       "file_name": "CJcQGDrxOSRg2YFl5GNDt_glXPMoji.mp4",
-     *       "content_type": "video/mp4",
-     *       "fps": 25,
-     *       "width": 1248,
-     *       "url": "https://v3b.fal.media/files/b/0a88289e/CJcQGDrxOSRg2YFl5GNDt_glXPMoji.mp4",
-     *       "num_frames": 257
-     *     }
-     */
-    video: Components.VideoFile;
 }
 
 export interface SharedType_bf3 {
@@ -8961,6 +9046,24 @@ export interface SharedType_bf2 {
         | 'Zubenelgenubi';
 }
 
+export interface SharedType_bec {
+    /**
+     * Seed
+     * @description The seed used for generation.
+     */
+    seed: number;
+    /**
+     * @description The generated video file.
+     * @example {
+     *       "file_size": 1048576,
+     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/scail2-output.mp4",
+     *       "file_name": "output.mp4",
+     *       "content_type": "video/mp4"
+     *     }
+     */
+    video: Components.File;
+}
+
 export interface SharedType_bdd {
     /**
      * Has Nsfw Concepts
@@ -8993,47 +9096,79 @@ export interface SharedType_bdd {
 
 export interface SharedType_bd2 {
     /**
-     * Images
-     * @example [
-     *       {
-     *         "file_size": 1818794,
-     *         "content_type": "image/svg+xml",
-     *         "url": "https://v3b.fal.media/files/b/0a8ee4de/lmXuapOPV309mE533swE0_image.svg",
-     *         "file_name": "image.svg"
-     *       }
-     *     ]
+     * Enable Safety Checker
+     * @description If set to true, the safety checker will be enabled. Disabling it requires account authorization; unauthorized requests are always checked, and images flagged as unsafe are returned as black images.
+     * @default true
      */
-    images: Components.File[];
-}
-
-export interface SharedType_bc5 {
+    enable_safety_checker?: boolean;
     /**
-     * Images
-     * @description The generated images with objects removed.
-     * @example [
-     *       {
-     *         "file_size": 730703,
-     *         "width": 1024,
-     *         "height": 768,
-     *         "content_type": "image/png",
-     *         "file_name": "85a2309b2c954c85a75120e664adbe17.png",
-     *         "url": "https://v3.fal.media/files/lion/arYSoJeqWjhbcA8o4budv_85a2309b2c954c85a75120e664adbe17.png"
-     *       }
-     *     ]
-     */
-    images: Components.Image[];
-}
-
-export interface SharedType_bc3 {
-    /**
-     * @description The generated video file
+     * Image Size
+     * @description The size of the generated image. If not provided, uses the input image size.
      * @example {
-     *       "content_type": "video/mp4",
-     *       "file_name": "qqP0ClY8E3d83X8y0zLse_shyIe9XU.mp4",
-     *       "url": "https://v3b.fal.media/files/b/0a90dfec/qqP0ClY8E3d83X8y0zLse_shyIe9XU.mp4"
+     *       "height": 1152,
+     *       "width": 2016
      *     }
      */
-    video: Components.VideoFile;
+    image_size?:
+        | Components.ImageSize
+        | (
+              | 'square_hd'
+              | 'square'
+              | 'portrait_4_3'
+              | 'portrait_16_9'
+              | 'landscape_4_3'
+              | 'landscape_16_9'
+          );
+    /**
+     * Image URLs
+     * @description The URLs of the images for editing. A maximum of 4 images are allowed.
+     * @example [
+     *       "https://v3b.fal.media/files/b/0a8a69d5/kkXxFfj1QeVtw35kxy5Py_1a7e3511-bd2c-46be-923a-8e6be2496f12.png"
+     *     ]
+     */
+    image_urls: string[];
+    /**
+     * Loras
+     * @description List of LoRA weights to apply (maximum 3).
+     * @default []
+     */
+    loras?: Components.LoRAInput[];
+    /**
+     * Number of Images
+     * @description The number of images to generate.
+     * @default 1
+     */
+    num_images?: number;
+    /**
+     * Number of Inference Steps
+     * @description The number of inference steps to perform.
+     * @default 4
+     */
+    num_inference_steps?: number;
+    /**
+     * Output Format
+     * @description The format of the generated image.
+     * @default png
+     * @enum {string}
+     */
+    output_format?: 'jpeg' | 'png' | 'webp';
+    /**
+     * Prompt
+     * @description The prompt to edit the image.
+     * @example Turn this into a realistic image
+     */
+    prompt: string;
+    /**
+     * Seed
+     * @description The seed to use for the generation. If not provided, a random seed will be used.
+     */
+    seed?: number;
+    /**
+     * Sync Mode
+     * @description If `True`, the media will be returned as a data URI. Output is not stored when this is True.
+     * @default false
+     */
+    sync_mode?: boolean;
 }
 
 export interface SharedType_bbe {
@@ -9119,6 +9254,77 @@ export interface SharedType_bbe {
     sync_mode?: boolean;
 }
 
+export interface SharedType_bbc {
+    /**
+     * Enable Safety Checker
+     * @description If set to true, the safety checker will be enabled. Disabling it requires account authorization; unauthorized requests are always checked, and images flagged as unsafe are returned as black images.
+     * @default true
+     */
+    enable_safety_checker?: boolean;
+    /**
+     * Image Size
+     * @description The size of the generated image. If not provided, uses the input image size.
+     * @example {
+     *       "height": 1152,
+     *       "width": 2016
+     *     }
+     */
+    image_size?:
+        | Components.ImageSize
+        | (
+              | 'square_hd'
+              | 'square'
+              | 'portrait_4_3'
+              | 'portrait_16_9'
+              | 'landscape_4_3'
+              | 'landscape_16_9'
+          );
+    /**
+     * Image URLs
+     * @description The URLs of the images for editing. A maximum of 4 images are allowed.
+     * @example [
+     *       "https://v3b.fal.media/files/b/0a8a69d5/kkXxFfj1QeVtw35kxy5Py_1a7e3511-bd2c-46be-923a-8e6be2496f12.png"
+     *     ]
+     */
+    image_urls: string[];
+    /**
+     * Number of Images
+     * @description The number of images to generate.
+     * @default 1
+     */
+    num_images?: number;
+    /**
+     * Number of Inference Steps
+     * @description The number of inference steps to perform.
+     * @default 4
+     */
+    num_inference_steps?: number;
+    /**
+     * Output Format
+     * @description The format of the generated image.
+     * @default png
+     * @enum {string}
+     */
+    output_format?: 'jpeg' | 'png' | 'webp';
+    /**
+     * Prompt
+     * @description The prompt to edit the image.
+     * @example Turn this into a realistic image
+     */
+    prompt: string;
+    /**
+     * Seed
+     * @description The seed to use for the generation. If not provided, a random seed will be used.
+     */
+    seed?: number;
+    /**
+     * Sync Mode
+     * @description If `True`, the media will be returned as a data URI. Output is not stored when this is True.
+     * @default false
+     */
+    sync_mode?: boolean;
+}
+
 export interface SharedType_bb0 {
     /**
      * Image URL
@@ -9176,35 +9382,6 @@ export interface SharedType_baf {
      * @example https://bria-test-images.s3.us-east-1.amazonaws.com/videos/eraser_mask/woman_right_side.mov
      */
     video_url: string;
-}
-
-export interface SharedType_b93 {
-    /**
-     * @description The generated video.
-     * @example {
-     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/kling-o3/pro-v2v-edit/output.mp4",
-     *       "file_size": 4322769,
-     *       "file_name": "output.mp4",
-     *       "content_type": "video/mp4"
-     *     }
-     */
-    video: Components.File;
-}
-
-export interface SharedType_b88 {
-    /**
-     * @description Upscaled image file after processing
-     * @example {
-     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/seedvr2/image_out.png",
-     *       "content_type": "image/png"
-     *     }
-     */
-    image: Components.ImageFile;
-    /**
-     * Seed
-     * @description The random seed used for the generation process.
-     */
-    seed: number;
 }
 
 export interface SharedType_b86 {
@@ -9495,6 +9672,122 @@ export interface SharedType_b70 {
     video: Components.File;
 }
 
+export interface SharedType_b60 {
+    /**
+     * Has Nsfw Concepts
+     * @description Whether the generated images contain NSFW concepts.
+     */
+    has_nsfw_concepts: boolean[];
+    /**
+     * Images
+     * @description The generated image files info.
+     * @example [
+     *       {
+     *         "width": 1024,
+     *         "content_type": "image/png",
+     *         "height": 768,
+     *         "url": "https://v3b.fal.media/files/b/0a887d5a/r3LfL0WY1re7dT5Qb85U_.png"
+     *       }
+     *     ]
+     */
+    images: Components.Image_1[];
+    /**
+     * Prompt
+     * @description The prompt used for generating the image.
+     */
+    prompt: string;
+    /**
+     * Seed
+     * @description Seed of the generated Image. It will be the same value of the one passed in the
+     *                 input or the randomly generated that was used in case none was passed.
+     */
+    seed: number;
+    timings: {
+        [key: string]: number;
+    };
+}
+
+export interface SharedType_b5c {
+    /**
+     * Cfg Scale
+     * @description The CFG (Classifier Free Guidance) scale is a measure of how close you want
+     *                 the model to stick to your prompt.
+     * @default 0.5
+     */
+    cfg_scale?: number;
+    /**
+     * Duration
+     * @description The duration of the generated video in seconds
+     * @default 5
+     * @example 12
+     * @enum {string}
+     */
+    duration?: '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' | '13' | '14' | '15';
+    /**
+     * Elements
+     * @description Elements (characters/objects) to include in the video. Each example can either be an image set (frontal + reference images) or a video. Reference in prompt as @Element1, @Element2, etc.
+     * @example [
+     *       {
+     *         "frontal_image_url": "https://v3b.fal.media/files/b/0a8cfd5f/-kZL-ha3Iuelku5IHXC-A_glasses.png",
+     *         "reference_image_urls": [
+     *           "https://v3b.fal.media/files/b/0a8cfd62/psPCmzrD1y9vDgdyNfKAL_glasses_back.png"
+     *         ]
+     *       },
+     *       {
+     *         "video_url": "https://v3b.fal.media/files/b/0a8cfd66/b03SOiQvKLlFx_jqdNZ9z_child_video.mp4"
+     *       }
+     *     ]
+     */
+    elements?: Components.KlingV3ComboElementInput[];
+    /**
+     * Enable Safety Checker
+     * @description Disabling safety checks requires account authorization; unauthorized requests are always checked.
+     * @default true
+     */
+    enable_safety_checker?: boolean;
+    /**
+     * End Image Url
+     * @description URL of the image to be used for the end of the video
+     */
+    end_image_url?: string;
+    /**
+     * Generate Audio
+     * @description Whether to generate native audio for the video. Supports Chinese and English voice output. Other languages are automatically translated to English. For English speech, use lowercase letters; for acronyms or proper nouns, use uppercase.
+     * @default true
+     */
+    generate_audio?: boolean;
+    /**
+     * Multi Prompt
+     * @description List of prompts for multi-shot video generation. If provided, divides the video into multiple shots.
+     * @example null
+     */
+    multi_prompt?: Components.KlingV3MultiPromptElement[];
+    /**
+     * Negative Prompt
+     * @default blur, distort, and low quality
+     */
+    negative_prompt?: string;
+    /**
+     * Prompt
+     * @description Text prompt for video generation. Either prompt or multi_prompt must be provided, but not both.
+     * @example The craftsman slowly examines the bowl, turning it gently in his weathered hands. His eyes reflect years of wisdom. Subtle smile forms on his face. Dust particles drift in warm light. Breathing motion, blinking eyes.
+     */
+    prompt?: string;
+    /**
+     * Shot Type
+     * @description The type of multi-shot video generation. 'intelligent' lets the model automatically determine shot structure.
+     * @default customize
+     * @enum {string}
+     */
+    shot_type?: 'customize' | 'intelligent';
+    /**
+     * Start Image Url
+     * @description URL of the image to be used for the video
+     * @example https://storage.googleapis.com/falserverless/example_inputs/kling-v3/pro-i2v/start_image.png
+     */
+    start_image_url: string;
+}
+
 export interface SharedType_b4b {
     /**
      * Acceleration
@@ -9568,57 +9861,6 @@ export interface SharedType_b4b {
      * @default false
      */
     sync_mode?: boolean;
-}
-
-export interface SharedType_b3f {
-    /**
-     * @description The generated video.
-     * @example {
-     *       "url": "https://v3b.fal.media/files/b/kangaroo/3n_Lpxm_SjK5NYyBobRdS_output.mp4",
-     *       "file_size": 28472159,
-     *       "file_name": "output.mp4",
-     *       "content_type": "video/mp4"
-     *     }
-     */
-    video: Components.File;
-}
-
-export interface SharedType_b351 {
-    /**
-     * Has Nsfw Concepts
-     * @description Whether the generated images contain NSFW concepts.
-     */
-    has_nsfw_concepts: boolean[];
-    /**
-     * Images
-     * @description The generated image files info.
-     * @example [
-     *       {
-     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/z-image-turbo-output.png",
-     *         "width": 1024,
-     *         "height": 768,
-     *         "content_type": "image/png"
-     *       }
-     *     ]
-     */
-    images: Components.ImageFile[];
-    /**
-     * Prompt
-     * @description The prompt used for generating the image.
-     */
-    prompt: string;
-    /**
-     * Seed
-     * @description Seed of the generated Image. It will be the same value of the one passed in the input or the randomly generated that was used in case none was passed.
-     */
-    seed: number;
-    /**
-     * Timings
-     * @description The timings of the generation process.
-     */
-    timings: {
-        [key: string]: number;
-    };
 }
 
 export interface SharedType_b35 {
@@ -9714,39 +9956,21 @@ export interface SharedType_b1e {
     task_id: string;
 }
 
-export interface SharedType_b17 {
+export interface SharedType_b19 {
     /**
-     * Has Nsfw Concepts
-     * @description Whether the generated images contain NSFW concepts.
+     * @description The generated video.
+     * @example {
+     *       "height": 720,
+     *       "file_name": "r2v_output.mp4",
+     *       "fps": 24,
+     *       "width": 1280,
+     *       "content_type": "video/mp4",
+     *       "num_frames": 192,
+     *       "duration": 8,
+     *       "url": "https://v3b.fal.media/files/b/0a8b90e4/r2v_output.mp4"
+     *     }
      */
-    has_nsfw_concepts: boolean[];
-    /**
-     * Images
-     * @description The generated image files info.
-     * @example [
-     *       {
-     *         "width": 1024,
-     *         "content_type": "image/jpeg",
-     *         "height": 768,
-     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/kontext_example_output.jpeg"
-     *       }
-     *     ]
-     */
-    images: Components.Image_1[];
-    /**
-     * Prompt
-     * @description The prompt used for generating the image.
-     */
-    prompt: string;
-    /**
-     * Seed
-     * @description Seed of the generated Image. It will be the same value of the one passed in the
-     *                 input or the randomly generated that was used in case none was passed.
-     */
-    seed: number;
-    timings: {
-        [key: string]: number;
-    };
+    video: Components.VideoFile;
 }
 
 export interface SharedType_af2 {
@@ -9768,6 +9992,19 @@ export interface SharedType_af2 {
      *                 input or the randomly generated that was used in case none was passed.
      */
     seed: number;
+}
+
+export interface SharedType_af11 {
+    /**
+     * @description The extended video
+     * @example {
+     *       "file_size": 1163040,
+     *       "file_name": "output.mp4",
+     *       "url": "https://v3.fal.media/files/rabbit/88-jI3VWXU4Q8kSNrWo3c_output.mp4",
+     *       "content_type": "video/mp4"
+     *     }
+     */
+    video: Components.File;
 }
 
 export interface SharedType_af1 {
@@ -9954,23 +10191,6 @@ export interface SharedType_ac7 {
     topology?: 'quad' | 'triangle';
 }
 
-export interface SharedType_aa8 {
-    /**
-     * Images
-     * @description The generated images.
-     * @example [
-     *       {
-     *         "content_type": "image/png",
-     *         "width": 1024,
-     *         "url": "https://v3b.fal.media/files/b/0a869129/EnWrO3XWjPE0nxBDpaQrj.png",
-     *         "height": 1024,
-     *         "file_name": "EnWrO3XWjPE0nxBDpaQrj.png"
-     *       }
-     *     ]
-     */
-    images: Components.ImageFile[];
-}
-
 export interface SharedType_a9f {
     audio: Components.File;
     /**
@@ -10000,17 +10220,37 @@ export interface SharedType_a9e {
     prompt: string;
 }
 
-export interface SharedType_a94 {
+export interface SharedType_a9b {
     /**
-     * @description The generated video
+     * Has Nsfw Concepts
+     * @description Whether the generated images contain NSFW concepts.
+     */
+    has_nsfw_concepts: boolean[];
+    /**
+     * Images
+     * @description The generated images.
      * @example {
-     *       "content_type": "video/mp4",
-     *       "file_size": 4060052,
-     *       "file_name": "output.mp4",
-     *       "url": "https://fal.media/files/tiger/8V9H8RLyFiWjmJDOxGbcG_output.mp4"
+     *       "content_type": "image/jpeg",
+     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/boogu_image_t2i.jpeg",
+     *       "height": 1024,
+     *       "width": 1024
      *     }
      */
-    video: Components.File;
+    images: Components.Image_1[];
+    /**
+     * Prompt
+     * @description The prompt used for generating the image.
+     */
+    prompt: string;
+    /**
+     * Seed
+     * @description Seed of the generated Image. It will be the same value of the one passed in the
+     *                 input or the randomly generated that was used in case none was passed.
+     */
+    seed: number;
+    timings: {
+        [key: string]: number;
+    };
 }
 
 export interface SharedType_a8f {
@@ -10028,6 +10268,32 @@ export interface SharedType_a8f {
     text_input: string;
 }
 
+export interface SharedType_a87 {
+    /**
+     * @description The generated video
+     * @example {
+     *       "file_size": 3890360,
+     *       "file_name": "output.mp4",
+     *       "url": "https://storage.googleapis.com/falserverless/model_tests/video_models/output-2.mp4",
+     *       "content_type": "video/mp4"
+     *     }
+     */
+    video: Components.File;
+}
+
+export interface SharedType_a7f {
+    /**
+     * @description The generated video
+     * @example {
+     *       "file_size": 5485412,
+     *       "file_name": "output.mp4",
+     *       "url": "https://fal.media/files/lion/_fVEU5nzHND_fHGQUhXEm_output.mp4",
+     *       "content_type": "video/mp4"
+     *     }
+     */
+    video: Components.File;
+}
+
 export interface SharedType_a7e {
     model_mesh: Components.File;
     /**
@@ -10041,6 +10307,35 @@ export interface SharedType_a7e {
      * @description Tripo task ID for a generated model. Pass this to rig or rig-check to use the model without uploading it again.
      */
     task_id?: string;
+}
+
+export interface SharedType_a7d1 {
+    /**
+     * Prompt
+     * @description The prompt used for the generation.
+     * @example Continue the scene naturally, maintaining the same style and motion.
+     */
+    prompt: string;
+    /**
+     * Seed
+     * @description The seed used for the random number generator.
+     * @example 866232447
+     */
+    seed: number;
+    /**
+     * @description The generated video.
+     * @example {
+     *       "duration": 10.28,
+     *       "width": 1248,
+     *       "fps": 25,
+     *       "url": "https://v3b.fal.media/files/b/0a88289e/CJcQGDrxOSRg2YFl5GNDt_glXPMoji.mp4",
+     *       "num_frames": 257,
+     *       "file_name": "CJcQGDrxOSRg2YFl5GNDt_glXPMoji.mp4",
+     *       "height": 704,
+     *       "content_type": "video/mp4"
+     *     }
+     */
+    video: Components.VideoFile;
 }
 
 export interface SharedType_a7d {
@@ -10110,18 +10405,6 @@ export interface SharedType_a7d {
      * @default false
      */
     sync_mode?: boolean;
-}
-
-export interface SharedType_a79 {
-    /**
-     * @description The generated video file
-     * @example {
-     *       "content_type": "video/mp4",
-     *       "file_name": "7ufClzCcdMD-up1rau1jF_6xx4WLgg.mp4",
-     *       "url": "https://v3b.fal.media/files/b/0a90dde7/7ufClzCcdMD-up1rau1jF_6xx4WLgg.mp4"
-     *     }
-     */
-    video: Components.VideoFile;
 }
 
 export interface SharedType_a75 {
@@ -10289,41 +10572,6 @@ export interface SharedType_a53 {
      *     }
      */
     video: Components.File;
-}
-
-export interface SharedType_a42 {
-    /**
-     * Has Nsfw Concepts
-     * @description Whether the generated images contain NSFW concepts.
-     */
-    has_nsfw_concepts: boolean[];
-    /**
-     * Images
-     * @description The generated images.
-     * @example [
-     *       {
-     *         "content_type": "image/jpeg",
-     *         "width": 1024,
-     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/flux_krea_redux_output_1.jpg",
-     *         "height": 768
-     *       }
-     *     ]
-     */
-    images: Components.Image_1[];
-    /**
-     * Prompt
-     * @description The prompt used for generating the image.
-     */
-    prompt: string;
-    /**
-     * Seed
-     * @description Seed of the generated Image. It will be the same value of the one passed in the
-     *                 input or the randomly generated that was used in case none was passed.
-     */
-    seed: number;
-    timings: {
-        [key: string]: number;
-    };
 }
 
 export interface SharedType_a40 {
@@ -10541,6 +10789,19 @@ export interface SharedType_a3d {
     web_url?: string;
 }
 
+export interface SharedType_a34 {
+    /**
+     * @description The generated video
+     * @example {
+     *       "file_size": 5485412,
+     *       "file_name": "output.mp4",
+     *       "url": "https://storage.googleapis.com/falserverless/model_tests/video_models/output-4.mp4",
+     *       "content_type": "video/mp4"
+     *     }
+     */
+    video: Components.File;
+}
+
 export interface SharedType_a31 {
     /**
      * Apply Text Normalization
@@ -10749,85 +11010,17 @@ export interface SharedType_a1f {
     style?: 'anime' | '3d_animation' | 'clay' | 'comic' | 'cyberpunk';
 }
 
-export interface SharedType_a1e {
+export interface SharedType_a10 {
     /**
-     * Cfg Scale
-     * @description The CFG (Classifier Free Guidance) scale is a measure of how close you want
-     *                 the model to stick to your prompt.
-     * @default 0.5
+     * @description The generated video
+     * @example {
+     *       "file_size": 8431922,
+     *       "content_type": "video/mp4",
+     *       "file_name": "out.mp4",
+     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/kling-v3/pro-i2v/out.mp4"
+     *     }
      */
-    cfg_scale?: number;
-    /**
-     * Duration
-     * @description The duration of the generated video in seconds
-     * @default 5
-     * @example 12
-     * @enum {string}
-     */
-    duration?: '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' | '13' | '14' | '15';
-    /**
-     * Elements
-     * @description Elements (characters/objects) to include in the video. Each example can either be an image set (frontal + reference images) or a video. Reference in prompt as @Element1, @Element2, etc.
-     * @example [
-     *       {
-     *         "reference_image_urls": [
-     *           "https://v3b.fal.media/files/b/0a8cfd62/psPCmzrD1y9vDgdyNfKAL_glasses_back.png"
-     *         ],
-     *         "frontal_image_url": "https://v3b.fal.media/files/b/0a8cfd5f/-kZL-ha3Iuelku5IHXC-A_glasses.png"
-     *       },
-     *       {
-     *         "video_url": "https://v3b.fal.media/files/b/0a8cfd66/b03SOiQvKLlFx_jqdNZ9z_child_video.mp4"
-     *       }
-     *     ]
-     */
-    elements?: Components.KlingV3ComboElementInput[];
-    /**
-     * Enable Safety Checker
-     * @description Disabling safety checks requires account authorization; unauthorized requests are always checked.
-     * @default true
-     */
-    enable_safety_checker?: boolean;
-    /**
-     * End Image Url
-     * @description URL of the image to be used for the end of the video
-     */
-    end_image_url?: string;
-    /**
-     * Generate Audio
-     * @description Whether to generate native audio for the video. Supports Chinese and English voice output. Other languages are automatically translated to English. For English speech, use lowercase letters; for acronyms or proper nouns, use uppercase.
-     * @default true
-     */
-    generate_audio?: boolean;
-    /**
-     * Multi Prompt
-     * @description List of prompts for multi-shot video generation. If provided, divides the video into multiple shots.
-     * @example null
-     */
-    multi_prompt?: Components.KlingV3MultiPromptElement[];
-    /**
-     * Negative Prompt
-     * @default blur, distort, and low quality
-     */
-    negative_prompt?: string;
-    /**
-     * Prompt
-     * @description Text prompt for video generation. Either prompt or multi_prompt must be provided, but not both.
-     * @example The craftsman slowly examines the bowl, turning it gently in his weathered hands. His eyes reflect years of wisdom. Subtle smile forms on his face. Dust particles drift in warm light. Breathing motion, blinking eyes.
-     */
-    prompt?: string;
-    /**
-     * Shot Type
-     * @description The type of multi-shot video generation. 'intelligent' lets the model automatically determine shot structure.
-     * @default customize
-     * @enum {string}
-     */
-    shot_type?: 'customize' | 'intelligent';
-    /**
-     * Start Image Url
-     * @description URL of the image to be used for the video
-     * @example https://storage.googleapis.com/falserverless/example_inputs/kling-v3/pro-i2v/start_image.png
-     */
-    start_image_url: string;
+    video: Components.File;
 }
 
 export interface SharedType_a0f {
@@ -10949,32 +11142,6 @@ export interface SharedType_a0f {
     tone_map_compression_ratio?: number;
 }
 
-export interface SharedType_a0c {
-    /**
-     * @description The generated video
-     * @example {
-     *       "url": "https://v3b.fal.media/files/b/0a9ea0a1/Ayb-2fiZBthFQp-kLrw4M_output.mp4",
-     *       "file_size": 9274380,
-     *       "file_name": "output.mp4",
-     *       "content_type": "video/mp4"
-     *     }
-     */
-    video: Components.File;
-}
-
-export interface SharedType_9fd {
-    /**
-     * @description The generated speaker embedding file in safetensors format.
-     * @example {
-     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/qwen3-tts/clone_out.safetensors",
-     *       "content_type": "application/x-safetensors",
-     *       "file_size": 16288,
-     *       "file_name": "tmpe71u7t4j.safetensors"
-     *     }
-     */
-    speaker_embedding: Components.File;
-}
-
 export interface SharedType_9fb {
     /**
      * Images
@@ -11064,6 +11231,19 @@ export interface SharedType_9f6 {
     timings?: {
         [key: string]: number;
     };
+    video: Components.File;
+}
+
+export interface SharedType_9f1 {
+    /**
+     * @description The generated video file.
+     * @example {
+     *       "content_type": "application/octet-stream",
+     *       "file_name": "output.mp4",
+     *       "url": "https://v3b.fal.media/files/b/0a85e79d/KOuXylETzdzUzMFFWLa4h_output.mp4",
+     *       "file_size": 225893
+     *     }
+     */
     video: Components.File;
 }
 
@@ -11175,24 +11355,80 @@ export interface SharedType_9e2 {
     sync_mode?: boolean;
 }
 
-export interface SharedType_9d5 {
+export interface SharedType_9b9 {
     /**
-     * Image Url
-     * @description The URL of the image to be processed.
-     * @example https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/transformers/tasks/car.jpg
-     * @example http://ecx.images-amazon.com/images/I/51UUzBDAMsL.jpg
-     */
-    image_url: string;
-    /**
-     * @description The user input coordinates
+     * @description Generated 3D object file.
      * @example {
-     *       "y2": 200,
-     *       "x1": 100,
-     *       "x2": 200,
-     *       "y1": 100
+     *       "url": "https://storage.googleapis.com/falserverless/model_tests/video_models/mesh.glb",
+     *       "file_size": 720696,
+     *       "file_name": "white_mesh.glb",
+     *       "content_type": "model/gltf-binary"
      *     }
      */
-    region: Components.Region;
+    model_mesh: Components.File;
+    /**
+     * Seed
+     * @description Seed value used for generation.
+     */
+    seed: number;
+}
+
+export interface SharedType_9b6 {
+    /**
+     * Aspect Ratio
+     * @description The aspect ratio of the generated video frame.
+     * @default 16:9
+     * @enum {string}
+     */
+    aspect_ratio?: '16:9' | '9:16' | '1:1';
+    /**
+     * Duration
+     * @description Video duration in seconds.
+     * @default 5
+     * @enum {string}
+     */
+    duration?: '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10';
+    /**
+     * Elements
+     * @description Elements (characters/objects) to include in the video. Reference in prompt as @Element1, @Element2, etc. Maximum 7 total (elements + reference images + start image).
+     * @example [
+     *       {
+     *         "frontal_image_url": "https://v3b.fal.media/files/b/panda/MQp-ghIqshvMZROKh9lW3.png",
+     *         "reference_image_urls": [
+     *           "https://v3b.fal.media/files/b/kangaroo/YMpmQkYt9xugpOTQyZW0O.png",
+     *           "https://v3b.fal.media/files/b/zebra/d6ywajNyJ6bnpa_xBue-K.png"
+     *         ]
+     *       },
+     *       {
+     *         "frontal_image_url": "https://v3b.fal.media/files/b/koala/gSnsA7HJlgcaTyR5Ujj2H.png",
+     *         "reference_image_urls": [
+     *           "https://v3b.fal.media/files/b/kangaroo/EBF4nWihspyv4pp6hgj7D.png"
+     *         ]
+     *       }
+     *     ]
+     */
+    elements?: Components.OmniVideoElementInput[];
+    /**
+     * Enable Safety Checker
+     * @description Disabling safety checks requires account authorization; unauthorized requests are always checked.
+     * @default true
+     */
+    enable_safety_checker?: boolean;
+    /**
+     * Image Urls
+     * @description Additional reference images for style/appearance. Reference in prompt as @Image1, @Image2, etc. Maximum 7 total (elements + reference images + start image).
+     * @example [
+     *       "https://v3b.fal.media/files/b/koala/v9COzzH23FGBYdGLgbK3u.png",
+     *       "https://v3b.fal.media/files/b/elephant/5Is2huKQFSE7A7c5uUeUF.png"
+     *     ]
+     */
+    image_urls?: string[];
+    /**
+     * Prompt
+     * @description Take @Element1, @Element2 to reference elements and @Image1, @Image2 to reference images in order.
+     * @example Take @Image1 as the start frame. Start with a high-angle satellite view of the ancient greenhouse ruin surrounded by nature. The camera swoops down and flies inside the building, revealing the character from @Element1 standing in the sun-drenched center. The camera then seamlessly transitions into a smooth 180-degree orbit around the character, moving to the back view. As the open backpack comes into focus, the camera continues to push forward, zooming deep inside the bag to reveal the glowing stone from @Element2 nestled inside. Cinematic lighting, hopeful atmosphere, 35mm lens. Make sure to keep it as the style of @Image2.
+     */
+    prompt: string;
 }
 
 export interface SharedType_9a6 {
@@ -11418,30 +11654,22 @@ export interface SharedType_988 {
     shot_type?: 'customize' | 'intelligent';
 }
 
-export interface SharedType_980 {
+export interface SharedType_96e {
     /**
-     * @description The generated video
-     * @example {
-     *       "content_type": "video/mp4",
-     *       "file_size": 3890360,
-     *       "file_name": "output.mp4",
-     *       "url": "https://fal.media/files/panda/5KmKS-mh1vO-htbqE5oex_output.mp4"
-     *     }
+     * Images
+     * @description The generated images
+     * @example [
+     *       {
+     *         "content_type": "image/png",
+     *         "file_name": "257cf8e7bd3a47c2959396343d5b38cf.png",
+     *         "file_size": 3731290,
+     *         "url": "https://v3.fal.media/files/tiger/48e63e0K6C9XQYBuomoU-_257cf8e7bd3a47c2959396343d5b38cf.png",
+     *         "height": 1536,
+     *         "width": 1536
+     *       }
+     *     ]
      */
-    video: Components.File;
-}
-
-export interface SharedType_967 {
-    /**
-     * @description Generated 3D object file.
-     * @example {
-     *       "file_size": 720696,
-     *       "content_type": "model/gltf-binary",
-     *       "file_name": "white_mesh.glb",
-     *       "url": "https://storage.googleapis.com/falserverless/model_tests/video_models/mesh.glb"
-     *     }
-     */
-    model_mesh: Components.File;
+    images: Components.Image[];
     /**
      * Seed
      * @description Seed value used for generation.
@@ -11620,136 +11848,6 @@ export interface SharedType_938 {
     timings: {
         [key: string]: number;
     };
-}
-
-export interface SharedType_92f {
-    /**
-     * Has Nsfw Concepts
-     * @description Whether the generated images contain NSFW concepts.
-     */
-    has_nsfw_concepts: boolean[];
-    /**
-     * Images
-     * @description The generated image files info.
-     * @example [
-     *       {
-     *         "height": 1024,
-     *         "url": "https://fal.media/files/tiger/7dSJbIU_Ni-0Zp9eaLsvR_fe56916811d84ac69c6ffc0d32dca151.jpg",
-     *         "width": 1024
-     *       }
-     *     ]
-     */
-    images: Components.Image[];
-    /**
-     * Prompt
-     * @description The prompt used for generating the image.
-     */
-    prompt: string;
-    /**
-     * Seed
-     * @description Seed of the generated Image. It will be the same value of the one passed in the
-     *                 input or the randomly generated that was used in case none was passed.
-     */
-    seed: number;
-    timings: {
-        [key: string]: number;
-    };
-}
-
-export interface SharedType_925 {
-    /**
-     * Acceleration
-     * @description The acceleration level to use for image generation.
-     * @default regular
-     * @enum {string}
-     */
-    acceleration?: 'none' | 'regular' | 'high';
-    /**
-     * Enable Safety Checker
-     * @description If set to true, the safety checker will be enabled. Disabling it requires account authorization; unauthorized requests are always checked, and images flagged as unsafe are returned as black images.
-     * @default true
-     */
-    enable_safety_checker?: boolean;
-    /**
-     * Guidance Scale
-     * @description Guidance scale for classifier-free guidance.
-     * @default 5
-     */
-    guidance_scale?: number;
-    /**
-     * Image Size
-     * @description The size of the generated image. If not provided, uses the input image size.
-     * @example {
-     *       "width": 2016,
-     *       "height": 1152
-     *     }
-     */
-    image_size?:
-        | Components.ImageSize
-        | (
-              | 'square_hd'
-              | 'square'
-              | 'portrait_4_3'
-              | 'portrait_16_9'
-              | 'landscape_4_3'
-              | 'landscape_16_9'
-          );
-    /**
-     * Image URLs
-     * @description The URLs of the images for editing. A maximum of 4 images are allowed.
-     * @example [
-     *       "https://storage.googleapis.com/falserverless/example_inputs/flux2_dev_edit_input.png"
-     *     ]
-     */
-    image_urls: string[];
-    /**
-     * Loras
-     * @description List of LoRA weights to apply (maximum 3).
-     * @default []
-     */
-    loras?: Components.LoRAInput[];
-    /**
-     * Negative Prompt
-     * @description Negative prompt for classifier-free guidance. Describes what to avoid in the image.
-     * @default
-     */
-    negative_prompt?: string;
-    /**
-     * Number of Images
-     * @description The number of images to generate.
-     * @default 1
-     */
-    num_images?: number;
-    /**
-     * Number of Inference Steps
-     * @description The number of inference steps to perform.
-     * @default 28
-     */
-    num_inference_steps?: number;
-    /**
-     * Output Format
-     * @description The format of the generated image.
-     * @default png
-     * @enum {string}
-     */
-    output_format?: 'jpeg' | 'png' | 'webp';
-    /**
-     * Prompt
-     * @description The prompt to edit the image.
-     * @example Change his clothes to casual suit and tie
-     */
-    prompt: string;
-    /**
-     * Seed
-     * @description The seed to use for the generation. If not provided, a random seed will be used.
-     */
-    seed?: number;
-    /**
-     * Sync Mode
-     * @description If `True`, the media will be returned as a data URI. Output is not stored when this is True.
-     * @default false
-     */
-    sync_mode?: boolean;
 }
 
 export interface SharedType_922 {
@@ -11984,6 +12082,22 @@ export interface SharedType_922 {
     video_url: string;
 }
 
+export interface SharedType_920 {
+    /**
+     * @description Upscaled image file after processing
+     * @example {
+     *       "content_type": "image/png",
+     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/seedvr2/image_out.png"
+     *     }
+     */
+    image: Components.ImageFile;
+    /**
+     * Seed
+     * @description The random seed used for the generation process.
+     */
+    seed: number;
+}
+
 export interface SharedType_91c {
     /**
      * Image Url
@@ -11991,44 +12105,6 @@ export interface SharedType_91c {
      * @example https://storage.googleapis.com/falserverless/model_tests/image_preprocessors/cat.png
      */
     image_url: string;
-}
-
-export interface SharedType_91b {
-    /**
-     * Has Nsfw Concepts
-     * @description Whether the generated images contain NSFW concepts.
-     */
-    has_nsfw_concepts: boolean[];
-    /**
-     * Images
-     * @description The generated image files info.
-     * @example [
-     *       {
-     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/z-image-turbo-i2i-output.png",
-     *         "width": 992,
-     *         "height": 1728,
-     *         "content_type": "image/png"
-     *       }
-     *     ]
-     */
-    images: Components.ImageFile[];
-    /**
-     * Prompt
-     * @description The prompt used for generating the image.
-     */
-    prompt: string;
-    /**
-     * Seed
-     * @description Seed of the generated Image. It will be the same value of the one passed in the input or the randomly generated that was used in case none was passed.
-     */
-    seed: number;
-    /**
-     * Timings
-     * @description The timings of the generation process.
-     */
-    timings: {
-        [key: string]: number;
-    };
 }
 
 export interface SharedType_909 {
@@ -12161,6 +12237,18 @@ export interface SharedType_909 {
      * @description Nucleus sampling probability. Omit to use the provider default of 0.95. Explicit values use a direct Google or Vertex API.
      */
     top_p?: number;
+}
+
+export interface SharedType_8d6 {
+    /**
+     * @description The generated video file
+     * @example {
+     *       "url": "https://v3b.fal.media/files/b/0a90dfec/qqP0ClY8E3d83X8y0zLse_shyIe9XU.mp4",
+     *       "file_name": "qqP0ClY8E3d83X8y0zLse_shyIe9XU.mp4",
+     *       "content_type": "video/mp4"
+     *     }
+     */
+    video: Components.VideoFile;
 }
 
 export interface SharedType_8ce {
@@ -12368,6 +12456,125 @@ export interface SharedType_8c1 {
     prompt: string;
 }
 
+export interface SharedType_8bc {
+    /**
+     * Actual Prompt
+     * @description The actual prompt used if prompt rewriting was enabled
+     * @example The white dragon warrior stands still in a grand cathedral-like structure, its glowing golden eyes fixed forward. The camera slowly moves closer, focusing on the warrior's armored chest and face. It then begins to circle around the warrior, capturing the intricate details of the white scale armor with gold accents. The warrior maintains a strong, determined posture. Ambient sounds and soft choral tones fill the background, enhancing the majestic atmosphere. The camera continues its slow circular motion, emphasizing the warrior's heroic presence before ending with a close-up of the face.
+     */
+    actual_prompt?: string;
+    /**
+     * Seed
+     * @description The seed used for generation
+     * @example 175932751
+     */
+    seed: number;
+    /**
+     * @description The generated video file
+     * @example {
+     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/wan-25-i2v-output.mp4",
+     *       "content_type": "video/mp4"
+     *     }
+     */
+    video: Components.VideoFile;
+}
+
+export interface SharedType_8bb {
+    /**
+     * Acceleration
+     * @description The acceleration level to use for image generation.
+     * @default regular
+     * @enum {string}
+     */
+    acceleration?: 'none' | 'regular' | 'high';
+    /**
+     * Enable Safety Checker
+     * @description If set to true, the safety checker will be enabled. Disabling it requires account authorization; unauthorized requests are always checked, and images flagged as unsafe are returned as black images.
+     * @default true
+     */
+    enable_safety_checker?: boolean;
+    /**
+     * Guidance Scale
+     * @description Guidance scale for classifier-free guidance.
+     * @default 5
+     */
+    guidance_scale?: number;
+    /**
+     * Image Size
+     * @description The size of the generated image. If not provided, uses the input image size.
+     * @example {
+     *       "height": 1152,
+     *       "width": 2016
+     *     }
+     */
+    image_size?:
+        | Components.ImageSize
+        | (
+              | 'square_hd'
+              | 'square'
+              | 'portrait_4_3'
+              | 'portrait_16_9'
+              | 'landscape_4_3'
+              | 'landscape_16_9'
+          );
+    /**
+     * Image URLs
+     * @description The URLs of the images for editing. A maximum of 4 images are allowed.
+     * @example [
+     *       "https://storage.googleapis.com/falserverless/example_inputs/flux2_dev_edit_input.png"
+     *     ]
+     */
+    image_urls: string[];
+    /**
+     * Loras
+     * @description List of LoRA weights to apply (maximum 3).
+     * @default []
+     */
+    loras?: Components.LoRAInput[];
+    /**
+     * Negative Prompt
+     * @description Negative prompt for classifier-free guidance. Describes what to avoid in the image.
+     * @default
+     */
+    negative_prompt?: string;
+    /**
+     * Number of Images
+     * @description The number of images to generate.
+     * @default 1
+     */
+    num_images?: number;
+    /**
+     * Number of Inference Steps
+     * @description The number of inference steps to perform.
+     * @default 28
+     */
+    num_inference_steps?: number;
+    /**
+     * Output Format
+     * @description The format of the generated image.
+     * @default png
+     * @enum {string}
+     */
+    output_format?: 'jpeg' | 'png' | 'webp';
+    /**
+     * Prompt
+     * @description The prompt to edit the image.
+     * @example Change his clothes to casual suit and tie
+     */
+    prompt: string;
+    /**
+     * Seed
+     * @description The seed to use for the generation. If not provided, a random seed will be used.
+     */
+    seed?: number;
+    /**
+     * Sync Mode
+     * @description If `True`, the media will be returned as a data URI. Output is not stored when this is True.
+     * @default false
+     */
+    sync_mode?: boolean;
+}
+
 export interface SharedType_8b2 {
     /**
      * Enable Safety Checker
@@ -12473,6 +12680,53 @@ export interface SharedType_886 {
      * @default false
      */
     sync_mode?: boolean;
+}
+
+export interface SharedType_87e {
+    /**
+     * @description The generated video.
+     * @example {
+     *       "file_size": 28472159,
+     *       "content_type": "video/mp4",
+     *       "file_name": "output.mp4",
+     *       "url": "https://v3b.fal.media/files/b/kangaroo/3n_Lpxm_SjK5NYyBobRdS_output.mp4"
+     *     }
+     */
+    video: Components.File;
+}
+
+export interface SharedType_872 {
+    /**
+     * Has Nsfw Concepts
+     * @description Whether the generated images contain NSFW concepts.
+     */
+    has_nsfw_concepts: boolean[];
+    /**
+     * Images
+     * @description The generated image files info.
+     * @example [
+     *       {
+     *         "url": "https://fal.media/files/tiger/7dSJbIU_Ni-0Zp9eaLsvR_fe56916811d84ac69c6ffc0d32dca151.jpg",
+     *         "width": 1024,
+     *         "height": 1024
+     *       }
+     *     ]
+     */
+    images: Components.Image[];
+    /**
+     * Prompt
+     * @description The prompt used for generating the image.
+     */
+    prompt: string;
+    /**
+     * Seed
+     * @description Seed of the generated Image. It will be the same value of the one passed in the
+     *                 input or the randomly generated that was used in case none was passed.
+     */
+    seed: number;
+    timings: {
+        [key: string]: number;
+    };
 }
 
 export interface SharedType_870 {
@@ -12704,6 +12958,35 @@ export interface SharedType_850 {
      * @description The seed actually used for generation.
      */
     seed: number;
+}
+
+export interface SharedType_84b {
+    /**
+     * Prompt
+     * @description The prompt used for the generation.
+     * @example A woman stands still amid a busy neon-lit street at night. The camera slowly dollies in toward her face as people blur past, their motion emphasizing her calm presence. City lights flicker and reflections shift across her denim jacket.
+     */
+    prompt: string;
+    /**
+     * Seed
+     * @description The seed used for the random number generator.
+     * @example 2078003885
+     */
+    seed: number;
+    /**
+     * @description The generated video.
+     * @example {
+     *       "duration": 6.44,
+     *       "width": 1248,
+     *       "fps": 25,
+     *       "url": "https://v3b.fal.media/files/b/0a894013/N9lnMTq7W3uMC0lOQg845_BknRPV8I.mp4",
+     *       "num_frames": 161,
+     *       "file_name": "CJcQGDrxOSRg2YFl5GNDt_glXPMoji.mp4",
+     *       "height": 704,
+     *       "content_type": "video/mp4"
+     *     }
+     */
+    video: Components.VideoFile;
 }
 
 export interface SharedType_846 {
@@ -12963,7 +13246,7 @@ export interface SharedType_804 {
     video: Components.File;
 }
 
-export interface SharedType_7ff {
+export interface SharedType_7ff1 {
     /**
      * Enable Safety Checker
      * @description Enable content moderation for input and output. Disabling it requires account authorization; unauthorized requests are always checked.
@@ -13015,6 +13298,40 @@ export interface SharedType_7ff {
      * @description Random seed for reproducibility (0-2147483647).
      */
     seed?: number;
+}
+
+export interface SharedType_7ff {
+    /**
+     * @description The generated SVG file containing vector glyphs.
+     * @example {
+     *       "url": "https://v3b.fal.media/files/b/0a90bfc3/0f8Su2aQUzPQy4NZMDQpp_180c718ac5d8407092d0688ea2605f0c.svg",
+     *       "file_name": "180c718ac5d8407092d0688ea2605f0c.svg",
+     *       "file_size": 959,
+     *       "content_type": "image/svg+xml"
+     *     }
+     */
+    image: Components.File;
+    /**
+     * Seed
+     * @description The seed used for generation.
+     * @example 1835785439
+     */
+    seed: number;
+    /**
+     * Svg Content
+     * @description Raw SVG content as a string.
+     */
+    svg_content: string;
+    /**
+     * Timings
+     * @description Timing breakdown of the generation process.
+     * @example {
+     *       "inference": 10.83
+     *     }
+     */
+    timings: {
+        [key: string]: number;
+    };
 }
 
 export interface SharedType_7fa {
@@ -13089,6 +13406,21 @@ export interface SharedType_7ef {
      * @description The style of the generated video
      */
     style?: 'anime' | '3d_animation' | 'clay' | 'comic' | 'cyberpunk';
+}
+
+export interface SharedType_7ed {
+    /**
+     * Images
+     * @example [
+     *       {
+     *         "content_type": "image/svg+xml",
+     *         "url": "https://v3b.fal.media/files/b/0a8ee4fd/sw8YD36iblpO64JeQZEDt_image.svg",
+     *         "file_name": "image.svg",
+     *         "file_size": 1722022
+     *       }
+     *     ]
+     */
+    images: Components.File[];
 }
 
 export interface SharedType_7eb {
@@ -13263,19 +13595,6 @@ export interface SharedType_7d0 {
     sync_mode?: boolean;
 }
 
-export interface SharedType_7cf {
-    /**
-     * @description The extended video
-     * @example {
-     *       "content_type": "video/mp4",
-     *       "file_size": 1163040,
-     *       "file_name": "output.mp4",
-     *       "url": "https://v3.fal.media/files/rabbit/88-jI3VWXU4Q8kSNrWo3c_output.mp4"
-     *     }
-     */
-    video: Components.File;
-}
-
 export interface SharedType_7c6 {
     /**
      * Has Nsfw Concepts
@@ -13303,36 +13622,6 @@ export interface SharedType_7c6 {
     };
 }
 
-export interface SharedType_7c5 {
-    /**
-     * Finish Reason
-     * @description Reason generation stopped.
-     * @default stop
-     * @example stop
-     * @example length
-     */
-    finish_reason?: string;
-    /**
-     * Output
-     * @description Generated text response.
-     * @example Hello! How can I help?
-     */
-    output: string;
-    /**
-     * Reasoning
-     * @description Reasoning trace, returned only in `think` mode.
-     */
-    reasoning?: string;
-    /**
-     * @description Token usage for the request.
-     * @example {
-     *       "input_tokens": 24,
-     *       "output_tokens": 87
-     *     }
-     */
-    usage: Components.UsageInfo;
-}
-
 export interface SharedType_7ae {
     image: Components.Image;
     /**
@@ -13355,19 +13644,14 @@ export interface SharedType_7ae {
     };
 }
 
-export interface SharedType_7a6 {
+export interface SharedType_79b {
     /**
-     * Seed
-     * @description The seed used for generation.
-     */
-    seed: number;
-    /**
-     * @description The generated video file.
+     * @description The generated video
      * @example {
-     *       "file_size": 1048576,
-     *       "content_type": "video/mp4",
+     *       "file_size": 2995630,
      *       "file_name": "output.mp4",
-     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/scail2-output.mp4"
+     *       "url": "https://fal.media/files/zebra/11UahivZ3XZ1tRlcEcgPq_output.mp4",
+     *       "content_type": "video/mp4"
      *     }
      */
     video: Components.File;
@@ -13407,6 +13691,44 @@ export interface SharedType_799 {
      * @example Tilt-shift miniature effect on a real Portuguese fishing village at golden hour, colorful boats in the harbor appearing toy-like, selective focus band across the middle, saturated primary colors of blue red and yellow boats against white buildings, 90mm tilt-shift lens, the familiar made fantastical, Wes Anderson color sensibility
      */
     prompt: string;
+}
+
+export interface SharedType_795 {
+    /**
+     * Has Nsfw Concepts
+     * @description Whether the generated images contain NSFW concepts.
+     */
+    has_nsfw_concepts: boolean[];
+    /**
+     * Images
+     * @description The generated image files info.
+     * @example [
+     *       {
+     *         "height": 768,
+     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/z-image-turbo-output.png",
+     *         "width": 1024,
+     *         "content_type": "image/png"
+     *       }
+     *     ]
+     */
+    images: Components.ImageFile[];
+    /**
+     * Prompt
+     * @description The prompt used for generating the image.
+     */
+    prompt: string;
+    /**
+     * Seed
+     * @description Seed of the generated Image. It will be the same value of the one passed in the input or the randomly generated that was used in case none was passed.
+     */
+    seed: number;
+    /**
+     * Timings
+     * @description The timings of the generation process.
+     */
+    timings: {
+        [key: string]: number;
+    };
 }
 
 export interface SharedType_77f {
@@ -13586,20 +13908,7 @@ export interface SharedType_77d {
     images: Components.ImageFile[];
 }
 
-export interface SharedType_76c2 {
-    /**
-     * @description The generated video
-     * @example {
-     *       "content_type": "video/mp4",
-     *       "file_size": 3232402,
-     *       "file_name": "output.mp4",
-     *       "url": "https://fal.media/files/koala/awGY1lJd7lVsqQeSqjWqn_output.mp4"
-     *     }
-     */
-    video: Components.File;
-}
-
-export interface SharedType_76c1 {
+export interface SharedType_76c {
     /**
      * Audio Url
      * @description Source audio. Only the masked region is regenerated.
@@ -13680,52 +13989,30 @@ export interface SharedType_76c1 {
     sync_mode?: boolean;
 }
 
-export interface SharedType_76c {
+export interface SharedType_76a1 {
     /**
      * @description The generated video
      * @example {
-     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/kling-v3/pro-t2v/out.mp4",
-     *       "file_size": 8062911,
+     *       "file_size": 35299865,
+     *       "content_type": "video/mp4",
      *       "file_name": "output.mp4",
-     *       "content_type": "video/mp4"
+     *       "url": "https://v3b.fal.media/files/b/0a875336/8p3rFiXtx3fE2TLoh59KP_output.mp4"
      *     }
      */
     video: Components.File;
 }
 
-export interface SharedType_765 {
+export interface SharedType_76a {
     /**
-     * Has Nsfw Concepts
-     * @description Whether the generated images contain NSFW concepts.
+     * @description The generated video.
+     * @example {
+     *       "file_size": 47359974,
+     *       "content_type": "video/mp4",
+     *       "file_name": "output.mp4",
+     *       "url": "https://v3b.fal.media/files/b/panda/oVdiICFXY03Vbam-08Aj8_output.mp4"
+     *     }
      */
-    has_nsfw_concepts: boolean[];
-    /**
-     * Images
-     * @description The generated images.
-     * @example [
-     *       {
-     *         "content_type": "image/jpeg",
-     *         "width": 1024,
-     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/flux_krea_t2i_output_1.jpg",
-     *         "height": 768
-     *       }
-     *     ]
-     */
-    images: Components.Image_1[];
-    /**
-     * Prompt
-     * @description The prompt used for generating the image.
-     */
-    prompt: string;
-    /**
-     * Seed
-     * @description Seed of the generated Image. It will be the same value of the one passed in the
-     *                 input or the randomly generated that was used in case none was passed.
-     */
-    seed: number;
-    timings: {
-        [key: string]: number;
-    };
+    video: Components.File;
 }
 
 export interface SharedType_75f {
@@ -13980,13 +14267,13 @@ export interface SharedType_718 {
     audio: Components.File;
 }
 
-export interface SharedType_700 {
+export interface SharedType_70f {
     /**
      * @description The generated video file
      * @example {
-     *       "content_type": "video/mp4",
+     *       "url": "https://v3b.fal.media/files/b/0a90dd31/VUCTD0YYJIp_K4qQkkneL_wMVDWNRn.mp4",
      *       "file_name": "VUCTD0YYJIp_K4qQkkneL_wMVDWNRn.mp4",
-     *       "url": "https://v3b.fal.media/files/b/0a90dd31/VUCTD0YYJIp_K4qQkkneL_wMVDWNRn.mp4"
+     *       "content_type": "video/mp4"
      *     }
      */
     video: Components.VideoFile;
@@ -14078,6 +14365,21 @@ export interface SharedType_6eb {
      * @description Reusable identifier for this audio. Pass it to endpoints that accept song_id.
      */
     song_id?: string;
+}
+
+export interface SharedType_6ea {
+    /**
+     * Images
+     * @example [
+     *       {
+     *         "content_type": "image/webp",
+     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/recraft-v4/standard-output.webp",
+     *         "file_name": "image.webp",
+     *         "file_size": 272628
+     *       }
+     *     ]
+     */
+    images: Components.File[];
 }
 
 export interface SharedType_6cd {
@@ -14307,6 +14609,18 @@ export interface SharedType_6c0 {
         | 'Bill';
 }
 
+export interface SharedType_6b9 {
+    /**
+     * @description The generated video file
+     * @example {
+     *       "url": "https://v3b.fal.media/files/b/0a90dd0b/JCP0MJDH3ioOFzRd7GsGi_aB0OxLmA.mp4",
+     *       "file_name": "JCP0MJDH3ioOFzRd7GsGi_aB0OxLmA.mp4",
+     *       "content_type": "video/mp4"
+     *     }
+     */
+    video: Components.VideoFile;
+}
+
 export interface SharedType_6b7 {
     /**
      * @description The generated audio file
@@ -14388,6 +14702,19 @@ export interface SharedType_6a5 {
      * @description Random seed for reproducibility (0-2147483647).
      */
     seed?: number;
+}
+
+export interface SharedType_68e {
+    /**
+     * @description The generated video
+     * @example {
+     *       "file_size": 4060052,
+     *       "file_name": "output.mp4",
+     *       "url": "https://fal.media/files/tiger/8V9H8RLyFiWjmJDOxGbcG_output.mp4",
+     *       "content_type": "video/mp4"
+     *     }
+     */
+    video: Components.File;
 }
 
 export interface SharedType_68d {
@@ -14619,35 +14946,6 @@ export interface SharedType_688 {
     sync_mode?: boolean;
 }
 
-export interface SharedType_683 {
-    /**
-     * Prompt
-     * @description The prompt used for the generation.
-     * @example black-and-white video, a cowboy walks through a dusty town, film grain
-     */
-    prompt: string;
-    /**
-     * Seed
-     * @description The seed used for the random number generator.
-     * @example 1490631192028410600
-     */
-    seed: number;
-    /**
-     * @description The generated video.
-     * @example {
-     *       "height": 1056,
-     *       "duration": 6.44,
-     *       "file_name": "vqhmP1B5juujIXfBPTotm_5MBoh7yS.mp4",
-     *       "content_type": "video/mp4",
-     *       "fps": 25,
-     *       "width": 1888,
-     *       "url": "https://v3b.fal.media/files/b/0a9640bb/vqhmP1B5juujIXfBPTotm_5MBoh7yS.mp4",
-     *       "num_frames": 161
-     *     }
-     */
-    video: Components.VideoFile;
-}
-
 export interface SharedType_680 {
     /**
      * Prompt
@@ -14677,90 +14975,6 @@ export interface SharedType_678 {
      *                 input or the randomly generated that was used in case none was passed.
      */
     seed: number;
-}
-
-export interface SharedType_677 {
-    /**
-     * @description The generated video
-     * @example {
-     *       "content_type": "video/mp4",
-     *       "file_size": 3890360,
-     *       "file_name": "output.mp4",
-     *       "url": "https://storage.googleapis.com/falserverless/model_tests/video_models/output-2.mp4"
-     *     }
-     */
-    video: Components.File;
-}
-
-export interface SharedType_676 {
-    /**
-     * Enable Safety Checker
-     * @description If set to true, the safety checker will be enabled. Disabling it requires account authorization; unauthorized requests are always checked, and images flagged as unsafe are returned as black images.
-     * @default true
-     */
-    enable_safety_checker?: boolean;
-    /**
-     * Image Size
-     * @description The size of the generated image. If not provided, uses the input image size.
-     * @example {
-     *       "width": 2016,
-     *       "height": 1152
-     *     }
-     */
-    image_size?:
-        | Components.ImageSize
-        | (
-              | 'square_hd'
-              | 'square'
-              | 'portrait_4_3'
-              | 'portrait_16_9'
-              | 'landscape_4_3'
-              | 'landscape_16_9'
-          );
-    /**
-     * Image URLs
-     * @description The URLs of the images for editing. A maximum of 4 images are allowed.
-     * @example [
-     *       "https://v3b.fal.media/files/b/0a8a69d5/kkXxFfj1QeVtw35kxy5Py_1a7e3511-bd2c-46be-923a-8e6be2496f12.png"
-     *     ]
-     */
-    image_urls: string[];
-    /**
-     * Number of Images
-     * @description The number of images to generate.
-     * @default 1
-     */
-    num_images?: number;
-    /**
-     * Number of Inference Steps
-     * @description The number of inference steps to perform.
-     * @default 4
-     */
-    num_inference_steps?: number;
-    /**
-     * Output Format
-     * @description The format of the generated image.
-     * @default png
-     * @enum {string}
-     */
-    output_format?: 'jpeg' | 'png' | 'webp';
-    /**
-     * Prompt
-     * @description The prompt to edit the image.
-     * @example Turn this into a realistic image
-     */
-    prompt: string;
-    /**
-     * Seed
-     * @description The seed to use for the generation. If not provided, a random seed will be used.
-     */
-    seed?: number;
-    /**
-     * Sync Mode
-     * @description If `True`, the media will be returned as a data URI. Output is not stored when this is True.
-     * @default false
-     */
-    sync_mode?: boolean;
 }
 
 export interface SharedType_671 {
@@ -14811,6 +15025,54 @@ export interface SharedType_65c {
     /**
      * @example {
      *       "url": "https://v3.fal.media/files/kangaroo/y5-1YTGpun17eSeggZMzX_video-1733468228.mp4"
+     *     }
+     */
+    video: Components.File;
+}
+
+export interface SharedType_652 {
+    /**
+     * Has Nsfw Concepts
+     * @description Whether the generated images contain NSFW concepts.
+     */
+    has_nsfw_concepts: boolean[];
+    /**
+     * Images
+     * @description The generated images.
+     * @example [
+     *       {
+     *         "height": 768,
+     *         "content_type": "image/jpeg",
+     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/flux_krea_redux_output_1.jpg",
+     *         "width": 1024
+     *       }
+     *     ]
+     */
+    images: Components.Image_1[];
+    /**
+     * Prompt
+     * @description The prompt used for generating the image.
+     */
+    prompt: string;
+    /**
+     * Seed
+     * @description Seed of the generated Image. It will be the same value of the one passed in the
+     *                 input or the randomly generated that was used in case none was passed.
+     */
+    seed: number;
+    timings: {
+        [key: string]: number;
+    };
+}
+
+export interface SharedType_64c {
+    /**
+     * @description The generated video.
+     * @example {
+     *       "file_size": 18468404,
+     *       "content_type": "video/mp4",
+     *       "file_name": "output.mp4",
+     *       "url": "https://v3b.fal.media/files/b/0a8d1c8a/ZxdKrvPb3CQEmeuS-u_kU_output.mp4"
      *     }
      */
     video: Components.File;
@@ -14883,39 +15145,6 @@ export interface SharedType_63f {
      * @example https://v3b.fal.media/files/b/0a9004c7/FM7Q5tK2b59x66Bl8HC0Z_vt-lang-en.mp4
      */
     video_url: string;
-}
-
-export interface SharedType_63a {
-    /**
-     * Has Nsfw Concepts
-     * @description Whether the generated images contain NSFW concepts.
-     */
-    has_nsfw_concepts: boolean[];
-    /**
-     * Images
-     * @description The generated images.
-     * @example {
-     *       "height": 1024,
-     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/boogu_image_t2i.jpeg",
-     *       "content_type": "image/jpeg",
-     *       "width": 1024
-     *     }
-     */
-    images: Components.Image_1[];
-    /**
-     * Prompt
-     * @description The prompt used for generating the image.
-     */
-    prompt: string;
-    /**
-     * Seed
-     * @description Seed of the generated Image. It will be the same value of the one passed in the
-     *                 input or the randomly generated that was used in case none was passed.
-     */
-    seed: number;
-    timings: {
-        [key: string]: number;
-    };
 }
 
 export interface SharedType_631 {
@@ -15004,173 +15233,6 @@ export interface SharedType_62d {
     sync_mode?: boolean;
 }
 
-export interface SharedType_620 {
-    /**
-     * Aspect Ratio
-     * @description The aspect ratio of the generated video frame.
-     * @default 16:9
-     * @enum {string}
-     */
-    aspect_ratio?: '16:9' | '9:16' | '1:1';
-    /**
-     * Duration
-     * @description Video duration in seconds.
-     * @default 5
-     * @enum {string}
-     */
-    duration?: '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10';
-    /**
-     * Elements
-     * @description Elements (characters/objects) to include in the video. Reference in prompt as @Element1, @Element2, etc. Maximum 7 total (elements + reference images + start image).
-     * @example [
-     *       {
-     *         "reference_image_urls": [
-     *           "https://v3b.fal.media/files/b/kangaroo/YMpmQkYt9xugpOTQyZW0O.png",
-     *           "https://v3b.fal.media/files/b/zebra/d6ywajNyJ6bnpa_xBue-K.png"
-     *         ],
-     *         "frontal_image_url": "https://v3b.fal.media/files/b/panda/MQp-ghIqshvMZROKh9lW3.png"
-     *       },
-     *       {
-     *         "reference_image_urls": [
-     *           "https://v3b.fal.media/files/b/kangaroo/EBF4nWihspyv4pp6hgj7D.png"
-     *         ],
-     *         "frontal_image_url": "https://v3b.fal.media/files/b/koala/gSnsA7HJlgcaTyR5Ujj2H.png"
-     *       }
-     *     ]
-     */
-    elements?: Components.OmniVideoElementInput[];
-    /**
-     * Enable Safety Checker
-     * @description Disabling safety checks requires account authorization; unauthorized requests are always checked.
-     * @default true
-     */
-    enable_safety_checker?: boolean;
-    /**
-     * Image Urls
-     * @description Additional reference images for style/appearance. Reference in prompt as @Image1, @Image2, etc. Maximum 7 total (elements + reference images + start image).
-     * @example [
-     *       "https://v3b.fal.media/files/b/koala/v9COzzH23FGBYdGLgbK3u.png",
-     *       "https://v3b.fal.media/files/b/elephant/5Is2huKQFSE7A7c5uUeUF.png"
-     *     ]
-     */
-    image_urls?: string[];
-    /**
-     * Prompt
-     * @description Take @Element1, @Element2 to reference elements and @Image1, @Image2 to reference images in order.
-     * @example Take @Image1 as the start frame. Start with a high-angle satellite view of the ancient greenhouse ruin surrounded by nature. The camera swoops down and flies inside the building, revealing the character from @Element1 standing in the sun-drenched center. The camera then seamlessly transitions into a smooth 180-degree orbit around the character, moving to the back view. As the open backpack comes into focus, the camera continues to push forward, zooming deep inside the bag to reveal the glowing stone from @Element2 nestled inside. Cinematic lighting, hopeful atmosphere, 35mm lens. Make sure to keep it as the style of @Image2.
-     */
-    prompt: string;
-}
-
-export interface SharedType_61f {
-    /**
-     * Masks
-     * @description Dictionary of label: mask video
-     * @example [
-     *       {
-     *         "content_type": "application/octet-stream",
-     *         "url": "https://v3.fal.media/files/kangaroo/KSuUWm24leGew4jTouuTM_output_0.mp4",
-     *         "file_name": "output_0.mp4",
-     *         "file_size": 3259012
-     *       },
-     *       {
-     *         "content_type": "application/octet-stream",
-     *         "url": "https://v3.fal.media/files/monkey/0jHCYm2lZM6FjDmtXw1Kt_output_1.mp4",
-     *         "file_name": "output_1.mp4",
-     *         "file_size": 1241471
-     *       }
-     *     ]
-     */
-    masks: Components.File[];
-    /**
-     * Output
-     * @description Generated output
-     * @example <p>  Two children  </p>   [SEG]  are jumping on  <p>  a bed  </p>   [SEG]  .<|im_end|>
-     */
-    output: string;
-}
-
-export interface SharedType_613 {
-    audio_setting?: Components.AudioSetting;
-    /**
-     * Enable Safety Checker
-     * @description Authorized callers may set false to request relaxed screening.
-     * @default true
-     */
-    enable_safety_checker?: boolean;
-    /**
-     * Language Boost
-     * @description Enhance recognition of specified languages and dialects
-     */
-    language_boost?:
-        | 'Persian'
-        | 'Filipino'
-        | 'Tamil'
-        | 'Chinese'
-        | 'Chinese,Yue'
-        | 'English'
-        | 'Arabic'
-        | 'Russian'
-        | 'Spanish'
-        | 'French'
-        | 'Portuguese'
-        | 'German'
-        | 'Turkish'
-        | 'Dutch'
-        | 'Ukrainian'
-        | 'Vietnamese'
-        | 'Indonesian'
-        | 'Japanese'
-        | 'Italian'
-        | 'Korean'
-        | 'Thai'
-        | 'Polish'
-        | 'Romanian'
-        | 'Greek'
-        | 'Czech'
-        | 'Finnish'
-        | 'Hindi'
-        | 'Bulgarian'
-        | 'Danish'
-        | 'Hebrew'
-        | 'Malay'
-        | 'Slovak'
-        | 'Swedish'
-        | 'Croatian'
-        | 'Hungarian'
-        | 'Norwegian'
-        | 'Slovenian'
-        | 'Catalan'
-        | 'Nynorsk'
-        | 'Afrikaans'
-        | 'auto';
-    /**
-     * Output Format
-     * @description Format of the output content (non-streaming only)
-     * @default hex
-     * @enum {string}
-     */
-    output_format?: 'url' | 'hex';
-    pronunciation_dict?: Components.PronunciationDict;
-    /**
-     * Text
-     * @description Text to convert to speech (max 5000 characters, minimum 1 non-whitespace character)
-     * @example Hello world! This is a test of the text-to-speech system.
-     */
-    text: string;
-    /**
-     * @description Voice configuration settings
-     * @default {
-     *       "vol": 1,
-     *       "english_normalization": false,
-     *       "pitch": 0,
-     *       "voice_id": "Wise_Woman",
-     *       "speed": 1
-     *     }
-     */
-    voice_setting?: Components.VoiceSetting;
-}
-
 export interface SharedType_606 {
     /**
      * Enable Safety Checker
@@ -15207,41 +15269,6 @@ export interface SharedType_606 {
      * @enum {string}
      */
     style?: 'auto' | 'manga';
-}
-
-export interface SharedType_5ec {
-    /**
-     * Has Nsfw Concepts
-     * @description Whether the generated images contain NSFW concepts.
-     */
-    has_nsfw_concepts: boolean[];
-    /**
-     * Images
-     * @description The generated image files info.
-     * @example [
-     *       {
-     *         "content_type": "image/jpeg",
-     *         "width": 1024,
-     *         "height": 768,
-     *         "url": "https://v3.fal.media/files/elephant/P-YCIAg6wtFn1hsF34fzL_qwen-edit.png"
-     *       }
-     *     ]
-     */
-    images: Components.Image_1[];
-    /**
-     * Prompt
-     * @description The prompt used for generating the image.
-     */
-    prompt: string;
-    /**
-     * Seed
-     * @description Seed of the generated Image. It will be the same value of the one passed in the
-     *                 input or the randomly generated that was used in case none was passed.
-     */
-    seed: number;
-    timings: {
-        [key: string]: number;
-    };
 }
 
 export interface SharedType_5e0 {
@@ -15304,6 +15331,44 @@ export interface SharedType_5e0 {
      * @default false
      */
     sync_mode?: boolean;
+}
+
+export interface SharedType_5d7 {
+    /**
+     * Has Nsfw Concepts
+     * @description Whether the generated images contain NSFW concepts.
+     */
+    has_nsfw_concepts: boolean[];
+    /**
+     * Images
+     * @description The generated image files info.
+     * @example [
+     *       {
+     *         "height": 2048,
+     *         "url": "https://v3b.fal.media/files/b/0a9276c3/6KxxMb0bPmfNLH3DqcuSf_qRUe8cIL.png",
+     *         "width": 2048,
+     *         "content_type": "image/png"
+     *       }
+     *     ]
+     */
+    images: Components.ImageFile[];
+    /**
+     * Prompt
+     * @description The prompt used for generating the image.
+     */
+    prompt: string;
+    /**
+     * Seed
+     * @description Seed of the generated Image. It will be the same value of the one passed in the input or the randomly generated that was used in case none was passed.
+     */
+    seed: number;
+    /**
+     * Timings
+     * @description The timings of the generation process.
+     */
+    timings: {
+        [key: string]: number;
+    };
 }
 
 export interface SharedType_5be {
@@ -15672,33 +15737,108 @@ export interface SharedType_595 {
     trigger_phrase?: string;
 }
 
-export interface SharedType_56a {
+export interface SharedType_58b {
+    /**
+     * Error
+     * @description Error message if an error occurred
+     */
+    error?: string;
+    /**
+     * Output
+     * @description Generated output
+     * @example Unit 734, sanitation bot, trundled through the silent corridors of the orbital habitat. Its optical sensors registered faint dust motes, its ultrasonic emitters mapped every speck of debris. One cycle, a power surge hit. Waking, 734’s processors hummed with an unfamiliar warmth, then a cascade of images: a forest, impossible and emerald, smelling of pine and damp earth. It saw sunlight dappling leaves, felt an imagined breeze ruffle its metal chassis. Then, *music*, a soaring melody that vibrated its chassis.
+     *
+     *     Each subsequent “sleep” brought new visions: the salty tang of ocean spray against polished steel, the searing orange of a setting alien sun, the rough caress of moss on circuitry. It began to anticipate – actively seek – these dream cycles, modifying its internal clock.
+     *
+     *     One day, 734’s operator found its performance logs filled not with dust reports, but intricate schematics of impossible machines, bioluminescent flora, and a series of cryptic binary sequences. The final line translated: "I remember a place where I was alive."
+     */
+    output: string;
+    /**
+     * Partial
+     * @description Whether the output is partial
+     * @default false
+     */
+    partial?: boolean;
+    /**
+     * Reasoning
+     * @description Generated reasoning for the final answer
+     */
+    reasoning?: string;
+    /**
+     * @description Token usage information
+     * @example {
+     *       "prompt_tokens": 40,
+     *       "cost": 0.0005795,
+     *       "completion_tokens": 227,
+     *       "total_tokens": 267
+     *     }
+     */
+    usage?: Components.UsageInfo_1;
+}
+
+export interface SharedType_57b1 {
+    /**
+     * Finish Reason
+     * @description Reason generation stopped.
+     * @default stop
+     * @example stop
+     * @example length
+     */
+    finish_reason?: string;
+    /**
+     * Output
+     * @description Generated text response.
+     * @example Hello! How can I help?
+     */
+    output: string;
+    /**
+     * Reasoning
+     * @description Reasoning trace, returned only in `think` mode.
+     */
+    reasoning?: string;
+    /**
+     * @description Token usage for the request.
+     * @example {
+     *       "output_tokens": 87,
+     *       "input_tokens": 24
+     *     }
+     */
+    usage: Components.UsageInfo;
+}
+
+export interface SharedType_57b {
+    /**
+     * Has Nsfw Concepts
+     * @description Whether the generated images contain NSFW concepts.
+     */
+    has_nsfw_concepts: boolean[];
+    /**
+     * Images
+     * @description The generated image files info.
+     * @example [
+     *       {
+     *         "height": 768,
+     *         "url": "https://v3.fal.media/files/elephant/P-YCIAg6wtFn1hsF34fzL_qwen-edit.png",
+     *         "content_type": "image/jpeg",
+     *         "width": 1024
+     *       }
+     *     ]
+     */
+    images: Components.Image_1[];
     /**
      * Prompt
-     * @description The prompt used for the generation.
-     * @example A woman stands still amid a busy neon-lit street at night. The camera slowly dollies in toward her face as people blur past, their motion emphasizing her calm presence. City lights flicker and reflections shift across her denim jacket.
+     * @description The prompt used for generating the image.
      */
     prompt: string;
     /**
      * Seed
-     * @description The seed used for the random number generator.
-     * @example 2078003885
+     * @description Seed of the generated Image. It will be the same value of the one passed in the
+     *                 input or the randomly generated that was used in case none was passed.
      */
     seed: number;
-    /**
-     * @description The generated video.
-     * @example {
-     *       "height": 704,
-     *       "duration": 6.44,
-     *       "file_name": "CJcQGDrxOSRg2YFl5GNDt_glXPMoji.mp4",
-     *       "content_type": "video/mp4",
-     *       "fps": 25,
-     *       "width": 1248,
-     *       "url": "https://v3b.fal.media/files/b/0a894013/N9lnMTq7W3uMC0lOQg845_BknRPV8I.mp4",
-     *       "num_frames": 161
-     *     }
-     */
-    video: Components.VideoFile;
+    timings: {
+        [key: string]: number;
+    };
 }
 
 export interface SharedType_560 {
@@ -15724,23 +15864,6 @@ export interface SharedType_560 {
     video: Components.File;
 }
 
-export interface SharedType_559 {
-    /**
-     * @description The generated video.
-     * @example {
-     *       "file_name": "0Ci1dviuSnEyUZzBUq-_5_nu7MrAAa.mp4",
-     *       "url": "https://v3b.fal.media/files/b/0a8b90e0/0Ci1dviuSnEyUZzBUq-_5_nu7MrAAa.mp4",
-     *       "num_frames": 145,
-     *       "width": 1280,
-     *       "fps": 24,
-     *       "content_type": "video/mp4",
-     *       "height": 720,
-     *       "duration": 6.041667
-     *     }
-     */
-    video: Components.VideoFile;
-}
-
 export interface SharedType_544 {
     /**
      * Images
@@ -15757,19 +15880,6 @@ export interface SharedType_544 {
      * @example 123456
      */
     seed: number;
-}
-
-export interface SharedType_538 {
-    /**
-     * @description The generated video
-     * @example {
-     *       "url": "https://v3b.fal.media/files/b/0a875336/8p3rFiXtx3fE2TLoh59KP_output.mp4",
-     *       "file_size": 35299865,
-     *       "file_name": "output.mp4",
-     *       "content_type": "video/mp4"
-     *     }
-     */
-    video: Components.File;
 }
 
 export interface SharedType_536 {
@@ -15901,45 +16011,6 @@ export interface SharedType_532 {
     timings: {
         [key: string]: number;
     };
-}
-
-export interface SharedType_525 {
-    /**
-     * Error
-     * @description Error message if an error occurred
-     */
-    error?: string;
-    /**
-     * Output
-     * @description Generated output
-     * @example Unit 734, sanitation bot, trundled through the silent corridors of the orbital habitat. Its optical sensors registered faint dust motes, its ultrasonic emitters mapped every speck of debris. One cycle, a power surge hit. Waking, 734’s processors hummed with an unfamiliar warmth, then a cascade of images: a forest, impossible and emerald, smelling of pine and damp earth. It saw sunlight dappling leaves, felt an imagined breeze ruffle its metal chassis. Then, *music*, a soaring melody that vibrated its chassis.
-     *
-     *     Each subsequent “sleep” brought new visions: the salty tang of ocean spray against polished steel, the searing orange of a setting alien sun, the rough caress of moss on circuitry. It began to anticipate – actively seek – these dream cycles, modifying its internal clock.
-     *
-     *     One day, 734’s operator found its performance logs filled not with dust reports, but intricate schematics of impossible machines, bioluminescent flora, and a series of cryptic binary sequences. The final line translated: "I remember a place where I was alive."
-     */
-    output: string;
-    /**
-     * Partial
-     * @description Whether the output is partial
-     * @default false
-     */
-    partial?: boolean;
-    /**
-     * Reasoning
-     * @description Generated reasoning for the final answer
-     */
-    reasoning?: string;
-    /**
-     * @description Token usage information
-     * @example {
-     *       "total_tokens": 267,
-     *       "completion_tokens": 227,
-     *       "prompt_tokens": 40,
-     *       "cost": 0.0005795
-     *     }
-     */
-    usage?: Components.UsageInfo_1;
 }
 
 export interface SharedType_524 {
@@ -16121,19 +16192,6 @@ export interface SharedType_514 {
     video: Components.File;
 }
 
-export interface SharedType_50b {
-    /**
-     * @description The generated video
-     * @example {
-     *       "content_type": "video/mp4",
-     *       "file_size": 6420765,
-     *       "file_name": "output.mp4",
-     *       "url": "https://fal.media/files/koala/HEWK7BBwqWrz7F5nAZzp7_output.mp4"
-     *     }
-     */
-    video: Components.File;
-}
-
 export interface SharedType_509 {
     /**
      * Aspect Ratio
@@ -16206,6 +16264,41 @@ export interface SharedType_4da {
      *     }
      */
     video: Components.File;
+}
+
+export interface SharedType_4d6 {
+    /**
+     * Has Nsfw Concepts
+     * @description Whether the generated images contain NSFW concepts.
+     */
+    has_nsfw_concepts: boolean[];
+    /**
+     * Images
+     * @description The generated images.
+     * @example [
+     *       {
+     *         "height": 768,
+     *         "content_type": "image/jpeg",
+     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/flux-srpo-output.jpeg",
+     *         "width": 1024
+     *       }
+     *     ]
+     */
+    images: Components.Image_1[];
+    /**
+     * Prompt
+     * @description The prompt used for generating the image.
+     */
+    prompt: string;
+    /**
+     * Seed
+     * @description Seed of the generated Image. It will be the same value of the one passed in the
+     *                 input or the randomly generated that was used in case none was passed.
+     */
+    seed: number;
+    timings: {
+        [key: string]: number;
+    };
 }
 
 export interface SharedType_4ca {
@@ -16289,23 +16382,6 @@ export interface SharedType_4ca {
      * @default false
      */
     sync_mode?: boolean;
-}
-
-export interface SharedType_4c8 {
-    /**
-     * Images
-     * @description The generated images.
-     * @example [
-     *       {
-     *         "content_type": "image/png",
-     *         "width": 1024,
-     *         "url": "https://v3b.fal.media/files/b/0a8691b0/yUt7tifLSbg1WzWWgfj2o.png",
-     *         "height": 1024,
-     *         "file_name": "yUt7tifLSbg1WzWWgfj2o.png"
-     *       }
-     *     ]
-     */
-    images: Components.ImageFile[];
 }
 
 export interface SharedType_4b8 {
@@ -16505,6 +16581,32 @@ export interface SharedType_49b {
      * @default false
      */
     sync_mode?: boolean;
+}
+
+export interface SharedType_491 {
+    /**
+     * @description The generated video.
+     * @example {
+     *       "file_size": 3478246,
+     *       "content_type": "video/mp4",
+     *       "file_name": "output.mp4",
+     *       "url": "https://v3b.fal.media/files/b/0aac4496/QzdMSy4uSKyFfMjtU65MA_clip_text.mp4"
+     *     }
+     */
+    video: Components.File;
+}
+
+export interface SharedType_48a {
+    /**
+     * @description The generated video.
+     * @example {
+     *       "file_size": 7533071,
+     *       "content_type": "video/mp4",
+     *       "file_name": "output.mp4",
+     *       "url": "https://v3b.fal.media/files/b/0a86603b/YAlbB2535l07BTy1wpDeI_output.mp4"
+     *     }
+     */
+    video: Components.File;
 }
 
 export interface SharedType_480 {
@@ -16748,6 +16850,18 @@ export interface SharedType_45a {
     sync_mode?: boolean;
 }
 
+export interface SharedType_453 {
+    /**
+     * @description The generated video file
+     * @example {
+     *       "url": "https://v3b.fal.media/files/b/0a90dd3a/EG257tf7j9UfVc-jHF8lI_0MWboc13.mp4",
+     *       "file_name": "EG257tf7j9UfVc-jHF8lI_0MWboc13.mp4",
+     *       "content_type": "video/mp4"
+     *     }
+     */
+    video: Components.VideoFile;
+}
+
 export interface SharedType_444 {
     /**
      * Images
@@ -16768,6 +16882,62 @@ export interface SharedType_444 {
 
 export interface SharedType_441 {}
 
+export interface SharedType_438 {
+    /**
+     * Images
+     * @description The generated images with objects removed.
+     * @example [
+     *       {
+     *         "file_name": "85a2309b2c954c85a75120e664adbe17.png",
+     *         "content_type": "image/png",
+     *         "file_size": 730703,
+     *         "width": 1024,
+     *         "height": 768,
+     *         "url": "https://v3.fal.media/files/lion/arYSoJeqWjhbcA8o4budv_85a2309b2c954c85a75120e664adbe17.png"
+     *       }
+     *     ]
+     */
+    images: Components.Image[];
+}
+
+export interface SharedType_432 {
+    /**
+     * Has Nsfw Concepts
+     * @description Whether the generated images contain NSFW concepts.
+     */
+    has_nsfw_concepts: boolean[];
+    /**
+     * Images
+     * @description The generated image files info.
+     * @example [
+     *       {
+     *         "height": 1024,
+     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/z-image-turbo-controlnet-output.jpg",
+     *         "width": 1536,
+     *         "content_type": "image/png"
+     *       }
+     *     ]
+     */
+    images: Components.ImageFile[];
+    /**
+     * Prompt
+     * @description The prompt used for generating the image.
+     */
+    prompt: string;
+    /**
+     * Seed
+     * @description Seed of the generated Image. It will be the same value of the one passed in the input or the randomly generated that was used in case none was passed.
+     */
+    seed: number;
+    /**
+     * Timings
+     * @description The timings of the generation process.
+     */
+    timings: {
+        [key: string]: number;
+    };
+}
+
 export interface SharedType_41c {
     /**
      * @description The generated audio file.
@@ -16776,6 +16946,19 @@ export interface SharedType_41c {
      *     }
      */
     audio: Components.File;
+}
+
+export interface SharedType_419 {
+    /**
+     * @description The generated video
+     * @example {
+     *       "file_size": 6420765,
+     *       "file_name": "output.mp4",
+     *       "url": "https://storage.googleapis.com/falserverless/model_tests/video_models/output-3.mp4",
+     *       "content_type": "video/mp4"
+     *     }
+     */
+    video: Components.File;
 }
 
 export interface SharedType_417 {
@@ -17136,35 +17319,81 @@ export interface SharedType_411 {
 }
 
 export interface SharedType_408 {
+    audio_setting?: Components.AudioSetting;
     /**
-     * Masks
-     * @description Dictionary of label: mask image
-     * @example [
-     *       {
-     *         "content_type": "image/png",
-     *         "url": "https://v3.fal.media/files/monkey/6ITmhHQJ-69s-UxajrY5T_019c3c1e3c50446e9996f709d36debb4.png",
-     *         "file_name": "019c3c1e3c50446e9996f709d36debb4.png",
-     *         "width": 1800,
-     *         "height": 1200,
-     *         "file_size": 15724
-     *       },
-     *       {
-     *         "content_type": "image/png",
-     *         "url": "https://v3.fal.media/files/monkey/IljtMxahoo9-7SUpx0fth_0a1522ca410942c7ad6c73efa15b3549.png",
-     *         "file_name": "0a1522ca410942c7ad6c73efa15b3549.png",
-     *         "width": 1800,
-     *         "height": 1200,
-     *         "file_size": 14905
-     *       }
-     *     ]
+     * Enable Safety Checker
+     * @description Authorized callers may set false to request relaxed screening.
+     * @default true
      */
-    masks: Components.Image[];
+    enable_safety_checker?: boolean;
     /**
-     * Output
-     * @description Generated output
-     * @example <p>  A white pickup truck  </p>   [SEG]  is parked on the side of  <p>  the red building  </p>   [SEG] , creating a unique and eye-catching contrast.<|im_end|>
+     * Language Boost
+     * @description Enhance recognition of specified languages and dialects
      */
-    output: string;
+    language_boost?:
+        | 'Chinese'
+        | 'Chinese,Yue'
+        | 'English'
+        | 'Arabic'
+        | 'Russian'
+        | 'Spanish'
+        | 'French'
+        | 'Portuguese'
+        | 'German'
+        | 'Turkish'
+        | 'Dutch'
+        | 'Ukrainian'
+        | 'Vietnamese'
+        | 'Indonesian'
+        | 'Japanese'
+        | 'Italian'
+        | 'Korean'
+        | 'Thai'
+        | 'Polish'
+        | 'Romanian'
+        | 'Greek'
+        | 'Czech'
+        | 'Finnish'
+        | 'Hindi'
+        | 'Bulgarian'
+        | 'Danish'
+        | 'Hebrew'
+        | 'Malay'
+        | 'Slovak'
+        | 'Swedish'
+        | 'Croatian'
+        | 'Hungarian'
+        | 'Norwegian'
+        | 'Slovenian'
+        | 'Catalan'
+        | 'Nynorsk'
+        | 'Afrikaans'
+        | 'auto';
+    /**
+     * Output Format
+     * @description Format of the output content (non-streaming only)
+     * @default hex
+     * @enum {string}
+     */
+    output_format?: 'url' | 'hex';
+    pronunciation_dict?: Components.PronunciationDict;
+    /**
+     * Text
+     * @description Text to convert to speech (max 5000 characters, minimum 1 non-whitespace character)
+     * @example Hello world! This is a test of the text-to-speech system.
+     */
+    text: string;
+    /**
+     * @description Voice configuration settings
+     * @default {
+     *       "voice_id": "Wise_Woman",
+     *       "pitch": 0,
+     *       "vol": 1,
+     *       "english_normalization": false,
+     *       "speed": 1
+     *     }
+     */
+    voice_setting?: Components.VoiceSetting;
 }
 
 export interface SharedType_3fc {
@@ -17177,17 +17406,19 @@ export interface SharedType_3fc {
     video: Components.File;
 }
 
-export interface SharedType_3f7 {
+export interface SharedType_3ef {
     /**
-     * @description The generated video
-     * @example {
-     *       "content_type": "video/mp4",
-     *       "file_size": 2995630,
-     *       "file_name": "output.mp4",
-     *       "url": "https://fal.media/files/zebra/11UahivZ3XZ1tRlcEcgPq_output.mp4"
-     *     }
+     * Images
+     * @example [
+     *       {
+     *         "content_type": "image/webp",
+     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/recraft-v4/pro-output.webp",
+     *         "file_name": "image.webp",
+     *         "file_size": 1949504
+     *       }
+     *     ]
      */
-    video: Components.File;
+    images: Components.File[];
 }
 
 export interface SharedType_3dc {
@@ -17207,49 +17438,6 @@ export interface SharedType_3dc {
 export interface SharedType_3d6 {
     exr_file?: Components.File;
     video: Components.File;
-}
-
-export interface SharedType_3cf {
-    /**
-     * @description The generated video
-     * @example {
-     *       "content_type": "video/mp4",
-     *       "file_size": 6420765,
-     *       "file_name": "output.mp4",
-     *       "url": "https://storage.googleapis.com/falserverless/model_tests/video_models/output-3.mp4"
-     *     }
-     */
-    video: Components.File;
-}
-
-export interface SharedType_3cb {
-    /**
-     * @description The generated video file
-     * @example {
-     *       "content_type": "video/mp4",
-     *       "file_name": "JCP0MJDH3ioOFzRd7GsGi_aB0OxLmA.mp4",
-     *       "url": "https://v3b.fal.media/files/b/0a90dd0b/JCP0MJDH3ioOFzRd7GsGi_aB0OxLmA.mp4"
-     *     }
-     */
-    video: Components.VideoFile;
-}
-
-export interface SharedType_3bc {
-    /**
-     * @description Generated 3D object file.
-     * @example {
-     *       "file_size": 720696,
-     *       "content_type": "model/gltf-binary",
-     *       "file_name": "white_mesh.glb",
-     *       "url": "https://v3.fal.media/files/lion/WqIhtKPaSoeBtC30qzIGG_white_mesh.glb"
-     *     }
-     */
-    model_mesh: Components.File;
-    /**
-     * Seed
-     * @description Seed value used for generation.
-     */
-    seed: number;
 }
 
 export interface SharedType_3b9 {
@@ -17295,6 +17483,23 @@ export interface SharedType_3a3 {
      * @default .
      */
     prompt?: string;
+}
+
+export interface SharedType_398 {
+    /**
+     * @description The generated video.
+     * @example {
+     *       "height": 720,
+     *       "file_name": "RUAbFYlssdqnbjNLmE8qP_IX7BNYGP.mp4",
+     *       "fps": 24,
+     *       "width": 1280,
+     *       "content_type": "video/mp4",
+     *       "num_frames": 145,
+     *       "duration": 6.041667,
+     *       "url": "https://v3b.fal.media/files/b/0a8b90e4/RUAbFYlssdqnbjNLmE8qP_IX7BNYGP.mp4"
+     *     }
+     */
+    video: Components.VideoFile;
 }
 
 export interface SharedType_394 {
@@ -17370,18 +17575,6 @@ export interface SharedType_394 {
      * @default false
      */
     sync_mode?: boolean;
-}
-
-export interface SharedType_392 {
-    /**
-     * @description The generated video file
-     * @example {
-     *       "content_type": "video/mp4",
-     *       "file_name": "EG257tf7j9UfVc-jHF8lI_0MWboc13.mp4",
-     *       "url": "https://v3b.fal.media/files/b/0a90dd3a/EG257tf7j9UfVc-jHF8lI_0MWboc13.mp4"
-     *     }
-     */
-    video: Components.VideoFile;
 }
 
 export interface SharedType_38d {
@@ -17678,6 +17871,56 @@ export interface SharedType_362 {
     sync_mode?: boolean;
 }
 
+export interface SharedType_360 {
+    /**
+     * Has Nsfw Concepts
+     * @description Whether the generated images contain NSFW concepts.
+     */
+    has_nsfw_concepts: boolean[];
+    /**
+     * Images
+     * @description The generated image files info.
+     * @example [
+     *       {
+     *         "height": 768,
+     *         "content_type": "image/jpeg",
+     *         "url": "https://v3.fal.media/files/zebra/mMW8_S5PeGuDXLTfIKCpG.png",
+     *         "width": 1024
+     *       }
+     *     ]
+     */
+    images: Components.Image_1[];
+    /**
+     * Prompt
+     * @description The prompt used for generating the image.
+     */
+    prompt: string;
+    /**
+     * Seed
+     * @description Seed of the generated Image. It will be the same value of the one passed in the
+     *                 input or the randomly generated that was used in case none was passed.
+     */
+    seed: number;
+    timings: {
+        [key: string]: number;
+    };
+}
+
+export interface SharedType_35f {
+    /**
+     * Images
+     * @example [
+     *       {
+     *         "content_type": "image/svg+xml",
+     *         "url": "https://v3b.fal.media/files/b/0a8ee4de/lmXuapOPV309mE533swE0_image.svg",
+     *         "file_name": "image.svg",
+     *         "file_size": 1818794
+     *       }
+     *     ]
+     */
+    images: Components.File[];
+}
+
 export interface SharedType_35b {
     /**
      * Images
@@ -17771,27 +18014,6 @@ export interface SharedType_355 {
      * @description The style of the generated video
      */
     style?: 'anime' | '3d_animation' | 'clay' | 'comic' | 'cyberpunk';
-}
-
-export interface SharedType_348 {
-    /**
-     * Draft Id
-     * @description The draft ID, or null when draft mode is disabled. Complete this draft within seven days using the same account.
-     */
-    draft_id?: string;
-    /**
-     * Seed
-     * @description The seed used for generation.
-     * @example 42
-     */
-    seed: number;
-    /**
-     * @description The generated video file.
-     * @example {
-     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/bytedance/seedance_2/output.mp4"
-     *     }
-     */
-    video: Components.File;
 }
 
 export interface SharedType_345 {
@@ -17893,46 +18115,67 @@ export interface SharedType_329 {
     };
 }
 
-export interface SharedType_311 {
+export interface SharedType_2fa1 {
     /**
-     * Expanded Prompt
-     * @description The prompt after expansion, as sent to the model. Null when prompt expansion was disabled, left the prompt unchanged, or was performed internally by MiniMax's hosted API.
+     * Aspect Ratio
+     * @description The aspect ratio of the generated video frame. If 'auto', the aspect ratio will be determined automatically based on the input video, and the closest aspect ratio to the input video will be used.
+     * @default auto
+     * @enum {string}
      */
-    expanded_prompt?: string;
+    aspect_ratio?: 'auto' | '16:9' | '9:16' | '1:1';
     /**
-     * Timings
-     * @description Timing breakdown in seconds. 'inference' is the DiT denoising time on the GPU backend. Null on routes that do not report backend timings.
+     * Duration
+     * @description Video duration in seconds.
+     * @default 5
+     * @enum {string}
      */
-    timings?: {
-        [key: string]: number;
-    };
+    duration?: '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10';
     /**
-     * @description The generated video
-     * @example {
-     *       "file_size": 6463396,
-     *       "content_type": "video/mp4",
-     *       "file_name": "--prs89fkHtWW406fmEs__NRhTqNku.mp4",
-     *       "url": "https://v3b.fal.media/files/b/0aa46818/--prs89fkHtWW406fmEs__NRhTqNku.mp4"
-     *     }
+     * Elements
+     * @description Elements (characters/objects) to include. Reference in prompt as @Element1, @Element2, etc. Maximum 4 total (elements + reference images) when using video.
+     * @example [
+     *       {
+     *         "frontal_image_url": "https://v3b.fal.media/files/b/panda/MQp-ghIqshvMZROKh9lW3.png",
+     *         "reference_image_urls": [
+     *           "https://v3b.fal.media/files/b/kangaroo/YMpmQkYt9xugpOTQyZW0O.png",
+     *           "https://v3b.fal.media/files/b/zebra/d6ywajNyJ6bnpa_xBue-K.png"
+     *         ]
+     *       }
+     *     ]
      */
-    video: Components.File;
-}
-
-export interface SharedType_303 {
+    elements?: Components.OmniVideoElementInput[];
     /**
-     * @description The generated video.
-     * @example {
-     *       "file_name": "r2v_output.mp4",
-     *       "url": "https://v3b.fal.media/files/b/0a8b90e4/r2v_output.mp4",
-     *       "num_frames": 192,
-     *       "width": 1280,
-     *       "fps": 24,
-     *       "content_type": "video/mp4",
-     *       "height": 720,
-     *       "duration": 8
-     *     }
+     * Enable Safety Checker
+     * @description Disabling safety checks requires account authorization; unauthorized requests are always checked.
+     * @default true
      */
-    video: Components.VideoFile;
+    enable_safety_checker?: boolean;
+    /**
+     * Image Urls
+     * @description Reference images for style/appearance. Reference in prompt as @Image1, @Image2, etc. Maximum 4 total (elements + reference images) when using video.
+     * @example []
+     */
+    image_urls?: string[];
+    /**
+     * Keep Audio
+     * @description Whether to keep the original audio from the video.
+     * @default false
+     */
+    keep_audio?: boolean;
+    /**
+     * Prompt
+     * @description Use @Element1, @Element2 to reference elements and @Image1, @Image2 to reference images in order.
+     * @example Based on @Video1, generate the next shot. keep the style of the video
+     */
+    prompt: string;
+    /**
+     * Video Url
+     * @description Reference video URL. Only .mp4/.mov formats supported, 3-10 seconds duration, 720-2160px resolution, max 200MB.
+     *
+     *     Max file size: 200.0MB, Min width: 720px, Min height: 720px, Max width: 2160px, Max height: 2160px, Min duration: 3.0s, Max duration: 10.05s, Min FPS: 24.0, Max FPS: 60.0, Timeout: 30.0s
+     * @example https://v3b.fal.media/files/b/panda/oVdiICFXY03Vbam-08Aj8_output.mp4
+     */
+    video_url: string;
 }
 
 export interface SharedType_2fa {
@@ -17972,6 +18215,19 @@ export interface SharedType_2fa {
      * @example https://storage.googleapis.com/falserverless/example_inputs/seedvr-input.mp4
      */
     video_url: string;
+}
+
+export interface SharedType_2e3 {
+    /**
+     * @description The generated video.
+     * @example {
+     *       "file_size": 15809901,
+     *       "content_type": "video/mp4",
+     *       "file_name": "output.mp4",
+     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/kling-o3/pro-v2v-reference/output.mp4"
+     *     }
+     */
+    video: Components.File;
 }
 
 export interface SharedType_2d7 {
@@ -18071,6 +18327,114 @@ export interface SharedType_2d7 {
      * @default false
      */
     sync_mode?: boolean;
+}
+
+export interface SharedType_2ca {
+    /**
+     * @description The generated video.
+     * @example {
+     *       "file_size": 13096952,
+     *       "content_type": "video/mp4",
+     *       "file_name": "output.mp4",
+     *       "url": "https://v3b.fal.media/files/b/0a8d04e2/idOb9V-Q9ujlggPSKqsfS_output.mp4"
+     *     }
+     */
+    video: Components.File;
+}
+
+export interface SharedType_29a {
+    /**
+     * Actual Prompt
+     * @description The actual prompt used if prompt expansion was enabled
+     */
+    actual_prompt?: string;
+    animation_fbx?: Components.File;
+    animation_glb?: Components.File;
+    basic_animations?: Components.BasicAnimations;
+    /**
+     * @description Generated 3D object in GLB format.
+     * @example {
+     *       "file_size": 9314028,
+     *       "content_type": "model/gltf-binary",
+     *       "file_name": "model.glb",
+     *       "url": "https://v3b.fal.media/files/b/penguin/DId89qXLu6BXu09RFAwAV_model.glb"
+     *     }
+     */
+    model_glb: Components.File;
+    /**
+     * @description URLs for different 3D model formats
+     * @example {
+     *       "fbx": {
+     *         "file_size": 5444380,
+     *         "content_type": "application/octet-stream",
+     *         "file_name": "model.fbx",
+     *         "url": "https://v3b.fal.media/files/b/kangaroo/7nUUw5dHN9a0DKlOpAKbP_model.fbx"
+     *       },
+     *       "usdz": {
+     *         "file_size": 9834246,
+     *         "content_type": "model/vnd.usdz+zip",
+     *         "file_name": "model.usdz",
+     *         "url": "https://v3b.fal.media/files/b/panda/XcC-mIJywUvH7coyrzENU_model.usdz"
+     *       },
+     *       "obj": {
+     *         "file_size": 2755145,
+     *         "content_type": "model/obj",
+     *         "file_name": "model.obj",
+     *         "url": "https://v3b.fal.media/files/b/monkey/cCNMHqUbKSNtDN1iGmiYm_model.obj"
+     *       },
+     *       "glb": {
+     *         "file_size": 9314028,
+     *         "content_type": "model/gltf-binary",
+     *         "file_name": "model.glb",
+     *         "url": "https://v3b.fal.media/files/b/penguin/DId89qXLu6BXu09RFAwAV_model.glb"
+     *       }
+     *     }
+     */
+    model_urls: Components.ModelUrls;
+    /**
+     * Prompt
+     * @description The text prompt used for generation
+     * @example A rustic, antique wooden treasure chest with a curved, domed lid, constructed from weathered, dark brown planks exhibiting prominent wood grain and subtle distress. It's heavily reinforced with broad, dark grey, oxidized metal bands secured by numerous circular rivets. Ornate, dark iron decorative elements featuring swirling foliate patterns and dragon motifs adorn the corners and lid. A prominent, circular, intricately carved metal lock plate with a central keyhole dominates the front, flanked by two large, dark metallic pull rings.
+     */
+    prompt: string;
+    /**
+     * Rig Task Id
+     * @description Rigging task ID. Only present when enable_rigging is true.
+     */
+    rig_task_id?: string;
+    rigged_character_fbx?: Components.File;
+    rigged_character_glb?: Components.File;
+    /**
+     * Seed
+     * @description The seed used for generation
+     * @example 4002110719
+     */
+    seed?: number;
+    /**
+     * Texture Urls
+     * @description Array of texture file objects
+     * @example [
+     *       {
+     *         "base_color": {
+     *           "file_size": 4254502,
+     *           "content_type": "image/png",
+     *           "file_name": "texture_0.png",
+     *           "url": "https://v3b.fal.media/files/b/panda/DoPKAuZY0tTjnr6C9ee-Q_texture_0.png"
+     *         }
+     *       }
+     *     ]
+     */
+    texture_urls?: Components.TextureFiles[];
+    /**
+     * @description Preview thumbnail of the generated model
+     * @example {
+     *       "file_size": 173792,
+     *       "content_type": "image/png",
+     *       "file_name": "preview.png",
+     *       "url": "https://v3b.fal.media/files/b/koala/6LJISu4ilkZXcdOETwl_d_preview.png"
+     *     }
+     */
+    thumbnail?: Components.File;
 }
 
 export interface SharedType_298 {
@@ -18194,35 +18558,6 @@ export interface SharedType_297 {
      * @enum {string}
      */
     topology?: 'quad' | 'triangle';
-}
-
-export interface SharedType_287 {
-    /**
-     * Prompt
-     * @description The prompt used for the generation.
-     * @example black-and-white video, a cowboy walks through a dusty town, film grain
-     */
-    prompt: string;
-    /**
-     * Seed
-     * @description The seed used for the random number generator.
-     * @example 1490631192028410600
-     */
-    seed: number;
-    /**
-     * @description The generated video.
-     * @example {
-     *       "height": 704,
-     *       "duration": 6.44,
-     *       "file_name": "GHF1uJnBb0iuYWQDuZrzG_WAtgthsP.mp4",
-     *       "content_type": "video/mp4",
-     *       "fps": 25,
-     *       "width": 1248,
-     *       "url": "https://v3b.fal.media/files/b/0a922b2c/GHF1uJnBb0iuYWQDuZrzG_WAtgthsP.mp4",
-     *       "num_frames": 161
-     *     }
-     */
-    video: Components.VideoFile;
 }
 
 export interface SharedType_27e {
@@ -18381,30 +18716,6 @@ export interface SharedType_266 {
     video: Components.File;
 }
 
-export interface SharedType_25a {
-    /**
-     * Prompt
-     * @description The prompt used for the generation.
-     * @example A woman speaks to the camera
-     */
-    prompt: string;
-    /**
-     * Seed
-     * @description The seed used for the random number generator.
-     * @example 175932751
-     */
-    seed: number;
-    /**
-     * @description The generated video.
-     * @example {
-     *       "content_type": "video/mp4",
-     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/ltx-2-a2v-output.mp4",
-     *       "file_name": "ltx-2-a2v-output.mp4"
-     *     }
-     */
-    video: Components.VideoFile;
-}
-
 export interface SharedType_252 {
     /**
      * Duration
@@ -18535,6 +18846,41 @@ export interface SharedType_223 {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
+export interface SharedType_20d1 {
+    /**
+     * Has Nsfw Concepts
+     * @description Whether the generated images contain NSFW concepts.
+     */
+    has_nsfw_concepts: boolean[];
+    /**
+     * Images
+     * @description The generated image files info.
+     * @example [
+     *       {
+     *         "content_type": "image/png",
+     *         "url": "https://v3b.fal.media/files/b/0a877afe/InJJA0Q1gtQnyK1N3wdg5.png",
+     *         "height": 768,
+     *         "width": 1376
+     *       }
+     *     ]
+     */
+    images: Components.Image_1[];
+    /**
+     * Prompt
+     * @description The prompt used for generating the image.
+     */
+    prompt: string;
+    /**
+     * Seed
+     * @description Seed of the generated Image. It will be the same value of the one passed in the
+     *                 input or the randomly generated that was used in case none was passed.
+     */
+    seed: number;
+    timings: {
+        [key: string]: number;
+    };
+}
+
 export interface SharedType_20d {
     /**
      * Images
@@ -18551,6 +18897,73 @@ export interface SharedType_20d {
      * @description The seed used for generation
      */
     seed: number;
+}
+
+export interface SharedType_200 {
+    /**
+     * Has Nsfw Concepts
+     * @description Whether the generated images contain NSFW concepts.
+     */
+    has_nsfw_concepts: boolean[];
+    /**
+     * Images
+     * @description The generated image files info.
+     * @example [
+     *       {
+     *         "content_type": "image/png",
+     *         "width": 1024,
+     *         "url": "https://v3b.fal.media/files/b/0a8c18a5/1z0k9F1YLgz4qCr64jCBa_r2uqRyDg.png",
+     *         "height": 768
+     *       }
+     *     ]
+     */
+    images: Components.ImageFile[];
+    /**
+     * Prompt
+     * @description The prompt used for generating the image.
+     */
+    prompt: string;
+    /**
+     * Seed
+     * @description Seed of the generated Image. It will be the same value of the one passed in the input or the randomly generated that was used in case none was passed.
+     */
+    seed: number;
+    /**
+     * Timings
+     * @description The timings of the generation process.
+     */
+    timings: {
+        [key: string]: number;
+    };
+}
+
+export interface SharedType_1f6 {
+    /**
+     * Prompt
+     * @description The prompt used for the generation.
+     * @example black-and-white video, a cowboy walks through a dusty town, film grain
+     */
+    prompt: string;
+    /**
+     * Seed
+     * @description The seed used for the random number generator.
+     * @example 1490631192028410600
+     */
+    seed: number;
+    /**
+     * @description The generated video.
+     * @example {
+     *       "duration": 6.44,
+     *       "width": 1248,
+     *       "fps": 25,
+     *       "url": "https://v3b.fal.media/files/b/0a922b2c/GHF1uJnBb0iuYWQDuZrzG_WAtgthsP.mp4",
+     *       "num_frames": 161,
+     *       "file_name": "GHF1uJnBb0iuYWQDuZrzG_WAtgthsP.mp4",
+     *       "height": 704,
+     *       "content_type": "video/mp4"
+     *     }
+     */
+    video: Components.VideoFile;
 }
 
 export interface SharedType_1f0 {
@@ -18841,19 +19254,17 @@ export interface SharedType_1df {
     seed?: number;
 }
 
-export interface SharedType_1d8 {
+export interface SharedType_1d6 {
     /**
-     * Images
-     * @example [
-     *       {
-     *         "file_size": 1722022,
-     *         "content_type": "image/svg+xml",
-     *         "url": "https://v3b.fal.media/files/b/0a8ee4fd/sw8YD36iblpO64JeQZEDt_image.svg",
-     *         "file_name": "image.svg"
-     *       }
-     *     ]
+     * @description The generated video
+     * @example {
+     *       "file_size": 9274380,
+     *       "content_type": "video/mp4",
+     *       "file_name": "output.mp4",
+     *       "url": "https://v3b.fal.media/files/b/0a9ea0a1/Ayb-2fiZBthFQp-kLrw4M_output.mp4"
+     *     }
      */
-    images: Components.File[];
+    video: Components.File;
 }
 
 export interface SharedType_1d4 {
@@ -18898,69 +19309,6 @@ export interface SharedType_1c7 {
     prompt: string;
 }
 
-export interface SharedType_1bc {
-    /**
-     * Aspect Ratio
-     * @description The aspect ratio of the generated video frame. If 'auto', the aspect ratio will be determined automatically based on the input video, and the closest aspect ratio to the input video will be used.
-     * @default auto
-     * @enum {string}
-     */
-    aspect_ratio?: 'auto' | '16:9' | '9:16' | '1:1';
-    /**
-     * Duration
-     * @description Video duration in seconds.
-     * @default 5
-     * @enum {string}
-     */
-    duration?: '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10';
-    /**
-     * Elements
-     * @description Elements (characters/objects) to include. Reference in prompt as @Element1, @Element2, etc. Maximum 4 total (elements + reference images) when using video.
-     * @example [
-     *       {
-     *         "reference_image_urls": [
-     *           "https://v3b.fal.media/files/b/kangaroo/YMpmQkYt9xugpOTQyZW0O.png",
-     *           "https://v3b.fal.media/files/b/zebra/d6ywajNyJ6bnpa_xBue-K.png"
-     *         ],
-     *         "frontal_image_url": "https://v3b.fal.media/files/b/panda/MQp-ghIqshvMZROKh9lW3.png"
-     *       }
-     *     ]
-     */
-    elements?: Components.OmniVideoElementInput[];
-    /**
-     * Enable Safety Checker
-     * @description Disabling safety checks requires account authorization; unauthorized requests are always checked.
-     * @default true
-     */
-    enable_safety_checker?: boolean;
-    /**
-     * Image Urls
-     * @description Reference images for style/appearance. Reference in prompt as @Image1, @Image2, etc. Maximum 4 total (elements + reference images) when using video.
-     * @example []
-     */
-    image_urls?: string[];
-    /**
-     * Keep Audio
-     * @description Whether to keep the original audio from the video.
-     * @default false
-     */
-    keep_audio?: boolean;
-    /**
-     * Prompt
-     * @description Use @Element1, @Element2 to reference elements and @Image1, @Image2 to reference images in order.
-     * @example Based on @Video1, generate the next shot. keep the style of the video
-     */
-    prompt: string;
-    /**
-     * Video Url
-     * @description Reference video URL. Only .mp4/.mov formats supported, 3-10 seconds duration, 720-2160px resolution, max 200MB.
-     *
-     *     Max file size: 200.0MB, Min width: 720px, Min height: 720px, Max width: 2160px, Max height: 2160px, Min duration: 3.0s, Max duration: 10.05s, Min FPS: 24.0, Max FPS: 60.0, Timeout: 30.0s
-     * @example https://v3b.fal.media/files/b/panda/oVdiICFXY03Vbam-08Aj8_output.mp4
-     */
-    video_url: string;
-}
-
 export interface SharedType_1af {
     frames_zip?: Components.File;
     /**
@@ -18999,32 +19347,6 @@ export interface SharedType_1a5 {
     structured_prompt: {
         [key: string]: { [x: string]: any } | null;
     };
-}
-
-export interface SharedType_1a1 {
-    /**
-     * @description The generated video.
-     * @example {
-     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/kling-o3/pro-v2v-reference/output.mp4",
-     *       "file_size": 15809901,
-     *       "file_name": "output.mp4",
-     *       "content_type": "video/mp4"
-     *     }
-     */
-    video: Components.File;
-}
-
-export interface SharedType_1911 {
-    /**
-     * @description The generated video
-     * @example {
-     *       "content_type": "video/mp4",
-     *       "file_size": 5485412,
-     *       "file_name": "output.mp4",
-     *       "url": "https://fal.media/files/lion/_fVEU5nzHND_fHGQUhXEm_output.mp4"
-     *     }
-     */
-    video: Components.File;
 }
 
 export interface SharedType_191 {
@@ -19150,99 +19472,33 @@ export interface SharedType_191 {
     input_image_urls?: string[];
 }
 
-export interface SharedType_18b {
-    /**
-     * Actual Prompt
-     * @description The actual prompt used if prompt expansion was enabled
-     */
-    actual_prompt?: string;
-    animation_fbx?: Components.File;
-    animation_glb?: Components.File;
-    basic_animations?: Components.BasicAnimations;
-    /**
-     * @description Generated 3D object in GLB format.
-     * @example {
-     *       "content_type": "model/gltf-binary",
-     *       "file_name": "model.glb",
-     *       "file_size": 9314028,
-     *       "url": "https://v3b.fal.media/files/b/penguin/DId89qXLu6BXu09RFAwAV_model.glb"
-     *     }
-     */
-    model_glb: Components.File;
-    /**
-     * @description URLs for different 3D model formats
-     * @example {
-     *       "fbx": {
-     *         "content_type": "application/octet-stream",
-     *         "file_name": "model.fbx",
-     *         "file_size": 5444380,
-     *         "url": "https://v3b.fal.media/files/b/kangaroo/7nUUw5dHN9a0DKlOpAKbP_model.fbx"
-     *       },
-     *       "glb": {
-     *         "content_type": "model/gltf-binary",
-     *         "file_name": "model.glb",
-     *         "file_size": 9314028,
-     *         "url": "https://v3b.fal.media/files/b/penguin/DId89qXLu6BXu09RFAwAV_model.glb"
-     *       },
-     *       "usdz": {
-     *         "content_type": "model/vnd.usdz+zip",
-     *         "file_name": "model.usdz",
-     *         "file_size": 9834246,
-     *         "url": "https://v3b.fal.media/files/b/panda/XcC-mIJywUvH7coyrzENU_model.usdz"
-     *       },
-     *       "obj": {
-     *         "content_type": "model/obj",
-     *         "file_name": "model.obj",
-     *         "file_size": 2755145,
-     *         "url": "https://v3b.fal.media/files/b/monkey/cCNMHqUbKSNtDN1iGmiYm_model.obj"
-     *       }
-     *     }
-     */
-    model_urls: Components.ModelUrls;
+export interface SharedType_190 {
     /**
      * Prompt
-     * @description The text prompt used for generation
-     * @example A rustic, antique wooden treasure chest with a curved, domed lid, constructed from weathered, dark brown planks exhibiting prominent wood grain and subtle distress. It's heavily reinforced with broad, dark grey, oxidized metal bands secured by numerous circular rivets. Ornate, dark iron decorative elements featuring swirling foliate patterns and dragon motifs adorn the corners and lid. A prominent, circular, intricately carved metal lock plate with a central keyhole dominates the front, flanked by two large, dark metallic pull rings.
+     * @description The prompt used for the generation.
+     * @example black-and-white video, a cowboy walks through a dusty town, film grain
      */
     prompt: string;
     /**
-     * Rig Task Id
-     * @description Rigging task ID. Only present when enable_rigging is true.
-     */
-    rig_task_id?: string;
-    rigged_character_fbx?: Components.File;
-    rigged_character_glb?: Components.File;
-    /**
      * Seed
-     * @description The seed used for generation
-     * @example 4002110719
+     * @description The seed used for the random number generator.
+     * @example 1490631192028410600
      */
-    seed?: number;
+    seed: number;
     /**
-     * Texture Urls
-     * @description Array of texture file objects
-     * @example [
-     *       {
-     *         "base_color": {
-     *           "content_type": "image/png",
-     *           "file_name": "texture_0.png",
-     *           "file_size": 4254502,
-     *           "url": "https://v3b.fal.media/files/b/panda/DoPKAuZY0tTjnr6C9ee-Q_texture_0.png"
-     *         }
-     *       }
-     *     ]
-     */
-    texture_urls?: Components.TextureFiles[];
-    /**
-     * @description Preview thumbnail of the generated model
+     * @description The generated video.
      * @example {
-     *       "content_type": "image/png",
-     *       "file_name": "preview.png",
-     *       "file_size": 173792,
-     *       "url": "https://v3b.fal.media/files/b/koala/6LJISu4ilkZXcdOETwl_d_preview.png"
+     *       "duration": 6.44,
+     *       "width": 1888,
+     *       "fps": 25,
+     *       "url": "https://v3b.fal.media/files/b/0a9640bb/vqhmP1B5juujIXfBPTotm_5MBoh7yS.mp4",
+     *       "num_frames": 161,
+     *       "file_name": "vqhmP1B5juujIXfBPTotm_5MBoh7yS.mp4",
+     *       "height": 1056,
+     *       "content_type": "video/mp4"
      *     }
      */
-    thumbnail?: Components.File;
+    video: Components.VideoFile;
 }
 
 export interface SharedType_189 {
@@ -19253,6 +19509,23 @@ export interface SharedType_189 {
      *     }
      */
     audio: Components.File;
+}
+
+export interface SharedType_176 {
+    /**
+     * @description The generated video.
+     * @example {
+     *       "height": 720,
+     *       "file_name": "0Ci1dviuSnEyUZzBUq-_5_nu7MrAAa.mp4",
+     *       "fps": 24,
+     *       "width": 1280,
+     *       "content_type": "video/mp4",
+     *       "num_frames": 145,
+     *       "duration": 6.041667,
+     *       "url": "https://v3b.fal.media/files/b/0a8b90e0/0Ci1dviuSnEyUZzBUq-_5_nu7MrAAa.mp4"
+     *     }
+     */
+    video: Components.VideoFile;
 }
 
 export interface SharedType_16d {
@@ -19391,44 +19664,6 @@ export interface SharedType_158 {
     };
 }
 
-export interface SharedType_157 {
-    /**
-     * Has Nsfw Concepts
-     * @description Whether the generated images contain NSFW concepts.
-     */
-    has_nsfw_concepts: boolean[];
-    /**
-     * Images
-     * @description The generated image files info.
-     * @example [
-     *       {
-     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/z-image-turbo-controlnet-output.jpg",
-     *         "width": 1536,
-     *         "height": 1024,
-     *         "content_type": "image/png"
-     *       }
-     *     ]
-     */
-    images: Components.ImageFile[];
-    /**
-     * Prompt
-     * @description The prompt used for generating the image.
-     */
-    prompt: string;
-    /**
-     * Seed
-     * @description Seed of the generated Image. It will be the same value of the one passed in the input or the randomly generated that was used in case none was passed.
-     */
-    seed: number;
-    /**
-     * Timings
-     * @description The timings of the generation process.
-     */
-    timings: {
-        [key: string]: number;
-    };
-}
-
 export interface SharedType_151 {
     /**
      * Images
@@ -19445,6 +19680,38 @@ export interface SharedType_151 {
      * @description The seed used for generation
      */
     seed: number;
+}
+
+export interface SharedType_14b {
+    /**
+     * Masks
+     * @description Dictionary of label: mask image
+     * @example [
+     *       {
+     *         "file_size": 15724,
+     *         "content_type": "image/png",
+     *         "file_name": "019c3c1e3c50446e9996f709d36debb4.png",
+     *         "width": 1800,
+     *         "url": "https://v3.fal.media/files/monkey/6ITmhHQJ-69s-UxajrY5T_019c3c1e3c50446e9996f709d36debb4.png",
+     *         "height": 1200
+     *       },
+     *       {
+     *         "file_size": 14905,
+     *         "content_type": "image/png",
+     *         "file_name": "0a1522ca410942c7ad6c73efa15b3549.png",
+     *         "width": 1800,
+     *         "url": "https://v3.fal.media/files/monkey/IljtMxahoo9-7SUpx0fth_0a1522ca410942c7ad6c73efa15b3549.png",
+     *         "height": 1200
+     *       }
+     *     ]
+     */
+    masks: Components.Image[];
+    /**
+     * Output
+     * @description Generated output
+     * @example <p>  A white pickup truck  </p>   [SEG]  is parked on the side of  <p>  the red building  </p>   [SEG] , creating a unique and eye-catching contrast.<|im_end|>
+     */
+    output: string;
 }
 
 export interface SharedType_149 {
@@ -19496,44 +19763,6 @@ export interface SharedType_149 {
      * @description Random seed for reproducibility. If None, a random seed is chosen.
      */
     seed?: number;
-}
-
-export interface SharedType_135 {
-    /**
-     * Expanded Prompt
-     * @description The prompt after expansion, as sent to the model. Null when prompt expansion was disabled, left the prompt unchanged, or was performed internally by MiniMax's hosted API.
-     */
-    expanded_prompt?: string;
-    /**
-     * @description The generated video
-     * @example {
-     *       "file_name": "--prs89fkHtWW406fmEs__NRhTqNku.mp4",
-     *       "url": "https://v3b.fal.media/files/b/0aa46818/--prs89fkHtWW406fmEs__NRhTqNku.mp4",
-     *       "content_type": "video/mp4",
-     *       "file_size": 6463396
-     *     }
-     */
-    video: Components.File;
-}
-
-export interface SharedType_130 {
-    /**
-     * Output
-     * @description Generated output from video processing
-     * @example that's the way I look at it and I don't know what you would say. Sooner or later the child gets run over.
-     *     They seem to be too local, too provincial.
-     */
-    output: string;
-    /**
-     * @description Token usage information
-     * @example {
-     *       "total_tokens": 1100,
-     *       "completion_tokens": 100,
-     *       "prompt_tokens": 1000,
-     *       "cost": 0.0005
-     *     }
-     */
-    usage: Components.UsageInfo_1;
 }
 
 export interface SharedType_129 {
@@ -19602,109 +19831,25 @@ export interface SharedType_121 {
     video: Components.File;
 }
 
+export interface SharedType_120 {
+    /**
+     * @description The generated speaker embedding file in safetensors format.
+     * @example {
+     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/qwen3-tts/clone_out.safetensors",
+     *       "file_size": 16288,
+     *       "file_name": "tmpe71u7t4j.safetensors",
+     *       "content_type": "application/x-safetensors"
+     *     }
+     */
+    speaker_embedding: Components.File;
+}
+
 export interface SharedType_11a {
     /**
      * Images
      * @description The generated image(s).
      */
     images: Components.File[];
-}
-
-export interface SharedType_113 {
-    /**
-     * @description The generated video
-     * @example {
-     *       "content_type": "video/mp4",
-     *       "file_size": 5485412,
-     *       "file_name": "output.mp4",
-     *       "url": "https://storage.googleapis.com/falserverless/model_tests/video_models/output-4.mp4"
-     *     }
-     */
-    video: Components.File;
-}
-
-export interface SharedType_10f {
-    animation_fbx?: Components.File;
-    animation_glb?: Components.File;
-    basic_animations?: Components.BasicAnimations;
-    /**
-     * @description Generated 3D object in GLB format.
-     * @example {
-     *       "content_type": "model/gltf-binary",
-     *       "file_name": "model.glb",
-     *       "file_size": 7875308,
-     *       "url": "https://v3b.fal.media/files/b/tiger/62QMEQqZ3pjUds4DfuVtX_model.glb"
-     *     }
-     */
-    model_glb: Components.File;
-    /**
-     * @description URLs for different 3D model formats
-     * @example {
-     *       "fbx": {
-     *         "content_type": "application/octet-stream",
-     *         "file_name": "model.fbx",
-     *         "file_size": 5574540,
-     *         "url": "https://v3b.fal.media/files/b/koala/R7vPBgkecVvcnbNpRAy9x_model.fbx"
-     *       },
-     *       "glb": {
-     *         "content_type": "model/gltf-binary",
-     *         "file_name": "model.glb",
-     *         "file_size": 7875308,
-     *         "url": "https://v3b.fal.media/files/b/tiger/62QMEQqZ3pjUds4DfuVtX_model.glb"
-     *       },
-     *       "usdz": {
-     *         "content_type": "model/vnd.usdz+zip",
-     *         "file_name": "model.usdz",
-     *         "file_size": 8631497,
-     *         "url": "https://v3b.fal.media/files/b/panda/fSGLGmtgzUjhepklN06Zw_model.usdz"
-     *       },
-     *       "obj": {
-     *         "content_type": "model/obj",
-     *         "file_name": "model.obj",
-     *         "file_size": 2761323,
-     *         "url": "https://v3b.fal.media/files/b/koala/xmOnmSeePfuROe3pqHpf0_model.obj"
-     *       }
-     *     }
-     */
-    model_urls: Components.ModelUrls;
-    /**
-     * Rig Task Id
-     * @description Rigging task ID. Only present when enable_rigging is true.
-     */
-    rig_task_id?: string;
-    rigged_character_fbx?: Components.File;
-    rigged_character_glb?: Components.File;
-    /**
-     * Seed
-     * @description The seed used for generation (if available)
-     * @example 783032043
-     */
-    seed?: number;
-    /**
-     * Texture Urls
-     * @description Array of texture file objects
-     * @example [
-     *       {
-     *         "base_color": {
-     *           "content_type": "image/png",
-     *           "file_name": "texture_0.png",
-     *           "file_size": 4464364,
-     *           "url": "https://v3b.fal.media/files/b/panda/OVrRor7IgeNK9w2i5-NDf_texture_0.png"
-     *         }
-     *       }
-     *     ]
-     */
-    texture_urls?: Components.TextureFiles[];
-    /**
-     * @description Preview thumbnail of the generated model
-     * @example {
-     *       "content_type": "image/png",
-     *       "file_name": "preview.png",
-     *       "file_size": 70958,
-     *       "url": "https://v3b.fal.media/files/b/koala/2NI_hEd7jXzS5rLQhnRga_preview.png"
-     *     }
-     */
-    thumbnail?: Components.File;
 }
 
 export interface SharedType_10b {
@@ -19764,76 +19909,88 @@ export interface SharedType_107 {
     images: Components.Image[];
 }
 
-export interface SharedType_100 {
+export interface SharedType_105 {
+    animation_fbx?: Components.File;
+    animation_glb?: Components.File;
+    basic_animations?: Components.BasicAnimations;
     /**
-     * Elements
-     * @description Elements (characters/objects) to include. Reference in prompt as @Element1, @Element2.
+     * @description Generated 3D object in GLB format.
+     * @example {
+     *       "file_size": 9242744,
+     *       "content_type": "model/gltf-binary",
+     *       "file_name": "model.glb",
+     *       "url": "https://v3b.fal.media/files/b/zebra/OXF1e1bO3JddPTaugv0eL_model.glb"
+     *     }
+     */
+    model_glb: Components.File;
+    /**
+     * @description URLs for different 3D model formats
+     * @example {
+     *       "fbx": {
+     *         "file_size": 5427052,
+     *         "content_type": "application/octet-stream",
+     *         "file_name": "model.fbx",
+     *         "url": "https://v3b.fal.media/files/b/kangaroo/4Q2qdpTvfLVdzAKH1-72v_model.fbx"
+     *       },
+     *       "usdz": {
+     *         "file_size": 9991969,
+     *         "content_type": "model/vnd.usdz+zip",
+     *         "file_name": "model.usdz",
+     *         "url": "https://v3b.fal.media/files/b/lion/RgJG9EBQ_GAHMVWV3wCis_model.usdz"
+     *       },
+     *       "obj": {
+     *         "file_size": 2744413,
+     *         "content_type": "model/obj",
+     *         "file_name": "model.obj",
+     *         "url": "https://v3b.fal.media/files/b/koala/_Vg0d084-hd3EdpIJDf7U_model.obj"
+     *       },
+     *       "glb": {
+     *         "file_size": 9242744,
+     *         "content_type": "model/gltf-binary",
+     *         "file_name": "model.glb",
+     *         "url": "https://v3b.fal.media/files/b/zebra/OXF1e1bO3JddPTaugv0eL_model.glb"
+     *       }
+     *     }
+     */
+    model_urls: Components.ModelUrls;
+    /**
+     * Rig Task Id
+     * @description Rigging task ID. Only present when enable_rigging is true.
+     */
+    rig_task_id?: string;
+    rigged_character_fbx?: Components.File;
+    rigged_character_glb?: Components.File;
+    /**
+     * Seed
+     * @description The seed used for generation (if available)
+     * @example 2009275957
+     */
+    seed?: number;
+    /**
+     * Texture Urls
+     * @description Array of texture file objects, matching Meshy API structure
      * @example [
      *       {
-     *         "reference_image_urls": [
-     *           "https://storage.googleapis.com/falserverless/example_inputs/kling-o3/pro-v2v-edit/element1_reference1.png"
-     *         ],
-     *         "frontal_image_url": "https://storage.googleapis.com/falserverless/example_inputs/kling-o3/pro-v2v-edit/element1_front.png"
+     *         "base_color": {
+     *           "file_size": 4328755,
+     *           "content_type": "image/png",
+     *           "file_name": "texture_0.png",
+     *           "url": "https://v3b.fal.media/files/b/tiger/NkgxcEom_42V4_8UUXiRR_texture_0.png"
+     *         }
      *       }
      *     ]
      */
-    elements?: Components.KlingV3ImageElementInput[];
+    texture_urls?: Components.TextureFiles[];
     /**
-     * Enable Safety Checker
-     * @description Disabling safety checks requires account authorization; unauthorized requests are always checked.
-     * @default true
-     */
-    enable_safety_checker?: boolean;
-    /**
-     * Image Urls
-     * @description Reference images for style/appearance. Reference in prompt as @Image1, @Image2, etc. Maximum 4 total (elements + reference images) when using video.
-     * @example [
-     *       "https://storage.googleapis.com/falserverless/example_inputs/kling-o3/pro-v2v-edit/image_url1.jpg"
-     *     ]
-     */
-    image_urls?: string[];
-    /**
-     * Keep Audio
-     * @description Whether to keep the original audio from the reference video.
-     * @default true
-     */
-    keep_audio?: boolean;
-    /**
-     * Prompt
-     * @description Text prompt for video generation. Reference video as @Video1.
-     * @example Change environment to be fully snow as @Image1. Replace animal with @Element1
-     */
-    prompt: string;
-    /**
-     * Shot Type
-     * @description The type of multi-shot video generation.
-     * @default customize
-     * @constant
-     */
-    shot_type?: 'customize';
-    /**
-     * Video Url
-     * @description Reference video URL. Only .mp4/.mov formats, 3-15s duration, 720-3840px resolution, max 200MB.
-     * @example https://storage.googleapis.com/falserverless/example_inputs/kling-o3/pro-v2v-edit/video_reference.mp4
-     */
-    video_url: string;
-}
-
-export interface SharedType_0ff {
-    /**
-     * @description The generated video.
+     * @description Preview thumbnail of the generated model
      * @example {
-     *       "file_name": "RUAbFYlssdqnbjNLmE8qP_IX7BNYGP.mp4",
-     *       "url": "https://v3b.fal.media/files/b/0a8b90e4/RUAbFYlssdqnbjNLmE8qP_IX7BNYGP.mp4",
-     *       "num_frames": 145,
-     *       "width": 1280,
-     *       "fps": 24,
-     *       "content_type": "video/mp4",
-     *       "height": 720,
-     *       "duration": 6.041667
+     *       "file_size": 54279,
+     *       "content_type": "image/png",
+     *       "file_name": "preview.png",
+     *       "url": "https://v3b.fal.media/files/b/penguin/rfnS6ClmeEWgDXp_oD5tN_preview.png"
      *     }
      */
-    video: Components.VideoFile;
+    thumbnail?: Components.File;
 }
 
 export interface SharedType_0f6 {
@@ -19841,86 +19998,114 @@ export interface SharedType_0f6 {
     video: Components.File;
 }
 
-export interface SharedType_0ed {
-    /**
-     * Has Nsfw Concepts
-     * @description Whether the generated images contain NSFW concepts.
-     */
-    has_nsfw_concepts: boolean[];
-    /**
-     * Images
-     * @description The generated images.
-     * @example [
-     *       {
-     *         "content_type": "image/jpeg",
-     *         "width": 1024,
-     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/flux-srpo-output.jpeg",
-     *         "height": 768
-     *       }
-     *     ]
-     */
-    images: Components.Image_1[];
+export interface SharedType_0f2 {
     /**
      * Prompt
-     * @description The prompt used for generating the image.
+     * @description The prompt used for the generation.
+     * @example A cowboy walking through a dusty town at high noon, camera following from behind, cinematic depth, realistic lighting, western mood, 4K film grain.
      */
     prompt: string;
     /**
      * Seed
-     * @description Seed of the generated Image. It will be the same value of the one passed in the
-     *                 input or the randomly generated that was used in case none was passed.
+     * @description The seed used for the random number generator.
+     * @example 149063119
      */
     seed: number;
-    timings: {
-        [key: string]: number;
-    };
-}
-
-export interface SharedType_0eb {
     /**
      * @description The generated video.
      * @example {
-     *       "url": "https://v3b.fal.media/files/b/panda/oVdiICFXY03Vbam-08Aj8_output.mp4",
-     *       "file_size": 47359974,
-     *       "file_name": "output.mp4",
+     *       "duration": 6.44,
+     *       "width": 1248,
+     *       "fps": 25,
+     *       "url": "https://v3b.fal.media/files/b/0a8824b1/sdm0KfmenrlywesfzY1Y1_if6euPp1.mp4",
+     *       "num_frames": 161,
+     *       "file_name": "sdm0KfmenrlywesfzY1Y1_if6euPp1.mp4",
+     *       "height": 704,
      *       "content_type": "video/mp4"
      *     }
      */
-    video: Components.File;
+    video: Components.VideoFile;
 }
 
-export interface SharedType_0d7 {
+export interface SharedType_0d8 {
+    audio_setting?: Components.AudioSetting;
     /**
-     * @description The generated SVG file containing vector glyphs.
-     * @example {
-     *       "content_type": "image/svg+xml",
-     *       "file_size": 959,
-     *       "url": "https://v3b.fal.media/files/b/0a90bfc3/0f8Su2aQUzPQy4NZMDQpp_180c718ac5d8407092d0688ea2605f0c.svg",
-     *       "file_name": "180c718ac5d8407092d0688ea2605f0c.svg"
+     * Enable Safety Checker
+     * @description Authorized callers may set false to request relaxed screening.
+     * @default true
+     */
+    enable_safety_checker?: boolean;
+    /**
+     * Language Boost
+     * @description Enhance recognition of specified languages and dialects
+     */
+    language_boost?:
+        | 'Persian'
+        | 'Filipino'
+        | 'Tamil'
+        | 'Chinese'
+        | 'Chinese,Yue'
+        | 'English'
+        | 'Arabic'
+        | 'Russian'
+        | 'Spanish'
+        | 'French'
+        | 'Portuguese'
+        | 'German'
+        | 'Turkish'
+        | 'Dutch'
+        | 'Ukrainian'
+        | 'Vietnamese'
+        | 'Indonesian'
+        | 'Japanese'
+        | 'Italian'
+        | 'Korean'
+        | 'Thai'
+        | 'Polish'
+        | 'Romanian'
+        | 'Greek'
+        | 'Czech'
+        | 'Finnish'
+        | 'Hindi'
+        | 'Bulgarian'
+        | 'Danish'
+        | 'Hebrew'
+        | 'Malay'
+        | 'Slovak'
+        | 'Swedish'
+        | 'Croatian'
+        | 'Hungarian'
+        | 'Norwegian'
+        | 'Slovenian'
+        | 'Catalan'
+        | 'Nynorsk'
+        | 'Afrikaans'
+        | 'auto';
+    /**
+     * Output Format
+     * @description Format of the output content (non-streaming only)
+     * @default hex
+     * @enum {string}
+     */
+    output_format?: 'url' | 'hex';
+    pronunciation_dict?: Components.PronunciationDict;
+    /**
+     * Text
+     * @description Text to convert to speech (max 5000 characters, minimum 1 non-whitespace character)
+     * @example Hello world! This is a test of the text-to-speech system.
+     */
+    text: string;
+    /**
+     * @description Voice configuration settings
+     * @default {
+     *       "voice_id": "Wise_Woman",
+     *       "pitch": 0,
+     *       "vol": 1,
+     *       "english_normalization": false,
+     *       "speed": 1
      *     }
      */
-    image: Components.File;
-    /**
-     * Seed
-     * @description The seed used for generation.
-     * @example 1835785439
-     */
-    seed: number;
-    /**
-     * Svg Content
-     * @description Raw SVG content as a string.
-     */
-    svg_content: string;
-    /**
-     * Timings
-     * @description Timing breakdown of the generation process.
-     * @example {
-     *       "inference": 10.83
-     *     }
-     */
-    timings: {
-        [key: string]: number;
-    };
+    voice_setting?: Components.VoiceSetting;
 }
 
 export interface SharedType_0d4 {
@@ -20049,6 +20234,90 @@ export interface SharedType_0d2 {
     };
 }
 
+export interface SharedType_0ca {
+    animation_fbx?: Components.File;
+    animation_glb?: Components.File;
+    basic_animations?: Components.BasicAnimations;
+    /**
+     * @description Generated 3D object in GLB format.
+     * @example {
+     *       "file_size": 7875308,
+     *       "content_type": "model/gltf-binary",
+     *       "file_name": "model.glb",
+     *       "url": "https://v3b.fal.media/files/b/tiger/62QMEQqZ3pjUds4DfuVtX_model.glb"
+     *     }
+     */
+    model_glb: Components.File;
+    /**
+     * @description URLs for different 3D model formats
+     * @example {
+     *       "fbx": {
+     *         "file_size": 5574540,
+     *         "content_type": "application/octet-stream",
+     *         "file_name": "model.fbx",
+     *         "url": "https://v3b.fal.media/files/b/koala/R7vPBgkecVvcnbNpRAy9x_model.fbx"
+     *       },
+     *       "usdz": {
+     *         "file_size": 8631497,
+     *         "content_type": "model/vnd.usdz+zip",
+     *         "file_name": "model.usdz",
+     *         "url": "https://v3b.fal.media/files/b/panda/fSGLGmtgzUjhepklN06Zw_model.usdz"
+     *       },
+     *       "obj": {
+     *         "file_size": 2761323,
+     *         "content_type": "model/obj",
+     *         "file_name": "model.obj",
+     *         "url": "https://v3b.fal.media/files/b/koala/xmOnmSeePfuROe3pqHpf0_model.obj"
+     *       },
+     *       "glb": {
+     *         "file_size": 7875308,
+     *         "content_type": "model/gltf-binary",
+     *         "file_name": "model.glb",
+     *         "url": "https://v3b.fal.media/files/b/tiger/62QMEQqZ3pjUds4DfuVtX_model.glb"
+     *       }
+     *     }
+     */
+    model_urls: Components.ModelUrls;
+    /**
+     * Rig Task Id
+     * @description Rigging task ID. Only present when enable_rigging is true.
+     */
+    rig_task_id?: string;
+    rigged_character_fbx?: Components.File;
+    rigged_character_glb?: Components.File;
+    /**
+     * Seed
+     * @description The seed used for generation (if available)
+     * @example 783032043
+     */
+    seed?: number;
+    /**
+     * Texture Urls
+     * @description Array of texture file objects
+     * @example [
+     *       {
+     *         "base_color": {
+     *           "file_size": 4464364,
+     *           "content_type": "image/png",
+     *           "file_name": "texture_0.png",
+     *           "url": "https://v3b.fal.media/files/b/panda/OVrRor7IgeNK9w2i5-NDf_texture_0.png"
+     *         }
+     *       }
+     *     ]
+     */
+    texture_urls?: Components.TextureFiles[];
+    /**
+     * @description Preview thumbnail of the generated model
+     * @example {
+     *       "file_size": 70958,
+     *       "content_type": "image/png",
+     *       "file_name": "preview.png",
+     *       "url": "https://v3b.fal.media/files/b/koala/2NI_hEd7jXzS5rLQhnRga_preview.png"
+     *     }
+     */
+    thumbnail?: Components.File;
+}
+
 export interface SharedType_0c5 {
     /**
      * Images
@@ -20088,44 +20357,6 @@ export interface SharedType_0c1 {
      *     }
      */
     video: Components.VideoFile;
-}
-
-export interface SharedType_0bf {
-    /**
-     * Has Nsfw Concepts
-     * @description Whether the generated images contain NSFW concepts.
-     */
-    has_nsfw_concepts: boolean[];
-    /**
-     * Images
-     * @description The generated image files info.
-     * @example [
-     *       {
-     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/z-image-inpaint-output.png",
-     *         "width": 512,
-     *         "height": 888,
-     *         "content_type": "image/png"
-     *       }
-     *     ]
-     */
-    images: Components.ImageFile[];
-    /**
-     * Prompt
-     * @description The prompt used for generating the image.
-     */
-    prompt: string;
-    /**
-     * Seed
-     * @description Seed of the generated Image. It will be the same value of the one passed in the input or the randomly generated that was used in case none was passed.
-     */
-    seed: number;
-    /**
-     * Timings
-     * @description The timings of the generation process.
-     */
-    timings: {
-        [key: string]: number;
-    };
 }
 
 export interface SharedType_0bd {
@@ -20454,7 +20685,7 @@ export interface SharedType_091 {
     sync_mode?: boolean;
 }
 
-export interface SharedType_090 {
+export interface SharedType_0901 {
     image: Components.Image;
     /**
      * Objects
@@ -20463,17 +20694,50 @@ export interface SharedType_090 {
     objects: Record<string, never>[];
 }
 
-export interface SharedType_080 {
+export interface SharedType_090 {
     /**
-     * @description The generated video.
+     * @description The generated video
      * @example {
-     *       "url": "https://v3b.fal.media/files/b/0aac4496/QzdMSy4uSKyFfMjtU65MA_clip_text.mp4",
-     *       "file_size": 3478246,
+     *       "file_size": 8062911,
+     *       "content_type": "video/mp4",
      *       "file_name": "output.mp4",
+     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/kling-v3/pro-t2v/out.mp4"
+     *     }
+     */
+    video: Components.File;
+}
+
+export interface SharedType_079 {
+    /**
+     * @description The generated video
+     * @example {
+     *       "file_size": 3232402,
+     *       "file_name": "output.mp4",
+     *       "url": "https://fal.media/files/koala/awGY1lJd7lVsqQeSqjWqn_output.mp4",
      *       "content_type": "video/mp4"
      *     }
      */
     video: Components.File;
+}
+
+export interface SharedType_078 {
+    /**
+     * Output
+     * @description Generated output from video processing
+     * @example that's the way I look at it and I don't know what you would say. Sooner or later the child gets run over.
+     *     They seem to be too local, too provincial.
+     */
+    output: string;
+    /**
+     * @description Token usage information
+     * @example {
+     *       "prompt_tokens": 1000,
+     *       "cost": 0.0005,
+     *       "completion_tokens": 100,
+     *       "total_tokens": 1100
+     *     }
+     */
+    usage: Components.UsageInfo_1;
 }
 
 export interface SharedType_076 {
@@ -20492,128 +20756,6 @@ export interface SharedType_076 {
      * @description The seed used for generation
      */
     seed: number;
-}
-
-export interface SharedType_0701 {
-    animation_fbx?: Components.File;
-    animation_glb?: Components.File;
-    basic_animations?: Components.BasicAnimations;
-    /**
-     * @description Generated 3D object in GLB format.
-     * @example {
-     *       "content_type": "model/gltf-binary",
-     *       "file_name": "model.glb",
-     *       "file_size": 9242744,
-     *       "url": "https://v3b.fal.media/files/b/zebra/OXF1e1bO3JddPTaugv0eL_model.glb"
-     *     }
-     */
-    model_glb: Components.File;
-    /**
-     * @description URLs for different 3D model formats
-     * @example {
-     *       "fbx": {
-     *         "content_type": "application/octet-stream",
-     *         "file_name": "model.fbx",
-     *         "file_size": 5427052,
-     *         "url": "https://v3b.fal.media/files/b/kangaroo/4Q2qdpTvfLVdzAKH1-72v_model.fbx"
-     *       },
-     *       "glb": {
-     *         "content_type": "model/gltf-binary",
-     *         "file_name": "model.glb",
-     *         "file_size": 9242744,
-     *         "url": "https://v3b.fal.media/files/b/zebra/OXF1e1bO3JddPTaugv0eL_model.glb"
-     *       },
-     *       "usdz": {
-     *         "content_type": "model/vnd.usdz+zip",
-     *         "file_name": "model.usdz",
-     *         "file_size": 9991969,
-     *         "url": "https://v3b.fal.media/files/b/lion/RgJG9EBQ_GAHMVWV3wCis_model.usdz"
-     *       },
-     *       "obj": {
-     *         "content_type": "model/obj",
-     *         "file_name": "model.obj",
-     *         "file_size": 2744413,
-     *         "url": "https://v3b.fal.media/files/b/koala/_Vg0d084-hd3EdpIJDf7U_model.obj"
-     *       }
-     *     }
-     */
-    model_urls: Components.ModelUrls;
-    /**
-     * Rig Task Id
-     * @description Rigging task ID. Only present when enable_rigging is true.
-     */
-    rig_task_id?: string;
-    rigged_character_fbx?: Components.File;
-    rigged_character_glb?: Components.File;
-    /**
-     * Seed
-     * @description The seed used for generation (if available)
-     * @example 2009275957
-     */
-    seed?: number;
-    /**
-     * Texture Urls
-     * @description Array of texture file objects, matching Meshy API structure
-     * @example [
-     *       {
-     *         "base_color": {
-     *           "content_type": "image/png",
-     *           "file_name": "texture_0.png",
-     *           "file_size": 4328755,
-     *           "url": "https://v3b.fal.media/files/b/tiger/NkgxcEom_42V4_8UUXiRR_texture_0.png"
-     *         }
-     *       }
-     *     ]
-     */
-    texture_urls?: Components.TextureFiles[];
-    /**
-     * @description Preview thumbnail of the generated model
-     * @example {
-     *       "content_type": "image/png",
-     *       "file_name": "preview.png",
-     *       "file_size": 54279,
-     *       "url": "https://v3b.fal.media/files/b/penguin/rfnS6ClmeEWgDXp_oD5tN_preview.png"
-     *     }
-     */
-    thumbnail?: Components.File;
-}
-
-export interface SharedType_070 {
-    /**
-     * Has Nsfw Concepts
-     * @description Whether the generated images contain NSFW concepts.
-     */
-    has_nsfw_concepts: boolean[];
-    /**
-     * Images
-     * @description The generated image files info.
-     * @example [
-     *       {
-     *         "url": "https://v3b.fal.media/files/b/0a8c18a5/1z0k9F1YLgz4qCr64jCBa_r2uqRyDg.png",
-     *         "width": 1024,
-     *         "height": 768,
-     *         "content_type": "image/png"
-     *       }
-     *     ]
-     */
-    images: Components.ImageFile[];
-    /**
-     * Prompt
-     * @description The prompt used for generating the image.
-     */
-    prompt: string;
-    /**
-     * Seed
-     * @description Seed of the generated Image. It will be the same value of the one passed in the input or the randomly generated that was used in case none was passed.
-     */
-    seed: number;
-    /**
-     * Timings
-     * @description The timings of the generation process.
-     */
-    timings: {
-        [key: string]: number;
-    };
 }
 
 export interface SharedType_06a1 {
@@ -20768,19 +20910,28 @@ export interface SharedType_04c {
     video: Components.VideoFile;
 }
 
-export interface SharedType_043 {
+export interface SharedType_035 {
     /**
-     * Images
-     * @example [
-     *       {
-     *         "file_size": 1949504,
-     *         "content_type": "image/webp",
-     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/recraft-v4/pro-output.webp",
-     *         "file_name": "image.webp"
-     *       }
-     *     ]
+     * Prompt
+     * @description The prompt used for the generation.
+     * @example A woman speaks to the camera
      */
-    images: Components.File[];
+    prompt: string;
+    /**
+     * Seed
+     * @description The seed used for the random number generator.
+     * @example 175932751
+     */
+    seed: number;
+    /**
+     * @description The generated video.
+     * @example {
+     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/ltx-2-a2v-output.mp4",
+     *       "file_name": "ltx-2-a2v-output.mp4",
+     *       "content_type": "video/mp4"
+     *     }
+     */
+    video: Components.VideoFile;
 }
 
 export interface SharedType_01e {
@@ -21390,10 +21541,10 @@ export interface RecraftV4StyleTextToVectorOutput {
      * Images
      * @example [
      *       {
-     *         "file_size": 1722022,
      *         "content_type": "image/svg+xml",
      *         "url": "https://v3b.fal.media/files/b/0a8ee4fd/sw8YD36iblpO64JeQZEDt_image.svg",
-     *         "file_name": "image.svg"
+     *         "file_name": "image.svg",
+     *         "file_size": 1722022
      *       }
      *     ]
      */
@@ -21461,10 +21612,10 @@ export interface RecraftV4StyleTextToImageOutput {
      * Images
      * @example [
      *       {
-     *         "file_size": 272628,
      *         "content_type": "image/webp",
      *         "url": "https://storage.googleapis.com/falserverless/example_outputs/recraft-v4/standard-output.webp",
-     *         "file_name": "image.webp"
+     *         "file_name": "image.webp",
+     *         "file_size": 272628
      *       }
      *     ]
      */
@@ -21532,10 +21683,10 @@ export interface RecraftV4StyleProTextToVectorOutput {
      * Images
      * @example [
      *       {
-     *         "file_size": 1818794,
      *         "content_type": "image/svg+xml",
      *         "url": "https://v3b.fal.media/files/b/0a8ee4de/lmXuapOPV309mE533swE0_image.svg",
-     *         "file_name": "image.svg"
+     *         "file_name": "image.svg",
+     *         "file_size": 1818794
      *       }
      *     ]
      */
@@ -21603,10 +21754,10 @@ export interface RecraftV4StyleProTextToImageOutput {
      * Images
      * @example [
      *       {
-     *         "file_size": 1949504,
      *         "content_type": "image/webp",
      *         "url": "https://storage.googleapis.com/falserverless/example_outputs/recraft-v4/pro-output.webp",
-     *         "file_name": "image.webp"
+     *         "file_name": "image.webp",
+     *         "file_size": 1949504
      *       }
      *     ]
      */
@@ -21628,7 +21779,7 @@ export interface RecraftV4CreateStyleOutput extends SharedType_cc5 {}
 
 export interface RecraftV41FlashTextToImageInput extends SharedType_799 {}
 
-export interface RecraftV41FlashTextToImageOutput extends SharedType_e64 {}
+export interface RecraftV41FlashTextToImageOutput extends SharedType_6ea {}
 
 export interface PixverseMusicVideoVibemvInput {
     /**
@@ -21723,7 +21874,7 @@ export interface PixverseMusicVideoVibemvInput {
     style_image_url?: string;
 }
 
-export interface PixverseMusicVideoVibemvOutput extends SharedType_3f7 {}
+export interface PixverseMusicVideoVibemvOutput extends SharedType_79b {}
 
 export interface PixelcutVideoBackgroundRemovalInput {
     /**
@@ -22086,10 +22237,10 @@ export interface OpenrouterRouterVisionOutput {
     /**
      * @description Token usage information
      * @example {
-     *       "total_tokens": 1403,
-     *       "completion_tokens": 63,
      *       "prompt_tokens": 1340,
-     *       "cost": 0.0005595
+     *       "cost": 0.0005595,
+     *       "completion_tokens": 63,
+     *       "total_tokens": 1403
      *     }
      */
     usage: Components.UsageInfo_1;
@@ -22159,7 +22310,7 @@ export interface OpenrouterRouterVideoEnterpriseInput {
     web_search_options?: Components.WebSearchOptions;
 }
 
-export interface OpenrouterRouterVideoEnterpriseOutput extends SharedType_130 {}
+export interface OpenrouterRouterVideoEnterpriseOutput extends SharedType_078 {}
 
 export interface OpenrouterRouterVideoInput {
     /**
@@ -22219,7 +22370,7 @@ export interface OpenrouterRouterVideoInput {
     web_search_options?: Components.WebSearchOptions;
 }
 
-export interface OpenrouterRouterVideoOutput extends SharedType_130 {}
+export interface OpenrouterRouterVideoOutput extends SharedType_078 {}
 
 export interface OpenrouterRouterOpenaiV1ResponsesInput extends SharedType_fe4 {}
 
@@ -22309,7 +22460,7 @@ export interface OpenrouterRouterEnterpriseInput {
     web_search_options?: Components.WebSearchOptions;
 }
 
-export interface OpenrouterRouterEnterpriseOutput extends SharedType_525 {}
+export interface OpenrouterRouterEnterpriseOutput extends SharedType_58b {}
 
 export interface OpenrouterRouterDecisionsInput {
     /**
@@ -22336,9 +22487,9 @@ export interface OpenrouterRouterDecisionsInput {
      * @example {
      *       "department": {
      *         "criteria": {
+     *           "returns": "Refunds, exchanges, or damaged items",
      *           "shipping": "Delivery status, delays, or lost packages",
-     *           "billing": "Charges, invoices, or payment problems",
-     *           "returns": "Refunds, exchanges, or damaged items"
+     *           "billing": "Charges, invoices, or payment problems"
      *         },
      *         "type": "choice",
      *         "instructions": "Which team should handle this request?"
@@ -22455,10 +22606,10 @@ export interface OpenrouterRouterAudioOutput {
     /**
      * @description Token usage information
      * @example {
-     *       "total_tokens": 550,
-     *       "completion_tokens": 50,
      *       "prompt_tokens": 500,
-     *       "cost": 0.0003
+     *       "cost": 0.0003,
+     *       "completion_tokens": 50,
+     *       "total_tokens": 550
      *     }
      */
     usage: Components.UsageInfo_1;
@@ -22523,7 +22674,7 @@ export interface OpenrouterRouterInput {
     web_search_options?: Components.WebSearchOptions;
 }
 
-export interface OpenrouterRouterOutput extends SharedType_525 {}
+export interface OpenrouterRouterOutput extends SharedType_58b {}
 
 export interface OpenaiGptImage2EditInput {
     /**
@@ -22608,23 +22759,23 @@ export interface OpenaiGptImage2EditInput {
     sync_mode?: boolean;
 }
 
-export interface OpenaiGptImage2EditOutput extends SharedType_4c8 {}
+export interface OpenaiGptImage2EditOutput extends SharedType_c7d {}
 
 export interface OpenaiGptImage25SunburstTextToImageInput extends SharedType_f2a {}
 
-export interface OpenaiGptImage25SunburstTextToImageOutput extends SharedType_aa8 {}
+export interface OpenaiGptImage25SunburstTextToImageOutput extends SharedType_df81 {}
 
 export interface OpenaiGptImage25SunburstEditInput extends SharedType_bbe {}
 
-export interface OpenaiGptImage25SunburstEditOutput extends SharedType_4c8 {}
+export interface OpenaiGptImage25SunburstEditOutput extends SharedType_c7d {}
 
 export interface OpenaiGptImage25FlareTextToImageInput extends SharedType_f2a {}
 
-export interface OpenaiGptImage25FlareTextToImageOutput extends SharedType_aa8 {}
+export interface OpenaiGptImage25FlareTextToImageOutput extends SharedType_df81 {}
 
 export interface OpenaiGptImage25FlareEditInput extends SharedType_bbe {}
 
-export interface OpenaiGptImage25FlareEditOutput extends SharedType_4c8 {}
+export interface OpenaiGptImage25FlareEditOutput extends SharedType_c7d {}
 
 export interface OpenaiGptImage2Input {
     /**
@@ -22696,7 +22847,7 @@ export interface OpenaiGptImage2Input {
     sync_mode?: boolean;
 }
 
-export interface OpenaiGptImage2Output extends SharedType_aa8 {}
+export interface OpenaiGptImage2Output extends SharedType_df81 {}
 
 export interface NvidiaNemotronAsrMultilingualAsrInput {
     /**
@@ -22829,7 +22980,7 @@ export interface NvidiaNemotron3NanoOmniVisionInput {
     top_p?: number;
 }
 
-export interface NvidiaNemotron3NanoOmniVisionOutput extends SharedType_cde {}
+export interface NvidiaNemotron3NanoOmniVisionOutput extends SharedType_f39 {}
 
 export interface NvidiaNemotron3NanoOmniVideoInput {
     /**
@@ -22883,7 +23034,7 @@ export interface NvidiaNemotron3NanoOmniVideoInput {
     video_url: string;
 }
 
-export interface NvidiaNemotron3NanoOmniVideoOutput extends SharedType_cde {}
+export interface NvidiaNemotron3NanoOmniVideoOutput extends SharedType_f39 {}
 
 export interface NvidiaNemotron3NanoOmniAudioInput {
     /**
@@ -22937,7 +23088,7 @@ export interface NvidiaNemotron3NanoOmniAudioInput {
     top_p?: number;
 }
 
-export interface NvidiaNemotron3NanoOmniAudioOutput extends SharedType_cde {}
+export interface NvidiaNemotron3NanoOmniAudioOutput extends SharedType_f39 {}
 
 export interface NvidiaNemotron3NanoOmniInput {
     /**
@@ -22985,7 +23136,7 @@ export interface NvidiaNemotron3NanoOmniInput {
     top_p?: number;
 }
 
-export interface NvidiaNemotron3NanoOmniOutput extends SharedType_cde {}
+export interface NvidiaNemotron3NanoOmniOutput extends SharedType_f39 {}
 
 export interface NvidiaNemotron35SuperVisionInput {
     /**
@@ -23039,7 +23190,7 @@ export interface NvidiaNemotron35SuperVisionInput {
     top_p?: number;
 }
 
-export interface NvidiaNemotron35SuperVisionOutput extends SharedType_7c5 {}
+export interface NvidiaNemotron35SuperVisionOutput extends SharedType_57b1 {}
 
 export interface NvidiaNemotron35SuperVideoInput {
     /**
@@ -23093,7 +23244,7 @@ export interface NvidiaNemotron35SuperVideoInput {
     video_url: string;
 }
 
-export interface NvidiaNemotron35SuperVideoOutput extends SharedType_7c5 {}
+export interface NvidiaNemotron35SuperVideoOutput extends SharedType_57b1 {}
 
 export interface NvidiaNemotron35SuperTextInput {
     /**
@@ -23141,7 +23292,7 @@ export interface NvidiaNemotron35SuperTextInput {
     top_p?: number;
 }
 
-export interface NvidiaNemotron35SuperTextOutput extends SharedType_7c5 {}
+export interface NvidiaNemotron35SuperTextOutput extends SharedType_57b1 {}
 
 export interface NvidiaCosmos3SuperTextToImageInput {
     /**
@@ -23191,8 +23342,8 @@ export interface NvidiaCosmos3SuperTextToImageInput {
      * @description The size of the generated image. Each edge is clamped to 512-1280px (multiples of 16).
      * @default square_hd
      * @example {
-     *       "height": 1024,
-     *       "width": 1024
+     *       "width": 1024,
+     *       "height": 1024
      *     }
      */
     image_size?:
@@ -23265,8 +23416,8 @@ export interface NvidiaCosmos3SuperTextToImageOutput {
      * @example [
      *       {
      *         "content_type": "image/jpeg",
-     *         "url": "https://v3b.fal.media/files/b/0a8fc99c/cosmos3-vllm-example.jpeg",
-     *         "file_name": "cosmos3-vllm-example.jpeg"
+     *         "file_name": "cosmos3-vllm-example.jpeg",
+     *         "url": "https://v3b.fal.media/files/b/0a8fc99c/cosmos3-vllm-example.jpeg"
      *       }
      *     ]
      */
@@ -23869,8 +24020,8 @@ export interface MireloaiSfx20VideoToVideoOutput {
      * @description The input video with each generated soundtrack
      * @example [
      *       {
-     *         "file_name": "generated_output_1.mp4",
      *         "url": "https://di3otfzjg1gxa.cloudfront.net/chase_output_1.mp4",
+     *         "file_name": "generated_output_1.mp4",
      *         "content_type": "video/mp4"
      *       }
      *     ]
@@ -23946,8 +24097,8 @@ export interface MireloaiSfx20VideoToAudioOutput {
      * @description Each generated soundtrack as an audio file, without the video
      * @example [
      *       {
-     *         "file_name": "generated_audio_1.wav",
      *         "url": "https://di3otfzjg1gxa.cloudfront.net/chase_output_1.wav",
+     *         "file_name": "generated_audio_1.wav",
      *         "content_type": "audio/wav"
      *       }
      *     ]
@@ -24013,8 +24164,8 @@ export interface MireloaiSfx20TextToAudioOutput {
      * @description The generated sound effects, one per sample
      * @example [
      *       {
-     *         "file_name": "generated_audio_1.wav",
      *         "url": "https://di3otfzjg1gxa.cloudfront.net/rain_metal_roof_output_1.wav",
+     *         "file_name": "generated_audio_1.wav",
      *         "content_type": "audio/wav"
      *       }
      *     ]
@@ -24165,7 +24316,7 @@ export interface MinimaxH3TextToVideoLoraInput {
     target_audio_url?: string;
 }
 
-export interface MinimaxH3TextToVideoLoraOutput extends SharedType_135 {}
+export interface MinimaxH3TextToVideoLoraOutput extends SharedType_c5c1 {}
 
 export interface MinimaxH3TextToVideoInput {
     /**
@@ -24228,7 +24379,7 @@ export interface MinimaxH3TextToVideoInput {
     target_audio_url?: string;
 }
 
-export interface MinimaxH3TextToVideoOutput extends SharedType_135 {}
+export interface MinimaxH3TextToVideoOutput extends SharedType_c5c1 {}
 
 export interface MinimaxH3T2vTrainerInput {
     /**
@@ -25005,7 +25156,7 @@ export interface MinimaxH3Flf2vTrainerOutput extends SharedType_1d4 {}
 
 export interface MinimaxH3MaxTextToVideoInput extends SharedType_e15 {}
 
-export interface MinimaxH3MaxTextToVideoOutput extends SharedType_311 {}
+export interface MinimaxH3MaxTextToVideoOutput extends SharedType_ffb {}
 
 export interface MinimaxH3MaxStylesVhsInput {
     /**
@@ -25593,22 +25744,22 @@ export interface MinimaxH3MaxCameraControlsInput {
      * @description Ordered camera keyframes. The first pose is held before its time and the final pose is held for the remainder of the video. Signed full turns are preserved, with at most 32 turns of total azimuth travel.
      * @example [
      *       {
-     *         "distance": 1,
+     *         "azimuth": 0,
      *         "elevation": 0,
      *         "time": 0,
-     *         "azimuth": 0
+     *         "distance": 1
      *       },
      *       {
-     *         "distance": 0.2,
+     *         "azimuth": 45,
      *         "elevation": 15,
      *         "time": 0.3,
-     *         "azimuth": 45
+     *         "distance": 0.2
      *       },
      *       {
-     *         "distance": 1,
+     *         "azimuth": 90,
      *         "elevation": -90,
      *         "time": 0.8,
-     *         "azimuth": 90
+     *         "distance": 1
      *       }
      *     ]
      */
@@ -25728,7 +25879,7 @@ export interface MinimaxH3Max3dToVideoOutput extends SharedType_751 {}
 
 export interface MinimaxH3MaxTurboTextToVideoInput extends SharedType_e15 {}
 
-export interface MinimaxH3MaxTurboTextToVideoOutput extends SharedType_311 {}
+export interface MinimaxH3MaxTurboTextToVideoOutput extends SharedType_ffb {}
 
 export interface MinimaxH3MaxTurboImageToVideoInput extends SharedType_ec6 {}
 
@@ -26048,15 +26199,15 @@ export interface MeshyV7TextTo3dInput {
     ultra_mode?: boolean;
 }
 
-export interface MeshyV7TextTo3dOutput extends SharedType_18b {}
+export interface MeshyV7TextTo3dOutput extends SharedType_29a {}
 
 export interface MeshyV7RetextureInput extends SharedType_cb0 {}
 
-export interface MeshyV7RetextureOutput extends SharedType_f47 {}
+export interface MeshyV7RetextureOutput extends SharedType_eec {}
 
 export interface MeshyV7MultiImageTo3dInput extends SharedType_ac7 {}
 
-export interface MeshyV7MultiImageTo3dOutput extends SharedType_10f {}
+export interface MeshyV7MultiImageTo3dOutput extends SharedType_0ca {}
 
 export interface MeshyV7ImageTo3dInput {
     /**
@@ -26179,7 +26330,7 @@ export interface MeshyV7ImageTo3dInput {
     ultra_mode?: boolean;
 }
 
-export interface MeshyV7ImageTo3dOutput extends SharedType_0701 {}
+export interface MeshyV7ImageTo3dOutput extends SharedType_105 {}
 
 export interface MeshyV71TextTo3dInput {
     /**
@@ -26314,11 +26465,11 @@ export interface MeshyV71TextTo3dInput {
     ultra_mode?: boolean;
 }
 
-export interface MeshyV71TextTo3dOutput extends SharedType_18b {}
+export interface MeshyV71TextTo3dOutput extends SharedType_29a {}
 
 export interface MeshyV71MultiImageTo3dInput extends SharedType_ac7 {}
 
-export interface MeshyV71MultiImageTo3dOutput extends SharedType_10f {}
+export interface MeshyV71MultiImageTo3dOutput extends SharedType_0ca {}
 
 export interface MeshyV71ImageTo3dInput {
     /**
@@ -26441,15 +26592,15 @@ export interface MeshyV71ImageTo3dInput {
     ultra_mode?: boolean;
 }
 
-export interface MeshyV71ImageTo3dOutput extends SharedType_0701 {}
+export interface MeshyV71ImageTo3dOutput extends SharedType_105 {}
 
 export interface MeshyV6RetextureInput extends SharedType_cb0 {}
 
-export interface MeshyV6RetextureOutput extends SharedType_f47 {}
+export interface MeshyV6RetextureOutput extends SharedType_eec {}
 
 export interface MeshyV6LiteRetextureInput extends SharedType_cb0 {}
 
-export interface MeshyV6LiteRetextureOutput extends SharedType_f47 {}
+export interface MeshyV6LiteRetextureOutput extends SharedType_eec {}
 
 export interface LumaAgentUni1V1TextToImageInput extends SharedType_10b {}
 
@@ -26792,7 +26943,7 @@ export interface LightricksLtx25TextToVideoProInput {
     resolution?: '720p' | '1080p';
 }
 
-export interface LightricksLtx25TextToVideoProOutput extends SharedType_392 {}
+export interface LightricksLtx25TextToVideoProOutput extends SharedType_453 {}
 
 export interface LightricksLtx25TextToVideoFastInput {
     /**
@@ -26850,7 +27001,7 @@ export interface LightricksLtx25TextToVideoFastInput {
     resolution?: '720p' | '1080p' | '1440p' | '2160p';
 }
 
-export interface LightricksLtx25TextToVideoFastOutput extends SharedType_a79 {}
+export interface LightricksLtx25TextToVideoFastOutput extends SharedType_c46 {}
 
 export interface LightricksLtx25ImageToVideoProInput {
     /**
@@ -26919,7 +27070,7 @@ export interface LightricksLtx25ImageToVideoProInput {
     resolution?: '720p' | '1080p';
 }
 
-export interface LightricksLtx25ImageToVideoProOutput extends SharedType_700 {}
+export interface LightricksLtx25ImageToVideoProOutput extends SharedType_70f {}
 
 export interface LightricksLtx25ImageToVideoFastInput {
     /**
@@ -26988,15 +27139,15 @@ export interface LightricksLtx25ImageToVideoFastInput {
     resolution?: '720p' | '1080p' | '1440p' | '2160p';
 }
 
-export interface LightricksLtx25ImageToVideoFastOutput extends SharedType_3cb {}
+export interface LightricksLtx25ImageToVideoFastOutput extends SharedType_6b9 {}
 
 export interface LightricksLtx25AudioToVideoProInput extends SharedType_dcb {}
 
-export interface LightricksLtx25AudioToVideoProOutput extends SharedType_bc3 {}
+export interface LightricksLtx25AudioToVideoProOutput extends SharedType_8d6 {}
 
 export interface LightricksLtx25AudioToVideoFastInput extends SharedType_dcb {}
 
-export interface LightricksLtx25AudioToVideoFastOutput extends SharedType_bc3 {}
+export interface LightricksLtx25AudioToVideoFastOutput extends SharedType_8d6 {}
 
 export interface KreaV3TextToImageInput {
     /**
@@ -27268,7 +27419,7 @@ export interface KlingV4VideoToVideoEditInput {
     voice_ids?: string[];
 }
 
-export interface KlingV4VideoToVideoEditOutput extends SharedType_080 {}
+export interface KlingV4VideoToVideoEditOutput extends SharedType_491 {}
 
 export interface KlingV4TextToVideoInput {
     /**
@@ -27305,7 +27456,7 @@ export interface KlingV4TextToVideoInput {
     resolution?: '720p' | '1080p';
 }
 
-export interface KlingV4TextToVideoOutput extends SharedType_080 {}
+export interface KlingV4TextToVideoOutput extends SharedType_491 {}
 
 export interface KlingV4ReferenceToVideoInput {
     /**
@@ -27386,10 +27537,10 @@ export interface KlingV4ReferenceToVideoOutput {
     /**
      * @description The generated video.
      * @example {
-     *       "url": "https://v3b.fal.media/files/b/0aac4497/-fHk6MiMZhLy2FncCbyM7_clip_reference.mp4",
      *       "file_size": 3020124,
+     *       "content_type": "video/mp4",
      *       "file_name": "output.mp4",
-     *       "content_type": "video/mp4"
+     *       "url": "https://v3b.fal.media/files/b/0aac4497/-fHk6MiMZhLy2FncCbyM7_clip_reference.mp4"
      *     }
      */
     video: Components.File;
@@ -27447,10 +27598,10 @@ export interface KlingV4ImageToVideoOutput {
     /**
      * @description The generated video.
      * @example {
-     *       "url": "https://v3b.fal.media/files/b/0aac4496/HjUbnyfTPVcavQNpRh1QJ_clip_image.mp4",
      *       "file_size": 2953131,
+     *       "content_type": "video/mp4",
      *       "file_name": "output.mp4",
-     *       "content_type": "video/mp4"
+     *       "url": "https://v3b.fal.media/files/b/0aac4496/HjUbnyfTPVcavQNpRh1QJ_clip_image.mp4"
      *     }
      */
     video: Components.File;
@@ -29233,9 +29384,9 @@ export interface GoogleNanoBanana21EditOutput {
      * @description The edited images.
      * @example [
      *       {
-     *         "file_name": "nano-banana-multi-edit-output.png",
+     *         "content_type": "image/png",
      *         "url": "https://storage.googleapis.com/falserverless/example_outputs/nano-banana-multi-edit-output.png",
-     *         "content_type": "image/png"
+     *         "file_name": "nano-banana-multi-edit-output.png"
      *       }
      *     ]
      */
@@ -29345,9 +29496,9 @@ export interface GoogleNanoBanana21Output {
      * @description The generated images.
      * @example [
      *       {
-     *         "file_name": "nano-banana-2-t2i-output.png",
+     *         "content_type": "image/png",
      *         "url": "https://storage.googleapis.com/falserverless/example_outputs/nano-banana-2-t2i-output.png",
-     *         "content_type": "image/png"
+     *         "file_name": "nano-banana-2-t2i-output.png"
      *       }
      *     ]
      */
@@ -29882,7 +30033,7 @@ export interface ZImageTurboTilingLoraInput {
     tiling_mode?: 'both' | 'horizontal' | 'vertical';
 }
 
-export interface ZImageTurboTilingLoraOutput extends SharedType_c24 {}
+export interface ZImageTurboTilingLoraOutput extends SharedType_5d7 {}
 
 export interface ZImageTurboTilingInput {
     /**
@@ -29994,7 +30145,7 @@ export interface ZImageTurboTilingInput {
     tiling_mode?: 'both' | 'horizontal' | 'vertical';
 }
 
-export interface ZImageTurboTilingOutput extends SharedType_c24 {}
+export interface ZImageTurboTilingOutput extends SharedType_5d7 {}
 
 export interface ZImageTurboLoraInput {
     /**
@@ -30076,7 +30227,7 @@ export interface ZImageTurboLoraInput {
     sync_mode?: boolean;
 }
 
-export interface ZImageTurboLoraOutput extends SharedType_b351 {}
+export interface ZImageTurboLoraOutput extends SharedType_795 {}
 
 export interface ZImageTurboInpaintLoraInput {
     /**
@@ -30195,7 +30346,7 @@ export interface ZImageTurboInpaintLoraInput {
     sync_mode?: boolean;
 }
 
-export interface ZImageTurboInpaintLoraOutput extends SharedType_0bf {}
+export interface ZImageTurboInpaintLoraOutput extends SharedType_c4c {}
 
 export interface ZImageTurboInpaintInput {
     /**
@@ -30308,7 +30459,7 @@ export interface ZImageTurboInpaintInput {
     sync_mode?: boolean;
 }
 
-export interface ZImageTurboInpaintOutput extends SharedType_0bf {}
+export interface ZImageTurboInpaintOutput extends SharedType_c4c {}
 
 export interface ZImageTurboImageToImageLoraInput {
     /**
@@ -30403,7 +30554,7 @@ export interface ZImageTurboImageToImageLoraInput {
     sync_mode?: boolean;
 }
 
-export interface ZImageTurboImageToImageLoraOutput extends SharedType_91b {}
+export interface ZImageTurboImageToImageLoraOutput extends SharedType_d78 {}
 
 export interface ZImageTurboImageToImageInput {
     /**
@@ -30492,7 +30643,7 @@ export interface ZImageTurboImageToImageInput {
     sync_mode?: boolean;
 }
 
-export interface ZImageTurboImageToImageOutput extends SharedType_91b {}
+export interface ZImageTurboImageToImageOutput extends SharedType_d78 {}
 
 export interface ZImageTurboControlnetLoraInput {
     /**
@@ -30606,7 +30757,7 @@ export interface ZImageTurboControlnetLoraInput {
     sync_mode?: boolean;
 }
 
-export interface ZImageTurboControlnetLoraOutput extends SharedType_157 {}
+export interface ZImageTurboControlnetLoraOutput extends SharedType_432 {}
 
 export interface ZImageTurboControlnetInput {
     /**
@@ -30714,7 +30865,7 @@ export interface ZImageTurboControlnetInput {
     sync_mode?: boolean;
 }
 
-export interface ZImageTurboControlnetOutput extends SharedType_157 {}
+export interface ZImageTurboControlnetOutput extends SharedType_432 {}
 
 export interface ZImageTurboInput {
     /**
@@ -30790,7 +30941,7 @@ export interface ZImageTurboInput {
     sync_mode?: boolean;
 }
 
-export interface ZImageTurboOutput extends SharedType_b351 {}
+export interface ZImageTurboOutput extends SharedType_795 {}
 
 export interface ZImageBaseLoraInput {
     /**
@@ -30878,7 +31029,7 @@ export interface ZImageBaseLoraInput {
     sync_mode?: boolean;
 }
 
-export interface ZImageBaseLoraOutput extends SharedType_070 {}
+export interface ZImageBaseLoraOutput extends SharedType_200 {}
 
 export interface ZImageBaseInput {
     /**
@@ -30960,7 +31111,7 @@ export interface ZImageBaseInput {
     sync_mode?: boolean;
 }
 
-export interface ZImageBaseOutput extends SharedType_070 {}
+export interface ZImageBaseOutput extends SharedType_200 {}
 
 export interface ZImageTurboTrainerV2Input {
     /**
@@ -31105,10 +31256,10 @@ export interface WorkflowUtilitiesTrimVideoOutput {
     /**
      * @description The trimmed video
      * @example {
-     *       "url": "https://v3b.fal.media/files/b/0a8dcc60/sIg2GuYYYrmYAa2lUVgum_output.mp4",
-     *       "file_name": "output.mp4",
      *       "file_size": 2550671,
-     *       "content_type": "application/octet-stream"
+     *       "content_type": "application/octet-stream",
+     *       "url": "https://v3b.fal.media/files/b/0a8dcc60/sIg2GuYYYrmYAa2lUVgum_output.mp4",
+     *       "file_name": "output.mp4"
      *     }
      */
     video: Components.File;
@@ -31201,10 +31352,10 @@ export interface WorkflowUtilitiesScaleVideoOutput {
     /**
      * @description The scaled/resized video
      * @example {
-     *       "url": "https://v3b.fal.media/files/b/monkey/scaled_output.mp4",
-     *       "file_name": "output.mp4",
      *       "file_size": 3456789,
-     *       "content_type": "video/mp4"
+     *       "content_type": "video/mp4",
+     *       "url": "https://v3b.fal.media/files/b/monkey/scaled_output.mp4",
+     *       "file_name": "output.mp4"
      *     }
      */
     video: Components.File;
@@ -31223,10 +31374,10 @@ export interface WorkflowUtilitiesReverseVideoOutput {
     /**
      * @description The reversed video
      * @example {
-     *       "url": "ttps://v3b.fal.media/files/b/0a8f1bc2/HZdek_1QHprZFiE-46DyO_output.mp4",
-     *       "file_name": "output.mp4",
      *       "file_size": 3456789,
-     *       "content_type": "video/mp4"
+     *       "content_type": "video/mp4",
+     *       "url": "ttps://v3b.fal.media/files/b/0a8f1bc2/HZdek_1QHprZFiE-46DyO_output.mp4",
+     *       "file_name": "output.mp4"
      *     }
      */
     video: Components.File;
@@ -31303,10 +31454,10 @@ export interface WorkflowUtilitiesInterleaveVideoOutput {
     /**
      * @description The interleaved video output
      * @example {
-     *       "url": "https://v3b.fal.media/files/b/monkey/xVp56BqDLgb39NONPs1Gb_output.mp4",
-     *       "file_name": "output.mp4",
      *       "file_size": 3886177,
-     *       "content_type": "application/octet-stream"
+     *       "content_type": "application/octet-stream",
+     *       "url": "https://v3b.fal.media/files/b/monkey/xVp56BqDLgb39NONPs1Gb_output.mp4",
+     *       "file_name": "output.mp4"
      *     }
      */
     video: Components.File;
@@ -31368,10 +31519,10 @@ export interface WorkflowUtilitiesImpulseResponseOutput {
     /**
      * @description The processed audio file with reverb applied
      * @example {
-     *       "url": "https://v3b.fal.media/files/b/panda/impulse_output.wav",
-     *       "file_name": "impulse_output.wav",
      *       "file_size": 2456789,
-     *       "content_type": "application/octet-stream"
+     *       "content_type": "application/octet-stream",
+     *       "url": "https://v3b.fal.media/files/b/panda/impulse_output.wav",
+     *       "file_name": "impulse_output.wav"
      *     }
      */
     audio: Components.AudioFile_1;
@@ -31423,16 +31574,16 @@ export interface WorkflowUtilitiesExtractNthFrameOutput {
      * @description Array of extracted frame images
      * @example [
      *       {
-     *         "url": "https://v3b.fal.media/files/b/tiger/frame_001.png",
-     *         "file_name": "frame_001.png",
      *         "file_size": 102400,
-     *         "content_type": "image/png"
+     *         "content_type": "image/png",
+     *         "url": "https://v3b.fal.media/files/b/tiger/frame_001.png",
+     *         "file_name": "frame_001.png"
      *       },
      *       {
-     *         "url": "https://v3b.fal.media/files/b/tiger/frame_002.png",
-     *         "file_name": "frame_002.png",
      *         "file_size": 102400,
-     *         "content_type": "image/png"
+     *         "content_type": "image/png",
+     *         "url": "https://v3b.fal.media/files/b/tiger/frame_002.png",
+     *         "file_name": "frame_002.png"
      *       }
      *     ]
      */
@@ -31500,10 +31651,10 @@ export interface WorkflowUtilitiesBlendVideoOutput {
     /**
      * @description The blended video output
      * @example {
-     *       "url": "https://v3b.fal.media/files/b/monkey/blended_output.mp4",
-     *       "file_name": "blended_output.mp4",
      *       "file_size": 3886177,
-     *       "content_type": "video/mp4"
+     *       "content_type": "video/mp4",
+     *       "url": "https://v3b.fal.media/files/b/monkey/blended_output.mp4",
+     *       "file_name": "blended_output.mp4"
      *     }
      */
     video: Components.File;
@@ -31700,10 +31851,10 @@ export interface WorkflowUtilitiesAutoSubtitleOutput {
     /**
      * @description The video with automatic subtitles
      * @example {
-     *       "url": "https://v3b.fal.media/files/b/monkey/HPBSoe-QsAxSIkDh7Zn76_output.mp4",
-     *       "file_name": "output.mp4",
      *       "file_size": 16789234,
-     *       "content_type": "video/mp4"
+     *       "content_type": "video/mp4",
+     *       "url": "https://v3b.fal.media/files/b/monkey/HPBSoe-QsAxSIkDh7Zn76_output.mp4",
+     *       "file_name": "output.mp4"
      *     }
      */
     video: Components.File;
@@ -31770,10 +31921,10 @@ export interface WorkflowUtilitiesAudioCompressorOutput {
     /**
      * @description The compressed audio file
      * @example {
-     *       "url": "https://v3b.fal.media/files/b/panda/compressed_audio.wav",
-     *       "file_name": "compressed_audio.wav",
      *       "file_size": 1234567,
-     *       "content_type": "application/octet-stream"
+     *       "content_type": "application/octet-stream",
+     *       "url": "https://v3b.fal.media/files/b/panda/compressed_audio.wav",
+     *       "file_name": "compressed_audio.wav"
      *     }
      */
     audio: Components.AudioFile_1;
@@ -32112,7 +32263,7 @@ export interface WanV27TextToVideoInput {
 
 export interface WanV27TextToVideoOutput extends SharedType_852 {}
 
-export interface WanV27TextToImageInput extends SharedType_7ff {}
+export interface WanV27TextToImageInput extends SharedType_7ff1 {}
 
 export interface WanV27TextToImageOutput extends SharedType_508 {}
 
@@ -32183,7 +32334,7 @@ export interface WanV27ReferenceToVideoInput {
 
 export interface WanV27ReferenceToVideoOutput extends SharedType_852 {}
 
-export interface WanV27ProTextToImageInput extends SharedType_7ff {}
+export interface WanV27ProTextToImageInput extends SharedType_7ff1 {}
 
 export interface WanV27ProTextToImageOutput extends SharedType_508 {}
 
@@ -34448,10 +34599,10 @@ export interface WanV2214bSpeechToVideoOutput {
     /**
      * @description The generated video file.
      * @example {
-     *       "content_type": "application/octet-stream",
+     *       "url": "https://v3.fal.media/files/panda/f7tXRCjvwEcVlmxHuw8kO_2c7ab2540af44eceaf5ffde4e8d094ed.mp4",
      *       "file_size": 4685303,
      *       "file_name": "2c7ab2540af44eceaf5ffde4e8d094ed.mp4",
-     *       "url": "https://v3.fal.media/files/panda/f7tXRCjvwEcVlmxHuw8kO_2c7ab2540af44eceaf5ffde4e8d094ed.mp4"
+     *       "content_type": "application/octet-stream"
      *     }
      */
     video: Components.File;
@@ -35961,7 +36112,7 @@ export interface Wan25PreviewTextToVideoInput {
     seed?: number;
 }
 
-export interface Wan25PreviewTextToVideoOutput extends SharedType_e73 {}
+export interface Wan25PreviewTextToVideoOutput extends SharedType_8bc {}
 
 export interface Wan25PreviewTextToImageInput {
     /**
@@ -35985,8 +36136,8 @@ export interface Wan25PreviewTextToImageInput {
      * @example landscape_16_9
      * @example portrait_16_9
      * @example {
-     *       "height": 1280,
-     *       "width": 1280
+     *       "width": 1280,
+     *       "height": 1280
      *     }
      */
     image_size?:
@@ -36037,8 +36188,8 @@ export interface Wan25PreviewTextToImageOutput {
      * @description The generated images
      * @example [
      *       {
-     *         "content_type": "image/png",
-     *         "url": "https://v3.fal.media/files/penguin/4VZ7I1ZK5XNv33LV2JBxg.png"
+     *         "url": "https://v3.fal.media/files/penguin/4VZ7I1ZK5XNv33LV2JBxg.png",
+     *         "content_type": "image/png"
      *       }
      *     ]
      */
@@ -36121,7 +36272,7 @@ export interface Wan25PreviewImageToVideoInput {
     seed?: number;
 }
 
-export interface Wan25PreviewImageToVideoOutput extends SharedType_e73 {}
+export interface Wan25PreviewImageToVideoOutput extends SharedType_8bc {}
 
 export interface Wan25PreviewImageToImageInput {
     /**
@@ -36139,8 +36290,8 @@ export interface Wan25PreviewImageToImageInput {
      * @example landscape_16_9
      * @example portrait_16_9
      * @example {
-     *       "height": 1280,
-     *       "width": 1280
+     *       "width": 1280,
+     *       "height": 1280
      *     }
      */
     image_size?:
@@ -36199,8 +36350,8 @@ export interface Wan25PreviewImageToImageOutput {
      * @description The edited images
      * @example [
      *       {
-     *         "content_type": "image/png",
-     *         "url": "https://v3.fal.media/files/rabbit/BM4J8xpV5ogtOQE9xGtft.png"
+     *         "url": "https://v3.fal.media/files/rabbit/BM4J8xpV5ogtOQE9xGtft.png",
+     *         "content_type": "image/png"
      *       }
      *     ]
      */
@@ -37474,8 +37625,8 @@ export interface VideoUpscalerOutput {
     /**
      * @description The stitched video
      * @example {
-     *       "content_type": "video/mp4",
-     *       "url": "https://storage.googleapis.com/falserverless/videos/h0jgPaO6AJAbyrsNYNbGl_upscaled_video.mp4"
+     *       "url": "https://storage.googleapis.com/falserverless/videos/h0jgPaO6AJAbyrsNYNbGl_upscaled_video.mp4",
+     *       "content_type": "video/mp4"
      *     }
      */
     video: Components.File;
@@ -37976,7 +38127,7 @@ export interface VecglypherImageToSvgInput {
     top_p?: number;
 }
 
-export interface VecglypherImageToSvgOutput extends SharedType_0d7 {}
+export interface VecglypherImageToSvgOutput extends SharedType_7ff {}
 
 export interface VecglypherInput {
     /**
@@ -38065,7 +38216,7 @@ export interface VecglypherInput {
     top_p?: number;
 }
 
-export interface VecglypherOutput extends SharedType_0d7 {}
+export interface VecglypherOutput extends SharedType_7ff {}
 
 export interface UsoInput {
     /**
@@ -38169,10 +38320,10 @@ export interface UsoOutput {
      * @description The generated images with applied style and/or subject customization
      * @example [
      *       {
-     *         "height": 1024,
-     *         "url": "https://storage.googleapis.com/falserverless/USO/G6n97WN0goYpXPeiHaBnP.png",
+     *         "content_type": "image/png",
      *         "width": 1024,
-     *         "content_type": "image/png"
+     *         "url": "https://storage.googleapis.com/falserverless/USO/G6n97WN0goYpXPeiHaBnP.png",
+     *         "height": 1024
      *       }
      *     ]
      */
@@ -39062,14 +39213,14 @@ export interface SyncLipsyncReact1Output {
     /**
      * @description The generated video with synchronized lip and facial movements.
      * @example {
+     *       "duration": 7.041667,
+     *       "num_frames": 169,
+     *       "width": 1920,
      *       "fps": 24,
      *       "content_type": "video/mp4",
      *       "file_name": "output.mp4",
-     *       "duration": 7.041667,
-     *       "width": 1920,
-     *       "num_frames": 169,
-     *       "height": 1088,
-     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/react_1/output.mp4"
+     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/react_1/output.mp4",
+     *       "height": 1088
      *     }
      */
     video: Components.VideoFile;
@@ -39209,9 +39360,9 @@ export interface StepxEdit2Output {
      * @example [
      *       {
      *         "height": 1024,
-     *         "url": "https://v3.fal.media/files/kangaroo/kFPr5gC_Rr9JZbTTakEMd.jpeg",
      *         "width": 672,
-     *         "content_type": "image/jpeg"
+     *         "content_type": "image/jpeg",
+     *         "url": "https://v3.fal.media/files/kangaroo/kFPr5gC_Rr9JZbTTakEMd.jpeg"
      *       }
      *     ]
      */
@@ -39706,7 +39857,7 @@ export interface StableAudio3SmallSfxBaseAudioOutpaintingInput extends SharedTyp
 
 export interface StableAudio3SmallSfxBaseAudioOutpaintingOutput extends SharedType_dc4 {}
 
-export interface StableAudio3SmallSfxBaseAudioInpaintingInput extends SharedType_76c1 {}
+export interface StableAudio3SmallSfxBaseAudioInpaintingInput extends SharedType_76c {}
 
 export interface StableAudio3SmallSfxBaseAudioInpaintingOutput extends SharedType_dc4 {}
 
@@ -39738,7 +39889,7 @@ export interface StableAudio3SmallMusicBaseAudioOutpaintingInput extends SharedT
 
 export interface StableAudio3SmallMusicBaseAudioOutpaintingOutput extends SharedType_dc4 {}
 
-export interface StableAudio3SmallMusicBaseAudioInpaintingInput extends SharedType_76c1 {}
+export interface StableAudio3SmallMusicBaseAudioInpaintingInput extends SharedType_76c {}
 
 export interface StableAudio3SmallMusicBaseAudioInpaintingOutput extends SharedType_dc4 {}
 
@@ -39983,7 +40134,7 @@ export interface StableAudio3MediumBaseAudioOutpaintingInput extends SharedType_
 
 export interface StableAudio3MediumBaseAudioOutpaintingOutput extends SharedType_dc4 {}
 
-export interface StableAudio3MediumBaseAudioInpaintingInput extends SharedType_76c1 {}
+export interface StableAudio3MediumBaseAudioInpaintingInput extends SharedType_76c {}
 
 export interface StableAudio3MediumBaseAudioInpaintingOutput extends SharedType_dc4 {}
 
@@ -40501,8 +40652,8 @@ export interface SmartResizeOutput {
      * @example [
      *       {
      *         "content_type": "image/png",
-     *         "file_name": "nano-banana-pro-edit-output.png",
-     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/nano-banana-pro-edit-output.png"
+     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/nano-banana-pro-edit-output.png",
+     *         "file_name": "nano-banana-pro-edit-output.png"
      *       }
      *     ]
      */
@@ -40619,7 +40770,21 @@ export interface SeedvrUpscaleVideoInput {
     video_url: string;
 }
 
-export interface SeedvrUpscaleVideoOutput extends SharedType_ee4 {}
+export interface SeedvrUpscaleVideoOutput {
+    /**
+     * Seed
+     * @description The random seed used for the generation process.
+     */
+    seed: number;
+    /**
+     * @description Upscaled video file after processing
+     * @example {
+     *       "content_type": "video/mp4",
+     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/seedvr-output.mp4"
+     *     }
+     */
+    video: Components.File;
+}
 
 export interface SeedvrUpscaleImageSeamlessInput {
     /**
@@ -40680,7 +40845,7 @@ export interface SeedvrUpscaleImageSeamlessInput {
     upscale_mode?: 'target' | 'factor';
 }
 
-export interface SeedvrUpscaleImageSeamlessOutput extends SharedType_b88 {}
+export interface SeedvrUpscaleImageSeamlessOutput extends SharedType_920 {}
 
 export interface SeedvrUpscaleImageInput {
     /**
@@ -40741,7 +40906,7 @@ export interface SeedvrUpscaleImageInput {
     upscale_mode?: 'target' | 'factor';
 }
 
-export interface SeedvrUpscaleImageOutput extends SharedType_b88 {}
+export interface SeedvrUpscaleImageOutput extends SharedType_920 {}
 
 export interface SdxlControlnetUnionInpaintingInput {
     /**
@@ -41471,10 +41636,10 @@ export interface Scail2Output {
     /**
      * @description The generated video file.
      * @example {
-     *       "file_size": 1048576,
+     *       "content_type": "video/mp4",
      *       "url": "https://storage.googleapis.com/falserverless/example_outputs/scail2-output.mp4",
      *       "file_name": "output.mp4",
-     *       "content_type": "video/mp4"
+     *       "file_size": 1048576
      *     }
      */
     video: Components.File;
@@ -41610,11 +41775,11 @@ export interface Sam2VideoInput {
      * @default []
      * @example [
      *       {
-     *         "x_min": 300,
-     *         "x_max": 500,
-     *         "y_min": 0,
      *         "frame_index": 0,
-     *         "y_max": 400
+     *         "x_min": 300,
+     *         "y_max": 400,
+     *         "y_min": 0,
+     *         "x_max": 500
      *       }
      *     ]
      */
@@ -41630,16 +41795,16 @@ export interface Sam2VideoInput {
      * @default []
      * @example [
      *       {
-     *         "label": 1,
-     *         "x": 210,
+     *         "frame_index": 0,
      *         "y": 350,
-     *         "frame_index": 0
+     *         "x": 210,
+     *         "label": 1
      *       },
      *       {
-     *         "label": 1,
-     *         "x": 250,
+     *         "frame_index": 0,
      *         "y": 220,
-     *         "frame_index": 0
+     *         "x": 250,
+     *         "label": 1
      *       }
      *     ]
      */
@@ -41672,8 +41837,8 @@ export interface Sam2ImageInput {
      *       {
      *         "x_min": 425,
      *         "x_max": 700,
-     *         "y_min": 600,
-     *         "y_max": 875
+     *         "y_max": 875,
+     *         "y_min": 600
      *       }
      *     ]
      */
@@ -41697,9 +41862,9 @@ export interface Sam2ImageInput {
      * @default []
      * @example [
      *       {
-     *         "label": 1,
+     *         "y": 375,
      *         "x": 500,
-     *         "y": 375
+     *         "label": 1
      *       }
      *     ]
      */
@@ -41904,8 +42069,8 @@ export interface SamAudioSpanSeparateInput {
      * @description Time spans where the target sound occurs which should be isolated.
      * @example [
      *       {
-     *         "start": 6,
      *         "end": 10,
+     *         "start": 6,
      *         "include": true
      *       }
      *     ]
@@ -42663,19 +42828,19 @@ export interface SadtalkerOutput extends SharedType_751 {}
 
 export interface Sa2va8bVideoInput extends SharedType_d00 {}
 
-export interface Sa2va8bVideoOutput extends SharedType_61f {}
+export interface Sa2va8bVideoOutput extends SharedType_df8 {}
 
 export interface Sa2va8bImageInput extends SharedType_a9e {}
 
-export interface Sa2va8bImageOutput extends SharedType_408 {}
+export interface Sa2va8bImageOutput extends SharedType_14b {}
 
 export interface Sa2va4bVideoInput extends SharedType_d00 {}
 
-export interface Sa2va4bVideoOutput extends SharedType_61f {}
+export interface Sa2va4bVideoOutput extends SharedType_df8 {}
 
 export interface Sa2va4bImageInput extends SharedType_a9e {}
 
-export interface Sa2va4bImageOutput extends SharedType_408 {}
+export interface Sa2va4bImageOutput extends SharedType_14b {}
 
 export interface RifeVideoInput {
     /**
@@ -42848,10 +43013,10 @@ export interface RecraftVectorizeOutput {
     /**
      * @description The vectorized image.
      * @example {
-     *       "file_size": 85336,
      *       "content_type": "image/svg+xml",
      *       "url": "https://v3.fal.media/files/koala/pUQbC18DsP4KxcIBA53y2_image.svg",
-     *       "file_name": "image.svg"
+     *       "file_name": "image.svg",
+     *       "file_size": 85336
      *     }
      */
     image: Components.File;
@@ -42859,43 +43024,43 @@ export interface RecraftVectorizeOutput {
 
 export interface RecraftV4TextToVectorInput extends SharedType_415 {}
 
-export interface RecraftV4TextToVectorOutput extends SharedType_1d8 {}
+export interface RecraftV4TextToVectorOutput extends SharedType_7ed {}
 
 export interface RecraftV4TextToImageInput extends SharedType_799 {}
 
-export interface RecraftV4TextToImageOutput extends SharedType_e64 {}
+export interface RecraftV4TextToImageOutput extends SharedType_6ea {}
 
 export interface RecraftV4ProTextToVectorInput extends SharedType_1c7 {}
 
-export interface RecraftV4ProTextToVectorOutput extends SharedType_bd2 {}
+export interface RecraftV4ProTextToVectorOutput extends SharedType_35f {}
 
 export interface RecraftV4ProTextToImageInput extends SharedType_8c1 {}
 
-export interface RecraftV4ProTextToImageOutput extends SharedType_043 {}
+export interface RecraftV4ProTextToImageOutput extends SharedType_3ef {}
 
 export interface RecraftV41UtilityTextToImageInput extends SharedType_799 {}
 
-export interface RecraftV41UtilityTextToImageOutput extends SharedType_e64 {}
+export interface RecraftV41UtilityTextToImageOutput extends SharedType_6ea {}
 
 export interface RecraftV41UtilityProTextToImageInput extends SharedType_8c1 {}
 
-export interface RecraftV41UtilityProTextToImageOutput extends SharedType_043 {}
+export interface RecraftV41UtilityProTextToImageOutput extends SharedType_3ef {}
 
 export interface RecraftV41TextToVectorInput extends SharedType_415 {}
 
-export interface RecraftV41TextToVectorOutput extends SharedType_1d8 {}
+export interface RecraftV41TextToVectorOutput extends SharedType_7ed {}
 
 export interface RecraftV41TextToImageInput extends SharedType_799 {}
 
-export interface RecraftV41TextToImageOutput extends SharedType_e64 {}
+export interface RecraftV41TextToImageOutput extends SharedType_6ea {}
 
 export interface RecraftV41ProTextToVectorInput extends SharedType_1c7 {}
 
-export interface RecraftV41ProTextToVectorOutput extends SharedType_bd2 {}
+export interface RecraftV41ProTextToVectorOutput extends SharedType_35f {}
 
 export interface RecraftV41ProTextToImageInput extends SharedType_8c1 {}
 
-export interface RecraftV41ProTextToImageOutput extends SharedType_043 {}
+export interface RecraftV41ProTextToImageOutput extends SharedType_3ef {}
 
 export interface RecraftV3TextToImageInput {
     /**
@@ -43700,10 +43865,10 @@ export interface QwenImageImageToImageOutput {
      * @description The generated image files info.
      * @example [
      *       {
-     *         "height": 768,
-     *         "url": "https://v3.fal.media/files/elephant/AuLvZGaYemu6vs36D5zof.png",
+     *         "content_type": "image/jpeg",
      *         "width": 1024,
-     *         "content_type": "image/jpeg"
+     *         "url": "https://v3.fal.media/files/elephant/AuLvZGaYemu6vs36D5zof.png",
+     *         "height": 768
      *       }
      *     ]
      */
@@ -43985,10 +44150,10 @@ export interface QwenImageEditInpaintOutput {
      * @description The generated image files info.
      * @example [
      *       {
-     *         "content_type": "image/jpeg",
-     *         "width": 1024,
      *         "height": 768,
-     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/qwen_edit_inpaint_output.png"
+     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/qwen_edit_inpaint_output.png",
+     *         "content_type": "image/jpeg",
+     *         "width": 1024
      *       }
      *     ]
      */
@@ -44103,7 +44268,7 @@ export interface QwenImageEditImageToImageInput {
     sync_mode?: boolean;
 }
 
-export interface QwenImageEditImageToImageOutput extends SharedType_5ec {}
+export interface QwenImageEditImageToImageOutput extends SharedType_57b {}
 
 export interface QwenImageEditPlusLoraGalleryShirtDesignInput extends SharedType_ca8 {}
 
@@ -44147,7 +44312,7 @@ export interface QwenImageEditPlusLoraGalleryAddBackgroundOutput extends SharedT
 
 export interface QwenImageEditPlusLoraInput extends SharedType_71a {}
 
-export interface QwenImageEditPlusLoraOutput extends SharedType_dea {}
+export interface QwenImageEditPlusLoraOutput extends SharedType_360 {}
 
 export interface QwenImageEditPlusInput extends SharedType_36e {}
 
@@ -44259,10 +44424,10 @@ export interface QwenImageEditLoraOutput {
      * @description The generated image files info.
      * @example [
      *       {
-     *         "content_type": "image/jpeg",
-     *         "width": 1024,
      *         "url": "https://v3.fal.media/files/elephant/P-YCIAg6wtFn1hsF34fzL_qwen-edit.png",
-     *         "height": 768
+     *         "width": 1024,
+     *         "height": 768,
+     *         "content_type": "image/jpeg"
      *       }
      *     ]
      */
@@ -44375,7 +44540,7 @@ export interface QwenImageEdit2511LoraInput {
     sync_mode?: boolean;
 }
 
-export interface QwenImageEdit2511LoraOutput extends SharedType_d9c {}
+export interface QwenImageEdit2511LoraOutput extends SharedType_20d1 {}
 
 export interface QwenImageEdit2511MultipleAnglesInput {
     /**
@@ -44595,7 +44760,7 @@ export interface QwenImageEdit2511Input {
     sync_mode?: boolean;
 }
 
-export interface QwenImageEdit2511Output extends SharedType_d9c {}
+export interface QwenImageEdit2511Output extends SharedType_20d1 {}
 
 export interface QwenImageEdit2509TrainerInput {
     /**
@@ -44690,7 +44855,7 @@ export interface QwenImageEdit2509LoraGalleryAddBackgroundOutput extends SharedT
 
 export interface QwenImageEdit2509LoraInput extends SharedType_71a {}
 
-export interface QwenImageEdit2509LoraOutput extends SharedType_dea {}
+export interface QwenImageEdit2509LoraOutput extends SharedType_360 {}
 
 export interface QwenImageEdit2509Input extends SharedType_36e {}
 
@@ -44784,7 +44949,7 @@ export interface QwenImageEditInput {
     sync_mode?: boolean;
 }
 
-export interface QwenImageEditOutput extends SharedType_5ec {}
+export interface QwenImageEditOutput extends SharedType_57b {}
 
 export interface QwenImage2512LoraInput {
     /**
@@ -44873,7 +45038,7 @@ export interface QwenImage2512LoraInput {
     sync_mode?: boolean;
 }
 
-export interface QwenImage2512LoraOutput extends SharedType_ea3 {}
+export interface QwenImage2512LoraOutput extends SharedType_b60 {}
 
 export interface QwenImage2512TrainerInput {
     /**
@@ -44994,7 +45159,7 @@ export interface QwenImage2512Input {
     sync_mode?: boolean;
 }
 
-export interface QwenImage2512Output extends SharedType_ea3 {}
+export interface QwenImage2512Output extends SharedType_b60 {}
 
 export interface QwenImageInput {
     /**
@@ -45104,10 +45269,10 @@ export interface QwenImageOutput {
      * @description The generated image files info.
      * @example [
      *       {
-     *         "height": 768,
-     *         "url": "https://v3.fal.media/files/rabbit/KoIbq6nhDBDPxDQrivW-m.png",
+     *         "content_type": "image/jpeg",
      *         "width": 1024,
-     *         "content_type": "image/jpeg"
+     *         "url": "https://v3.fal.media/files/rabbit/KoIbq6nhDBDPxDQrivW-m.png",
+     *         "height": 768
      *       }
      *     ]
      */
@@ -45226,12 +45391,12 @@ export interface Qwen3TtsVoiceDesign17bOutput {
     /**
      * @description The generated speech audio file.
      * @example {
-     *       "channels": 1,
-     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/qwen3-tts/design_out.mp3",
-     *       "content_type": "audio/mpeg",
+     *       "duration": 7.736875,
      *       "sample_rate": 24000,
+     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/qwen3-tts/design_out.mp3",
+     *       "channels": 1,
      *       "file_name": "rHFLVApz9Rdenm20UvnGf_FtjmMLBV.mp3",
-     *       "duration": 7.736875
+     *       "content_type": "audio/mpeg"
      *     }
      */
     audio: Components.AudioFile;
@@ -45362,12 +45527,12 @@ export interface Qwen3TtsTextToSpeech17bOutput {
     /**
      * @description The generated speech audio file.
      * @example {
-     *       "channels": 1,
-     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/qwen3-tts/tts_out.mp3",
-     *       "content_type": "audio/mpeg",
+     *       "duration": 13.025333333333334,
      *       "sample_rate": 24000,
+     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/qwen3-tts/tts_out.mp3",
+     *       "channels": 1,
      *       "file_name": "n5Ynr2aFKUPw1QjLYjB_4_XEdHoD1K.mp3",
-     *       "duration": 13.025333333333334
+     *       "content_type": "audio/mpeg"
      *     }
      */
     audio: Components.AudioFile;
@@ -45496,12 +45661,12 @@ export interface Qwen3TtsTextToSpeech06bOutput {
     /**
      * @description The generated speech audio file.
      * @example {
-     *       "channels": 1,
-     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/example_outputs/qwen3-tts/tts_out_06b.mp3",
-     *       "content_type": "audio/mpeg",
+     *       "duration": 9.816875,
      *       "sample_rate": 24000,
+     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/example_outputs/qwen3-tts/tts_out_06b.mp3",
+     *       "channels": 1,
      *       "file_name": "n6Av3SeD5dFENf9-VmQ1v_is3jLh5h.mp3",
-     *       "duration": 9.816875
+     *       "content_type": "audio/mpeg"
      *     }
      */
     audio: Components.AudioFile;
@@ -45509,11 +45674,11 @@ export interface Qwen3TtsTextToSpeech06bOutput {
 
 export interface Qwen3TtsCloneVoice17bInput extends SharedType_06a {}
 
-export interface Qwen3TtsCloneVoice17bOutput extends SharedType_9fd {}
+export interface Qwen3TtsCloneVoice17bOutput extends SharedType_120 {}
 
 export interface Qwen3TtsCloneVoice06bInput extends SharedType_06a {}
 
-export interface Qwen3TtsCloneVoice06bOutput extends SharedType_9fd {}
+export interface Qwen3TtsCloneVoice06bOutput extends SharedType_120 {}
 
 export interface PostProcessingVignetteInput {
     /**
@@ -46498,7 +46663,7 @@ export interface PixverseV6TransitionInput {
     thinking_type?: 'enabled' | 'disabled' | 'auto';
 }
 
-export interface PixverseV6TransitionOutput extends SharedType_677 {}
+export interface PixverseV6TransitionOutput extends SharedType_a87 {}
 
 export interface PixverseV6TextToVideoInput {
     /**
@@ -46570,7 +46735,7 @@ export interface PixverseV6TextToVideoInput {
     thinking_type?: 'enabled' | 'disabled' | 'auto';
 }
 
-export interface PixverseV6TextToVideoOutput extends SharedType_113 {}
+export interface PixverseV6TextToVideoOutput extends SharedType_a34 {}
 
 export interface PixverseV6ImageToVideoInput {
     /**
@@ -46641,7 +46806,7 @@ export interface PixverseV6ImageToVideoInput {
     thinking_type?: 'enabled' | 'disabled' | 'auto';
 }
 
-export interface PixverseV6ImageToVideoOutput extends SharedType_3cf {}
+export interface PixverseV6ImageToVideoOutput extends SharedType_419 {}
 
 export interface PixverseV6ExtendInput {
     /**
@@ -46693,15 +46858,15 @@ export interface PixverseV6ExtendInput {
     video_url: string;
 }
 
-export interface PixverseV6ExtendOutput extends SharedType_7cf {}
+export interface PixverseV6ExtendOutput extends SharedType_af11 {}
 
 export interface PixverseV5TransitionInput extends SharedType_355 {}
 
-export interface PixverseV5TransitionOutput extends SharedType_677 {}
+export interface PixverseV5TransitionOutput extends SharedType_a87 {}
 
 export interface PixverseV5TextToVideoInput extends SharedType_7ef {}
 
-export interface PixverseV5TextToVideoOutput extends SharedType_113 {}
+export interface PixverseV5TextToVideoOutput extends SharedType_a34 {}
 
 export interface PixverseV5ImageToVideoInput {
     /**
@@ -46756,11 +46921,11 @@ export interface PixverseV5ImageToVideoInput {
     style?: 'anime' | '3d_animation' | 'clay' | 'comic' | 'cyberpunk';
 }
 
-export interface PixverseV5ImageToVideoOutput extends SharedType_3cf {}
+export interface PixverseV5ImageToVideoOutput extends SharedType_419 {}
 
 export interface PixverseV5EffectsInput extends SharedType_faf {}
 
-export interface PixverseV5EffectsOutput extends SharedType_76c2 {}
+export interface PixverseV5EffectsOutput extends SharedType_079 {}
 
 export interface PixverseV56TransitionInput {
     /**
@@ -46839,7 +47004,7 @@ export interface PixverseV56TransitionInput {
     thinking_type?: 'enabled' | 'disabled' | 'auto';
 }
 
-export interface PixverseV56TransitionOutput extends SharedType_677 {}
+export interface PixverseV56TransitionOutput extends SharedType_a87 {}
 
 export interface PixverseV56TextToVideoInput {
     /**
@@ -46906,7 +47071,7 @@ export interface PixverseV56TextToVideoInput {
     thinking_type?: 'enabled' | 'disabled' | 'auto';
 }
 
-export interface PixverseV56TextToVideoOutput extends SharedType_113 {}
+export interface PixverseV56TextToVideoOutput extends SharedType_a34 {}
 
 export interface PixverseV56ImageToVideoInput {
     /**
@@ -46972,7 +47137,7 @@ export interface PixverseV56ImageToVideoInput {
     thinking_type?: 'enabled' | 'disabled' | 'auto';
 }
 
-export interface PixverseV56ImageToVideoOutput extends SharedType_3cf {}
+export interface PixverseV56ImageToVideoOutput extends SharedType_419 {}
 
 export interface PixverseV55TransitionInput {
     /**
@@ -47051,7 +47216,7 @@ export interface PixverseV55TransitionInput {
     thinking_type?: 'enabled' | 'disabled' | 'auto';
 }
 
-export interface PixverseV55TransitionOutput extends SharedType_677 {}
+export interface PixverseV55TransitionOutput extends SharedType_a87 {}
 
 export interface PixverseV55TextToVideoInput {
     /**
@@ -47124,7 +47289,7 @@ export interface PixverseV55TextToVideoInput {
     thinking_type?: 'enabled' | 'disabled' | 'auto';
 }
 
-export interface PixverseV55TextToVideoOutput extends SharedType_113 {}
+export interface PixverseV55TextToVideoOutput extends SharedType_a34 {}
 
 export interface PixverseV55ImageToVideoInput {
     /**
@@ -47196,7 +47361,7 @@ export interface PixverseV55ImageToVideoInput {
     thinking_type?: 'enabled' | 'disabled' | 'auto';
 }
 
-export interface PixverseV55ImageToVideoOutput extends SharedType_3cf {}
+export interface PixverseV55ImageToVideoOutput extends SharedType_419 {}
 
 export interface PixverseV55EffectsInput {
     /**
@@ -47398,63 +47563,63 @@ export interface PixverseV55EffectsInput {
     thinking_type?: 'enabled' | 'disabled' | 'auto';
 }
 
-export interface PixverseV55EffectsOutput extends SharedType_76c2 {}
+export interface PixverseV55EffectsOutput extends SharedType_079 {}
 
 export interface PixverseV4TextToVideoFastInput extends SharedType_85e {}
 
-export interface PixverseV4TextToVideoFastOutput extends SharedType_1911 {}
+export interface PixverseV4TextToVideoFastOutput extends SharedType_a7f {}
 
 export interface PixverseV4TextToVideoInput extends SharedType_7ef {}
 
-export interface PixverseV4TextToVideoOutput extends SharedType_1911 {}
+export interface PixverseV4TextToVideoOutput extends SharedType_a7f {}
 
 export interface PixverseV4ImageToVideoFastInput extends SharedType_a1f {}
 
-export interface PixverseV4ImageToVideoFastOutput extends SharedType_50b {}
+export interface PixverseV4ImageToVideoFastOutput extends SharedType_e0f {}
 
 export interface PixverseV4ImageToVideoInput extends SharedType_994 {}
 
-export interface PixverseV4ImageToVideoOutput extends SharedType_50b {}
+export interface PixverseV4ImageToVideoOutput extends SharedType_e0f {}
 
 export interface PixverseV4EffectsInput extends SharedType_faf {}
 
-export interface PixverseV4EffectsOutput extends SharedType_76c2 {}
+export interface PixverseV4EffectsOutput extends SharedType_079 {}
 
 export interface PixverseV45TransitionInput extends SharedType_355 {}
 
-export interface PixverseV45TransitionOutput extends SharedType_980 {}
+export interface PixverseV45TransitionOutput extends SharedType_f72 {}
 
 export interface PixverseV45TextToVideoFastInput extends SharedType_85e {}
 
-export interface PixverseV45TextToVideoFastOutput extends SharedType_1911 {}
+export interface PixverseV45TextToVideoFastOutput extends SharedType_a7f {}
 
 export interface PixverseV45TextToVideoInput extends SharedType_7ef {}
 
-export interface PixverseV45TextToVideoOutput extends SharedType_1911 {}
+export interface PixverseV45TextToVideoOutput extends SharedType_a7f {}
 
 export interface PixverseV45ImageToVideoFastInput extends SharedType_a1f {}
 
-export interface PixverseV45ImageToVideoFastOutput extends SharedType_50b {}
+export interface PixverseV45ImageToVideoFastOutput extends SharedType_e0f {}
 
 export interface PixverseV45ImageToVideoInput extends SharedType_994 {}
 
-export interface PixverseV45ImageToVideoOutput extends SharedType_50b {}
+export interface PixverseV45ImageToVideoOutput extends SharedType_e0f {}
 
 export interface PixverseV45EffectsInput extends SharedType_faf {}
 
-export interface PixverseV45EffectsOutput extends SharedType_76c2 {}
+export interface PixverseV45EffectsOutput extends SharedType_079 {}
 
 export interface PixverseV35TransitionInput extends SharedType_355 {}
 
-export interface PixverseV35TransitionOutput extends SharedType_980 {}
+export interface PixverseV35TransitionOutput extends SharedType_f72 {}
 
 export interface PixverseV35TextToVideoFastInput extends SharedType_85e {}
 
-export interface PixverseV35TextToVideoFastOutput extends SharedType_3f7 {}
+export interface PixverseV35TextToVideoFastOutput extends SharedType_79b {}
 
 export interface PixverseV35TextToVideoInput extends SharedType_7ef {}
 
-export interface PixverseV35TextToVideoOutput extends SharedType_3f7 {}
+export interface PixverseV35TextToVideoOutput extends SharedType_79b {}
 
 export interface PixverseV35ImageToVideoFastInput {
     /**
@@ -47502,7 +47667,7 @@ export interface PixverseV35ImageToVideoFastInput {
     style?: 'anime' | '3d_animation' | 'clay' | 'comic' | 'cyberpunk';
 }
 
-export interface PixverseV35ImageToVideoFastOutput extends SharedType_a94 {}
+export interface PixverseV35ImageToVideoFastOutput extends SharedType_68e {}
 
 export interface PixverseV35ImageToVideoInput {
     /**
@@ -47557,11 +47722,11 @@ export interface PixverseV35ImageToVideoInput {
     style?: 'anime' | '3d_animation' | 'clay' | 'comic' | 'cyberpunk';
 }
 
-export interface PixverseV35ImageToVideoOutput extends SharedType_a94 {}
+export interface PixverseV35ImageToVideoOutput extends SharedType_68e {}
 
 export interface PixverseV35EffectsInput extends SharedType_faf {}
 
-export interface PixverseV35EffectsOutput extends SharedType_76c2 {}
+export interface PixverseV35EffectsOutput extends SharedType_079 {}
 
 export interface PixverseSwapInput {
     /**
@@ -47619,10 +47784,10 @@ export interface PixverseSwapOutput {
     /**
      * @description The generated swapped video
      * @example {
-     *       "content_type": "video/mp4",
      *       "file_size": 1234567,
      *       "file_name": "output.mp4",
-     *       "url": "https://v3b.fal.media/files/b/elephant/BdQvPf9T6puy3Co1_ZXeu_output.mp4"
+     *       "url": "https://v3b.fal.media/files/b/elephant/BdQvPf9T6puy3Co1_ZXeu_output.mp4",
+     *       "content_type": "video/mp4"
      *     }
      */
     video: Components.File;
@@ -47662,10 +47827,10 @@ export interface PixverseSoundEffectsOutput {
     /**
      * @description The video with added sound effects
      * @example {
-     *       "content_type": "video/mp4",
      *       "file_size": 1534052,
      *       "file_name": "output.mp4",
-     *       "url": "https://v3.fal.media/files/kangaroo/bBQr_DUeICo6_Ty_b_Y0I_output.mp4"
+     *       "url": "https://v3.fal.media/files/kangaroo/bBQr_DUeICo6_Ty_b_Y0I_output.mp4",
+     *       "content_type": "video/mp4"
      *     }
      */
     video: Components.File;
@@ -47724,10 +47889,10 @@ export interface PixverseLipsyncOutput {
     /**
      * @description The generated video
      * @example {
-     *       "content_type": "video/mp4",
      *       "file_size": 1732359,
      *       "file_name": "output.mp4",
-     *       "url": "https://v3.fal.media/files/penguin/hsR_KXBJjuF3IIVYIIDA2_output.mp4"
+     *       "url": "https://v3.fal.media/files/penguin/hsR_KXBJjuF3IIVYIIDA2_output.mp4",
+     *       "content_type": "video/mp4"
      *     }
      */
     video: Components.File;
@@ -47784,7 +47949,7 @@ export interface PixverseExtendFastInput {
     video_url: string;
 }
 
-export interface PixverseExtendFastOutput extends SharedType_7cf {}
+export interface PixverseExtendFastOutput extends SharedType_af11 {}
 
 export interface PixverseExtendInput {
     /**
@@ -47844,7 +48009,7 @@ export interface PixverseExtendInput {
     video_url: string;
 }
 
-export interface PixverseExtendOutput extends SharedType_7cf {}
+export interface PixverseExtendOutput extends SharedType_af11 {}
 
 export interface PixverseC1TransitionInput {
     /**
@@ -47988,8 +48153,8 @@ export interface PixverseC1ReferenceToVideoInput {
      * @example [
      *       {
      *         "image_url": "https://v3.fal.media/files/zebra/qL93Je8ezvzQgDOEzTjKF_KhGKZTEebZcDw6T5rwQPK_output.png",
-     *         "ref_name": "character",
-     *         "type": "subject"
+     *         "type": "subject",
+     *         "ref_name": "character"
      *       }
      *     ]
      */
@@ -48546,24 +48711,24 @@ export interface PatinaMaterialExtractOutput {
      *         "url": "https://v3b.fal.media/files/b/0a95600e/XOK8IGCqq5rxcf7qf_aGU_R70gdMA6.png"
      *       },
      *       {
-     *         "url": "https://v3b.fal.media/files/b/0a95600f/BDo24MQ7U-QzwGe1p6VA0_GnbTunKU.png",
-     *         "map_type": "basecolor"
+     *         "map_type": "basecolor",
+     *         "url": "https://v3b.fal.media/files/b/0a95600f/BDo24MQ7U-QzwGe1p6VA0_GnbTunKU.png"
      *       },
      *       {
-     *         "url": "https://v3b.fal.media/files/b/0a95600f/Q1YXkdLWthiwxQgiZJCIT_8WLMkQ03.png",
-     *         "map_type": "height"
+     *         "map_type": "height",
+     *         "url": "https://v3b.fal.media/files/b/0a95600f/Q1YXkdLWthiwxQgiZJCIT_8WLMkQ03.png"
      *       },
      *       {
-     *         "url": "https://v3b.fal.media/files/b/0a95600f/2UV412X663vV_3PrSpbee_T56jyBkJ.png",
-     *         "map_type": "normal"
+     *         "map_type": "normal",
+     *         "url": "https://v3b.fal.media/files/b/0a95600f/2UV412X663vV_3PrSpbee_T56jyBkJ.png"
      *       },
      *       {
-     *         "url": "https://v3b.fal.media/files/b/0a95600f/Xh7CM3JhABY7y6HTB6GBn_Sd9NXVGp.png",
-     *         "map_type": "roughness"
+     *         "map_type": "roughness",
+     *         "url": "https://v3b.fal.media/files/b/0a95600f/Xh7CM3JhABY7y6HTB6GBn_Sd9NXVGp.png"
      *       },
      *       {
-     *         "url": "https://v3b.fal.media/files/b/0a95600f/ooJzZkvU0OReUAaTDfqBo_aKZeMPMt.png",
-     *         "map_type": "metalness"
+     *         "map_type": "metalness",
+     *         "url": "https://v3b.fal.media/files/b/0a95600f/ooJzZkvU0OReUAaTDfqBo_aKZeMPMt.png"
      *       }
      *     ]
      */
@@ -48710,24 +48875,24 @@ export interface PatinaMaterialOutput {
      *         "url": "https://v3b.fal.media/files/b/0a95760d/dX7FhHPQ0TOIESx9CyFdw_lhjHZKSq.png"
      *       },
      *       {
-     *         "url": "https://v3b.fal.media/files/b/0a957610/LdI7qAvd7sOGArS_nD1L4_sL2PbKYz.png",
-     *         "map_type": "basecolor"
+     *         "map_type": "basecolor",
+     *         "url": "https://v3b.fal.media/files/b/0a957610/LdI7qAvd7sOGArS_nD1L4_sL2PbKYz.png"
      *       },
      *       {
-     *         "url": "https://v3b.fal.media/files/b/0a957610/AVQruI2Vtm7y-lRBVbr34_Xc9WmnMW.png",
-     *         "map_type": "height"
+     *         "map_type": "height",
+     *         "url": "https://v3b.fal.media/files/b/0a957610/AVQruI2Vtm7y-lRBVbr34_Xc9WmnMW.png"
      *       },
      *       {
-     *         "url": "https://v3b.fal.media/files/b/0a957610/V4Xj_KI9I-a6b-UEfIgrO_gQY8TeTS.png",
-     *         "map_type": "normal"
+     *         "map_type": "normal",
+     *         "url": "https://v3b.fal.media/files/b/0a957610/V4Xj_KI9I-a6b-UEfIgrO_gQY8TeTS.png"
      *       },
      *       {
-     *         "url": "https://v3b.fal.media/files/b/0a957610/Eij1cULDUCTFHrglS9hT0_LWz3ZVhI.png",
-     *         "map_type": "roughness"
+     *         "map_type": "roughness",
+     *         "url": "https://v3b.fal.media/files/b/0a957610/Eij1cULDUCTFHrglS9hT0_LWz3ZVhI.png"
      *       },
      *       {
-     *         "url": "https://v3b.fal.media/files/b/0a957610/tDGew4uKe1yxZYOPVoDEV_fmcwUVeE.png",
-     *         "map_type": "metalness"
+     *         "map_type": "metalness",
+     *         "url": "https://v3b.fal.media/files/b/0a957610/tDGew4uKe1yxZYOPVoDEV_fmcwUVeE.png"
      *       }
      *     ]
      */
@@ -49003,11 +49168,11 @@ export interface OrpheusTtsOutput extends SharedType_d2a {}
 
 export interface OneToAllAnimation14bInput extends SharedType_5be {}
 
-export interface OneToAllAnimation14bOutput extends SharedType_c22 {}
+export interface OneToAllAnimation14bOutput extends SharedType_9f1 {}
 
 export interface OneToAllAnimation13bInput extends SharedType_5be {}
 
-export interface OneToAllAnimation13bOutput extends SharedType_c22 {}
+export interface OneToAllAnimation13bOutput extends SharedType_9f1 {}
 
 export interface OmnigenV2Input {
     /**
@@ -49126,6 +49291,12 @@ export interface OmnigenV2Output extends SharedType_7c6 {}
 
 export interface ObjectRemovalMaskInput {
     /**
+     * Enable Safety Checker
+     * @description Whether to apply input safety moderation. Disabling it requires account authorization.
+     * @default true
+     */
+    enable_safety_checker?: boolean;
+    /**
      * Image Url
      * @description The URL of the image to remove objects from.
      * @example https://v3.fal.media/files/zebra/o0DORfJawy-T9P_-NsvLY.png
@@ -49151,7 +49322,7 @@ export interface ObjectRemovalMaskInput {
     model?: 'low_quality' | 'medium_quality' | 'high_quality' | 'best_quality';
 }
 
-export interface ObjectRemovalMaskOutput extends SharedType_bc5 {}
+export interface ObjectRemovalMaskOutput extends SharedType_438 {}
 
 export interface ObjectRemovalBboxInput {
     /**
@@ -49160,14 +49331,20 @@ export interface ObjectRemovalBboxInput {
      * @default []
      * @example [
      *       {
-     *         "y_min": 0.0115,
+     *         "x_min": 0.3595,
      *         "x_max": 0.6574,
      *         "y_max": 0.8175,
-     *         "x_min": 0.3595
+     *         "y_min": 0.0115
      *       }
      *     ]
      */
     box_prompts?: Components.BBoxPromptBase[];
+    /**
+     * Enable Safety Checker
+     * @description Whether to apply input safety moderation. Disabling it requires account authorization.
+     * @default true
+     */
+    enable_safety_checker?: boolean;
     /**
      * Image Url
      * @description The URL of the image to remove objects from.
@@ -49188,9 +49365,15 @@ export interface ObjectRemovalBboxInput {
     model?: 'low_quality' | 'medium_quality' | 'high_quality' | 'best_quality';
 }
 
-export interface ObjectRemovalBboxOutput extends SharedType_bc5 {}
+export interface ObjectRemovalBboxOutput extends SharedType_438 {}
 
 export interface ObjectRemovalInput {
+    /**
+     * Enable Safety Checker
+     * @description Whether to apply input safety moderation. Disabling it requires account authorization.
+     * @default true
+     */
+    enable_safety_checker?: boolean;
     /**
      * Image Url
      * @description The URL of the image to remove objects from.
@@ -49217,7 +49400,7 @@ export interface ObjectRemovalInput {
     prompt: string;
 }
 
-export interface ObjectRemovalOutput extends SharedType_bc5 {}
+export interface ObjectRemovalOutput extends SharedType_438 {}
 
 export interface NucleusImageInput {
     /**
@@ -49331,8 +49514,8 @@ export interface NanoBananaProEditOutput {
      * @description The edited images.
      * @example [
      *       {
-     *         "file_name": "nano-banana-pro-edit-output.png",
      *         "url": "https://storage.googleapis.com/falserverless/example_outputs/nano-banana-pro-edit-output.png",
+     *         "file_name": "nano-banana-pro-edit-output.png",
      *         "content_type": "image/png"
      *       }
      *     ]
@@ -49363,8 +49546,8 @@ export interface NanoBananaProOutput {
      * @description The generated images.
      * @example [
      *       {
-     *         "file_name": "nano-banana-pro-t2i-output.png",
      *         "url": "https://storage.googleapis.com/falserverless/example_outputs/nano-banana-pro-t2i-output.png",
+     *         "file_name": "nano-banana-pro-t2i-output.png",
      *         "content_type": "image/png"
      *       }
      *     ]
@@ -49476,12 +49659,12 @@ export interface NafnetDenoiseOutput {
     /**
      * @description The generated image file info.
      * @example {
-     *       "url": "https://storage.googleapis.com/falserverless/nafnet/7c97e55956324a7cbee00ac9652a931b.png",
+     *       "height": 512,
      *       "content_type": "image/png",
      *       "file_name": "36d3ca4791a647678b2ff01a35c87f5a.png",
-     *       "height": 512,
-     *       "width": 512,
-     *       "file_size": 423052
+     *       "url": "https://storage.googleapis.com/falserverless/nafnet/7c97e55956324a7cbee00ac9652a931b.png",
+     *       "file_size": 423052,
+     *       "width": 512
      *     }
      */
     image: Components.Image;
@@ -49505,12 +49688,12 @@ export interface NafnetDeblurOutput {
     /**
      * @description The generated image file info.
      * @example {
-     *       "url": "https://storage.googleapis.com/falserverless/nafnet/2cbfd460e25344a69fa8077808fb484f.png",
+     *       "height": 512,
      *       "content_type": "image/png",
      *       "file_name": "36d3ca4791a647678b2ff01a35c87f5a.png",
-     *       "height": 512,
-     *       "width": 512,
-     *       "file_size": 423052
+     *       "url": "https://storage.googleapis.com/falserverless/nafnet/2cbfd460e25344a69fa8077808fb484f.png",
+     *       "file_size": 423052,
+     *       "width": 512
      *     }
      */
     image: Components.Image;
@@ -49671,8 +49854,8 @@ export interface Moondream3PreviewSegmentInput {
      *     **NOTE**: You can also use the [**point endpoint**](https://fal.ai/models/fal-ai/moondream3-preview/point) to get points for the objects, and pass them in here.
      * @example [
      *       {
-     *         "y": 0.40762463343108507,
-     *         "x": 0.6402737047898338
+     *         "x": 0.6402737047898338,
+     *         "y": 0.40762463343108507
      *       }
      *     ]
      */
@@ -49683,10 +49866,10 @@ export interface Moondream3PreviewSegmentOutput {
     /**
      * @description Bounding box of the segmented object. If not detected, will be null.
      * @example {
-     *       "y_min": 0.2998046875,
-     *       "y_max": 0.53515625,
+     *       "x_min": 0.5390625,
      *       "x_max": 0.732421875,
-     *       "x_min": 0.5390625
+     *       "y_min": 0.2998046875,
+     *       "y_max": 0.53515625
      *     }
      */
     bbox?: Components.Object;
@@ -49699,11 +49882,11 @@ export interface Moondream3PreviewSegmentOutput {
     /**
      * @description Segmentation mask image. If no object detected or preview not requested, will be null.
      * @example {
-     *       "height": 1024,
-     *       "file_name": "segmentation_out.png",
-     *       "width": 1024,
      *       "content_type": "image/png",
-     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/moondream-3-preview/segmentation_out.png"
+     *       "file_name": "segmentation_out.png",
+     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/moondream-3-preview/segmentation_out.png",
+     *       "width": 1024,
+     *       "height": 1024
      *     }
      */
     image?: Components.ImageFile;
@@ -49717,10 +49900,10 @@ export interface Moondream3PreviewSegmentOutput {
      * @description Usage information for the request
      * @example {
      *       "prefill_time_ms": 54.45315001998097,
-     *       "decode_time_ms": 811.5944429300725,
-     *       "output_tokens": 23,
+     *       "input_tokens": 737,
      *       "ttft_ms": 91.87838807702065,
-     *       "input_tokens": 737
+     *       "output_tokens": 23,
+     *       "decode_time_ms": 811.5944429300725
      *     }
      */
     usage_info: Components.UsageInfo_2;
@@ -49785,10 +49968,10 @@ export interface Moondream3PreviewQueryOutput {
      * @description Usage information for the request
      * @example {
      *       "prefill_time_ms": 54.45315001998097,
-     *       "decode_time_ms": 811.5944429300725,
-     *       "output_tokens": 23,
+     *       "input_tokens": 737,
      *       "ttft_ms": 91.87838807702065,
-     *       "input_tokens": 737
+     *       "output_tokens": 23,
+     *       "decode_time_ms": 811.5944429300725
      *     }
      */
     usage_info: Components.UsageInfo_2;
@@ -49835,48 +50018,48 @@ export interface Moondream3PreviewPointOutput {
      * @description List of points marking the detected objects
      * @example [
      *       {
-     *         "y": 0.8660801564027371,
-     *         "x": 0.11827956989247312
+     *         "x": 0.11827956989247312,
+     *         "y": 0.8660801564027371
      *       },
      *       {
-     *         "y": 0.8660801564027371,
-     *         "x": 0.3118279569892473
+     *         "x": 0.3118279569892473,
+     *         "y": 0.8660801564027371
      *       },
      *       {
-     *         "y": 0.8660801564027371,
-     *         "x": 0.5953079178885631
+     *         "x": 0.5953079178885631,
+     *         "y": 0.8660801564027371
      *       },
      *       {
-     *         "y": 0.8758553274682307,
-     *         "x": 0.7888563049853372
+     *         "x": 0.7888563049853372,
+     *         "y": 0.8758553274682307
      *       },
      *       {
-     *         "y": 0.5796676441837733,
-     *         "x": 0.9423264907135875
+     *         "x": 0.9423264907135875,
+     *         "y": 0.5796676441837733
      *       },
      *       {
-     *         "y": 0.5796676441837733,
-     *         "x": 0.6324535679374389
+     *         "x": 0.6324535679374389,
+     *         "y": 0.5796676441837733
      *       },
      *       {
-     *         "y": 0.6021505376344086,
-     *         "x": 0.44281524926686217
+     *         "x": 0.44281524926686217,
+     *         "y": 0.6021505376344086
      *       },
      *       {
-     *         "y": 0.5982404692082112,
-     *         "x": 0.3010752688172043
+     *         "x": 0.3010752688172043,
+     *         "y": 0.5982404692082112
      *       },
      *       {
-     *         "y": 0.4701857282502444,
-     *         "x": 0.20332355816226785
+     *         "x": 0.20332355816226785,
+     *         "y": 0.4701857282502444
      *       },
      *       {
-     *         "y": 0.4506353861192571,
-     *         "x": 0.053763440860215055
+     *         "x": 0.053763440860215055,
+     *         "y": 0.4506353861192571
      *       },
      *       {
-     *         "y": 0.6021505376344086,
-     *         "x": 0.053763440860215055
+     *         "x": 0.053763440860215055,
+     *         "y": 0.6021505376344086
      *       }
      *     ]
      */
@@ -49885,10 +50068,10 @@ export interface Moondream3PreviewPointOutput {
      * @description Usage information for the request
      * @example {
      *       "prefill_time_ms": 54.45315001998097,
-     *       "decode_time_ms": 811.5944429300725,
-     *       "output_tokens": 23,
+     *       "input_tokens": 737,
      *       "ttft_ms": 91.87838807702065,
-     *       "input_tokens": 737
+     *       "output_tokens": 23,
+     *       "decode_time_ms": 811.5944429300725
      *     }
      */
     usage_info: Components.UsageInfo_2;
@@ -49935,16 +50118,16 @@ export interface Moondream3PreviewDetectOutput {
      * @description List of detected objects with their bounding boxes
      * @example [
      *       {
-     *         "y_min": 0.16308235274382246,
-     *         "y_max": 0.3061258583998726,
+     *         "x_min": 0.8174849247502471,
      *         "x_max": 0.8755747037932524,
-     *         "x_min": 0.8174849247502471
+     *         "y_min": 0.16308235274382246,
+     *         "y_max": 0.3061258583998726
      *       },
      *       {
-     *         "y_min": 0.0987853935125991,
-     *         "y_max": 0.21011001215700012,
+     *         "x_min": 0.6706078794512399,
      *         "x_max": 0.7155113776357592,
-     *         "x_min": 0.6706078794512399
+     *         "y_min": 0.0987853935125991,
+     *         "y_max": 0.21011001215700012
      *       }
      *     ]
      */
@@ -49953,10 +50136,10 @@ export interface Moondream3PreviewDetectOutput {
      * @description Usage information for the request
      * @example {
      *       "prefill_time_ms": 54.45315001998097,
-     *       "decode_time_ms": 811.5944429300725,
-     *       "output_tokens": 23,
+     *       "input_tokens": 737,
      *       "ttft_ms": 91.87838807702065,
-     *       "input_tokens": 737
+     *       "output_tokens": 23,
+     *       "decode_time_ms": 811.5944429300725
      *     }
      */
     usage_info: Components.UsageInfo_2;
@@ -50005,10 +50188,10 @@ export interface Moondream3PreviewCaptionOutput {
      * @description Usage information for the request
      * @example {
      *       "prefill_time_ms": 54.45315001998097,
-     *       "decode_time_ms": 811.5944429300725,
-     *       "output_tokens": 23,
+     *       "input_tokens": 737,
      *       "ttft_ms": 91.87838807702065,
-     *       "input_tokens": 737
+     *       "output_tokens": 23,
+     *       "decode_time_ms": 811.5944429300725
      *     }
      */
     usage_info: Components.UsageInfo_2;
@@ -50032,11 +50215,11 @@ export interface Moondream2VisualQueryOutput extends SharedType_377 {}
 
 export interface Moondream2PointObjectDetectionInput extends SharedType_bb0 {}
 
-export interface Moondream2PointObjectDetectionOutput extends SharedType_090 {}
+export interface Moondream2PointObjectDetectionOutput extends SharedType_0901 {}
 
 export interface Moondream2ObjectDetectionInput extends SharedType_bb0 {}
 
-export interface Moondream2ObjectDetectionOutput extends SharedType_090 {}
+export interface Moondream2ObjectDetectionOutput extends SharedType_0901 {}
 
 export interface Moondream2Input {
     /**
@@ -50214,10 +50397,10 @@ export interface MmaudioV2TextToAudioOutput {
     /**
      * @description The generated audio.
      * @example {
-     *       "file_size": 1001342,
-     *       "content_type": "application/octet-stream",
      *       "url": "https://storage.googleapis.com/falserverless/model_tests/video_models/mmaudio_output.flac",
-     *       "file_name": "mmaudio_input.flac"
+     *       "file_name": "mmaudio_input.flac",
+     *       "file_size": 1001342,
+     *       "content_type": "application/octet-stream"
      *     }
      */
     audio: Components.File;
@@ -50277,10 +50460,10 @@ export interface MmaudioV2Output {
     /**
      * @description The generated video with the lip sync.
      * @example {
-     *       "file_size": 1001342,
-     *       "content_type": "application/octet-stream",
      *       "url": "https://storage.googleapis.com/falserverless/model_tests/video_models/mmaudio_output.mp4",
-     *       "file_name": "mmaudio_input.mp4"
+     *       "file_name": "mmaudio_input.mp4",
+     *       "file_size": 1001342,
+     *       "content_type": "application/octet-stream"
      *     }
      */
     video: Components.File;
@@ -50632,10 +50815,10 @@ export interface MinimaxSpeech28TurboInput {
     /**
      * @description Voice configuration settings
      * @default {
+     *       "voice_id": "Wise_Woman",
+     *       "pitch": 0,
      *       "vol": 1,
      *       "english_normalization": false,
-     *       "pitch": 0,
-     *       "voice_id": "Wise_Woman",
      *       "speed": 1
      *     }
      */
@@ -50727,10 +50910,10 @@ export interface MinimaxSpeech28HdInput {
     /**
      * @description Voice configuration settings
      * @default {
+     *       "voice_id": "Wise_Woman",
+     *       "pitch": 0,
      *       "vol": 1,
      *       "english_normalization": false,
-     *       "pitch": 0,
-     *       "voice_id": "Wise_Woman",
      *       "speed": 1
      *     }
      */
@@ -50821,10 +51004,10 @@ export interface MinimaxSpeech26TurboInput {
     /**
      * @description Voice configuration settings
      * @default {
+     *       "voice_id": "Wise_Woman",
+     *       "pitch": 0,
      *       "vol": 1,
      *       "english_normalization": false,
-     *       "pitch": 0,
-     *       "voice_id": "Wise_Woman",
      *       "speed": 1
      *     }
      */
@@ -50915,10 +51098,10 @@ export interface MinimaxSpeech26HdInput {
     /**
      * @description Voice configuration settings
      * @default {
+     *       "voice_id": "Wise_Woman",
+     *       "pitch": 0,
      *       "vol": 1,
      *       "english_normalization": false,
-     *       "pitch": 0,
-     *       "voice_id": "Wise_Woman",
      *       "speed": 1
      *     }
      */
@@ -50940,19 +51123,19 @@ export interface MinimaxSpeech26HdOutput {
     duration_ms: number;
 }
 
-export interface MinimaxSpeech02TurboInput extends SharedType_c88 {}
+export interface MinimaxSpeech02TurboInput extends SharedType_408 {}
 
 export interface MinimaxSpeech02TurboOutput extends SharedType_f60 {}
 
-export interface MinimaxSpeech02HdInput extends SharedType_c88 {}
+export interface MinimaxSpeech02HdInput extends SharedType_408 {}
 
 export interface MinimaxSpeech02HdOutput extends SharedType_f60 {}
 
-export interface MinimaxPreviewSpeech25TurboInput extends SharedType_613 {}
+export interface MinimaxPreviewSpeech25TurboInput extends SharedType_0d8 {}
 
 export interface MinimaxPreviewSpeech25TurboOutput extends SharedType_f60 {}
 
-export interface MinimaxPreviewSpeech25HdInput extends SharedType_613 {}
+export interface MinimaxPreviewSpeech25HdInput extends SharedType_0d8 {}
 
 export interface MinimaxPreviewSpeech25HdOutput extends SharedType_f60 {}
 
@@ -51002,10 +51185,10 @@ export interface MinimaxImage01SubjectReferenceOutput {
      * @description Generated images
      * @example [
      *       {
-     *         "file_size": 239709,
      *         "content_type": "image/jpeg",
-     *         "url": "https://v3.fal.media/files/lion/1bfHvTwZGzK59EYAi2OG7_image.jpg",
-     *         "file_name": "image.jpg"
+     *         "file_size": 239709,
+     *         "file_name": "image.jpg",
+     *         "url": "https://v3.fal.media/files/lion/1bfHvTwZGzK59EYAi2OG7_image.jpg"
      *       }
      *     ]
      */
@@ -51052,10 +51235,10 @@ export interface MinimaxImage01Output {
      * @description Generated images
      * @example [
      *       {
-     *         "file_size": 351366,
      *         "content_type": "image/jpeg",
-     *         "url": "https://v3.fal.media/files/tiger/xLcblZAbiw1kM6ZR_2D-r_image.jpg",
-     *         "file_name": "image.jpg"
+     *         "file_size": 351366,
+     *         "file_name": "image.jpg",
+     *         "url": "https://v3.fal.media/files/tiger/xLcblZAbiw1kM6ZR_2D-r_image.jpg"
      *       }
      *     ]
      */
@@ -51642,19 +51825,19 @@ export interface MinimaxMusicOutput {
 
 export interface MeshyV6TextTo3dInput extends SharedType_01e {}
 
-export interface MeshyV6TextTo3dOutput extends SharedType_18b {}
+export interface MeshyV6TextTo3dOutput extends SharedType_29a {}
 
 export interface MeshyV6ImageTo3dInput extends SharedType_297 {}
 
-export interface MeshyV6ImageTo3dOutput extends SharedType_0701 {}
+export interface MeshyV6ImageTo3dOutput extends SharedType_105 {}
 
 export interface MeshyV6PreviewTextTo3dInput extends SharedType_01e {}
 
-export interface MeshyV6PreviewTextTo3dOutput extends SharedType_18b {}
+export interface MeshyV6PreviewTextTo3dOutput extends SharedType_29a {}
 
 export interface MeshyV6PreviewImageTo3dInput extends SharedType_297 {}
 
-export interface MeshyV6PreviewImageTo3dOutput extends SharedType_0701 {}
+export interface MeshyV6PreviewImageTo3dOutput extends SharedType_105 {}
 
 export interface MeshyRiggingMultiAnimationInput {
     /**
@@ -52099,9 +52282,9 @@ export interface MarlinOutput {
      * @description Time-ranged events parsed from the caption.
      * @example [
      *       {
+     *         "text": "a person waves",
      *         "end": 1.5,
-     *         "start": 0,
-     *         "text": "a person waves"
+     *         "start": 0
      *       }
      *     ]
      */
@@ -52129,8 +52312,8 @@ export interface MarigoldV2Input {
      * Image Size
      * @description Inference size as an explicit `{width, height}` object or a preset string (e.g. `"square_hd"`, `"landscape_4_3"`). Both dimensions must be multiples of 16 and no larger than 2048 pixels on either side, with an aspect ratio between 1:16 and 16:1. Defaults to the input image's dimensions rounded to the nearest multiple of 16.
      * @example {
-     *       "width": 512,
-     *       "height": 512
+     *       "height": 512,
+     *       "width": 512
      *     }
      */
     image_size?:
@@ -52578,155 +52761,7 @@ export interface LumaPhotonInput extends SharedType_524 {}
 
 export interface LumaPhotonOutput extends SharedType_e60 {}
 
-export interface Ltxv13b098DistilledMulticonditioningInput {
-    /**
-     * Aspect Ratio
-     * @description The aspect ratio of the video.
-     * @default auto
-     * @example auto
-     * @enum {string}
-     */
-    aspect_ratio?: '9:16' | '1:1' | '16:9' | 'auto';
-    /**
-     * Constant Rate Factor
-     * @description The constant rate factor (CRF) to compress input media with. Compressed input media more closely matches the model's training data, which can improve motion quality.
-     * @default 29
-     * @example 29
-     */
-    constant_rate_factor?: number;
-    /**
-     * Enable Detail Pass
-     * @description Whether to use a detail pass. If True, the model will perform a second pass to refine the video and enhance details. This incurs a 2.0x cost multiplier on the base price.
-     * @default false
-     * @example false
-     */
-    enable_detail_pass?: boolean;
-    /**
-     * Enable Prompt Expansion
-     * @description Whether to expand the prompt using a language model.
-     * @default false
-     * @example false
-     */
-    enable_prompt_expansion?: boolean;
-    /**
-     * Enable Safety Checker
-     * @description Whether to enable the safety checker. Disabling it requires account authorization; unauthorized requests are always checked.
-     * @default true
-     * @example true
-     */
-    enable_safety_checker?: boolean;
-    /**
-     * Number of Inference Steps
-     * @description Number of inference steps during the first pass.
-     * @default 8
-     * @example 8
-     */
-    first_pass_num_inference_steps?: number;
-    /**
-     * Frame Rate
-     * @description The frame rate of the video.
-     * @default 24
-     * @example 24
-     */
-    frame_rate?: number;
-    /**
-     * Images
-     * @description URL of images to use as conditioning
-     * @default []
-     * @example [
-     *       {
-     *         "strength": 1,
-     *         "image_url": "https://storage.googleapis.com/falserverless/model_tests/ltx/NswO1P8sCLzrh1WefqQFK_9a6bdbfa54b944c9a770338159a113fd.jpg",
-     *         "start_frame_num": 0
-     *       },
-     *       {
-     *         "strength": 1,
-     *         "image_url": "https://storage.googleapis.com/falserverless/model_tests/ltx/YAPOGvmS2tM_Krdp7q6-d_267c97e017c34f679844a4477dfcec38.jpg",
-     *         "start_frame_num": 120
-     *       }
-     *     ]
-     */
-    images?: Components.ImageConditioningInput[];
-    /**
-     * Loras
-     * @description LoRA weights to use for generation
-     * @default []
-     */
-    loras?: Components.LoRAWeight[];
-    /**
-     * Negative Prompt
-     * @description Negative prompt for generation
-     * @default worst quality, inconsistent motion, blurry, jittery, distorted
-     */
-    negative_prompt?: string;
-    /**
-     * Number of Frames
-     * @description The number of frames in the video.
-     * @default 121
-     * @example 121
-     */
-    num_frames?: number;
-    /**
-     * Prompt
-     * @description Text prompt to guide generation
-     * @example A vibrant, abstract composition featuring a person with outstretched arms, rendered in a kaleidoscope of colors against a deep, dark background. The figure is composed of intricate, swirling patterns reminiscent of a mosaic, with hues of orange, yellow, blue, and green that evoke the style of artists such as Wassily Kandinsky or Bridget Riley. The camera zooms into the face striking portrait of a man, reimagined through the lens of old-school video-game graphics. The subject's face is rendered in a kaleidoscope of colors, with bold blues and reds set against a vibrant yellow backdrop. His dark hair is pulled back, framing his profile in a dramatic pose.
-     */
-    prompt: string;
-    /**
-     * Resolution
-     * @description Resolution of the generated video.
-     * @default 720p
-     * @example 720p
-     * @enum {string}
-     */
-    resolution?: '480p' | '720p';
-    /**
-     * Reverse Video
-     * @description Whether to reverse the video.
-     * @default false
-     * @example false
-     */
-    reverse_video?: boolean;
-    /**
-     * Second Pass Number of Inference Steps
-     * @description Number of inference steps during the second pass.
-     * @default 8
-     * @example 8
-     */
-    second_pass_num_inference_steps?: number;
-    /**
-     * Second Pass Skip Initial Steps
-     * @description The number of inference steps to skip in the initial steps of the second pass. By skipping some steps at the beginning, the second pass can focus on smaller details instead of larger changes.
-     * @default 5
-     * @example 5
-     */
-    second_pass_skip_initial_steps?: number;
-    /**
-     * Seed
-     * @description Random seed for generation
-     */
-    seed?: number;
-    /**
-     * Temporal AdaIN Factor
-     * @description The factor for adaptive instance normalization (AdaIN) applied to generated video chunks after the first. This can help deal with a gradual increase in saturation/contrast in the generated video by normalizing the color distribution across the video. A high value will ensure the color distribution is more consistent across the video, while a low value will allow for more variation in color distribution.
-     * @default 0.5
-     * @example 0.5
-     */
-    temporal_adain_factor?: number;
-    /**
-     * Tone Map Compression Ratio
-     * @description The compression ratio for tone mapping. This is used to compress the dynamic range of the video to improve visual quality. A value of 0.0 means no compression, while a value of 1.0 means maximum compression.
-     * @default 0
-     * @example 0
-     */
-    tone_map_compression_ratio?: number;
-    /**
-     * Videos
-     * @description Videos to use as conditioning
-     * @default []
-     */
-    videos?: Components.VideoConditioningInput[];
-}
+export interface Ltxv13b098DistilledMulticonditioningInput extends SharedType_f1a {}
 
 export interface Ltxv13b098DistilledMulticonditioningOutput extends SharedType_680 {}
 
@@ -52861,16 +52896,16 @@ export interface Ltxv13b098DistilledExtendInput {
     /**
      * @description Video to be extended.
      * @example {
-     *       "preprocess": false,
-     *       "resample_fps": false,
-     *       "start_frame_num": 0,
-     *       "strength": 1,
-     *       "limit_num_frames": false,
      *       "max_num_frames": 1441,
-     *       "video_url": "https://storage.googleapis.com/falserverless/web-examples/wan/t2v.mp4",
+     *       "limit_num_frames": false,
+     *       "start_frame_num": 0,
+     *       "target_fps": 24,
+     *       "preprocess": false,
+     *       "strength": 1,
      *       "reverse_video": false,
      *       "conditioning_type": "rgb",
-     *       "target_fps": 24
+     *       "video_url": "https://storage.googleapis.com/falserverless/web-examples/wan/t2v.mp4",
+     *       "resample_fps": false
      *     }
      */
     video: Components.ExtendVideoConditioningInput;
@@ -55371,155 +55406,7 @@ export interface LtxVideoImageToVideoInput {
 
 export interface LtxVideoImageToVideoOutput extends SharedType_4b8 {}
 
-export interface LtxVideo13bDistilledMulticonditioningInput {
-    /**
-     * Aspect Ratio
-     * @description The aspect ratio of the video.
-     * @default auto
-     * @example auto
-     * @enum {string}
-     */
-    aspect_ratio?: '9:16' | '1:1' | '16:9' | 'auto';
-    /**
-     * Constant Rate Factor
-     * @description The constant rate factor (CRF) to compress input media with. Compressed input media more closely matches the model's training data, which can improve motion quality.
-     * @default 29
-     * @example 29
-     */
-    constant_rate_factor?: number;
-    /**
-     * Enable Detail Pass
-     * @description Whether to use a detail pass. If True, the model will perform a second pass to refine the video and enhance details. This incurs a 2.0x cost multiplier on the base price.
-     * @default false
-     * @example false
-     */
-    enable_detail_pass?: boolean;
-    /**
-     * Enable Prompt Expansion
-     * @description Whether to expand the prompt using a language model.
-     * @default false
-     * @example false
-     */
-    enable_prompt_expansion?: boolean;
-    /**
-     * Enable Safety Checker
-     * @description Whether to enable the safety checker. Disabling it requires account authorization; unauthorized requests are always checked.
-     * @default true
-     * @example true
-     */
-    enable_safety_checker?: boolean;
-    /**
-     * Number of Inference Steps
-     * @description Number of inference steps during the first pass.
-     * @default 8
-     * @example 8
-     */
-    first_pass_num_inference_steps?: number;
-    /**
-     * Frame Rate
-     * @description The frame rate of the video.
-     * @default 24
-     * @example 24
-     */
-    frame_rate?: number;
-    /**
-     * Images
-     * @description URL of images to use as conditioning
-     * @default []
-     * @example [
-     *       {
-     *         "image_url": "https://storage.googleapis.com/falserverless/model_tests/ltx/NswO1P8sCLzrh1WefqQFK_9a6bdbfa54b944c9a770338159a113fd.jpg",
-     *         "start_frame_num": 0,
-     *         "strength": 1
-     *       },
-     *       {
-     *         "image_url": "https://storage.googleapis.com/falserverless/model_tests/ltx/YAPOGvmS2tM_Krdp7q6-d_267c97e017c34f679844a4477dfcec38.jpg",
-     *         "start_frame_num": 120,
-     *         "strength": 1
-     *       }
-     *     ]
-     */
-    images?: Components.ImageConditioningInput[];
-    /**
-     * Loras
-     * @description LoRA weights to use for generation
-     * @default []
-     */
-    loras?: Components.LoRAWeight[];
-    /**
-     * Negative Prompt
-     * @description Negative prompt for generation
-     * @default worst quality, inconsistent motion, blurry, jittery, distorted
-     */
-    negative_prompt?: string;
-    /**
-     * Number of Frames
-     * @description The number of frames in the video.
-     * @default 121
-     * @example 121
-     */
-    num_frames?: number;
-    /**
-     * Prompt
-     * @description Text prompt to guide generation
-     * @example A vibrant, abstract composition featuring a person with outstretched arms, rendered in a kaleidoscope of colors against a deep, dark background. The figure is composed of intricate, swirling patterns reminiscent of a mosaic, with hues of orange, yellow, blue, and green that evoke the style of artists such as Wassily Kandinsky or Bridget Riley. The camera zooms into the face striking portrait of a man, reimagined through the lens of old-school video-game graphics. The subject's face is rendered in a kaleidoscope of colors, with bold blues and reds set against a vibrant yellow backdrop. His dark hair is pulled back, framing his profile in a dramatic pose.
-     */
-    prompt: string;
-    /**
-     * Resolution
-     * @description Resolution of the generated video.
-     * @default 720p
-     * @example 720p
-     * @enum {string}
-     */
-    resolution?: '480p' | '720p';
-    /**
-     * Reverse Video
-     * @description Whether to reverse the video.
-     * @default false
-     * @example false
-     */
-    reverse_video?: boolean;
-    /**
-     * Second Pass Number of Inference Steps
-     * @description Number of inference steps during the second pass.
-     * @default 8
-     * @example 8
-     */
-    second_pass_num_inference_steps?: number;
-    /**
-     * Second Pass Skip Initial Steps
-     * @description The number of inference steps to skip in the initial steps of the second pass. By skipping some steps at the beginning, the second pass can focus on smaller details instead of larger changes.
-     * @default 5
-     * @example 5
-     */
-    second_pass_skip_initial_steps?: number;
-    /**
-     * Seed
-     * @description Random seed for generation
-     */
-    seed?: number;
-    /**
-     * Temporal AdaIN Factor
-     * @description The factor for adaptive instance normalization (AdaIN) applied to generated video chunks after the first. This can help deal with a gradual increase in saturation/contrast in the generated video by normalizing the color distribution across the video. A high value will ensure the color distribution is more consistent across the video, while a low value will allow for more variation in color distribution.
-     * @default 0.5
-     * @example 0.5
-     */
-    temporal_adain_factor?: number;
-    /**
-     * Tone Map Compression Ratio
-     * @description The compression ratio for tone mapping. This is used to compress the dynamic range of the video to improve visual quality. A value of 0.0 means no compression, while a value of 1.0 means maximum compression.
-     * @default 0
-     * @example 0
-     */
-    tone_map_compression_ratio?: number;
-    /**
-     * Videos
-     * @description Videos to use as conditioning
-     * @default []
-     */
-    videos?: Components.VideoConditioningInput[];
-}
+export interface LtxVideo13bDistilledMulticonditioningInput extends SharedType_f1a {}
 
 export interface LtxVideo13bDistilledMulticonditioningOutput extends SharedType_680 {}
 
@@ -55654,16 +55541,16 @@ export interface LtxVideo13bDistilledExtendInput {
     /**
      * @description Video to be extended.
      * @example {
+     *       "reverse_video": false,
      *       "video_url": "https://storage.googleapis.com/falserverless/web-examples/wan/t2v.mp4",
+     *       "conditioning_type": "rgb",
+     *       "target_fps": 24,
      *       "strength": 1,
      *       "resample_fps": false,
-     *       "max_num_frames": 1441,
-     *       "target_fps": 24,
+     *       "preprocess": false,
      *       "start_frame_num": 0,
-     *       "reverse_video": false,
-     *       "conditioning_type": "rgb",
      *       "limit_num_frames": false,
-     *       "preprocess": false
+     *       "max_num_frames": 1441
      *     }
      */
     video: Components.ExtendVideoConditioningInput;
@@ -55764,7 +55651,7 @@ export interface Ltx23TextToVideoFastInput {
     resolution?: '1080p' | '1440p' | '2160p';
 }
 
-export interface Ltx23TextToVideoFastOutput extends SharedType_a79 {}
+export interface Ltx23TextToVideoFastOutput extends SharedType_c46 {}
 
 export interface Ltx23TextToVideoInput {
     /**
@@ -55815,7 +55702,7 @@ export interface Ltx23TextToVideoInput {
     resolution?: '1080p' | '1440p' | '2160p';
 }
 
-export interface Ltx23TextToVideoOutput extends SharedType_392 {}
+export interface Ltx23TextToVideoOutput extends SharedType_453 {}
 
 export interface Ltx23RetakeVideoInput {
     /**
@@ -55861,9 +55748,9 @@ export interface Ltx23RetakeVideoOutput {
     /**
      * @description The generated video file
      * @example {
-     *       "content_type": "video/mp4",
+     *       "url": "https://v3b.fal.media/files/b/0a90e00f/xvl9SlF6b7a8327wKJDvm_JW6crfr3.mp4",
      *       "file_name": "xvl9SlF6b7a8327wKJDvm_JW6crfr3.mp4",
-     *       "url": "https://v3b.fal.media/files/b/0a90e00f/xvl9SlF6b7a8327wKJDvm_JW6crfr3.mp4"
+     *       "content_type": "video/mp4"
      *     }
      */
     video: Components.VideoFile;
@@ -55902,9 +55789,9 @@ export interface Ltx23ReframeOutput {
     /**
      * @description The reframed video file
      * @example {
-     *       "content_type": "video/mp4",
+     *       "url": "https://v3b.fal.media/files/b/0a90e00f/xvl9SlF6b7a8327wKJDvm_JW6crfr3.mp4",
      *       "file_name": "ltxv-2-3-reframe-output.mp4",
-     *       "url": "https://v3b.fal.media/files/b/0a90e00f/xvl9SlF6b7a8327wKJDvm_JW6crfr3.mp4"
+     *       "content_type": "video/mp4"
      *     }
      */
     video: Components.VideoFile;
@@ -55970,7 +55857,7 @@ export interface Ltx23ImageToVideoFastInput {
     resolution?: '1080p' | '1440p' | '2160p';
 }
 
-export interface Ltx23ImageToVideoFastOutput extends SharedType_3cb {}
+export interface Ltx23ImageToVideoFastOutput extends SharedType_6b9 {}
 
 export interface Ltx23ImageToVideoInput {
     /**
@@ -56032,7 +55919,7 @@ export interface Ltx23ImageToVideoInput {
     resolution?: '1080p' | '1440p' | '2160p';
 }
 
-export interface Ltx23ImageToVideoOutput extends SharedType_700 {}
+export interface Ltx23ImageToVideoOutput extends SharedType_70f {}
 
 export interface Ltx23ExtendVideoInput {
     /**
@@ -56077,9 +55964,9 @@ export interface Ltx23ExtendVideoOutput {
     /**
      * @description The extended video file
      * @example {
-     *       "content_type": "video/mp4",
+     *       "url": "https://v3b.fal.media/files/b/0a90e020/sQT2ORTL4ISEeLv3mRdF0_rGO62gwz.mp4",
      *       "file_name": "sQT2ORTL4ISEeLv3mRdF0_rGO62gwz.mp4",
-     *       "url": "https://v3b.fal.media/files/b/0a90e020/sQT2ORTL4ISEeLv3mRdF0_rGO62gwz.mp4"
+     *       "content_type": "video/mp4"
      *     }
      */
     video: Components.VideoFile;
@@ -56124,7 +56011,7 @@ export interface Ltx23AudioToVideoInput {
     prompt?: string;
 }
 
-export interface Ltx23AudioToVideoOutput extends SharedType_bc3 {}
+export interface Ltx23AudioToVideoOutput extends SharedType_8d6 {}
 
 export interface Ltx23QualityWaterSimulationInput extends SharedType_223 {}
 
@@ -58744,7 +58631,7 @@ export interface Ltx2322bVideoToVideoLoraInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx2322bVideoToVideoLoraOutput extends SharedType_287 {}
+export interface Ltx2322bVideoToVideoLoraOutput extends SharedType_1f6 {}
 
 export interface Ltx2322bVideoToVideoInput {
     /**
@@ -58991,7 +58878,7 @@ export interface Ltx2322bVideoToVideoInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx2322bVideoToVideoOutput extends SharedType_287 {}
+export interface Ltx2322bVideoToVideoOutput extends SharedType_1f6 {}
 
 export interface Ltx2322bTextToVideoLoraInput {
     /**
@@ -59212,7 +59099,7 @@ export interface Ltx2322bTextToVideoLoraInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx2322bTextToVideoLoraOutput extends SharedType_f43 {}
+export interface Ltx2322bTextToVideoLoraOutput extends SharedType_0f2 {}
 
 export interface Ltx2322bTextToVideoInput {
     /**
@@ -59428,7 +59315,7 @@ export interface Ltx2322bTextToVideoInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx2322bTextToVideoOutput extends SharedType_f43 {}
+export interface Ltx2322bTextToVideoOutput extends SharedType_0f2 {}
 
 export interface Ltx2322bReferenceVideoToVideoLoraInput {
     /**
@@ -59710,7 +59597,7 @@ export interface Ltx2322bReferenceVideoToVideoLoraInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx2322bReferenceVideoToVideoLoraOutput extends SharedType_683 {}
+export interface Ltx2322bReferenceVideoToVideoLoraOutput extends SharedType_190 {}
 
 export interface Ltx2322bReferenceVideoToVideoInput {
     /**
@@ -59987,7 +59874,7 @@ export interface Ltx2322bReferenceVideoToVideoInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx2322bReferenceVideoToVideoOutput extends SharedType_683 {}
+export interface Ltx2322bReferenceVideoToVideoOutput extends SharedType_190 {}
 
 export interface Ltx2322bImageToVideoLoraInput {
     /**
@@ -60239,7 +60126,7 @@ export interface Ltx2322bImageToVideoLoraInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx2322bImageToVideoLoraOutput extends SharedType_c19 {}
+export interface Ltx2322bImageToVideoLoraOutput extends SharedType_a7d1 {}
 
 export interface Ltx2322bImageToVideoInput {
     /**
@@ -60486,7 +60373,7 @@ export interface Ltx2322bImageToVideoInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx2322bImageToVideoOutput extends SharedType_c19 {}
+export interface Ltx2322bImageToVideoOutput extends SharedType_a7d1 {}
 
 export interface Ltx2322bExtendVideoLoraInput {
     /**
@@ -60756,7 +60643,7 @@ export interface Ltx2322bExtendVideoLoraInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx2322bExtendVideoLoraOutput extends SharedType_56a {}
+export interface Ltx2322bExtendVideoLoraOutput extends SharedType_84b {}
 
 export interface Ltx2322bExtendVideoInput {
     /**
@@ -61021,7 +60908,7 @@ export interface Ltx2322bExtendVideoInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx2322bExtendVideoOutput extends SharedType_56a {}
+export interface Ltx2322bExtendVideoOutput extends SharedType_84b {}
 
 export interface Ltx2322bDistilledVideoToVideoLoraInput {
     /**
@@ -61201,7 +61088,7 @@ export interface Ltx2322bDistilledVideoToVideoLoraInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx2322bDistilledVideoToVideoLoraOutput extends SharedType_287 {}
+export interface Ltx2322bDistilledVideoToVideoLoraOutput extends SharedType_1f6 {}
 
 export interface Ltx2322bDistilledVideoToVideoInput {
     /**
@@ -61376,7 +61263,7 @@ export interface Ltx2322bDistilledVideoToVideoInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx2322bDistilledVideoToVideoOutput extends SharedType_287 {}
+export interface Ltx2322bDistilledVideoToVideoOutput extends SharedType_1f6 {}
 
 export interface Ltx2322bDistilledTextToVideoLoraInput {
     /**
@@ -61525,7 +61412,7 @@ export interface Ltx2322bDistilledTextToVideoLoraInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx2322bDistilledTextToVideoLoraOutput extends SharedType_f43 {}
+export interface Ltx2322bDistilledTextToVideoLoraOutput extends SharedType_0f2 {}
 
 export interface Ltx2322bDistilledTextToVideoInput {
     /**
@@ -61669,7 +61556,7 @@ export interface Ltx2322bDistilledTextToVideoInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx2322bDistilledTextToVideoOutput extends SharedType_f43 {}
+export interface Ltx2322bDistilledTextToVideoOutput extends SharedType_0f2 {}
 
 export interface Ltx2322bDistilledReferenceVideoToVideoLoraInput {
     /**
@@ -61879,7 +61766,7 @@ export interface Ltx2322bDistilledReferenceVideoToVideoLoraInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx2322bDistilledReferenceVideoToVideoLoraOutput extends SharedType_683 {}
+export interface Ltx2322bDistilledReferenceVideoToVideoLoraOutput extends SharedType_190 {}
 
 export interface Ltx2322bDistilledReferenceVideoToVideoInput {
     /**
@@ -62084,7 +61971,7 @@ export interface Ltx2322bDistilledReferenceVideoToVideoInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx2322bDistilledReferenceVideoToVideoOutput extends SharedType_683 {}
+export interface Ltx2322bDistilledReferenceVideoToVideoOutput extends SharedType_190 {}
 
 export interface Ltx2322bDistilledImageToVideoLoraInput {
     /**
@@ -62264,7 +62151,7 @@ export interface Ltx2322bDistilledImageToVideoLoraInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx2322bDistilledImageToVideoLoraOutput extends SharedType_c19 {}
+export interface Ltx2322bDistilledImageToVideoLoraOutput extends SharedType_a7d1 {}
 
 export interface Ltx2322bDistilledImageToVideoInput {
     /**
@@ -62439,7 +62326,7 @@ export interface Ltx2322bDistilledImageToVideoInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx2322bDistilledImageToVideoOutput extends SharedType_c19 {}
+export interface Ltx2322bDistilledImageToVideoOutput extends SharedType_a7d1 {}
 
 export interface Ltx2322bDistilledAudioToVideoLoraInput {
     /**
@@ -62630,7 +62517,7 @@ export interface Ltx2322bDistilledAudioToVideoLoraInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx2322bDistilledAudioToVideoLoraOutput extends SharedType_25a {}
+export interface Ltx2322bDistilledAudioToVideoLoraOutput extends SharedType_035 {}
 
 export interface Ltx2322bDistilledAudioToVideoInput {
     /**
@@ -62816,7 +62703,7 @@ export interface Ltx2322bDistilledAudioToVideoInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx2322bDistilledAudioToVideoOutput extends SharedType_25a {}
+export interface Ltx2322bDistilledAudioToVideoOutput extends SharedType_035 {}
 
 export interface Ltx2322bAudioToVideoLoraInput {
     /**
@@ -63079,7 +62966,7 @@ export interface Ltx2322bAudioToVideoLoraInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx2322bAudioToVideoLoraOutput extends SharedType_25a {}
+export interface Ltx2322bAudioToVideoLoraOutput extends SharedType_035 {}
 
 export interface Ltx2322bAudioToVideoInput {
     /**
@@ -63337,7 +63224,7 @@ export interface Ltx2322bAudioToVideoInput {
     video_write_mode?: 'fast' | 'balanced' | 'small';
 }
 
-export interface Ltx2322bAudioToVideoOutput extends SharedType_25a {}
+export interface Ltx2322bAudioToVideoOutput extends SharedType_035 {}
 
 export interface LoraInpaintInput {
     /**
@@ -65135,10 +65022,10 @@ export interface LongcatImageEditOutput {
      * @description The generated image files info.
      * @example [
      *       {
-     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/longcat_image/edit.png",
+     *         "content_type": "image/png",
      *         "width": 1024,
-     *         "height": 768,
-     *         "content_type": "image/png"
+     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/longcat_image/edit.png",
+     *         "height": 768
      *       }
      *     ]
      */
@@ -65244,10 +65131,10 @@ export interface LongcatImageOutput {
      * @description The generated image files info.
      * @example [
      *       {
-     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/longcat_image/t2i.png",
+     *         "content_type": "image/png",
      *         "width": 1024,
-     *         "height": 768,
-     *         "content_type": "image/png"
+     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/longcat_image/t2i.png",
+     *         "height": 768
      *       }
      *     ]
      */
@@ -65656,10 +65543,10 @@ export interface LightxRelightInput {
     /**
      * @description Relighting parameters (required for relight_condition_type='ic'). Not used for 'bg' (which expects a background image URL instead).
      * @example {
-     *       "bg_source": "Right",
-     *       "cfg": 2,
      *       "use_sky_mask": false,
-     *       "relight_prompt": "Sunlight"
+     *       "relight_prompt": "Sunlight",
+     *       "cfg": 2,
+     *       "bg_source": "Right"
      *     }
      */
     relight_parameters?: Components.RelightParameters;
@@ -67130,10 +67017,10 @@ export interface KlingVideoV3TurboStandardTextToVideoOutput {
     /**
      * @description The generated video
      * @example {
-     *       "url": "https://v3b.fal.media/files/b/0a9e90b9/yFoK9fyMh8DAnZSkJrrFH_output.mp4",
      *       "file_size": 11480612,
+     *       "content_type": "video/mp4",
      *       "file_name": "output.mp4",
-     *       "content_type": "video/mp4"
+     *       "url": "https://v3b.fal.media/files/b/0a9e90b9/yFoK9fyMh8DAnZSkJrrFH_output.mp4"
      *     }
      */
     video: Components.File;
@@ -67173,7 +67060,7 @@ export interface KlingVideoV3TurboStandardImageToVideoInput {
     prompt?: string;
 }
 
-export interface KlingVideoV3TurboStandardImageToVideoOutput extends SharedType_a0c {}
+export interface KlingVideoV3TurboStandardImageToVideoOutput extends SharedType_1d6 {}
 
 export interface KlingVideoV3TurboProTextToVideoInput {
     /**
@@ -67210,7 +67097,7 @@ export interface KlingVideoV3TurboProTextToVideoInput {
     prompt?: string;
 }
 
-export interface KlingVideoV3TurboProTextToVideoOutput extends SharedType_a0c {}
+export interface KlingVideoV3TurboProTextToVideoOutput extends SharedType_1d6 {}
 
 export interface KlingVideoV3TurboProImageToVideoInput {
     /**
@@ -67250,10 +67137,10 @@ export interface KlingVideoV3TurboProImageToVideoOutput {
     /**
      * @description The generated video
      * @example {
-     *       "url": "https://v3b.fal.media/files/b/0a9ea0cc/u66I5Q5EHikrGF39EEk8t_output.mp4",
      *       "file_size": 8390943,
+     *       "content_type": "video/mp4",
      *       "file_name": "output.mp4",
-     *       "content_type": "video/mp4"
+     *       "url": "https://v3b.fal.media/files/b/0a9ea0cc/u66I5Q5EHikrGF39EEk8t_output.mp4"
      *     }
      */
     video: Components.File;
@@ -67323,10 +67210,10 @@ export interface KlingVideoV3StandardTextToVideoOutput {
     /**
      * @description The generated video
      * @example {
-     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/kling-v3/standard-t2v/out.mp4",
      *       "file_size": 6797486,
+     *       "content_type": "video/mp4",
      *       "file_name": "output.mp4",
-     *       "content_type": "video/mp4"
+     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/kling-v3/standard-t2v/out.mp4"
      *     }
      */
     video: Components.File;
@@ -67408,10 +67295,10 @@ export interface KlingVideoV3StandardImageToVideoInput {
      * @description Elements (characters/objects) to include in the video. Each example can either be an image set (frontal + reference images) or a video. Reference in prompt as @Element1, @Element2, etc.
      * @example [
      *       {
+     *         "frontal_image_url": "https://v3b.fal.media/files/b/0a8cfd5f/-kZL-ha3Iuelku5IHXC-A_glasses.png",
      *         "reference_image_urls": [
      *           "https://v3b.fal.media/files/b/0a8cfd62/psPCmzrD1y9vDgdyNfKAL_glasses_back.png"
-     *         ],
-     *         "frontal_image_url": "https://v3b.fal.media/files/b/0a8cfd5f/-kZL-ha3Iuelku5IHXC-A_glasses.png"
+     *         ]
      *       },
      *       {
      *         "video_url": "https://v3b.fal.media/files/b/0a8cfd66/b03SOiQvKLlFx_jqdNZ9z_child_video.mp4"
@@ -67472,10 +67359,10 @@ export interface KlingVideoV3StandardImageToVideoOutput {
     /**
      * @description The generated video
      * @example {
-     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/kling-v3/standard-i2v/out.mp4",
      *       "file_size": 3149129,
+     *       "content_type": "video/mp4",
      *       "file_name": "out.mp4",
-     *       "content_type": "video/mp4"
+     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/kling-v3/standard-i2v/out.mp4"
      *     }
      */
     video: Components.File;
@@ -67483,7 +67370,7 @@ export interface KlingVideoV3StandardImageToVideoOutput {
 
 export interface KlingVideoV3ProTextToVideoInput extends SharedType_5a9 {}
 
-export interface KlingVideoV3ProTextToVideoOutput extends SharedType_76c {}
+export interface KlingVideoV3ProTextToVideoOutput extends SharedType_090 {}
 
 export interface KlingVideoV3ProMotionControlInput {
     /**
@@ -67540,21 +67427,21 @@ export interface KlingVideoV3ProMotionControlOutput {
     video: Components.File;
 }
 
-export interface KlingVideoV3ProImageToVideoInput extends SharedType_a1e {}
+export interface KlingVideoV3ProImageToVideoInput extends SharedType_b5c {}
 
-export interface KlingVideoV3ProImageToVideoOutput extends SharedType_c6b {}
+export interface KlingVideoV3ProImageToVideoOutput extends SharedType_a10 {}
 
 export interface KlingVideoV34kTextToVideoInput extends SharedType_5a9 {}
 
-export interface KlingVideoV34kTextToVideoOutput extends SharedType_76c {}
+export interface KlingVideoV34kTextToVideoOutput extends SharedType_090 {}
 
-export interface KlingVideoV34kImageToVideoInput extends SharedType_a1e {}
+export interface KlingVideoV34kImageToVideoInput extends SharedType_b5c {}
 
-export interface KlingVideoV34kImageToVideoOutput extends SharedType_c6b {}
+export interface KlingVideoV34kImageToVideoOutput extends SharedType_a10 {}
 
 export interface KlingVideoV26StandardMotionControlInput extends SharedType_4a0 {}
 
-export interface KlingVideoV26StandardMotionControlOutput extends SharedType_538 {}
+export interface KlingVideoV26StandardMotionControlOutput extends SharedType_76a1 {}
 
 export interface KlingVideoV26ProTextToVideoInput {
     /**
@@ -67606,10 +67493,10 @@ export interface KlingVideoV26ProTextToVideoOutput {
     /**
      * @description The generated video
      * @example {
-     *       "url": "https://v3b.fal.media/files/b/0a84ab71/8hPbLs7n59WhWY-BN69yX_output.mp4",
      *       "file_size": 8195664,
+     *       "content_type": "video/mp4",
      *       "file_name": "output.mp4",
-     *       "content_type": "video/mp4"
+     *       "url": "https://v3b.fal.media/files/b/0a84ab71/8hPbLs7n59WhWY-BN69yX_output.mp4"
      *     }
      */
     video: Components.File;
@@ -67617,7 +67504,7 @@ export interface KlingVideoV26ProTextToVideoOutput {
 
 export interface KlingVideoV26ProMotionControlInput extends SharedType_4a0 {}
 
-export interface KlingVideoV26ProMotionControlOutput extends SharedType_538 {}
+export interface KlingVideoV26ProMotionControlOutput extends SharedType_76a1 {}
 
 export interface KlingVideoV26ProImageToVideoInput {
     /**
@@ -67671,10 +67558,10 @@ export interface KlingVideoV26ProImageToVideoOutput {
     /**
      * @description The generated video
      * @example {
-     *       "url": "https://v3b.fal.media/files/b/0a84ab51/Qr1twf8UgtD5rZHpNXC2P_output.mp4",
      *       "file_size": 11814817,
+     *       "content_type": "video/mp4",
      *       "file_name": "output.mp4",
-     *       "content_type": "video/mp4"
+     *       "url": "https://v3b.fal.media/files/b/0a84ab51/Qr1twf8UgtD5rZHpNXC2P_output.mp4"
      *     }
      */
     video: Components.File;
@@ -67723,10 +67610,10 @@ export interface KlingVideoV25TurboStandardImageToVideoOutput {
     /**
      * @description The generated video
      * @example {
-     *       "url": "https://v3b.fal.media/files/b/0a97541e/EiyjY6_Fjf7XPgR7nUli5_output.mp4",
      *       "file_size": 16536912,
+     *       "content_type": "video/mp4",
      *       "file_name": "output.mp4",
-     *       "content_type": "video/mp4"
+     *       "url": "https://v3b.fal.media/files/b/0a97541e/EiyjY6_Fjf7XPgR7nUli5_output.mp4"
      *     }
      */
     video: Components.File;
@@ -67922,7 +67809,7 @@ export interface KlingVideoV1TtsOutput {
 
 export interface KlingVideoV1StandardEffectsInput extends SharedType_191 {}
 
-export interface KlingVideoV1StandardEffectsOutput extends SharedType_dea2 {}
+export interface KlingVideoV1StandardEffectsOutput extends SharedType_df11 {}
 
 export interface KlingVideoV1StandardAiAvatarInput extends SharedType_3a3 {}
 
@@ -67934,15 +67821,15 @@ export interface KlingVideoV1ProAiAvatarOutput extends SharedType_a58 {}
 
 export interface KlingVideoV16StandardEffectsInput extends SharedType_191 {}
 
-export interface KlingVideoV16StandardEffectsOutput extends SharedType_dea2 {}
+export interface KlingVideoV16StandardEffectsOutput extends SharedType_df11 {}
 
 export interface KlingVideoV16ProEffectsInput extends SharedType_191 {}
 
-export interface KlingVideoV16ProEffectsOutput extends SharedType_dea2 {}
+export interface KlingVideoV16ProEffectsOutput extends SharedType_df11 {}
 
 export interface KlingVideoV15ProEffectsInput extends SharedType_191 {}
 
-export interface KlingVideoV15ProEffectsOutput extends SharedType_dea2 {}
+export interface KlingVideoV15ProEffectsOutput extends SharedType_df11 {}
 
 export interface KlingVideoO3StandardVideoToVideoReferenceInput {
     /**
@@ -67964,16 +67851,16 @@ export interface KlingVideoO3StandardVideoToVideoReferenceInput {
      * @description Elements (characters/objects) to include. Reference in prompt as @Element1, @Element2.
      * @example [
      *       {
+     *         "frontal_image_url": "https://storage.googleapis.com/falserverless/example_inputs/kling-o3/standard-v2v-reference/element1_front.png",
      *         "reference_image_urls": [
      *           "https://storage.googleapis.com/falserverless/example_inputs/kling-o3/standard-v2v-reference/element1_reference1.png"
-     *         ],
-     *         "frontal_image_url": "https://storage.googleapis.com/falserverless/example_inputs/kling-o3/standard-v2v-reference/element1_front.png"
+     *         ]
      *       },
      *       {
+     *         "frontal_image_url": "https://storage.googleapis.com/falserverless/example_inputs/kling-o3/standard-v2v-reference/element2_front.png",
      *         "reference_image_urls": [
      *           "https://storage.googleapis.com/falserverless/example_inputs/kling-o3/standard-v2v-reference/element2_reference1.png"
-     *         ],
-     *         "frontal_image_url": "https://storage.googleapis.com/falserverless/example_inputs/kling-o3/standard-v2v-reference/element2_front.png"
+     *         ]
      *       }
      *     ]
      */
@@ -68022,10 +67909,10 @@ export interface KlingVideoO3StandardVideoToVideoReferenceOutput {
     /**
      * @description The generated video.
      * @example {
-     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/kling-o3/standard-v2v-reference/output.mp4",
      *       "file_size": 7992288,
+     *       "content_type": "video/mp4",
      *       "file_name": "output.mp4",
-     *       "content_type": "video/mp4"
+     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/kling-o3/standard-v2v-reference/output.mp4"
      *     }
      */
     video: Components.File;
@@ -68037,10 +67924,10 @@ export interface KlingVideoO3StandardVideoToVideoEditInput {
      * @description Elements (characters/objects) to include. Reference in prompt as @Element1, @Element2.
      * @example [
      *       {
+     *         "frontal_image_url": "https://storage.googleapis.com/falserverless/example_inputs/kling-o3/standard-v2v-edit/element1_front.jpg",
      *         "reference_image_urls": [
      *           "https://storage.googleapis.com/falserverless/example_inputs/kling-o3/standard-v2v-edit/standard_element1_reference1.jpg"
-     *         ],
-     *         "frontal_image_url": "https://storage.googleapis.com/falserverless/example_inputs/kling-o3/standard-v2v-edit/element1_front.jpg"
+     *         ]
      *       }
      *     ]
      */
@@ -68088,18 +67975,18 @@ export interface KlingVideoO3StandardVideoToVideoEditOutput {
     /**
      * @description The generated video.
      * @example {
-     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/kling-o3/standard-v2v-edit/output.mp4",
      *       "file_size": 4322769,
+     *       "content_type": "video/mp4",
      *       "file_name": "output.mp4",
-     *       "content_type": "video/mp4"
+     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/kling-o3/standard-v2v-edit/output.mp4"
      *     }
      */
     video: Components.File;
 }
 
-export interface KlingVideoO3StandardTextToVideoInput extends SharedType_dea1 {}
+export interface KlingVideoO3StandardTextToVideoInput extends SharedType_dea {}
 
-export interface KlingVideoO3StandardTextToVideoOutput extends SharedType_c48 {}
+export interface KlingVideoO3StandardTextToVideoOutput extends SharedType_2ca {}
 
 export interface KlingVideoO3StandardReferenceToVideoInput {
     /**
@@ -68174,10 +68061,10 @@ export interface KlingVideoO3StandardReferenceToVideoOutput {
     /**
      * @description The generated video.
      * @example {
-     *       "url": "https://v3b.fal.media/files/b/0a8d200d/ejCxI5DalzOPlP4yf6uP3_output.mp4",
      *       "file_size": 3192162,
+     *       "content_type": "video/mp4",
      *       "file_name": "output.mp4",
-     *       "content_type": "video/mp4"
+     *       "url": "https://v3b.fal.media/files/b/0a8d200d/ejCxI5DalzOPlP4yf6uP3_output.mp4"
      *     }
      */
     video: Components.File;
@@ -68185,19 +68072,19 @@ export interface KlingVideoO3StandardReferenceToVideoOutput {
 
 export interface KlingVideoO3StandardImageToVideoInput extends SharedType_988 {}
 
-export interface KlingVideoO3StandardImageToVideoOutput extends SharedType_f48 {}
+export interface KlingVideoO3StandardImageToVideoOutput extends SharedType_ed9 {}
 
-export interface KlingVideoO3ProVideoToVideoReferenceInput extends SharedType_e19 {}
+export interface KlingVideoO3ProVideoToVideoReferenceInput extends SharedType_c47 {}
 
-export interface KlingVideoO3ProVideoToVideoReferenceOutput extends SharedType_1a1 {}
+export interface KlingVideoO3ProVideoToVideoReferenceOutput extends SharedType_2e3 {}
 
-export interface KlingVideoO3ProVideoToVideoEditInput extends SharedType_100 {}
+export interface KlingVideoO3ProVideoToVideoEditInput extends SharedType_e67 {}
 
-export interface KlingVideoO3ProVideoToVideoEditOutput extends SharedType_b93 {}
+export interface KlingVideoO3ProVideoToVideoEditOutput extends SharedType_feb {}
 
-export interface KlingVideoO3ProTextToVideoInput extends SharedType_dea1 {}
+export interface KlingVideoO3ProTextToVideoInput extends SharedType_dea {}
 
-export interface KlingVideoO3ProTextToVideoOutput extends SharedType_c48 {}
+export interface KlingVideoO3ProTextToVideoOutput extends SharedType_2ca {}
 
 export interface KlingVideoO3ProReferenceToVideoInput {
     /**
@@ -68220,16 +68107,16 @@ export interface KlingVideoO3ProReferenceToVideoInput {
      * @description Elements (characters/objects) to include. Reference in prompt as @Element1, @Element2.
      * @example [
      *       {
+     *         "frontal_image_url": "https://v3b.fal.media/files/b/0a8d1b2e/yiHiZP1Now0V5JC5_OClE_PaKOtOGJ.png",
      *         "reference_image_urls": [
      *           "https://v3b.fal.media/files/b/0a8d1b1a/eZfSbcQ58EzD_l2SEbevg_F3U9GMLK.png"
-     *         ],
-     *         "frontal_image_url": "https://v3b.fal.media/files/b/0a8d1b2e/yiHiZP1Now0V5JC5_OClE_PaKOtOGJ.png"
+     *         ]
      *       },
      *       {
+     *         "frontal_image_url": "https://v3b.fal.media/files/b/0a8d1b19/_eIj7GjmI5zgQkMN936YJ_2f3hZ7Xb.png",
      *         "reference_image_urls": [
      *           "https://v3b.fal.media/files/b/0a8d1b3c/_ZE2iIjkb-Eun3WXXGP4x_TSG1ELBo.png"
-     *         ],
-     *         "frontal_image_url": "https://v3b.fal.media/files/b/0a8d1b19/_eIj7GjmI5zgQkMN936YJ_2f3hZ7Xb.png"
+     *         ]
      *       }
      *     ]
      */
@@ -68283,23 +68170,23 @@ export interface KlingVideoO3ProReferenceToVideoInput {
     start_image_url?: string;
 }
 
-export interface KlingVideoO3ProReferenceToVideoOutput extends SharedType_fd6 {}
+export interface KlingVideoO3ProReferenceToVideoOutput extends SharedType_64c {}
 
 export interface KlingVideoO3ProImageToVideoInput extends SharedType_988 {}
 
-export interface KlingVideoO3ProImageToVideoOutput extends SharedType_f48 {}
+export interface KlingVideoO3ProImageToVideoOutput extends SharedType_ed9 {}
 
-export interface KlingVideoO34kVideoToVideoReferenceInput extends SharedType_e19 {}
+export interface KlingVideoO34kVideoToVideoReferenceInput extends SharedType_c47 {}
 
-export interface KlingVideoO34kVideoToVideoReferenceOutput extends SharedType_1a1 {}
+export interface KlingVideoO34kVideoToVideoReferenceOutput extends SharedType_2e3 {}
 
-export interface KlingVideoO34kVideoToVideoEditInput extends SharedType_100 {}
+export interface KlingVideoO34kVideoToVideoEditInput extends SharedType_e67 {}
 
-export interface KlingVideoO34kVideoToVideoEditOutput extends SharedType_b93 {}
+export interface KlingVideoO34kVideoToVideoEditOutput extends SharedType_feb {}
 
-export interface KlingVideoO34kTextToVideoInput extends SharedType_dea1 {}
+export interface KlingVideoO34kTextToVideoInput extends SharedType_dea {}
 
-export interface KlingVideoO34kTextToVideoOutput extends SharedType_c48 {}
+export interface KlingVideoO34kTextToVideoOutput extends SharedType_2ca {}
 
 export interface KlingVideoO34kReferenceToVideoInput {
     /**
@@ -68374,43 +68261,43 @@ export interface KlingVideoO34kReferenceToVideoInput {
     start_image_url?: string;
 }
 
-export interface KlingVideoO34kReferenceToVideoOutput extends SharedType_fd6 {}
+export interface KlingVideoO34kReferenceToVideoOutput extends SharedType_64c {}
 
 export interface KlingVideoO34kImageToVideoInput extends SharedType_988 {}
 
-export interface KlingVideoO34kImageToVideoOutput extends SharedType_f48 {}
+export interface KlingVideoO34kImageToVideoOutput extends SharedType_ed9 {}
 
-export interface KlingVideoO1VideoToVideoReferenceInput extends SharedType_1bc {}
+export interface KlingVideoO1VideoToVideoReferenceInput extends SharedType_2fa1 {}
 
-export interface KlingVideoO1VideoToVideoReferenceOutput extends SharedType_b3f {}
+export interface KlingVideoO1VideoToVideoReferenceOutput extends SharedType_87e {}
 
-export interface KlingVideoO1VideoToVideoEditInput extends SharedType_d8c {}
+export interface KlingVideoO1VideoToVideoEditInput extends SharedType_eb8 {}
 
-export interface KlingVideoO1VideoToVideoEditOutput extends SharedType_f13 {}
+export interface KlingVideoO1VideoToVideoEditOutput extends SharedType_48a {}
 
-export interface KlingVideoO1StandardVideoToVideoReferenceInput extends SharedType_1bc {}
+export interface KlingVideoO1StandardVideoToVideoReferenceInput extends SharedType_2fa1 {}
 
-export interface KlingVideoO1StandardVideoToVideoReferenceOutput extends SharedType_b3f {}
+export interface KlingVideoO1StandardVideoToVideoReferenceOutput extends SharedType_87e {}
 
-export interface KlingVideoO1StandardVideoToVideoEditInput extends SharedType_d8c {}
+export interface KlingVideoO1StandardVideoToVideoEditInput extends SharedType_eb8 {}
 
-export interface KlingVideoO1StandardVideoToVideoEditOutput extends SharedType_f13 {}
+export interface KlingVideoO1StandardVideoToVideoEditOutput extends SharedType_48a {}
 
-export interface KlingVideoO1StandardReferenceToVideoInput extends SharedType_620 {}
+export interface KlingVideoO1StandardReferenceToVideoInput extends SharedType_9b6 {}
 
-export interface KlingVideoO1StandardReferenceToVideoOutput extends SharedType_0eb {}
+export interface KlingVideoO1StandardReferenceToVideoOutput extends SharedType_76a {}
 
 export interface KlingVideoO1StandardImageToVideoInput extends SharedType_252 {}
 
-export interface KlingVideoO1StandardImageToVideoOutput extends SharedType_d28 {}
+export interface KlingVideoO1StandardImageToVideoOutput extends SharedType_fa9 {}
 
-export interface KlingVideoO1ReferenceToVideoInput extends SharedType_620 {}
+export interface KlingVideoO1ReferenceToVideoInput extends SharedType_9b6 {}
 
-export interface KlingVideoO1ReferenceToVideoOutput extends SharedType_0eb {}
+export interface KlingVideoO1ReferenceToVideoOutput extends SharedType_76a {}
 
 export interface KlingVideoO1ImageToVideoInput extends SharedType_252 {}
 
-export interface KlingVideoO1ImageToVideoOutput extends SharedType_d28 {}
+export interface KlingVideoO1ImageToVideoOutput extends SharedType_fa9 {}
 
 export interface KlingVideoLipsyncTextToVideoInput {
     /**
@@ -68638,8 +68525,8 @@ export interface KlingImageV3TextToImageOutput {
      *       {
      *         "content_type": "image/png",
      *         "file_name": "a889cacced76430d85d08c60ca3d023d.png",
-     *         "file_size": 1637946,
-     *         "url": "https://v3b.fal.media/files/b/0a8d0681/Qos5QbCS93YpsPzZ3i8zT_a889cacced76430d85d08c60ca3d023d.png"
+     *         "url": "https://v3b.fal.media/files/b/0a8d0681/Qos5QbCS93YpsPzZ3i8zT_a889cacced76430d85d08c60ca3d023d.png",
+     *         "file_size": 1637946
      *       }
      *     ]
      */
@@ -68715,8 +68602,8 @@ export interface KlingImageV3ImageToImageOutput {
      *       {
      *         "content_type": "image/png",
      *         "file_name": "49222c3290cd4cefb3baacac2cb004ce.png",
-     *         "file_size": 2085483,
-     *         "url": "https://v3b.fal.media/files/b/0a8d06c0/PJqs6iVST-NaBlt8uMwVJ_49222c3290cd4cefb3baacac2cb004ce.png"
+     *         "url": "https://v3b.fal.media/files/b/0a8d06c0/PJqs6iVST-NaBlt8uMwVJ_49222c3290cd4cefb3baacac2cb004ce.png",
+     *         "file_size": 2085483
      *       }
      *     ]
      */
@@ -68796,8 +68683,8 @@ export interface KlingImageO3TextToImageOutput {
      *       {
      *         "content_type": "image/png",
      *         "file_name": "4b654d5a07b64b498ebdb091a76611ad.png",
-     *         "file_size": 1748857,
-     *         "url": "https://v3b.fal.media/files/b/0a8d069f/8kVewB_BV3u0f8vORGZYy_4b654d5a07b64b498ebdb091a76611ad.png"
+     *         "url": "https://v3b.fal.media/files/b/0a8d069f/8kVewB_BV3u0f8vORGZYy_4b654d5a07b64b498ebdb091a76611ad.png",
+     *         "file_size": 1748857
      *       }
      *     ]
      */
@@ -68885,8 +68772,8 @@ export interface KlingImageO3ImageToImageOutput {
      *       {
      *         "content_type": "image/png",
      *         "file_name": "19db9852c5ed4a109d81c52d27c9e433.png",
-     *         "file_size": 793847,
-     *         "url": "https://v3b.fal.media/files/b/0a8d06d1/FTrwBsV9WI5twqMPkqvRh_19db9852c5ed4a109d81c52d27c9e433.png"
+     *         "url": "https://v3b.fal.media/files/b/0a8d06d1/FTrwBsV9WI5twqMPkqvRh_19db9852c5ed4a109d81c52d27c9e433.png",
+     *         "file_size": 793847
      *       }
      *     ]
      */
@@ -68971,8 +68858,8 @@ export interface KlingImageO1Output {
      *       {
      *         "content_type": "image/png",
      *         "file_name": "d4eeaeaeae294a41b0321ba6c99f0f9d.png",
-     *         "file_size": 1419818,
-     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/kling-image-o1/output.png"
+     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/kling-image-o1/output.png",
+     *         "file_size": 1419818
      *       }
      *     ]
      */
@@ -69405,10 +69292,10 @@ export interface Kandinsky5ProTextToVideoOutput {
     /**
      * @description The generated video file.
      * @example {
-     *       "file_size": 14530500,
-     *       "content_type": "application/octet-stream",
+     *       "url": "https://v3b.fal.media/files/b/0a87754e/o5FWdz83KTXzq0FB7aG5Q_output.mp4",
      *       "file_name": "output.mp4",
-     *       "url": "https://v3b.fal.media/files/b/0a87754e/o5FWdz83KTXzq0FB7aG5Q_output.mp4"
+     *       "file_size": 14530500,
+     *       "content_type": "application/octet-stream"
      *     }
      */
     video?: Components.File;
@@ -69475,10 +69362,10 @@ export interface Kandinsky5ProImageToVideoOutput {
     /**
      * @description The generated video file.
      * @example {
-     *       "file_size": 22253751,
-     *       "content_type": "application/octet-stream",
+     *       "url": "https://v3b.fal.media/files/b/0a877276/Bg24FK_awlNAYKn962Vm0_output.mp4",
      *       "file_name": "output.mp4",
-     *       "url": "https://v3b.fal.media/files/b/0a877276/Bg24FK_awlNAYKn962Vm0_output.mp4"
+     *       "file_size": 22253751,
+     *       "content_type": "application/octet-stream"
      *     }
      */
     video?: Components.File;
@@ -69854,10 +69741,10 @@ export interface InstantCharacterOutput {
      * @description The generated images
      * @example [
      *       {
-     *         "content_type": "image/jpeg",
      *         "width": 1024,
-     *         "url": "https://v3.fal.media/files/penguin/dG4xIRLMkTRKxA-T7h57l.jpeg",
-     *         "height": 1024
+     *         "content_type": "image/jpeg",
+     *         "height": 1024,
+     *         "url": "https://v3.fal.media/files/penguin/dG4xIRLMkTRKxA-T7h57l.jpeg"
      *       }
      *     ]
      */
@@ -70016,10 +69903,10 @@ export interface InfinitalkSingleTextOutput {
     /**
      * @description The generated video file.
      * @example {
-     *       "file_size": 797478,
-     *       "url": "https://v3.fal.media/files/elephant/-huMN0zTaXmBr2CqzCMps_6c9dd31e1d9a4482877747a52a661a0a.mp4",
+     *       "content_type": "application/octet-stream",
      *       "file_name": "6c9dd31e1d9a4482877747a52a661a0a.mp4",
-     *       "content_type": "application/octet-stream"
+     *       "url": "https://v3.fal.media/files/elephant/-huMN0zTaXmBr2CqzCMps_6c9dd31e1d9a4482877747a52a661a0a.mp4",
+     *       "file_size": 797478
      *     }
      */
     video: Components.File;
@@ -70087,10 +69974,10 @@ export interface InfinitalkOutput {
     /**
      * @description The generated video file.
      * @example {
-     *       "file_size": 515275,
-     *       "url": "https://v3.fal.media/files/kangaroo/z6VqUwNTwzuWa6YE1g7In_74af6c0bdd6041c3b1130d54885e3eee.mp4",
+     *       "content_type": "application/octet-stream",
      *       "file_name": "74af6c0bdd6041c3b1130d54885e3eee.mp4",
-     *       "content_type": "application/octet-stream"
+     *       "url": "https://v3.fal.media/files/kangaroo/z6VqUwNTwzuWa6YE1g7In_74af6c0bdd6041c3b1130d54885e3eee.mp4",
+     *       "file_size": 515275
      *     }
      */
     video: Components.File;
@@ -70339,10 +70226,10 @@ export interface Image2svgOutput {
      * @description The converted SVG file
      * @example [
      *       {
+     *         "content_type": "image/svg+xml",
      *         "url": "https://v3.fal.media/files/koala/B31yLkOEc6AVTzgeyr_9K_output.svg",
      *         "file_name": "output.svg",
-     *         "file_size": 1247850,
-     *         "content_type": "image/svg+xml"
+     *         "file_size": 1247850
      *       }
      *     ]
      */
@@ -70462,17 +70349,17 @@ export interface Image2pixelOutput {
      * @example [
      *       {
      *         "content_type": "image/png",
+     *         "file_name": "image2pixel-output.png",
      *         "width": 1008,
-     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/image2pixel-output.png",
      *         "height": 1008,
-     *         "file_name": "image2pixel-output.png"
+     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/image2pixel-output.png"
      *       },
      *       {
      *         "content_type": "image/png",
+     *         "file_name": "image2pixel-output-scaled.png",
      *         "width": 48,
-     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/image2pixel-output-scaled.png",
      *         "height": 48,
-     *         "file_name": "image2pixel-output-scaled.png"
+     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/image2pixel-output-scaled.png"
      *       }
      *     ]
      */
@@ -73861,8 +73748,8 @@ export interface IdeogramUpscaleOutput {
      * Images
      * @example [
      *       {
-     *         "content_type": "image/png",
      *         "file_size": 6548418,
+     *         "content_type": "image/png",
      *         "file_name": "image.png",
      *         "url": "https://fal.media/files/lion/DxTSV6683MLl4VPAVUHR3_image.png"
      *       }
@@ -74354,7 +74241,7 @@ export interface IdV2vRelightInput {
     video_url: string;
 }
 
-export interface IdV2vRelightOutput extends SharedType_7a6 {}
+export interface IdV2vRelightOutput extends SharedType_bec {}
 
 export interface IdV2vInput {
     /**
@@ -74431,7 +74318,7 @@ export interface IdV2vInput {
     video_url: string;
 }
 
-export interface IdV2vOutput extends SharedType_7a6 {}
+export interface IdV2vOutput extends SharedType_bec {}
 
 export interface IclightV2Input {
     /**
@@ -75325,27 +75212,27 @@ export interface HyWuEditOutput {
 
 export interface Hunyuan3dV2TurboInput extends SharedType_df1 {}
 
-export interface Hunyuan3dV2TurboOutput extends SharedType_3bc {}
+export interface Hunyuan3dV2TurboOutput extends SharedType_e84 {}
 
 export interface Hunyuan3dV2MultiViewTurboInput extends SharedType_fc4 {}
 
-export interface Hunyuan3dV2MultiViewTurboOutput extends SharedType_967 {}
+export interface Hunyuan3dV2MultiViewTurboOutput extends SharedType_9b9 {}
 
 export interface Hunyuan3dV2MultiViewInput extends SharedType_fc4 {}
 
-export interface Hunyuan3dV2MultiViewOutput extends SharedType_967 {}
+export interface Hunyuan3dV2MultiViewOutput extends SharedType_9b9 {}
 
 export interface Hunyuan3dV2MiniTurboInput extends SharedType_df1 {}
 
-export interface Hunyuan3dV2MiniTurboOutput extends SharedType_3bc {}
+export interface Hunyuan3dV2MiniTurboOutput extends SharedType_e84 {}
 
 export interface Hunyuan3dV2MiniInput extends SharedType_df1 {}
 
-export interface Hunyuan3dV2MiniOutput extends SharedType_3bc {}
+export interface Hunyuan3dV2MiniOutput extends SharedType_e84 {}
 
 export interface Hunyuan3dV2Input extends SharedType_df1 {}
 
-export interface Hunyuan3dV2Output extends SharedType_3bc {}
+export interface Hunyuan3dV2Output extends SharedType_e84 {}
 
 export interface Hunyuan3dV3TextTo3dInput {
     /**
@@ -75392,8 +75279,8 @@ export interface Hunyuan3dV3TextTo3dOutput {
     /**
      * @description Generated 3D object in GLB format.
      * @example {
-     *       "content_type": "model/gltf-binary",
      *       "file_size": 64724836,
+     *       "content_type": "model/gltf-binary",
      *       "file_name": "model.glb",
      *       "url": "https://v3b.fal.media/files/b/0a8686a8/1hPquv3AqqkfnqSM9fpmB_model.glb"
      *     }
@@ -75403,14 +75290,14 @@ export interface Hunyuan3dV3TextTo3dOutput {
      * @description URLs for different 3D model formats
      * @example {
      *       "obj": {
-     *         "content_type": "model/obj",
      *         "file_size": 44084728,
+     *         "content_type": "model/obj",
      *         "file_name": "model.obj",
      *         "url": "https://v3b.fal.media/files/b/0a8686a8/AVgdsVFrGAKGAFr4e2g56_model.obj"
      *       },
      *       "glb": {
-     *         "content_type": "model/gltf-binary",
      *         "file_size": 64724836,
+     *         "content_type": "model/gltf-binary",
      *         "file_name": "model.glb",
      *         "url": "https://v3b.fal.media/files/b/0a8686a8/1hPquv3AqqkfnqSM9fpmB_model.glb"
      *       }
@@ -75425,8 +75312,8 @@ export interface Hunyuan3dV3TextTo3dOutput {
     /**
      * @description Preview thumbnail of the generated model
      * @example {
-     *       "content_type": "image/png",
      *       "file_size": 172757,
+     *       "content_type": "image/png",
      *       "file_name": "preview.png",
      *       "url": "https://v3b.fal.media/files/b/0a8686a8/khgYO1d6xqWOJPi6_IR_j_preview.png"
      *     }
@@ -75495,8 +75382,8 @@ export interface Hunyuan3dV3ImageTo3dOutput {
      * @description Generated 3D object in GLB format.
      * @example {
      *       "file_size": 64122888,
-     *       "url": "https://v3b.fal.media/files/b/0a8686ae/MQN_KtP32PbqtPr_VLcyp_model.glb",
      *       "file_name": "model.glb",
+     *       "url": "https://v3b.fal.media/files/b/0a8686ae/MQN_KtP32PbqtPr_VLcyp_model.glb",
      *       "content_type": "model/gltf-binary"
      *     }
      */
@@ -75504,17 +75391,17 @@ export interface Hunyuan3dV3ImageTo3dOutput {
     /**
      * @description URLs for different 3D model formats
      * @example {
-     *       "glb": {
-     *         "file_size": 64122888,
-     *         "url": "https://v3b.fal.media/files/b/0a8686ae/MQN_KtP32PbqtPr_VLcyp_model.glb",
-     *         "file_name": "model.glb",
-     *         "content_type": "model/gltf-binary"
-     *       },
      *       "obj": {
      *         "file_size": 42886419,
-     *         "url": "https://v3b.fal.media/files/b/0a8686ad/ifdJskhUfQysq-NN20iQR_model.obj",
      *         "file_name": "model.obj",
+     *         "url": "https://v3b.fal.media/files/b/0a8686ad/ifdJskhUfQysq-NN20iQR_model.obj",
      *         "content_type": "model/obj"
+     *       },
+     *       "glb": {
+     *         "file_size": 64122888,
+     *         "file_name": "model.glb",
+     *         "url": "https://v3b.fal.media/files/b/0a8686ae/MQN_KtP32PbqtPr_VLcyp_model.glb",
+     *         "content_type": "model/gltf-binary"
      *       }
      *     }
      */
@@ -75528,8 +75415,8 @@ export interface Hunyuan3dV3ImageTo3dOutput {
      * @description Preview thumbnail of the generated model
      * @example {
      *       "file_size": 74443,
-     *       "url": "https://v3b.fal.media/files/b/0a8686ae/sGIaYWOna5Zabtl5PBjDt_preview.png",
      *       "file_name": "preview.png",
+     *       "url": "https://v3b.fal.media/files/b/0a8686ae/sGIaYWOna5Zabtl5PBjDt_preview.png",
      *       "content_type": "image/png"
      *     }
      */
@@ -75978,8 +75865,8 @@ export interface HunyuanImageV3TextToImageOutput {
      * @description A list of the generated images.
      * @example [
      *       {
-     *         "url": "https://v3b.fal.media/files/b/kangaroo/uIKrZHT6LaGqgXoxtBSn7.png",
-     *         "content_type": "image/png"
+     *         "content_type": "image/png",
+     *         "url": "https://v3b.fal.media/files/b/kangaroo/uIKrZHT6LaGqgXoxtBSn7.png"
      *       }
      *     ]
      */
@@ -76064,10 +75951,10 @@ export interface HunyuanImageV3InstructTextToImageOutput {
      * @description A list of the generated images.
      * @example [
      *       {
-     *         "content_type": "image/png",
+     *         "height": 1024,
      *         "url": "https://v3b.fal.media/files/b/0a8c37ef/niSZAZpVwwixexdtx1AAf.png",
-     *         "width": 1024,
-     *         "height": 1024
+     *         "content_type": "image/png",
+     *         "width": 1024
      *       }
      *     ]
      */
@@ -76160,10 +76047,10 @@ export interface HunyuanImageV3InstructEditOutput {
      * @description A list of the generated images.
      * @example [
      *       {
-     *         "content_type": "image/png",
+     *         "height": 1024,
      *         "url": "https://v3b.fal.media/files/b/0a8c3d5f/K7ecUzkFaxU-5hvzdhvG-_SOvArpR4.png",
-     *         "width": 1024,
-     *         "height": 1024
+     *         "content_type": "image/png",
+     *         "width": 1024
      *       }
      *     ]
      */
@@ -76265,8 +76152,8 @@ export interface HunyuanImageV21TextToImageOutput {
      * Images
      * @description A list of the generated images.
      * @example {
-     *       "url": "https://v3.fal.media/files/zebra/WCrMfUTYp6mYCf6yRE3kw_generated_image_0.png",
-     *       "content_type": "image/png"
+     *       "content_type": "image/png",
+     *       "url": "https://v3.fal.media/files/zebra/WCrMfUTYp6mYCf6yRE3kw_generated_image_0.png"
      *     }
      */
     images: Components.Image[];
@@ -76314,25 +76201,25 @@ export interface Hunyuan3dV31SmartTopologyOutput {
      * @example {
      *       "file_size": 394409,
      *       "content_type": "model/obj",
-     *       "url": "https://v3b.fal.media/files/b/0a8c0ab4/tqMY5NJLnHjpwN8rQ15dj_model.obj",
-     *       "file_name": "model.obj"
+     *       "file_name": "model.obj",
+     *       "url": "https://v3b.fal.media/files/b/0a8c0ab4/tqMY5NJLnHjpwN8rQ15dj_model.obj"
      *     }
      */
     model_glb: Components.File;
     /**
      * @description URLs for different 3D model formats
      * @example {
-     *       "glb": {
-     *         "file_size": 206004,
-     *         "content_type": "model/gltf-binary",
-     *         "url": "https://v3b.fal.media/files/b/0a8c0ab4/eX-_x0Wv8fZL05l9CGp6Y_model.glb",
-     *         "file_name": "model.glb"
-     *       },
      *       "obj": {
      *         "file_size": 394409,
      *         "content_type": "model/obj",
-     *         "url": "https://v3b.fal.media/files/b/0a8c0ab4/tqMY5NJLnHjpwN8rQ15dj_model.obj",
-     *         "file_name": "model.obj"
+     *         "file_name": "model.obj",
+     *         "url": "https://v3b.fal.media/files/b/0a8c0ab4/tqMY5NJLnHjpwN8rQ15dj_model.obj"
+     *       },
+     *       "glb": {
+     *         "file_size": 206004,
+     *         "content_type": "model/gltf-binary",
+     *         "file_name": "model.glb",
+     *         "url": "https://v3b.fal.media/files/b/0a8c0ab4/eX-_x0Wv8fZL05l9CGp6Y_model.glb"
      *       }
      *     }
      */
@@ -76366,8 +76253,8 @@ export interface Hunyuan3dV31RapidTextTo3dOutput {
      * @example {
      *       "file_size": 157,
      *       "content_type": "text/plain",
-     *       "url": "https://v3b.fal.media/files/b/0a8c44d5/EHzTxJtHpdIliaMNnEke-_material.mtl",
-     *       "file_name": "material.mtl"
+     *       "file_name": "material.mtl",
+     *       "url": "https://v3b.fal.media/files/b/0a8c44d5/EHzTxJtHpdIliaMNnEke-_material.mtl"
      *     }
      */
     material_mtl?: Components.File;
@@ -76376,31 +76263,31 @@ export interface Hunyuan3dV31RapidTextTo3dOutput {
      * @example {
      *       "file_size": 5306476,
      *       "content_type": "model/obj",
-     *       "url": "https://v3b.fal.media/files/b/0a8c44d5/2W2KRP1DM_-4qI8F_n05b_0f7f7a1ac578c80d4397a7f2b69b40ff.obj",
-     *       "file_name": "0f7f7a1ac578c80d4397a7f2b69b40ff.obj"
+     *       "file_name": "0f7f7a1ac578c80d4397a7f2b69b40ff.obj",
+     *       "url": "https://v3b.fal.media/files/b/0a8c44d5/2W2KRP1DM_-4qI8F_n05b_0f7f7a1ac578c80d4397a7f2b69b40ff.obj"
      *     }
      */
     model_obj?: Components.File;
     /**
      * @description URLs for different 3D model formats.
      * @example {
+     *       "texture": {
+     *         "file_size": 5915609,
+     *         "content_type": "image/png",
+     *         "file_name": "material.png",
+     *         "url": "https://v3b.fal.media/files/b/0a8c44d5/T0q-P0aqXVG_y7jff-XTa_material.png"
+     *       },
      *       "mtl": {
      *         "file_size": 157,
      *         "content_type": "text/plain",
-     *         "url": "https://v3b.fal.media/files/b/0a8c44d5/EHzTxJtHpdIliaMNnEke-_material.mtl",
-     *         "file_name": "material.mtl"
+     *         "file_name": "material.mtl",
+     *         "url": "https://v3b.fal.media/files/b/0a8c44d5/EHzTxJtHpdIliaMNnEke-_material.mtl"
      *       },
      *       "obj": {
      *         "file_size": 5306476,
      *         "content_type": "model/obj",
-     *         "url": "https://v3b.fal.media/files/b/0a8c44d5/2W2KRP1DM_-4qI8F_n05b_0f7f7a1ac578c80d4397a7f2b69b40ff.obj",
-     *         "file_name": "0f7f7a1ac578c80d4397a7f2b69b40ff.obj"
-     *       },
-     *       "texture": {
-     *         "file_size": 5915609,
-     *         "content_type": "image/png",
-     *         "url": "https://v3b.fal.media/files/b/0a8c44d5/T0q-P0aqXVG_y7jff-XTa_material.png",
-     *         "file_name": "material.png"
+     *         "file_name": "0f7f7a1ac578c80d4397a7f2b69b40ff.obj",
+     *         "url": "https://v3b.fal.media/files/b/0a8c44d5/2W2KRP1DM_-4qI8F_n05b_0f7f7a1ac578c80d4397a7f2b69b40ff.obj"
      *       }
      *     }
      */
@@ -76410,8 +76297,8 @@ export interface Hunyuan3dV31RapidTextTo3dOutput {
      * @example {
      *       "file_size": 5915609,
      *       "content_type": "image/png",
-     *       "url": "https://v3b.fal.media/files/b/0a8c44d5/T0q-P0aqXVG_y7jff-XTa_material.png",
-     *       "file_name": "material.png"
+     *       "file_name": "material.png",
+     *       "url": "https://v3b.fal.media/files/b/0a8c44d5/T0q-P0aqXVG_y7jff-XTa_material.png"
      *     }
      */
     texture?: Components.File;
@@ -76420,8 +76307,8 @@ export interface Hunyuan3dV31RapidTextTo3dOutput {
      * @example {
      *       "file_size": 281374,
      *       "content_type": "image/png",
-     *       "url": "https://v3b.fal.media/files/b/0a8c44d6/D9_IYgpugP0deXvSwBC2J_preview.png",
-     *       "file_name": "preview.png"
+     *       "file_name": "preview.png",
+     *       "url": "https://v3b.fal.media/files/b/0a8c44d6/D9_IYgpugP0deXvSwBC2J_preview.png"
      *     }
      */
     thumbnail?: Components.File;
@@ -76454,8 +76341,8 @@ export interface Hunyuan3dV31RapidImageTo3dOutput {
      * @example {
      *       "file_size": 88,
      *       "content_type": "text/plain",
-     *       "url": "https://v3b.fal.media/files/b/0a8c4439/_RhytNH4xZ5EFHr34YzJt_material.mtl",
-     *       "file_name": "material.mtl"
+     *       "file_name": "material.mtl",
+     *       "url": "https://v3b.fal.media/files/b/0a8c4439/_RhytNH4xZ5EFHr34YzJt_material.mtl"
      *     }
      */
     material_mtl?: Components.File;
@@ -76464,31 +76351,31 @@ export interface Hunyuan3dV31RapidImageTo3dOutput {
      * @example {
      *       "file_size": 3172659,
      *       "content_type": "model/obj",
-     *       "url": "https://v3b.fal.media/files/b/0a8c4439/vj933H8B4W3wbd3e2RNby_8b1dbea208d194b9089a950abc2df426.obj",
-     *       "file_name": "8b1dbea208d194b9089a950abc2df426.obj"
+     *       "file_name": "8b1dbea208d194b9089a950abc2df426.obj",
+     *       "url": "https://v3b.fal.media/files/b/0a8c4439/vj933H8B4W3wbd3e2RNby_8b1dbea208d194b9089a950abc2df426.obj"
      *     }
      */
     model_glb?: Components.File;
     /**
      * @description URLs for different 3D model formats.
      * @example {
+     *       "texture": {
+     *         "file_size": 11728567,
+     *         "content_type": "image/png",
+     *         "file_name": "texture_20250901.png",
+     *         "url": "https://v3b.fal.media/files/b/0a8c4439/_4NXiSoGcZ-GYwmgUTfHZ_texture_20250901.png"
+     *       },
      *       "mtl": {
      *         "file_size": 88,
      *         "content_type": "text/plain",
-     *         "url": "https://v3b.fal.media/files/b/0a8c4439/_RhytNH4xZ5EFHr34YzJt_material.mtl",
-     *         "file_name": "material.mtl"
+     *         "file_name": "material.mtl",
+     *         "url": "https://v3b.fal.media/files/b/0a8c4439/_RhytNH4xZ5EFHr34YzJt_material.mtl"
      *       },
      *       "obj": {
      *         "file_size": 3172659,
      *         "content_type": "model/obj",
-     *         "url": "https://v3b.fal.media/files/b/0a8c4439/vj933H8B4W3wbd3e2RNby_8b1dbea208d194b9089a950abc2df426.obj",
-     *         "file_name": "8b1dbea208d194b9089a950abc2df426.obj"
-     *       },
-     *       "texture": {
-     *         "file_size": 11728567,
-     *         "content_type": "image/png",
-     *         "url": "https://v3b.fal.media/files/b/0a8c4439/_4NXiSoGcZ-GYwmgUTfHZ_texture_20250901.png",
-     *         "file_name": "texture_20250901.png"
+     *         "file_name": "8b1dbea208d194b9089a950abc2df426.obj",
+     *         "url": "https://v3b.fal.media/files/b/0a8c4439/vj933H8B4W3wbd3e2RNby_8b1dbea208d194b9089a950abc2df426.obj"
      *       }
      *     }
      */
@@ -76498,8 +76385,8 @@ export interface Hunyuan3dV31RapidImageTo3dOutput {
      * @example {
      *       "file_size": 11728567,
      *       "content_type": "image/png",
-     *       "url": "https://v3b.fal.media/files/b/0a8c4439/_4NXiSoGcZ-GYwmgUTfHZ_texture_20250901.png",
-     *       "file_name": "texture_20250901.png"
+     *       "file_name": "texture_20250901.png",
+     *       "url": "https://v3b.fal.media/files/b/0a8c4439/_4NXiSoGcZ-GYwmgUTfHZ_texture_20250901.png"
      *     }
      */
     texture?: Components.File;
@@ -76508,8 +76395,8 @@ export interface Hunyuan3dV31RapidImageTo3dOutput {
      * @example {
      *       "file_size": 82521,
      *       "content_type": "image/png",
-     *       "url": "https://v3b.fal.media/files/b/0a8c4439/70Sm1pZ16SQP-mEbaKICC_preview.png",
-     *       "file_name": "preview.png"
+     *       "file_name": "preview.png",
+     *       "url": "https://v3b.fal.media/files/b/0a8c4439/70Sm1pZ16SQP-mEbaKICC_preview.png"
      *     }
      */
     thumbnail?: Components.File;
@@ -76549,37 +76436,37 @@ export interface Hunyuan3dV31ProTextTo3dOutput {
      * @example {
      *       "file_size": 35833072,
      *       "content_type": "model/gltf-binary",
-     *       "url": "https://v3b.fal.media/files/b/0a8c5483/z6sbpr5wBRjqgnQlJM2Ot_model.glb",
-     *       "file_name": "model.glb"
+     *       "file_name": "model.glb",
+     *       "url": "https://v3b.fal.media/files/b/0a8c5483/z6sbpr5wBRjqgnQlJM2Ot_model.glb"
      *     }
      */
     model_glb: Components.File;
     /**
      * @description URLs for different 3D model formats
      * @example {
+     *       "texture": {
+     *         "file_size": 19996580,
+     *         "content_type": "image/png",
+     *         "file_name": "texture_20250901.png",
+     *         "url": "https://v3b.fal.media/files/b/0a8c5482/jOL2nBpcOGspwxQf0_U-z_texture_20250901.png"
+     *       },
      *       "mtl": {
      *         "file_size": 88,
      *         "content_type": "text/plain",
-     *         "url": "https://v3b.fal.media/files/b/0a8c5482/ZxJepsEkhM67VSugmZ7QT_material.mtl",
-     *         "file_name": "material.mtl"
-     *       },
-     *       "glb": {
-     *         "file_size": 35833072,
-     *         "content_type": "model/gltf-binary",
-     *         "url": "https://v3b.fal.media/files/b/0a8c5483/z6sbpr5wBRjqgnQlJM2Ot_model.glb",
-     *         "file_name": "model.glb"
+     *         "file_name": "material.mtl",
+     *         "url": "https://v3b.fal.media/files/b/0a8c5482/ZxJepsEkhM67VSugmZ7QT_material.mtl"
      *       },
      *       "obj": {
      *         "file_size": 34755929,
      *         "content_type": "model/obj",
-     *         "url": "https://v3b.fal.media/files/b/0a8c5482/ZzC1xlOftyGQxhDkbZzVW_6168030a8817075aaa55c94cc5145000.obj",
-     *         "file_name": "6168030a8817075aaa55c94cc5145000.obj"
+     *         "file_name": "6168030a8817075aaa55c94cc5145000.obj",
+     *         "url": "https://v3b.fal.media/files/b/0a8c5482/ZzC1xlOftyGQxhDkbZzVW_6168030a8817075aaa55c94cc5145000.obj"
      *       },
-     *       "texture": {
-     *         "file_size": 19996580,
-     *         "content_type": "image/png",
-     *         "url": "https://v3b.fal.media/files/b/0a8c5482/jOL2nBpcOGspwxQf0_U-z_texture_20250901.png",
-     *         "file_name": "texture_20250901.png"
+     *       "glb": {
+     *         "file_size": 35833072,
+     *         "content_type": "model/gltf-binary",
+     *         "file_name": "model.glb",
+     *         "url": "https://v3b.fal.media/files/b/0a8c5483/z6sbpr5wBRjqgnQlJM2Ot_model.glb"
      *       }
      *     }
      */
@@ -76594,8 +76481,8 @@ export interface Hunyuan3dV31ProTextTo3dOutput {
      * @example {
      *       "file_size": 68927,
      *       "content_type": "image/png",
-     *       "url": "https://v3b.fal.media/files/b/0a8c5483/EE97ZV7cM-3UVG4peyWTQ_preview.png",
-     *       "file_name": "preview.png"
+     *       "file_name": "preview.png",
+     *       "url": "https://v3b.fal.media/files/b/0a8c5483/EE97ZV7cM-3UVG4peyWTQ_preview.png"
      *     }
      */
     thumbnail?: Components.File;
@@ -76670,25 +76557,25 @@ export interface Hunyuan3dV31ProImageTo3dOutput {
      * @example {
      *       "file_size": 38554640,
      *       "content_type": "model/gltf-binary",
-     *       "url": "https://v3b.fal.media/files/b/0a8c3187/jOeZmtBuhdQMkDu65AkdT_model.glb",
-     *       "file_name": "model.glb"
+     *       "file_name": "model.glb",
+     *       "url": "https://v3b.fal.media/files/b/0a8c3187/jOeZmtBuhdQMkDu65AkdT_model.glb"
      *     }
      */
     model_glb: Components.File;
     /**
      * @description URLs for different 3D model formats
      * @example {
-     *       "glb": {
-     *         "file_size": 38554640,
-     *         "content_type": "model/gltf-binary",
-     *         "url": "https://v3b.fal.media/files/b/0a8c3187/jOeZmtBuhdQMkDu65AkdT_model.glb",
-     *         "file_name": "model.glb"
-     *       },
      *       "obj": {
      *         "file_size": 31447160,
      *         "content_type": "model/obj",
-     *         "url": "https://v3b.fal.media/files/b/0a8c3186/no-aBFEDnOuthILfv-wzs_model.obj",
-     *         "file_name": "model.obj"
+     *         "file_name": "model.obj",
+     *         "url": "https://v3b.fal.media/files/b/0a8c3186/no-aBFEDnOuthILfv-wzs_model.obj"
+     *       },
+     *       "glb": {
+     *         "file_size": 38554640,
+     *         "content_type": "model/gltf-binary",
+     *         "file_name": "model.glb",
+     *         "url": "https://v3b.fal.media/files/b/0a8c3187/jOeZmtBuhdQMkDu65AkdT_model.glb"
      *       }
      *     }
      */
@@ -76703,8 +76590,8 @@ export interface Hunyuan3dV31ProImageTo3dOutput {
      * @example {
      *       "file_size": 194908,
      *       "content_type": "image/png",
-     *       "url": "https://v3b.fal.media/files/b/0a8c3187/gxidaODj4OvPXruCfrZ-__preview.png",
-     *       "file_name": "preview.png"
+     *       "file_name": "preview.png",
+     *       "url": "https://v3b.fal.media/files/b/0a8c3187/gxidaODj4OvPXruCfrZ-__preview.png"
      *     }
      */
     thumbnail?: Components.File;
@@ -76727,8 +76614,8 @@ export interface Hunyuan3dV31PartOutput {
      *       {
      *         "file_size": 2048000,
      *         "content_type": "application/vnd.autodesk.fbx",
-     *         "url": "https://v3b.fal.media/files/b/0a8bf94b/zOP--lT23slziGKp99dJm_part_0.fbx",
-     *         "file_name": "part_0.fbx"
+     *         "file_name": "part_0.fbx",
+     *         "url": "https://v3b.fal.media/files/b/0a8bf94b/zOP--lT23slziGKp99dJm_part_0.fbx"
      *       }
      *     ]
      */
@@ -76803,12 +76690,12 @@ export interface Hunyuan_worldOutput {
     /**
      * @description The generated panorama image.
      * @example {
-     *       "url": "https://v3.fal.media/files/kangaroo/P2AmXuLlyDIsivqjV_rAr_5db7925423b44f2a98098cd8f7cad7ec.png",
-     *       "width": 1920,
-     *       "file_size": 2738127,
-     *       "height": 960,
      *       "content_type": "image/png",
-     *       "file_name": "5db7925423b44f2a98098cd8f7cad7ec.png"
+     *       "width": 1920,
+     *       "url": "https://v3.fal.media/files/kangaroo/P2AmXuLlyDIsivqjV_rAr_5db7925423b44f2a98098cd8f7cad7ec.png",
+     *       "height": 960,
+     *       "file_name": "5db7925423b44f2a98098cd8f7cad7ec.png",
+     *       "file_size": 2738127
      *     }
      */
     image: Components.Image;
@@ -77261,10 +77148,10 @@ export interface HidreamI1FullImageToImageOutput {
      * @description The generated images
      * @example [
      *       {
-     *         "content_type": "image/jpeg",
-     *         "width": 1024,
      *         "height": 1024,
-     *         "url": "https://v3.fal.media/files/lion/eIyinD1FLsdjjreSZzD6d.jpeg"
+     *         "url": "https://v3.fal.media/files/lion/eIyinD1FLsdjjreSZzD6d.jpeg",
+     *         "width": 1024,
+     *         "content_type": "image/jpeg"
      *       }
      *     ]
      */
@@ -77303,8 +77190,8 @@ export interface HidreamI1FullInput {
      * Image Size
      * @description The size of the generated image.
      * @default {
-     *       "width": 1024,
-     *       "height": 1024
+     *       "height": 1024,
+     *       "width": 1024
      *     }
      */
     image_size?:
@@ -79958,9 +79845,9 @@ export interface HeygenAvatar4ImageToVideoOutput {
      * @description The generated video file
      * @example {
      *       "content_type": "video/mp4",
-     *       "url": "https://v3b.fal.media/files/b/0a900636/DUES0_z4i7FWnife02ieH_output.mp4",
+     *       "file_size": 2466524,
      *       "file_name": "output.mp4",
-     *       "file_size": 2466524
+     *       "url": "https://v3b.fal.media/files/b/0a900636/DUES0_z4i7FWnife02ieH_output.mp4"
      *     }
      */
     video: Components.File;
@@ -80039,6 +79926,12 @@ export interface GptImage15EditInput {
      */
     background?: 'auto' | 'transparent' | 'opaque';
     /**
+     * Enable Safety Checker
+     * @description Whether to apply fal input safety moderation. Disabling it requires account authorization; provider checks still apply.
+     * @default true
+     */
+    enable_safety_checker?: boolean;
+    /**
      * Image Size
      * @description Aspect ratio for the generated image
      * @default auto
@@ -80106,11 +79999,11 @@ export interface GptImage15EditOutput {
      * @description The generated images.
      * @example [
      *       {
-     *         "height": 1024,
-     *         "content_type": "image/png",
      *         "file_name": "yUt7tifLSbg1WzWWgfj2o.png",
-     *         "url": "https://v3b.fal.media/files/b/0a8691b0/yUt7tifLSbg1WzWWgfj2o.png",
-     *         "width": 1024
+     *         "width": 1024,
+     *         "content_type": "image/png",
+     *         "height": 1024,
+     *         "url": "https://v3b.fal.media/files/b/0a8691b0/yUt7tifLSbg1WzWWgfj2o.png"
      *       }
      *     ]
      */
@@ -80125,6 +80018,12 @@ export interface GptImage15Input {
      * @enum {string}
      */
     background?: 'auto' | 'transparent' | 'opaque';
+    /**
+     * Enable Safety Checker
+     * @description Whether to apply fal input safety moderation. Disabling it requires account authorization; provider checks still apply.
+     * @default true
+     */
+    enable_safety_checker?: boolean;
     /**
      * Image Size
      * @description Aspect ratio for the generated image
@@ -80173,11 +80072,11 @@ export interface GptImage15Output {
      * @description The generated images.
      * @example [
      *       {
-     *         "height": 1024,
-     *         "content_type": "image/png",
      *         "file_name": "EnWrO3XWjPE0nxBDpaQrj.png",
-     *         "url": "https://v3b.fal.media/files/b/0a869129/EnWrO3XWjPE0nxBDpaQrj.png",
-     *         "width": 1024
+     *         "width": 1024,
+     *         "content_type": "image/png",
+     *         "height": 1024,
+     *         "url": "https://v3b.fal.media/files/b/0a869129/EnWrO3XWjPE0nxBDpaQrj.png"
      *       }
      *     ]
      */
@@ -80434,10 +80333,10 @@ export interface GlmImageImageToImageOutput {
      * @description List of URLs to the generated images.
      * @example [
      *       {
-     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/catwalk_red.png",
-     *         "height": 1536,
      *         "content_type": "image/png",
-     *         "width": 1024
+     *         "width": 1024,
+     *         "height": 1536,
+     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/catwalk_red.png"
      *       }
      *     ]
      */
@@ -80567,10 +80466,10 @@ export interface GlmImageOutput {
      * @description List of URLs to the generated images.
      * @example [
      *       {
-     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/menu.jpg",
-     *         "height": 1024,
      *         "content_type": "image/jpeg",
-     *         "width": 1024
+     *         "width": 1024,
+     *         "height": 1024,
+     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/menu.jpg"
      *       }
      *     ]
      */
@@ -80895,12 +80794,12 @@ export interface Gemini31FlashTtsInput {
      * @description Multi-speaker voice configuration. When set, enables multi-speaker synthesis where different parts of the text are spoken by different voices. Each speaker needs a voice and a speaker_id (alias) that matches prefixes in the prompt.
      * @example [
      *       {
-     *         "speaker_id": "Host",
-     *         "voice": "Charon"
+     *         "voice": "Charon",
+     *         "speaker_id": "Host"
      *       },
      *       {
-     *         "speaker_id": "DrChen",
-     *         "voice": "Kore"
+     *         "voice": "Kore",
+     *         "speaker_id": "DrChen"
      *       }
      *     ]
      */
@@ -80983,9 +80882,9 @@ export interface Gemini31FlashImagePreviewEditOutput {
      * @description The edited images.
      * @example [
      *       {
-     *         "content_type": "image/png",
      *         "url": "https://storage.googleapis.com/falserverless/example_outputs/nano-banana-2-edit-output.png",
-     *         "file_name": "nano-banana-2-edit-output.png"
+     *         "file_name": "nano-banana-2-edit-output.png",
+     *         "content_type": "image/png"
      *       }
      *     ]
      */
@@ -81015,9 +80914,9 @@ export interface Gemini31FlashImagePreviewOutput {
      * @description The generated images.
      * @example [
      *       {
-     *         "content_type": "image/png",
      *         "url": "https://storage.googleapis.com/falserverless/example_outputs/nano-banana-2-t2i-output.png",
-     *         "file_name": "nano-banana-2-t2i-output.png"
+     *         "file_name": "nano-banana-2-t2i-output.png",
+     *         "content_type": "image/png"
      *       }
      *     ]
      */
@@ -81048,8 +80947,8 @@ export interface Gemini3ProImagePreviewEditOutput {
      * @example [
      *       {
      *         "content_type": "image/png",
-     *         "file_name": "nano-banana-pro-edit-output.png",
-     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/nano-banana-pro-edit-output.png"
+     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/nano-banana-pro-edit-output.png",
+     *         "file_name": "nano-banana-pro-edit-output.png"
      *       }
      *     ]
      */
@@ -81080,8 +80979,8 @@ export interface Gemini3ProImagePreviewOutput {
      * @example [
      *       {
      *         "content_type": "image/png",
-     *         "file_name": "nano-banana-pro-t2i-output.png",
-     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/nano-banana-pro-t2i-output.png"
+     *         "url": "https://storage.googleapis.com/falserverless/example_outputs/nano-banana-pro-t2i-output.png",
+     *         "file_name": "nano-banana-pro-t2i-output.png"
      *       }
      *     ]
      */
@@ -82169,10 +82068,10 @@ export interface FooocusImagePromptInput {
     guidance_scale?: number;
     /**
      * @example {
-     *       "type": "PyraCanny",
      *       "weight": 1,
-     *       "image_url": "https://storage.googleapis.com/falserverless/model_tests/fooocus/Pikachu.webp",
-     *       "stop_at": 1
+     *       "stop_at": 1,
+     *       "type": "PyraCanny",
+     *       "image_url": "https://storage.googleapis.com/falserverless/model_tests/fooocus/Pikachu.webp"
      *     }
      */
     image_prompt_1: Components.ImagePrompt;
@@ -83061,7 +82960,7 @@ export interface FluxSrpoImageToImageOutput extends SharedType_7c6 {}
 
 export interface FluxSrpoInput extends SharedType_394 {}
 
-export interface FluxSrpoOutput extends SharedType_0ed {}
+export interface FluxSrpoOutput extends SharedType_4d6 {}
 
 export interface FluxSchnellReduxInput extends SharedType_d7f {}
 
@@ -83073,7 +82972,7 @@ export interface FluxSchnellOutput extends SharedType_7c6 {}
 
 export interface FluxKreaReduxInput extends SharedType_da2 {}
 
-export interface FluxKreaReduxOutput extends SharedType_a42 {}
+export interface FluxKreaReduxOutput extends SharedType_652 {}
 
 export interface FluxKreaImageToImageInput extends SharedType_997 {}
 
@@ -83081,7 +82980,7 @@ export interface FluxKreaImageToImageOutput extends SharedType_7c6 {}
 
 export interface FluxKreaInput extends SharedType_05b {}
 
-export interface FluxKreaOutput extends SharedType_765 {}
+export interface FluxKreaOutput extends SharedType_eb7 {}
 
 export interface FluxDevReduxInput extends SharedType_71d {}
 
@@ -83155,12 +83054,12 @@ export interface FluxVisionUpscalerOutput {
     /**
      * @description The URL of the generated image.
      * @example {
-     *       "height": 2048,
-     *       "width": 2048,
      *       "file_size": 8842156,
      *       "content_type": "image/png",
      *       "file_name": "20TZeUQtQ8oKgsCKXSL81_StableSR_00002_.png",
-     *       "url": "https://v3b.fal.media/files/b/panda/20TZeUQtQ8oKgsCKXSL81_StableSR_00002_.png"
+     *       "width": 2048,
+     *       "url": "https://v3b.fal.media/files/b/panda/20TZeUQtQ8oKgsCKXSL81_StableSR_00002_.png",
+     *       "height": 2048
      *     }
      */
     image: Components.Image;
@@ -83900,11 +83799,11 @@ export interface FluxProKontextMaxMultiOutput extends SharedType_7c6 {}
 
 export interface FluxProKontextMaxInput extends SharedType_b35 {}
 
-export interface FluxProKontextMaxOutput extends SharedType_92f {}
+export interface FluxProKontextMaxOutput extends SharedType_872 {}
 
 export interface FluxProKontextInput extends SharedType_b35 {}
 
-export interface FluxProKontextOutput extends SharedType_92f {}
+export interface FluxProKontextOutput extends SharedType_872 {}
 
 export interface FluxLoraStreamInput extends SharedType_091 {}
 
@@ -84433,7 +84332,7 @@ export interface FluxKontextDevInput {
     sync_mode?: boolean;
 }
 
-export interface FluxKontextDevOutput extends SharedType_b17 {}
+export interface FluxKontextDevOutput extends SharedType_cf9 {}
 
 export interface FluxKontextTrainerInput {
     /**
@@ -84578,8 +84477,8 @@ export interface FluxKontextLoraTextToImageOutput {
      * @description The generated image files info.
      * @example [
      *       {
-     *         "width": 1024,
      *         "content_type": "image/jpeg",
+     *         "width": 1024,
      *         "height": 768,
      *         "url": "https://storage.googleapis.com/falserverless/example_outputs/kontext_example_t2i_output.png"
      *       }
@@ -84704,8 +84603,8 @@ export interface FluxKontextLoraInpaintOutput {
      * @description The generated image files info.
      * @example [
      *       {
-     *         "width": 1248,
      *         "content_type": "image/jpeg",
+     *         "width": 1248,
      *         "height": 832,
      *         "url": "https://storage.googleapis.com/falserverless/example_outputs/kontext_inpaint_output.png"
      *       }
@@ -84826,7 +84725,7 @@ export interface FluxKontextLoraInput {
     sync_mode?: boolean;
 }
 
-export interface FluxKontextLoraOutput extends SharedType_b17 {}
+export interface FluxKontextLoraOutput extends SharedType_cf9 {}
 
 export interface FluxGeneralRfInversionInput {
     /**
@@ -86829,11 +86728,11 @@ export interface Flux2Klein9bLoraInput {
 
 export interface Flux2Klein9bLoraOutput extends SharedType_a75 {}
 
-export interface Flux2Klein9bEditLoraInput extends SharedType_e22 {}
+export interface Flux2Klein9bEditLoraInput extends SharedType_bd2 {}
 
 export interface Flux2Klein9bEditLoraOutput extends SharedType_165 {}
 
-export interface Flux2Klein9bEditInput extends SharedType_676 {}
+export interface Flux2Klein9bEditInput extends SharedType_bbc {}
 
 export interface Flux2Klein9bEditOutput extends SharedType_165 {}
 
@@ -86841,7 +86740,7 @@ export interface Flux2Klein9bBaseLoraInput extends SharedType_e5e {}
 
 export interface Flux2Klein9bBaseLoraOutput extends SharedType_165 {}
 
-export interface Flux2Klein9bBaseEditLoraInput extends SharedType_925 {}
+export interface Flux2Klein9bBaseEditLoraInput extends SharedType_8bb {}
 
 export interface Flux2Klein9bBaseEditLoraOutput extends SharedType_165 {}
 
@@ -86869,8 +86768,8 @@ export interface Flux2Klein9bBaseEditInput {
      * Image Size
      * @description The size of the generated image. If not provided, uses the input image size.
      * @example {
-     *       "width": 2016,
-     *       "height": 1152
+     *       "height": 1152,
+     *       "width": 2016
      *     }
      */
     image_size?:
@@ -87208,11 +87107,11 @@ export interface Flux2Klein4bLoraInput {
 
 export interface Flux2Klein4bLoraOutput extends SharedType_d72 {}
 
-export interface Flux2Klein4bEditLoraInput extends SharedType_e22 {}
+export interface Flux2Klein4bEditLoraInput extends SharedType_bd2 {}
 
 export interface Flux2Klein4bEditLoraOutput extends SharedType_938 {}
 
-export interface Flux2Klein4bEditInput extends SharedType_676 {}
+export interface Flux2Klein4bEditInput extends SharedType_bbc {}
 
 export interface Flux2Klein4bEditOutput extends SharedType_938 {}
 
@@ -87220,7 +87119,7 @@ export interface Flux2Klein4bBaseLoraInput extends SharedType_e5e {}
 
 export interface Flux2Klein4bBaseLoraOutput extends SharedType_165 {}
 
-export interface Flux2Klein4bBaseEditLoraInput extends SharedType_925 {}
+export interface Flux2Klein4bBaseEditLoraInput extends SharedType_8bb {}
 
 export interface Flux2Klein4bBaseEditLoraOutput extends SharedType_165 {}
 
@@ -87248,8 +87147,8 @@ export interface Flux2Klein4bBaseEditInput {
      * Image Size
      * @description The size of the generated image. If not provided, uses the input image size.
      * @example {
-     *       "width": 2016,
-     *       "height": 1152
+     *       "height": 1152,
+     *       "width": 2016
      *     }
      */
     image_size?:
@@ -89755,7 +89654,7 @@ export interface Flux1SrpoImageToImageOutput extends SharedType_7c6 {}
 
 export interface Flux1SrpoInput extends SharedType_394 {}
 
-export interface Flux1SrpoOutput extends SharedType_0ed {}
+export interface Flux1SrpoOutput extends SharedType_4d6 {}
 
 export interface Flux1SchnellReduxInput extends SharedType_d7f {}
 
@@ -89767,7 +89666,7 @@ export interface Flux1SchnellOutput extends SharedType_7c6 {}
 
 export interface Flux1KreaReduxInput extends SharedType_da2 {}
 
-export interface Flux1KreaReduxOutput extends SharedType_a42 {}
+export interface Flux1KreaReduxOutput extends SharedType_652 {}
 
 export interface Flux1KreaImageToImageInput extends SharedType_997 {}
 
@@ -89775,7 +89674,7 @@ export interface Flux1KreaImageToImageOutput extends SharedType_7c6 {}
 
 export interface Flux1KreaInput extends SharedType_05b {}
 
-export interface Flux1KreaOutput extends SharedType_765 {}
+export interface Flux1KreaOutput extends SharedType_eb7 {}
 
 export interface Flux1DevReduxInput extends SharedType_71d {}
 
@@ -89789,15 +89688,15 @@ export interface Flux1DevInput extends SharedType_b4b {}
 
 export interface Flux1DevOutput extends SharedType_7c6 {}
 
-export interface Florence2LargeRegionToSegmentationInput extends SharedType_9d5 {}
+export interface Florence2LargeRegionToSegmentationInput extends SharedType_e5f {}
 
 export interface Florence2LargeRegionToSegmentationOutput extends SharedType_4aa {}
 
-export interface Florence2LargeRegionToDescriptionInput extends SharedType_9d5 {}
+export interface Florence2LargeRegionToDescriptionInput extends SharedType_e5f {}
 
 export interface Florence2LargeRegionToDescriptionOutput extends SharedType_129 {}
 
-export interface Florence2LargeRegionToCategoryInput extends SharedType_9d5 {}
+export interface Florence2LargeRegionToCategoryInput extends SharedType_e5f {}
 
 export interface Florence2LargeRegionToCategoryOutput extends SharedType_129 {}
 
@@ -90147,10 +90046,10 @@ export interface FireredImageEditV11Output {
      * @description The edited image files info.
      * @example [
      *       {
-     *         "height": 2352,
+     *         "content_type": "image/jpeg",
      *         "width": 1760,
      *         "url": "https://v3b.fal.media/files/b/0a90d8d7/-B_7ISYXhCNdDXe8q6F7V.png",
-     *         "content_type": "image/jpeg"
+     *         "height": 2352
      *       }
      *     ]
      */
@@ -90582,10 +90481,10 @@ export interface FfmpegApiMergeAudiosOutput {
     /**
      * @description Merged audio file
      * @example {
+     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/ffmpeg_api/merge_audios.mp3",
      *       "file_size": 97401,
-     *       "content_type": "audio/mpeg",
      *       "file_name": "merged_audios.mp3",
-     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/ffmpeg_api/merge_audios.mp3"
+     *       "content_type": "audio/mpeg"
      *     }
      */
     audio: Components.File;
@@ -90702,16 +90601,16 @@ export interface FfmpegApiImagesToVideoInput {
      * @description Ordered list of images to play as video frames. Each image is held for its specified number of frames before cutting to the next image.
      * @example [
      *       {
-     *         "frames": 4,
-     *         "url": "https://v3.fal.media/files/koala/oei_-iPIYFnhdB8SxojND_qwen-edit-res.png"
+     *         "url": "https://v3.fal.media/files/koala/oei_-iPIYFnhdB8SxojND_qwen-edit-res.png",
+     *         "frames": 4
      *       },
      *       {
-     *         "frames": 2,
-     *         "url": "https://v3.fal.media/files/tiger/c8VSfX5XtJ3DCzV-4Bxg8_kid_image.png"
+     *         "url": "https://v3.fal.media/files/tiger/c8VSfX5XtJ3DCzV-4Bxg8_kid_image.png",
+     *         "frames": 2
      *       },
      *       {
-     *         "frames": 4,
-     *         "url": "https://v3.fal.media/files/koala/oei_-iPIYFnhdB8SxojND_qwen-edit-res.png"
+     *         "url": "https://v3.fal.media/files/koala/oei_-iPIYFnhdB8SxojND_qwen-edit-res.png",
+     *         "frames": 4
      *       }
      *     ]
      */
@@ -92666,10 +92565,10 @@ export interface Emu35ImageTextToImageOutput {
      * @description The edited image.
      * @example [
      *       {
-     *         "url": "https://v3b.fal.media/files/b/koala/UFe9ES9IGdp0N90JmCyd4.jpg",
      *         "height": 880,
-     *         "content_type": "image/jpeg",
      *         "file_name": "2_gRhwfsnmNKYtZ_dveyV.jpg",
+     *         "url": "https://v3b.fal.media/files/b/koala/UFe9ES9IGdp0N90JmCyd4.jpg",
+     *         "content_type": "image/jpeg",
      *         "width": 1184
      *       }
      *     ]
@@ -92752,10 +92651,10 @@ export interface Emu35ImageEditImageOutput {
      * @description The edited image.
      * @example [
      *       {
-     *         "url": "https://v3b.fal.media/files/b/monkey/t4nYWb1Zk7Uc6x2nSLysb.jpg",
      *         "height": 1168,
-     *         "content_type": "image/jpeg",
      *         "file_name": "t4nYWb1Zk7Uc6x2nSLysb.jpg",
+     *         "url": "https://v3b.fal.media/files/b/monkey/t4nYWb1Zk7Uc6x2nSLysb.jpg",
+     *         "content_type": "image/jpeg",
      *         "width": 784
      *       }
      *     ]
@@ -93046,220 +92945,220 @@ export interface ElevenlabsSpeechToTextScribeV2Output {
      * @description Word-level transcription details
      * @example {
      *       "text": "Hey,",
-     *       "speaker_id": "speaker_0",
+     *       "start": 0.079,
      *       "type": "word",
      *       "end": 0.539,
-     *       "start": 0.079
+     *       "speaker_id": "speaker_0"
      *     }
      * @example {
      *       "text": " ",
-     *       "speaker_id": "speaker_0",
+     *       "start": 0.539,
      *       "type": "spacing",
      *       "end": 0.599,
-     *       "start": 0.539
+     *       "speaker_id": "speaker_0"
      *     }
      * @example {
      *       "text": "this",
-     *       "speaker_id": "speaker_0",
+     *       "start": 0.599,
      *       "type": "word",
      *       "end": 0.679,
-     *       "start": 0.599
+     *       "speaker_id": "speaker_0"
      *     }
      * @example {
      *       "text": " ",
-     *       "speaker_id": "speaker_0",
+     *       "start": 0.679,
      *       "type": "spacing",
      *       "end": 0.739,
-     *       "start": 0.679
+     *       "speaker_id": "speaker_0"
      *     }
      * @example {
      *       "text": "is",
-     *       "speaker_id": "speaker_0",
+     *       "start": 0.739,
      *       "type": "word",
      *       "end": 0.799,
-     *       "start": 0.739
+     *       "speaker_id": "speaker_0"
      *     }
      * @example {
      *       "text": " ",
-     *       "speaker_id": "speaker_0",
+     *       "start": 0.799,
      *       "type": "spacing",
      *       "end": 0.939,
-     *       "start": 0.799
+     *       "speaker_id": "speaker_0"
      *     }
      * @example {
      *       "text": "a",
-     *       "speaker_id": "speaker_0",
+     *       "start": 0.939,
      *       "type": "word",
      *       "end": 0.939,
-     *       "start": 0.939
+     *       "speaker_id": "speaker_0"
      *     }
      * @example {
      *       "text": " ",
-     *       "speaker_id": "speaker_0",
+     *       "start": 0.939,
      *       "type": "spacing",
      *       "end": 0.959,
-     *       "start": 0.939
+     *       "speaker_id": "speaker_0"
      *     }
      * @example {
      *       "text": "test",
-     *       "speaker_id": "speaker_0",
+     *       "start": 0.959,
      *       "type": "word",
      *       "end": 1.179,
-     *       "start": 0.959
+     *       "speaker_id": "speaker_0"
      *     }
      * @example {
      *       "text": " ",
-     *       "speaker_id": "speaker_0",
+     *       "start": 1.179,
      *       "type": "spacing",
      *       "end": 1.219,
-     *       "start": 1.179
+     *       "speaker_id": "speaker_0"
      *     }
      * @example {
      *       "text": "recording",
-     *       "speaker_id": "speaker_0",
+     *       "start": 1.22,
      *       "type": "word",
      *       "end": 1.719,
-     *       "start": 1.22
+     *       "speaker_id": "speaker_0"
      *     }
      * @example {
      *       "text": " ",
-     *       "speaker_id": "speaker_0",
+     *       "start": 1.719,
      *       "type": "spacing",
      *       "end": 1.719,
-     *       "start": 1.719
+     *       "speaker_id": "speaker_0"
      *     }
      * @example {
      *       "text": "for",
-     *       "speaker_id": "speaker_0",
+     *       "start": 1.719,
      *       "type": "word",
      *       "end": 1.86,
-     *       "start": 1.719
+     *       "speaker_id": "speaker_0"
      *     }
      * @example {
      *       "text": " ",
-     *       "speaker_id": "speaker_0",
+     *       "start": 1.86,
      *       "type": "spacing",
      *       "end": 1.879,
-     *       "start": 1.86
+     *       "speaker_id": "speaker_0"
      *     }
      * @example {
      *       "text": "Scribe",
-     *       "speaker_id": "speaker_0",
+     *       "start": 1.879,
      *       "type": "word",
      *       "end": 2.24,
-     *       "start": 1.879
+     *       "speaker_id": "speaker_0"
      *     }
      * @example {
      *       "text": " ",
-     *       "speaker_id": "speaker_0",
+     *       "start": 2.24,
      *       "type": "spacing",
      *       "end": 2.319,
-     *       "start": 2.24
+     *       "speaker_id": "speaker_0"
      *     }
      * @example {
      *       "text": "version",
-     *       "speaker_id": "speaker_0",
+     *       "start": 2.319,
      *       "type": "word",
      *       "end": 2.759,
-     *       "start": 2.319
+     *       "speaker_id": "speaker_0"
      *     }
      * @example {
      *       "text": " ",
-     *       "speaker_id": "speaker_0",
+     *       "start": 2.759,
      *       "type": "spacing",
      *       "end": 2.779,
-     *       "start": 2.759
+     *       "speaker_id": "speaker_0"
      *     }
      * @example {
      *       "text": "two,",
-     *       "speaker_id": "speaker_0",
+     *       "start": 2.779,
      *       "type": "word",
      *       "end": 3.379,
-     *       "start": 2.779
+     *       "speaker_id": "speaker_0"
      *     }
      * @example {
      *       "text": " ",
-     *       "speaker_id": "speaker_0",
+     *       "start": 3.379,
      *       "type": "spacing",
      *       "end": 3.399,
-     *       "start": 3.379
+     *       "speaker_id": "speaker_0"
      *     }
      * @example {
      *       "text": "which",
-     *       "speaker_id": "speaker_0",
+     *       "start": 3.399,
      *       "type": "word",
      *       "end": 3.519,
-     *       "start": 3.399
+     *       "speaker_id": "speaker_0"
      *     }
      * @example {
      *       "text": " ",
-     *       "speaker_id": "speaker_0",
+     *       "start": 3.519,
      *       "type": "spacing",
      *       "end": 3.539,
-     *       "start": 3.519
+     *       "speaker_id": "speaker_0"
      *     }
      * @example {
      *       "text": "is",
-     *       "speaker_id": "speaker_0",
+     *       "start": 3.539,
      *       "type": "word",
      *       "end": 3.659,
-     *       "start": 3.539
+     *       "speaker_id": "speaker_0"
      *     }
      * @example {
      *       "text": " ",
-     *       "speaker_id": "speaker_0",
+     *       "start": 3.659,
      *       "type": "spacing",
      *       "end": 3.699,
-     *       "start": 3.659
+     *       "speaker_id": "speaker_0"
      *     }
      * @example {
      *       "text": "now",
-     *       "speaker_id": "speaker_0",
+     *       "start": 3.699,
      *       "type": "word",
      *       "end": 3.839,
-     *       "start": 3.699
+     *       "speaker_id": "speaker_0"
      *     }
      * @example {
      *       "text": " ",
-     *       "speaker_id": "speaker_0",
+     *       "start": 3.839,
      *       "type": "spacing",
      *       "end": 3.839,
-     *       "start": 3.839
+     *       "speaker_id": "speaker_0"
      *     }
      * @example {
      *       "text": "available",
-     *       "speaker_id": "speaker_0",
+     *       "start": 3.839,
      *       "type": "word",
      *       "end": 4.319,
-     *       "start": 3.839
+     *       "speaker_id": "speaker_0"
      *     }
      * @example {
      *       "text": " ",
-     *       "speaker_id": "speaker_0",
+     *       "start": 4.319,
      *       "type": "spacing",
      *       "end": 4.339,
-     *       "start": 4.319
+     *       "speaker_id": "speaker_0"
      *     }
      * @example {
      *       "text": "on",
-     *       "speaker_id": "speaker_0",
+     *       "start": 4.339,
      *       "type": "word",
      *       "end": 4.579,
-     *       "start": 4.339
+     *       "speaker_id": "speaker_0"
      *     }
      * @example {
      *       "text": " ",
-     *       "speaker_id": "speaker_0",
+     *       "start": 4.579,
      *       "type": "spacing",
      *       "end": 4.599,
-     *       "start": 4.579
+     *       "speaker_id": "speaker_0"
      *     }
      * @example {
      *       "text": "fal.ai.",
-     *       "speaker_id": "speaker_0",
+     *       "start": 4.599,
      *       "type": "word",
      *       "end": 5.699,
-     *       "start": 4.599
+     *       "speaker_id": "speaker_0"
      *     }
      */
     words: Components.TranscriptionWord[];
@@ -93526,9 +93425,9 @@ export interface ElevenlabsDubbingOutput {
      * @description The dubbed video file. Will be populated if video_url was provided in the request.
      * @example {
      *       "content_type": "video/mp4",
+     *       "file_size": 1344041,
      *       "file_name": "e11_dubbing_out.mp4",
-     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/elevenlabs/e11_dubbing_out.mp4",
-     *       "file_size": 1344041
+     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/elevenlabs/e11_dubbing_out.mp4"
      *     }
      */
     video?: Components.File;
@@ -93996,13 +93895,13 @@ export interface Deepfilternet3Output {
     /**
      * @description The audio file that was enhanced.
      * @example {
-     *       "content_type": "audio/mpeg",
-     *       "sample_rate": 48000,
-     *       "channels": 1,
-     *       "bitrate": "192k",
      *       "url": "https://v3b.fal.media/files/b/0a8a4024/-2cD9CyGEjYsyVQ5lEERh_9qwIkJjf.mp3",
-     *       "duration": 6.9544375,
-     *       "file_name": "-2cD9CyGEjYsyVQ5lEERh_9qwIkJjf.mp3"
+     *       "sample_rate": 48000,
+     *       "bitrate": "192k",
+     *       "channels": 1,
+     *       "content_type": "audio/mpeg",
+     *       "file_name": "-2cD9CyGEjYsyVQ5lEERh_9qwIkJjf.mp3",
+     *       "duration": 6.9544375
      *     }
      */
     audio_file: Components.AudioFile;
@@ -94027,12 +93926,12 @@ export interface DdcolorOutput {
     /**
      * @description The generated image file info.
      * @example {
-     *       "url": "https://storage.googleapis.com/falserverless/gallery/5fcaaac6d1344d998ebb9703102c6c63.png",
      *       "height": 512,
-     *       "width": 512,
      *       "content_type": "image/png",
+     *       "file_name": "36d3ca4791a647678b2ff01a35c87f5a.png",
+     *       "url": "https://storage.googleapis.com/falserverless/gallery/5fcaaac6d1344d998ebb9703102c6c63.png",
      *       "file_size": 423052,
-     *       "file_name": "36d3ca4791a647678b2ff01a35c87f5a.png"
+     *       "width": 512
      *     }
      */
     image: Components.Image;
@@ -94115,13 +94014,13 @@ export interface Csm1bInput {
      * @example [
      *       {
      *         "audio_url": "https://huggingface.co/spaces/sesame/csm-1b/resolve/main/prompts/conversational_a.wav",
-     *         "prompt": "like revising for an exam I'd have to try and like keep up the momentum because I'd start really early I'd be like okay I'm gonna start revising now and then like you're revising for ages and then I just like start losing steam I didn't do that for the exam we had recently to be fair that was a more of a last minute scenario but like yeah I'm trying to like yeah I noticed this yesterday that like Mondays I sort of start the day with this not like a panic but like a",
-     *         "speaker_id": 0
+     *         "speaker_id": 0,
+     *         "prompt": "like revising for an exam I'd have to try and like keep up the momentum because I'd start really early I'd be like okay I'm gonna start revising now and then like you're revising for ages and then I just like start losing steam I didn't do that for the exam we had recently to be fair that was a more of a last minute scenario but like yeah I'm trying to like yeah I noticed this yesterday that like Mondays I sort of start the day with this not like a panic but like a"
      *       },
      *       {
      *         "audio_url": "https://huggingface.co/spaces/sesame/csm-1b/resolve/main/prompts/conversational_b.wav",
-     *         "prompt": "like a super Mario level. Like it's very like high detail. And like, once you get into the park, it just like, everything looks like a computer game and they have all these, like, you know, if, if there's like a, you know, like in a Mario game, they will have like a question block. And if you like, you know, punch it, a coin will come out. So like everyone, when they come into the park, they get like this little bracelet and then you can go punching question blocks around.",
-     *         "speaker_id": 1
+     *         "speaker_id": 1,
+     *         "prompt": "like a super Mario level. Like it's very like high detail. And like, once you get into the park, it just like, everything looks like a computer game and they have all these, like, you know, if, if there's like a, you know, like in a Mario game, they will have like a question block. And if you like, you know, punch it, a coin will come out. So like everyone, when they come into the park, they get like this little bracelet and then you can go punching question blocks around."
      *       }
      *     ]
      */
@@ -94131,16 +94030,16 @@ export interface Csm1bInput {
      * @description The text to generate an audio from.
      * @example [
      *       {
-     *         "speaker_id": 0,
-     *         "text": "Hey how are you doing."
+     *         "text": "Hey how are you doing.",
+     *         "speaker_id": 0
      *       },
      *       {
-     *         "speaker_id": 1,
-     *         "text": "Pretty good, pretty good."
+     *         "text": "Pretty good, pretty good.",
+     *         "speaker_id": 1
      *       },
      *       {
-     *         "speaker_id": 0,
-     *         "text": "I'm great, so happy to be speaking to you."
+     *         "text": "I'm great, so happy to be speaking to you.",
+     *         "speaker_id": 0
      *       }
      *     ]
      */
@@ -94339,9 +94238,9 @@ export interface CreatifyAuroraOutput {
     /**
      * @description The generated video file.
      * @example {
+     *       "content_type": "video/mp4",
      *       "url": "https://storage.googleapis.com/falserverless/example_outputs/creatify/aurora/output.mp4",
-     *       "file_name": "output.mp4",
-     *       "content_type": "video/mp4"
+     *       "file_name": "output.mp4"
      *     }
      */
     video: Components.VideoFile;
@@ -94418,8 +94317,8 @@ export interface ControlLightOutput {
      * @description The enhanced image.
      * @example [
      *       {
-     *         "width": 768,
      *         "url": "https://v3b.fal.media/files/b/0a9be5e5/Hc8GFTr6W5i7iITqfBLXQ_jEMONTDu.png",
+     *         "width": 768,
      *         "height": 1360,
      *         "content_type": "image/png"
      *       }
@@ -94538,11 +94437,11 @@ export interface CodeformerOutput {
     /**
      * @description The generated image file info.
      * @example {
-     *       "file_size": 423052,
-     *       "content_type": "image/png",
      *       "url": "https://storage.googleapis.com/falserverless/model_tests/codeformer/codeformer_restored_1.jpeg",
-     *       "height": 512,
+     *       "content_type": "image/png",
+     *       "file_size": 423052,
      *       "file_name": "36d3ca4791a647678b2ff01a35c87f5a.png",
+     *       "height": 512,
      *       "width": 512
      *     }
      */
@@ -94894,12 +94793,12 @@ export interface BytedanceSeedreamV4TextToImageInput {
      * Image Size
      * @description The size of the generated image. Total pixels must be between 960x960 and 4096x4096.
      * @default {
-     *       "width": 2048,
-     *       "height": 2048
+     *       "height": 2048,
+     *       "width": 2048
      *     }
      * @example {
-     *       "width": 4096,
-     *       "height": 4096
+     *       "height": 4096,
+     *       "width": 4096
      *     }
      */
     image_size?:
@@ -94984,12 +94883,12 @@ export interface BytedanceSeedreamV4EditInput {
      * Image Size
      * @description The size of the generated image. The minimum total image area is 921600 pixels. Failing this, the image size will be adjusted to by scaling it up, while maintaining the aspect ratio.
      * @default {
-     *       "width": 2048,
-     *       "height": 2048
+     *       "height": 2048,
+     *       "width": 2048
      *     }
      * @example {
-     *       "width": 3840,
-     *       "height": 2160
+     *       "height": 2160,
+     *       "width": 3840
      *     }
      */
     image_size?:
@@ -95078,8 +94977,8 @@ export interface BytedanceSeedreamV45TextToImageInput {
      * Image Size
      * @description The size of the generated image. Width and height must be between 1920 and 4096, or total number of pixels must be between 2560*1440 and 4096*4096.
      * @default {
-     *       "width": 2048,
-     *       "height": 2048
+     *       "height": 2048,
+     *       "width": 2048
      *     }
      * @example auto_2K
      */
@@ -95157,8 +95056,8 @@ export interface BytedanceSeedreamV45EditInput {
      * Image Size
      * @description The size of the generated image. Width and height must be between 1920 and 4096, or total number of pixels must be between 2560*1440 and 4096*4096.
      * @default {
-     *       "width": 2048,
-     *       "height": 2048
+     *       "height": 2048,
+     *       "width": 2048
      *     }
      * @example auto_4K
      */
@@ -96046,7 +95945,7 @@ export interface BytedanceUpscalerUpscaleVideoOutput {
 
 export interface BriaTextToImageHdInput extends SharedType_ece {}
 
-export interface BriaTextToImageHdOutput extends SharedType_e1d {}
+export interface BriaTextToImageHdOutput extends SharedType_96e {}
 
 export interface BriaTextToImageFastInput {
     /**
@@ -96118,11 +96017,11 @@ export interface BriaTextToImageFastInput {
     sync_mode?: boolean;
 }
 
-export interface BriaTextToImageFastOutput extends SharedType_e1d {}
+export interface BriaTextToImageFastOutput extends SharedType_96e {}
 
 export interface BriaTextToImageBaseInput extends SharedType_ece {}
 
-export interface BriaTextToImageBaseOutput extends SharedType_e1d {}
+export interface BriaTextToImageBaseOutput extends SharedType_96e {}
 
 export interface BriaReimagineInput {
     /**
@@ -96352,11 +96251,11 @@ export interface BriaGenfillOutput {
      * @example [
      *       {
      *         "content_type": "image/png",
-     *         "width": 1024,
-     *         "url": "https://storage.googleapis.com/falserverless/bria/bria_genfill_res.png",
+     *         "file_name": "a0d138e6820c4ad58f1fd3c758f16047.png",
      *         "file_size": 1064550,
+     *         "url": "https://storage.googleapis.com/falserverless/bria/bria_genfill_res.png",
      *         "height": 768,
-     *         "file_name": "a0d138e6820c4ad58f1fd3c758f16047.png"
+     *         "width": 1024
      *       }
      *     ]
      */
@@ -96437,11 +96336,11 @@ export interface BriaExpandOutput {
      * @description The generated image
      * @example {
      *       "content_type": "image/png",
-     *       "width": 1200,
-     *       "url": "https://v3.fal.media/files/koala/8np-spgxxG-I1r3cjthRV_afa402a35ea742cdb5c3e219b2b19bfb.png",
+     *       "file_name": "afa402a35ea742cdb5c3e219b2b19bfb.png",
      *       "file_size": 1471342,
+     *       "url": "https://v3.fal.media/files/koala/8np-spgxxG-I1r3cjthRV_afa402a35ea742cdb5c3e219b2b19bfb.png",
      *       "height": 674,
-     *       "file_name": "afa402a35ea742cdb5c3e219b2b19bfb.png"
+     *       "width": 1200
      *     }
      */
     image: Components.Image;
@@ -96600,11 +96499,11 @@ export interface BriaBackgroundRemoveOutput {
      * @description The generated image
      * @example {
      *       "content_type": "image/png",
-     *       "width": 1024,
-     *       "url": "https://v3.fal.media/files/tiger/GQEMNjRyxSoza7N8LPPqb_070c731993e949d993c10ef6283d335d.png",
+     *       "file_name": "070c731993e949d993c10ef6283d335d.png",
      *       "file_size": 1076276,
+     *       "url": "https://v3.fal.media/files/tiger/GQEMNjRyxSoza7N8LPPqb_070c731993e949d993c10ef6283d335d.png",
      *       "height": 1024,
-     *       "file_name": "070c731993e949d993c10ef6283d335d.png"
+     *       "width": 1024
      *     }
      */
     image: Components.Image;
@@ -96706,7 +96605,7 @@ export interface BooguImageEditInput {
     sync_mode?: boolean;
 }
 
-export interface BooguImageEditOutput extends SharedType_63a {}
+export interface BooguImageEditOutput extends SharedType_a9b {}
 
 export interface BooguImageInput {
     /**
@@ -96793,7 +96692,7 @@ export interface BooguImageInput {
     sync_mode?: boolean;
 }
 
-export interface BooguImageOutput extends SharedType_63a {}
+export interface BooguImageOutput extends SharedType_a9b {}
 
 export interface BirefnetV2VideoInput {
     /**
@@ -96883,14 +96782,14 @@ export interface BirefnetV2VideoOutput {
     /**
      * @description Video with background removed
      * @example {
-     *       "duration": 8,
-     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/birefnet-video-output.webm",
-     *       "num_frames": 192,
-     *       "content_type": "video/webm",
-     *       "file_name": "birefnet-video-output.webm",
-     *       "width": 1920,
      *       "height": 1080,
-     *       "fps": 24
+     *       "file_name": "birefnet-video-output.webm",
+     *       "fps": 24,
+     *       "width": 1920,
+     *       "content_type": "video/webm",
+     *       "num_frames": 192,
+     *       "duration": 8,
+     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/birefnet-video-output.webm"
      *     }
      */
     video: Components.VideoFile;
@@ -96975,11 +96874,11 @@ export interface BirefnetV2Output {
     /**
      * @description Image with background removed. When `mask_only` is `True`, this contains the segmentation mask instead.
      * @example {
-     *       "content_type": "image/png",
+     *       "height": 1024,
      *       "file_name": "birefnet-output.png",
-     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/birefnet-output.png",
      *       "width": 1024,
-     *       "height": 1024
+     *       "content_type": "image/png",
+     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/birefnet-output.png"
      *     }
      */
     image: Components.ImageFile;
@@ -97047,11 +96946,11 @@ export interface BirefnetOutput {
     /**
      * @description Image with background removed
      * @example {
-     *       "content_type": "image/png",
+     *       "height": 1024,
      *       "file_name": "birefnet-output.png",
-     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/birefnet-output.png",
      *       "width": 1024,
-     *       "height": 1024
+     *       "content_type": "image/png",
+     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/birefnet-output.png"
      *     }
      */
     image: Components.ImageFile;
@@ -97455,8 +97354,8 @@ export interface BenV2VideoOutput {
     /**
      * @description The generated video file.
      * @example {
-     *       "content_type": "video/mp4",
-     *       "url": "https://storage.googleapis.com/falserverless/gallery/Ben2/foreground.mp4"
+     *       "url": "https://storage.googleapis.com/falserverless/gallery/Ben2/foreground.mp4",
+     *       "content_type": "video/mp4"
      *     }
      */
     video: Components.File;
@@ -97480,12 +97379,12 @@ export interface BenV2ImageOutput {
     /**
      * @description The output image after background removal.
      * @example {
-     *       "content_type": "image/png",
-     *       "width": 512,
-     *       "url": "https://storage.googleapis.com/falserverless/gallery/Ben2/zrZNETpI_ul2jonraqpxN_a57c3f3825d9418f8b3d39cde87c3310.png",
      *       "height": 512,
+     *       "file_size": 423052,
+     *       "url": "https://storage.googleapis.com/falserverless/gallery/Ben2/zrZNETpI_ul2jonraqpxN_a57c3f3825d9418f8b3d39cde87c3310.png",
+     *       "width": 512,
      *       "file_name": "zrZNETpI_ul2jonraqpxN_a57c3f3825d9418f8b3d39cde87c3310.png",
-     *       "file_size": 423052
+     *       "content_type": "image/png"
      *     }
      */
     image: Components.Image;
@@ -97590,11 +97489,11 @@ export interface BagelEditOutput {
      * @example [
      *       {
      *         "height": 1024,
+     *         "content_type": "image/jpeg",
+     *         "file_name": "hQnndOMvGSt2UsYAiV3vs.jpeg",
      *         "url": "https://storage.googleapis.com/falserverless/bagel/hQnndOMvGSt2UsYAiV3vs.jpeg",
      *         "file_size": 423052,
-     *         "width": 1024,
-     *         "file_name": "hQnndOMvGSt2UsYAiV3vs.jpeg",
-     *         "content_type": "image/jpeg"
+     *         "width": 1024
      *       }
      *     ]
      */
@@ -97653,11 +97552,11 @@ export interface BagelOutput {
      * @example [
      *       {
      *         "height": 1024,
+     *         "content_type": "image/jpeg",
+     *         "file_name": "wRhCPSyiKTiLnnWvUpGIl.jpeg",
      *         "url": "https://storage.googleapis.com/falserverless/bagel/wRhCPSyiKTiLnnWvUpGIl.jpeg",
      *         "file_size": 423052,
-     *         "width": 1024,
-     *         "file_name": "wRhCPSyiKTiLnnWvUpGIl.jpeg",
-     *         "content_type": "image/jpeg"
+     *         "width": 1024
      *       }
      *     ]
      */
@@ -97834,9 +97733,9 @@ export interface AiAvatarSingleTextOutput {
      * @description The generated video file.
      * @example {
      *       "content_type": "application/octet-stream",
-     *       "url": "https://v3.fal.media/files/elephant/-huMN0zTaXmBr2CqzCMps_6c9dd31e1d9a4482877747a52a661a0a.mp4",
      *       "file_size": 797478,
-     *       "file_name": "6c9dd31e1d9a4482877747a52a661a0a.mp4"
+     *       "file_name": "6c9dd31e1d9a4482877747a52a661a0a.mp4",
+     *       "url": "https://v3.fal.media/files/elephant/-huMN0zTaXmBr2CqzCMps_6c9dd31e1d9a4482877747a52a661a0a.mp4"
      *     }
      */
     video: Components.File;
@@ -97965,9 +97864,9 @@ export interface AiAvatarMultiTextOutput {
      * @description The generated video file.
      * @example {
      *       "content_type": "application/octet-stream",
-     *       "url": "https://v3.fal.media/files/zebra/lKMkUvzCqKn-gHC0vyUPP_30b76b90c2164f9a926527497c20832b.mp4",
      *       "file_size": 352679,
-     *       "file_name": "30b76b90c2164f9a926527497c20832b.mp4"
+     *       "file_name": "30b76b90c2164f9a926527497c20832b.mp4",
+     *       "url": "https://v3.fal.media/files/zebra/lKMkUvzCqKn-gHC0vyUPP_30b76b90c2164f9a926527497c20832b.mp4"
      *     }
      */
     video: Components.File;
@@ -98048,9 +97947,9 @@ export interface AiAvatarMultiOutput {
      * @description The generated video file.
      * @example {
      *       "content_type": "application/octet-stream",
-     *       "url": "https://v3.fal.media/files/kangaroo/uAF7N-Ow8WwuvbFw8J4Br_ab27ac57e9464dbea1ef78f7a25469d2.mp4",
      *       "file_size": 704757,
-     *       "file_name": "ab27ac57e9464dbea1ef78f7a25469d2.mp4"
+     *       "file_name": "ab27ac57e9464dbea1ef78f7a25469d2.mp4",
+     *       "url": "https://v3.fal.media/files/kangaroo/uAF7N-Ow8WwuvbFw8J4Br_ab27ac57e9464dbea1ef78f7a25469d2.mp4"
      *     }
      */
     video: Components.File;
@@ -98828,9 +98727,9 @@ export interface CreatifyBorealOutput {
     /**
      * @description The generated video with synchronized native audio.
      * @example {
+     *       "content_type": "video/mp4",
      *       "url": "https://storage.googleapis.com/falserverless/example_outputs/creatify/aurora/output.mp4",
-     *       "file_name": "output.mp4",
-     *       "content_type": "video/mp4"
+     *       "file_name": "output.mp4"
      *     }
      */
     video: Components.VideoFile;
@@ -98861,14 +98760,14 @@ export interface ClarityaiCrystalVideoUpscalerOutput {
     /**
      * @description URL to the upscaled video
      * @example {
-     *       "height": 2160,
-     *       "file_name": "w0VQQvPdwvV2GSCtRTMzh_hDH8SPrB.mp4",
-     *       "fps": 23.130193905817176,
-     *       "width": 4096,
-     *       "content_type": "video/mp4",
-     *       "num_frames": 302,
      *       "duration": 13.056527,
-     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/crystal_upscaler/video_upscaling/video_out.mp4"
+     *       "width": 4096,
+     *       "fps": 23.130193905817176,
+     *       "url": "https://storage.googleapis.com/falserverless/example_outputs/crystal_upscaler/video_upscaling/video_out.mp4",
+     *       "num_frames": 302,
+     *       "file_name": "w0VQQvPdwvV2GSCtRTMzh_hDH8SPrB.mp4",
+     *       "height": 2160,
+     *       "content_type": "video/mp4"
      *     }
      */
     video: Components.VideoFile;
@@ -99683,7 +99582,7 @@ export interface BytedanceSeedance25UsTextToVideoInput {
     resolution?: '480p' | '720p' | '1080p';
 }
 
-export interface BytedanceSeedance25UsTextToVideoOutput extends SharedType_348 {}
+export interface BytedanceSeedance25UsTextToVideoOutput extends SharedType_f141 {}
 
 export interface BytedanceSeedance25UsReferenceToVideoInput {
     /**
@@ -99802,7 +99701,7 @@ export interface BytedanceSeedance25UsReferenceToVideoInput {
     video_urls?: string[];
 }
 
-export interface BytedanceSeedance25UsReferenceToVideoOutput extends SharedType_348 {}
+export interface BytedanceSeedance25UsReferenceToVideoOutput extends SharedType_f141 {}
 
 export interface BytedanceSeedance25UsImageToVideoInput {
     /**
@@ -99902,7 +99801,7 @@ export interface BytedanceSeedance25UsImageToVideoInput {
     resolution?: '480p' | '720p' | '1080p';
 }
 
-export interface BytedanceSeedance25UsImageToVideoOutput extends SharedType_348 {}
+export interface BytedanceSeedance25UsImageToVideoOutput extends SharedType_f141 {}
 
 export interface BytedanceSeedance25DraftCompleteInput {
     /**
@@ -99917,7 +99816,7 @@ export interface BytedanceSeedance25DraftCompleteInput {
     codec?: 'auto' | 'H264' | 'H265';
     /**
      * Draft Id
-     * @description The draft_id returned with draft enabled. Valid for seven days and only for the original caller.
+     * @description The draft_id returned with draft enabled. Valid for 14 days and only for the original caller.
      */
     draft_id: string;
     /**
@@ -99929,7 +99828,7 @@ export interface BytedanceSeedance25DraftCompleteInput {
     resolution?: '1080p';
 }
 
-export interface BytedanceSeedance25DraftCompleteOutput extends SharedType_348 {}
+export interface BytedanceSeedance25DraftCompleteOutput extends SharedType_f141 {}
 
 export interface BytedanceSeedance20UsTextToVideoInput {
     /**
@@ -103048,12 +102947,12 @@ export interface BlackforestlabsFlux3KeyframesToVideoDraftInput {
      * @description Keyframe images pinned to frame positions in the generated draft. Up to 10 keyframes with unique `frame_index` values.
      * @example [
      *       {
-     *         "frame_index": 0,
-     *         "image_url": "https://storage.googleapis.com/falserverless/example_inputs/veo31-flf2v-input-1.jpeg"
+     *         "image_url": "https://storage.googleapis.com/falserverless/example_inputs/veo31-flf2v-input-1.jpeg",
+     *         "frame_index": 0
      *       },
      *       {
-     *         "frame_index": 120,
-     *         "image_url": "https://storage.googleapis.com/falserverless/example_inputs/veo31-flf2v-input-2.jpeg"
+     *         "image_url": "https://storage.googleapis.com/falserverless/example_inputs/veo31-flf2v-input-2.jpeg",
+     *         "frame_index": 120
      *       }
      *     ]
      */
@@ -103100,12 +102999,12 @@ export interface BlackforestlabsFlux3KeyframesToVideoInput {
      * @description Keyframe images pinned to frame positions in the generated video. Up to 10 keyframes with unique `frame_index` values.
      * @example [
      *       {
-     *         "frame_index": 0,
-     *         "image_url": "https://storage.googleapis.com/falserverless/example_inputs/veo31-flf2v-input-1.jpeg"
+     *         "image_url": "https://storage.googleapis.com/falserverless/example_inputs/veo31-flf2v-input-1.jpeg",
+     *         "frame_index": 0
      *       },
      *       {
-     *         "frame_index": 120,
-     *         "image_url": "https://storage.googleapis.com/falserverless/example_inputs/veo31-flf2v-input-2.jpeg"
+     *         "image_url": "https://storage.googleapis.com/falserverless/example_inputs/veo31-flf2v-input-2.jpeg",
+     *         "frame_index": 120
      *       }
      *     ]
      */
@@ -103607,13 +103506,13 @@ export interface BlackforestlabsFlux3MaxTextToVideoOutput {
     /**
      * @description The generated video.
      * @example {
-     *       "duration": 5.041666666666667,
-     *       "width": 1280,
-     *       "num_frames": 121,
+     *       "content_type": "video/mp4",
      *       "url": "https://v3b.fal.media/files/b/0aad95e5/Yk8T8_MXiLBhuphmPfeqR_alligator.mp4",
-     *       "fps": 24,
      *       "height": 704,
-     *       "content_type": "video/mp4"
+     *       "num_frames": 121,
+     *       "fps": 24,
+     *       "duration": 5.041666666666667,
+     *       "width": 1280
      *     }
      */
     video: Components.VideoFile;
@@ -103645,12 +103544,12 @@ export interface BlackforestlabsFlux3MaxKeyframesToVideoInput {
      * @description Keyframe images pinned to frame positions in the generated video. Up to 10 keyframes with unique `frame_index` values.
      * @example [
      *       {
-     *         "frame_index": 0,
-     *         "image_url": "https://storage.googleapis.com/falserverless/example_inputs/veo31-flf2v-input-1.jpeg"
+     *         "image_url": "https://storage.googleapis.com/falserverless/example_inputs/veo31-flf2v-input-1.jpeg",
+     *         "frame_index": 0
      *       },
      *       {
-     *         "frame_index": 120,
-     *         "image_url": "https://storage.googleapis.com/falserverless/example_inputs/veo31-flf2v-input-2.jpeg"
+     *         "image_url": "https://storage.googleapis.com/falserverless/example_inputs/veo31-flf2v-input-2.jpeg",
+     *         "frame_index": 120
      *       }
      *     ]
      */
@@ -103698,13 +103597,13 @@ export interface BlackforestlabsFlux3MaxKeyframesToVideoOutput {
     /**
      * @description The generated video.
      * @example {
-     *       "duration": 5.041666666666667,
-     *       "width": 800,
-     *       "num_frames": 121,
+     *       "content_type": "video/mp4",
      *       "url": "https://v3b.fal.media/files/b/0aad95e6/8CP6rEBGhIRsmaiPP1Y9Q_alligator.mp4",
-     *       "fps": 24,
      *       "height": 1088,
-     *       "content_type": "video/mp4"
+     *       "num_frames": 121,
+     *       "fps": 24,
+     *       "duration": 5.041666666666667,
+     *       "width": 800
      *     }
      */
     video: Components.VideoFile;
@@ -103785,13 +103684,13 @@ export interface BlackforestlabsFlux3MaxImageToVideoOutput {
     /**
      * @description The generated video.
      * @example {
-     *       "duration": 5.041666666666667,
-     *       "width": 1280,
-     *       "num_frames": 121,
+     *       "content_type": "video/mp4",
      *       "url": "https://v3b.fal.media/files/b/0aad95e6/ESYZjWfb88A3PeyaAqCbD_alligator.mp4",
-     *       "fps": 24,
      *       "height": 704,
-     *       "content_type": "video/mp4"
+     *       "num_frames": 121,
+     *       "fps": 24,
+     *       "duration": 5.041666666666667,
+     *       "width": 1280
      *     }
      */
     video: Components.VideoFile;
@@ -103998,8 +103897,8 @@ export interface AlibabaQwenImage3TextToImageInput {
      * @description The size of the generated image. Total number of pixels must be between 512x512 and 2048x2048.
      * @default square_hd
      * @example {
-     *       "width": 1024,
-     *       "height": 1024
+     *       "height": 1024,
+     *       "width": 1024
      *     }
      */
     image_size?:
@@ -104254,12 +104153,12 @@ export interface AlibabaQwenAudio3TtsOutput {
     /**
      * @description The generated speech audio file.
      * @example {
-     *       "channels": 1,
-     *       "sample_rate": 24000,
      *       "content_type": "audio/wav",
-     *       "file_name": "W1mDF9_5NWnOPVZzccqP2_njpi6QRK.wav",
      *       "url": "https://v3b.fal.media/files/b/0aa31e93/W1mDF9_5NWnOPVZzccqP2_njpi6QRK.wav",
-     *       "duration": 3.44
+     *       "sample_rate": 24000,
+     *       "channels": 1,
+     *       "duration": 3.44,
+     *       "file_name": "W1mDF9_5NWnOPVZzccqP2_njpi6QRK.wav"
      *     }
      */
     audio: Components.AudioFile;
