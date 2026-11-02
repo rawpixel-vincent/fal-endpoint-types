@@ -359,6 +359,16 @@ declare global {
                 output: falEndpoints.TopazAdjustImageOutput;
             };
 
+            'tbc/mischief-1/image-to-video': {
+                input: falEndpoints.TbcMischief1ImageToVideoInput;
+                output: falEndpoints.TbcMischief1ImageToVideoOutput;
+            };
+
+            'speridlabs/idol': {
+                input: falEndpoints.SperidlabsIdolInput;
+                output: falEndpoints.SperidlabsIdolOutput;
+            };
+
             'sonilo/v1.1/video-to-video-sound-effects': {
                 input: falEndpoints.SoniloV11VideoToVideoSoundEffectsInput;
                 output: falEndpoints.SoniloV11VideoToVideoSoundEffectsOutput;
@@ -639,9 +649,104 @@ declare global {
                 output: falEndpoints.NvidiaCosmos3SuperImageToVideoOutput;
             };
 
-            'mureka/api/generate/song': {
-                input: falEndpoints.MurekaApiGenerateSongInput;
-                output: falEndpoints.MurekaApiGenerateSongOutput;
+            'mureka/v9/generate/soundtrack': {
+                input: falEndpoints.MurekaV9GenerateSoundtrackInput;
+                output: falEndpoints.MurekaV9GenerateSoundtrackOutput;
+            };
+
+            'mureka/v9/generate/song': {
+                input: falEndpoints.MurekaV9GenerateSongInput;
+                output: falEndpoints.MurekaV9GenerateSongOutput;
+            };
+
+            'mureka/v9/generate/instrumental': {
+                input: falEndpoints.MurekaV9GenerateInstrumentalInput;
+                output: falEndpoints.MurekaV9GenerateInstrumentalOutput;
+            };
+
+            'mureka/v9.5/generate/soundtrack': {
+                input: falEndpoints.MurekaV95GenerateSoundtrackInput;
+                output: falEndpoints.MurekaV95GenerateSoundtrackOutput;
+            };
+
+            'mureka/v9.5/generate/song': {
+                input: falEndpoints.MurekaV95GenerateSongInput;
+                output: falEndpoints.MurekaV95GenerateSongOutput;
+            };
+
+            'mureka/v9.5/generate/instrumental': {
+                input: falEndpoints.MurekaV95GenerateInstrumentalInput;
+                output: falEndpoints.MurekaV95GenerateInstrumentalOutput;
+            };
+
+            'mureka/v8/song/remix': {
+                input: falEndpoints.MurekaV8SongRemixInput;
+                output: falEndpoints.MurekaV8SongRemixOutput;
+            };
+
+            'mureka/v8/song/extend': {
+                input: falEndpoints.MurekaV8SongExtendInput;
+                output: falEndpoints.MurekaV8SongExtendOutput;
+            };
+
+            'mureka/v8/generate/track': {
+                input: falEndpoints.MurekaV8GenerateTrackInput;
+                output: falEndpoints.MurekaV8GenerateTrackOutput;
+            };
+
+            'mureka/v8/generate/soundtrack': {
+                input: falEndpoints.MurekaV8GenerateSoundtrackInput;
+                output: falEndpoints.MurekaV8GenerateSoundtrackOutput;
+            };
+
+            'mureka/v8/generate/song': {
+                input: falEndpoints.MurekaV8GenerateSongInput;
+                output: falEndpoints.MurekaV8GenerateSongOutput;
+            };
+
+            'mureka/v8/generate/instrumental': {
+                input: falEndpoints.MurekaV8GenerateInstrumentalInput;
+                output: falEndpoints.MurekaV8GenerateInstrumentalOutput;
+            };
+
+            'mureka/api/voice/clone': {
+                input: falEndpoints.MurekaApiVoiceCloneInput;
+                output: falEndpoints.MurekaApiVoiceCloneOutput;
+            };
+
+            'mureka/api/song/transcribe': {
+                input: falEndpoints.MurekaApiSongTranscribeInput;
+                output: falEndpoints.MurekaApiSongTranscribeOutput;
+            };
+
+            'mureka/api/song/stem': {
+                input: falEndpoints.MurekaApiSongStemInput;
+                output: falEndpoints.MurekaApiSongStemOutput;
+            };
+
+            'mureka/api/song/recognize': {
+                input: falEndpoints.MurekaApiSongRecognizeInput;
+                output: falEndpoints.MurekaApiSongRecognizeOutput;
+            };
+
+            'mureka/api/song/edit': {
+                input: falEndpoints.MurekaApiSongEditInput;
+                output: falEndpoints.MurekaApiSongEditOutput;
+            };
+
+            'mureka/api/song/describe': {
+                input: falEndpoints.MurekaApiSongDescribeInput;
+                output: falEndpoints.MurekaApiSongDescribeOutput;
+            };
+
+            'mureka/api/lyrics/extend': {
+                input: falEndpoints.MurekaApiLyricsExtendInput;
+                output: falEndpoints.MurekaApiLyricsExtendOutput;
+            };
+
+            'mureka/api/generate/speech': {
+                input: falEndpoints.MurekaApiGenerateSpeechInput;
+                output: falEndpoints.MurekaApiGenerateSpeechOutput;
             };
 
             'mureka/api/generate/podcast': {
@@ -659,9 +764,9 @@ declare global {
                 output: falEndpoints.MurekaApiGenerateLyricsOutput;
             };
 
-            'mureka/api/generate/instrumental': {
-                input: falEndpoints.MurekaApiGenerateInstrumentalInput;
-                output: falEndpoints.MurekaApiGenerateInstrumentalOutput;
+            'mureka/api/files/upload': {
+                input: falEndpoints.MurekaApiFilesUploadInput;
+                output: falEndpoints.MurekaApiFilesUploadOutput;
             };
 
             'moonvalley/marey/t2v': {
@@ -847,6 +952,11 @@ declare global {
             'minimax/h3-max-turbo/text-to-video': {
                 input: falEndpoints.MinimaxH3MaxTurboTextToVideoInput;
                 output: falEndpoints.MinimaxH3MaxTurboTextToVideoOutput;
+            };
+
+            'minimax/h3-max-turbo/reference-to-video': {
+                input: falEndpoints.MinimaxH3MaxTurboReferenceToVideoInput;
+                output: falEndpoints.MinimaxH3MaxTurboReferenceToVideoOutput;
             };
 
             'minimax/h3-max-turbo/image-to-video': {
@@ -1884,11 +1994,6 @@ declare global {
                 output: falEndpoints.TurboFluxTrainerOutput;
             };
 
-            'fal-ai/triposr': {
-                input: { [x in string]: any };
-                output: { [x in string]: any };
-            };
-
             'fal-ai/trellis/multi': {
                 input: falEndpoints.TrellisMultiInput;
                 output: falEndpoints.TrellisMultiOutput;
@@ -1997,16 +2102,6 @@ declare global {
             'fal-ai/stable-diffusion-v15': {
                 input: falEndpoints.StableDiffusionV15Input;
                 output: falEndpoints.StableDiffusionV15Output;
-            };
-
-            'fal-ai/stable-cascade/sote-diffusion': {
-                input: { [x in string]: any };
-                output: { [x in string]: any };
-            };
-
-            'fal-ai/stable-cascade': {
-                input: { [x in string]: any };
-                output: { [x in string]: any };
             };
 
             'fal-ai/stable-audio-3/small/sfx/text-to-audio': {
@@ -2952,11 +3047,6 @@ declare global {
             'fal-ai/pixverse/c1/image-to-video': {
                 input: falEndpoints.PixverseC1ImageToVideoInput;
                 output: falEndpoints.PixverseC1ImageToVideoOutput;
-            };
-
-            'fal-ai/pixart-sigma': {
-                input: { [x in string]: any };
-                output: { [x in string]: any };
             };
 
             'fal-ai/pixal3d': {
@@ -6099,11 +6189,6 @@ declare global {
                 output: falEndpoints.FastLcmDiffusionOutput;
             };
 
-            'fal-ai/fast-fooocus-sdxl/image-to-image': {
-                input: { [x in string]: any };
-                output: { [x in string]: any };
-            };
-
             'fal-ai/fashn/tryon/v1.6': {
                 input: falEndpoints.FashnTryonV16Input;
                 output: falEndpoints.FashnTryonV16Output;
@@ -6724,14 +6809,14 @@ declare global {
                 output: falEndpoints.BytedanceSeedance25UsImageToVideoOutput;
             };
 
+            'bytedance/seedance-2.5/us/draft/complete': {
+                input: falEndpoints.BytedanceSeedance25UsDraftCompleteInput;
+                output: falEndpoints.BytedanceSeedance25UsDraftCompleteOutput;
+            };
+
             'bytedance/seedance-2.5/text-to-video': Endpoints['bytedance/seedance-2.5/us/text-to-video'];
             'bytedance/seedance-2.5/reference-to-video': Endpoints['bytedance/seedance-2.5/us/reference-to-video'];
             'bytedance/seedance-2.5/image-to-video': Endpoints['bytedance/seedance-2.5/us/image-to-video'];
-
-            'bytedance/seedance-2.5/draft/complete': {
-                input: falEndpoints.BytedanceSeedance25DraftCompleteInput;
-                output: falEndpoints.BytedanceSeedance25DraftCompleteOutput;
-            };
 
             'bytedance/seedance-2.0/us/text-to-video': {
                 input: falEndpoints.BytedanceSeedance20UsTextToVideoInput;

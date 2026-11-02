@@ -3606,6 +3606,12 @@ export interface ReferenceCondition {
     url: string;
 }
 
+export interface RecognizeLyricsSection {
+    end?: number;
+    lines?: LyricsLine[];
+    start?: number;
+}
+
 export interface RayReframeSourcePosition {
     /**
      * H Norm
@@ -5720,11 +5726,11 @@ export interface GrokToolsConfiguration {
     /**
      * @description xAI-managed web search; off unless enabled is set true.
      * @default {
-     *       "excluded_domains": null,
+     *       "location": null,
+     *       "allowed_domains": null,
      *       "enabled": false,
      *       "enable_image_understanding": null,
-     *       "allowed_domains": null,
-     *       "location": null
+     *       "excluded_domains": null
      *     }
      */
     web_search?: GrokWebSearchTool;
@@ -5732,12 +5738,12 @@ export interface GrokToolsConfiguration {
      * @description xAI-managed X search; off unless enabled is set true.
      * @default {
      *       "enable_video_understanding": null,
-     *       "enabled": false,
-     *       "enable_image_understanding": null,
-     *       "excluded_x_handles": null,
-     *       "to_date": null,
      *       "allowed_x_handles": null,
-     *       "from_date": null
+     *       "enabled": false,
+     *       "excluded_x_handles": null,
+     *       "enable_image_understanding": null,
+     *       "from_date": null,
+     *       "to_date": null
      *     }
      */
     x_search?: GrokXSearchTool;
