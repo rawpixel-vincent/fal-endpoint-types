@@ -5204,6 +5204,60 @@ export interface Keyframe {
     image_url: string;
 }
 
+export interface IPAdapter_2 {
+    /**
+     * Image Encoder Path
+     * @description Path to the Image Encoder for the IP-Adapter, for example 'openai/clip-vit-large-patch14'
+     */
+    image_encoder_path: string;
+    /**
+     * Image Encoder Subfolder
+     * @description Subfolder in which the image encoder weights exist.
+     */
+    image_encoder_subfolder?: string;
+    /**
+     * Image Encoder Weight Name
+     * @description Name of the image encoder.
+     */
+    image_encoder_weight_name?: string;
+    /**
+     * Image Url
+     * @description URL of Image for IP-Adapter conditioning.
+     */
+    image_url: string;
+    /**
+     * Mask Image Url
+     * @description URL of the mask for the control image.
+     */
+    mask_image_url?: string;
+    /**
+     * Mask Threshold
+     * @description Threshold for mask.
+     * @default 0.5
+     */
+    mask_threshold?: number;
+    /**
+     * Path
+     * @description HTTPS URL or Hugging Face repository for content-valid safetensors IP-Adapter weights. Convert .bin adapters to safetensors offline before uploading.
+     */
+    path: string;
+    /**
+     * Scale
+     * @description Scale for ip adapter.
+     */
+    scale: number;
+    /**
+     * Subfolder
+     * @description Subfolder in which the ip_adapter weights exist
+     */
+    subfolder?: string;
+    /**
+     * Weight Name
+     * @description Exact file containing content-valid safetensors IP-Adapter weights. Pickle .bin adapters require safe offline conversion to safetensors.
+     */
+    weight_name?: string;
+}
+
 export interface IPAdapter_1 {
     /**
      * Image Projection Shortcut
@@ -5726,11 +5780,11 @@ export interface GrokToolsConfiguration {
     /**
      * @description xAI-managed web search; off unless enabled is set true.
      * @default {
-     *       "location": null,
-     *       "allowed_domains": null,
+     *       "excluded_domains": null,
      *       "enabled": false,
      *       "enable_image_understanding": null,
-     *       "excluded_domains": null
+     *       "allowed_domains": null,
+     *       "location": null
      *     }
      */
     web_search?: GrokWebSearchTool;
@@ -5738,12 +5792,12 @@ export interface GrokToolsConfiguration {
      * @description xAI-managed X search; off unless enabled is set true.
      * @default {
      *       "enable_video_understanding": null,
-     *       "allowed_x_handles": null,
-     *       "enabled": false,
      *       "excluded_x_handles": null,
+     *       "allowed_x_handles": null,
+     *       "to_date": null,
+     *       "enabled": false,
      *       "enable_image_understanding": null,
-     *       "from_date": null,
-     *       "to_date": null
+     *       "from_date": null
      *     }
      */
     x_search?: GrokXSearchTool;

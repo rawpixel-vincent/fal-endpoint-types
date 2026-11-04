@@ -664,6 +664,11 @@ declare global {
                 output: falEndpoints.MurekaV9GenerateInstrumentalOutput;
             };
 
+            'mureka/v9.5/song/remix': {
+                input: falEndpoints.MurekaV95SongRemixInput;
+                output: falEndpoints.MurekaV95SongRemixOutput;
+            };
+
             'mureka/v9.5/generate/soundtrack': {
                 input: falEndpoints.MurekaV95GenerateSoundtrackInput;
                 output: falEndpoints.MurekaV95GenerateSoundtrackOutput;
@@ -1729,11 +1734,6 @@ declare global {
                 output: falEndpoints.WanT2vLoraOutput;
             };
 
-            'fal-ai/wan-t2v': {
-                input: falEndpoints.WanT2vInput;
-                output: falEndpoints.WanT2vOutput;
-            };
-
             'fal-ai/wan-pro/text-to-video': {
                 input: falEndpoints.WanProTextToVideoInput;
                 output: falEndpoints.WanProTextToVideoOutput;
@@ -1742,11 +1742,6 @@ declare global {
             'fal-ai/wan-pro/image-to-video': {
                 input: falEndpoints.WanProImageToVideoInput;
                 output: falEndpoints.WanProImageToVideoOutput;
-            };
-
-            'fal-ai/wan-motion': {
-                input: falEndpoints.WanMotionInput;
-                output: falEndpoints.WanMotionOutput;
             };
 
             'fal-ai/wan-i2v-lora': {
@@ -2727,11 +2722,6 @@ declare global {
             'fal-ai/qwen-image-edit-2509': {
                 input: falEndpoints.QwenImageEdit2509Input;
                 output: falEndpoints.QwenImageEdit2509Output;
-            };
-
-            'fal-ai/qwen-image-edit': {
-                input: falEndpoints.QwenImageEditInput;
-                output: falEndpoints.QwenImageEditOutput;
             };
 
             'fal-ai/qwen-image-2512/lora': {
@@ -4609,21 +4599,6 @@ declare global {
                 output: falEndpoints.InfinityStarTextToVideoOutput;
             };
 
-            'fal-ai/infinitalk/video-to-video': {
-                input: falEndpoints.InfinitalkVideoToVideoInput;
-                output: falEndpoints.InfinitalkVideoToVideoOutput;
-            };
-
-            'fal-ai/infinitalk/single-text': {
-                input: falEndpoints.InfinitalkSingleTextInput;
-                output: falEndpoints.InfinitalkSingleTextOutput;
-            };
-
-            'fal-ai/infinitalk': {
-                input: falEndpoints.InfinitalkInput;
-                output: falEndpoints.InfinitalkOutput;
-            };
-
             'fal-ai/index-tts-2/text-to-speech': {
                 input: falEndpoints.IndexTts2TextToSpeechInput;
                 output: falEndpoints.IndexTts2TextToSpeechOutput;
@@ -6054,11 +6029,6 @@ declare global {
                 output: falEndpoints.FlashvsrUpscaleVideoOutput;
             };
 
-            'fal-ai/flashtalk': {
-                input: falEndpoints.FlashtalkInput;
-                output: falEndpoints.FlashtalkOutput;
-            };
-
             'fal-ai/flashhead': {
                 input: falEndpoints.FlashheadInput;
                 output: falEndpoints.FlashheadOutput;
@@ -6282,11 +6252,6 @@ declare global {
             'fal-ai/elevenlabs/speech-to-text': {
                 input: falEndpoints.ElevenlabsSpeechToTextInput;
                 output: falEndpoints.ElevenlabsSpeechToTextOutput;
-            };
-
-            'fal-ai/elevenlabs/sound-effects/v2': {
-                input: falEndpoints.ElevenlabsSoundEffectsV2Input;
-                output: falEndpoints.ElevenlabsSoundEffectsV2Output;
             };
 
             'fal-ai/elevenlabs/music': {
@@ -6584,31 +6549,6 @@ declare global {
                 output: falEndpoints.BirefnetOutput;
             };
 
-            'fal-ai/bernini-r/text-to-video': {
-                input: falEndpoints.BerniniRTextToVideoInput;
-                output: falEndpoints.BerniniRTextToVideoOutput;
-            };
-
-            'fal-ai/bernini-r/reference-to-video': {
-                input: falEndpoints.BerniniRReferenceToVideoInput;
-                output: falEndpoints.BerniniRReferenceToVideoOutput;
-            };
-
-            'fal-ai/bernini-r/reference-edit-video': {
-                input: falEndpoints.BerniniRReferenceEditVideoInput;
-                output: falEndpoints.BerniniRReferenceEditVideoOutput;
-            };
-
-            'fal-ai/bernini-r/edit-video': {
-                input: falEndpoints.BerniniREditVideoInput;
-                output: falEndpoints.BerniniREditVideoOutput;
-            };
-
-            'fal-ai/bernini-r/edit-image': {
-                input: falEndpoints.BerniniREditImageInput;
-                output: falEndpoints.BerniniREditImageOutput;
-            };
-
             'fal-ai/ben/v2/video': {
                 input: falEndpoints.BenV2VideoInput;
                 output: falEndpoints.BenV2VideoOutput;
@@ -6697,6 +6637,11 @@ declare global {
             'elevenlabs/tts/eleven-v4': {
                 input: falEndpoints.ElevenlabsTtsElevenV4Input;
                 output: falEndpoints.ElevenlabsTtsElevenV4Output;
+            };
+
+            'elevenlabs/sound-effects/v3': {
+                input: falEndpoints.ElevenlabsSoundEffectsV3Input;
+                output: falEndpoints.ElevenlabsSoundEffectsV3Output;
             };
 
             'elevenlabs/music/v2.5': {
