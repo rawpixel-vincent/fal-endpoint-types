@@ -4715,22 +4715,6 @@ export interface LoraWeight_4 {
     /**
      * Path
      * @description URL or the path to the LoRA weights.
-     * @example https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_offset_example-lora_1.0.safetensors
-     */
-    path: string;
-    /**
-     * Scale
-     * @description The scale of the LoRA weight. This is used to scale the LoRA weight
-     *                 before merging it with the base model.
-     * @default 0.1
-     */
-    scale?: number;
-}
-
-export interface LoraWeight_3 {
-    /**
-     * Path
-     * @description URL or the path to the LoRA weights.
      */
     path: string;
     /**
@@ -4745,6 +4729,22 @@ export interface LoraWeight_3 {
      * @description Name of the LoRA weight. Used only if `path` is a Hugging Face repository, and required only if you have more than 1 safetensors file in the repo.
      */
     weight_name?: string;
+}
+
+export interface LoraWeight_3 {
+    /**
+     * Path
+     * @description URL or the path to the LoRA weights.
+     * @example https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_offset_example-lora_1.0.safetensors
+     */
+    path: string;
+    /**
+     * Scale
+     * @description The scale of the LoRA weight. This is used to scale the LoRA weight
+     *                 before merging it with the base model.
+     * @default 0.1
+     */
+    scale?: number;
 }
 
 export interface LoraWeight_2 {
@@ -4764,33 +4764,6 @@ export interface LoraWeight_2 {
               [key: string]: number;
           }
         | number;
-}
-
-export interface LoRAWeight_1 {
-    /**
-     * Path
-     * @description URL or the path to the LoRA weights.
-     */
-    path: string;
-    /**
-     * Scale
-     * @description The scale of the LoRA weight. This is used to scale the LoRA weight
-     *                 before merging it with the base model.
-     * @default 1
-     */
-    scale?: number;
-    /**
-     * Transformer
-     * @description Specifies the transformer to load the lora weight into. 'high' loads into the high-noise transformer, 'low' loads it into the low-noise transformer, while 'both' loads the LoRA into both transformers.
-     * @default high
-     * @enum {string}
-     */
-    transformer?: 'high' | 'low' | 'both';
-    /**
-     * Weight Name
-     * @description Name of the LoRA weight. Used only if `path` is a Hugging Face repository, and required only if you have more than 1 safetensors file in the repo.
-     */
-    weight_name?: string;
 }
 
 export interface LoraWeight_1 {
@@ -4848,20 +4821,6 @@ export interface LoraWeight {
      * @default 1
      */
     scale?: number;
-}
-
-export interface LoraTrainingFailure {
-    /**
-     * Denoiser
-     * @description TRELLIS.2 denoiser whose training did not complete.
-     * @enum {string}
-     */
-    denoiser: 'sparse_structure' | 'geometry' | 'texture';
-    /**
-     * Error
-     * @description Reason the training did not complete.
-     */
-    error: string;
 }
 
 export interface LoRAInput_6 {
@@ -4981,38 +4940,6 @@ export interface LoRAInput {
     scale?: number;
 }
 
-export interface LoraAdapterResult {
-    /**
-     * Denoiser
-     * @description TRELLIS.2 denoiser this LoRA adapter was trained for: sparse_structure, geometry, or texture.
-     * @enum {string}
-     */
-    denoiser: 'sparse_structure' | 'geometry' | 'texture';
-    /**
-     * Learning Rate
-     * @description Learning rate used for LoRA optimization.
-     */
-    learning_rate: number;
-    lora_file: File;
-    /**
-     * Rank
-     * @description LoRA rank used for training.
-     * @enum {integer}
-     */
-    rank: 16 | 32 | 64;
-    /**
-     * Resolution
-     * @description Resolution this LoRA adapter was trained at. Use the same resolution in trellis-2-lora inference.
-     * @enum {integer}
-     */
-    resolution: 512 | 1024;
-    /**
-     * Training Steps
-     * @description Number of training steps run.
-     */
-    training_steps: number;
-}
-
 export interface LightingDetails {
     /**
      * Conditions
@@ -5080,6 +5007,24 @@ export interface KlingV4Shot {
      * @description The prompt for this shot.
      */
     prompt: string;
+}
+
+export interface KlingV4FlashElement {
+    /**
+     * Frontal Image Url
+     * @description The frontal image of the element (main view).
+     */
+    frontal_image_url?: string;
+    /**
+     * Reference Image Urls
+     * @description Additional views of the element from different angles (1-3).
+     */
+    reference_image_urls?: string[];
+    /**
+     * Video Url
+     * @description A video of the element, used instead of images (3-8s).
+     */
+    video_url?: string;
 }
 
 export interface KlingV4Element {
@@ -5647,6 +5592,20 @@ export interface I2VValidation {
     prompt: string;
 }
 
+export interface H3MaxCameraPoses {
+    /**
+     * Camera-to-world Matrices
+     * @description One 4x4 row-major camera-to-world matrix per frame.
+     */
+    c2w: number[][][];
+    /**
+     * Convention
+     * @description Camera axes of the matrices: blender (looks down -Z, Y up) or opencv (looks down +Z, Y down). The world frame does not matter.
+     * @enum {string}
+     */
+    convention: 'blender' | 'opencv';
+}
+
 export interface H3MaxCameraKeyframe {
     /**
      * Azimuth
@@ -5780,10 +5739,10 @@ export interface GrokToolsConfiguration {
     /**
      * @description xAI-managed web search; off unless enabled is set true.
      * @default {
+     *       "allowed_domains": null,
+     *       "enable_image_understanding": null,
      *       "excluded_domains": null,
      *       "enabled": false,
-     *       "enable_image_understanding": null,
-     *       "allowed_domains": null,
      *       "location": null
      *     }
      */
@@ -5791,13 +5750,13 @@ export interface GrokToolsConfiguration {
     /**
      * @description xAI-managed X search; off unless enabled is set true.
      * @default {
-     *       "enable_video_understanding": null,
-     *       "excluded_x_handles": null,
      *       "allowed_x_handles": null,
-     *       "to_date": null,
-     *       "enabled": false,
      *       "enable_image_understanding": null,
-     *       "from_date": null
+     *       "to_date": null,
+     *       "excluded_x_handles": null,
+     *       "enabled": false,
+     *       "from_date": null,
+     *       "enable_video_understanding": null
      *     }
      */
     x_search?: GrokXSearchTool;
