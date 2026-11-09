@@ -5740,10 +5740,10 @@ export interface GrokToolsConfiguration {
      * @description xAI-managed web search; off unless enabled is set true.
      * @default {
      *       "allowed_domains": null,
-     *       "enable_image_understanding": null,
-     *       "excluded_domains": null,
      *       "enabled": false,
-     *       "location": null
+     *       "location": null,
+     *       "excluded_domains": null,
+     *       "enable_image_understanding": null
      *     }
      */
     web_search?: GrokWebSearchTool;
@@ -5751,12 +5751,12 @@ export interface GrokToolsConfiguration {
      * @description xAI-managed X search; off unless enabled is set true.
      * @default {
      *       "allowed_x_handles": null,
-     *       "enable_image_understanding": null,
-     *       "to_date": null,
      *       "excluded_x_handles": null,
      *       "enabled": false,
+     *       "to_date": null,
+     *       "enable_video_understanding": null,
      *       "from_date": null,
-     *       "enable_video_understanding": null
+     *       "enable_image_understanding": null
      *     }
      */
     x_search?: GrokXSearchTool;

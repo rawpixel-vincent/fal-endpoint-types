@@ -994,6 +994,16 @@ declare global {
                 output: falEndpoints.MinimaxH3MaxTurboExtendVideoOutput;
             };
 
+            'microsoft/moge-3': {
+                input: falEndpoints.MicrosoftMoge3Input;
+                output: falEndpoints.MicrosoftMoge3Output;
+            };
+
+            'microsoft/moge-2': {
+                input: falEndpoints.MicrosoftMoge2Input;
+                output: falEndpoints.MicrosoftMoge2Output;
+            };
+
             'microsoft/mai-image-2.5/edit': {
                 input: falEndpoints.MicrosoftMaiImage25EditInput;
                 output: falEndpoints.MicrosoftMaiImage25EditOutput;
@@ -1052,6 +1062,26 @@ declare global {
             'meshy/v6-lite/retexture': {
                 input: falEndpoints.MeshyV6LiteRetextureInput;
                 output: falEndpoints.MeshyV6LiteRetextureOutput;
+            };
+
+            'meshy/t2/text-to-3d': {
+                input: falEndpoints.MeshyT2TextTo3dInput;
+                output: falEndpoints.MeshyT2TextTo3dOutput;
+            };
+
+            'meshy/t2/image-to-3d': {
+                input: falEndpoints.MeshyT2ImageTo3dInput;
+                output: falEndpoints.MeshyT2ImageTo3dOutput;
+            };
+
+            'meshy/t2.5/text-to-3d': {
+                input: falEndpoints.MeshyT25TextTo3dInput;
+                output: falEndpoints.MeshyT25TextTo3dOutput;
+            };
+
+            'meshy/t2.5/image-to-3d': {
+                input: falEndpoints.MeshyT25ImageTo3dInput;
+                output: falEndpoints.MeshyT25ImageTo3dOutput;
             };
 
             'meshy/relief': {
@@ -3310,18 +3340,18 @@ declare global {
             };
 
             'fal-ai/magi-distilled/image-to-video': {
-                input: falEndpoints.MagiDistilledImageToVideoInput;
-                output: falEndpoints.MagiDistilledImageToVideoOutput;
+                input: { [x in string]: any };
+                output: { [x in string]: any };
             };
 
             'fal-ai/magi-distilled/extend-video': {
-                input: falEndpoints.MagiDistilledExtendVideoInput;
-                output: falEndpoints.MagiDistilledExtendVideoOutput;
+                input: { [x in string]: any };
+                output: { [x in string]: any };
             };
 
             'fal-ai/magi-distilled': {
-                input: falEndpoints.MagiDistilledInput;
-                output: falEndpoints.MagiDistilledOutput;
+                input: { [x in string]: any };
+                output: { [x in string]: any };
             };
 
             'fal-ai/lyria3/pro': {
@@ -3345,33 +3375,33 @@ declare global {
             };
 
             'fal-ai/luma-photon/reframe': {
-                input: falEndpoints.LumaPhotonReframeInput;
-                output: falEndpoints.LumaPhotonReframeOutput;
+                input: { [x in string]: any };
+                output: { [x in string]: any };
             };
 
             'fal-ai/luma-photon/modify': {
-                input: falEndpoints.LumaPhotonModifyInput;
-                output: falEndpoints.LumaPhotonModifyOutput;
+                input: { [x in string]: any };
+                output: { [x in string]: any };
             };
 
             'fal-ai/luma-photon/flash/reframe': {
-                input: falEndpoints.LumaPhotonFlashReframeInput;
-                output: falEndpoints.LumaPhotonFlashReframeOutput;
+                input: { [x in string]: any };
+                output: { [x in string]: any };
             };
 
             'fal-ai/luma-photon/flash/modify': {
-                input: falEndpoints.LumaPhotonFlashModifyInput;
-                output: falEndpoints.LumaPhotonFlashModifyOutput;
+                input: { [x in string]: any };
+                output: { [x in string]: any };
             };
 
             'fal-ai/luma-photon/flash': {
-                input: falEndpoints.LumaPhotonFlashInput;
-                output: falEndpoints.LumaPhotonFlashOutput;
+                input: { [x in string]: any };
+                output: { [x in string]: any };
             };
 
             'fal-ai/luma-photon': {
-                input: falEndpoints.LumaPhotonInput;
-                output: falEndpoints.LumaPhotonOutput;
+                input: { [x in string]: any };
+                output: { [x in string]: any };
             };
 
             'fal-ai/ltxv-13b-098-distilled/multiconditioning': {
