@@ -569,6 +569,11 @@ declare global {
                 output: falEndpoints.OpenrouterRouterOutput;
             };
 
+            'openimaginglab/flashvsr-plus': {
+                input: falEndpoints.OpenimaginglabFlashvsrPlusInput;
+                output: falEndpoints.OpenimaginglabFlashvsrPlusOutput;
+            };
+
             'openai/gpt-image-2/edit': {
                 input: falEndpoints.OpenaiGptImage2EditInput;
                 output: falEndpoints.OpenaiGptImage2EditOutput;
@@ -994,6 +999,26 @@ declare global {
                 output: falEndpoints.MinimaxH3MaxTurboExtendVideoOutput;
             };
 
+            'minimax/h3-image/text-to-image': {
+                input: falEndpoints.MinimaxH3ImageTextToImageInput;
+                output: falEndpoints.MinimaxH3ImageTextToImageOutput;
+            };
+
+            'minimax/h3-image/highspeed/text-to-image': {
+                input: falEndpoints.MinimaxH3ImageHighspeedTextToImageInput;
+                output: falEndpoints.MinimaxH3ImageHighspeedTextToImageOutput;
+            };
+
+            'minimax/h3-image/highspeed/edit': {
+                input: falEndpoints.MinimaxH3ImageHighspeedEditInput;
+                output: falEndpoints.MinimaxH3ImageHighspeedEditOutput;
+            };
+
+            'minimax/h3-image/edit': {
+                input: falEndpoints.MinimaxH3ImageEditInput;
+                output: falEndpoints.MinimaxH3ImageEditOutput;
+            };
+
             'microsoft/moge-3': {
                 input: falEndpoints.MicrosoftMoge3Input;
                 output: falEndpoints.MicrosoftMoge3Output;
@@ -1084,6 +1109,16 @@ declare global {
                 output: falEndpoints.MeshyT25ImageTo3dOutput;
             };
 
+            'meshy/rigging/multi-animation': {
+                input: falEndpoints.MeshyRiggingMultiAnimationInput;
+                output: falEndpoints.MeshyRiggingMultiAnimationOutput;
+            };
+
+            'meshy/rigging': {
+                input: falEndpoints.MeshyRiggingInput;
+                output: falEndpoints.MeshyRiggingOutput;
+            };
+
             'meshy/relief': {
                 input: falEndpoints.MeshyReliefInput;
                 output: falEndpoints.MeshyReliefOutput;
@@ -1134,6 +1169,11 @@ declare global {
                 output: falEndpoints.LumaAgentRayV32ImageToVideoOutput;
             };
 
+            'lightricks/ltx-2.5/upscale': {
+                input: falEndpoints.LightricksLtx25UpscaleInput;
+                output: falEndpoints.LightricksLtx25UpscaleOutput;
+            };
+
             'lightricks/ltx-2.5/text-to-video/pro': {
                 input: falEndpoints.LightricksLtx25TextToVideoProInput;
                 output: falEndpoints.LightricksLtx25TextToVideoProOutput;
@@ -1142,6 +1182,11 @@ declare global {
             'lightricks/ltx-2.5/text-to-video/fast': {
                 input: falEndpoints.LightricksLtx25TextToVideoFastInput;
                 output: falEndpoints.LightricksLtx25TextToVideoFastOutput;
+            };
+
+            'lightricks/ltx-2.5/reframe': {
+                input: falEndpoints.LightricksLtx25ReframeInput;
+                output: falEndpoints.LightricksLtx25ReframeOutput;
             };
 
             'lightricks/ltx-2.5/image-to-video/pro': {
@@ -1154,6 +1199,11 @@ declare global {
                 output: falEndpoints.LightricksLtx25ImageToVideoFastOutput;
             };
 
+            'lightricks/ltx-2.5/hdr': {
+                input: falEndpoints.LightricksLtx25HdrInput;
+                output: falEndpoints.LightricksLtx25HdrOutput;
+            };
+
             'lightricks/ltx-2.5/audio-to-video/pro': {
                 input: falEndpoints.LightricksLtx25AudioToVideoProInput;
                 output: falEndpoints.LightricksLtx25AudioToVideoProOutput;
@@ -1162,6 +1212,11 @@ declare global {
             'lightricks/ltx-2.5/audio-to-video/fast': {
                 input: falEndpoints.LightricksLtx25AudioToVideoFastInput;
                 output: falEndpoints.LightricksLtx25AudioToVideoFastOutput;
+            };
+
+            'lightricks/ltx-2.5/alpha-gen': {
+                input: falEndpoints.LightricksLtx25AlphaGenInput;
+                output: falEndpoints.LightricksLtx25AlphaGenOutput;
             };
 
             'krea/v3/text-to-image': {
@@ -5134,16 +5189,6 @@ declare global {
                 output: falEndpoints.GptImage1MiniOutput;
             };
 
-            'fal-ai/glm-image/image-to-image': {
-                input: falEndpoints.GlmImageImageToImageInput;
-                output: falEndpoints.GlmImageImageToImageOutput;
-            };
-
-            'fal-ai/glm-image': {
-                input: falEndpoints.GlmImageInput;
-                output: falEndpoints.GlmImageOutput;
-            };
-
             'fal-ai/gemini-tts': {
                 input: falEndpoints.GeminiTtsInput;
                 output: falEndpoints.GeminiTtsOutput;
@@ -6227,16 +6272,6 @@ declare global {
             'fal-ai/bytedance/seedance/v1/pro/fast/image-to-video': {
                 input: falEndpoints.BytedanceSeedanceV1ProFastImageToVideoInput;
                 output: falEndpoints.BytedanceSeedanceV1ProFastImageToVideoOutput;
-            };
-
-            'fal-ai/bytedance/seedance/v1.5/pro/text-to-video': {
-                input: falEndpoints.BytedanceSeedanceV15ProTextToVideoInput;
-                output: falEndpoints.BytedanceSeedanceV15ProTextToVideoOutput;
-            };
-
-            'fal-ai/bytedance/seedance/v1.5/pro/image-to-video': {
-                input: falEndpoints.BytedanceSeedanceV15ProImageToVideoInput;
-                output: falEndpoints.BytedanceSeedanceV15ProImageToVideoOutput;
             };
 
             'fal-ai/bytedance/seed/v2/mini': {

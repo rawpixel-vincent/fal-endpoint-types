@@ -2303,6 +2303,11 @@ export interface Track {
     type: string;
 }
 
+export interface TokenDetails {
+    image_tokens: number;
+    [key: string]: any;
+}
+
 export interface TimestepsInput {
     /**
      * Array
@@ -4631,6 +4636,39 @@ export interface LyricsLine {
     words?: LyricsWord[];
 }
 
+export interface LTX25ReframeRectangle {
+    height?: number;
+    width?: number;
+    /**
+     * X
+     * @description Left edge as a fraction of output width.
+     */
+    x: number;
+    /**
+     * Y
+     * @description Top edge as a fraction of output height.
+     */
+    y: number;
+}
+
+export interface LTX25ReframeAnchor {
+    /**
+     * Anchor
+     * @description Fit and align the source video within the output frame.
+     * @enum {string}
+     */
+    anchor:
+        | 'center'
+        | 'top'
+        | 'bottom'
+        | 'left'
+        | 'right'
+        | 'top_left'
+        | 'top_right'
+        | 'bottom_left'
+        | 'bottom_right';
+}
+
 export interface LoudnormSummary {
     /**
      * Input Integrated
@@ -5340,6 +5378,12 @@ export interface InterpolateValidation {
     start_image_url: string;
 }
 
+export interface InputTokenDetails {
+    image_tokens: number;
+    text_tokens: number;
+    [key: string]: any;
+}
+
 export interface InpaintValidation {
     /**
      * Mask Url
@@ -5356,6 +5400,16 @@ export interface InpaintValidation {
      * @description URL to the source video to inpaint.
      */
     video_url: string;
+}
+
+export interface ImageUsage {
+    generated_images: number;
+    input_tokens: number;
+    input_tokens_details: InputTokenDetails;
+    output_tokens: number;
+    output_tokens_details: TokenDetails;
+    total_tokens: number;
+    [key: string]: any;
 }
 
 export interface ImageStyleReference {
@@ -5740,9 +5794,9 @@ export interface GrokToolsConfiguration {
      * @description xAI-managed web search; off unless enabled is set true.
      * @default {
      *       "allowed_domains": null,
+     *       "excluded_domains": null,
      *       "enabled": false,
      *       "location": null,
-     *       "excluded_domains": null,
      *       "enable_image_understanding": null
      *     }
      */
@@ -5751,11 +5805,11 @@ export interface GrokToolsConfiguration {
      * @description xAI-managed X search; off unless enabled is set true.
      * @default {
      *       "allowed_x_handles": null,
-     *       "excluded_x_handles": null,
-     *       "enabled": false,
-     *       "to_date": null,
      *       "enable_video_understanding": null,
+     *       "to_date": null,
+     *       "enabled": false,
      *       "from_date": null,
+     *       "excluded_x_handles": null,
      *       "enable_image_understanding": null
      *     }
      */
