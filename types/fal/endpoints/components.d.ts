@@ -2083,68 +2083,6 @@ export interface Vgl {
     text_render?: TextRender[];
 }
 
-export interface Validation {
-    /**
-     * Image Url
-     * @description An image to use for image-to-video validation. If provided for one validation, _all_ validation inputs must have an image.
-     */
-    image_url?: string;
-    /**
-     * Prompt
-     * @description The prompt to use for validation.
-     */
-    prompt: string;
-}
-
-export interface V2VValidation {
-    /**
-     * Prompt
-     * @description The prompt to use for validation.
-     */
-    prompt: string;
-    /**
-     * Reference Video Url
-     * @description URL to reference video for IC-LoRA validation. This is the input video that will be transformed.
-     */
-    reference_video_url: string;
-}
-
-export interface V2VMaskedValidation {
-    /**
-     * Mask Url
-     * @description URL to the mask (image or video). Standard convention: WHITE marks the region to regenerate/edit, BLACK is kept unchanged.
-     */
-    mask_url: string;
-    /**
-     * Prompt
-     * @description The prompt to use for validation.
-     */
-    prompt: string;
-    /**
-     * Reference Video Url
-     * @description URL to the reference (control) video that guides the regenerated region.
-     */
-    reference_video_url: string;
-    /**
-     * Video Url
-     * @description URL to the source video. Its UNMASKED region is kept pixel-faithful and the masked region is regenerated.
-     */
-    video_url: string;
-}
-
-export interface V2AValidation {
-    /**
-     * Prompt
-     * @description The prompt to use for validation.
-     */
-    prompt: string;
-    /**
-     * Video Url
-     * @description URL to the silent video the model should generate audio for.
-     */
-    video_url: string;
-}
-
 export interface UsageInfo_2 {
     /**
      * Decode Time Ms
@@ -2198,11 +2136,6 @@ export interface UsageInfo {
     output_tokens: number;
 }
 
-export interface Turn {
-    speaker_id: number;
-    text: string;
-}
-
 export interface TranscriptionWord {
     /**
      * End
@@ -2231,60 +2164,6 @@ export interface TranscriptionWord {
     type: string;
 }
 
-export interface TrajectoryParameters {
-    /**
-     * Phi
-     * @description Vertical rotation angles (degrees) for each keyframe.
-     * @example [
-     *       0,
-     *       -3,
-     *       -8,
-     *       -15,
-     *       -20,
-     *       -15,
-     *       -10,
-     *       -5,
-     *       0
-     *     ]
-     */
-    phi: number[];
-    /**
-     * Radius
-     * @description Camera distance scaling factors for each keyframe.
-     * @example [
-     *       0,
-     *       0.02,
-     *       0.09,
-     *       0.16,
-     *       0.25,
-     *       0.2,
-     *       0.09,
-     *       0
-     *     ]
-     */
-    radius: number[];
-    /**
-     * Theta
-     * @description Horizontal rotation angles (degrees) for each keyframe.
-     * @example [
-     *       0,
-     *       2,
-     *       8,
-     *       10,
-     *       5,
-     *       3,
-     *       0,
-     *       -2,
-     *       -5,
-     *       -8,
-     *       -5,
-     *       -3,
-     *       0
-     *     ]
-     */
-    theta: number[];
-}
-
 export interface Track {
     /**
      * Id
@@ -2295,7 +2174,7 @@ export interface Track {
      * Keyframes
      * @description List of keyframes that make up this track
      */
-    keyframes: Keyframe_1[];
+    keyframes: Keyframe[];
     /**
      * Type
      * @description Type of track ('video', 'audio', or 'image')
@@ -2610,14 +2489,6 @@ export interface TailoredStructuredPrompt {
     trigger_word?: string;
 }
 
-export interface T2AValidation {
-    /**
-     * Prompt
-     * @description The prompt to use for validation.
-     */
-    prompt: string;
-}
-
 export interface Sync3GenerationOptions {
     active_speaker_detection?: Sync3ActiveSpeakerDetection;
     /**
@@ -2921,19 +2792,6 @@ export interface SpeechToTextWord {
     type?: 'word' | 'spacing' | 'audio_event';
 }
 
-export interface SpeechTimestamp {
-    /**
-     * End Time
-     * @description The end time of the speech in seconds.
-     */
-    end: number;
-    /**
-     * Start Time
-     * @description The start time of the speech in seconds.
-     */
-    start: number;
-}
-
 export interface SpeakerConfig_1 {
     /**
      * Speaker ID
@@ -3023,12 +2881,6 @@ export interface SpeakerConfig {
         | 'Vindemiatrix'
         | 'Zephyr'
         | 'Zubenelgenubi';
-}
-
-export interface Speaker {
-    audio_url: string;
-    prompt: string;
-    speaker_id: number;
 }
 
 export interface SmartResizeResult {
@@ -3196,6 +3048,108 @@ export interface SegmentSamplingSettings {
      * @default 1
      */
     top_p?: number;
+}
+
+export interface SeedDream55TextStyle {
+    /**
+     * Bold
+     * @description Whether the text is bold.
+     * @default false
+     */
+    bold?: boolean;
+    /**
+     * Foreground Color
+     * @description Text color as uppercase `#RRGGBB`.
+     */
+    foreground_color?: string;
+    /**
+     * Italic
+     * @description Whether the text is italic.
+     * @default false
+     */
+    italic?: boolean;
+    /**
+     * Shadow
+     * @description Whether the text has a drop shadow or glow.
+     * @default false
+     */
+    shadow?: boolean;
+    /**
+     * Similar Font Family
+     * @description Closest matching font, or `unknown` when it cannot be recognized.
+     * @default unknown
+     */
+    similar_font_family?: string;
+    /**
+     * Strikethrough
+     * @description Whether the text has a strikethrough.
+     * @default false
+     */
+    strikethrough?: boolean;
+    /**
+     * Translucent
+     * @description Whether the text strokes are translucent.
+     * @default false
+     */
+    translucent?: boolean;
+    /**
+     * Underline
+     * @description Whether the text is underlined.
+     * @default false
+     */
+    underline?: boolean;
+}
+
+export interface SeedDream55TextRun {
+    style: SeedDream55TextStyle;
+    /**
+     * Text
+     * @description Text fragment that shares one style.
+     */
+    text: string;
+}
+
+export interface SeedDream55TextRecognition {
+    /**
+     * Lines
+     * @description Text lines in order.
+     */
+    lines: SeedDream55TextLine[];
+    /**
+     * Text
+     * @description Full text of the layer, lines separated by `\n`.
+     */
+    text: string;
+}
+
+export interface SeedDream55TextLine {
+    bounding_box: SeedDream50ProLayerBoundingBox;
+    /**
+     * Runs
+     * @description Styled fragments in order.
+     */
+    runs: SeedDream55TextRun[];
+}
+
+export interface SeedDream55Layer {
+    bounding_box?: SeedDream50ProLayerBoundingBox;
+    /**
+     * Description
+     * @description Detailed model-generated description of the layer. Omitted for the base image.
+     */
+    description?: string;
+    image: Image;
+    /**
+     * Name
+     * @description Model-generated label for the layer. Omitted for the base image.
+     */
+    name?: string;
+    text_recognition?: SeedDream55TextRecognition;
+    /**
+     * Z Index
+     * @description Stacking order from bottom to top. The base image always has z_index 0.
+     */
+    z_index: number;
 }
 
 export interface SeedDream50ProLayerBoundingBox {
@@ -3542,36 +3496,6 @@ export interface Resolution {
      * @description Width of the video in pixels
      */
     width: number;
-}
-
-export interface RelightParameters {
-    /**
-     * Bg Source
-     * @description Direction of the light source (used for IC-light).
-     * @default Left
-     * @enum {string}
-     */
-    bg_source?: 'Left' | 'Right' | 'Top' | 'Bottom';
-    /**
-     * Cfg
-     * @description Classifier-free guidance scale for relighting.
-     * @default 2
-     */
-    cfg?: number;
-    /**
-     * Relight Prompt
-     * @description Text prompt describing the desired lighting condition.
-     * @example Sunlight
-     * @example Red and Blue Neon Light
-     * @example Warm indoor lighting
-     */
-    relight_prompt: string;
-    /**
-     * Use Sky Mask
-     * @description Whether to use sky masking for outdoor scenes.
-     * @default false
-     */
-    use_sky_mask?: boolean;
 }
 
 export interface Region {
@@ -4197,19 +4121,6 @@ export interface OutputFormat {
     sample_rate?: number;
 }
 
-export interface OutpaintValidation {
-    /**
-     * Prompt
-     * @description The prompt to use for validation.
-     */
-    prompt: string;
-    /**
-     * Video Url
-     * @description URL to the full-canvas video whose surround should be outpainted.
-     */
-    video_url: string;
-}
-
 export interface OmniVideoElementInput {
     /**
      * Frontal Image Url
@@ -4749,7 +4660,7 @@ export interface LoudnessNormalizationSetting {
     target_range?: number;
 }
 
-export interface LoraWeight_4 {
+export interface LoraWeight_3 {
     /**
      * Path
      * @description URL or the path to the LoRA weights.
@@ -4769,42 +4680,7 @@ export interface LoraWeight_4 {
     weight_name?: string;
 }
 
-export interface LoraWeight_3 {
-    /**
-     * Path
-     * @description URL or the path to the LoRA weights.
-     * @example https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_offset_example-lora_1.0.safetensors
-     */
-    path: string;
-    /**
-     * Scale
-     * @description The scale of the LoRA weight. This is used to scale the LoRA weight
-     *                 before merging it with the base model.
-     * @default 0.1
-     */
-    scale?: number;
-}
-
 export interface LoraWeight_2 {
-    /**
-     * Path
-     * @description URL or the path to the LoRA weights.
-     */
-    path: string;
-    /**
-     * Scale
-     * @description The scale of the LoRA weight. This is used to scale the LoRA weight
-     *                 before merging it with the base model. Providing a dictionary as {"layer_name":layer_scale} allows per-layer lora scale settings. Layers with no scale provided will have scale 1.0.
-     * @default 1
-     */
-    scale?:
-        | {
-              [key: string]: number;
-          }
-        | number;
-}
-
-export interface LoraWeight_1 {
     /**
      * Force
      * @description If set to true, the embedding will be forced to be used.
@@ -4825,6 +4701,25 @@ export interface LoraWeight_1 {
      * @default 1
      */
     scale?: number;
+}
+
+export interface LoraWeight_1 {
+    /**
+     * Path
+     * @description URL or the path to the LoRA weights.
+     */
+    path: string;
+    /**
+     * Scale
+     * @description The scale of the LoRA weight. This is used to scale the LoRA weight
+     *                 before merging it with the base model. Providing a dictionary as {"layer_name":layer_scale} allows per-layer lora scale settings. Layers with no scale provided will have scale 1.0.
+     * @default 1
+     */
+    scale?:
+        | {
+              [key: string]: number;
+          }
+        | number;
 }
 
 export interface LoRAWeight {
@@ -4967,7 +4862,7 @@ export interface LoRAInput_1 {
 export interface LoRAInput {
     /**
      * Path
-     * @description URL, HuggingFace repo ID (owner/repo), or local path to LoRA weights.
+     * @description URL or HuggingFace repo ID (owner/repo) of the LoRA weights.
      */
     path: string;
     /**
@@ -5154,7 +5049,7 @@ export interface KlingV3ComboElementInput {
     voice_id?: string;
 }
 
-export interface Keyframe_1 {
+export interface Keyframe {
     /**
      * Duration
      * @description The duration in milliseconds of this keyframe
@@ -5172,35 +5067,21 @@ export interface Keyframe_1 {
     url: string;
 }
 
-export interface Keyframe {
-    /**
-     * Frame Index
-     * @description 0-based output frame index for this keyframe. Must be >= 1 (frame 0 is the restyled first frame from `image_url`) and less than the output frame count.
-     * @example 80
-     */
-    frame_index: number;
-    /**
-     * Image Url
-     * @description URL of a restyled keyframe image. It is pinned verbatim at `frame_index` to anchor identity over long videos. Its aspect ratio must match the output aspect ratio within 0.1.
-     * @example https://storage.googleapis.com/falserverless/example_inputs/ltxv-image-input.jpg
-     */
-    image_url: string;
-}
-
 export interface IPAdapter_2 {
     /**
      * Image Encoder Path
-     * @description Path to the Image Encoder for the IP-Adapter, for example 'openai/clip-vit-large-patch14'
+     * @description Hugging Face repository of the IP-Adapter image encoder. Only 'google/siglip-so400m-patch14-384' is supported.
+     * @example google/siglip-so400m-patch14-384
      */
     image_encoder_path: string;
     /**
      * Image Encoder Subfolder
-     * @description Subfolder in which the image encoder weights exist.
+     * @description Deprecated: custom image encoder files are not supported.
      */
     image_encoder_subfolder?: string;
     /**
      * Image Encoder Weight Name
-     * @description Name of the image encoder.
+     * @description Deprecated: custom image encoder files are not supported.
      */
     image_encoder_weight_name?: string;
     /**
@@ -5355,51 +5236,10 @@ export interface IPAdapter {
     weight_name?: string;
 }
 
-export interface InterpolateValidation {
-    /**
-     * End Image Url
-     * @description URL to the last-frame keyframe image.
-     */
-    end_image_url: string;
-    /**
-     * Middle Image Url
-     * @description Optional URL to a middle keyframe image; required when the run sets include_middle_keyframe=true (first+middle+last interpolation).
-     */
-    middle_image_url?: string;
-    /**
-     * Prompt
-     * @description The prompt to use for validation.
-     */
-    prompt: string;
-    /**
-     * Start Image Url
-     * @description URL to the first-frame keyframe image.
-     */
-    start_image_url: string;
-}
-
 export interface InputTokenDetails {
     image_tokens: number;
     text_tokens: number;
     [key: string]: any;
-}
-
-export interface InpaintValidation {
-    /**
-     * Mask Url
-     * @description URL to the inpainting mask (image or video). Standard convention: WHITE marks the region to regenerate/edit, BLACK is kept unchanged. Resolution need not match the video; it is resized automatically.
-     */
-    mask_url: string;
-    /**
-     * Prompt
-     * @description The prompt to use for validation.
-     */
-    prompt: string;
-    /**
-     * Video Url
-     * @description URL to the source video to inpaint.
-     */
-    video_url: string;
 }
 
 export interface ImageUsage {
@@ -5463,26 +5303,6 @@ export interface ImageReference {
      * @enum {string}
      */
     type?: 'subject' | 'background';
-}
-
-export interface ImagePrompt {
-    image_url?: string;
-    /**
-     * Stop At
-     * @default 0.5
-     */
-    stop_at?: number;
-    /**
-     * Type
-     * @default ImagePrompt
-     * @enum {string}
-     */
-    type?: 'ImagePrompt' | 'PyraCanny' | 'CPDS' | 'FaceSwap';
-    /**
-     * Weight
-     * @default 1
-     */
-    weight?: number;
 }
 
 export interface ImageFrame {
@@ -5633,19 +5453,6 @@ export interface Image {
     width?: number;
 }
 
-export interface I2VValidation {
-    /**
-     * Image Url
-     * @description An image to use as the first frame for image-to-video validation.
-     */
-    image_url: string;
-    /**
-     * Prompt
-     * @description The prompt to use for validation.
-     */
-    prompt: string;
-}
-
 export interface H3MaxCameraPoses {
     /**
      * Camera-to-world Matrices
@@ -5793,24 +5600,24 @@ export interface GrokToolsConfiguration {
     /**
      * @description xAI-managed web search; off unless enabled is set true.
      * @default {
-     *       "allowed_domains": null,
-     *       "excluded_domains": null,
      *       "enabled": false,
      *       "location": null,
-     *       "enable_image_understanding": null
+     *       "excluded_domains": null,
+     *       "enable_image_understanding": null,
+     *       "allowed_domains": null
      *     }
      */
     web_search?: GrokWebSearchTool;
     /**
      * @description xAI-managed X search; off unless enabled is set true.
      * @default {
-     *       "allowed_x_handles": null,
-     *       "enable_video_understanding": null,
-     *       "to_date": null,
      *       "enabled": false,
-     *       "from_date": null,
+     *       "allowed_x_handles": null,
+     *       "to_date": null,
      *       "excluded_x_handles": null,
-     *       "enable_image_understanding": null
+     *       "from_date": null,
+     *       "enable_image_understanding": null,
+     *       "enable_video_understanding": null
      *     }
      */
     x_search?: GrokXSearchTool;
@@ -6244,19 +6051,6 @@ export interface ExtendVideoConditioningInput {
     /**
      * Video URL
      * @description URL of video to use as conditioning
-     */
-    video_url: string;
-}
-
-export interface ExtendValidation {
-    /**
-     * Prompt
-     * @description The prompt to use for validation.
-     */
-    prompt: string;
-    /**
-     * Video Url
-     * @description URL to the video the model should temporally extend.
      */
     video_url: string;
 }
@@ -8706,52 +8500,6 @@ export interface AvatarIVBackground {
     value?: string;
 }
 
-export interface AV2AVValidation {
-    /**
-     * Prompt
-     * @description The prompt to use for validation.
-     */
-    prompt: string;
-    /**
-     * Reference Audio Url
-     * @description Optional URL to a separate reference audio. If omitted, the audio is taken from reference_video_url's own track.
-     */
-    reference_audio_url?: string;
-    /**
-     * Reference Video Url
-     * @description URL to the reference video (its audio track is also used as the audio reference) that conditions the generated audio+video.
-     */
-    reference_video_url: string;
-}
-
-export interface AV2AVMaskedValidation {
-    /**
-     * Mask Url
-     * @description URL to the mask (image or video). WHITE marks the region to regenerate, BLACK is kept unchanged.
-     */
-    mask_url: string;
-    /**
-     * Prompt
-     * @description The prompt to use for validation.
-     */
-    prompt: string;
-    /**
-     * Reference Audio Url
-     * @description Optional URL to a separate reference audio. If omitted, the audio is taken from reference_video_url's own track.
-     */
-    reference_audio_url?: string;
-    /**
-     * Reference Video Url
-     * @description URL to the reference video (its audio track is also used as the audio reference) guiding the regenerated audio+video.
-     */
-    reference_video_url: string;
-    /**
-     * Video Url
-     * @description URL to the source video. Its UNMASKED region is kept pixel-faithful and the masked region is regenerated.
-     */
-    video_url: string;
-}
-
 export interface AudioTrack {
     /**
      * Bitrate
@@ -8877,30 +8625,6 @@ export interface AudioSetting {
     sample_rate?: 8000 | 16000 | 22050 | 24000 | 32000 | 44100;
 }
 
-export interface AudioInpaintValidation {
-    /**
-     * Audio Url
-     * @description URL to the audio clip to inpaint.
-     */
-    audio_url: string;
-    /**
-     * Prompt
-     * @description The prompt to use for validation.
-     */
-    prompt: string;
-    /**
-     * Time Ranges
-     * @description Time ranges (in seconds, [start, end]) to REGENERATE/inpaint; the rest of the audio is kept. e.g. [[1.0, 2.0]].
-     * @example [
-     *       [
-     *         1,
-     *         2
-     *       ]
-     *     ]
-     */
-    time_ranges: [number, number][];
-}
-
 export interface AudioFile_2 {
     /**
      * Content Type
@@ -8994,19 +8718,6 @@ export interface AudioFile {
      * @description The URL where the file can be downloaded from.
      */
     url: string;
-}
-
-export interface AudioExtendValidation {
-    /**
-     * Audio Url
-     * @description URL to the audio clip the model should temporally extend.
-     */
-    audio_url: string;
-    /**
-     * Prompt
-     * @description The prompt to use for validation.
-     */
-    prompt: string;
 }
 
 export interface Audio_1 {
@@ -9222,37 +8933,6 @@ export interface Aesthetics {
      * @description The preference score of the image to be generated.
      */
     preference_score?: string;
-}
-
-export interface A2VValidation {
-    /**
-     * Audio Url
-     * @description URL to the conditioning audio track that drives the generated video.
-     */
-    audio_url: string;
-    /**
-     * Image Url
-     * @description URL to the start image used as the first frame (a2v is image+audio -> video, so the model conditions on this frame and the audio rather than generating the first frame).
-     */
-    image_url: string;
-    /**
-     * Prompt
-     * @description The prompt to use for validation.
-     */
-    prompt: string;
-}
-
-export interface A2AValidation {
-    /**
-     * Prompt
-     * @description The prompt to use for validation.
-     */
-    prompt: string;
-    /**
-     * Reference Audio Url
-     * @description URL to the reference audio that conditions the generated audio.
-     */
-    reference_audio_url: string;
 }
 
 export {};
