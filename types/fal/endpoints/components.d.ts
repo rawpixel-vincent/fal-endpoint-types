@@ -2178,8 +2178,9 @@ export interface Track {
     /**
      * Type
      * @description Type of track ('video', 'audio', or 'image')
+     * @enum {string}
      */
-    type: string;
+    type: 'video' | 'audio' | 'image';
 }
 
 export interface TokenDetails {
@@ -3408,6 +3409,92 @@ export interface RodinGen25Addons {
      * @default false
      */
     high_pack?: boolean;
+}
+
+export interface RigHierarchyNode {
+    /**
+     * Length
+     * @description Bone length along local +Y in input model units. Omit for automatic calculation; explicit null is not accepted.
+     */
+    length?: number;
+    /**
+     * Name
+     * @description Bone name.
+     */
+    name: string;
+    /**
+     * Parent
+     * @description Parent node index, or -1 for the root.
+     */
+    parent: number;
+    /**
+     * Transform
+     * @description Optional flat bone transform in input model coordinates.
+     */
+    transform?: number[];
+}
+
+export interface RiggingAnimationOutput {
+    /**
+     * Action Id
+     * @description Animation clip name from the returned GLB.
+     */
+    action_id: string;
+    animation_glb: File;
+}
+
+export interface RiggingAnimationLoop {
+    /**
+     * Alignment
+     * @enum {string}
+     */
+    alignment: 'none' | 'duplicate' | 'next';
+    /**
+     * Displacement
+     * @description World-space displacement per loop in meters, in x, y, z order.
+     */
+    displacement: number[];
+    /**
+     * Kind
+     * @enum {string}
+     */
+    kind: 'none' | 'in_place' | 'travel';
+    /**
+     * Period Frames
+     * @description Loop period at 30 FPS, if available.
+     */
+    period_frames: number;
+}
+
+export interface RiggingAnimation {
+    animation_id: string;
+    /**
+     * Category
+     * @enum {string}
+     */
+    category:
+        | 'human'
+        | 'canine'
+        | 'bird'
+        | 'fish'
+        | 'heavyhooved'
+        | 'leanhooved'
+        | 'lizard'
+        | 'rodentia'
+        | 'seaturtle';
+    content_description: string;
+    display_name: string;
+    /**
+     * Duration Seconds
+     * @description Sample duration in seconds.
+     */
+    duration_seconds: number;
+    /**
+     * Frames
+     * @description Samples at 30 FPS, including both endpoints.
+     */
+    frames: number;
+    loop: RiggingAnimationLoop;
 }
 
 export interface RGBColor_2 {
@@ -4683,7 +4770,7 @@ export interface LoraWeight_3 {
 export interface LoraWeight_2 {
     /**
      * Force
-     * @description If set to true, the embedding will be forced to be used.
+     * @description Deprecated. Accepted for backward compatibility and ignored.
      * @default false
      */
     force?: boolean;
@@ -5138,7 +5225,7 @@ export interface IPAdapter_1 {
     insight_face_model_path?: string;
     /**
      * Ip Adapter Image Url
-     * @description URL of the image to be used as the IP adapter.
+     * @description URL of the image to be used as the IP adapter, or a list of up to 5 URLs.
      */
     ip_adapter_image_url: string | string[];
     /**
@@ -5600,11 +5687,11 @@ export interface GrokToolsConfiguration {
     /**
      * @description xAI-managed web search; off unless enabled is set true.
      * @default {
+     *       "allowed_domains": null,
+     *       "enable_image_understanding": null,
      *       "enabled": false,
      *       "location": null,
-     *       "excluded_domains": null,
-     *       "enable_image_understanding": null,
-     *       "allowed_domains": null
+     *       "excluded_domains": null
      *     }
      */
     web_search?: GrokWebSearchTool;
@@ -5612,12 +5699,12 @@ export interface GrokToolsConfiguration {
      * @description xAI-managed X search; off unless enabled is set true.
      * @default {
      *       "enabled": false,
-     *       "allowed_x_handles": null,
-     *       "to_date": null,
-     *       "excluded_x_handles": null,
-     *       "from_date": null,
+     *       "enable_video_understanding": null,
      *       "enable_image_understanding": null,
-     *       "enable_video_understanding": null
+     *       "from_date": null,
+     *       "excluded_x_handles": null,
+     *       "to_date": null,
+     *       "allowed_x_handles": null
      *     }
      */
     x_search?: GrokXSearchTool;

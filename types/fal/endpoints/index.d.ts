@@ -225,8 +225,8 @@ declare global {
             };
 
             'tripo3d/triposplat': {
-                input: falEndpoints.Tripo3dTriposplatInput;
-                output: falEndpoints.Tripo3dTriposplatOutput;
+                input: { [x in string]: any };
+                output: { [x in string]: any };
             };
 
             'tripo3d/tripo/v2.5/multiview-to-3d': {
@@ -635,8 +635,8 @@ declare global {
             };
 
             'nvidia/nemotron-asr-multilingual/asr': {
-                input: falEndpoints.NvidiaNemotronAsrMultilingualAsrInput;
-                output: falEndpoints.NvidiaNemotronAsrMultilingualAsrOutput;
+                input: { [x in string]: any };
+                output: { [x in string]: any };
             };
 
             'nvidia/nemotron-3-nano-omni/vision': {
@@ -1384,6 +1384,16 @@ declare global {
                 output: falEndpoints.IdeogramV4Output;
             };
 
+            'hyper3d/rigging/animations': {
+                input: falEndpoints.Hyper3dRiggingAnimationsInput;
+                output: falEndpoints.Hyper3dRiggingAnimationsOutput;
+            };
+
+            'hyper3d/rigging': {
+                input: falEndpoints.Hyper3dRiggingInput;
+                output: falEndpoints.Hyper3dRiggingOutput;
+            };
+
             'hitem3d/hi3d/v3.0/multi-view-to-3d': {
                 input: falEndpoints.Hitem3dHi3dV30MultiViewTo3dInput;
                 output: falEndpoints.Hitem3dHi3dV30MultiViewTo3dOutput;
@@ -1960,18 +1970,18 @@ declare global {
             };
 
             'fal-ai/telestyle-v2': {
-                input: falEndpoints.TelestyleV2Input;
-                output: falEndpoints.TelestyleV2Output;
+                input: { [x in string]: any };
+                output: { [x in string]: any };
             };
 
             'fal-ai/tada/3b/text-to-speech': {
-                input: falEndpoints.Tada3bTextToSpeechInput;
-                output: falEndpoints.Tada3bTextToSpeechOutput;
+                input: { [x in string]: any };
+                output: { [x in string]: any };
             };
 
             'fal-ai/tada/1b/text-to-speech': {
-                input: falEndpoints.Tada1bTextToSpeechInput;
-                output: falEndpoints.Tada1bTextToSpeechOutput;
+                input: { [x in string]: any };
+                output: { [x in string]: any };
             };
 
             'fal-ai/sync-lipsync/v3/image-to-video': {
@@ -2390,8 +2400,8 @@ declare global {
             };
 
             'fal-ai/retoucher': {
-                input: falEndpoints.RetoucherInput;
-                output: falEndpoints.RetoucherOutput;
+                input: { [x in string]: any };
+                output: { [x in string]: any };
             };
 
             'fal-ai/recraft/vectorize': {
@@ -2590,8 +2600,8 @@ declare global {
             };
 
             'fal-ai/qwen-image-edit-2509-trainer': {
-                input: falEndpoints.QwenImageEdit2509TrainerInput;
-                output: falEndpoints.QwenImageEdit2509TrainerOutput;
+                input: { [x in string]: any };
+                output: { [x in string]: any };
             };
 
             'fal-ai/qwen-image-edit-2509-lora-gallery/shirt-design': {
@@ -3985,13 +3995,13 @@ declare global {
             };
 
             'fal-ai/longcat-single-avatar/image-audio-to-video': {
-                input: falEndpoints.LongcatSingleAvatarImageAudioToVideoInput;
-                output: falEndpoints.LongcatSingleAvatarImageAudioToVideoOutput;
+                input: { [x in string]: any };
+                output: { [x in string]: any };
             };
 
             'fal-ai/longcat-single-avatar/audio-to-video': {
-                input: falEndpoints.LongcatSingleAvatarAudioToVideoInput;
-                output: falEndpoints.LongcatSingleAvatarAudioToVideoOutput;
+                input: { [x in string]: any };
+                output: { [x in string]: any };
             };
 
             'fal-ai/longcat-image/edit': {
@@ -5445,8 +5455,8 @@ declare global {
             };
 
             'fal-ai/flux-lora-canny': {
-                input: falEndpoints.FluxLoraCannyInput;
-                output: falEndpoints.FluxLoraCannyOutput;
+                input: { [x in string]: any };
+                output: { [x in string]: any };
             };
 
             'fal-ai/flux-lora': {
@@ -6430,18 +6440,18 @@ declare global {
             };
 
             'fal-ai/ai-avatar/single-text': {
-                input: falEndpoints.AiAvatarSingleTextInput;
-                output: falEndpoints.AiAvatarSingleTextOutput;
+                input: { [x in string]: any };
+                output: { [x in string]: any };
             };
 
             'fal-ai/ai-avatar/multi-text': {
-                input: falEndpoints.AiAvatarMultiTextInput;
-                output: falEndpoints.AiAvatarMultiTextOutput;
+                input: { [x in string]: any };
+                output: { [x in string]: any };
             };
 
             'fal-ai/ai-avatar/multi': {
-                input: falEndpoints.AiAvatarMultiInput;
-                output: falEndpoints.AiAvatarMultiOutput;
+                input: { [x in string]: any };
+                output: { [x in string]: any };
             };
 
             'fal-ai/ace-step/prompt-to-audio': {
@@ -6544,6 +6554,16 @@ declare global {
                 output: falEndpoints.CassetteaiMusicGeneratorOutput;
             };
 
+            'bytedance/seedream/v5/pro/us/text-to-image': {
+                input: falEndpoints.BytedanceSeedreamV5ProUsTextToImageInput;
+                output: falEndpoints.BytedanceSeedreamV5ProUsTextToImageOutput;
+            };
+
+            'bytedance/seedream/v5/pro/us/edit': {
+                input: falEndpoints.BytedanceSeedreamV5ProUsEditInput;
+                output: falEndpoints.BytedanceSeedreamV5ProUsEditOutput;
+            };
+
             'bytedance/seedream/v5/pro/text-to-image': {
                 input: falEndpoints.BytedanceSeedreamV5ProTextToImageInput;
                 output: falEndpoints.BytedanceSeedreamV5ProTextToImageOutput;
@@ -6622,6 +6642,21 @@ declare global {
             'bytedance/seedance-2.5/text-to-video': Endpoints['bytedance/seedance-2.5/us/text-to-video'];
             'bytedance/seedance-2.5/reference-to-video': Endpoints['bytedance/seedance-2.5/us/reference-to-video'];
             'bytedance/seedance-2.5/image-to-video': Endpoints['bytedance/seedance-2.5/us/image-to-video'];
+
+            'bytedance/seedance-2.5/flash/text-to-video': {
+                input: falEndpoints.BytedanceSeedance25FlashTextToVideoInput;
+                output: falEndpoints.BytedanceSeedance25FlashTextToVideoOutput;
+            };
+
+            'bytedance/seedance-2.5/flash/reference-to-video': {
+                input: falEndpoints.BytedanceSeedance25FlashReferenceToVideoInput;
+                output: falEndpoints.BytedanceSeedance25FlashReferenceToVideoOutput;
+            };
+
+            'bytedance/seedance-2.5/flash/image-to-video': {
+                input: falEndpoints.BytedanceSeedance25FlashImageToVideoInput;
+                output: falEndpoints.BytedanceSeedance25FlashImageToVideoOutput;
+            };
 
             'bytedance/seedance-2.0/us/text-to-video': {
                 input: falEndpoints.BytedanceSeedance20UsTextToVideoInput;
@@ -7044,13 +7079,13 @@ declare global {
             };
 
             'argil/avatars/text-to-video': {
-                input: falEndpoints.ArgilAvatarsTextToVideoInput;
-                output: falEndpoints.ArgilAvatarsTextToVideoOutput;
+                input: { [x in string]: any };
+                output: { [x in string]: any };
             };
 
             'argil/avatars/audio-to-video': {
-                input: falEndpoints.ArgilAvatarsAudioToVideoInput;
-                output: falEndpoints.ArgilAvatarsAudioToVideoOutput;
+                input: { [x in string]: any };
+                output: { [x in string]: any };
             };
 
             'alibaba/wan-3.0/text-to-video': {
