@@ -2083,6 +2083,68 @@ export interface Vgl {
     text_render?: TextRender[];
 }
 
+export interface Validation {
+    /**
+     * Image Url
+     * @description An image to use for image-to-video validation. If provided for one validation, _all_ validation inputs must have an image.
+     */
+    image_url?: string;
+    /**
+     * Prompt
+     * @description The prompt to use for validation.
+     */
+    prompt: string;
+}
+
+export interface V2VValidation {
+    /**
+     * Prompt
+     * @description The prompt to use for validation.
+     */
+    prompt: string;
+    /**
+     * Reference Video Url
+     * @description URL to reference video for IC-LoRA validation. This is the input video that will be transformed.
+     */
+    reference_video_url: string;
+}
+
+export interface V2VMaskedValidation {
+    /**
+     * Mask Url
+     * @description URL to the mask (image or video). Standard convention: WHITE marks the region to regenerate/edit, BLACK is kept unchanged.
+     */
+    mask_url: string;
+    /**
+     * Prompt
+     * @description The prompt to use for validation.
+     */
+    prompt: string;
+    /**
+     * Reference Video Url
+     * @description URL to the reference (control) video that guides the regenerated region.
+     */
+    reference_video_url: string;
+    /**
+     * Video Url
+     * @description URL to the source video. Its UNMASKED region is kept pixel-faithful and the masked region is regenerated.
+     */
+    video_url: string;
+}
+
+export interface V2AValidation {
+    /**
+     * Prompt
+     * @description The prompt to use for validation.
+     */
+    prompt: string;
+    /**
+     * Video Url
+     * @description URL to the silent video the model should generate audio for.
+     */
+    video_url: string;
+}
+
 export interface UsageInfo_2 {
     /**
      * Decode Time Ms
@@ -2488,6 +2550,14 @@ export interface TailoredStructuredPrompt {
      */
     text_render?: { [x: string]: any }[];
     trigger_word?: string;
+}
+
+export interface T2AValidation {
+    /**
+     * Prompt
+     * @description The prompt to use for validation.
+     */
+    prompt: string;
 }
 
 export interface Sync3GenerationOptions {
@@ -4208,6 +4278,19 @@ export interface OutputFormat {
     sample_rate?: number;
 }
 
+export interface OutpaintValidation {
+    /**
+     * Prompt
+     * @description The prompt to use for validation.
+     */
+    prompt: string;
+    /**
+     * Video Url
+     * @description URL to the full-canvas video whose surround should be outpainted.
+     */
+    video_url: string;
+}
+
 export interface OmniVideoElementInput {
     /**
      * Frontal Image Url
@@ -4843,6 +4926,25 @@ export interface LoraWeight {
     scale?: number;
 }
 
+export interface LoRAInput_7 {
+    /**
+     * Path
+     * @description HTTPS URL or HuggingFace repo id (owner/repo) of the LoRA safetensors file, at most 2.5 GB. Keys are `diffusion_model.<module>.lora_A.weight` / `.lora_B.weight` for the `attn.qkv_proj`, `attn.out_proj`, `mlp.fc1` and `mlp.fc2` projections of `blocks.0`-`blocks.49` and `token_refiner.blocks.0`-`1`, and optionally `condition_proj`, `video_patch_proj` and `final_layer.video_out`, as the MiniMax H3-Image trainer and ai-toolkit export.
+     */
+    path: string;
+    /**
+     * Scale
+     * @description Strength of the LoRA (0.0 to 4.0).
+     * @default 1
+     */
+    scale?: number;
+    /**
+     * Weight Name
+     * @description Name of the LoRA weight file. Only used when `path` is a HuggingFace repo and it holds more than one LoRA.
+     */
+    weight_name?: string;
+}
+
 export interface LoRAInput_6 {
     /**
      * Path
@@ -5027,6 +5129,21 @@ export interface KlingV4Shot {
      * @description The prompt for this shot.
      */
     prompt: string;
+}
+
+export interface KlingV4ImageElement {
+    /**
+     * Frontal Image Url
+     * @description The frontal image of the element (main view).
+     *
+     *     Max file size: 30.0MB, Min width: 300px, Min height: 300px, Min aspect ratio: 0.40, Max aspect ratio: 2.50, Timeout: 20.0s
+     */
+    frontal_image_url: string;
+    /**
+     * Reference Image Urls
+     * @description Additional views of the element from different angles (1-3).
+     */
+    reference_image_urls: string[];
 }
 
 export interface KlingV4FlashElement {
@@ -5323,10 +5440,51 @@ export interface IPAdapter {
     weight_name?: string;
 }
 
+export interface InterpolateValidation {
+    /**
+     * End Image Url
+     * @description URL to the last-frame keyframe image.
+     */
+    end_image_url: string;
+    /**
+     * Middle Image Url
+     * @description Optional URL to a middle keyframe image; required when the run sets include_middle_keyframe=true (first+middle+last interpolation).
+     */
+    middle_image_url?: string;
+    /**
+     * Prompt
+     * @description The prompt to use for validation.
+     */
+    prompt: string;
+    /**
+     * Start Image Url
+     * @description URL to the first-frame keyframe image.
+     */
+    start_image_url: string;
+}
+
 export interface InputTokenDetails {
     image_tokens: number;
     text_tokens: number;
     [key: string]: any;
+}
+
+export interface InpaintValidation {
+    /**
+     * Mask Url
+     * @description URL to the inpainting mask (image or video). Standard convention: WHITE marks the region to regenerate/edit, BLACK is kept unchanged. Resolution need not match the video; it is resized automatically.
+     */
+    mask_url: string;
+    /**
+     * Prompt
+     * @description The prompt to use for validation.
+     */
+    prompt: string;
+    /**
+     * Video Url
+     * @description URL to the source video to inpaint.
+     */
+    video_url: string;
 }
 
 export interface ImageUsage {
@@ -5540,6 +5698,19 @@ export interface Image {
     width?: number;
 }
 
+export interface I2VValidation {
+    /**
+     * Image Url
+     * @description An image to use as the first frame for image-to-video validation.
+     */
+    image_url: string;
+    /**
+     * Prompt
+     * @description The prompt to use for validation.
+     */
+    prompt: string;
+}
+
 export interface H3MaxCameraPoses {
     /**
      * Camera-to-world Matrices
@@ -5687,24 +5858,24 @@ export interface GrokToolsConfiguration {
     /**
      * @description xAI-managed web search; off unless enabled is set true.
      * @default {
+     *       "location": null,
      *       "allowed_domains": null,
      *       "enable_image_understanding": null,
-     *       "enabled": false,
-     *       "location": null,
-     *       "excluded_domains": null
+     *       "excluded_domains": null,
+     *       "enabled": false
      *     }
      */
     web_search?: GrokWebSearchTool;
     /**
      * @description xAI-managed X search; off unless enabled is set true.
      * @default {
-     *       "enabled": false,
-     *       "enable_video_understanding": null,
-     *       "enable_image_understanding": null,
-     *       "from_date": null,
-     *       "excluded_x_handles": null,
      *       "to_date": null,
-     *       "allowed_x_handles": null
+     *       "enable_video_understanding": null,
+     *       "from_date": null,
+     *       "allowed_x_handles": null,
+     *       "enable_image_understanding": null,
+     *       "excluded_x_handles": null,
+     *       "enabled": false
      *     }
      */
     x_search?: GrokXSearchTool;
@@ -6138,6 +6309,19 @@ export interface ExtendVideoConditioningInput {
     /**
      * Video URL
      * @description URL of video to use as conditioning
+     */
+    video_url: string;
+}
+
+export interface ExtendValidation {
+    /**
+     * Prompt
+     * @description The prompt to use for validation.
+     */
+    prompt: string;
+    /**
+     * Video Url
+     * @description URL to the video the model should temporally extend.
      */
     video_url: string;
 }
@@ -8587,6 +8771,52 @@ export interface AvatarIVBackground {
     value?: string;
 }
 
+export interface AV2AVValidation {
+    /**
+     * Prompt
+     * @description The prompt to use for validation.
+     */
+    prompt: string;
+    /**
+     * Reference Audio Url
+     * @description Optional URL to a separate reference audio. If omitted, the audio is taken from reference_video_url's own track.
+     */
+    reference_audio_url?: string;
+    /**
+     * Reference Video Url
+     * @description URL to the reference video (its audio track is also used as the audio reference) that conditions the generated audio+video.
+     */
+    reference_video_url: string;
+}
+
+export interface AV2AVMaskedValidation {
+    /**
+     * Mask Url
+     * @description URL to the mask (image or video). WHITE marks the region to regenerate, BLACK is kept unchanged.
+     */
+    mask_url: string;
+    /**
+     * Prompt
+     * @description The prompt to use for validation.
+     */
+    prompt: string;
+    /**
+     * Reference Audio Url
+     * @description Optional URL to a separate reference audio. If omitted, the audio is taken from reference_video_url's own track.
+     */
+    reference_audio_url?: string;
+    /**
+     * Reference Video Url
+     * @description URL to the reference video (its audio track is also used as the audio reference) guiding the regenerated audio+video.
+     */
+    reference_video_url: string;
+    /**
+     * Video Url
+     * @description URL to the source video. Its UNMASKED region is kept pixel-faithful and the masked region is regenerated.
+     */
+    video_url: string;
+}
+
 export interface AudioTrack {
     /**
      * Bitrate
@@ -8712,6 +8942,30 @@ export interface AudioSetting {
     sample_rate?: 8000 | 16000 | 22050 | 24000 | 32000 | 44100;
 }
 
+export interface AudioInpaintValidation {
+    /**
+     * Audio Url
+     * @description URL to the audio clip to inpaint.
+     */
+    audio_url: string;
+    /**
+     * Prompt
+     * @description The prompt to use for validation.
+     */
+    prompt: string;
+    /**
+     * Time Ranges
+     * @description Time ranges (in seconds, [start, end]) to REGENERATE/inpaint; the rest of the audio is kept. e.g. [[1.0, 2.0]].
+     * @example [
+     *       [
+     *         1,
+     *         2
+     *       ]
+     *     ]
+     */
+    time_ranges: [number, number][];
+}
+
 export interface AudioFile_2 {
     /**
      * Content Type
@@ -8805,6 +9059,19 @@ export interface AudioFile {
      * @description The URL where the file can be downloaded from.
      */
     url: string;
+}
+
+export interface AudioExtendValidation {
+    /**
+     * Audio Url
+     * @description URL to the audio clip the model should temporally extend.
+     */
+    audio_url: string;
+    /**
+     * Prompt
+     * @description The prompt to use for validation.
+     */
+    prompt: string;
 }
 
 export interface Audio_1 {
@@ -9020,6 +9287,37 @@ export interface Aesthetics {
      * @description The preference score of the image to be generated.
      */
     preference_score?: string;
+}
+
+export interface A2VValidation {
+    /**
+     * Audio Url
+     * @description URL to the conditioning audio track that drives the generated video.
+     */
+    audio_url: string;
+    /**
+     * Image Url
+     * @description URL to the start image used as the first frame (a2v is image+audio -> video, so the model conditions on this frame and the audio rather than generating the first frame).
+     */
+    image_url: string;
+    /**
+     * Prompt
+     * @description The prompt to use for validation.
+     */
+    prompt: string;
+}
+
+export interface A2AValidation {
+    /**
+     * Prompt
+     * @description The prompt to use for validation.
+     */
+    prompt: string;
+    /**
+     * Reference Audio Url
+     * @description URL to the reference audio that conditions the generated audio.
+     */
+    reference_audio_url: string;
 }
 
 export {};
