@@ -114,11 +114,6 @@ declare global {
                 output: falEndpoints.WanV26ReferenceToVideoFlashOutput;
             };
 
-            'wan/v2.6/reference-to-video': {
-                input: falEndpoints.WanV26ReferenceToVideoInput;
-                output: falEndpoints.WanV26ReferenceToVideoOutput;
-            };
-
             'wan/v2.6/image-to-video/flash': {
                 input: falEndpoints.WanV26ImageToVideoFlashInput;
                 output: falEndpoints.WanV26ImageToVideoFlashOutput;
@@ -397,6 +392,16 @@ declare global {
             'speridlabs/iris-z': {
                 input: falEndpoints.SperidlabsIrisZInput;
                 output: falEndpoints.SperidlabsIrisZOutput;
+            };
+
+            'speridlabs/idol/max/turbo': {
+                input: falEndpoints.SperidlabsIdolMaxTurboInput;
+                output: falEndpoints.SperidlabsIdolMaxTurboOutput;
+            };
+
+            'speridlabs/idol/max': {
+                input: falEndpoints.SperidlabsIdolMaxInput;
+                output: falEndpoints.SperidlabsIdolMaxOutput;
             };
 
             'speridlabs/idol': {
@@ -925,8 +930,8 @@ declare global {
             };
 
             'minimax/h3-max/relight': {
-                input: { [x in string]: any };
-                output: { [x in string]: any };
+                input: falEndpoints.MinimaxH3MaxRelightInput;
+                output: falEndpoints.MinimaxH3MaxRelightOutput;
             };
 
             'minimax/h3-max/reframe-video': {
@@ -1394,6 +1399,16 @@ declare global {
                 output: falEndpoints.IdeogramV4FastOutput;
             };
 
+            'ideogram/v4.6/edit': {
+                input: falEndpoints.IdeogramV46EditInput;
+                output: falEndpoints.IdeogramV46EditOutput;
+            };
+
+            'ideogram/v4.6': {
+                input: falEndpoints.IdeogramV46Input;
+                output: falEndpoints.IdeogramV46Output;
+            };
+
             'ideogram/v4.5/edit': {
                 input: falEndpoints.IdeogramV45EditInput;
                 output: falEndpoints.IdeogramV45EditOutput;
@@ -1417,6 +1432,21 @@ declare global {
             'hyper3d/rigging': {
                 input: falEndpoints.Hyper3dRiggingInput;
                 output: falEndpoints.Hyper3dRiggingOutput;
+            };
+
+            'hyper3d/lowpoly/text-to-3d': {
+                input: falEndpoints.Hyper3dLowpolyTextTo3dInput;
+                output: falEndpoints.Hyper3dLowpolyTextTo3dOutput;
+            };
+
+            'hyper3d/lowpoly/mesh-to-3d': {
+                input: falEndpoints.Hyper3dLowpolyMeshTo3dInput;
+                output: falEndpoints.Hyper3dLowpolyMeshTo3dOutput;
+            };
+
+            'hyper3d/lowpoly/image-to-3d': {
+                input: falEndpoints.Hyper3dLowpolyImageTo3dInput;
+                output: falEndpoints.Hyper3dLowpolyImageTo3dOutput;
             };
 
             'hitem3d/hi3d/v3.0/multi-view-to-3d': {

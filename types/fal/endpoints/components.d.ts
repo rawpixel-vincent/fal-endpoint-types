@@ -3481,6 +3481,24 @@ export interface RodinGen25Addons {
     high_pack?: boolean;
 }
 
+export interface RigStats {
+    /**
+     * Animations
+     * @description Clips written into the game-ready mesh, among those requested.
+     */
+    animations: string[];
+    /**
+     * Num Bones
+     * @description Number of bones in the skeleton; 0 on failure.
+     */
+    num_bones: number;
+    /**
+     * Succeeded
+     * @description Whether the object was rigged. False when the model could not rig it: the game-ready mesh is then returned without a skeleton.
+     */
+    succeeded: boolean;
+}
+
 export interface RigHierarchyNode {
     /**
      * Length
@@ -3565,6 +3583,15 @@ export interface RiggingAnimation {
      */
     frames: number;
     loop: RiggingAnimationLoop;
+}
+
+export interface RigAnimation {
+    /**
+     * Action Id
+     * @description Name of the clip: walk, run, jump or idle.
+     */
+    action_id: string;
+    animation_glb: File;
 }
 
 export interface RGBColor_2 {
@@ -4605,6 +4632,24 @@ export interface ModelUrls {
     obj?: File;
     stl?: File;
     usdz?: File;
+}
+
+export interface MeshStats {
+    /**
+     * Num Faces
+     * @description Number of triangles in the full-resolution mesh.
+     */
+    num_faces: number;
+    /**
+     * Num Vertices
+     * @description Number of vertices in the triangle mesh.
+     */
+    num_vertices: number;
+    /**
+     * Watertight
+     * @description Always true: every edge belongs to exactly two triangles; nonclosed extractions are rejected.
+     */
+    watertight: boolean;
 }
 
 export interface MaskMetadata {
@@ -5858,11 +5903,11 @@ export interface GrokToolsConfiguration {
     /**
      * @description xAI-managed web search; off unless enabled is set true.
      * @default {
+     *       "enable_image_understanding": null,
      *       "location": null,
      *       "allowed_domains": null,
-     *       "enable_image_understanding": null,
-     *       "excluded_domains": null,
-     *       "enabled": false
+     *       "enabled": false,
+     *       "excluded_domains": null
      *     }
      */
     web_search?: GrokWebSearchTool;
@@ -5870,12 +5915,12 @@ export interface GrokToolsConfiguration {
      * @description xAI-managed X search; off unless enabled is set true.
      * @default {
      *       "to_date": null,
-     *       "enable_video_understanding": null,
      *       "from_date": null,
-     *       "allowed_x_handles": null,
+     *       "enable_video_understanding": null,
      *       "enable_image_understanding": null,
-     *       "excluded_x_handles": null,
-     *       "enabled": false
+     *       "allowed_x_handles": null,
+     *       "enabled": false,
+     *       "excluded_x_handles": null
      *     }
      */
     x_search?: GrokXSearchTool;
