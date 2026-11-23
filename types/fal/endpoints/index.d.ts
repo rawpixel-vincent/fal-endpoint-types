@@ -834,26 +834,6 @@ declare global {
                 output: falEndpoints.MurekaApiFilesUploadOutput;
             };
 
-            'moonvalley/marey/t2v': {
-                input: falEndpoints.MoonvalleyMareyT2vInput;
-                output: falEndpoints.MoonvalleyMareyT2vOutput;
-            };
-
-            'moonvalley/marey/pose-transfer': {
-                input: falEndpoints.MoonvalleyMareyPoseTransferInput;
-                output: falEndpoints.MoonvalleyMareyPoseTransferOutput;
-            };
-
-            'moonvalley/marey/motion-transfer': {
-                input: falEndpoints.MoonvalleyMareyMotionTransferInput;
-                output: falEndpoints.MoonvalleyMareyMotionTransferOutput;
-            };
-
-            'moonvalley/marey/i2v': {
-                input: falEndpoints.MoonvalleyMareyI2vInput;
-                output: falEndpoints.MoonvalleyMareyI2vOutput;
-            };
-
             'mirelo-ai/sfx2.0/video-to-video': {
                 input: falEndpoints.MireloaiSfx20VideoToVideoInput;
                 output: falEndpoints.MireloaiSfx20VideoToVideoOutput;
@@ -957,6 +937,11 @@ declare global {
             'minimax/h3-max/lip-sync/image-to-video': {
                 input: falEndpoints.MinimaxH3MaxLipSyncImageToVideoInput;
                 output: falEndpoints.MinimaxH3MaxLipSyncImageToVideoOutput;
+            };
+
+            'minimax/h3-max/insert-video': {
+                input: falEndpoints.MinimaxH3MaxInsertVideoInput;
+                output: falEndpoints.MinimaxH3MaxInsertVideoOutput;
             };
 
             'minimax/h3-max/image-to-video': {

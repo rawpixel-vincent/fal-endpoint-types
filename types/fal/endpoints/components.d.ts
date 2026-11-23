@@ -1,3 +1,16 @@
+export interface XAIVideoKeyframe {
+    /**
+     * Image URL
+     * @description URL of the image to pin at `timestamp`.
+     */
+    image_url: string;
+    /**
+     * Timestamp
+     * @description Time in seconds at which the image is pinned. Must be strictly between 0 and the video duration.
+     */
+    timestamp: number;
+}
+
 export interface WhisperChunk {
     /**
      * Text
@@ -5903,24 +5916,24 @@ export interface GrokToolsConfiguration {
     /**
      * @description xAI-managed web search; off unless enabled is set true.
      * @default {
-     *       "enable_image_understanding": null,
-     *       "location": null,
      *       "allowed_domains": null,
+     *       "enable_image_understanding": null,
      *       "enabled": false,
-     *       "excluded_domains": null
+     *       "excluded_domains": null,
+     *       "location": null
      *     }
      */
     web_search?: GrokWebSearchTool;
     /**
      * @description xAI-managed X search; off unless enabled is set true.
      * @default {
-     *       "to_date": null,
-     *       "from_date": null,
      *       "enable_video_understanding": null,
-     *       "enable_image_understanding": null,
+     *       "excluded_x_handles": null,
      *       "allowed_x_handles": null,
-     *       "enabled": false,
-     *       "excluded_x_handles": null
+     *       "from_date": null,
+     *       "to_date": null,
+     *       "enable_image_understanding": null,
+     *       "enabled": false
      *     }
      */
     x_search?: GrokXSearchTool;
