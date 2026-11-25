@@ -489,6 +489,11 @@ declare global {
                 output: falEndpoints.ResembleaiChatterboxhdSpeechToSpeechOutput;
             };
 
+            'recraft/vectorize/pro': {
+                input: falEndpoints.RecraftVectorizeProInput;
+                output: falEndpoints.RecraftVectorizeProOutput;
+            };
+
             'recraft/v4/style/text-to-vector': {
                 input: falEndpoints.RecraftV4StyleTextToVectorInput;
                 output: falEndpoints.RecraftV4StyleTextToVectorOutput;
@@ -517,6 +522,11 @@ declare global {
             'recraft/v4/create-style': {
                 input: falEndpoints.RecraftV4CreateStyleInput;
                 output: falEndpoints.RecraftV4CreateStyleOutput;
+            };
+
+            'recraft/v4.1/flash/v2/text-to-image': {
+                input: falEndpoints.RecraftV41FlashV2TextToImageInput;
+                output: falEndpoints.RecraftV41FlashV2TextToImageOutput;
             };
 
             'recraft/v4.1/flash/text-to-image': {
@@ -1229,6 +1239,21 @@ declare global {
                 output: falEndpoints.LightricksLtx25AlphaGenOutput;
             };
 
+            'krea/v3/trainer/edit': {
+                input: falEndpoints.KreaV3TrainerEditInput;
+                output: falEndpoints.KreaV3TrainerEditOutput;
+            };
+
+            'krea/v3/trainer': {
+                input: falEndpoints.KreaV3TrainerInput;
+                output: falEndpoints.KreaV3TrainerOutput;
+            };
+
+            'krea/v3/text-to-image/lora': {
+                input: falEndpoints.KreaV3TextToImageLoraInput;
+                output: falEndpoints.KreaV3TextToImageLoraOutput;
+            };
+
             'krea/v3/text-to-image': {
                 input: falEndpoints.KreaV3TextToImageInput;
                 output: falEndpoints.KreaV3TextToImageOutput;
@@ -1237,6 +1262,11 @@ declare global {
             'krea/v3/realtime': {
                 input: { [x in string]: any };
                 output: { [x in string]: any };
+            };
+
+            'krea/v3/edit/lora': {
+                input: falEndpoints.KreaV3EditLoraInput;
+                output: falEndpoints.KreaV3EditLoraOutput;
             };
 
             'krea/v3/edit': {
@@ -6144,11 +6174,6 @@ declare global {
                 output: { [x in string]: any };
             };
 
-            'creatify/boreal': {
-                input: falEndpoints.CreatifyBorealInput;
-                output: falEndpoints.CreatifyBorealOutput;
-            };
-
             'clarityai/crystal-video-upscaler': {
                 input: falEndpoints.ClarityaiCrystalVideoUpscalerInput;
                 output: falEndpoints.ClarityaiCrystalVideoUpscalerOutput;
@@ -6326,6 +6351,11 @@ declare global {
             'bytedance/seedance-2.0/fast/image-to-video': {
                 input: falEndpoints.BytedanceSeedance20FastImageToVideoInput;
                 output: falEndpoints.BytedanceSeedance20FastImageToVideoOutput;
+            };
+
+            'bytedance/seed-tts/v3': {
+                input: falEndpoints.BytedanceSeedTtsV3Input;
+                output: falEndpoints.BytedanceSeedTtsV3Output;
             };
 
             'bytedance/seed-audio-1.0': {

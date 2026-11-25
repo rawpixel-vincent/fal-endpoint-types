@@ -4984,7 +4984,7 @@ export interface LoraWeight {
     scale?: number;
 }
 
-export interface LoRAInput_7 {
+export interface LoRAInput_8 {
     /**
      * Path
      * @description HTTPS URL or HuggingFace repo id (owner/repo) of the LoRA safetensors file, at most 2.5 GB. Keys are `diffusion_model.<module>.lora_A.weight` / `.lora_B.weight` for the `attn.qkv_proj`, `attn.out_proj`, `mlp.fc1` and `mlp.fc2` projections of `blocks.0`-`blocks.49` and `token_refiner.blocks.0`-`1`, and optionally `condition_proj`, `video_patch_proj` and `final_layer.video_out`, as the MiniMax H3-Image trainer and ai-toolkit export.
@@ -5001,6 +5001,20 @@ export interface LoRAInput_7 {
      * @description Name of the LoRA weight file. Only used when `path` is a HuggingFace repo and it holds more than one LoRA.
      */
     weight_name?: string;
+}
+
+export interface LoRAInput_7 {
+    /**
+     * Path
+     * @description HTTPS URL of the LoRA weights. Only .safetensors files are accepted.
+     */
+    path: string;
+    /**
+     * Scale
+     * @description Scale factor for LoRA application (0.0 to 4.0).
+     * @default 1
+     */
+    scale?: number;
 }
 
 export interface LoRAInput_6 {
@@ -5806,6 +5820,31 @@ export interface H3MaxCameraKeyframe {
     time: number;
 }
 
+export interface H3LossSigmaBand {
+    /**
+     * Max Sigma
+     * @description Upper noise level of the band (exclusive; 1 includes pure noise).
+     */
+    max_sigma: number;
+    /**
+     * Min Sigma
+     * @description Lower noise level of the band (inclusive).
+     */
+    min_sigma: number;
+    /**
+     * Modality
+     * @description Which loss term the band weights.
+     * @default both
+     * @enum {string}
+     */
+    modality?: 'video' | 'audio' | 'both';
+    /**
+     * Weight
+     * @description Loss multiplier for steps in the band.
+     */
+    weight: number;
+}
+
 export interface GuidanceInput {
     /**
      * Image Url
@@ -5916,24 +5955,24 @@ export interface GrokToolsConfiguration {
     /**
      * @description xAI-managed web search; off unless enabled is set true.
      * @default {
-     *       "allowed_domains": null,
+     *       "location": null,
      *       "enable_image_understanding": null,
      *       "enabled": false,
-     *       "excluded_domains": null,
-     *       "location": null
+     *       "allowed_domains": null,
+     *       "excluded_domains": null
      *     }
      */
     web_search?: GrokWebSearchTool;
     /**
      * @description xAI-managed X search; off unless enabled is set true.
      * @default {
-     *       "enable_video_understanding": null,
-     *       "excluded_x_handles": null,
-     *       "allowed_x_handles": null,
-     *       "from_date": null,
-     *       "to_date": null,
      *       "enable_image_understanding": null,
-     *       "enabled": false
+     *       "to_date": null,
+     *       "from_date": null,
+     *       "enable_video_understanding": null,
+     *       "allowed_x_handles": null,
+     *       "enabled": false,
+     *       "excluded_x_handles": null
      *     }
      */
     x_search?: GrokXSearchTool;
