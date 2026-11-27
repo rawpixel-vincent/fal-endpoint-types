@@ -5955,24 +5955,24 @@ export interface GrokToolsConfiguration {
     /**
      * @description xAI-managed web search; off unless enabled is set true.
      * @default {
-     *       "location": null,
-     *       "enable_image_understanding": null,
      *       "enabled": false,
-     *       "allowed_domains": null,
-     *       "excluded_domains": null
+     *       "enable_image_understanding": null,
+     *       "excluded_domains": null,
+     *       "location": null,
+     *       "allowed_domains": null
      *     }
      */
     web_search?: GrokWebSearchTool;
     /**
      * @description xAI-managed X search; off unless enabled is set true.
      * @default {
-     *       "enable_image_understanding": null,
-     *       "to_date": null,
-     *       "from_date": null,
-     *       "enable_video_understanding": null,
-     *       "allowed_x_handles": null,
      *       "enabled": false,
-     *       "excluded_x_handles": null
+     *       "enable_image_understanding": null,
+     *       "enable_video_understanding": null,
+     *       "to_date": null,
+     *       "excluded_x_handles": null,
+     *       "from_date": null,
+     *       "allowed_x_handles": null
      *     }
      */
     x_search?: GrokXSearchTool;
